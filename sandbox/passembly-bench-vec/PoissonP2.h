@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -45,7 +45,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -104,34 +104,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -247,38 +261,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -288,11 +319,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -301,6 +338,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -309,23 +349,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -365,9 +414,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -454,7 +503,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -466,7 +515,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -525,34 +574,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -668,38 +731,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -709,11 +789,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -722,6 +808,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -730,23 +819,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -786,9 +884,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -875,7 +973,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return the cell shape
@@ -887,7 +985,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -941,7 +1039,7 @@ public:
     values[0] = 0;
     values[1] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -949,72 +1047,100 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
   }
@@ -1126,7 +1252,7 @@ public:
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -1134,38 +1260,55 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -1175,11 +1318,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -1188,6 +1337,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -1196,23 +1348,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -1237,46 +1398,63 @@ public:
       delete [] transform;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -1286,11 +1464,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -1299,6 +1483,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -1307,23 +1494,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -1365,9 +1561,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[12][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[12][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1418,9 +1614,9 @@ public:
     vertex_values[2] = dof_values[1];
     vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[1] = dof_values[3];
-    vertex_values[3] = dof_values[4];
-    vertex_values[5] = dof_values[5];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
+    vertex_values[5] = dof_values[8];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1467,7 +1663,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -1479,7 +1675,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -1538,34 +1734,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -1681,38 +1891,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -1722,11 +1949,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -1735,6 +1968,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -1743,23 +1979,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -1799,9 +2044,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1888,7 +2133,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -1900,7 +2145,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -1959,34 +2204,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -2102,38 +2361,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -2143,11 +2419,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -2156,6 +2438,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -2164,23 +2449,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -2220,9 +2514,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2309,7 +2603,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return the cell shape
@@ -2321,7 +2615,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -2375,7 +2669,7 @@ public:
     values[0] = 0;
     values[1] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -2383,72 +2677,100 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
   }
@@ -2560,7 +2882,7 @@ public:
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -2568,38 +2890,55 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2609,11 +2948,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -2622,6 +2967,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -2630,23 +2978,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -2671,46 +3028,63 @@ public:
       delete [] transform;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -2720,11 +3094,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -2733,6 +3113,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -2741,23 +3124,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -2799,9 +3191,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[12][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[12][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2852,9 +3244,9 @@ public:
     vertex_values[2] = dof_values[1];
     vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[1] = dof_values[3];
-    vertex_values[3] = dof_values[4];
-    vertex_values[5] = dof_values[5];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
+    vertex_values[5] = dof_values[8];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -2906,7 +3298,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2918,7 +3310,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -2930,7 +3322,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -2956,13 +3348,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -2974,7 +3366,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2991,6 +3383,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3002,14 +3398,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -3032,6 +3431,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3074,7 +3479,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3086,7 +3491,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -3098,7 +3503,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -3124,13 +3529,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -3142,7 +3547,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3159,6 +3564,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3170,14 +3579,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -3200,6 +3612,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3242,7 +3660,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3254,7 +3672,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -3266,7 +3684,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 2*m.num_entities[0];
+    __global_dimension = 2*m.num_entities[0] + 2*m.num_entities[1];
     return false;
   }
 
@@ -3292,13 +3710,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -3310,7 +3728,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 4;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3328,9 +3746,17 @@ public:
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
     unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[0][0];
-    dofs[4] = offset + c.entity_indices[0][1];
-    dofs[5] = offset + c.entity_indices[0][2];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
+    offset = offset + m.num_entities[1];
+    dofs[6] = offset + c.entity_indices[0][0];
+    dofs[7] = offset + c.entity_indices[0][1];
+    dofs[8] = offset + c.entity_indices[0][2];
+    offset = offset + m.num_entities[0];
+    dofs[9] = offset + c.entity_indices[1][0];
+    dofs[10] = offset + c.entity_indices[1][1];
+    dofs[11] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3342,20 +3768,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 4;
-      dofs[3] = 5;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 5;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 4;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -3378,12 +3810,24 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = x[0][0];
-    coordinates[3][1] = x[0][1];
-    coordinates[4][0] = x[1][0];
-    coordinates[4][1] = x[1][1];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][0] = x[0][0];
+    coordinates[6][1] = x[0][1];
+    coordinates[7][0] = x[1][0];
+    coordinates[7][1] = x[1][1];
+    coordinates[8][0] = x[2][0];
+    coordinates[8][1] = x[2][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3435,7 +3879,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3447,7 +3891,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -3459,7 +3903,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -3485,13 +3929,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -3503,7 +3947,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3520,6 +3964,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3531,14 +3979,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -3561,6 +4012,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3603,7 +4060,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3615,7 +4072,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -3627,7 +4084,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -3653,13 +4110,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -3671,7 +4128,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3688,6 +4145,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3699,14 +4160,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -3729,6 +4193,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3771,7 +4241,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3783,7 +4253,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -3795,7 +4265,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 2*m.num_entities[0];
+    __global_dimension = 2*m.num_entities[0] + 2*m.num_entities[1];
     return false;
   }
 
@@ -3821,13 +4291,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -3839,7 +4309,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 4;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -3857,9 +4327,17 @@ public:
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
     unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[0][0];
-    dofs[4] = offset + c.entity_indices[0][1];
-    dofs[5] = offset + c.entity_indices[0][2];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
+    offset = offset + m.num_entities[1];
+    dofs[6] = offset + c.entity_indices[0][0];
+    dofs[7] = offset + c.entity_indices[0][1];
+    dofs[8] = offset + c.entity_indices[0][2];
+    offset = offset + m.num_entities[0];
+    dofs[9] = offset + c.entity_indices[1][0];
+    dofs[10] = offset + c.entity_indices[1][1];
+    dofs[11] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -3871,20 +4349,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 4;
-      dofs[3] = 5;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 5;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 4;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -3907,12 +4391,24 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = x[0][0];
-    coordinates[3][1] = x[0][1];
-    coordinates[4][0] = x[1][0];
-    coordinates[4][1] = x[1][1];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][0] = x[0][0];
+    coordinates[6][1] = x[0][1];
+    coordinates[7][0] = x[1][0];
+    coordinates[7][1] = x[1][1];
+    coordinates[8][0] = x[2][0];
+    coordinates[8][1] = x[2][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -3986,63 +4482,93 @@ public:
     
     
     // Array of quadrature weights
-    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
-    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
+    static const double W9[9] = {0.0558144204830443, 0.063678085099885, 0.0193963833059595, 0.0893030727728709, 0.101884936159816, 0.0310342132895351, 0.0558144204830443, 0.063678085099885, 0.0193963833059595};
+    // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.0665540678391645, 0.409466864440735), (0.0239311322870806, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.80869438567767, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1_D01[4][6] = \
-    {{0, 0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 0, 1},
-    {0, 0, 0, -1, 0, 1}};
+    static const double FE0_C1_D01[9][12] = \
+    {{0, 0, 0, 0, 0, 0, -2.23477754271068, 0, -0.645648161949185, 0.410870619238505, 2.88042570465986, -0.410870619238505},
+    {0, 0, 0, 0, 0, 0, -1.0959162708804, 0, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356658},
+    {0, 0, 0, 0, 0, 0, 0.246362376191711, 0, 2.15063784704339, 0.0957245291483225, -2.3970002232351, -0.0957245291483227},
+    {0, 0, 0, 0, 0, 0, -0.822824080974592, 0, -0.645648161949184, 1.82282408097459, 1.46847224292378, -1.82282408097459},
+    {0, 0, 0, 0, 0, 0, -0.181066271118531, 0, 0.637867457762939, 1.18106627111853, -0.456801186644408, -1.18106627111853},
+    {0, 0, 0, 0, 0, 0, 0.575318923521695, 0, 2.15063784704339, 0.424681076478306, -2.72595677056508, -0.424681076478306},
+    {0, 0, 0, 0, 0, 0, 0.589129380761496, 0, -0.645648161949184, 3.23477754271068, 0.0565187811876887, -3.23477754271068},
+    {0, 0, 0, 0, 0, 0, 0.733783728643342, 0, 0.637867457762939, 2.0959162708804, -1.37165118640628, -2.0959162708804},
+    {0, 0, 0, 0, 0, 0, 0.904275470851678, 0, 2.15063784704339, 0.753637623808289, -3.05491331789507, -0.753637623808289}};
     
-    static const double FE0_C1_D10[4][6] = \
-    {{0, 0, 0, -1, 1, 0},
-    {0, 0, 0, -1, 1, 0},
-    {0, 0, 0, -1, 1, 0},
-    {0, 0, 0, -1, 1, 0}};
+    static const double FE0_C1_D10[9][12] = \
+    {{0, 0, 0, 0, 0, 0, -2.23477754271068, -0.589129380761495, 0, 0.354351838050815, -0.354351838050816, 2.82390692347217},
+    {0, 0, 0, 0, 0, 0, -1.0959162708804, -0.733783728643342, 0, 1.63786745776294, -1.63786745776294, 1.82969999952374},
+    {0, 0, 0, 0, 0, 0, 0.246362376191712, -0.904275470851677, 0, 3.15063784704339, -3.15063784704339, 0.657913094659966},
+    {0, 0, 0, 0, 0, 0, -0.822824080974592, 0.822824080974592, 0, 0.354351838050816, -0.354351838050816, 0},
+    {0, 0, 0, 0, 0, 0, -0.181066271118531, 0.181066271118531, 0, 1.63786745776294, -1.63786745776294, 0},
+    {0, 0, 0, 0, 0, 0, 0.575318923521695, -0.575318923521694, 0, 3.15063784704339, -3.15063784704339, 0},
+    {0, 0, 0, 0, 0, 0, 0.589129380761496, 2.23477754271068, 0, 0.354351838050816, -0.354351838050816, -2.82390692347218},
+    {0, 0, 0, 0, 0, 0, 0.733783728643342, 1.0959162708804, 0, 1.63786745776294, -1.63786745776294, -1.82969999952374},
+    {0, 0, 0, 0, 0, 0, 0.904275470851678, -0.246362376191711, 0, 3.15063784704339, -3.15063784704339, -0.657913094659967}};
     
-    static const double FE0_C0_D10[4][6] = \
-    {{-1, 1, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0},
-    {-1, 1, 0, 0, 0, 0}};
+    static const double FE0_C0_D10[9][12] = \
+    {{-2.23477754271068, -0.589129380761495, 0, 0.354351838050815, -0.354351838050816, 2.82390692347217, 0, 0, 0, 0, 0, 0},
+    {-1.0959162708804, -0.733783728643342, 0, 1.63786745776294, -1.63786745776294, 1.82969999952374, 0, 0, 0, 0, 0, 0},
+    {0.246362376191712, -0.904275470851677, 0, 3.15063784704339, -3.15063784704339, 0.657913094659966, 0, 0, 0, 0, 0, 0},
+    {-0.822824080974592, 0.822824080974592, 0, 0.354351838050816, -0.354351838050816, 0, 0, 0, 0, 0, 0, 0},
+    {-0.181066271118531, 0.181066271118531, 0, 1.63786745776294, -1.63786745776294, 0, 0, 0, 0, 0, 0, 0},
+    {0.575318923521695, -0.575318923521694, 0, 3.15063784704339, -3.15063784704339, 0, 0, 0, 0, 0, 0, 0},
+    {0.589129380761496, 2.23477754271068, 0, 0.354351838050816, -0.354351838050816, -2.82390692347218, 0, 0, 0, 0, 0, 0},
+    {0.733783728643342, 1.0959162708804, 0, 1.63786745776294, -1.63786745776294, -1.82969999952374, 0, 0, 0, 0, 0, 0},
+    {0.904275470851678, -0.246362376191711, 0, 3.15063784704339, -3.15063784704339, -0.657913094659967, 0, 0, 0, 0, 0, 0}};
     
-    static const double FE0_C0_D01[4][6] = \
-    {{-1, 0, 1, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0},
-    {-1, 0, 1, 0, 0, 0}};
+    static const double FE0_C0_D01[9][12] = \
+    {{-2.23477754271068, 0, -0.645648161949185, 0.410870619238505, 2.88042570465986, -0.410870619238505, 0, 0, 0, 0, 0, 0},
+    {-1.0959162708804, 0, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356658, 0, 0, 0, 0, 0, 0},
+    {0.246362376191711, 0, 2.15063784704339, 0.0957245291483225, -2.3970002232351, -0.0957245291483227, 0, 0, 0, 0, 0, 0},
+    {-0.822824080974592, 0, -0.645648161949184, 1.82282408097459, 1.46847224292378, -1.82282408097459, 0, 0, 0, 0, 0, 0},
+    {-0.181066271118531, 0, 0.637867457762939, 1.18106627111853, -0.456801186644408, -1.18106627111853, 0, 0, 0, 0, 0, 0},
+    {0.575318923521695, 0, 2.15063784704339, 0.424681076478306, -2.72595677056508, -0.424681076478306, 0, 0, 0, 0, 0, 0},
+    {0.589129380761496, 0, -0.645648161949184, 3.23477754271068, 0.0565187811876887, -3.23477754271068, 0, 0, 0, 0, 0, 0},
+    {0.733783728643342, 0, 0.637867457762939, 2.0959162708804, -1.37165118640628, -2.0959162708804, 0, 0, 0, 0, 0, 0},
+    {0.904275470851678, 0, 2.15063784704339, 0.753637623808289, -3.05491331789507, -0.753637623808289, 0, 0, 0, 0, 0, 0}};
     
-    static const double FE0_C1[4][6] = \
-    {{0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0, 0, 0, 0.280019915499074, 0.0750311102226082, 0.644948974278318},
-    {0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    static const double FE0_C1[9][12] = \
+    {{0, 0, 0, 0, 0, 0, 0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087},
+    {0, 0, 0, 0, 0, 0, 0.0251290590975511, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383},
+    {0, 0, 0, 0, 0, 0, -0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062783, 0.593609805131561, 0.0180354016718773},
+    {0, 0, 0, 0, 0, 0, -0.0403700664710398, -0.0403700664710397, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217},
+    {0, 0, 0, 0, 0, 0, -0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458},
+    {0, 0, 0, 0, 0, 0, -0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932},
+    {0, 0, 0, 0, 0, 0, -0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018087},
+    {0, 0, 0, 0, 0, 0, -0.0576951799472843, 0.0251290590975512, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383},
+    {0, 0, 0, 0, 0, 0, -0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773}};
     
-    static const double FE0_C0[4][6] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0},
-    {0.280019915499074, 0.0750311102226082, 0.644948974278318, 0, 0, 0},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0}};
+    static const double FE0_C0[9][12] = \
+    {{0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087, 0, 0, 0, 0, 0, 0},
+    {0.0251290590975511, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383, 0, 0, 0, 0, 0, 0},
+    {-0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062783, 0.593609805131561, 0.0180354016718773, 0, 0, 0, 0, 0, 0},
+    {-0.0403700664710398, -0.0403700664710397, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217, 0, 0, 0, 0, 0, 0},
+    {-0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458, 0, 0, 0, 0, 0, 0},
+    {-0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932, 0, 0, 0, 0, 0, 0},
+    {-0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018087, 0, 0, 0, 0, 0, 0},
+    {-0.0576951799472843, 0.0251290590975512, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383, 0, 0, 0, 0, 0, 0},
+    {-0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773, 0, 0, 0, 0, 0, 0}};
     
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 5472
+    // Total number of operations to compute element tensor: 49248
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 5472
-    for (unsigned int ip = 0; ip < 4; ip++)
+    // Number of operations to compute element tensor for following IP loop = 49248
+    for (unsigned int ip = 0; ip < 9; ip++)
     {
       
-      // Number of operations for primary indices = 1368
-      for (unsigned int j = 0; j < 6; j++)
+      // Number of operations for primary indices = 5472
+      for (unsigned int j = 0; j < 12; j++)
       {
-        for (unsigned int k = 0; k < 6; k++)
+        for (unsigned int k = 0; k < 12; k++)
         {
           // Number of operations to compute entry = 38
-          A[j*6 + k] += ((FE0_C0[ip][j]*FE0_C0[ip][k] + FE0_C1[ip][j]*FE0_C1[ip][k]) + (((Jinv_00*FE0_C0_D10[ip][j] + Jinv_10*FE0_C0_D01[ip][j])*(Jinv_00*FE0_C0_D10[ip][k] + Jinv_10*FE0_C0_D01[ip][k]) + (Jinv_01*FE0_C0_D10[ip][j] + Jinv_11*FE0_C0_D01[ip][j])*(Jinv_01*FE0_C0_D10[ip][k] + Jinv_11*FE0_C0_D01[ip][k])) + ((Jinv_00*FE0_C1_D10[ip][j] + Jinv_10*FE0_C1_D01[ip][j])*(Jinv_00*FE0_C1_D10[ip][k] + Jinv_10*FE0_C1_D01[ip][k]) + (Jinv_01*FE0_C1_D10[ip][j] + Jinv_11*FE0_C1_D01[ip][j])*(Jinv_01*FE0_C1_D10[ip][k] + Jinv_11*FE0_C1_D01[ip][k]))))*W4[ip]*det;
+          A[j*12 + k] += ((FE0_C0[ip][j]*FE0_C0[ip][k] + FE0_C1[ip][j]*FE0_C1[ip][k]) + (((Jinv_00*FE0_C0_D10[ip][j] + Jinv_10*FE0_C0_D01[ip][j])*(Jinv_00*FE0_C0_D10[ip][k] + Jinv_10*FE0_C0_D01[ip][k]) + (Jinv_01*FE0_C0_D10[ip][j] + Jinv_11*FE0_C0_D01[ip][j])*(Jinv_01*FE0_C0_D10[ip][k] + Jinv_11*FE0_C0_D01[ip][k])) + ((Jinv_00*FE0_C1_D10[ip][j] + Jinv_10*FE0_C1_D01[ip][j])*(Jinv_00*FE0_C1_D10[ip][k] + Jinv_10*FE0_C1_D01[ip][k]) + (Jinv_01*FE0_C1_D10[ip][j] + Jinv_11*FE0_C1_D01[ip][j])*(Jinv_01*FE0_C1_D10[ip][k] + Jinv_11*FE0_C1_D01[ip][k]))))*W9[ip]*det;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -4116,6 +4642,114 @@ public:
     A[33] = 0;
     A[34] = 0;
     A[35] = 0;
+    A[36] = 0;
+    A[37] = 0;
+    A[38] = 0;
+    A[39] = 0;
+    A[40] = 0;
+    A[41] = 0;
+    A[42] = 0;
+    A[43] = 0;
+    A[44] = 0;
+    A[45] = 0;
+    A[46] = 0;
+    A[47] = 0;
+    A[48] = 0;
+    A[49] = 0;
+    A[50] = 0;
+    A[51] = 0;
+    A[52] = 0;
+    A[53] = 0;
+    A[54] = 0;
+    A[55] = 0;
+    A[56] = 0;
+    A[57] = 0;
+    A[58] = 0;
+    A[59] = 0;
+    A[60] = 0;
+    A[61] = 0;
+    A[62] = 0;
+    A[63] = 0;
+    A[64] = 0;
+    A[65] = 0;
+    A[66] = 0;
+    A[67] = 0;
+    A[68] = 0;
+    A[69] = 0;
+    A[70] = 0;
+    A[71] = 0;
+    A[72] = 0;
+    A[73] = 0;
+    A[74] = 0;
+    A[75] = 0;
+    A[76] = 0;
+    A[77] = 0;
+    A[78] = 0;
+    A[79] = 0;
+    A[80] = 0;
+    A[81] = 0;
+    A[82] = 0;
+    A[83] = 0;
+    A[84] = 0;
+    A[85] = 0;
+    A[86] = 0;
+    A[87] = 0;
+    A[88] = 0;
+    A[89] = 0;
+    A[90] = 0;
+    A[91] = 0;
+    A[92] = 0;
+    A[93] = 0;
+    A[94] = 0;
+    A[95] = 0;
+    A[96] = 0;
+    A[97] = 0;
+    A[98] = 0;
+    A[99] = 0;
+    A[100] = 0;
+    A[101] = 0;
+    A[102] = 0;
+    A[103] = 0;
+    A[104] = 0;
+    A[105] = 0;
+    A[106] = 0;
+    A[107] = 0;
+    A[108] = 0;
+    A[109] = 0;
+    A[110] = 0;
+    A[111] = 0;
+    A[112] = 0;
+    A[113] = 0;
+    A[114] = 0;
+    A[115] = 0;
+    A[116] = 0;
+    A[117] = 0;
+    A[118] = 0;
+    A[119] = 0;
+    A[120] = 0;
+    A[121] = 0;
+    A[122] = 0;
+    A[123] = 0;
+    A[124] = 0;
+    A[125] = 0;
+    A[126] = 0;
+    A[127] = 0;
+    A[128] = 0;
+    A[129] = 0;
+    A[130] = 0;
+    A[131] = 0;
+    A[132] = 0;
+    A[133] = 0;
+    A[134] = 0;
+    A[135] = 0;
+    A[136] = 0;
+    A[137] = 0;
+    A[138] = 0;
+    A[139] = 0;
+    A[140] = 0;
+    A[141] = 0;
+    A[142] = 0;
+    A[143] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -4157,7 +4791,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(0), Index(1)), {Index(0): 2, Index(1): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4), Index(5)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(0), Index(1)), {Index(0): 2, Index(1): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4), Index(5)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4261,7 +4895,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -4273,7 +4907,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -4332,34 +4966,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -4475,38 +5123,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4516,11 +5181,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -4529,6 +5200,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -4537,23 +5211,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -4593,9 +5276,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4682,7 +5365,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -4694,7 +5377,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -4753,34 +5436,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -4896,38 +5593,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -4937,11 +5651,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -4950,6 +5670,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -4958,23 +5681,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -5014,9 +5746,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5103,7 +5835,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return the cell shape
@@ -5115,7 +5847,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -5169,7 +5901,7 @@ public:
     values[0] = 0;
     values[1] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -5177,72 +5909,100 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
   }
@@ -5354,7 +6114,7 @@ public:
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -5362,38 +6122,55 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -5403,11 +6180,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -5416,6 +6199,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -5424,23 +6210,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -5465,46 +6260,63 @@ public:
       delete [] transform;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -5514,11 +6326,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -5527,6 +6345,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -5535,23 +6356,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -5593,9 +6423,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[12][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[12][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5646,9 +6476,9 @@ public:
     vertex_values[2] = dof_values[1];
     vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[1] = dof_values[3];
-    vertex_values[3] = dof_values[4];
-    vertex_values[5] = dof_values[5];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
+    vertex_values[5] = dof_values[8];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5695,7 +6525,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -5707,7 +6537,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -5766,34 +6596,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -5909,38 +6753,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -5950,11 +6811,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -5963,6 +6830,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -5971,23 +6841,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -6027,9 +6906,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -6116,7 +6995,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return the cell shape
@@ -6128,7 +7007,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the rank of the value space
@@ -6187,34 +7066,48 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Extract relevant coefficients
     const double coeff0_0 = coefficients0[dof][0];
     const double coeff0_1 = coefficients0[dof][1];
     const double coeff0_2 = coefficients0[dof][2];
+    const double coeff0_3 = coefficients0[dof][3];
+    const double coeff0_4 = coefficients0[dof][4];
+    const double coeff0_5 = coefficients0[dof][5];
     
     // Compute value(s)
-    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+    *values = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -6330,38 +7223,55 @@ public:
     // Generate scalings
     const double scalings_y_0 = 1;
     const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+    const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
     // Compute psitilde_a
     const double psitilde_a_0 = 1;
     const double psitilde_a_1 = x;
+    const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
     // Compute psitilde_bs
     const double psitilde_bs_0_0 = 1;
     const double psitilde_bs_0_1 = 1.5*y + 0.5;
+    const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
     const double psitilde_bs_1_0 = 1;
+    const double psitilde_bs_1_1 = 2.5*y + 1.5;
+    const double psitilde_bs_2_0 = 1;
     
     // Compute basisvalues
     const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
     const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+    const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+    const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+    const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
     // Table(s) of coefficients
-    static const double coefficients0[3][3] = \
-    {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0.288675134594813, -0.166666666666667},
-    {0.471404520791032, 0, 0.333333333333333}};
+    static const double coefficients0[6][6] = \
+    {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+    {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+    {0, 0, 0.2, 0, 0, 0.163299316185545},
+    {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+    {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+    {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    static const double dmats0[3][3] = \
-    {{0, 0, 0},
-    {4.89897948556636, 0, 0},
-    {0, 0, 0}};
+    static const double dmats0[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {4.89897948556635, 0, 0, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0},
+    {0, 9.48683298050514, 0, 0, 0, 0},
+    {4, 0, 7.07106781186548, 0, 0, 0},
+    {0, 0, 0, 0, 0, 0}};
     
-    static const double dmats1[3][3] = \
-    {{0, 0, 0},
-    {2.44948974278318, 0, 0},
-    {4.24264068711928, 0, 0}};
+    static const double dmats1[6][6] = \
+    {{0, 0, 0, 0, 0, 0},
+    {2.44948974278318, 0, 0, 0, 0, 0},
+    {4.24264068711928, 0, 0, 0, 0, 0},
+    {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+    {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+    {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
     // Compute reference derivatives
     // Declare pointer to array of derivatives on FIAT element
@@ -6371,11 +7281,17 @@ public:
     double coeff0_0 = 0;
     double coeff0_1 = 0;
     double coeff0_2 = 0;
+    double coeff0_3 = 0;
+    double coeff0_4 = 0;
+    double coeff0_5 = 0;
     
     // Declare new coefficients
     double new_coeff0_0 = 0;
     double new_coeff0_1 = 0;
     double new_coeff0_2 = 0;
+    double new_coeff0_3 = 0;
+    double new_coeff0_4 = 0;
+    double new_coeff0_5 = 0;
     
     // Loop possible derivatives
     for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -6384,6 +7300,9 @@ public:
       new_coeff0_0 = coefficients0[dof][0];
       new_coeff0_1 = coefficients0[dof][1];
       new_coeff0_2 = coefficients0[dof][2];
+      new_coeff0_3 = coefficients0[dof][3];
+      new_coeff0_4 = coefficients0[dof][4];
+      new_coeff0_5 = coefficients0[dof][5];
     
       // Loop derivative order
       for (unsigned int j = 0; j < n; j++)
@@ -6392,23 +7311,32 @@ public:
         coeff0_0 = new_coeff0_0;
         coeff0_1 = new_coeff0_1;
         coeff0_2 = new_coeff0_2;
+        coeff0_3 = new_coeff0_3;
+        coeff0_4 = new_coeff0_4;
+        coeff0_5 = new_coeff0_5;
     
         if(combinations[deriv_num][j] == 0)
         {
-          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+          new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+          new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+          new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+          new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+          new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+          new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
         }
         if(combinations[deriv_num][j] == 1)
         {
-          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+          new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+          new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+          new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+          new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+          new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+          new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
         }
     
       }
       // Compute derivatives on reference element as dot product of coefficients and basisvalues
-      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+      derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
     }
     
     // Transform derivatives back to physical element
@@ -6448,9 +7376,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[3][1] = {{1}, {1}, {1}};
-    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -6537,7 +7465,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return the cell shape
@@ -6549,7 +7477,7 @@ public:
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the rank of the value space
@@ -6603,7 +7531,7 @@ public:
     values[0] = 0;
     values[1] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -6611,72 +7539,100 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[0] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Extract relevant coefficients
       const double coeff0_0 =   coefficients0[dof][0];
       const double coeff0_1 =   coefficients0[dof][1];
       const double coeff0_2 =   coefficients0[dof][2];
+      const double coeff0_3 =   coefficients0[dof][3];
+      const double coeff0_4 =   coefficients0[dof][4];
+      const double coeff0_5 =   coefficients0[dof][5];
     
       // Compute value(s)
-      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2;
+      values[1] = coeff0_0*basisvalue0 + coeff0_1*basisvalue1 + coeff0_2*basisvalue2 + coeff0_3*basisvalue3 + coeff0_4*basisvalue4 + coeff0_5*basisvalue5;
     }
     
   }
@@ -6788,7 +7744,7 @@ public:
     for (unsigned int j = 0; j < 2*num_derivatives; j++)
       values[j] = 0;
     
-    if (0 <= i && i <= 2)
+    if (0 <= i && i <= 5)
     {
       // Map degree of freedom to element degree of freedom
       const unsigned int dof = i;
@@ -6796,38 +7752,55 @@ public:
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -6837,11 +7810,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -6850,6 +7829,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -6858,23 +7840,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -6899,46 +7890,63 @@ public:
       delete [] transform;
     }
     
-    if (3 <= i && i <= 5)
+    if (6 <= i && i <= 11)
     {
       // Map degree of freedom to element degree of freedom
-      const unsigned int dof = i - 3;
+      const unsigned int dof = i - 6;
     
       // Generate scalings
       const double scalings_y_0 = 1;
       const double scalings_y_1 = scalings_y_0*(0.5 - 0.5*y);
+      const double scalings_y_2 = scalings_y_1*(0.5 - 0.5*y);
     
       // Compute psitilde_a
       const double psitilde_a_0 = 1;
       const double psitilde_a_1 = x;
+      const double psitilde_a_2 = 1.5*x*psitilde_a_1 - 0.5*psitilde_a_0;
     
       // Compute psitilde_bs
       const double psitilde_bs_0_0 = 1;
       const double psitilde_bs_0_1 = 1.5*y + 0.5;
+      const double psitilde_bs_0_2 = 0.111111111111111*psitilde_bs_0_1 + 1.66666666666667*y*psitilde_bs_0_1 - 0.555555555555556*psitilde_bs_0_0;
       const double psitilde_bs_1_0 = 1;
+      const double psitilde_bs_1_1 = 2.5*y + 1.5;
+      const double psitilde_bs_2_0 = 1;
     
       // Compute basisvalues
       const double basisvalue0 = 0.707106781186548*psitilde_a_0*scalings_y_0*psitilde_bs_0_0;
       const double basisvalue1 = 1.73205080756888*psitilde_a_1*scalings_y_1*psitilde_bs_1_0;
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
+      const double basisvalue3 = 2.73861278752583*psitilde_a_2*scalings_y_2*psitilde_bs_2_0;
+      const double basisvalue4 = 2.12132034355964*psitilde_a_1*scalings_y_1*psitilde_bs_1_1;
+      const double basisvalue5 = 1.22474487139159*psitilde_a_0*scalings_y_0*psitilde_bs_0_2;
     
       // Table(s) of coefficients
-      static const double coefficients0[3][3] =   \
-      {{0.471404520791032, -0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0.288675134594813, -0.166666666666667},
-      {0.471404520791032, 0, 0.333333333333333}};
+      static const double coefficients0[6][6] =   \
+      {{0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817},
+      {0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818},
+      {0, 0, 0.2, 0, 0, 0.163299316185545},
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0, 0.188561808316413, -0.163299316185545},
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0, -0.188561808316413, -0.163299316185545},
+      {0.471404520791032, 0, -0.266666666666667, -0.243432247780074, 0, 0.0544331053951817}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      static const double dmats0[3][3] =   \
-      {{0, 0, 0},
-      {4.89897948556636, 0, 0},
-      {0, 0, 0}};
+      static const double dmats0[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {4.89897948556635, 0, 0, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0},
+      {0, 9.48683298050514, 0, 0, 0, 0},
+      {4, 0, 7.07106781186548, 0, 0, 0},
+      {0, 0, 0, 0, 0, 0}};
     
-      static const double dmats1[3][3] =   \
-      {{0, 0, 0},
-      {2.44948974278318, 0, 0},
-      {4.24264068711928, 0, 0}};
+      static const double dmats1[6][6] =   \
+      {{0, 0, 0, 0, 0, 0},
+      {2.44948974278318, 0, 0, 0, 0, 0},
+      {4.24264068711928, 0, 0, 0, 0, 0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0, 0, 0},
+      {2, 6.12372435695795, 3.53553390593274, 0, 0, 0},
+      {-2.3094010767585, 0, 8.16496580927726, 0, 0, 0}};
     
       // Compute reference derivatives
       // Declare pointer to array of derivatives on FIAT element
@@ -6948,11 +7956,17 @@ public:
       double coeff0_0 = 0;
       double coeff0_1 = 0;
       double coeff0_2 = 0;
+      double coeff0_3 = 0;
+      double coeff0_4 = 0;
+      double coeff0_5 = 0;
     
       // Declare new coefficients
       double new_coeff0_0 = 0;
       double new_coeff0_1 = 0;
       double new_coeff0_2 = 0;
+      double new_coeff0_3 = 0;
+      double new_coeff0_4 = 0;
+      double new_coeff0_5 = 0;
     
       // Loop possible derivatives
       for (unsigned int deriv_num = 0; deriv_num < num_derivatives; deriv_num++)
@@ -6961,6 +7975,9 @@ public:
         new_coeff0_0 = coefficients0[dof][0];
         new_coeff0_1 = coefficients0[dof][1];
         new_coeff0_2 = coefficients0[dof][2];
+        new_coeff0_3 = coefficients0[dof][3];
+        new_coeff0_4 = coefficients0[dof][4];
+        new_coeff0_5 = coefficients0[dof][5];
     
         // Loop derivative order
         for (unsigned int j = 0; j < n; j++)
@@ -6969,23 +7986,32 @@ public:
           coeff0_0 = new_coeff0_0;
           coeff0_1 = new_coeff0_1;
           coeff0_2 = new_coeff0_2;
+          coeff0_3 = new_coeff0_3;
+          coeff0_4 = new_coeff0_4;
+          coeff0_5 = new_coeff0_5;
     
           if(combinations[deriv_num][j] == 0)
           {
-            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0];
-            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1];
-            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2];
+            new_coeff0_0 = coeff0_0*dmats0[0][0] + coeff0_1*dmats0[1][0] + coeff0_2*dmats0[2][0] + coeff0_3*dmats0[3][0] + coeff0_4*dmats0[4][0] + coeff0_5*dmats0[5][0];
+            new_coeff0_1 = coeff0_0*dmats0[0][1] + coeff0_1*dmats0[1][1] + coeff0_2*dmats0[2][1] + coeff0_3*dmats0[3][1] + coeff0_4*dmats0[4][1] + coeff0_5*dmats0[5][1];
+            new_coeff0_2 = coeff0_0*dmats0[0][2] + coeff0_1*dmats0[1][2] + coeff0_2*dmats0[2][2] + coeff0_3*dmats0[3][2] + coeff0_4*dmats0[4][2] + coeff0_5*dmats0[5][2];
+            new_coeff0_3 = coeff0_0*dmats0[0][3] + coeff0_1*dmats0[1][3] + coeff0_2*dmats0[2][3] + coeff0_3*dmats0[3][3] + coeff0_4*dmats0[4][3] + coeff0_5*dmats0[5][3];
+            new_coeff0_4 = coeff0_0*dmats0[0][4] + coeff0_1*dmats0[1][4] + coeff0_2*dmats0[2][4] + coeff0_3*dmats0[3][4] + coeff0_4*dmats0[4][4] + coeff0_5*dmats0[5][4];
+            new_coeff0_5 = coeff0_0*dmats0[0][5] + coeff0_1*dmats0[1][5] + coeff0_2*dmats0[2][5] + coeff0_3*dmats0[3][5] + coeff0_4*dmats0[4][5] + coeff0_5*dmats0[5][5];
           }
           if(combinations[deriv_num][j] == 1)
           {
-            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0];
-            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1];
-            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2];
+            new_coeff0_0 = coeff0_0*dmats1[0][0] + coeff0_1*dmats1[1][0] + coeff0_2*dmats1[2][0] + coeff0_3*dmats1[3][0] + coeff0_4*dmats1[4][0] + coeff0_5*dmats1[5][0];
+            new_coeff0_1 = coeff0_0*dmats1[0][1] + coeff0_1*dmats1[1][1] + coeff0_2*dmats1[2][1] + coeff0_3*dmats1[3][1] + coeff0_4*dmats1[4][1] + coeff0_5*dmats1[5][1];
+            new_coeff0_2 = coeff0_0*dmats1[0][2] + coeff0_1*dmats1[1][2] + coeff0_2*dmats1[2][2] + coeff0_3*dmats1[3][2] + coeff0_4*dmats1[4][2] + coeff0_5*dmats1[5][2];
+            new_coeff0_3 = coeff0_0*dmats1[0][3] + coeff0_1*dmats1[1][3] + coeff0_2*dmats1[2][3] + coeff0_3*dmats1[3][3] + coeff0_4*dmats1[4][3] + coeff0_5*dmats1[5][3];
+            new_coeff0_4 = coeff0_0*dmats1[0][4] + coeff0_1*dmats1[1][4] + coeff0_2*dmats1[2][4] + coeff0_3*dmats1[3][4] + coeff0_4*dmats1[4][4] + coeff0_5*dmats1[5][4];
+            new_coeff0_5 = coeff0_0*dmats1[0][5] + coeff0_1*dmats1[1][5] + coeff0_2*dmats1[2][5] + coeff0_3*dmats1[3][5] + coeff0_4*dmats1[4][5] + coeff0_5*dmats1[5][5];
           }
     
         }
         // Compute derivatives on reference element as dot product of coefficients and basisvalues
-        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2;
+        derivatives[deriv_num] = new_coeff0_0*basisvalue0 + new_coeff0_1*basisvalue1 + new_coeff0_2*basisvalue2 + new_coeff0_3*basisvalue3 + new_coeff0_4*basisvalue4 + new_coeff0_5*basisvalue5;
       }
     
       // Transform derivatives back to physical element
@@ -7027,9 +8053,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[12][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0.5, 0.5}}, {{0, 0.5}}, {{0.5, 0}}};
+    static const double W[12][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[12][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -7080,9 +8106,9 @@ public:
     vertex_values[2] = dof_values[1];
     vertex_values[4] = dof_values[2];
     // Evaluate at vertices and use affine mapping
-    vertex_values[1] = dof_values[3];
-    vertex_values[3] = dof_values[4];
-    vertex_values[5] = dof_values[5];
+    vertex_values[1] = dof_values[6];
+    vertex_values[3] = dof_values[7];
+    vertex_values[5] = dof_values[8];
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -7134,7 +8160,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7146,7 +8172,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -7158,7 +8184,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -7184,13 +8210,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7202,7 +8228,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7219,6 +8245,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7230,14 +8260,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -7260,6 +8293,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7302,7 +8341,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7314,7 +8353,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -7326,7 +8365,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -7352,13 +8391,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7370,7 +8409,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7387,6 +8426,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7398,14 +8441,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -7428,6 +8474,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7470,7 +8522,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7482,7 +8534,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -7494,7 +8546,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 2*m.num_entities[0];
+    __global_dimension = 2*m.num_entities[0] + 2*m.num_entities[1];
     return false;
   }
 
@@ -7520,13 +8572,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7538,7 +8590,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 4;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7556,9 +8608,17 @@ public:
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
     unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[0][0];
-    dofs[4] = offset + c.entity_indices[0][1];
-    dofs[5] = offset + c.entity_indices[0][2];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
+    offset = offset + m.num_entities[1];
+    dofs[6] = offset + c.entity_indices[0][0];
+    dofs[7] = offset + c.entity_indices[0][1];
+    dofs[8] = offset + c.entity_indices[0][2];
+    offset = offset + m.num_entities[0];
+    dofs[9] = offset + c.entity_indices[1][0];
+    dofs[10] = offset + c.entity_indices[1][1];
+    dofs[11] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7570,20 +8630,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 4;
-      dofs[3] = 5;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 5;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 4;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -7606,12 +8672,24 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = x[0][0];
-    coordinates[3][1] = x[0][1];
-    coordinates[4][0] = x[1][0];
-    coordinates[4][1] = x[1][1];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][0] = x[0][0];
+    coordinates[6][1] = x[0][1];
+    coordinates[7][0] = x[1][0];
+    coordinates[7][1] = x[1][1];
+    coordinates[8][0] = x[2][0];
+    coordinates[8][1] = x[2][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7663,7 +8741,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7675,7 +8753,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -7687,7 +8765,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -7713,13 +8791,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7731,7 +8809,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7748,6 +8826,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7759,14 +8841,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -7789,6 +8874,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7831,7 +8922,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7843,7 +8934,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -7855,7 +8946,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = m.num_entities[0];
+    __global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
@@ -7881,13 +8972,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 3;
+    return 6;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 3;
+    return 6;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -7899,7 +8990,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 2;
+    return 3;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -7916,6 +9007,10 @@ public:
     dofs[0] = c.entity_indices[0][0];
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
+    unsigned int offset = m.num_entities[0];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7927,14 +9022,17 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
+      dofs[2] = 3;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
+      dofs[2] = 4;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
+      dofs[2] = 5;
       break;
     }
   }
@@ -7957,6 +9055,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -7999,7 +9103,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 2), FiniteElement('Lagrange', 'triangle', 2)])";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8011,7 +9115,7 @@ public:
       return true;
       break;
     case 1:
-      return false;
+      return true;
       break;
     case 2:
       return false;
@@ -8023,7 +9127,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    __global_dimension = 2*m.num_entities[0];
+    __global_dimension = 2*m.num_entities[0] + 2*m.num_entities[1];
     return false;
   }
 
@@ -8049,13 +9153,13 @@ public:
   /// Return the dimension of the local finite element function space for a cell
   virtual unsigned int local_dimension(const ufc::cell& c) const
   {
-    return 6;
+    return 12;
   }
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const
   {
-    return 6;
+    return 12;
   }
 
   // Return the geometric dimension of the coordinates this dof map provides
@@ -8067,7 +9171,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 4;
+    return 6;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -8085,9 +9189,17 @@ public:
     dofs[1] = c.entity_indices[0][1];
     dofs[2] = c.entity_indices[0][2];
     unsigned int offset = m.num_entities[0];
-    dofs[3] = offset + c.entity_indices[0][0];
-    dofs[4] = offset + c.entity_indices[0][1];
-    dofs[5] = offset + c.entity_indices[0][2];
+    dofs[3] = offset + c.entity_indices[1][0];
+    dofs[4] = offset + c.entity_indices[1][1];
+    dofs[5] = offset + c.entity_indices[1][2];
+    offset = offset + m.num_entities[1];
+    dofs[6] = offset + c.entity_indices[0][0];
+    dofs[7] = offset + c.entity_indices[0][1];
+    dofs[8] = offset + c.entity_indices[0][2];
+    offset = offset + m.num_entities[0];
+    dofs[9] = offset + c.entity_indices[1][0];
+    dofs[10] = offset + c.entity_indices[1][1];
+    dofs[11] = offset + c.entity_indices[1][2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -8099,20 +9211,26 @@ public:
     case 0:
       dofs[0] = 1;
       dofs[1] = 2;
-      dofs[2] = 4;
-      dofs[3] = 5;
+      dofs[2] = 3;
+      dofs[3] = 7;
+      dofs[4] = 8;
+      dofs[5] = 9;
       break;
     case 1:
       dofs[0] = 0;
       dofs[1] = 2;
-      dofs[2] = 3;
-      dofs[3] = 5;
+      dofs[2] = 4;
+      dofs[3] = 6;
+      dofs[4] = 8;
+      dofs[5] = 10;
       break;
     case 2:
       dofs[0] = 0;
       dofs[1] = 1;
-      dofs[2] = 3;
-      dofs[3] = 4;
+      dofs[2] = 5;
+      dofs[3] = 6;
+      dofs[4] = 7;
+      dofs[5] = 11;
       break;
     }
   }
@@ -8135,12 +9253,24 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = x[0][0];
-    coordinates[3][1] = x[0][1];
-    coordinates[4][0] = x[1][0];
-    coordinates[4][1] = x[1][1];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[6][0] = x[0][0];
+    coordinates[6][1] = x[0][1];
+    coordinates[7][0] = x[1][0];
+    coordinates[7][1] = x[1][1];
+    coordinates[8][0] = x[2][0];
+    coordinates[8][1] = x[2][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
@@ -8210,48 +9340,58 @@ public:
     
     
     // Array of quadrature weights
-    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
-    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
+    static const double W9[9] = {0.0558144204830443, 0.063678085099885, 0.0193963833059595, 0.0893030727728709, 0.101884936159816, 0.0310342132895351, 0.0558144204830443, 0.063678085099885, 0.0193963833059595};
+    // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.0665540678391645, 0.409466864440735), (0.0239311322870806, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.80869438567767, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1[4][6] = \
-    {{0, 0, 0, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0, 0, 0, 0.280019915499074, 0.0750311102226082, 0.644948974278318},
-    {0, 0, 0, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0, 0, 0, 0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    static const double FE0_C1[9][12] = \
+    {{0, 0, 0, 0, 0, 0, 0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087},
+    {0, 0, 0, 0, 0, 0, 0.0251290590975511, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383},
+    {0, 0, 0, 0, 0, 0, -0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062783, 0.593609805131561, 0.0180354016718773},
+    {0, 0, 0, 0, 0, 0, -0.0403700664710398, -0.0403700664710398, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217},
+    {0, 0, 0, 0, 0, 0, -0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458},
+    {0, 0, 0, 0, 0, 0, -0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932},
+    {0, 0, 0, 0, 0, 0, -0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018087},
+    {0, 0, 0, 0, 0, 0, -0.0576951799472843, 0.0251290590975512, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383},
+    {0, 0, 0, 0, 0, 0, -0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773}};
     
-    static const double FE0_C0[4][6] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0, 0, 0},
-    {0.280019915499074, 0.0750311102226082, 0.644948974278318, 0, 0, 0},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0, 0, 0},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318, 0, 0, 0}};
+    static const double FE0_C0[9][12] = \
+    {{0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087, 0, 0, 0, 0, 0, 0},
+    {0.0251290590975511, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383, 0, 0, 0, 0, 0, 0},
+    {-0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062783, 0.593609805131561, 0.0180354016718773, 0, 0, 0, 0, 0, 0},
+    {-0.0403700664710398, -0.0403700664710398, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217, 0, 0, 0, 0, 0, 0},
+    {-0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458, 0, 0, 0, 0, 0, 0},
+    {-0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932, 0, 0, 0, 0, 0, 0},
+    {-0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018087, 0, 0, 0, 0, 0, 0},
+    {-0.0576951799472843, 0.0251290590975512, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383, 0, 0, 0, 0, 0, 0},
+    {-0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773, 0, 0, 0, 0, 0, 0}};
     
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 240
+    // Total number of operations to compute element tensor: 1080
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 240
-    for (unsigned int ip = 0; ip < 4; ip++)
+    // Number of operations to compute element tensor for following IP loop = 1080
+    for (unsigned int ip = 0; ip < 9; ip++)
     {
       
       // Function declarations
       double F0 = 0;
       double F1 = 0;
       
-      // Total number of operations to compute function values = 24
-      for (unsigned int r = 0; r < 6; r++)
+      // Total number of operations to compute function values = 48
+      for (unsigned int r = 0; r < 12; r++)
       {
         F0 += FE0_C0[ip][r]*w[0][r];
         F1 += FE0_C1[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 36
-      for (unsigned int j = 0; j < 6; j++)
+      // Number of operations for primary indices = 72
+      for (unsigned int j = 0; j < 12; j++)
       {
         // Number of operations to compute entry = 6
-        A[j] += (FE0_C0[ip][j]*F0 + FE0_C1[ip][j]*F1)*W4[ip]*det;
+        A[j] += (FE0_C0[ip][j]*F0 + FE0_C1[ip][j]*F1)*W9[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -8294,6 +9434,12 @@ public:
     A[3] = 0;
     A[4] = 0;
     A[5] = 0;
+    A[6] = 0;
+    A[7] = 0;
+    A[8] = 0;
+    A[9] = 0;
+    A[10] = 0;
+    A[11] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -8335,7 +9481,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
