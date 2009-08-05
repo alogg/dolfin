@@ -26,7 +26,18 @@ int main()
   //Mesh mesh("unitsquare_large.xml.gz");
   //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
-  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  //Mesh mesh("unitsquare_reallysmall.xml.gz");
+
+  Mesh mesh("unitcube.xml.gz");
+
+  // Store mesh to VTK
+  File mesh_file("partitioned_mesh.pvd");
+  mesh_file << mesh;
+  
+  dolfin_finalize();
+
+  return 0;
+
   if (dolfin::MPI::processNumber() == 0)
     mesh.disp();
 
