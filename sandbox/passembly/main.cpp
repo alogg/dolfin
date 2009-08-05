@@ -1,4 +1,4 @@
-// Benchmarking parallel assembly (new DOLFIN version)
+// Testing parallel assembly
 
 #include <dolfin.h>
 #include "Poisson2DP1.h"
