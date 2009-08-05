@@ -27,6 +27,11 @@ int main()
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
+  // Store mesh to VTK
+  File mesh_file("partitioned_mesh.pvd");
+  mesh_file << mesh;
+
+  // Store mesh to XML
   std::stringstream fname;
   fname << "unitsquare_p" << dolfin::MPI::process_number() << ".xml";
   File outmesh(fname.str());
