@@ -27,6 +27,11 @@ int main()
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
+  std::stringstream fname;
+  fname << "unitsquare_p" << dolfin::MPI::process_number() << ".xml";
+  File outmesh(fname.str());
+  outmesh << mesh;
+
   // Create function space
   info(mesh.data());
   Poisson::FunctionSpace V(mesh);
