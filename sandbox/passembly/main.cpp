@@ -33,9 +33,7 @@ int main()
   outmesh << mesh;
 
   // Create function space
-  info(mesh.data());
   Poisson::FunctionSpace V(mesh);
-  info(mesh.data());
 
   // Define variational problem
   Poisson::BilinearForm a(V, V);
