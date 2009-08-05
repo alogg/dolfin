@@ -23,9 +23,9 @@ int main()
 {
   // Create mesh
   //Mesh mesh("unitsquare_large.xml.gz");
-  //Mesh mesh("unitsquare.xml.gz");
+  Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
-  Mesh mesh("unitsquare_reallysmall.xml.gz");
+  //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
   // Create function space
   info(mesh.data());
@@ -45,8 +45,6 @@ int main()
 
   Function u;
   problem.solve(u);
-
-  u.vector().disp();
 
   double norm = u.vector().norm("l2");
   if (dolfin::MPI::process_number() == 0)
