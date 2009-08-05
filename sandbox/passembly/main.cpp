@@ -28,9 +28,7 @@ int main()
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
 
   // Create function space
-  info(mesh.data());
   Poisson::FunctionSpace V(mesh);
-  info(mesh.data());
 
   // Define variational problem
   Poisson::BilinearForm a(V, V);
