@@ -67,20 +67,20 @@ reference = { ("unitsquare.xml.gz", 1): 7.821707395007537 ,
 
 # Mesh files and degrees to check
 mesh_files = ["unitsquare.xml.gz", "unitcube.xml.gz"]
-degrees = [1, 2]
+degrees = [1, 2, 3]
 
-norm = solve("unitsquare.xml.gz", 3)
-print "||x|| =", norm
+mesh_files = ["unitsquare.xml.gz"]
+degrees = [1]
 
 ## Iterate over test cases and collect results
-#results = []
-#for mesh_file in mesh_files:
-#    for degree in degrees:
-#        norm = solve(mesh_file, degree)
-#        results.append((mesh_file, degree, norm))
+results = []
+for mesh_file in mesh_files:
+    for degree in degrees:
+        norm = solve(mesh_file, degree)
+        results.append((mesh_file, degree, norm))
 
 # Uncomment to print results for use as reference
 #print_reference(results)
 
 # Check results
-#check_results(results, reference, 1e-10)
+check_results(results, reference, 1e-10)
