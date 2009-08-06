@@ -69,9 +69,6 @@ reference = { ("unitsquare.xml.gz", 1): 7.821707395007537 ,
 mesh_files = ["unitsquare.xml.gz", "unitcube.xml.gz"]
 degrees = [1, 2, 3]
 
-mesh_files = ["unitsquare.xml.gz"]
-degrees = [1]
-
 ## Iterate over test cases and collect results
 results = []
 for mesh_file in mesh_files:
