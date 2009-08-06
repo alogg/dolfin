@@ -17,7 +17,7 @@ def solve(mesh_file, degree):
     # Compute solution
     problem = VariationalProblem(a, L)
     problem.parameters["linear_solver"] = "iterative"
-    problem.parameters["krylov_solver"]["relative_tolerance"] = 1e-20
+    problem.parameters["krylov_solver"]["relative_tolerance"] = 1e-15
     u = problem.solve()
 
     # Return norm of solution vector
@@ -61,13 +61,17 @@ def check_results(results, reference, tol):
 reference = { ("unitsquare.xml.gz", 1): 7.821707395007537 ,
               ("unitsquare.xml.gz", 2): 15.18829494599347 ,
               ("unitsquare.xml.gz", 3): 22.55234140275229 ,
+              ("unitsquare.xml.gz", 4): 29.91638783448794 ,
+              ("unitsquare.xml.gz", 5): 37.28043428001642 ,
               ("unitcube.xml.gz", 1): 3.647913575216382 ,
               ("unitcube.xml.gz", 2): 8.523874310611367 ,
-              ("unitcube.xml.gz", 3): 14.55432230797502 }
+              ("unitcube.xml.gz", 3): 14.55432230797502 ,
+              ("unitcube.xml.gz", 4): 21.57286638104142 ,
+              ("unitcube.xml.gz", 5): 29.45598181177814 }
 
 # Mesh files and degrees to check
 mesh_files = ["unitsquare.xml.gz", "unitcube.xml.gz"]
-degrees = [1, 2, 3]
+degrees = [1, 2, 3, 4]
 
 ## Iterate over test cases and collect results
 results = []
