@@ -10,9 +10,9 @@
 
 using namespace dolfin;
 
-namespace Poisson = Poisson2DP1;
+//namespace Poisson = Poisson2DP1;
 //namespace Poisson = Poisson2DP2;
-//namespace Poisson = Poisson2DP3;
+namespace Poisson = Poisson2DP3;
 //namespace Poisson = Poisson3DP1;
 //namespace Poisson = Poisson3DP2;
 //namespace Poisson = Poisson3DP3;
@@ -57,7 +57,7 @@ int main()
 
   // Avoid direct solver for now, seems to break
   problem.parameters("linear_solver") = "iterative";
-  problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-12;
+  problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-20;
 
   Function u;
   problem.solve(u);
@@ -67,8 +67,7 @@ int main()
     std::cout << "Norm of solution vector: " << norm << std::endl;
 
   // Save solution in VTK format
-  File file("result/output.pvd");
-  u.update();
+  File file("solution.pvd");
   file << u;
 
   summary();
