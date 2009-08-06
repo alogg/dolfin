@@ -12,10 +12,10 @@ using namespace dolfin;
 
 //namespace Poisson = Poisson2DP1;
 //namespace Poisson = Poisson2DP2;
-namespace Poisson = Poisson2DP3;
+//namespace Poisson = Poisson2DP3;
 //namespace Poisson = Poisson3DP1;
 //namespace Poisson = Poisson3DP2;
-//namespace Poisson = Poisson3DP3;
+namespace Poisson = Poisson3DP3;
 
 // Source term
 class Source : public Function
@@ -30,10 +30,10 @@ int main()
 {
   // Create mesh
   //Mesh mesh("unitsquare_large.xml.gz");
-  Mesh mesh("unitsquare.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
-  //Mesh mesh("unitcube.xml.gz");
+  Mesh mesh("unitcube.xml.gz");
 
   // Store mesh to VTK
   File mesh_file("partitioned_mesh.pvd");
