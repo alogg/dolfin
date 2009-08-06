@@ -55,6 +55,8 @@ int main()
   L.f = f;
   VariationalProblem problem(a, L);
 
+  f.interpolate();
+
   // Avoid direct solver for now, seems to break
   problem.parameters("linear_solver") = "iterative";
   problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-20;
