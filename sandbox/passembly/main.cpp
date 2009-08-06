@@ -68,6 +68,7 @@ int main()
 
   // Save solution in VTK format
   File file("result/output.pvd");
+  u.update();
   file << u;
 
   summary();
