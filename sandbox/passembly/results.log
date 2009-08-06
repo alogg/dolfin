@@ -1,10 +1,12 @@
+Thu Aug  6 14:11:40 CEST 2009
+
 Checking results
 ----------------
-(unitsquare.xml.gz, 1): OK (norm = 7.821707395008232, reference = 7.821707395007537, diff = 6.954437026251981e-13)
-(unitsquare.xml.gz, 2): OK (norm = 15.18829494599103, reference = 15.18829494599347, diff = 2.440714297335944e-12)
-(unitsquare.xml.gz, 3): OK (norm = 22.55234140274465, reference = 22.55234140275229, diff = 7.638334409421077e-12)
-(unitsquare.xml.gz, 4): OK (norm = 29.91638783447383, reference = 29.91638783448794, diff = 1.411137873219559e-11)
-(unitcube.xml.gz, 1):   OK (norm = 3.647913575216391, reference = 3.647913575216382, diff = 9.325873406851315e-15)
-(unitcube.xml.gz, 2):   OK (norm = 8.523874310611431, reference = 8.523874310611367, diff = 6.394884621840902e-14)
-(unitcube.xml.gz, 3):   OK (norm = 14.55432230797452, reference = 14.55432230797502, diff = 4.991562718714704e-13)
-(unitcube.xml.gz, 4):   OK (norm = 21.57286638104116, reference = 21.57286638104142, diff = 2.593480985524366e-13)
+(unitsquare.xml.gz, 1): OK (norm = 7.82170739500822, reference = 7.821707395007537, diff = 6.830092047493963e-13)
+(unitsquare.xml.gz, 2): OK (norm = 15.18829494599144, reference = 15.18829494599347, diff = 2.026823153755686e-12)
+(unitsquare.xml.gz, 3): OK (norm = 22.55234140274454, reference = 22.55234140275229, diff = 7.748468533463893e-12)
+(unitsquare.xml.gz, 4): OK (norm = 29.91638783447601, reference = 29.91638783448794, diff = 1.193356524709088e-11)
+(unitcube.xml.gz, 1):   OK (norm = 3.647913575216392, reference = 3.647913575216382, diff = 1.021405182655144e-14)
+(unitcube.xml.gz, 2):   OK (norm = 8.523874310611422, reference = 8.523874310611367, diff = 5.506706202140776e-14)
+(unitcube.xml.gz, 3):   OK (norm = 14.5543223079745, reference = 14.55432230797502, diff = 5.186961971048731e-13)
+(unitcube.xml.gz, 4):   OK (norm = 21.57286638104078, reference = 21.57286638104142, diff = 6.430411758628907e-13)
