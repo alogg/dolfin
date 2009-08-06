@@ -35,6 +35,9 @@ int main()
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
   Mesh mesh("unitcube.xml.gz");
 
+  // Uncomment this line to test distribution of built-in meshes
+  //UnitCube mesh(8, 8, 8);
+
   // Store mesh to VTK
   File mesh_file("partitioned_mesh.pvd");
   mesh_file << mesh;
