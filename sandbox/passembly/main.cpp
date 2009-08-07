@@ -60,9 +60,9 @@ int main()
 
   f.interpolate();
 
-  // Avoid direct solver for now, seems to break
-  //problem.parameters("linear_solver") = "iterative";
-  problem.parameters("linear_solver") = "direct";
+  // To use a direct solver in parallel, configure PETSc with MUMPS
+  problem.parameters("linear_solver") = "iterative";
+  //problem.parameters("linear_solver") = "direct";
   problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-20;
 
   Function u;
