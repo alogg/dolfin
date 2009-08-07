@@ -12,10 +12,10 @@ using namespace dolfin;
 
 //namespace Poisson = Poisson2DP1;
 //namespace Poisson = Poisson2DP2;
-//namespace Poisson = Poisson2DP3;
+namespace Poisson = Poisson2DP3;
 //namespace Poisson = Poisson3DP1;
 //namespace Poisson = Poisson3DP2;
-namespace Poisson = Poisson3DP3;
+//namespace Poisson = Poisson3DP3;
 
 // Source term
 class Source : public Function
@@ -30,10 +30,10 @@ int main()
 {
   // Create mesh
   //Mesh mesh("unitsquare_large.xml.gz");
-  //Mesh mesh("unitsquare.xml.gz");
+  Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
-  Mesh mesh("unitcube.xml.gz");
+  //Mesh mesh("unitcube.xml.gz");
 
   // Uncomment this line to test distribution of built-in meshes
   //UnitCube mesh(8, 8, 8);
@@ -61,7 +61,8 @@ int main()
   f.interpolate();
 
   // Avoid direct solver for now, seems to break
-  problem.parameters("linear_solver") = "iterative";
+  //problem.parameters("linear_solver") = "iterative";
+  problem.parameters("linear_solver") = "direct";
   problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-20;
 
   Function u;
