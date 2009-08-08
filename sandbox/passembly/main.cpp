@@ -12,10 +12,10 @@ using namespace dolfin;
 
 //namespace Poisson = Poisson2DP1;
 //namespace Poisson = Poisson2DP2;
-namespace Poisson = Poisson2DP3;
+//namespace Poisson = Poisson2DP3;
 //namespace Poisson = Poisson3DP1;
 //namespace Poisson = Poisson3DP2;
-//namespace Poisson = Poisson3DP3;
+namespace Poisson = Poisson3DP3;
 
 // Source term
 class Source : public Function
@@ -37,8 +37,6 @@ int main()
 
   // Uncomment this line to test distribution of built-in meshes
   UnitCube mesh(8, 8, 8);
-
-  return 0;
 
   // Store mesh to VTK
   File mesh_file("partitioned_mesh.pvd");
