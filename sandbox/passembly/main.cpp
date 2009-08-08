@@ -30,13 +30,15 @@ int main()
 {
   // Create mesh
   //Mesh mesh("unitsquare_large.xml.gz");
-  Mesh mesh("unitsquare.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
   //Mesh mesh("unitsquare_small.xml.gz");
   //Mesh mesh("unitsquare_reallysmall.xml.gz");
   //Mesh mesh("unitcube.xml.gz");
 
   // Uncomment this line to test distribution of built-in meshes
-  //UnitCube mesh(8, 8, 8);
+  UnitCube mesh(8, 8, 8);
+
+  return 0;
 
   // Store mesh to VTK
   File mesh_file("partitioned_mesh.pvd");
