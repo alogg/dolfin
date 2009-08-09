@@ -218,6 +218,10 @@ Destructor. ";
 
 Initialize boundary mesh. ";
 
+%feature("docstring")  dolfin::BoundaryMesh::init_interior "
+
+Initialize interior boundary mesh. ";
+
 
 // File: classdolfin_1_1Box.xml
 %feature("docstring") dolfin::Box "
@@ -1577,9 +1581,12 @@ function). ";
 
 Interpolate function to vertices of mesh. ";
 
-%feature("docstring")  dolfin::Function::collect_global_dof_values "
+%feature("docstring")  dolfin::Function::gather "
 
-Collect global dof values for all dofs located on local mesh. ";
+Collect off-process coefficients to prepare for interpolation. ";
+
+
+// File: classdolfin_1_1Function_1_1Scratch.xml
 
 
 // File: classdolfin_1_1FunctionPlotData.xml
@@ -1876,29 +1883,25 @@ Return rank. ";
 
 Return global size for dimension i. ";
 
-%feature("docstring")  dolfin::GenericSparsityPattern::row_range "
+%feature("docstring")  dolfin::GenericSparsityPattern::local_range "
 
-Return local range for rows. ";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::col_range "
-
-Return local range for columns. ";
+Return local range for dimension dim. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros "
 
-Return total number of nonzeros in local rows. ";
+Return total number of nonzeros in local_range for dimension 0. ";
 
 %feature("docstring")
 dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
 
-Fill array with number of nonzeros per local row for diagonal block.
-";
+Fill array with number of nonzeros for diagonal block in local_range
+for dimension 0. ";
 
 %feature("docstring")
 dolfin::GenericSparsityPattern::num_nonzeros_off_diagonal "
 
-Fill array with number of nonzeros per local row for off-diagonal
-block. ";
+Fill array with number of nonzeros for off-diagonal block in
+local_range for dimension 0. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::apply "
 
@@ -2044,6 +2047,10 @@ Resize vector to size N. ";
 
 Return size of vector. ";
 
+%feature("docstring")  dolfin::GenericVector::local_range "
+
+Return local ownership range of a vector. ";
+
 %feature("docstring")  dolfin::GenericVector::get "
 
 Get block of values. ";
@@ -2067,6 +2074,8 @@ Set all values. ";
 %feature("docstring")  dolfin::GenericVector::add "
 
 Add values to each entry. ";
+
+%feature("docstring")  dolfin::GenericVector::gather "";
 
 %feature("docstring")  dolfin::GenericVector::axpy "
 
@@ -2517,7 +2526,12 @@ Create empty matrix. ";
 
 %feature("docstring")  dolfin::LinearAlgebraFactory::create_vector "
 
-Create empty vector. ";
+Create empty vector (global). ";
+
+%feature("docstring")
+dolfin::LinearAlgebraFactory::create_local_vector "
+
+Create empty vector (local). ";
 
 %feature("docstring")  dolfin::LinearAlgebraFactory::create_pattern "
 
@@ -2542,27 +2556,6 @@ Destructor. ";
 %feature("docstring")  dolfin::LinearSolver::solve "
 
 Solve linear system Ax = b. ";
-
-
-// File: classdolfin_1_1List.xml
-%feature("docstring") dolfin::List "
-
-List is a container that provides O(n) access time to elements and
-O(n) memory overhead. However, a List can be grown/shrunk without
-reallocation and spliced together with other lists, etc.
-
-It is a wrapper for std::list (doubly-linked list), so see the STL
-manual for further details:http://www.sgi.com/tech/stl/
-
-C++ includes: List.h ";
-
-%feature("docstring")  dolfin::List::List "
-
-Create empty list. ";
-
-%feature("docstring")  dolfin::List::List "
-
-Copy constructor. ";
 
 
 // File: classdolfin_1_1LobattoQuadrature.xml
@@ -2609,11 +2602,19 @@ C++ includes: LocalMeshData.h ";
 
 %feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
 
-Constructor. ";
+Create empty local mesh data. ";
+
+%feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
+
+Create local mesh data for given mesh. ";
 
 %feature("docstring")  dolfin::LocalMeshData::~LocalMeshData "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::LocalMeshData::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1LogStream.xml
@@ -3163,6 +3164,10 @@ Constructor. ";
 %feature("docstring")  dolfin::MeshEditor::~MeshEditor "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::MeshEditor::open "
+
+Open mesh of given topological and geometrical dimension. ";
 
 %feature("docstring")  dolfin::MeshEditor::open "
 
@@ -3854,6 +3859,11 @@ Constructor. ";
 %feature("docstring")  dolfin::NonlinearProblem::~NonlinearProblem "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::NonlinearProblem::form "
+
+Function called by Newton solver before requesting F or J. This can be
+used when it is used to comoute F and J together ";
 
 %feature("docstring")  dolfin::NonlinearProblem::F "
 
@@ -4650,29 +4660,27 @@ Return rank. ";
 
 Return global size for dimension i. ";
 
-%feature("docstring")  dolfin::SparsityPattern::row_range "
+%feature("docstring")  dolfin::SparsityPattern::local_range "
 
-Return local range for rows. ";
-
-%feature("docstring")  dolfin::SparsityPattern::col_range "
-
-Return local range for columns. ";
+Return local range for dimension dim. ";
 
 %feature("docstring")  dolfin::SparsityPattern::num_nonzeros "
 
-Return total number of nonzeros in local rows. ";
+Return total number of nonzeros in local_range for dimension 0. ";
 
 %feature("docstring")  dolfin::SparsityPattern::num_nonzeros_diagonal
 "
 
-Fill array with number of nonzeros per local row for diagonal block.
-";
+Fill array with number of nonzeros for diagonal block in local_range
+for dimension 0 For matrices, fill array with number of nonzeros per
+local row for diagonal block ";
 
 %feature("docstring")
 dolfin::SparsityPattern::num_nonzeros_off_diagonal "
 
-Fill array with number of nonzeros per local row for off-diagonal
-block. ";
+Fill array with number of nonzeros for off-diagonal block in
+local_range for dimension 0 For matrices, fill array with number of
+nonzeros per local row for off-diagonal block ";
 
 %feature("docstring")  dolfin::SparsityPattern::apply "
 
@@ -5143,6 +5151,10 @@ Start timer. ";
 %feature("docstring")  dolfin::Timer::stop "
 
 Stop timer. ";
+
+%feature("docstring")  dolfin::Timer::value "
+
+Return value of timer (or time at start if not stopped). ";
 
 
 // File: classdolfin_1_1uBLASFactory.xml
@@ -6106,10 +6118,6 @@ Compute residual ||Ax - b||. ";
 
 Normalize vector according to given normalization type. ";
 
-%feature("docstring")  dolfin::print_container "";
-
-%feature("docstring")  dolfin::print_vec_map "";
-
 %feature("docstring")  dolfin::dolfin_init "
 
 Initialize DOLFIN (and PETSc) with command-line arguments. This should
@@ -6190,9 +6198,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: constants_8h.xml
-
-
-// File: List_8h.xml
 
 
 // File: TimeDependent_8h.xml
