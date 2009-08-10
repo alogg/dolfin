@@ -13,7 +13,7 @@ app_params = Parameters("application_parameters",
                                                   )
                            )
 # Set range
-app_params.solver.set_range("max_iterations",0, 1000)  
+app_params.solver.set_range("max_iterations",0, 1000)
 
 # Set values
 app_params.solver.max_iterations = 500
@@ -28,13 +28,13 @@ bar = app_params["bar"]
 tol = app_params.solver["tolerance"]
 
 # Print parameters
-logger.info(app_params)
+print app_params.__str__(True)
 
 # Test parameters for Krylov solver
 solver = KrylovSolver()
 solver.parameters["relative_tolerance"] = 1e-20
-logger.info("")
-logger.info(solver.parameters)
+info("")
+info(solver.parameters,True)
 
 
 # Test a the use of update
@@ -46,15 +46,15 @@ subset1 = Parameters("subset",
                                                      max_iterations=850))
 
 app_params.update(subset1)
-logger.info("")
-logger.info(app_params)
+info("")
+info(app_params,True)
 
 # Update using a dict
 subset2 = dict(foo =1.5,solver = dict(max_iterations=50))
 app_params.update(subset2)
 
-logger.info("")
-logger.info(app_params)
+info("")
+info(app_params)
 
 print "\nOption string representation of app_params:"
 print app_params.option_string()
