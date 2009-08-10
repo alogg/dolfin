@@ -72,7 +72,10 @@ int main (int argc, char* argv[])
 {
   UnitSquare mesh(3, 3);
   mesh.init(1, 2);
-  info(mesh, true);
+
+  dolfin::cout << mesh << dolfin::endl;
+
+  //info(mesh, true);
 
   return 0;
 }
