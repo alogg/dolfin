@@ -192,9 +192,6 @@ Apply boundary condition to a linear system for a nonlinear problem.
 ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -1586,9 +1583,6 @@ Interpolate function to vertices of mesh. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
-// File: classdolfin_1_1Function_1_1Scratch.xml
-
-
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1682,9 +1676,6 @@ Extract sub space for component. ";
 %feature("docstring")  dolfin::FunctionSpace::restriction "";
 
 %feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
-
-
-// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2577,6 +2568,9 @@ C++ includes: LobattoQuadrature.h ";
 %feature("docstring")  dolfin::LobattoQuadrature::disp "
 
 Display quadrature data. ";
+
+
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
 
 
 // File: classdolfin_1_1LocalMeshData.xml
@@ -3786,25 +3780,6 @@ This class provides utility functions for easy communcation with MPI.
 C++ includes: MPI.h ";
 
 
-// File: classdolfin_1_1MPIMeshCommunicator.xml
-%feature("docstring") dolfin::MPIMeshCommunicator "
-
-The class facilitates the transfer of a mesh between processes using
-MPI.
-
-C++ includes: MPIMeshCommunicator.h ";
-
-%feature("docstring")
-dolfin::MPIMeshCommunicator::MPIMeshCommunicator "
-
-Constructor. ";
-
-%feature("docstring")
-dolfin::MPIMeshCommunicator::~MPIMeshCommunicator "
-
-Destructor. ";
-
-
 // File: classdolfin_1_1NewtonSolver.xml
 %feature("docstring") dolfin::NewtonSolver "
 
@@ -4578,6 +4553,15 @@ Return a factory for the default linear algebra backend. ";
 Get value. ";
 
 
+// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
+
+
+// File: classdolfin_1_1Function_1_1Scratch.xml
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
 // File: classdolfin_1_1SingularSolver.xml
 %feature("docstring") dolfin::SingularSolver "
 
@@ -5004,9 +4988,6 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -6509,9 +6490,6 @@ Assemble scalar on sub domains. ";
 // File: MeshTopology_8h.xml
 
 
-// File: MPIMeshCommunicator_8h.xml
-
-
 // File: Point_8h.xml
 
 
@@ -6602,53 +6580,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_f9838c61797ae9e066a9b941c61beedd.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_ec6d0bfb31847aa96a283fa4d2680ea2.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_fe6de19caf985f10178ff88aca9be492.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_8cc08b7a206ecaa0f7b3b6fa21b4c664.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_05dd0f16da1c790780aa28574b2648d6.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_b3bf0f8b1363c6ddbae137ebcc58705a.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_6b8cbf53081e2eee24dd80a68286083e.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_e12e19ebe4a6dcdd7e8a6e342325a689.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_eb75f296124bdf93d1b4f973d136eaa2.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_d0b6ef0f6d48d64bdeb47af05207700a.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_e05573e0ee5e75e6ca1bfe8d4d1c3f93.xml
 
 
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
+// File: dir_1b8386f98ac5738f31141a4aa4b28ae8.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_57071202399a86fbe3a08e84387597c0.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_9e209ce524bd7b973ea1c3fd2fe975ca.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_5a54c0f2832238056b3639d1d95cf8eb.xml
 
 
-// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
+// File: dir_768a5df34b20b96483d803ae730f875f.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_6ca1fcd76e030243b98bb89fa4aa428e.xml
 
