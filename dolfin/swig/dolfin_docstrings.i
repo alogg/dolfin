@@ -2964,13 +2964,9 @@ Compute intersection with curve defined by points. ";
 
 Compute intersection with mesh. ";
 
-%feature("docstring")  dolfin::Mesh::disp "
-
-Display mesh data. ";
-
 %feature("docstring")  dolfin::Mesh::str "
 
-Return a short desriptive string. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshConnectivity.xml
@@ -3037,9 +3033,9 @@ Set all connections for given entity. ";
 
 Set all connections for all entities. ";
 
-%feature("docstring")  dolfin::MeshConnectivity::disp "
+%feature("docstring")  dolfin::MeshConnectivity::str "
 
-Display data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshCoordinates.xml
@@ -3140,10 +3136,6 @@ Erase mapping with given name. ";
 %feature("docstring")  dolfin::MeshData::erase_vector_mapping "
 
 Erase vector mapping with given name. ";
-
-%feature("docstring")  dolfin::MeshData::disp "
-
-Display data. ";
 
 %feature("docstring")  dolfin::MeshData::str "
 
@@ -3588,9 +3580,9 @@ dolfin::MeshGeometry::set_higher_order_cell_data "
 
 Set higher order cell data for cell # N in direction i. ";
 
-%feature("docstring")  dolfin::MeshGeometry::disp "
+%feature("docstring")  dolfin::MeshGeometry::str "
 
-Display data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshPartitioning.xml
@@ -3682,9 +3674,9 @@ Initialize topology of given maximum dimension. ";
 
 Set number of entities (size) for given topological dimension. ";
 
-%feature("docstring")  dolfin::MeshTopology::disp "
+%feature("docstring")  dolfin::MeshTopology::str "
 
-Display data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1Method.xml
@@ -4282,10 +4274,6 @@ Parse parameters from command-line. ";
 
 Update parameters with another set of parameters. ";
 
-%feature("docstring")  dolfin::Parameters::str "
-
-Return informal string representation (pretty-print). ";
-
 %feature("docstring")  dolfin::Parameters::get_parameter_keys "
 
 Return a vector of parameter keys. ";
@@ -4293,6 +4281,10 @@ Return a vector of parameter keys. ";
 %feature("docstring")  dolfin::Parameters::get_parameter_set_keys "
 
 Return a vector of parameter set keys. ";
+
+%feature("docstring")  dolfin::Parameters::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1PeriodicBC.xml
@@ -6089,10 +6081,6 @@ Set log level. ";
 %feature("docstring")  dolfin::get_log_level "
 
 Get log level. ";
-
-%feature("docstring")  dolfin::indent "
-
-Indent string. ";
 
 %feature("docstring")  dolfin::summary "
 
