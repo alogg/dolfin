@@ -887,8 +887,6 @@ C++ includes: SpecialFunctions.h ";
 
 %feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
-
 %feature("docstring")  dolfin::DiscreteFunction::~DiscreteFunction "";
 
 
@@ -1508,10 +1506,6 @@ Create function from vector of dofs stored to file (shared data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create function from sub function. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
 Copy constructor. ";
 
 %feature("docstring")  dolfin::Function::~Function "
@@ -2062,7 +2056,11 @@ Return local ownership range of a vector. ";
 
 %feature("docstring")  dolfin::GenericVector::get "
 
-Get block of values. ";
+Get block of values (values may live on any process). ";
+
+%feature("docstring")  dolfin::GenericVector::get_local "
+
+Get block of values (values must all live on the local process). ";
 
 %feature("docstring")  dolfin::GenericVector::set "
 
@@ -4895,23 +4893,6 @@ Set sub domain markers for given subdomain. ";
 Return geometric dimension. ";
 
 
-// File: classdolfin_1_1SubFunctionData.xml
-%feature("docstring") dolfin::SubFunctionData "
-
-This class represents a sub function (view) of a function. It's
-purpose is to enable expressions like
-
-Function w; Function u = w[0]; Function p = w[1];
-
-without needing to create and destroy temporaries. No data is created
-until a SubFunction is assigned to a Function, at which point the data
-is copied.
-
-C++ includes: SubFunctionData.h ";
-
-%feature("docstring")  dolfin::SubFunctionData::SubFunctionData "";
-
-
 // File: classdolfin_1_1SubMatrix.xml
 %feature("docstring") dolfin::SubMatrix "";
 
@@ -5502,6 +5483,10 @@ Resize vector to size N. ";
 
 Return size of vector. ";
 
+%feature("docstring")  dolfin::uBLASVector::local_range "
+
+Return local ownership range of a vector. ";
+
 %feature("docstring")  dolfin::uBLASVector::get "
 
 Get block of values. ";
@@ -5864,6 +5849,10 @@ Resize vector to size N. ";
 %feature("docstring")  dolfin::Vector::size "
 
 Return size of vector. ";
+
+%feature("docstring")  dolfin::Vector::local_range "
+
+Return local ownership range of a vector. ";
 
 %feature("docstring")  dolfin::Vector::get "
 
@@ -6234,9 +6223,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: SpecialFunctions_8h.xml
-
-
-// File: SubFunctionData_8h.xml
 
 
 // File: SubSpace_8h.xml
