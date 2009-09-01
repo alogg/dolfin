@@ -1,80 +1,82 @@
-// Copyright (C) 2006-2008 Anders Logg.
-// Licensed under the GNU LGPL Version 2.1.
-//
-// First added:  2006-02-07
-// Last changed: 2008-12-26
-//
-// This demo program solves Poisson's equation
-//
-//     - div grad u(x, y) = f(x, y)
-//
-// on the unit square with source f given by
-//
-//     f(x, y) = 500*exp(-((x - 0.5)^2 + (y - 0.5)^2) / 0.02)
-//
-// and boundary conditions given by
-//
-//     u(x, y) = 0 for x = 0 or x = 1
+// Testing parallel assembly
 
 #include <dolfin.h>
-#include "Poisson.h"
+#include "Poisson2DP1.h"
+#include "Poisson2DP2.h"
+#include "Poisson2DP3.h"
+#include "Poisson3DP1.h"
+#include "Poisson3DP2.h"
+#include "Poisson3DP3.h"
 
 using namespace dolfin;
+
+//namespace Poisson = Poisson2DP1;
+//namespace Poisson = Poisson2DP2;
+//namespace Poisson = Poisson2DP3;
+//namespace Poisson = Poisson3DP1;
+//namespace Poisson = Poisson3DP2;
+namespace Poisson = Poisson3DP3;
 
 // Source term
 class Source : public Function
 {
   void eval(double* values, const double* x) const
   {
-    double dx = x[0] - 0.5;
-    double dy = x[1] - 0.5;
-    values[0] = 500.0*exp(-(dx*dx + dy*dy) / 0.02);
-  }
-};
-
-// Sub domain for Dirichlet boundary condition
-class DirichletBoundary : public SubDomain
-{
-  bool inside(const double* x, bool on_boundary) const
-  {
-    return x[0] < DOLFIN_EPS or x[0] > 1.0 - DOLFIN_EPS;
+    values[0] = sin(x[0]);
   }
 };
 
 int main()
 {
-  // Avoid direct solver for now, seems to break
-  dolfin_set("linear solver", "iterative");
+  // Create mesh
+  //Mesh mesh("unitsquare_large.xml.gz");
+  //Mesh mesh("unitsquare.xml.gz");
+  //Mesh mesh("unitsquare_small.xml.gz");
+  //Mesh mesh("unitsquare_reallysmall.xml.gz");
+  //Mesh mesh("unitcube.xml.gz");
 
-  // Create mesh and function space
-  Mesh mesh("unitsquare.xml.gz");
-  info(mesh.data());
+  // Uncomment this line to test distribution of built-in meshes
+  UnitCube mesh(8, 8, 8);
 
+  // Store mesh to VTK
+  File mesh_file("partitioned_mesh.pvd");
+  mesh_file << mesh;
+
+  // Store mesh to XML
+  std::stringstream fname;
+  fname << "unitsquare_p" << dolfin::MPI::process_number() << ".xml";
+  File outmesh(fname.str());
+  outmesh << mesh;
+
+  // Create function space
   Poisson::FunctionSpace V(mesh);
-  info(mesh.data());
-
-  // Define boundary condition
-  Constant u0(0.0);
-  DirichletBoundary boundary;
-  DirichletBC bc(V, u0, boundary);
 
   // Define variational problem
   Poisson::BilinearForm a(V, V);
   Poisson::LinearForm L(V);
   Source f;
   L.f = f;
+  VariationalProblem problem(a, L);
 
-  // Compute solution
-  VariationalProblem problem(a, L, bc);
+  f.interpolate();
+
+  // To use a direct solver in parallel, configure PETSc with MUMPS
+  problem.parameters("linear_solver") = "iterative";
+  //problem.parameters("linear_solver") = "direct";
+  problem.parameters["krylov_solver"]("relative_tolerance") = 1.0e-20;
+
   Function u;
   problem.solve(u);
 
-  // Plot solution
-  //plot(u);
+  double norm = u.vector().norm("l2");
+  if (dolfin::MPI::process_number() == 0)
+    std::cout << "Norm of solution vector: " << norm << std::endl;
 
   // Save solution in VTK format
-  File file("tmp/output.pvd");
-  file << mesh;
+  File file("solution.pvd");
+  file << u;
+
+  summary();
 
   return 0;
 }

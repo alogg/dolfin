@@ -120,7 +120,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -263,19 +263,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -365,9 +365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -541,7 +541,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -684,19 +684,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -786,9 +786,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -962,7 +962,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -1105,19 +1105,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -1207,9 +1207,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1827,39 +1827,35 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
+    // Value of basis functions at quadrature points.
+    static const double FE0_D10[4][3] = \
+    {{-1, 1, 0},
+    {-1, 1, 0},
+    {-1, 1, 0},
+    {-1, 1, 0}};
     
-    const static double FE0_D10[4][2] = \
-    {{-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1}};
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 2};
+    static const double FE0_D01[4][3] = \
+    {{-1, 0, 1},
+    {-1, 0, 1},
+    {-1, 0, 1},
+    {-1, 0, 1}};
     
-    const static double FE0[4][3] = \
+    static const double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
-    // Number of operations to compute geometry constants: 30
-    const double G0 = det*(2*Jinv_00*Jinv_10 + 2*Jinv_01*Jinv_11);
-    const double G1 = det*(2*Jinv_00*Jinv_00 + 2*Jinv_01*Jinv_01);
-    const double G2 = det*(2*Jinv_10*Jinv_10 + 2*Jinv_11*Jinv_11);
-    const double G3 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G4 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G5 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 510
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Total number of operations to compute element tensor: 1440
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 480
+    // Number of operations to compute element tensor for following IP loop = 1440
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -1868,61 +1864,21 @@ public:
       double F1 = 0;
       double F2 = 0;
       
-      // Total number of operations to compute function values = 8
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F1 += FE0_D10[ip][r]*w[0][nzc0[r]];
-        F2 += FE0_D10[ip][r]*w[0][nzc1[r]];
-      }// end loop over 'r'
-      
-      // Total number of operations to compute function values = 6
+      // Total number of operations to compute function values = 18
       for (unsigned int r = 0; r < 3; r++)
       {
         F0 += FE0[ip][r]*w[0][r];
+        F1 += FE0_D10[ip][r]*w[0][r];
+        F2 += FE0_D01[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 22
-      // Number of operations: 5
-      const double Gip0 = F0*W4[ip]*(F1*G1 + F2*G0);
-      
-      // Number of operations: 5
-      const double Gip1 = F0*W4[ip]*(F1*G0 + F2*G2);
-      
-      // Number of operations: 4
-      const double Gip2 = W4[ip]*G3*(1 + F0*F0);
-      
-      // Number of operations: 4
-      const double Gip3 = W4[ip]*G4*(1 + F0*F0);
-      
-      // Number of operations: 4
-      const double Gip4 = W4[ip]*G5*(1 + F0*F0);
-      
-      
-      // Number of operations for primary indices = 48
-      for (unsigned int j = 0; j < 2; j++)
-      {
-        for (unsigned int k = 0; k < 2; k++)
-        {
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*3 + nzc1[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*3 + nzc1[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip3;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*3 + nzc0[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip4;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*3 + nzc0[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip2;
-        }// end loop over 'k'
-      }// end loop over 'j'
-      
-      // Number of operations for primary indices = 36
-      for (unsigned int j = 0; j < 2; j++)
+      // Number of operations for primary indices = 342
+      for (unsigned int j = 0; j < 3; j++)
       {
         for (unsigned int k = 0; k < 3; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*3 + k] += FE0[ip][k]*FE0_D10[ip][j]*Gip0;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*3 + k] += FE0[ip][k]*FE0_D10[ip][j]*Gip1;
+          // Number of operations to compute entry = 38
+          A[j*3 + k] += ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(FE0[ip][k]*2*F0*(Jinv_00*F1 + Jinv_10*F2) + (Jinv_00*FE0_D10[ip][k] + Jinv_10*FE0_D01[ip][k])*(1 + F0*F0)) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(FE0[ip][k]*2*F0*(Jinv_01*F1 + Jinv_11*F2) + (Jinv_01*FE0_D10[ip][k] + Jinv_11*FE0_D01[ip][k])*(1 + F0*F0)))*W4[ip]*det;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -2010,7 +1966,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(Product(Product(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), Product(FloatValue(2.0, (), (), {}), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0))), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2}))), SpatialDerivative(Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), IndexSum(Product(Product(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), Sum(FloatValue(1.0, (), (), {}), Power(Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), IntValue(2, (), (), {})))), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2}))), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(IntValue(1, (), (), {}), Power(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), IntValue(2, (), (), {})))), Product(Indexed(ComponentTensor(SpatialDerivative(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Product(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(IntValue(2, (), (), {}), BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1))))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2207,7 +2163,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -2350,19 +2306,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -2452,9 +2408,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2628,7 +2584,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -2771,19 +2727,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -2873,9 +2829,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -3049,7 +3005,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -3192,19 +3148,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -3294,9 +3250,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -3914,37 +3870,35 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
+    // Value of basis functions at quadrature points.
+    static const double FE0_D10[4][3] = \
+    {{-1, 1, 0},
+    {-1, 1, 0},
+    {-1, 1, 0},
+    {-1, 1, 0}};
     
-    const static double FE0_D10[4][2] = \
-    {{-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1}};
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 2};
+    static const double FE0_D01[4][3] = \
+    {{-1, 0, 1},
+    {-1, 0, 1},
+    {-1, 0, 1},
+    {-1, 0, 1}};
     
-    const static double FE0[4][3] = \
+    static const double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
-    // Number of operations to compute geometry constants: 13
-    const double G0 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2 =  - det;
-    const double G3 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 237
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Total number of operations to compute element tensor: 420
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 224
+    // Number of operations to compute element tensor for following IP loop = 420
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -3954,45 +3908,20 @@ public:
       double F2 = 0;
       double F3 = 0;
       
-      // Total number of operations to compute function values = 8
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F2 += FE0_D10[ip][r]*w[1][nzc0[r]];
-        F3 += FE0_D10[ip][r]*w[1][nzc1[r]];
-      }// end loop over 'r'
-      
-      // Total number of operations to compute function values = 12
+      // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 3; r++)
       {
         F0 += FE0[ip][r]*w[0][r];
-        F1 += FE0[ip][r]*w[1][r];
+        F1 += FE0_D10[ip][r]*w[1][r];
+        F2 += FE0_D01[ip][r]*w[1][r];
+        F3 += FE0[ip][r]*w[1][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 22
-      // Number of operations: 10
-      const double Gip0 = W4[ip]*(F2*G1*(1 + F1*F1) + F3*G0*(1 + F1*F1));
-      
-      // Number of operations: 2
-      const double Gip1 = F0*W4[ip]*G2;
-      
-      // Number of operations: 10
-      const double Gip2 = W4[ip]*(F2*G3*(1 + F1*F1) + F3*G1*(1 + F1*F1));
-      
-      
-      // Number of operations for primary indices = 6
+      // Number of operations for primary indices = 81
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 2
-        A[j] += FE0[ip][j]*Gip1;
-      }// end loop over 'j'
-      
-      // Number of operations for primary indices = 8
-      for (unsigned int j = 0; j < 2; j++)
-      {
-        // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE0_D10[ip][j]*Gip0;
-        // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE0_D10[ip][j]*Gip2;
+        // Number of operations to compute entry = 27
+        A[j] += (FE0[ip][j]*F0*-1 + ((Jinv_00*FE0_D10[ip][j] + Jinv_10*FE0_D01[ip][j])*(Jinv_00*F1 + Jinv_10*F2)*(1 + F3*F3) + (Jinv_01*FE0_D10[ip][j] + Jinv_11*FE0_D01[ip][j])*(Jinv_01*F1 + Jinv_11*F2)*(1 + F3*F3)))*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -4073,7 +4002,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(Product(Product(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), Sum(FloatValue(1.0, (), (), {}), Power(Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), IntValue(2, (), (), {})))), SpatialDerivative(Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Product(IntValue(-1, (), (), {}), Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0)))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(Product(Indexed(ComponentTensor(SpatialDerivative(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Sum(IntValue(1, (), (), {}), Power(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), IntValue(2, (), (), {})))), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), Product(IntValue(-1, (), (), {}), Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4229,7 +4158,7 @@ class CoefficientSet
 public:
 
   CoefficientSet():
-    U("U"), f("f")
+    f("f"), u("u")
   {}
   
   ~CoefficientSet()
@@ -4244,8 +4173,8 @@ public:
   {
     switch(i)
     {
-    case 0: return "U";
-    case 1: return "f";
+    case 0: return "f";
+    case 1: return "u";
     default:
         throw std::runtime_error("Invalid coefficient number.");
     }
@@ -4259,52 +4188,8 @@ public:
     }
   }
 
-  CoefficientReference U;
   CoefficientReference f;
-};
-
-class CoefficientSpace_U: public dolfin::FunctionSpace
-{
-public:
-
-
-  CoefficientSpace_U(const dolfin::Mesh & mesh):
-      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_U(dolfin::Mesh & mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_U(boost::shared_ptr<dolfin::Mesh> mesh):
-      dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
-  {
-      // Do nothing
-  }
-
-  CoefficientSpace_U(boost::shared_ptr<const dolfin::Mesh> mesh):
-      dolfin::FunctionSpace(mesh,
-                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
-  {
-      // Do nothing
-  }
- 
-
-  ~CoefficientSpace_U()
-  {
-  }
-  
+  CoefficientReference u;
 };
 
 class CoefficientSpace_f: public dolfin::FunctionSpace
@@ -4346,6 +4231,50 @@ public:
  
 
   ~CoefficientSpace_f()
+  {
+  }
+  
+};
+
+class CoefficientSpace_u: public dolfin::FunctionSpace
+{
+public:
+
+
+  CoefficientSpace_u(const dolfin::Mesh & mesh):
+      dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_u(dolfin::Mesh & mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_u(boost::shared_ptr<dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_u(boost::shared_ptr<const dolfin::Mesh> mesh):
+      dolfin::FunctionSpace(mesh,
+                            boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_1_finite_element_2()))),
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new nonlinearpoisson_1_dof_map_2()), mesh)))
+  {
+      // Do nothing
+  }
+ 
+
+  ~CoefficientSpace_u()
   {
   }
   
@@ -4439,26 +4368,26 @@ public:
   
 };
 
-typedef CoefficientSpace_U Form_0_FunctionSpace_2;
+typedef CoefficientSpace_u Form_0_FunctionSpace_2;
 
-class Form_0_Coefficient_U: public dolfin::Coefficient
+class Form_0_Coefficient_u: public dolfin::Coefficient
 {
 public:
 
-  Form_0_Coefficient_U(dolfin::Form & form):
+  Form_0_Coefficient_u(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_0_Coefficient_U()
+  ~Form_0_Coefficient_u()
   {}
 
-  const Form_0_Coefficient_U& operator=(dolfin::Function & f)
+  const Form_0_Coefficient_u& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_0_Coefficient_U& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_0_Coefficient_u& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -4476,7 +4405,7 @@ public:
 
   std::string name() const
   {
-    return "U";
+    return "u";
   }
 
 };
@@ -4487,7 +4416,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
-    dolfin::Form(2, 1), U(*this)
+    dolfin::Form(2, 1), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4500,7 +4429,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 1), U(*this)
+    dolfin::Form(2, 1), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4514,8 +4443,8 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _U):
-    dolfin::Form(2, 1), U(*this)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _u):
+    dolfin::Form(2, 1), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4523,16 +4452,16 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
 
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pU):
-    dolfin::Form(2, 1), U(*this)
+  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pu):
+    dolfin::Form(2, 1), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
     boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
@@ -4540,14 +4469,14 @@ public:
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
-    dolfin::Form(2, 1), U(*this)
+    dolfin::Form(2, 1), u(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
@@ -4557,7 +4486,7 @@ public:
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 1), U(*this)
+    dolfin::Form(2, 1), u(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
@@ -4568,27 +4497,27 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _U):
-    dolfin::Form(2, 1), U(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _u):
+    dolfin::Form(2, 1), u(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
 
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pU):
-    dolfin::Form(2, 1), U(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pu):
+    dolfin::Form(2, 1), u(*this)
   {
     _function_spaces[0] = _pV0;
     _function_spaces[1] = _pV1;
 
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
@@ -4599,13 +4528,13 @@ public:
 
   void update_coefficients(const CoefficientSet & coefficients)
   {
-    U = coefficients.U.function_pointer();
+    u = coefficients.u.function_pointer();
   }
 
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string & name) const
   {
-    if(name == "U") return 0;
+    if(name == "u") return 0;
     dolfin::error("Invalid coefficient.");
     return 0;
   }
@@ -4615,7 +4544,7 @@ public:
   {
     switch(i)
     {
-      case 0: return "U";
+      case 0: return "u";
     }
     dolfin::error("Invalid coefficient.");
     return "unnamed";
@@ -4624,10 +4553,10 @@ public:
   // Typedefs
   typedef Form_0_FunctionSpace_0 TestSpace;
   typedef Form_0_FunctionSpace_1 TrialSpace;
-  typedef Form_0_FunctionSpace_2 CoefficientSpace_U;
+  typedef Form_0_FunctionSpace_2 CoefficientSpace_u;
 
   // Coefficients
-  Form_0_Coefficient_U U;
+  Form_0_Coefficient_u u;
 };
 
 class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
@@ -4676,7 +4605,7 @@ public:
 
 typedef CoefficientSpace_f Form_1_FunctionSpace_1;
 
-typedef CoefficientSpace_U Form_1_FunctionSpace_2;
+typedef CoefficientSpace_u Form_1_FunctionSpace_2;
 
 class Form_1_Coefficient_f: public dolfin::Coefficient
 {
@@ -4718,24 +4647,24 @@ public:
 
 };
 
-class Form_1_Coefficient_U: public dolfin::Coefficient
+class Form_1_Coefficient_u: public dolfin::Coefficient
 {
 public:
 
-  Form_1_Coefficient_U(dolfin::Form & form):
+  Form_1_Coefficient_u(dolfin::Form & form):
     dolfin::Coefficient(form)
   {}
   
-  ~Form_1_Coefficient_U()
+  ~Form_1_Coefficient_u()
   {}
 
-  const Form_1_Coefficient_U& operator=(dolfin::Function & f)
+  const Form_1_Coefficient_u& operator=(dolfin::Function & f)
   {
     attach(f);
     return *this;
   }
   
-  const Form_1_Coefficient_U& operator=(boost::shared_ptr<dolfin::Function> f)
+  const Form_1_Coefficient_u& operator=(boost::shared_ptr<dolfin::Function> f)
   {
     attach(f);
     return *this;
@@ -4753,7 +4682,7 @@ public:
 
   std::string name() const
   {
-    return "U";
+    return "u";
   }
 
 };
@@ -4764,7 +4693,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace & _V0):
-    dolfin::Form(1, 2), f(*this), U(*this)
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
@@ -4775,7 +4704,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 2), f(*this), U(*this)
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
@@ -4787,39 +4716,39 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f, dolfin::Function & _U):
-    dolfin::Form(1, 2), f(*this), U(*this)
+  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _f, dolfin::Function & _u):
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
     _function_spaces[0] = _pV0;
 
     boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
-    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
 
     f = _pf;
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pU):
-    dolfin::Form(1, 2), f(*this), U(*this)
+  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pu):
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
 
     _function_spaces[0] = _pV0;
 
     f = _pf;
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
-    dolfin::Form(1, 2), f(*this), U(*this)
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     _function_spaces[0] = _pV0;
 
@@ -4828,7 +4757,7 @@ public:
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 2), f(*this), U(*this)
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     _function_spaces[0] = _pV0;
 
@@ -4838,28 +4767,28 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f, dolfin::Function & _U):
-    dolfin::Form(1, 2), f(*this), U(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _f, dolfin::Function & _u):
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     _function_spaces[0] = _pV0;
 
     boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
-    boost::shared_ptr<dolfin::Function> _pU = dolfin::reference_to_no_delete_pointer(_U);
+    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
 
     f = _pf;
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pU):
-    dolfin::Form(1, 2), f(*this), U(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pu):
+    dolfin::Form(1, 2), f(*this), u(*this)
   {
     _function_spaces[0] = _pV0;
 
     f = _pf;
-    U = _pU;
+    u = _pu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
@@ -4871,14 +4800,14 @@ public:
   void update_coefficients(const CoefficientSet & coefficients)
   {
     f = coefficients.f.function_pointer();
-    U = coefficients.U.function_pointer();
+    u = coefficients.u.function_pointer();
   }
 
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string & name) const
   {
     if(name == "f") return 0;
-    else if(name == "U") return 1;
+    else if(name == "u") return 1;
     dolfin::error("Invalid coefficient.");
     return 0;
   }
@@ -4889,7 +4818,7 @@ public:
     switch(i)
     {
       case 0: return "f";
-      case 1: return "U";
+      case 1: return "u";
     }
     dolfin::error("Invalid coefficient.");
     return "unnamed";
@@ -4898,11 +4827,11 @@ public:
   // Typedefs
   typedef Form_1_FunctionSpace_0 TestSpace;
   typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
-  typedef Form_1_FunctionSpace_2 CoefficientSpace_U;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_u;
 
   // Coefficients
   Form_1_Coefficient_f f;
-  Form_1_Coefficient_U U;
+  Form_1_Coefficient_u u;
 };
 
 // Class typedefs

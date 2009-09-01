@@ -60,9 +60,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::BlockMatrix::disp "
+%feature("docstring")  dolfin::BlockMatrix::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::BlockMatrix::mult "
 
@@ -118,9 +118,41 @@ Return maximum value of vector. ";
 
 Number of vectors. ";
 
-%feature("docstring")  dolfin::BlockVector::disp "
+%feature("docstring")  dolfin::BlockVector::str "
 
-Display vectors. ";
+Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1BoolParameter.xml
+%feature("docstring") dolfin::BoolParameter "
+
+Parameter with value type bool.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::BoolParameter::BoolParameter "
+
+Create bool-valued parameter. ";
+
+%feature("docstring")  dolfin::BoolParameter::~BoolParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::BoolParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::BoolParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::BoolParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::BoolParameter::str "
+
+Return short string description. ";
 
 
 // File: classdolfin_1_1BoundaryCondition.xml
@@ -129,6 +161,10 @@ Display vectors. ";
 Common base class for boundary conditions.
 
 C++ includes: BoundaryCondition.h ";
+
+%feature("docstring")  dolfin::BoundaryCondition::BoundaryCondition "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::BoundaryCondition::BoundaryCondition "
 
@@ -185,6 +221,10 @@ Destructor. ";
 %feature("docstring")  dolfin::BoundaryMesh::init "
 
 Initialize boundary mesh. ";
+
+%feature("docstring")  dolfin::BoundaryMesh::init_interior "
+
+Initialize interior boundary mesh. ";
 
 
 // File: classdolfin_1_1Box.xml
@@ -437,9 +477,9 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
-%feature("docstring")  dolfin::cGqMethod::disp "
+%feature("docstring")  dolfin::cGqMethod::str "
 
-Display method data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1CholmodCholeskySolver.xml
@@ -447,7 +487,7 @@ Display method data. ";
 
 This class implements the direct solution (Cholesky factorization) of
 linear systems of the form Ax = b. Sparse matrices are solved using
-CHOLMODhttp://www.cise.ufl.edu/research/sparse/cholmod/ is installed.
+CHOLMODhttp://www.cise.ufl.edu/research/sparse/cholmod/ if installed.
 
 C++ includes: CholmodCholeskySolver.h ";
 
@@ -707,9 +747,9 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
-%feature("docstring")  dolfin::dGqMethod::disp "
+%feature("docstring")  dolfin::dGqMethod::str "
 
-Display method data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1DirectedClique.xml
@@ -773,7 +813,19 @@ Create boundary condition for subdomain. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
+Create boundary condition for subdomain. ";
+
+%feature("docstring")  dolfin::DirichletBC::DirichletBC "
+
 Create boundary condition for subdomain specified by index. ";
+
+%feature("docstring")  dolfin::DirichletBC::DirichletBC "
+
+Create boundary condition for subdomain specified by index. ";
+
+%feature("docstring")  dolfin::DirichletBC::DirichletBC "
+
+Create boundary condition for boundary data included in the mesh. ";
 
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
@@ -828,8 +880,6 @@ through the SWIG created director class, when dealing with discrete
 functions in PyDOLFIN.
 
 C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
 %feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
 
@@ -900,30 +950,17 @@ Tabulate local-local facet dofs. ";
 
 Tabulate the coordinates of all dofs on a cell. ";
 
-%feature("docstring")  dolfin::DofMap::build "
-
-Build parallel dof map. ";
-
-%feature("docstring")  dolfin::DofMap::build "
-
-Build dof map on only a subdomain of the mesh (meshfunction contains
-booleans for each cell). ";
-
-%feature("docstring")  dolfin::DofMap::get_map "
-
-Return renumbering (used for testing). ";
-
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
 
-Extract sub dofmap and offset for component. ";
+Extract sub dofmap component. ";
 
-%feature("docstring")  dolfin::DofMap::offset "
+%feature("docstring")  dolfin::DofMap::renumbered "
 
-Return offset into parent's vector of coefficients. ";
+Test whether dof map has been renumbered. ";
 
-%feature("docstring")  dolfin::DofMap::disp "
+%feature("docstring")  dolfin::DofMap::str "
 
-Display mapping. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1DomainBoundary.xml
@@ -946,6 +983,42 @@ Destructor. ";
 %feature("docstring")  dolfin::DomainBoundary::inside "
 
 Return true for points on the boundary. ";
+
+
+// File: classdolfin_1_1DoubleParameter.xml
+%feature("docstring") dolfin::DoubleParameter "
+
+Parameter with value type double.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::DoubleParameter::DoubleParameter "
+
+Create double-valued parameter. ";
+
+%feature("docstring")  dolfin::DoubleParameter::~DoubleParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::DoubleParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::DoubleParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::DoubleParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::DoubleParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::DoubleParameter::str "
+
+Return short string description. ";
 
 
 // File: classdolfin_1_1DynamicMeshEditor.xml
@@ -1078,6 +1151,10 @@ of mixed systems (vector-valued and mixed elements) all compoments
 will be set equal.
 
 C++ includes: EqualityBC.h ";
+
+%feature("docstring")  dolfin::EqualityBC::EqualityBC "";
+
+%feature("docstring")  dolfin::EqualityBC::EqualityBC "";
 
 %feature("docstring")  dolfin::EqualityBC::EqualityBC "";
 
@@ -1429,10 +1506,6 @@ Create function from vector of dofs stored to file (shared data). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
-Create function from sub function. ";
-
-%feature("docstring")  dolfin::Function::Function "
-
 Copy constructor. ";
 
 %feature("docstring")  dolfin::Function::~Function "
@@ -1509,9 +1582,12 @@ function). ";
 
 Interpolate function to vertices of mesh. ";
 
-%feature("docstring")  dolfin::Function::collect_global_dof_values "
+%feature("docstring")  dolfin::Function::gather "
 
-Collect global dof values for all dofs located on local mesh. ";
+Collect off-process coefficients to prepare for interpolation. ";
+
+
+// File: classdolfin_1_1Function_1_1Scratch.xml
 
 
 // File: classdolfin_1_1FunctionPlotData.xml
@@ -1641,11 +1717,13 @@ for polynomials of degree 2n-1.
 
 C++ includes: GaussQuadrature.h ";
 
-%feature("docstring")  dolfin::GaussQuadrature::GaussQuadrature "";
+%feature("docstring")  dolfin::GaussQuadrature::GaussQuadrature "
 
-%feature("docstring")  dolfin::GaussQuadrature::disp "
+Create Gauss quadrature with n points. ";
 
-Display quadrature data. ";
+%feature("docstring")  dolfin::GaussQuadrature::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1GenericLinearSolver.xml
@@ -1711,9 +1789,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::GenericMatrix::disp "
+%feature("docstring")  dolfin::GenericMatrix::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::GenericMatrix::resize "
 
@@ -1734,6 +1812,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::GenericMatrix::axpy "
 
 Add multiple of given matrix (AXPY operation). ";
+
+%feature("docstring")  dolfin::GenericMatrix::norm "
+
+Return norm of matrix. ";
 
 %feature("docstring")  dolfin::GenericMatrix::getrow "
 
@@ -1804,29 +1886,25 @@ Return rank. ";
 
 Return global size for dimension i. ";
 
-%feature("docstring")  dolfin::GenericSparsityPattern::row_range "
+%feature("docstring")  dolfin::GenericSparsityPattern::local_range "
 
-Return local range for rows. ";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::col_range "
-
-Return local range for columns. ";
+Return local range for dimension dim. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros "
 
-Return total number of nonzeros in local rows. ";
+Return total number of nonzeros in local_range for dimension 0. ";
 
 %feature("docstring")
 dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
 
-Fill array with number of nonzeros per local row for diagonal block.
-";
+Fill array with number of nonzeros for diagonal block in local_range
+for dimension 0. ";
 
 %feature("docstring")
 dolfin::GenericSparsityPattern::num_nonzeros_off_diagonal "
 
-Fill array with number of nonzeros per local row for off-diagonal
-block. ";
+Fill array with number of nonzeros for off-diagonal block in
+local_range for dimension 0. ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::apply "
 
@@ -1884,9 +1962,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::GenericTensor::disp "
+%feature("docstring")  dolfin::GenericTensor::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::GenericTensor::factory "
 
@@ -1960,9 +2038,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::GenericVector::disp "
+%feature("docstring")  dolfin::GenericVector::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::GenericVector::resize "
 
@@ -1972,9 +2050,17 @@ Resize vector to size N. ";
 
 Return size of vector. ";
 
+%feature("docstring")  dolfin::GenericVector::local_range "
+
+Return local ownership range of a vector. ";
+
 %feature("docstring")  dolfin::GenericVector::get "
 
-Get block of values. ";
+Get block of values (values may live on any process). ";
+
+%feature("docstring")  dolfin::GenericVector::get_local "
+
+Get block of values (values must all live on the local process). ";
 
 %feature("docstring")  dolfin::GenericVector::set "
 
@@ -1995,6 +2081,8 @@ Set all values. ";
 %feature("docstring")  dolfin::GenericVector::add "
 
 Add values to each entry. ";
+
+%feature("docstring")  dolfin::GenericVector::gather "";
 
 %feature("docstring")  dolfin::GenericVector::axpy "
 
@@ -2163,9 +2251,9 @@ Partition a graph into num_part partitions. ";
 
 Return graph type as a string. ";
 
-%feature("docstring")  dolfin::Graph::disp "
+%feature("docstring")  dolfin::Graph::str "
 
-Display graph data. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::Graph::clear "
 
@@ -2285,11 +2373,47 @@ C++ includes: Interval.h ";
 %feature("docstring")  dolfin::Interval::Interval "";
 
 
+// File: classdolfin_1_1IntParameter.xml
+%feature("docstring") dolfin::IntParameter "
+
+Parameter with value type int.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::IntParameter::IntParameter "
+
+Create int-valued parameter. ";
+
+%feature("docstring")  dolfin::IntParameter::~IntParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::IntParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::IntParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::IntParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::IntParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::IntParameter::str "
+
+Return short string description. ";
+
+
 // File: classdolfin_1_1KrylovSolver.xml
 %feature("docstring") dolfin::KrylovSolver "
 
-This class defines an interface for a Krylov solver. The underlying
-Krylov solver type is defined in default_type.h.
+This class defines an interface for a Krylov solver. The approproiate
+solver is chosen on the basis of the matrix/vector type.
 
 C++ includes: KrylovSolver.h ";
 
@@ -2364,7 +2488,9 @@ Return derivate of polynomial i at given point x. ";
 
 Return derivative q (a constant) of polynomial. ";
 
-%feature("docstring")  dolfin::Lagrange::disp "";
+%feature("docstring")  dolfin::Lagrange::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1Legendre.xml
@@ -2409,7 +2535,12 @@ Create empty matrix. ";
 
 %feature("docstring")  dolfin::LinearAlgebraFactory::create_vector "
 
-Create empty vector. ";
+Create empty vector (global). ";
+
+%feature("docstring")
+dolfin::LinearAlgebraFactory::create_local_vector "
+
+Create empty vector (local). ";
 
 %feature("docstring")  dolfin::LinearAlgebraFactory::create_pattern "
 
@@ -2436,27 +2567,6 @@ Destructor. ";
 Solve linear system Ax = b. ";
 
 
-// File: classdolfin_1_1List.xml
-%feature("docstring") dolfin::List "
-
-List is a container that provides O(n) access time to elements and
-O(n) memory overhead. However, a List can be grown/shrunk without
-reallocation and spliced together with other lists, etc.
-
-It is a wrapper for std::list (doubly-linked list), so see the STL
-manual for further details:http://www.sgi.com/tech/stl/
-
-C++ includes: List.h ";
-
-%feature("docstring")  dolfin::List::List "
-
-Create empty list. ";
-
-%feature("docstring")  dolfin::List::List "
-
-Copy constructor. ";
-
-
 // File: classdolfin_1_1LobattoQuadrature.xml
 %feature("docstring") dolfin::LobattoQuadrature "
 
@@ -2471,11 +2581,13 @@ for polynomials of degree 2n-3.
 
 C++ includes: LobattoQuadrature.h ";
 
-%feature("docstring")  dolfin::LobattoQuadrature::LobattoQuadrature "";
+%feature("docstring")  dolfin::LobattoQuadrature::LobattoQuadrature "
 
-%feature("docstring")  dolfin::LobattoQuadrature::disp "
+Create Lobatto quadrature with n points. ";
 
-Display quadrature data. ";
+%feature("docstring")  dolfin::LobattoQuadrature::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1LocalMeshData.xml
@@ -2501,21 +2613,37 @@ C++ includes: LocalMeshData.h ";
 
 %feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
 
-Constructor. ";
+Create empty local mesh data. ";
+
+%feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
+
+Create local mesh data for given mesh. ";
 
 %feature("docstring")  dolfin::LocalMeshData::~LocalMeshData "
 
 Destructor. ";
 
+%feature("docstring")  dolfin::LocalMeshData::str "
+
+Return informal string representation (pretty-print). ";
+
 
 // File: classdolfin_1_1LogStream.xml
-%feature("docstring") dolfin::LogStream "";
+%feature("docstring") dolfin::LogStream "
 
-%feature("docstring")  dolfin::LogStream::LogStream "";
+This class provides functionality similar to standard C++ streams
+(std::cout, std::endl) for output but working through the DOLFIN log
+system.
 
-%feature("docstring")  dolfin::LogStream::~LogStream "";
+C++ includes: LogStream.h ";
 
-%feature("docstring")  dolfin::LogStream::disp "";
+%feature("docstring")  dolfin::LogStream::LogStream "
+
+Create log stream of given type. ";
+
+%feature("docstring")  dolfin::LogStream::~LogStream "
+
+Destructor. ";
 
 
 // File: classdolfin_1_1LUSolver.xml
@@ -2523,7 +2651,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::LUSolver::LUSolver "
 
-LU solver for the built-in LA backends. ";
+LU solver for the built-in LA backends. The type can be \"lu\" or
+\"cholesky\". Cholesky is suitable only for symmetric positive-
+definite matrices. Cholesky is not yet suppprted for all backends
+(which will default to LU. ";
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
@@ -2578,9 +2709,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::Matrix::disp "
+%feature("docstring")  dolfin::Matrix::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::Matrix::resize "
 
@@ -2601,6 +2732,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::Matrix::axpy "
 
 Add multiple of given matrix (AXPY operation). ";
+
+%feature("docstring")  dolfin::Matrix::norm "
+
+Return norm of matrix. ";
 
 %feature("docstring")  dolfin::Matrix::getrow "
 
@@ -2848,13 +2983,9 @@ Compute intersection with curve defined by points. ";
 
 Compute intersection with mesh. ";
 
-%feature("docstring")  dolfin::Mesh::disp "
-
-Display mesh data. ";
-
 %feature("docstring")  dolfin::Mesh::str "
 
-Return a short desriptive string. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshConnectivity.xml
@@ -2873,7 +3004,7 @@ C++ includes: MeshConnectivity.h ";
 
 %feature("docstring")  dolfin::MeshConnectivity::MeshConnectivity "
 
-Create empty connectivity. ";
+Create empty connectivity between given dimensions (d0 -- d1). ";
 
 %feature("docstring")  dolfin::MeshConnectivity::MeshConnectivity "
 
@@ -2921,9 +3052,9 @@ Set all connections for given entity. ";
 
 Set all connections for all entities. ";
 
-%feature("docstring")  dolfin::MeshConnectivity::disp "
+%feature("docstring")  dolfin::MeshConnectivity::str "
 
-Display data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshCoordinates.xml
@@ -3025,10 +3156,6 @@ Erase mapping with given name. ";
 
 Erase vector mapping with given name. ";
 
-%feature("docstring")  dolfin::MeshData::disp "
-
-Display data. ";
-
 %feature("docstring")  dolfin::MeshData::str "
 
 Return informal string representation (pretty-print). ";
@@ -3048,6 +3175,10 @@ Constructor. ";
 %feature("docstring")  dolfin::MeshEditor::~MeshEditor "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::MeshEditor::open "
+
+Open mesh of given topological and geometrical dimension. ";
 
 %feature("docstring")  dolfin::MeshEditor::open "
 
@@ -3183,6 +3314,10 @@ Check if given entity is indicent. ";
 %feature("docstring")  dolfin::MeshEntity::index "
 
 Compute local index of given incident entity (error if not found). ";
+
+%feature("docstring")  dolfin::MeshEntity::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshEntityIterator.xml
@@ -3327,9 +3462,9 @@ Set value at given entity. ";
 
 Set all values to given value. ";
 
-%feature("docstring")  dolfin::MeshFunction::disp "
+%feature("docstring")  dolfin::MeshFunction::str "
 
-Display mesh function data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshGeometry.xml
@@ -3468,9 +3603,9 @@ dolfin::MeshGeometry::set_higher_order_cell_data "
 
 Set higher order cell data for cell # N in direction i. ";
 
-%feature("docstring")  dolfin::MeshGeometry::disp "
+%feature("docstring")  dolfin::MeshGeometry::str "
 
-Display data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MeshPartitioning.xml
@@ -3562,9 +3697,9 @@ Initialize topology of given maximum dimension. ";
 
 Set number of entities (size) for given topological dimension. ";
 
-%feature("docstring")  dolfin::MeshTopology::disp "
+%feature("docstring")  dolfin::MeshTopology::str "
 
-Display data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1Method.xml
@@ -3661,9 +3796,9 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
-%feature("docstring")  dolfin::Method::disp "
+%feature("docstring")  dolfin::Method::str "
 
-Display method data. ";
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1MPI.xml
@@ -3672,169 +3807,6 @@ Display method data. ";
 This class provides utility functions for easy communcation with MPI.
 
 C++ includes: MPI.h ";
-
-
-// File: classdolfin_1_1MPIMeshCommunicator.xml
-%feature("docstring") dolfin::MPIMeshCommunicator "
-
-The class facilitates the transfer of a mesh between processes using
-MPI.
-
-C++ includes: MPIMeshCommunicator.h ";
-
-%feature("docstring")
-dolfin::MPIMeshCommunicator::MPIMeshCommunicator "
-
-Constructor. ";
-
-%feature("docstring")
-dolfin::MPIMeshCommunicator::~MPIMeshCommunicator "
-
-Destructor. ";
-
-
-// File: classdolfin_1_1NewBoolParameter.xml
-%feature("docstring") dolfin::NewBoolParameter "
-
-Parameter with value type bool.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewBoolParameter::NewBoolParameter "
-
-Create bool-valued parameter. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::~NewBoolParameter "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewBoolParameter::str "
-
-Return short string description. ";
-
-
-// File: classdolfin_1_1NewDoubleParameter.xml
-%feature("docstring") dolfin::NewDoubleParameter "
-
-Parameter with value type double.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::NewDoubleParameter
-"
-
-Create double-valued parameter. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::~NewDoubleParameter
-"
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewDoubleParameter::str "
-
-Return short string description. ";
-
-
-// File: classdolfin_1_1NewIntParameter.xml
-%feature("docstring") dolfin::NewIntParameter "
-
-Parameter with value type int.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewIntParameter::NewIntParameter "
-
-Create int-valued parameter. ";
-
-%feature("docstring")  dolfin::NewIntParameter::~NewIntParameter "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewIntParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::NewIntParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewIntParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewIntParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewIntParameter::str "
-
-Return short string description. ";
-
-
-// File: classdolfin_1_1NewStringParameter.xml
-%feature("docstring") dolfin::NewStringParameter "
-
-Parameter with value type string.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::NewStringParameter::NewStringParameter
-"
-
-Create string-valued parameter. ";
-
-%feature("docstring")  dolfin::NewStringParameter::~NewStringParameter
-"
-
-Destructor. ";
-
-%feature("docstring")  dolfin::NewStringParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::NewStringParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::NewStringParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::NewStringParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::NewStringParameter::str "
-
-Return short string description. ";
 
 
 // File: classdolfin_1_1NewtonSolver.xml
@@ -3863,7 +3835,7 @@ Destructor. ";
 Solve abstract nonlinear problem F(x) = 0 for given vector F and
 Jacobian dF/dx ";
 
-%feature("docstring")  dolfin::NewtonSolver::get_iteration "
+%feature("docstring")  dolfin::NewtonSolver::iteration "
 
 Return Newton iteration number. ";
 
@@ -3883,6 +3855,11 @@ Constructor. ";
 %feature("docstring")  dolfin::NonlinearProblem::~NonlinearProblem "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::NonlinearProblem::form "
+
+Function called by Newton solver before requesting F or J. This can be
+used when it is used to comoute F and J together ";
 
 %feature("docstring")  dolfin::NonlinearProblem::F "
 
@@ -4241,9 +4218,13 @@ Destructor. ";
 
 Copy constructor. ";
 
-%feature("docstring")  dolfin::Parameters::key "
+%feature("docstring")  dolfin::Parameters::name "
 
-Return key for parameter set. ";
+Return name for parameter set. ";
+
+%feature("docstring")  dolfin::Parameters::rename "
+
+Rename parameter set. ";
 
 %feature("docstring")  dolfin::Parameters::clear "
 
@@ -4297,10 +4278,6 @@ Parse parameters from command-line. ";
 
 Update parameters with another set of parameters. ";
 
-%feature("docstring")  dolfin::Parameters::str "
-
-Return informal string representation (pretty-print). ";
-
 %feature("docstring")  dolfin::Parameters::get_parameter_keys "
 
 Return a vector of parameter keys. ";
@@ -4308,6 +4285,10 @@ Return a vector of parameter keys. ";
 %feature("docstring")  dolfin::Parameters::get_parameter_set_keys "
 
 Return a vector of parameter set keys. ";
+
+%feature("docstring")  dolfin::Parameters::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1PeriodicBC.xml
@@ -4330,6 +4311,10 @@ of parameters may be used to specify for which sub system the boundary
 condition should be specified.
 
 C++ includes: PeriodicBC.h ";
+
+%feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
+
+Create periodic boundary condition for sub domain. ";
 
 %feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
 
@@ -4430,6 +4415,10 @@ Compute cross product with given vector. ";
 
 Compute dot product with given vector. ";
 
+%feature("docstring")  dolfin::Point::str "
+
+Return informal string representation (pretty-print). ";
+
 
 // File: classdolfin_1_1Progress.xml
 %feature("docstring") dolfin::Progress "
@@ -4487,10 +4476,6 @@ Return quadrature weight. ";
 
 Return sum of weights (length, area, volume). ";
 
-%feature("docstring")  dolfin::Quadrature::disp "
-
-Display quadrature data. ";
-
 
 // File: classdolfin_1_1RadauQuadrature.xml
 %feature("docstring") dolfin::RadauQuadrature "
@@ -4509,11 +4494,13 @@ for polynomials of degree 2n-2.
 
 C++ includes: RadauQuadrature.h ";
 
-%feature("docstring")  dolfin::RadauQuadrature::RadauQuadrature "";
+%feature("docstring")  dolfin::RadauQuadrature::RadauQuadrature "
 
-%feature("docstring")  dolfin::RadauQuadrature::disp "
+Create Radau quadrature with n points. ";
 
-Display quadrature data. ";
+%feature("docstring")  dolfin::RadauQuadrature::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1Rectangle.xml
@@ -4588,9 +4575,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::Scalar::disp "
+%feature("docstring")  dolfin::Scalar::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::Scalar::factory "
 
@@ -4675,29 +4662,27 @@ Return rank. ";
 
 Return global size for dimension i. ";
 
-%feature("docstring")  dolfin::SparsityPattern::row_range "
+%feature("docstring")  dolfin::SparsityPattern::local_range "
 
-Return local range for rows. ";
-
-%feature("docstring")  dolfin::SparsityPattern::col_range "
-
-Return local range for columns. ";
+Return local range for dimension dim. ";
 
 %feature("docstring")  dolfin::SparsityPattern::num_nonzeros "
 
-Return total number of nonzeros in local rows. ";
+Return total number of nonzeros in local_range for dimension 0. ";
 
 %feature("docstring")  dolfin::SparsityPattern::num_nonzeros_diagonal
 "
 
-Fill array with number of nonzeros per local row for diagonal block.
-";
+Fill array with number of nonzeros for diagonal block in local_range
+for dimension 0 For matrices, fill array with number of nonzeros per
+local row for diagonal block ";
 
 %feature("docstring")
 dolfin::SparsityPattern::num_nonzeros_off_diagonal "
 
-Fill array with number of nonzeros per local row for off-diagonal
-block. ";
+Fill array with number of nonzeros for off-diagonal block in
+local_range for dimension 0 For matrices, fill array with number of
+nonzeros per local row for off-diagonal block ";
 
 %feature("docstring")  dolfin::SparsityPattern::apply "
 
@@ -4778,9 +4763,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::STLMatrix::disp "
+%feature("docstring")  dolfin::STLMatrix::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::STLMatrix::resize "
 
@@ -4801,6 +4786,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::STLMatrix::axpy "
 
 Add multiple of given matrix (AXPY operation). ";
+
+%feature("docstring")  dolfin::STLMatrix::norm "
+
+Return norm of matrix. ";
 
 %feature("docstring")  dolfin::STLMatrix::getrow "
 
@@ -4831,6 +4820,42 @@ Return linear algebra backend factory ";
 %feature("docstring")  dolfin::STLMatrix::resize "
 
 Resize tensor of given rank and dimensions. ";
+
+
+// File: classdolfin_1_1StringParameter.xml
+%feature("docstring") dolfin::StringParameter "
+
+Parameter with value type string.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::StringParameter::StringParameter "
+
+Create string-valued parameter. ";
+
+%feature("docstring")  dolfin::StringParameter::~StringParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::StringParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::StringParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::StringParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::StringParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::StringParameter::str "
+
+Return short string description. ";
 
 
 // File: classdolfin_1_1SubDomain.xml
@@ -4866,29 +4891,6 @@ Set sub domain markers for given subdomain. ";
 %feature("docstring")  dolfin::SubDomain::geometric_dimension "
 
 Return geometric dimension. ";
-
-
-// File: classdolfin_1_1SubFunction.xml
-%feature("docstring") dolfin::SubFunction "
-
-This class represents a sub function (view) of a function. It's
-purpose is to enable expressions like
-
-Function w; Function u = w[0]; Function p = w[1];
-
-without needing to create and destroy temporaries. No data is created
-until a SubFunction is assigned to a Function, at which point the data
-is copied.
-
-C++ includes: SubFunction.h ";
-
-%feature("docstring")  dolfin::SubFunction::SubFunction "
-
-Create sub function for given component. ";
-
-%feature("docstring")  dolfin::SubFunction::~SubFunction "
-
-Destructor. ";
 
 
 // File: classdolfin_1_1SubMatrix.xml
@@ -4980,6 +4982,20 @@ Function evaluation (overload for user-defined function, alternate
 version). ";
 
 
+// File: classdolfin_1_1SystemAssembler.xml
+%feature("docstring") dolfin::SystemAssembler "
+
+This class provides implements an assembler for systems of the form Ax
+= b. It differs from the default DOLFIN assembler in that it assembles
+both A and b and the same time (leading to better performance) and in
+that it applies boundary conditions at the time of assembly.
+
+C++ includes: SystemAssembler.h ";
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
 // File: classdolfin_1_1Table.xml
 %feature("docstring") dolfin::Table "
 
@@ -5054,32 +5070,6 @@ Create table entry. ";
 Destructor. ";
 
 
-// File: classdolfin_1_1TimeDependent.xml
-%feature("docstring") dolfin::TimeDependent "
-
-Associates an object with time t.
-
-C++ includes: TimeDependent.h ";
-
-%feature("docstring")  dolfin::TimeDependent::TimeDependent "
-
-Constructors. ";
-
-%feature("docstring")  dolfin::TimeDependent::TimeDependent "";
-
-%feature("docstring")  dolfin::TimeDependent::~TimeDependent "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::TimeDependent::sync "
-
-Associate object with time t. ";
-
-%feature("docstring")  dolfin::TimeDependent::time "
-
-Return the current time t. ";
-
-
 // File: classdolfin_1_1Timer.xml
 %feature("docstring") dolfin::Timer "
 
@@ -5114,6 +5104,10 @@ Start timer. ";
 %feature("docstring")  dolfin::Timer::stop "
 
 Stop timer. ";
+
+%feature("docstring")  dolfin::Timer::value "
+
+Return value of timer (or time at start if not stopped). ";
 
 
 // File: classdolfin_1_1uBLASFactory.xml
@@ -5194,6 +5188,10 @@ Compute product y = Ax. ";
 
 Solve linear system Ax = b for a Krylov matrix using uBLAS and dense
 matrices. ";
+
+%feature("docstring")  dolfin::uBLASKrylovMatrix::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1uBLASKrylovSolver.xml
@@ -5297,9 +5295,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::uBLASMatrix::disp "
+%feature("docstring")  dolfin::uBLASMatrix::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::uBLASMatrix::resize "
 
@@ -5320,6 +5318,10 @@ Add block of values. ";
 %feature("docstring")  dolfin::uBLASMatrix::axpy "
 
 Add multiple of given matrix (AXPY operation). ";
+
+%feature("docstring")  dolfin::uBLASMatrix::norm "
+
+Return norm of matrix. ";
 
 %feature("docstring")  dolfin::uBLASMatrix::getrow "
 
@@ -5469,9 +5471,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::uBLASVector::disp "
+%feature("docstring")  dolfin::uBLASVector::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::uBLASVector::resize "
 
@@ -5480,6 +5482,10 @@ Resize vector to size N. ";
 %feature("docstring")  dolfin::uBLASVector::size "
 
 Return size of vector. ";
+
+%feature("docstring")  dolfin::uBLASVector::local_range "
+
+Return local ownership range of a vector. ";
 
 %feature("docstring")  dolfin::uBLASVector::get "
 
@@ -5556,7 +5562,7 @@ Return reference to uBLAS vector (non-const version). ";
 This class implements the direct solution (LU factorization) of linear
 systems of the form Ax = b using uBLAS data types. Dense matrices are
 solved using uBLAS LU factorisation, and sparse matrices are solved
-using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) is
+using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) if
 installed. Matrices can also be inverted.
 
 C++ includes: UmfpackLUSolver.h ";
@@ -5699,6 +5705,10 @@ Return label (description). ";
 
 Return informal string representation (pretty-print). ";
 
+%feature("docstring")  dolfin::Variable::disp "
+
+Deprecated, to be removed. ";
+
 
 // File: classdolfin_1_1VariationalProblem.xml
 %feature("docstring") dolfin::VariationalProblem "
@@ -5808,6 +5818,10 @@ Create vector of size N. ";
 
 Copy constructor. ";
 
+%feature("docstring")  dolfin::Vector::Vector "
+
+Create a Vector from a GenericVetor. ";
+
 %feature("docstring")  dolfin::Vector::~Vector "
 
 Destructor. ";
@@ -5824,9 +5838,9 @@ Set all entries to zero and keep any sparse structure. ";
 
 Finalize assembly of tensor. ";
 
-%feature("docstring")  dolfin::Vector::disp "
+%feature("docstring")  dolfin::Vector::str "
 
-Display tensor. ";
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::Vector::resize "
 
@@ -5835,6 +5849,10 @@ Resize vector to size N. ";
 %feature("docstring")  dolfin::Vector::size "
 
 Return size of vector. ";
+
+%feature("docstring")  dolfin::Vector::local_range "
+
+Return local ownership range of a vector. ";
 
 %feature("docstring")  dolfin::Vector::get "
 
@@ -5995,7 +6013,7 @@ Print message at given debug level. ";
 
 %feature("docstring")  dolfin::info "
 
-Print variable (using output of str() method). ";
+Print parameter (using output of str() method). ";
 
 %feature("docstring")  dolfin::info "
 
@@ -6041,10 +6059,6 @@ Set log level. ";
 
 Get log level. ";
 
-%feature("docstring")  dolfin::indent "
-
-Indent string. ";
-
 %feature("docstring")  dolfin::summary "
 
 Print summary of timings and tasks, optionally clearing stored
@@ -6057,8 +6071,6 @@ task. ";
 
 %feature("docstring")  dolfin::__debug "";
 
-%feature("docstring")  dolfin::__assert "";
-
 %feature("docstring")  dolfin::solve "
 
 Solve linear system Ax = b. ";
@@ -6070,10 +6082,6 @@ Compute residual ||Ax - b||. ";
 %feature("docstring")  dolfin::normalize "
 
 Normalize vector according to given normalization type. ";
-
-%feature("docstring")  dolfin::print_container "";
-
-%feature("docstring")  dolfin::print_vec_map "";
 
 %feature("docstring")  dolfin::dolfin_init "
 
@@ -6111,6 +6119,10 @@ Assemble tensor on sub domains. ";
 
 %feature("docstring")  dolfin::assemble_system "
 
+Assemble system (A, b). ";
+
+%feature("docstring")  dolfin::assemble_system "
+
 Assemble system (A, b) and apply Dirichlet boundary condition. ";
 
 %feature("docstring")  dolfin::assemble_system "
@@ -6122,18 +6134,11 @@ Assemble system (A, b) and apply Dirichlet boundary conditions. ";
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
 conditions. ";
 
-%feature("docstring")  dolfin::assemble_system_new "
-
-Assemble system (A, b) and apply Dirichlet boundary condition. ";
-
-%feature("docstring")  dolfin::assemble_system_new "
-
-Assemble system (A, b) and apply Dirichlet boundary conditions. ";
-
-%feature("docstring")  dolfin::assemble_system_new "
+%feature("docstring")  dolfin::assemble_system_swig "
 
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
-conditions. ";
+conditions This function removes const from std::vector<const
+DirichletBC*> since SWIG cannot handle it. ";
 
 %feature("docstring")  dolfin::assemble "
 
@@ -6158,12 +6163,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: constants_8h.xml
-
-
-// File: List_8h.xml
-
-
-// File: TimeDependent_8h.xml
 
 
 // File: Timer_8h.xml
@@ -6205,6 +6204,9 @@ Assemble scalar on sub domains. ";
 // File: PeriodicBC_8h.xml
 
 
+// File: SystemAssembler_8h.xml
+
+
 // File: VariationalProblem_8h.xml
 
 
@@ -6221,9 +6223,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: SpecialFunctions_8h.xml
-
-
-// File: SubFunction_8h.xml
 
 
 // File: SubSpace_8h.xml
@@ -6479,9 +6478,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: MeshTopology_8h.xml
-
-
-// File: MPIMeshCommunicator_8h.xml
 
 
 // File: Point_8h.xml
