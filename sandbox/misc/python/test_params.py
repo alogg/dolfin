@@ -28,7 +28,7 @@ bar = app_params["bar"]
 tol = app_params.solver["tolerance"]
 
 # Print parameters
-print app_params.__str__(True)
+info(app_params,True)
 
 # Test parameters for Krylov solver
 solver = KrylovSolver()
@@ -55,6 +55,8 @@ app_params.update(subset2)
 
 info("")
 info(app_params)
+
+print "Keys:",app_params.keys()
 
 print "\nOption string representation of app_params:"
 print app_params.option_string()

@@ -881,13 +881,29 @@ functions in PyDOLFIN.
 
 C++ includes: SpecialFunctions.h ";
 
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
 
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+Constructor. ";
 
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "";
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
 
-%feature("docstring")  dolfin::DiscreteFunction::~DiscreteFunction "";
+Constructor. ";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
+
+Constructor (deep copy of the vector). ";
+
+%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
+
+Sub-function constructor (shallow copy of the vector). ";
+
+%feature("docstring")  dolfin::DiscreteFunction::~DiscreteFunction "
+
+Destructor. ";
 
 
 // File: classdolfin_1_1DofMap.xml
@@ -957,6 +973,10 @@ Extract sub dofmap component. ";
 %feature("docstring")  dolfin::DofMap::renumbered "
 
 Test whether dof map has been renumbered. ";
+
+%feature("docstring")  dolfin::DofMap::collapse "
+
+\"Collapse\" a sub dofmap ";
 
 %feature("docstring")  dolfin::DofMap::str "
 
@@ -1678,6 +1698,10 @@ Interpolate function v in function space to vertices of mesh. ";
 
 Extract sub space for component. ";
 
+%feature("docstring")  dolfin::FunctionSpace::collapse_sub_space "
+
+Return function space with a new dof map. ";
+
 %feature("docstring")  dolfin::FunctionSpace::attach "";
 
 %feature("docstring")  dolfin::FunctionSpace::restriction "";
@@ -2070,17 +2094,17 @@ Set block of values. ";
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::GenericVector::get "
+%feature("docstring")  dolfin::GenericVector::get_local "
 
-Get all values. ";
+Get all values on local process. ";
 
-%feature("docstring")  dolfin::GenericVector::set "
+%feature("docstring")  dolfin::GenericVector::set_local "
 
-Set all values. ";
+Set all values on local process. ";
 
-%feature("docstring")  dolfin::GenericVector::add "
+%feature("docstring")  dolfin::GenericVector::add_local "
 
-Add values to each entry. ";
+Add values to each entry on local process. ";
 
 %feature("docstring")  dolfin::GenericVector::gather "";
 
@@ -2107,6 +2131,14 @@ Return maximum value of vector. ";
 %feature("docstring")  dolfin::GenericVector::sum "
 
 Return sum of vector. ";
+
+%feature("docstring")  dolfin::GenericVector::lambda "
+
+Apply lambda function. ";
+
+%feature("docstring")  dolfin::GenericVector::lambda "
+
+Apply lambda function. ";
 
 %feature("docstring")  dolfin::GenericVector::data "
 
@@ -5499,17 +5531,17 @@ Set block of values. ";
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::uBLASVector::get "
+%feature("docstring")  dolfin::uBLASVector::get_local "
 
-Get all values. ";
+Get all values on local process. ";
 
-%feature("docstring")  dolfin::uBLASVector::set "
+%feature("docstring")  dolfin::uBLASVector::set_local "
 
-Set all values. ";
+Set all values on local process. ";
 
-%feature("docstring")  dolfin::uBLASVector::add "
+%feature("docstring")  dolfin::uBLASVector::add_local "
 
-Add values to each entry. ";
+Add values to each entry on local process. ";
 
 %feature("docstring")  dolfin::uBLASVector::axpy "
 
@@ -5858,6 +5890,10 @@ Return local ownership range of a vector. ";
 
 Get block of values. ";
 
+%feature("docstring")  dolfin::Vector::get_local "
+
+Get block of values (values must all live on the local process). ";
+
 %feature("docstring")  dolfin::Vector::set "
 
 Set block of values. ";
@@ -5866,17 +5902,17 @@ Set block of values. ";
 
 Add block of values. ";
 
-%feature("docstring")  dolfin::Vector::get "
+%feature("docstring")  dolfin::Vector::get_local "
 
-Get all values. ";
+Get all values on local process. ";
 
-%feature("docstring")  dolfin::Vector::set "
+%feature("docstring")  dolfin::Vector::set_local "
 
-Set all values. ";
+Set all values on local process. ";
 
-%feature("docstring")  dolfin::Vector::add "
+%feature("docstring")  dolfin::Vector::add_local "
 
-Add values to each entry. ";
+Add values to each entry on local process. ";
 
 %feature("docstring")  dolfin::Vector::axpy "
 
@@ -6133,12 +6169,6 @@ Assemble system (A, b) and apply Dirichlet boundary conditions. ";
 
 Assemble system (A, b) on sub domains and apply Dirichlet boundary
 conditions. ";
-
-%feature("docstring")  dolfin::assemble_system_swig "
-
-Assemble system (A, b) on sub domains and apply Dirichlet boundary
-conditions This function removes const from std::vector<const
-DirichletBC*> since SWIG cannot handle it. ";
 
 %feature("docstring")  dolfin::assemble "
 
@@ -6570,53 +6600,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
+// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 
