@@ -196,9 +196,6 @@ Apply boundary condition to a linear system for a nonlinear problem.
 ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -477,6 +474,11 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
+%feature("docstring")  dolfin::cGqMethod::get_nodal_values "
+
+Replace the solution values with the nodal values solution polynomial.
+";
+
 %feature("docstring")  dolfin::cGqMethod::str "
 
 Return informal string representation (pretty-print). ";
@@ -674,6 +676,10 @@ Destructor. ";
 
 Return current cell (if available). ";
 
+%feature("docstring")  dolfin::Data::ufc_cell "
+
+Return current UFC cell (if available). ";
+
 %feature("docstring")  dolfin::Data::facet "
 
 Return current facet (if available). ";
@@ -746,6 +752,8 @@ Compute new time step based on the given residual. ";
 %feature("docstring")  dolfin::dGqMethod::error "
 
 Compute error estimate (modulo stability factor). ";
+
+%feature("docstring")  dolfin::dGqMethod::get_nodal_values "";
 
 %feature("docstring")  dolfin::dGqMethod::str "
 
@@ -1003,42 +1011,6 @@ Destructor. ";
 %feature("docstring")  dolfin::DomainBoundary::inside "
 
 Return true for points on the boundary. ";
-
-
-// File: classdolfin_1_1DoubleParameter.xml
-%feature("docstring") dolfin::DoubleParameter "
-
-Parameter with value type double.
-
-C++ includes: Parameter.h ";
-
-%feature("docstring")  dolfin::DoubleParameter::DoubleParameter "
-
-Create double-valued parameter. ";
-
-%feature("docstring")  dolfin::DoubleParameter::~DoubleParameter "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::DoubleParameter::set_range "
-
-Set range. ";
-
-%feature("docstring")  dolfin::DoubleParameter::type_str "
-
-Return value type string. ";
-
-%feature("docstring")  dolfin::DoubleParameter::value_str "
-
-Return value string. ";
-
-%feature("docstring")  dolfin::DoubleParameter::range_str "
-
-Return range string. ";
-
-%feature("docstring")  dolfin::DoubleParameter::str "
-
-Return short string description. ";
 
 
 // File: classdolfin_1_1DynamicMeshEditor.xml
@@ -1607,9 +1579,6 @@ Interpolate function to vertices of mesh. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
-// File: classdolfin_1_1Function_1_1Scratch.xml
-
-
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1707,9 +1676,6 @@ Return function space with a new dof map. ";
 %feature("docstring")  dolfin::FunctionSpace::restriction "";
 
 %feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
-
-
-// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2173,16 +2139,6 @@ Constructor. ";
 Destructor. ";
 
 
-// File: classdolfin_1_1GMPObject.xml
-%feature("docstring") dolfin::GMPObject "
-
-This class calls SubSystemsManger to initialise GMP.
-
-C++ includes: GMPObject.h ";
-
-%feature("docstring")  dolfin::GMPObject::GMPObject "";
-
-
 // File: classdolfin_1_1Graph.xml
 %feature("docstring") dolfin::Graph "
 
@@ -2539,6 +2495,8 @@ C++ includes: Legendre.h ";
 
 %feature("docstring")  dolfin::Legendre::Legendre "";
 
+%feature("docstring")  dolfin::Legendre::~Legendre "";
+
 %feature("docstring")  dolfin::Legendre::ddx "
 
 Evaluation of derivative at given point. ";
@@ -2546,6 +2504,15 @@ Evaluation of derivative at given point. ";
 %feature("docstring")  dolfin::Legendre::d2dx "
 
 Evaluation of second derivative at given point. ";
+
+%feature("docstring")  dolfin::Legendre::eval "
+
+Evaluation of arbitrary order, nn <= n (usefull ie in
+RadauQuadrature). ";
+
+%feature("docstring")  dolfin::Legendre::ddx "";
+
+%feature("docstring")  dolfin::Legendre::d2dx "";
 
 
 // File: classdolfin_1_1LinearAlgebraFactory.xml
@@ -2620,6 +2587,9 @@ Create Lobatto quadrature with n points. ";
 %feature("docstring")  dolfin::LobattoQuadrature::str "
 
 Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
 
 
 // File: classdolfin_1_1LocalMeshData.xml
@@ -3828,6 +3798,12 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
+%feature("docstring")  dolfin::Method::get_nodal_values "";
+
+%feature("docstring")  dolfin::Method::get_trial "";
+
+%feature("docstring")  dolfin::Method::get_quadrature_weights "";
+
 %feature("docstring")  dolfin::Method::str "
 
 Return informal string representation (pretty-print). ";
@@ -4034,11 +4010,40 @@ Solve ODE on [0, T]. ";
 
 %feature("docstring")  dolfin::ODE::solve "
 
-Solve ODE on [0, T]. ";
+Solve ODE on [0, T]. Save solution in u. ";
 
 %feature("docstring")  dolfin::ODE::solve "
 
 Solve ODE on [t0, t1]. ";
+
+%feature("docstring")  dolfin::ODE::solve_dual "
+
+Solve dual problem given an approximate solution u of the primal
+problem. ";
+
+%feature("docstring")  dolfin::ODE::analyze_stability "
+
+Compute stability factors as function of T (including solving the dual
+problem). The stability factor is the integral of the norm of the q'th
+derivative of the dual. ";
+
+%feature("docstring")  dolfin::ODE::analyze_stability_discretization "
+
+Compute stability factors as function of T (including solving the dual
+problem). The stability factor accounts for stability wrt the
+discretization scheme. ";
+
+%feature("docstring")  dolfin::ODE::analyze_stability_computation "
+
+Compute stability factors as function of T (including solving the dual
+problem). The stability factor accounts for stability wrt the round-
+off errors. ";
+
+%feature("docstring")  dolfin::ODE::analyze_stability_initial "
+
+Compute stability factors as function of T (including solving the dual
+problem). The stability factor accounts for stability wrt errors in
+initial data. ";
 
 %feature("docstring")  dolfin::ODE::set_state "
 
@@ -4102,38 +4107,82 @@ Optional user-defined update, called between solves. ";
 
 
 // File: classdolfin_1_1ODESolution.xml
-%feature("docstring") dolfin::ODESolution "
-
-ODESolution stores the samples from the ODE solver, primarily to be
-able to solve the dual problem. To be able to evaluate the solution in
-an arbitrary point, ODESolution makes a simple linear interpolation
-between the the closest samples. A number of interpolated values is
-cached, since the ODE solver repeatedly requests evaluation of the
-same t.
-
-The samples are stored in memory if possible, otherwise stored in a
-temporary file and fetched from disk in blocks when needed.
-
-Since GMP at the moment doesn't support saving operands on disk, this
-class uses double for all variables.
-
-C++ includes: ODESolution.h ";
+%feature("docstring") dolfin::ODESolution "";
 
 %feature("docstring")  dolfin::ODESolution::ODESolution "
 
 Create solution data for given ODE. ";
 
+%feature("docstring")  dolfin::ODESolution::ODESolution "";
+
 %feature("docstring")  dolfin::ODESolution::~ODESolution "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::ODESolution::init "";
+
+%feature("docstring")  dolfin::ODESolution::add_timeslab "";
+
+%feature("docstring")  dolfin::ODESolution::flush "
+
+Make object ready for evaluating, set to read mode. ";
 
 %feature("docstring")  dolfin::ODESolution::eval "
 
 Evaluate (interpolate) value of solution at given time. ";
 
-%feature("docstring")  dolfin::ODESolution::add_sample "";
+%feature("docstring")  dolfin::ODESolution::get_timeslab "
 
-%feature("docstring")  dolfin::ODESolution::flush "";
+Get timeslab (used when iterating). ";
+
+%feature("docstring")  dolfin::ODESolution::get_weights "
+
+Get pointer to weights. ";
+
+%feature("docstring")  dolfin::ODESolution::set_filename "";
+
+%feature("docstring")  dolfin::ODESolution::save_to_file "";
+
+%feature("docstring")  dolfin::ODESolution::disp "";
+
+%feature("docstring")  dolfin::ODESolution::size "";
+
+%feature("docstring")  dolfin::ODESolution::nsize "";
+
+%feature("docstring")  dolfin::ODESolution::endtime "";
+
+%feature("docstring")  dolfin::ODESolution::begin "";
+
+%feature("docstring")  dolfin::ODESolution::end "";
+
+
+// File: classdolfin_1_1ODESolutionData.xml
+%feature("docstring") dolfin::ODESolutionData "";
+
+%feature("docstring")  dolfin::ODESolutionData::ODESolutionData "";
+
+%feature("docstring")  dolfin::ODESolutionData::ODESolutionData "";
+
+%feature("docstring")  dolfin::ODESolutionData::~ODESolutionData "";
+
+%feature("docstring")  dolfin::ODESolutionData::b "";
+
+
+// File: classdolfin_1_1ODESolutionIterator.xml
+%feature("docstring") dolfin::ODESolutionIterator "";
+
+%feature("docstring")
+dolfin::ODESolutionIterator::ODESolutionIterator "";
+
+%feature("docstring")
+dolfin::ODESolutionIterator::ODESolutionIterator "";
+
+%feature("docstring")
+dolfin::ODESolutionIterator::ODESolutionIterator "";
+
+%feature("docstring")  dolfin::ODESolutionIterator::get_index "";
+
+%feature("docstring")  dolfin::ODESolutionIterator::get_ODESolution "";
 
 
 // File: classdolfin_1_1Parameter.xml
@@ -4178,6 +4227,10 @@ Set range for double-valued parameter. ";
 %feature("docstring")  dolfin::Parameter::set_range "
 
 Set range for string-valued parameter. ";
+
+%feature("docstring")  dolfin::Parameter::get_real "
+
+Get real value of parameter with (possibly) extended precision. ";
 
 %feature("docstring")  dolfin::Parameter::type_str "
 
@@ -4535,6 +4588,46 @@ Create Radau quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1RealParameter.xml
+%feature("docstring") dolfin::RealParameter "
+
+Parameter with value type double.
+
+C++ includes: Parameter.h ";
+
+%feature("docstring")  dolfin::RealParameter::RealParameter "
+
+Create double-valued parameter. ";
+
+%feature("docstring")  dolfin::RealParameter::~RealParameter "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::RealParameter::set_range "
+
+Set range. ";
+
+%feature("docstring")  dolfin::RealParameter::get_real "
+
+Get real value (possibly with extended precision). ";
+
+%feature("docstring")  dolfin::RealParameter::type_str "
+
+Return value type string. ";
+
+%feature("docstring")  dolfin::RealParameter::value_str "
+
+Return value string. ";
+
+%feature("docstring")  dolfin::RealParameter::range_str "
+
+Return range string. ";
+
+%feature("docstring")  dolfin::RealParameter::str "
+
+Return short string description. ";
+
+
 // File: classdolfin_1_1Rectangle.xml
 %feature("docstring") dolfin::Rectangle "
 
@@ -4618,6 +4711,15 @@ Return a factory for the default linear algebra backend. ";
 %feature("docstring")  dolfin::Scalar::getval "
 
 Get value. ";
+
+
+// File: classdolfin_1_1Function_1_1Scratch.xml
+
+
+// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1SingularSolver.xml
@@ -4727,6 +4829,28 @@ Return informal string representation (pretty-print). ";
 %feature("docstring")  dolfin::SparsityPattern::pattern "
 
 Return underlying sparsity pattern. ";
+
+
+// File: classdolfin_1_1StabilityAnalysis.xml
+%feature("docstring") dolfin::StabilityAnalysis "";
+
+%feature("docstring")  dolfin::StabilityAnalysis::StabilityAnalysis "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::StabilityAnalysis::~StabilityAnalysis "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::StabilityAnalysis::analyze_integral "
+
+Compute the integral of the q'th derivative of the dual as function of
+(primal) endtime T. ";
+
+%feature("docstring")  dolfin::StabilityAnalysis::analyze_endpoint "
+
+Compute z(0) (the endpoint of the dual) as function of (primal)
+endtime T. ";
 
 
 // File: classdolfin_1_1STLFactory.xml
@@ -5023,9 +5147,6 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -6558,9 +6679,6 @@ Assemble scalar on sub domains. ";
 // File: dGqMethod_8h.xml
 
 
-// File: GMPObject_8h.xml
-
-
 // File: Method_8h.xml
 
 
@@ -6571,6 +6689,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: ODESolution_8h.xml
+
+
+// File: StabilityAnalysis_8h.xml
 
 
 // File: GlobalParameters_8h.xml
@@ -6600,53 +6721,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
+// File: dir_f9838c61797ae9e066a9b941c61beedd.xml
 
 
-// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
+// File: dir_ec6d0bfb31847aa96a283fa4d2680ea2.xml
 
 
-// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
+// File: dir_fe6de19caf985f10178ff88aca9be492.xml
 
 
-// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
+// File: dir_8cc08b7a206ecaa0f7b3b6fa21b4c664.xml
 
 
-// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
+// File: dir_05dd0f16da1c790780aa28574b2648d6.xml
 
 
-// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
+// File: dir_b3bf0f8b1363c6ddbae137ebcc58705a.xml
 
 
-// File: dir_ca8276e2506a0601691073651d5c3550.xml
+// File: dir_6b8cbf53081e2eee24dd80a68286083e.xml
 
 
-// File: dir_608877851688f7299a0e613e9ab9e93f.xml
+// File: dir_e12e19ebe4a6dcdd7e8a6e342325a689.xml
 
 
-// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
+// File: dir_eb75f296124bdf93d1b4f973d136eaa2.xml
 
 
-// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
+// File: dir_d0b6ef0f6d48d64bdeb47af05207700a.xml
 
 
-// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
+// File: dir_e05573e0ee5e75e6ca1bfe8d4d1c3f93.xml
 
 
-// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
+// File: dir_1b8386f98ac5738f31141a4aa4b28ae8.xml
 
 
-// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
+// File: dir_57071202399a86fbe3a08e84387597c0.xml
 
 
-// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
+// File: dir_9e209ce524bd7b973ea1c3fd2fe975ca.xml
 
 
-// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
+// File: dir_5a54c0f2832238056b3639d1d95cf8eb.xml
 
 
-// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
+// File: dir_768a5df34b20b96483d803ae730f875f.xml
 
 
-// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
+// File: dir_6ca1fcd76e030243b98bb89fa4aa428e.xml
 
