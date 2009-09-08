@@ -753,7 +753,9 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
-%feature("docstring")  dolfin::dGqMethod::get_nodal_values "";
+%feature("docstring")  dolfin::dGqMethod::get_nodal_values "
+
+Get nodal values. ";
 
 %feature("docstring")  dolfin::dGqMethod::str "
 
@@ -964,7 +966,13 @@ Return number of facet dofs. ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_dofs "
 
-Tabulate the local-to-global mapping of dofs on a cell. ";
+Tabulate the local-to-global mapping of dofs on a cell (UFC cell
+version). ";
+
+%feature("docstring")  dolfin::DofMap::tabulate_dofs "
+
+Tabulate the local-to-global mapping of dofs on a cell (DOLFIN cell
+version). ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
 
@@ -1827,6 +1835,10 @@ Set given rows to identity matrix. ";
 
 Matrix-vector product, y = Ax. ";
 
+%feature("docstring")  dolfin::GenericMatrix::transpmult "
+
+Matrix-vector product, y = A^T x. ";
+
 %feature("docstring")  dolfin::GenericMatrix::data "
 
 Return pointers to underlying compresssed row/column storage data For
@@ -2137,6 +2149,10 @@ Constructor. ";
 %feature("docstring")  dolfin::GlobalParameters::~GlobalParameters "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::GlobalParameters::parse "
+
+Parse parameters from command-line. ";
 
 
 // File: classdolfin_1_1Graph.xml
@@ -2647,6 +2663,8 @@ Create log stream of given type. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::LogStream::setprecision "";
+
 
 // File: classdolfin_1_1LUSolver.xml
 %feature("docstring") dolfin::LUSolver "";
@@ -2758,6 +2776,10 @@ Set given rows to identity matrix. ";
 %feature("docstring")  dolfin::Matrix::mult "
 
 Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::Matrix::transpmult "
+
+Matrix-vector product, y = A^T x. ";
 
 %feature("docstring")  dolfin::Matrix::data "
 
@@ -3798,11 +3820,17 @@ Compute new time step based on the given residual. ";
 
 Compute error estimate (modulo stability factor). ";
 
-%feature("docstring")  dolfin::Method::get_nodal_values "";
+%feature("docstring")  dolfin::Method::get_nodal_values "
 
-%feature("docstring")  dolfin::Method::get_trial "";
+Get nodal values. ";
 
-%feature("docstring")  dolfin::Method::get_quadrature_weights "";
+%feature("docstring")  dolfin::Method::get_trial "
+
+Get trial functions. ";
+
+%feature("docstring")  dolfin::Method::get_quadrature_weights "
+
+Get quadrature weights. ";
 
 %feature("docstring")  dolfin::Method::str "
 
@@ -4967,6 +4995,10 @@ Set given rows to identity matrix. ";
 
 Matrix-vector product, y = Ax. ";
 
+%feature("docstring")  dolfin::STLMatrix::transpmult "
+
+Matrix-vector product, y = A^T x. ";
+
 %feature("docstring")  dolfin::STLMatrix::factory "
 
 --- Specialized matrix functions ---
@@ -5495,6 +5527,10 @@ Set given rows to identity matrix. ";
 %feature("docstring")  dolfin::uBLASMatrix::mult "
 
 Matrix-vector product, y = Ax. ";
+
+%feature("docstring")  dolfin::uBLASMatrix::transpmult "
+
+Matrix-vector product, y = A^T x. ";
 
 %feature("docstring")  dolfin::uBLASMatrix::data "
 
