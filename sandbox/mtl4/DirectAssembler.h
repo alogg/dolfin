@@ -40,18 +40,18 @@ namespace dolfin{
 
     /// Assemble tensor from given variational form
     template<typename Tensor_t>
-    void assemble(Tensor_t& A, Form& form, bool reset_tensor = true)
+    void assemble(Tensor_t& A, Form& form, bool reset_sparsity = true)
     {
       form.updateDofMaps(mesh);
       assemble(A, form.form(), form.coefficients(), 
-	       form.dofMaps(), 0, 0, 0, reset_tensor);
+	       form.dofMaps(), 0, 0, 0, reset_sparsity);
 
     }
 
     /// Assemble tensor from given variational form over a sub domain
     // template<typename Tensor_t>
     // void assemble(Tensor_t& A, Form& form,
-    //               const SubDomain& sub_domain, bool reset_tensor = true)
+    //               const SubDomain& sub_domain, bool reset_sparsity = true)
     // {
     //   // Extract cell domains
     //   MeshFunction<uint>* cell_domains = 0;
@@ -75,7 +75,7 @@ namespace dolfin{
     //   // Assemble
     //   form.updateDofMaps(mesh);
     //   assemble(A, form.form(), form.coefficients(), form.dofMaps(),
-    // 	       cell_domains, facet_domains, facet_domains, reset_tensor);
+    // 	       cell_domains, facet_domains, facet_domains, reset_sparsity);
 
     //   // Delete domains
     //   if (cell_domains)
@@ -90,7 +90,7 @@ namespace dolfin{
                   const MeshFunction<uint>& cell_domains,
                   const MeshFunction<uint>& exterior_facet_domains,
                   const MeshFunction<uint>& interior_facet_domains, 
-		  bool reset_tensor = true);
+		  bool reset_sparsity = true);
     
     /// Assemble scalar from given variational form
     double assemble(Form& form);
@@ -120,12 +120,12 @@ namespace dolfin{
                   const MeshFunction<uint>* cell_domains,
                   const MeshFunction<uint>* exterior_facet_domains,
                   const MeshFunction<uint>* interior_facet_domains, 
-		  bool reset_tensor = true)
+		  bool reset_sparsity = true)
     {
       // Note the importance of treating empty mesh functions as null pointers
       // for the PyDOLFIN interface.
 
-      if(reset_tensor)
+      if(reset_sparsity)
 	error("Experimental assembler: no initialization of tensor");
   
       // Check arguments
@@ -135,7 +135,7 @@ namespace dolfin{
       UFC ufc(form, mesh, dof_map_set);
 
       // Initialize global tensor
-      //initGlobalTensor(A, dof_map_set, ufc, reset_tensor);
+      //initGlobalTensor(A, dof_map_set, ufc, reset_sparsity);
       A.zero();
 
       // Assemble over cells
@@ -378,7 +378,7 @@ namespace dolfin{
 
     // Initialize global tensor
     void initGlobalTensor(GenericTensor& A, const DofMapSet& dof_map_set, 
-			  UFC& ufc, bool reset_tensor) const;
+			  UFC& ufc, bool reset_sparsity) const;
 
     // Pretty-printing for progress bar
     std::string progressMessage(uint rank, std::string integral_type) const;
