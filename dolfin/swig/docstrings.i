@@ -196,6 +196,9 @@ Apply boundary condition to a linear system for a nonlinear problem.
 ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -1587,6 +1590,9 @@ Interpolate function to vertices of mesh. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
+// File: classdolfin_1_1Function_1_1Scratch.xml
+
+
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1684,6 +1690,9 @@ Return function space with a new dof map. ";
 %feature("docstring")  dolfin::FunctionSpace::restriction "";
 
 %feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
+
+
+// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2603,9 +2612,6 @@ Create Lobatto quadrature with n points. ";
 %feature("docstring")  dolfin::LobattoQuadrature::str "
 
 Return informal string representation (pretty-print). ";
-
-
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
 
 
 // File: classdolfin_1_1LocalMeshData.xml
@@ -4741,15 +4747,6 @@ Return a factory for the default linear algebra backend. ";
 Get value. ";
 
 
-// File: classdolfin_1_1Function_1_1Scratch.xml
-
-
-// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
-
-
 // File: classdolfin_1_1SingularSolver.xml
 %feature("docstring") dolfin::SingularSolver "
 
@@ -5179,6 +5176,9 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -6757,53 +6757,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_f9838c61797ae9e066a9b941c61beedd.xml
+// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
 
 
-// File: dir_ec6d0bfb31847aa96a283fa4d2680ea2.xml
+// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
 
 
-// File: dir_fe6de19caf985f10178ff88aca9be492.xml
+// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
 
 
-// File: dir_8cc08b7a206ecaa0f7b3b6fa21b4c664.xml
+// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
 
 
-// File: dir_05dd0f16da1c790780aa28574b2648d6.xml
+// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
 
 
-// File: dir_b3bf0f8b1363c6ddbae137ebcc58705a.xml
+// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
 
 
-// File: dir_6b8cbf53081e2eee24dd80a68286083e.xml
+// File: dir_ca8276e2506a0601691073651d5c3550.xml
 
 
-// File: dir_e12e19ebe4a6dcdd7e8a6e342325a689.xml
+// File: dir_608877851688f7299a0e613e9ab9e93f.xml
 
 
-// File: dir_eb75f296124bdf93d1b4f973d136eaa2.xml
+// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
 
 
-// File: dir_d0b6ef0f6d48d64bdeb47af05207700a.xml
+// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
 
 
-// File: dir_e05573e0ee5e75e6ca1bfe8d4d1c3f93.xml
+// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
 
 
-// File: dir_1b8386f98ac5738f31141a4aa4b28ae8.xml
+// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
 
 
-// File: dir_57071202399a86fbe3a08e84387597c0.xml
+// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
 
 
-// File: dir_9e209ce524bd7b973ea1c3fd2fe975ca.xml
+// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
 
 
-// File: dir_5a54c0f2832238056b3639d1d95cf8eb.xml
+// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
 
 
-// File: dir_768a5df34b20b96483d803ae730f875f.xml
+// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
 
 
-// File: dir_6ca1fcd76e030243b98bb89fa4aa428e.xml
+// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
 
