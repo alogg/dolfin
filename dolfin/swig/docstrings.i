@@ -963,6 +963,8 @@ cell. ";
 Return the maximum dimension of the local finite element function
 space. ";
 
+%feature("docstring")  dolfin::DofMap::geometric_dimension "";
+
 %feature("docstring")  dolfin::DofMap::num_facet_dofs "
 
 Return number of facet dofs. ";
@@ -983,7 +985,12 @@ Tabulate local-local facet dofs. ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
 
-Tabulate the coordinates of all dofs on a cell. ";
+Tabulate the coordinates of all dofs on a cell (UFC cell version). ";
+
+%feature("docstring")  dolfin::DofMap::tabulate_coordinates "
+
+Tabulate the coordinates of all dofs on a cell (DOLFIN cell version).
+";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
 
@@ -1376,6 +1383,8 @@ Destructor. ";
 
 %feature("docstring")
 dolfin::FiniteElement::interpolate_vertex_values "";
+
+%feature("docstring")  dolfin::FiniteElement::evaluate_basis "";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis "";
 
@@ -4044,16 +4053,24 @@ Solve ODE on [0, T]. ";
 
 %feature("docstring")  dolfin::ODE::solve "
 
+Solve ODE on [t0, t1]. ";
+
+%feature("docstring")  dolfin::ODE::solve "
+
 Solve ODE on [0, T]. Save solution in u. ";
 
 %feature("docstring")  dolfin::ODE::solve "
 
-Solve ODE on [t0, t1]. ";
+Solve ODE on [t0, t1]. Save solution in u. ";
 
 %feature("docstring")  dolfin::ODE::solve_dual "
 
 Solve dual problem given an approximate solution u of the primal
 problem. ";
+
+%feature("docstring")  dolfin::ODE::solve_dual "
+
+Solve dual and save soution in z. ";
 
 %feature("docstring")  dolfin::ODE::analyze_stability "
 
@@ -4177,7 +4194,7 @@ Get pointer to weights. ";
 
 %feature("docstring")  dolfin::ODESolution::save_to_file "";
 
-%feature("docstring")  dolfin::ODESolution::disp "";
+%feature("docstring")  dolfin::ODESolution::str "";
 
 %feature("docstring")  dolfin::ODESolution::size "";
 
@@ -6262,6 +6279,11 @@ timings. ";
 Return timing (average) for given task, optionally clearing timing for
 task. ";
 
+%feature("docstring")  dolfin::not_working_in_parallel "
+
+Report that functionality has not (yet) been implemented to work in
+parallel. ";
+
 %feature("docstring")  dolfin::__debug "";
 
 %feature("docstring")  dolfin::solve "
@@ -6757,53 +6779,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_daa5a7ec9398c47a979f4408b9338f7f.xml
+// File: dir_56abe1b05c3f6726115b3cfef724a842.xml
 
 
-// File: dir_1a591f3c14c08294e4ce786de405b84a.xml
+// File: dir_958ed9fe5566c915bb700dbd037c4fe9.xml
 
 
-// File: dir_e24911de3d3bbd11730be79bcde60aa0.xml
+// File: dir_12c887cfb9140a1c447c2c859b8e276a.xml
 
 
-// File: dir_b69a27cc2d199ffc9f91e31c81ad1399.xml
+// File: dir_ebcef13846acecaa92dda19f3ba2427a.xml
 
 
-// File: dir_16fcdd686d1339297b3794920fcd4c0a.xml
+// File: dir_8b22d6ac8e1fe7210ee1151755cb1548.xml
 
 
-// File: dir_ce968e1d24ca02cb1c1ad0983298d5e8.xml
+// File: dir_4873d6f7852be200e44569d5969eb56c.xml
 
 
-// File: dir_ca8276e2506a0601691073651d5c3550.xml
+// File: dir_a30d0fdabdb6fe1eb0055958fdf52842.xml
 
 
-// File: dir_608877851688f7299a0e613e9ab9e93f.xml
+// File: dir_fa43b93ff9aab9562f5ad5be4a0425d6.xml
 
 
-// File: dir_38a8896c5801b406af5cbb047ebaf0a8.xml
+// File: dir_4be61312807fd4c00275f0629815d583.xml
 
 
-// File: dir_6941c9f93cd6833e18c0d464a979e3c8.xml
+// File: dir_3690e19dc0dc498072ba5b0883127a34.xml
 
 
-// File: dir_f135f413c7ec66a34cb4214f1c16f5d8.xml
+// File: dir_9d07a00d1f59da56a4e6986a972ea114.xml
 
 
-// File: dir_7602769b9e1ca1d6ffdb6d5a2fe9ffc4.xml
+// File: dir_846d49a5ead30070ea21039259bdd139.xml
 
 
-// File: dir_1f51adacff762d15db89e74c6e2be5ad.xml
+// File: dir_472600429a7ae84228624a5bd7ae2caa.xml
 
 
-// File: dir_744713995bc50c63e34d9ad64c72b80c.xml
+// File: dir_bec17510e887fbd71f6bc60fe10d7303.xml
 
 
-// File: dir_b44c60eeb3066f9a4742b07b54425f57.xml
+// File: dir_24b7e2d69b64c695e4d5516d3e2caea0.xml
 
 
-// File: dir_75015ad54c07e9fb462f1982093dc84c.xml
+// File: dir_305756c00060c0f036d35c9b441cb290.xml
 
 
-// File: dir_a1a690fec5a5e4f367f319cb2451f00a.xml
+// File: dir_152bf7391bd5fd20d92d745cbf1518be.xml
 
