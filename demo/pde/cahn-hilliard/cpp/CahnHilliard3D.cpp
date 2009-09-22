@@ -61,7 +61,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -74,7 +74,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -143,7 +143,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -187,7 +187,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -200,7 +200,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -244,14 +244,14 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -276,7 +276,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -329,7 +329,7 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -337,19 +337,19 @@ void cahnhilliard3d_0_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -453,9 +453,9 @@ double cahnhilliard3d_0_finite_element_0_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -484,7 +484,7 @@ double cahnhilliard3d_0_finite_element_0_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -584,7 +584,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -597,7 +597,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -666,7 +666,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -710,7 +710,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -723,7 +723,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -767,14 +767,14 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -799,7 +799,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -852,7 +852,7 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -860,19 +860,19 @@ void cahnhilliard3d_0_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -976,9 +976,9 @@ double cahnhilliard3d_0_finite_element_0_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1007,7 +1007,7 @@ double cahnhilliard3d_0_finite_element_0_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1107,7 +1107,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -1120,7 +1120,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -1192,7 +1192,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -1241,7 +1241,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -1287,7 +1287,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -1300,7 +1300,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -1344,14 +1344,14 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1376,7 +1376,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -1431,7 +1431,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -1439,19 +1439,19 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -1573,7 +1573,7 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -1581,19 +1581,19 @@ void cahnhilliard3d_0_finite_element_0::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -1699,9 +1699,9 @@ double cahnhilliard3d_0_finite_element_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1730,7 +1730,7 @@ double cahnhilliard3d_0_finite_element_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1844,7 +1844,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -1857,7 +1857,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -1926,7 +1926,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -1970,7 +1970,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -1983,7 +1983,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -2027,14 +2027,14 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2059,7 +2059,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2112,7 +2112,7 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -2120,19 +2120,19 @@ void cahnhilliard3d_0_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -2236,9 +2236,9 @@ double cahnhilliard3d_0_finite_element_1_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2267,7 +2267,7 @@ double cahnhilliard3d_0_finite_element_1_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2367,7 +2367,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -2380,7 +2380,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -2449,7 +2449,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -2493,7 +2493,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -2506,7 +2506,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -2550,14 +2550,14 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2582,7 +2582,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2635,7 +2635,7 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -2643,19 +2643,19 @@ void cahnhilliard3d_0_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -2759,9 +2759,9 @@ double cahnhilliard3d_0_finite_element_1_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2790,7 +2790,7 @@ double cahnhilliard3d_0_finite_element_1_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2890,7 +2890,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -2903,7 +2903,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -2975,7 +2975,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -3024,7 +3024,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -3070,7 +3070,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -3083,7 +3083,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -3127,14 +3127,14 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -3159,7 +3159,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -3214,7 +3214,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -3222,19 +3222,19 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -3356,7 +3356,7 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -3364,19 +3364,19 @@ void cahnhilliard3d_0_finite_element_1::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -3482,9 +3482,9 @@ double cahnhilliard3d_0_finite_element_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -3513,7 +3513,7 @@ double cahnhilliard3d_0_finite_element_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -3627,7 +3627,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -3640,7 +3640,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -3709,7 +3709,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -3753,7 +3753,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -3766,7 +3766,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -3810,14 +3810,14 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -3842,7 +3842,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -3895,7 +3895,7 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -3903,19 +3903,19 @@ void cahnhilliard3d_0_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -4019,9 +4019,9 @@ double cahnhilliard3d_0_finite_element_2_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4050,7 +4050,7 @@ double cahnhilliard3d_0_finite_element_2_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -4150,7 +4150,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -4163,7 +4163,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -4232,7 +4232,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -4276,7 +4276,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -4289,7 +4289,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -4333,14 +4333,14 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -4365,7 +4365,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -4418,7 +4418,7 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -4426,19 +4426,19 @@ void cahnhilliard3d_0_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -4542,9 +4542,9 @@ double cahnhilliard3d_0_finite_element_2_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4573,7 +4573,7 @@ double cahnhilliard3d_0_finite_element_2_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -4673,7 +4673,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -4686,7 +4686,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -4758,7 +4758,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -4807,7 +4807,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -4853,7 +4853,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -4866,7 +4866,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -4910,14 +4910,14 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -4942,7 +4942,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -4997,7 +4997,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -5005,19 +5005,19 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -5139,7 +5139,7 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -5147,19 +5147,19 @@ void cahnhilliard3d_0_finite_element_2::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -5265,9 +5265,9 @@ double cahnhilliard3d_0_finite_element_2::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5296,7 +5296,7 @@ double cahnhilliard3d_0_finite_element_2::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -5410,7 +5410,7 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -5423,7 +5423,7 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -5481,7 +5481,7 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -5519,7 +5519,7 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -5532,7 +5532,7 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -5576,14 +5576,14 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -5608,7 +5608,7 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -5650,18 +5650,18 @@ void cahnhilliard3d_0_finite_element_3::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -5741,9 +5741,9 @@ double cahnhilliard3d_0_finite_element_3::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5772,7 +5772,7 @@ double cahnhilliard3d_0_finite_element_3::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -5872,7 +5872,7 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -5885,7 +5885,7 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -5943,7 +5943,7 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -5981,7 +5981,7 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -5994,7 +5994,7 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -6038,14 +6038,14 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -6070,7 +6070,7 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -6112,18 +6112,18 @@ void cahnhilliard3d_0_finite_element_4::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -6203,9 +6203,9 @@ double cahnhilliard3d_0_finite_element_4::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -6234,7 +6234,7 @@ double cahnhilliard3d_0_finite_element_4::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -6334,7 +6334,7 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -6347,7 +6347,7 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -6405,7 +6405,7 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -6443,7 +6443,7 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -6456,7 +6456,7 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -6500,14 +6500,14 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -6532,7 +6532,7 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -6574,18 +6574,18 @@ void cahnhilliard3d_0_finite_element_5::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -6665,9 +6665,9 @@ double cahnhilliard3d_0_finite_element_5::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -6696,7 +6696,7 @@ double cahnhilliard3d_0_finite_element_5::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -6796,7 +6796,7 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -6809,7 +6809,7 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -6867,7 +6867,7 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -6905,7 +6905,7 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -6918,7 +6918,7 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -6962,14 +6962,14 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -6994,7 +6994,7 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -7036,18 +7036,18 @@ void cahnhilliard3d_0_finite_element_6::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -7127,9 +7127,9 @@ double cahnhilliard3d_0_finite_element_6::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -7158,7 +7158,7 @@ double cahnhilliard3d_0_finite_element_6::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -9522,7 +9522,7 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     const double J_20 = x[1][2] - x[0][2];
     const double J_21 = x[2][2] - x[0][2];
     const double J_22 = x[3][2] - x[0][2];
-      
+    
     // Compute sub determinants
     const double d_00 = J_11*J_22 - J_12*J_21;
     const double d_01 = J_12*J_20 - J_10*J_22;
@@ -9535,10 +9535,10 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     const double d_20 = J_01*J_12 - J_02*J_11;
     const double d_21 = J_02*J_10 - J_00*J_12;
     const double d_22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 = d_00 / detJ;
     const double Jinv_01 = d_10 / detJ;
@@ -9555,11 +9555,11 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     
     
     // Array of quadrature weights
-    const static double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
+    static const double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
     // Quadrature points on the UFC reference element: (0.0952198798417149, 0.0821215678634425, 0.0729940240731498), (0.0670742417520586, 0.0578476039361427, 0.347003766038352), (0.0303014811742758, 0.0261332522867349, 0.705002209888498), (0.0616960186091465, 0.379578230280591, 0.0729940240731498), (0.0434595556538024, 0.267380320411884, 0.347003766038352), (0.0196333029354845, 0.120791820133903, 0.705002209888498), (0.0221843026408197, 0.730165028047632, 0.0729940240731498), (0.0156269392579017, 0.514338662174092, 0.347003766038352), (0.00705963113955477, 0.232357800579865, 0.705002209888498), (0.422442204031704, 0.0821215678634425, 0.0729940240731498), (0.297574315012753, 0.0578476039361427, 0.347003766038352), (0.134432268912383, 0.0261332522867349, 0.705002209888498), (0.27371387282313, 0.379578230280591, 0.0729940240731498), (0.192807956774882, 0.267380320411884, 0.347003766038352), (0.0871029849887995, 0.120791820133903, 0.705002209888498), (0.0984204739396093, 0.730165028047632, 0.0729940240731498), (0.0693287858937781, 0.514338662174092, 0.347003766038352), (0.0313199947658185, 0.232357800579865, 0.705002209888498), (0.749664528221693, 0.0821215678634425, 0.0729940240731498), (0.528074388273447, 0.0578476039361427, 0.347003766038352), (0.238563056650491, 0.0261332522867349, 0.705002209888498), (0.485731727037113, 0.379578230280591, 0.0729940240731498), (0.342156357895961, 0.267380320411884, 0.347003766038352), (0.154572667042115, 0.120791820133903, 0.705002209888498), (0.174656645238399, 0.730165028047632, 0.0729940240731498), (0.123030632529655, 0.514338662174092, 0.347003766038352), (0.0555803583920821, 0.232357800579865, 0.705002209888498)
     
     // Value of basis functions at quadrature points.
-    const static double FE0_C1_D001[27][2] = \
+    static const double FE0_C1_D001[27][2] = \
     {{-1, 1},
     {-1, 1},
     {-1, 1},
@@ -9600,30 +9600,30 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     static const unsigned int nzc4[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc5[2] = {0, 3};
-    const static double FE0_C1[27][4] = \
-    {{0.749664528221693, 0.0952198798417149, 0.0821215678634426, 0.0729940240731498},
-    {0.528074388273447, 0.0670742417520586, 0.0578476039361428, 0.347003766038352},
+    static const double FE0_C1[27][4] = \
+    {{0.749664528221693, 0.0952198798417149, 0.0821215678634425, 0.0729940240731498},
+    {0.528074388273447, 0.0670742417520586, 0.0578476039361427, 0.347003766038352},
     {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
     {0.485731727037113, 0.0616960186091465, 0.379578230280591, 0.0729940240731498},
-    {0.342156357895961, 0.0434595556538024, 0.267380320411885, 0.347003766038352},
-    {0.154572667042115, 0.0196333029354846, 0.120791820133903, 0.705002209888498},
+    {0.342156357895961, 0.0434595556538025, 0.267380320411884, 0.347003766038352},
+    {0.154572667042115, 0.0196333029354845, 0.120791820133903, 0.705002209888498},
     {0.174656645238399, 0.0221843026408197, 0.730165028047632, 0.0729940240731498},
     {0.123030632529655, 0.0156269392579017, 0.514338662174092, 0.347003766038352},
-    {0.0555803583920822, 0.00705963113955482, 0.232357800579865, 0.705002209888498},
-    {0.422442204031704, 0.422442204031704, 0.0821215678634426, 0.0729940240731498},
-    {0.297574315012753, 0.297574315012753, 0.0578476039361428, 0.347003766038352},
+    {0.0555803583920822, 0.00705963113955483, 0.232357800579865, 0.705002209888498},
+    {0.422442204031704, 0.422442204031704, 0.0821215678634425, 0.0729940240731498},
+    {0.297574315012753, 0.297574315012753, 0.0578476039361427, 0.347003766038352},
     {0.134432268912383, 0.134432268912383, 0.0261332522867349, 0.705002209888498},
     {0.27371387282313, 0.27371387282313, 0.379578230280591, 0.0729940240731498},
-    {0.192807956774882, 0.192807956774882, 0.267380320411885, 0.347003766038352},
-    {0.0871029849887995, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
+    {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
+    {0.0871029849887996, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
     {0.0984204739396093, 0.0984204739396094, 0.730165028047632, 0.0729940240731498},
     {0.0693287858937781, 0.0693287858937782, 0.514338662174092, 0.347003766038352},
-    {0.0313199947658185, 0.0313199947658185, 0.232357800579865, 0.705002209888498},
-    {0.0952198798417148, 0.749664528221693, 0.0821215678634426, 0.0729940240731498},
-    {0.0670742417520584, 0.528074388273447, 0.0578476039361428, 0.347003766038352},
+    {0.0313199947658185, 0.0313199947658186, 0.232357800579865, 0.705002209888498},
+    {0.0952198798417148, 0.749664528221693, 0.0821215678634425, 0.0729940240731498},
+    {0.0670742417520584, 0.528074388273447, 0.0578476039361427, 0.347003766038352},
     {0.0303014811742757, 0.238563056650491, 0.0261332522867349, 0.705002209888498},
     {0.0616960186091464, 0.485731727037113, 0.379578230280591, 0.0729940240731498},
-    {0.0434595556538024, 0.342156357895961, 0.267380320411885, 0.347003766038352},
+    {0.0434595556538024, 0.342156357895961, 0.267380320411884, 0.347003766038352},
     {0.0196333029354845, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.0221843026408197, 0.174656645238399, 0.730165028047632, 0.0729940240731498},
     {0.0156269392579016, 0.123030632529655, 0.514338662174092, 0.347003766038352},
@@ -9634,26 +9634,26 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     // Array of non-zero columns
     static const unsigned int nzc7[4] = {0, 1, 2, 3};
     
-    // Number of operations to compute geometry constants: 104
-    const double G0 =  - det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    // Number of operations to compute geometry constants: 96
+    const double G0 = -det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
     const double G1 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G2 =  - det*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G3 =  - det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G4 =  - 2*det*w[2][0];
-    const double G5 = 12*det*w[2][0];
-    const double G6 =  - 12*det*w[2][0];
+    const double G2 = -det*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G3 = -det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G4 = 12*det*w[2][0];
+    const double G5 = -2*det*w[2][0];
+    const double G6 = -12*det*w[2][0];
     const double G7 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
     const double G8 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
     const double G9 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G10 =  - det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G11 =  - det*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G10 = -det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G11 = -det*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
     const double G12 = det*w[3][0]*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G13 =  - det*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G13 = -det*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
     const double G14 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 10526
+    // Total number of operations to compute element tensor: 10518
     
     // Loop quadrature points for integral
     // Number of operations to compute element tensor for following IP loop = 10422
@@ -9671,46 +9671,46 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       
       // Number of operations to compute ip constants: 18
       // Number of operations: 1
-      const double Gip0 = W27[ip]*G0;
+      const double Gip0 = G0*W27[ip];
       
       // Number of operations: 1
-      const double Gip1 = W27[ip]*G1;
+      const double Gip1 = G1*W27[ip];
       
       // Number of operations: 1
-      const double Gip2 = W27[ip]*G2;
+      const double Gip2 = G2*W27[ip];
       
       // Number of operations: 1
-      const double Gip3 = W27[ip]*G3;
+      const double Gip3 = G3*W27[ip];
       
       // Number of operations: 5
-      const double Gip4 = W27[ip]*(G4 + F0*(G5 + F0*G6));
+      const double Gip4 = W27[ip]*(G5 + F0*(G4 + F0*G6));
       
       // Number of operations: 1
-      const double Gip5 = W27[ip]*G7;
+      const double Gip5 = G7*W27[ip];
       
       // Number of operations: 1
-      const double Gip6 = W27[ip]*G8;
+      const double Gip6 = G8*W27[ip];
       
       // Number of operations: 1
-      const double Gip7 = W27[ip]*G9;
+      const double Gip7 = G9*W27[ip];
       
       // Number of operations: 1
       const double Gip8 = W27[ip]*det;
       
       // Number of operations: 1
-      const double Gip9 = W27[ip]*G10;
+      const double Gip9 = G10*W27[ip];
       
       // Number of operations: 1
-      const double Gip10 = W27[ip]*G11;
+      const double Gip10 = G11*W27[ip];
       
       // Number of operations: 1
-      const double Gip11 = W27[ip]*G12;
+      const double Gip11 = G12*W27[ip];
       
       // Number of operations: 1
-      const double Gip12 = W27[ip]*G13;
+      const double Gip12 = G13*W27[ip];
       
       // Number of operations: 1
-      const double Gip13 = W27[ip]*G14;
+      const double Gip13 = G14*W27[ip];
       
       
       // Number of operations for primary indices = 216
@@ -9791,70 +9791,8 @@ void cahnhilliard3d_0_cell_integral_0::tabulate_tensor(double* A,
                                     const ufc::cell& c) const
 {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0;
-    A[7] = 0;
-    A[8] = 0;
-    A[9] = 0;
-    A[10] = 0;
-    A[11] = 0;
-    A[12] = 0;
-    A[13] = 0;
-    A[14] = 0;
-    A[15] = 0;
-    A[16] = 0;
-    A[17] = 0;
-    A[18] = 0;
-    A[19] = 0;
-    A[20] = 0;
-    A[21] = 0;
-    A[22] = 0;
-    A[23] = 0;
-    A[24] = 0;
-    A[25] = 0;
-    A[26] = 0;
-    A[27] = 0;
-    A[28] = 0;
-    A[29] = 0;
-    A[30] = 0;
-    A[31] = 0;
-    A[32] = 0;
-    A[33] = 0;
-    A[34] = 0;
-    A[35] = 0;
-    A[36] = 0;
-    A[37] = 0;
-    A[38] = 0;
-    A[39] = 0;
-    A[40] = 0;
-    A[41] = 0;
-    A[42] = 0;
-    A[43] = 0;
-    A[44] = 0;
-    A[45] = 0;
-    A[46] = 0;
-    A[47] = 0;
-    A[48] = 0;
-    A[49] = 0;
-    A[50] = 0;
-    A[51] = 0;
-    A[52] = 0;
-    A[53] = 0;
-    A[54] = 0;
-    A[55] = 0;
-    A[56] = 0;
-    A[57] = 0;
-    A[58] = 0;
-    A[59] = 0;
-    A[60] = 0;
-    A[61] = 0;
-    A[62] = 0;
-    A[63] = 0;
+    for (unsigned int j = 0; j < 64; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -10048,7 +9986,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -10061,7 +9999,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -10130,7 +10068,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -10174,7 +10112,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -10187,7 +10125,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -10231,14 +10169,14 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -10263,7 +10201,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -10316,7 +10254,7 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -10324,19 +10262,19 @@ void cahnhilliard3d_1_finite_element_0_0::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -10440,9 +10378,9 @@ double cahnhilliard3d_1_finite_element_0_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -10471,7 +10409,7 @@ double cahnhilliard3d_1_finite_element_0_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -10571,7 +10509,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -10584,7 +10522,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -10653,7 +10591,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -10697,7 +10635,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -10710,7 +10648,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -10754,14 +10692,14 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -10786,7 +10724,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -10839,7 +10777,7 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -10847,19 +10785,19 @@ void cahnhilliard3d_1_finite_element_0_1::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -10963,9 +10901,9 @@ double cahnhilliard3d_1_finite_element_0_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -10994,7 +10932,7 @@ double cahnhilliard3d_1_finite_element_0_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -11094,7 +11032,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -11107,7 +11045,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -11179,7 +11117,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -11228,7 +11166,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -11274,7 +11212,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -11287,7 +11225,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -11331,14 +11269,14 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -11363,7 +11301,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -11418,7 +11356,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -11426,19 +11364,19 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -11560,7 +11498,7 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -11568,19 +11506,19 @@ void cahnhilliard3d_1_finite_element_0::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -11686,9 +11624,9 @@ double cahnhilliard3d_1_finite_element_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -11717,7 +11655,7 @@ double cahnhilliard3d_1_finite_element_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -11831,7 +11769,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -11844,7 +11782,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -11913,7 +11851,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -11957,7 +11895,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -11970,7 +11908,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -12014,14 +11952,14 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -12046,7 +11984,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -12099,7 +12037,7 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -12107,19 +12045,19 @@ void cahnhilliard3d_1_finite_element_1_0::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -12223,9 +12161,9 @@ double cahnhilliard3d_1_finite_element_1_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -12254,7 +12192,7 @@ double cahnhilliard3d_1_finite_element_1_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -12354,7 +12292,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -12367,7 +12305,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -12436,7 +12374,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -12480,7 +12418,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -12493,7 +12431,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -12537,14 +12475,14 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -12569,7 +12507,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -12622,7 +12560,7 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -12630,19 +12568,19 @@ void cahnhilliard3d_1_finite_element_1_1::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -12746,9 +12684,9 @@ double cahnhilliard3d_1_finite_element_1_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -12777,7 +12715,7 @@ double cahnhilliard3d_1_finite_element_1_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -12877,7 +12815,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -12890,7 +12828,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -12962,7 +12900,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -13011,7 +12949,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -13057,7 +12995,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -13070,7 +13008,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -13114,14 +13052,14 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -13146,7 +13084,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -13201,7 +13139,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -13209,19 +13147,19 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -13343,7 +13281,7 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -13351,19 +13289,19 @@ void cahnhilliard3d_1_finite_element_1::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -13469,9 +13407,9 @@ double cahnhilliard3d_1_finite_element_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -13500,7 +13438,7 @@ double cahnhilliard3d_1_finite_element_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -13614,7 +13552,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -13627,7 +13565,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -13696,7 +13634,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -13740,7 +13678,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -13753,7 +13691,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -13797,14 +13735,14 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -13829,7 +13767,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -13882,7 +13820,7 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -13890,19 +13828,19 @@ void cahnhilliard3d_1_finite_element_2_0::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -14006,9 +13944,9 @@ double cahnhilliard3d_1_finite_element_2_0::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -14037,7 +13975,7 @@ double cahnhilliard3d_1_finite_element_2_0::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -14137,7 +14075,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -14150,7 +14088,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -14219,7 +14157,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis(unsigned int i,
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -14263,7 +14201,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -14276,7 +14214,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -14320,14 +14258,14 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -14352,7 +14290,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -14405,7 +14343,7 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[4][4] = \
+    static const double coefficients0[4][4] = \
     {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
     {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -14413,19 +14351,19 @@ void cahnhilliard3d_1_finite_element_2_1::evaluate_basis_derivatives(unsigned in
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[4][4] = \
+    static const double dmats0[4][4] = \
     {{0, 0, 0, 0},
     {6.32455532033676, 0, 0, 0},
     {0, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats1[4][4] = \
+    static const double dmats1[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {5.47722557505166, 0, 0, 0},
     {0, 0, 0, 0}};
     
-    const static double dmats2[4][4] = \
+    static const double dmats2[4][4] = \
     {{0, 0, 0, 0},
     {3.16227766016838, 0, 0, 0},
     {1.82574185835055, 0, 0, 0},
@@ -14529,9 +14467,9 @@ double cahnhilliard3d_1_finite_element_2_1::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[4][1] = {{1}, {1}, {1}, {1}};
-    const static double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
+    static const double X[4][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[4][1] = {{1}, {1}, {1}, {1}};
+    static const double D[4][1][1] = {{{1}}, {{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -14560,7 +14498,7 @@ double cahnhilliard3d_1_finite_element_2_1::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -14660,7 +14598,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -14673,7 +14611,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -14745,7 +14683,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -14794,7 +14732,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis(unsigned int i,
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -14840,7 +14778,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -14853,7 +14791,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -14897,14 +14835,14 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -14929,7 +14867,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -14984,7 +14922,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -14992,19 +14930,19 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -15126,7 +15064,7 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
       const double basisvalue3 = 1.11803398874989*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[4][4] =   \
+      static const double coefficients0[4][4] =   \
       {{0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993},
       {0.288675134594813, 0, 0.210818510677892, -0.074535599249993},
@@ -15134,19 +15072,19 @@ void cahnhilliard3d_1_finite_element_2::evaluate_basis_derivatives(unsigned int 
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[4][4] =   \
+      static const double dmats0[4][4] =   \
       {{0, 0, 0, 0},
       {6.32455532033676, 0, 0, 0},
       {0, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats1[4][4] =   \
+      static const double dmats1[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {5.47722557505166, 0, 0, 0},
       {0, 0, 0, 0}};
     
-      const static double dmats2[4][4] =   \
+      static const double dmats2[4][4] =   \
       {{0, 0, 0, 0},
       {3.16227766016838, 0, 0, 0},
       {1.82574185835055, 0, 0, 0},
@@ -15252,9 +15190,9 @@ double cahnhilliard3d_1_finite_element_2::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
-    const static double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[8][1][3] = {{{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 0, 1}}};
+    static const double W[8][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[8][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -15283,7 +15221,7 @@ double cahnhilliard3d_1_finite_element_2::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -15397,7 +15335,7 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -15410,7 +15348,7 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -15468,7 +15406,7 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -15506,7 +15444,7 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -15519,7 +15457,7 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -15563,14 +15501,14 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -15595,7 +15533,7 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -15637,18 +15575,18 @@ void cahnhilliard3d_1_finite_element_3::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -15728,9 +15666,9 @@ double cahnhilliard3d_1_finite_element_3::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -15759,7 +15697,7 @@ double cahnhilliard3d_1_finite_element_3::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -15859,7 +15797,7 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -15872,7 +15810,7 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -15930,7 +15868,7 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -15968,7 +15906,7 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -15981,7 +15919,7 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -16025,14 +15963,14 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -16057,7 +15995,7 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -16099,18 +16037,18 @@ void cahnhilliard3d_1_finite_element_4::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -16190,9 +16128,9 @@ double cahnhilliard3d_1_finite_element_4::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -16221,7 +16159,7 @@ double cahnhilliard3d_1_finite_element_4::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -16321,7 +16259,7 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -16334,7 +16272,7 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -16392,7 +16330,7 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -16430,7 +16368,7 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -16443,7 +16381,7 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -16487,14 +16425,14 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -16519,7 +16457,7 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -16561,18 +16499,18 @@ void cahnhilliard3d_1_finite_element_5::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -16652,9 +16590,9 @@ double cahnhilliard3d_1_finite_element_5::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -16683,7 +16621,7 @@ double cahnhilliard3d_1_finite_element_5::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -16783,7 +16721,7 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis(unsigned int i,
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -16796,7 +16734,7 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis(unsigned int i,
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -16854,7 +16792,7 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis(unsigned int i,
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Extract relevant coefficients
@@ -16892,7 +16830,7 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis_derivatives(unsigned int 
     const double J_20 = element_coordinates[1][2] - element_coordinates[0][2];
     const double J_21 = element_coordinates[2][2] - element_coordinates[0][2];
     const double J_22 = element_coordinates[3][2] - element_coordinates[0][2];
-      
+    
     // Compute sub determinants
     const double d00 = J_11*J_22 - J_12*J_21;
     const double d01 = J_12*J_20 - J_10*J_22;
@@ -16905,7 +16843,7 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis_derivatives(unsigned int 
     const double d20 = J_01*J_12 - J_02*J_11;
     const double d21 = J_02*J_10 - J_00*J_12;
     const double d22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d00 + J_10*d10 + J_20*d20;
     
@@ -16949,14 +16887,14 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis_derivatives(unsigned int 
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -16981,7 +16919,7 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis_derivatives(unsigned int 
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -17023,18 +16961,18 @@ void cahnhilliard3d_1_finite_element_6::evaluate_basis_derivatives(unsigned int 
     const double basisvalue0 = 0.866025403784439*psitilde_a_0*scalings_y_0*psitilde_bs_0_0*scalings_z_0*psitilde_cs_00_0;
     
     // Table(s) of coefficients
-    const static double coefficients0[1][1] = \
+    static const double coefficients0[1][1] = \
     {{1.15470053837925}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[1][1] = \
+    static const double dmats0[1][1] = \
     {{0}};
     
-    const static double dmats1[1][1] = \
+    static const double dmats1[1][1] = \
     {{0}};
     
-    const static double dmats2[1][1] = \
+    static const double dmats2[1][1] = \
     {{0}};
     
     // Compute reference derivatives
@@ -17114,9 +17052,9 @@ double cahnhilliard3d_1_finite_element_6::evaluate_dof(unsigned int i,
                                    const ufc::cell& c) const
 {
     // The reference points, direction and weights:
-    const static double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
-    const static double W[1][1] = {{1}};
-    const static double D[1][1][1] = {{{1}}};
+    static const double X[1][1][3] = {{{0.25, 0.25, 0.25}}};
+    static const double W[1][1] = {{1}};
+    static const double D[1][1][1] = {{{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -17145,7 +17083,7 @@ double cahnhilliard3d_1_finite_element_6::evaluate_dof(unsigned int i,
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -19509,7 +19447,7 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     const double J_20 = x[1][2] - x[0][2];
     const double J_21 = x[2][2] - x[0][2];
     const double J_22 = x[3][2] - x[0][2];
-      
+    
     // Compute sub determinants
     const double d_00 = J_11*J_22 - J_12*J_21;
     const double d_01 = J_12*J_20 - J_10*J_22;
@@ -19522,10 +19460,10 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     const double d_20 = J_01*J_12 - J_02*J_11;
     const double d_21 = J_02*J_10 - J_00*J_12;
     const double d_22 = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 = d_00 / detJ;
     const double Jinv_01 = d_10 / detJ;
@@ -19542,11 +19480,11 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     
     
     // Array of quadrature weights
-    const static double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
+    static const double W27[27] = {0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384, 0.0140327598874417, 0.0130602412264747, 0.00267468981037392, 0.0160098281154818, 0.0149002918071527, 0.00305152546397085, 0.0048766033448291, 0.00453863791300947, 0.000929496505339815, 0.00877047492965105, 0.00816265076654668, 0.0016716811314837, 0.0100061425721761, 0.00931268237947044, 0.00190720341498178, 0.00304787709051818, 0.00283664869563092, 0.000580935315837384};
     // Quadrature points on the UFC reference element: (0.0952198798417149, 0.0821215678634425, 0.0729940240731498), (0.0670742417520586, 0.0578476039361427, 0.347003766038352), (0.0303014811742758, 0.0261332522867349, 0.705002209888498), (0.0616960186091465, 0.379578230280591, 0.0729940240731498), (0.0434595556538024, 0.267380320411884, 0.347003766038352), (0.0196333029354845, 0.120791820133903, 0.705002209888498), (0.0221843026408197, 0.730165028047632, 0.0729940240731498), (0.0156269392579017, 0.514338662174092, 0.347003766038352), (0.00705963113955477, 0.232357800579865, 0.705002209888498), (0.422442204031704, 0.0821215678634425, 0.0729940240731498), (0.297574315012753, 0.0578476039361427, 0.347003766038352), (0.134432268912383, 0.0261332522867349, 0.705002209888498), (0.27371387282313, 0.379578230280591, 0.0729940240731498), (0.192807956774882, 0.267380320411884, 0.347003766038352), (0.0871029849887995, 0.120791820133903, 0.705002209888498), (0.0984204739396093, 0.730165028047632, 0.0729940240731498), (0.0693287858937781, 0.514338662174092, 0.347003766038352), (0.0313199947658185, 0.232357800579865, 0.705002209888498), (0.749664528221693, 0.0821215678634425, 0.0729940240731498), (0.528074388273447, 0.0578476039361427, 0.347003766038352), (0.238563056650491, 0.0261332522867349, 0.705002209888498), (0.485731727037113, 0.379578230280591, 0.0729940240731498), (0.342156357895961, 0.267380320411884, 0.347003766038352), (0.154572667042115, 0.120791820133903, 0.705002209888498), (0.174656645238399, 0.730165028047632, 0.0729940240731498), (0.123030632529655, 0.514338662174092, 0.347003766038352), (0.0555803583920821, 0.232357800579865, 0.705002209888498)
     
     // Value of basis functions at quadrature points.
-    const static double FE0_C1_D001[27][2] = \
+    static const double FE0_C1_D001[27][2] = \
     {{-1, 1},
     {-1, 1},
     {-1, 1},
@@ -19587,30 +19525,30 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     static const unsigned int nzc4[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc5[2] = {0, 3};
-    const static double FE0_C1[27][4] = \
-    {{0.749664528221693, 0.0952198798417149, 0.0821215678634426, 0.0729940240731498},
-    {0.528074388273447, 0.0670742417520586, 0.0578476039361428, 0.347003766038352},
+    static const double FE0_C1[27][4] = \
+    {{0.749664528221693, 0.0952198798417149, 0.0821215678634425, 0.0729940240731498},
+    {0.528074388273447, 0.0670742417520586, 0.0578476039361427, 0.347003766038352},
     {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
     {0.485731727037113, 0.0616960186091465, 0.379578230280591, 0.0729940240731498},
-    {0.342156357895961, 0.0434595556538024, 0.267380320411885, 0.347003766038352},
-    {0.154572667042115, 0.0196333029354846, 0.120791820133903, 0.705002209888498},
+    {0.342156357895961, 0.0434595556538025, 0.267380320411884, 0.347003766038352},
+    {0.154572667042115, 0.0196333029354845, 0.120791820133903, 0.705002209888498},
     {0.174656645238399, 0.0221843026408197, 0.730165028047632, 0.0729940240731498},
     {0.123030632529655, 0.0156269392579017, 0.514338662174092, 0.347003766038352},
-    {0.0555803583920822, 0.00705963113955482, 0.232357800579865, 0.705002209888498},
-    {0.422442204031704, 0.422442204031704, 0.0821215678634426, 0.0729940240731498},
-    {0.297574315012753, 0.297574315012753, 0.0578476039361428, 0.347003766038352},
+    {0.0555803583920822, 0.00705963113955483, 0.232357800579865, 0.705002209888498},
+    {0.422442204031704, 0.422442204031704, 0.0821215678634425, 0.0729940240731498},
+    {0.297574315012753, 0.297574315012753, 0.0578476039361427, 0.347003766038352},
     {0.134432268912383, 0.134432268912383, 0.0261332522867349, 0.705002209888498},
     {0.27371387282313, 0.27371387282313, 0.379578230280591, 0.0729940240731498},
-    {0.192807956774882, 0.192807956774882, 0.267380320411885, 0.347003766038352},
-    {0.0871029849887995, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
+    {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
+    {0.0871029849887996, 0.0871029849887996, 0.120791820133903, 0.705002209888498},
     {0.0984204739396093, 0.0984204739396094, 0.730165028047632, 0.0729940240731498},
     {0.0693287858937781, 0.0693287858937782, 0.514338662174092, 0.347003766038352},
-    {0.0313199947658185, 0.0313199947658185, 0.232357800579865, 0.705002209888498},
-    {0.0952198798417148, 0.749664528221693, 0.0821215678634426, 0.0729940240731498},
-    {0.0670742417520584, 0.528074388273447, 0.0578476039361428, 0.347003766038352},
+    {0.0313199947658185, 0.0313199947658186, 0.232357800579865, 0.705002209888498},
+    {0.0952198798417148, 0.749664528221693, 0.0821215678634425, 0.0729940240731498},
+    {0.0670742417520584, 0.528074388273447, 0.0578476039361427, 0.347003766038352},
     {0.0303014811742757, 0.238563056650491, 0.0261332522867349, 0.705002209888498},
     {0.0616960186091464, 0.485731727037113, 0.379578230280591, 0.0729940240731498},
-    {0.0434595556538024, 0.342156357895961, 0.267380320411885, 0.347003766038352},
+    {0.0434595556538024, 0.342156357895961, 0.267380320411884, 0.347003766038352},
     {0.0196333029354845, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.0221843026408197, 0.174656645238399, 0.730165028047632, 0.0729940240731498},
     {0.0156269392579016, 0.123030632529655, 0.514338662174092, 0.347003766038352},
@@ -19621,36 +19559,35 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     // Array of non-zero columns
     static const unsigned int nzc7[4] = {0, 1, 2, 3};
     
-    // Number of operations to compute geometry constants: 189
-    const double G0 =  - det*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G1 =  - det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G2 =  - det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G3 = det*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22 - w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G4 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12 - w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G5 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G6 = det*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12 - w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G7 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G8 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G9 =  - det*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G10 =  - det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G11 = det*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22 - w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G12 = det*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22 - w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    // Number of operations to compute geometry constants: 180
+    const double G0 = -det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G1 = -det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G2 = -det*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G3 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G4 = det*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22-w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G5 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G6 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G7 = det*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12-w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G8 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12-w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G9 = -det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G10 = -det*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G11 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G12 = det*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22-w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
     const double G13 = det*w[4][0]*w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G14 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G15 =  - det;
-    const double G16 =  - det*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G17 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02 - w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G18 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G19 =  - 4*det*w[3][0];
-    const double G20 = 6*det*w[3][0];
-    const double G21 =  - 2*det*w[3][0];
+    const double G14 = det*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22-w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G15 = -det*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G16 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G17 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02-w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G18 = -2*det*w[3][0];
+    const double G19 = 6*det*w[3][0];
+    const double G20 = -4*det*w[3][0];
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 4671
+    // Total number of operations to compute element tensor: 4635
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 4482
+    // Number of operations to compute element tensor for following IP loop = 4455
     for (unsigned int ip = 0; ip < 27; ip++)
     {
       
@@ -19690,30 +19627,30 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
         F11 += FE0_C1[ip][r]*w[0][nzc7[r]];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 66
+      // Number of operations to compute ip constants: 65
       // Number of operations: 6
-      const double Gip0 = W27[ip]*(F10*G0 + F8*G2 + F9*G1);
+      const double Gip0 = W27[ip]*(F10*G2 + F8*G0 + F9*G1);
       
       // Number of operations: 12
-      const double Gip1 = W27[ip]*(F0*G8 + F1*G5 + F2*G7 + F3*G6 + F4*G4 + F5*G3);
+      const double Gip1 = W27[ip]*(F0*G3 + F1*G6 + F2*G5 + F3*G7 + F4*G8 + F5*G4);
       
       // Number of operations: 6
-      const double Gip2 = W27[ip]*(F10*G9 + F8*G10 + F9*G2);
+      const double Gip2 = W27[ip]*(F10*G10 + F8*G9 + F9*G0);
       
       // Number of operations: 12
-      const double Gip3 = W27[ip]*(F0*G14 + F1*G7 + F2*G13 + F3*G12 + F4*G3 + F5*G11);
+      const double Gip3 = W27[ip]*(F0*G11 + F1*G5 + F2*G13 + F3*G14 + F4*G4 + F5*G12);
       
-      // Number of operations: 4
-      const double Gip4 = W27[ip]*(F6*det + F7*G15);
+      // Number of operations: 3
+      const double Gip4 = W27[ip]*det*(F6-F7);
       
       // Number of operations: 6
-      const double Gip5 = W27[ip]*(F10*G16 + F8*G9 + F9*G0);
+      const double Gip5 = W27[ip]*(F10*G15 + F8*G10 + F9*G2);
       
       // Number of operations: 12
-      const double Gip6 = W27[ip]*(F0*G18 + F1*G8 + F2*G14 + F3*G17 + F4*G6 + F5*G12);
+      const double Gip6 = W27[ip]*(F0*G16 + F1*G3 + F2*G11 + F3*G17 + F4*G7 + F5*G14);
       
       // Number of operations: 8
-      const double Gip7 = W27[ip]*(F11*det + F6*(G21 + F6*(G20 + F6*G19)));
+      const double Gip7 = W27[ip]*(F11*det + F6*(G18 + F6*(G19 + F6*G20)));
       
       
       // Number of operations for primary indices = 24
@@ -19762,14 +19699,8 @@ void cahnhilliard3d_1_cell_integral_0::tabulate_tensor(double* A,
                                     const ufc::cell& c) const
 {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0;
-    A[7] = 0;
+    for (unsigned int j = 0; j < 8; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);

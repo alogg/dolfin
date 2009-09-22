@@ -74,7 +74,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -157,7 +157,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -187,14 +187,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -219,7 +219,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -394,7 +394,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -495,7 +495,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -578,7 +578,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -608,14 +608,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -640,7 +640,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -815,7 +815,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1223,10 +1223,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 =  J_11 / detJ;
     const double Jinv_01 = -J_01 / detJ;
@@ -1312,15 +1312,8 @@ public:
                                const ufc::cell& c) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0;
-    A[7] = 0;
-    A[8] = 0;
+    for (unsigned int j = 0; j < 9; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -1507,7 +1500,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1590,7 +1583,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1620,14 +1613,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1652,7 +1645,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -1827,7 +1820,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1928,7 +1921,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2011,7 +2004,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2041,14 +2034,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2073,7 +2066,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2248,7 +2241,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2349,7 +2342,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2432,7 +2425,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2462,14 +2455,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2494,7 +2487,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2669,7 +2662,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -3245,10 +3238,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     
     // Set scale factor
@@ -3256,13 +3249,13 @@ public:
     
     
     // Array of quadrature weights
-    static const double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
     // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
     // Value of basis functions at quadrature points.
     static const double FE0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
@@ -3331,9 +3324,8 @@ public:
                                const ufc::cell& c) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
+    for (unsigned int j = 0; j < 3; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -3371,9 +3363,9 @@ public:
     const double * const * x = c.coordinates;
     
     // Compute Jacobian of affine map from reference cell
-      
+    
     // Compute determinant of Jacobian
-      
+    
     // Compute inverse of Jacobian
     
     // Vertices on edges
@@ -3387,6 +3379,9 @@ public:
     const double dx0 = x[v1][0] - x[v0][0];
     const double dx1 = x[v1][1] - x[v0][1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
+    
+    
+    // Compute facet normals from the facet scale factor constants
     
     
     // Array of quadrature weights
@@ -3541,9 +3536,8 @@ public:
                                unsigned int facet) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
+    for (unsigned int j = 0; j < 3; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c, facet);

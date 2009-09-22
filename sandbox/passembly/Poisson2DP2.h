@@ -74,7 +74,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -171,7 +171,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -201,14 +201,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -233,7 +233,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -443,7 +443,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -544,7 +544,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -641,7 +641,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -671,14 +671,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -703,7 +703,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -913,7 +913,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1318,18 +1318,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson2dp2_0_cell_integral_0_tensor: public ufc::cell_integral
+class poisson2dp2_0_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson2dp2_0_cell_integral_0_tensor() : ufc::cell_integral()
+  poisson2dp2_0_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson2dp2_0_cell_integral_0_tensor()
+  virtual ~poisson2dp2_0_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -1339,10 +1339,6 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
-    // Number of operations to compute geometry tensor:     17
-    // Number of operations to compute tensor contraction:  140
-    // Total number of operations to compute cell tensor:   157
-    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -1351,10 +1347,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 =  J_11 / detJ;
     const double Jinv_01 = -J_01 / detJ;
@@ -1364,50 +1360,104 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Compute geometry tensor
-    const double G0_0_0 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G0_0_1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G0_1_0 = det*(Jinv_10*Jinv_00 + Jinv_11*Jinv_01);
-    const double G0_1_1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1_ = det;
     
-    // Compute element tensor
-    A[0] += 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0 + 0.499999999999999*G0_1_1 + 0.0166666666666667*G1_;
-    A[1] += 0.166666666666666*G0_0_0 + 0.166666666666666*G0_1_0 - 0.00277777777777777*G1_;
-    A[2] += 0.166666666666667*G0_0_1 + 0.166666666666666*G0_1_1 - 0.00277777777777778*G1_;
-    A[3] += -0.0111111111111111*G1_;
-    A[4] += -0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_1;
-    A[5] += -0.666666666666666*G0_0_0 - 0.666666666666666*G0_1_0;
-    A[6] += 0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1 - 0.00277777777777777*G1_;
-    A[7] += 0.499999999999999*G0_0_0 + 0.0166666666666667*G1_;
-    A[8] += -0.166666666666666*G0_0_1 - 0.00277777777777777*G1_;
-    A[9] += 0.666666666666666*G0_0_1;
-    A[10] += -0.0111111111111111*G1_;
-    A[11] += -0.666666666666666*G0_0_0 - 0.666666666666666*G0_0_1;
-    A[12] += 0.166666666666667*G0_1_0 + 0.166666666666667*G0_1_1 - 0.00277777777777778*G1_;
-    A[13] += -0.166666666666666*G0_1_0 - 0.00277777777777777*G1_;
-    A[14] += 0.499999999999999*G0_1_1 + 0.0166666666666666*G1_;
-    A[15] += 0.666666666666665*G0_1_0;
-    A[16] += -0.666666666666665*G0_1_0 - 0.666666666666666*G0_1_1;
-    A[17] += -0.0111111111111111*G1_;
-    A[18] += -0.0111111111111111*G1_;
-    A[19] += 0.666666666666666*G0_1_0;
-    A[20] += 0.666666666666665*G0_0_1;
-    A[21] += 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1 + 0.0888888888888888*G1_;
-    A[22] += -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0 + 0.0444444444444444*G1_;
-    A[23] += -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1 + 0.0444444444444444*G1_;
-    A[24] += -0.666666666666666*G0_1_0 - 0.666666666666666*G0_1_1;
-    A[25] += -0.0111111111111111*G1_;
-    A[26] += -0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_1;
-    A[27] += -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 + 0.0444444444444444*G1_;
-    A[28] += 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1 + 0.0888888888888888*G1_;
-    A[29] += 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 0.0444444444444444*G1_;
-    A[30] += -0.666666666666666*G0_0_0 - 0.666666666666666*G0_0_1;
-    A[31] += -0.666666666666666*G0_0_0 - 0.666666666666666*G0_1_0;
-    A[32] += -0.0111111111111111*G1_;
-    A[33] += -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1 + 0.0444444444444444*G1_;
-    A[34] += 0.666666666666666*G0_0_1 + 0.666666666666665*G0_1_0 + 0.0444444444444444*G1_;
-    A[35] += 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1 + 0.0888888888888888*G1_;
+    // Array of quadrature weights
+    static const double W9[9] = {0.0558144204830443, 0.063678085099885, 0.0193963833059595, 0.0893030727728709, 0.101884936159816, 0.0310342132895351, 0.0558144204830443, 0.063678085099885, 0.0193963833059595};
+    // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.0665540678391645, 0.409466864440735), (0.0239311322870806, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.80869438567767, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
+    
+    // Value of basis functions at quadrature points.
+    static const double FE0_D10[9][5] = \
+    {{-2.23477754271068, -0.589129380761495, 0.354351838050815, -0.354351838050816, 2.82390692347217},
+    {-1.0959162708804, -0.733783728643342, 1.63786745776294, -1.63786745776294, 1.82969999952374},
+    {0.246362376191712, -0.904275470851677, 3.15063784704339, -3.15063784704339, 0.657913094659966},
+    {-0.822824080974592, 0.822824080974592, 0.354351838050816, -0.354351838050816, 0},
+    {-0.181066271118531, 0.181066271118531, 1.63786745776294, -1.63786745776294, 0},
+    {0.575318923521695, -0.575318923521694, 3.15063784704339, -3.15063784704339, 0},
+    {0.589129380761496, 2.23477754271068, 0.354351838050816, -0.354351838050816, -2.82390692347218},
+    {0.733783728643342, 1.0959162708804, 1.63786745776294, -1.63786745776294, -1.82969999952374},
+    {0.904275470851678, -0.246362376191711, 3.15063784704339, -3.15063784704339, -0.657913094659967}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc0[5] = {0, 1, 3, 4, 5};
+    static const double FE0_D01[9][5] = \
+    {{-2.23477754271068, -0.645648161949185, 0.410870619238505, 2.88042570465986, -0.410870619238505},
+    {-1.0959162708804, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356658},
+    {0.246362376191711, 2.15063784704339, 0.0957245291483225, -2.3970002232351, -0.0957245291483227},
+    {-0.822824080974592, -0.645648161949184, 1.82282408097459, 1.46847224292378, -1.82282408097459},
+    {-0.181066271118531, 0.637867457762939, 1.18106627111853, -0.456801186644408, -1.18106627111853},
+    {0.575318923521695, 2.15063784704339, 0.424681076478306, -2.72595677056508, -0.424681076478306},
+    {0.589129380761496, -0.645648161949184, 3.23477754271068, 0.0565187811876887, -3.23477754271068},
+    {0.733783728643342, 0.637867457762939, 2.0959162708804, -1.37165118640628, -2.0959162708804},
+    {0.904275470851678, 2.15063784704339, 0.753637623808289, -3.05491331789507, -0.753637623808289}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
+    static const double FE0[9][6] = \
+    {{0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087},
+    {0.0251290590975511, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383},
+    {-0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062783, 0.593609805131561, 0.0180354016718773},
+    {-0.0403700664710398, -0.0403700664710397, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217},
+    {-0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458},
+    {-0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932},
+    {-0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018087},
+    {-0.0576951799472843, 0.0251290590975512, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383},
+    {-0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773}};
+    
+    
+    // Number of operations to compute geometry constants: 12
+    const double G0 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 3720
+    
+    // Loop quadrature points for integral
+    // Number of operations to compute element tensor for following IP loop = 3708
+    for (unsigned int ip = 0; ip < 9; ip++)
+    {
+      
+      // Number of operations to compute ip constants: 4
+      // Number of operations: 1
+      const double Gip0 = G0*W9[ip];
+      
+      // Number of operations: 1
+      const double Gip1 = G1*W9[ip];
+      
+      // Number of operations: 1
+      const double Gip2 = W9[ip]*det;
+      
+      // Number of operations: 1
+      const double Gip3 = G2*W9[ip];
+      
+      
+      // Number of operations for primary indices = 108
+      for (unsigned int j = 0; j < 6; j++)
+      {
+        for (unsigned int k = 0; k < 6; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[j*6 + k] += FE0[ip][j]*FE0[ip][k]*Gip2;
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices = 300
+      for (unsigned int j = 0; j < 5; j++)
+      {
+        for (unsigned int k = 0; k < 5; k++)
+        {
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*6 + nzc1[k]] += FE0_D01[ip][j]*FE0_D01[ip][k]*Gip0;
+          // Number of operations to compute entry = 3
+          A[nzc1[j]*6 + nzc0[k]] += FE0_D01[ip][j]*FE0_D10[ip][k]*Gip1;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*6 + nzc1[k]] += FE0_D01[ip][k]*FE0_D10[ip][j]*Gip1;
+          // Number of operations to compute entry = 3
+          A[nzc0[j]*6 + nzc0[k]] += FE0_D10[ip][j]*FE0_D10[ip][k]*Gip3;
+        }// end loop over 'k'
+      }// end loop over 'j'
+    }// end loop over 'ip'
   }
 
 };
@@ -1420,7 +1470,7 @@ class poisson2dp2_0_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  poisson2dp2_0_cell_integral_0_tensor integral_0_tensor;
+  poisson2dp2_0_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
@@ -1442,45 +1492,11 @@ public:
                                const ufc::cell& c) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0;
-    A[7] = 0;
-    A[8] = 0;
-    A[9] = 0;
-    A[10] = 0;
-    A[11] = 0;
-    A[12] = 0;
-    A[13] = 0;
-    A[14] = 0;
-    A[15] = 0;
-    A[16] = 0;
-    A[17] = 0;
-    A[18] = 0;
-    A[19] = 0;
-    A[20] = 0;
-    A[21] = 0;
-    A[22] = 0;
-    A[23] = 0;
-    A[24] = 0;
-    A[25] = 0;
-    A[26] = 0;
-    A[27] = 0;
-    A[28] = 0;
-    A[29] = 0;
-    A[30] = 0;
-    A[31] = 0;
-    A[32] = 0;
-    A[33] = 0;
-    A[34] = 0;
-    A[35] = 0;
+    for (unsigned int j = 0; j < 36; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
-    integral_0_tensor.tabulate_tensor(A, w, c);
+    integral_0_quadrature.tabulate_tensor(A, w, c);
   }
 
 };
@@ -1664,7 +1680,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1761,7 +1777,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1791,14 +1807,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1823,7 +1839,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2033,7 +2049,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2134,7 +2150,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2231,7 +2247,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2261,14 +2277,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2293,7 +2309,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2503,7 +2519,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2908,18 +2924,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson2dp2_1_cell_integral_0_tensor: public ufc::cell_integral
+class poisson2dp2_1_cell_integral_0_quadrature: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson2dp2_1_cell_integral_0_tensor() : ufc::cell_integral()
+  poisson2dp2_1_cell_integral_0_quadrature() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson2dp2_1_cell_integral_0_tensor()
+  virtual ~poisson2dp2_1_cell_integral_0_quadrature()
   {
     // Do nothing
   }
@@ -2929,10 +2945,6 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
-    // Number of operations to compute geometry tensor:     6
-    // Number of operations to compute tensor contraction:  42
-    // Total number of operations to compute cell tensor:   48
-    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -2941,30 +2953,63 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Compute geometry tensor
-    const double G0_0 = det*w[0][0];
-    const double G0_1 = det*w[0][1];
-    const double G0_2 = det*w[0][2];
-    const double G0_3 = det*w[0][3];
-    const double G0_4 = det*w[0][4];
-    const double G0_5 = det*w[0][5];
     
-    // Compute element tensor
-    A[0] += 0.0166666666666666*G0_0 - 0.00277777777777777*G0_1 - 0.00277777777777778*G0_2 - 0.0111111111111111*G0_3;
-    A[1] += -0.00277777777777777*G0_0 + 0.0166666666666667*G0_1 - 0.00277777777777777*G0_2 - 0.0111111111111111*G0_4;
-    A[2] += -0.00277777777777777*G0_0 - 0.00277777777777777*G0_1 + 0.0166666666666666*G0_2 - 0.0111111111111111*G0_5;
-    A[3] += -0.0111111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444444*G0_4 + 0.0444444444444444*G0_5;
-    A[4] += -0.0111111111111111*G0_1 + 0.0444444444444444*G0_3 + 0.0888888888888888*G0_4 + 0.0444444444444444*G0_5;
-    A[5] += -0.0111111111111111*G0_2 + 0.0444444444444444*G0_3 + 0.0444444444444444*G0_4 + 0.0888888888888888*G0_5;
+    // Array of quadrature weights
+    static const double W9[9] = {0.0558144204830443, 0.063678085099885, 0.0193963833059595, 0.0893030727728709, 0.101884936159816, 0.0310342132895351, 0.0558144204830443, 0.063678085099885, 0.0193963833059595};
+    // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.0665540678391645, 0.409466864440735), (0.0239311322870806, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.80869438567767, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
+    
+    // Value of basis functions at quadrature points.
+    static const double FE0[9][6] = \
+    {{0.499278833175498, -0.0816158215904472, -0.072892306371455, 0.0363981897820603, 0.286562341986258, 0.332268763018087},
+    {0.0251290590975511, -0.0576951799472843, -0.0741406382908807, 0.109006741895515, 0.858208263567716, 0.139491753677383},
+    {-0.117413197449647, -0.0227857341019971, 0.453155393641927, 0.0753983311062783, 0.593609805131561, 0.0180354016718773},
+    {-0.0403700664710398, -0.0403700664710398, -0.072892306371455, 0.161480265884159, 0.161480265884159, 0.830671907545217},
+    {-0.120901875682904, -0.120901875682904, -0.0741406382908807, 0.483607502731615, 0.483607502731615, 0.348729384193458},
+    {-0.0836260170297299, -0.0836260170297299, 0.453155393641927, 0.33450406811892, 0.33450406811892, 0.0450885041796932},
+    {-0.0816158215904472, 0.499278833175498, -0.072892306371455, 0.286562341986258, 0.0363981897820602, 0.332268763018087},
+    {-0.0576951799472843, 0.0251290590975512, -0.0741406382908807, 0.858208263567716, 0.109006741895515, 0.139491753677383},
+    {-0.0227857341019971, -0.117413197449647, 0.453155393641927, 0.593609805131561, 0.0753983311062784, 0.0180354016718773}};
+    
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 234
+    
+    // Loop quadrature points for integral
+    // Number of operations to compute element tensor for following IP loop = 234
+    for (unsigned int ip = 0; ip < 9; ip++)
+    {
+      
+      // Function declarations
+      double F0 = 0;
+      
+      // Total number of operations to compute function values = 12
+      for (unsigned int r = 0; r < 6; r++)
+      {
+        F0 += FE0[ip][r]*w[0][r];
+      }// end loop over 'r'
+      
+      // Number of operations to compute ip constants: 2
+      // Number of operations: 2
+      const double Gip0 = F0*W9[ip]*det;
+      
+      
+      // Number of operations for primary indices = 12
+      for (unsigned int j = 0; j < 6; j++)
+      {
+        // Number of operations to compute entry = 2
+        A[j] += FE0[ip][j]*Gip0;
+      }// end loop over 'j'
+    }// end loop over 'ip'
   }
 
 };
@@ -2977,7 +3022,7 @@ class poisson2dp2_1_cell_integral_0: public ufc::cell_integral
 {
 private:
 
-  poisson2dp2_1_cell_integral_0_tensor integral_0_tensor;
+  poisson2dp2_1_cell_integral_0_quadrature integral_0_quadrature;
 
 public:
 
@@ -2999,15 +3044,11 @@ public:
                                const ufc::cell& c) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
+    for (unsigned int j = 0; j < 6; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
-    integral_0_tensor.tabulate_tensor(A, w, c);
+    integral_0_quadrature.tabulate_tensor(A, w, c);
   }
 
 };

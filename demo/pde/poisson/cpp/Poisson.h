@@ -74,7 +74,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -157,7 +157,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -187,14 +187,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -219,7 +219,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -394,7 +394,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -495,7 +495,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -578,7 +578,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -608,14 +608,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -640,7 +640,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -815,7 +815,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1223,10 +1223,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 =  J_11 / detJ;
     const double Jinv_01 = -J_01 / detJ;
@@ -1242,28 +1242,40 @@ public:
     // Quadrature points on the UFC reference element: (0.333333333333333, 0.333333333333333)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_D10[1][3] = \
-    {{-1, 1, 0}};
+    static const double FE0_D10[1][2] = \
+    {{-1, 1}};
     
-    static const double FE0_D01[1][3] = \
-    {{-1, 0, 1}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
     
+    // Number of operations to compute geometry constants: 15
+    const double G0 = W1*det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G1 = W1*det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G2 = W1*det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 162
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 63
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 162
+    // Number of operations to compute element tensor for following IP loop = 48
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices = 162
-    for (unsigned int j = 0; j < 3; j++)
+    // Number of operations for primary indices = 48
+    for (unsigned int j = 0; j < 2; j++)
     {
-      for (unsigned int k = 0; k < 3; k++)
+      for (unsigned int k = 0; k < 2; k++)
       {
-        // Number of operations to compute entry = 18
-        A[j*3 + k] += ((Jinv_00*FE0_D10[0][j] + Jinv_10*FE0_D01[0][j])*(Jinv_00*FE0_D10[0][k] + Jinv_10*FE0_D01[0][k]) + (Jinv_01*FE0_D10[0][j] + Jinv_11*FE0_D01[0][j])*(Jinv_01*FE0_D10[0][k] + Jinv_11*FE0_D01[0][k]))*W1*det;
+        // Number of operations to compute entry = 3
+        A[nzc1[j]*3 + nzc1[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G0;
+        // Number of operations to compute entry = 3
+        A[nzc0[j]*3 + nzc1[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G1;
+        // Number of operations to compute entry = 3
+        A[nzc0[j]*3 + nzc0[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G2;
+        // Number of operations to compute entry = 3
+        A[nzc1[j]*3 + nzc0[k]] += FE0_D10[0][j]*FE0_D10[0][k]*G1;
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -1488,7 +1500,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1571,7 +1583,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1601,14 +1613,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1633,7 +1645,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -1808,7 +1820,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1909,7 +1921,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1992,7 +2004,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2022,14 +2034,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2054,7 +2066,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2229,7 +2241,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2330,7 +2342,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2413,7 +2425,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2443,14 +2455,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2475,7 +2487,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2650,7 +2662,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -3226,10 +3238,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     
     // Set scale factor
@@ -3249,11 +3261,11 @@ public:
     
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 72
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 56
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 72
+    // Number of operations to compute element tensor for following IP loop = 56
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -3266,11 +3278,16 @@ public:
         F0 += FE0[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices = 12
+      // Number of operations to compute ip constants: 2
+      // Number of operations: 2
+      const double Gip0 = F0*W4[ip]*det;
+      
+      
+      // Number of operations for primary indices = 6
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 4
-        A[j] += FE0[ip][j]*F0*W4[ip]*det;
+        // Number of operations to compute entry = 2
+        A[j] += FE0[ip][j]*Gip0;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -3346,9 +3363,9 @@ public:
     const double * const * x = c.coordinates;
     
     // Compute Jacobian of affine map from reference cell
-      
+    
     // Compute determinant of Jacobian
-      
+    
     // Compute inverse of Jacobian
     
     // Vertices on edges
@@ -3364,105 +3381,121 @@ public:
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     
+    // Compute facet normals from the facet scale factor constants
+    
+    
     // Array of quadrature weights
     static const double W2[2] = {0.5, 0.5};
     // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[2][3] = \
-    {{0, 0.788675134594813, 0.211324865405187},
-    {0, 0.211324865405187, 0.788675134594813}};
+    static const double FE0_f0[2][2] = \
+    {{0.788675134594813, 0.211324865405187},
+    {0.211324865405187, 0.788675134594813}};
     
-    static const double FE0_f1[2][3] = \
-    {{0.788675134594813, 0, 0.211324865405187},
-    {0.211324865405187, 0, 0.788675134594813}};
-    
-    static const double FE0_f2[2][3] = \
-    {{0.788675134594813, 0.211324865405187, 0},
-    {0.211324865405187, 0.788675134594813, 0}};
-    
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
     switch ( facet )
     {
     case 0:
       {
-      // Total number of operations to compute element tensor (from this point): 42
+      // Total number of operations to compute element tensor (from this point): 20
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 42
+      // Number of operations to compute element tensor for following IP loop = 20
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
         // Function declarations
         double F0 = 0;
         
-        // Total number of operations to compute function values = 6
-        for (unsigned int r = 0; r < 3; r++)
+        // Total number of operations to compute function values = 4
+        for (unsigned int r = 0; r < 2; r++)
         {
-          F0 += FE0_f0[ip][r]*w[1][r];
+          F0 += FE0_f0[ip][r]*w[1][nzc0[r]];
         }// end loop over 'r'
         
-        // Number of operations for primary indices = 15
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 2
+        // Number of operations: 2
+        const double Gip0 = -F0*W2[ip]*det;
+        
+        
+        // Number of operations for primary indices = 4
+        for (unsigned int j = 0; j < 2; j++)
         {
-          // Number of operations to compute entry = 5
-          A[j] += FE0_f0[ip][j]*F0*-1*W2[ip]*det;
+          // Number of operations to compute entry = 2
+          A[nzc0[j]] += FE0_f0[ip][j]*Gip0;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
       break;
     case 1:
       {
-      // Total number of operations to compute element tensor (from this point): 42
+      // Total number of operations to compute element tensor (from this point): 20
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 42
+      // Number of operations to compute element tensor for following IP loop = 20
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
         // Function declarations
         double F0 = 0;
         
-        // Total number of operations to compute function values = 6
-        for (unsigned int r = 0; r < 3; r++)
+        // Total number of operations to compute function values = 4
+        for (unsigned int r = 0; r < 2; r++)
         {
-          F0 += FE0_f1[ip][r]*w[1][r];
+          F0 += FE0_f0[ip][r]*w[1][nzc1[r]];
         }// end loop over 'r'
         
-        // Number of operations for primary indices = 15
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 2
+        // Number of operations: 2
+        const double Gip0 = -F0*W2[ip]*det;
+        
+        
+        // Number of operations for primary indices = 4
+        for (unsigned int j = 0; j < 2; j++)
         {
-          // Number of operations to compute entry = 5
-          A[j] += FE0_f1[ip][j]*F0*-1*W2[ip]*det;
+          // Number of operations to compute entry = 2
+          A[nzc1[j]] += FE0_f0[ip][j]*Gip0;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
       break;
     case 2:
       {
-      // Total number of operations to compute element tensor (from this point): 42
+      // Total number of operations to compute element tensor (from this point): 20
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 42
+      // Number of operations to compute element tensor for following IP loop = 20
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
         // Function declarations
         double F0 = 0;
         
-        // Total number of operations to compute function values = 6
-        for (unsigned int r = 0; r < 3; r++)
+        // Total number of operations to compute function values = 4
+        for (unsigned int r = 0; r < 2; r++)
         {
-          F0 += FE0_f2[ip][r]*w[1][r];
+          F0 += FE0_f0[ip][r]*w[1][nzc2[r]];
         }// end loop over 'r'
         
-        // Number of operations for primary indices = 15
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 2
+        // Number of operations: 2
+        const double Gip0 = -F0*W2[ip]*det;
+        
+        
+        // Number of operations for primary indices = 4
+        for (unsigned int j = 0; j < 2; j++)
         {
-          // Number of operations to compute entry = 5
-          A[j] += FE0_f2[ip][j]*F0*-1*W2[ip]*det;
+          // Number of operations to compute entry = 2
+          A[nzc2[j]] += FE0_f0[ip][j]*Gip0;
         }// end loop over 'j'
       }// end loop over 'ip'
       }

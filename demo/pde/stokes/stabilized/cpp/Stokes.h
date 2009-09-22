@@ -74,7 +74,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -120,7 +120,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -157,7 +157,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -187,14 +187,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -219,7 +219,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -263,19 +263,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -365,9 +365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -394,7 +394,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -495,7 +495,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -541,7 +541,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -578,7 +578,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -608,14 +608,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -640,7 +640,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -684,19 +684,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -786,9 +786,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -815,7 +815,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -916,7 +916,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -965,7 +965,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -1003,7 +1003,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -1042,7 +1042,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1072,14 +1072,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1104,7 +1104,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -1150,19 +1150,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -1261,19 +1261,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -1365,9 +1365,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1394,7 +1394,7 @@ public:
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1508,7 +1508,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1554,7 +1554,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -1591,7 +1591,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1621,14 +1621,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -1653,7 +1653,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -1697,19 +1697,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -1799,9 +1799,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -1828,7 +1828,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -1929,7 +1929,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -1979,7 +1979,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -2017,7 +2017,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -2055,7 +2055,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -2094,7 +2094,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2124,14 +2124,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2156,7 +2156,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2202,19 +2202,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -2313,19 +2313,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -2424,19 +2424,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -2528,9 +2528,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[9][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[9][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[9][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    static const double X[9][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[9][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[9][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2557,7 +2557,7 @@ public:
     // Take directional components
     for(int k = 0; k < 3; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -2675,7 +2675,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2721,7 +2721,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -2758,7 +2758,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -2788,14 +2788,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -2820,7 +2820,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -2864,19 +2864,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -2966,9 +2966,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -2995,7 +2995,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -3096,7 +3096,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -3142,7 +3142,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -3179,7 +3179,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -3209,14 +3209,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -3241,7 +3241,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -3285,19 +3285,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -3387,9 +3387,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -3416,7 +3416,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -3517,7 +3517,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -3566,7 +3566,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -3604,7 +3604,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -3643,7 +3643,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -3673,14 +3673,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -3705,7 +3705,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -3751,19 +3751,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -3862,19 +3862,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -3966,9 +3966,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -3995,7 +3995,7 @@ public:
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -4109,7 +4109,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -4155,7 +4155,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -4192,7 +4192,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -4222,14 +4222,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -4254,7 +4254,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -4298,19 +4298,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -4400,9 +4400,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -4429,7 +4429,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -4530,7 +4530,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -4580,7 +4580,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -4618,7 +4618,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -4656,7 +4656,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -4695,7 +4695,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -4725,14 +4725,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -4757,7 +4757,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -4803,19 +4803,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -4914,19 +4914,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -5025,19 +5025,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -5129,9 +5129,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[9][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[9][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[9][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    static const double X[9][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[9][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[9][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5158,7 +5158,7 @@ public:
     // Take directional components
     for(int k = 0; k < 3; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -5276,7 +5276,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -5322,7 +5322,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -5359,7 +5359,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -5389,14 +5389,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -5421,7 +5421,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -5465,19 +5465,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -5567,9 +5567,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -5596,7 +5596,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -7648,10 +7648,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 =  J_11 / detJ;
     const double Jinv_01 = -J_01 / detJ;
@@ -7663,54 +7663,56 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
+    // Value of basis functions at quadrature points.
+    static const double FE1_C0[4][3] = \
+    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
+    {0.178558728263616, 0.666390246014701, 0.155051025721682},
+    {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
-    const static double FE0_C1_D01[4][2] = \
+    // Array of non-zero columns
+    static const unsigned int nzc3[3] = {6, 7, 8};
+    static const double FE1_C2_D01[4][2] = \
     {{-1, 1},
     {-1, 1},
     {-1, 1},
     {-1, 1}};
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {3, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {6, 7};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {3, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc4[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc5[2] = {6, 8};
     
-    const static double FE1[4][3] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     // Array of non-zero columns
-    static const unsigned int nzc6[3] = {6, 7, 8};
+    static const unsigned int nzc2[2] = {3, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {3, 4};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {6, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {6, 8};
+    // Array of non-zero columns
+    static const unsigned int nzc7[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc8[2] = {0, 1};
     
-    // Number of operations to compute geometry constants: 42
-    const double G0 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G1 = det*(0.2*Jinv_00*Jinv_10 + 0.2*Jinv_01*Jinv_11);
-    const double G2 = det*(0.2*Jinv_00*Jinv_00 + 0.2*Jinv_01*Jinv_01);
-    const double G3 =  - Jinv_11*det;
-    const double G4 = Jinv_11*det;
-    const double G5 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G6 = Jinv_00*det;
-    const double G7 = Jinv_10*det;
-    const double G8 =  - Jinv_10*det;
-    const double G9 =  - Jinv_00*det;
-    const double G10 =  - Jinv_01*det;
-    const double G11 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G12 = det*(0.2*Jinv_10*Jinv_10 + 0.2*Jinv_11*Jinv_11);
-    const double G13 = Jinv_01*det;
+    // Number of operations to compute geometry constants: 35
+    const double G0 = -Jinv_00*det;
+    const double G1 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G2 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G3 = Jinv_00*det;
+    const double G4 = -Jinv_10*det;
+    const double G5 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G6 = 0.2*det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G7 = Jinv_11*det;
+    const double G8 = 0.2*det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G9 = Jinv_10*det;
+    const double G10 = -Jinv_01*det;
+    const double G11 = Jinv_01*det;
+    const double G12 = -Jinv_11*det;
+    const double G13 = 0.2*det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 1298
+    // Total number of operations to compute element tensor: 1291
     
     // Loop quadrature points for integral
     // Number of operations to compute element tensor for following IP loop = 1256
@@ -7723,51 +7725,51 @@ public:
       // Total number of operations to compute function values = 6
       for (unsigned int r = 0; r < 3; r++)
       {
-        F0 += FE1[ip][r]*w[0][r];
+        F0 += FE1_C0[ip][r]*w[0][r];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 20
       // Number of operations: 1
-      const double Gip0 = W4[ip]*G0;
+      const double Gip0 = G0*W4[ip];
+      
+      // Number of operations: 1
+      const double Gip1 = G1*W4[ip];
+      
+      // Number of operations: 1
+      const double Gip2 = G2*W4[ip];
+      
+      // Number of operations: 1
+      const double Gip3 = G3*W4[ip];
+      
+      // Number of operations: 1
+      const double Gip4 = G4*W4[ip];
+      
+      // Number of operations: 1
+      const double Gip5 = G5*W4[ip];
       
       // Number of operations: 3
-      const double Gip1 = F0*F0*W4[ip]*G1;
+      const double Gip6 = F0*F0*G6*W4[ip];
+      
+      // Number of operations: 1
+      const double Gip7 = G7*W4[ip];
       
       // Number of operations: 3
-      const double Gip2 = F0*F0*W4[ip]*G2;
+      const double Gip8 = F0*F0*G8*W4[ip];
       
       // Number of operations: 1
-      const double Gip3 = W4[ip]*G3;
+      const double Gip9 = G9*W4[ip];
       
       // Number of operations: 1
-      const double Gip4 = W4[ip]*G4;
+      const double Gip10 = G10*W4[ip];
       
       // Number of operations: 1
-      const double Gip5 = W4[ip]*G5;
+      const double Gip11 = G11*W4[ip];
       
       // Number of operations: 1
-      const double Gip6 = W4[ip]*G6;
-      
-      // Number of operations: 1
-      const double Gip7 = W4[ip]*G7;
-      
-      // Number of operations: 1
-      const double Gip8 = W4[ip]*G8;
-      
-      // Number of operations: 1
-      const double Gip9 = W4[ip]*G9;
-      
-      // Number of operations: 1
-      const double Gip10 = W4[ip]*G10;
-      
-      // Number of operations: 1
-      const double Gip11 = W4[ip]*G11;
+      const double Gip12 = G12*W4[ip];
       
       // Number of operations: 3
-      const double Gip12 = F0*F0*W4[ip]*G12;
-      
-      // Number of operations: 1
-      const double Gip13 = W4[ip]*G13;
+      const double Gip13 = F0*F0*G13*W4[ip];
       
       
       // Number of operations for primary indices = 72
@@ -7776,13 +7778,13 @@ public:
         for (unsigned int k = 0; k < 2; k++)
         {
           // Number of operations to compute entry = 3
-          A[nzc6[j]*9 + nzc0[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip4;
+          A[nzc3[j]*9 + nzc8[k]] += FE1_C0[ip][j]*FE1_C2_D01[ip][k]*Gip3;
           // Number of operations to compute entry = 3
-          A[nzc6[j]*9 + nzc3[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip6;
+          A[nzc3[j]*9 + nzc2[k]] += FE1_C0[ip][j]*FE1_C2_D01[ip][k]*Gip7;
           // Number of operations to compute entry = 3
-          A[nzc6[j]*9 + nzc4[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip7;
+          A[nzc3[j]*9 + nzc7[k]] += FE1_C0[ip][j]*FE1_C2_D01[ip][k]*Gip9;
           // Number of operations to compute entry = 3
-          A[nzc6[j]*9 + nzc2[k]] += FE0_C1_D01[ip][k]*FE1[ip][j]*Gip13;
+          A[nzc3[j]*9 + nzc4[k]] += FE1_C0[ip][j]*FE1_C2_D01[ip][k]*Gip11;
         }// end loop over 'k'
       }// end loop over 'j'
       
@@ -7792,29 +7794,29 @@ public:
         for (unsigned int k = 0; k < 2; k++)
         {
           // Number of operations to compute entry = 3
-          A[nzc0[j]*9 + nzc0[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip0;
+          A[nzc7[j]*9 + nzc7[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip1;
           // Number of operations to compute entry = 3
-          A[nzc5[j]*9 + nzc1[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip1;
+          A[nzc2[j]*9 + nzc4[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip2;
           // Number of operations to compute entry = 3
-          A[nzc1[j]*9 + nzc1[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip2;
+          A[nzc8[j]*9 + nzc8[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip5;
           // Number of operations to compute entry = 3
-          A[nzc0[j]*9 + nzc2[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          A[nzc4[j]*9 + nzc4[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip5;
           // Number of operations to compute entry = 3
-          A[nzc3[j]*9 + nzc4[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          A[nzc8[j]*9 + nzc7[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip2;
           // Number of operations to compute entry = 3
-          A[nzc2[j]*9 + nzc0[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          A[nzc4[j]*9 + nzc2[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip2;
           // Number of operations to compute entry = 3
-          A[nzc2[j]*9 + nzc2[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip11;
+          A[nzc0[j]*9 + nzc5[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip6;
           // Number of operations to compute entry = 3
-          A[nzc4[j]*9 + nzc3[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
+          A[nzc7[j]*9 + nzc8[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip2;
           // Number of operations to compute entry = 3
-          A[nzc5[j]*9 + nzc5[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip12;
+          A[nzc2[j]*9 + nzc2[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip1;
           // Number of operations to compute entry = 3
-          A[nzc4[j]*9 + nzc4[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip0;
+          A[nzc5[j]*9 + nzc0[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip6;
           // Number of operations to compute entry = 3
-          A[nzc3[j]*9 + nzc3[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip11;
+          A[nzc5[j]*9 + nzc5[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip8;
           // Number of operations to compute entry = 3
-          A[nzc1[j]*9 + nzc5[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip1;
+          A[nzc0[j]*9 + nzc0[k]] += FE1_C2_D01[ip][j]*FE1_C2_D01[ip][k]*Gip13;
         }// end loop over 'k'
       }// end loop over 'j'
       
@@ -7824,13 +7826,13 @@ public:
         for (unsigned int k = 0; k < 3; k++)
         {
           // Number of operations to compute entry = 3
-          A[nzc0[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip3;
+          A[nzc8[j]*9 + nzc3[k]] += FE1_C0[ip][k]*FE1_C2_D01[ip][j]*Gip0;
           // Number of operations to compute entry = 3
-          A[nzc4[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip8;
+          A[nzc7[j]*9 + nzc3[k]] += FE1_C0[ip][k]*FE1_C2_D01[ip][j]*Gip4;
           // Number of operations to compute entry = 3
-          A[nzc3[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip9;
+          A[nzc4[j]*9 + nzc3[k]] += FE1_C0[ip][k]*FE1_C2_D01[ip][j]*Gip10;
           // Number of operations to compute entry = 3
-          A[nzc2[j]*9 + nzc6[k]] += FE0_C1_D01[ip][j]*FE1[ip][k]*Gip10;
+          A[nzc2[j]*9 + nzc3[k]] += FE1_C0[ip][k]*FE1_C2_D01[ip][j]*Gip12;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -7868,87 +7870,8 @@ public:
                                const ufc::cell& c) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0;
-    A[7] = 0;
-    A[8] = 0;
-    A[9] = 0;
-    A[10] = 0;
-    A[11] = 0;
-    A[12] = 0;
-    A[13] = 0;
-    A[14] = 0;
-    A[15] = 0;
-    A[16] = 0;
-    A[17] = 0;
-    A[18] = 0;
-    A[19] = 0;
-    A[20] = 0;
-    A[21] = 0;
-    A[22] = 0;
-    A[23] = 0;
-    A[24] = 0;
-    A[25] = 0;
-    A[26] = 0;
-    A[27] = 0;
-    A[28] = 0;
-    A[29] = 0;
-    A[30] = 0;
-    A[31] = 0;
-    A[32] = 0;
-    A[33] = 0;
-    A[34] = 0;
-    A[35] = 0;
-    A[36] = 0;
-    A[37] = 0;
-    A[38] = 0;
-    A[39] = 0;
-    A[40] = 0;
-    A[41] = 0;
-    A[42] = 0;
-    A[43] = 0;
-    A[44] = 0;
-    A[45] = 0;
-    A[46] = 0;
-    A[47] = 0;
-    A[48] = 0;
-    A[49] = 0;
-    A[50] = 0;
-    A[51] = 0;
-    A[52] = 0;
-    A[53] = 0;
-    A[54] = 0;
-    A[55] = 0;
-    A[56] = 0;
-    A[57] = 0;
-    A[58] = 0;
-    A[59] = 0;
-    A[60] = 0;
-    A[61] = 0;
-    A[62] = 0;
-    A[63] = 0;
-    A[64] = 0;
-    A[65] = 0;
-    A[66] = 0;
-    A[67] = 0;
-    A[68] = 0;
-    A[69] = 0;
-    A[70] = 0;
-    A[71] = 0;
-    A[72] = 0;
-    A[73] = 0;
-    A[74] = 0;
-    A[75] = 0;
-    A[76] = 0;
-    A[77] = 0;
-    A[78] = 0;
-    A[79] = 0;
-    A[80] = 0;
+    for (unsigned int j = 0; j < 81; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -7990,7 +7913,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(Product(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(2),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(2),), {})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Product(Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0), Product(FloatValue(0.20000000000000001, (), (), {}), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 0)))), Sum(Product(IndexSum(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3}))), Sum(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4), Index(5)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2})), Indexed(ComponentTensor(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(9),), {Index(9): 2})), MultiIndex((Index(8), Index(9)), {Index(8): 2, Index(9): 2})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2})), MultiIndex((Index(7),), {Index(7): 2})), Product(IntValue(-1, (), (), {}), Product(IndexSum(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2})), Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 1), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3}))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Product(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((FixedIndex(2),), {})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((FixedIndex(2),), {})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Product(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(FloatValue(0.20000000000000001, (), (), {}), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Sum(Product(IndexSum(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3}))), Sum(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4), Index(5)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2})), Indexed(ComponentTensor(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 1), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(9),), {Index(9): 2})), MultiIndex((Index(8), Index(9)), {Index(8): 2, Index(9): 2})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2})), MultiIndex((Index(7),), {Index(7): 2})), Product(IntValue(-1, (), (), {}), Product(IndexSum(Indexed(ListTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((FixedIndex(0),), {})), Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2})), Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 1), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3}))))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8141,7 +8064,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -8187,7 +8110,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -8224,7 +8147,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -8254,14 +8177,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -8286,7 +8209,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -8330,19 +8253,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -8432,9 +8355,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -8461,7 +8384,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -8562,7 +8485,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -8608,7 +8531,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -8645,7 +8568,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -8675,14 +8598,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -8707,7 +8630,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -8751,19 +8674,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -8853,9 +8776,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -8882,7 +8805,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -8983,7 +8906,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -9032,7 +8955,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -9070,7 +8993,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -9109,7 +9032,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -9139,14 +9062,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -9171,7 +9094,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -9217,19 +9140,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -9328,19 +9251,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -9432,9 +9355,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -9461,7 +9384,7 @@ public:
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -9575,7 +9498,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -9621,7 +9544,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -9658,7 +9581,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -9688,14 +9611,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -9720,7 +9643,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -9764,19 +9687,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -9866,9 +9789,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -9895,7 +9818,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -9996,7 +9919,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -10046,7 +9969,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -10084,7 +10007,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -10122,7 +10045,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -10161,7 +10084,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -10191,14 +10114,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -10223,7 +10146,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -10269,19 +10192,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -10380,19 +10303,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -10491,19 +10414,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -10595,9 +10518,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[9][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[9][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[9][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
+    static const double X[9][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[9][1] = {{1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[9][1][3] = {{{1, 0, 0}}, {{1, 0, 0}}, {{1, 0, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 1, 0}}, {{0, 0, 1}}, {{0, 0, 1}}, {{0, 0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -10624,7 +10547,7 @@ public:
     // Take directional components
     for(int k = 0; k < 3; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -10742,7 +10665,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -10788,7 +10711,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -10825,7 +10748,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -10855,14 +10778,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -10887,7 +10810,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -10931,19 +10854,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -11033,9 +10956,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -11062,7 +10985,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -11163,7 +11086,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -11209,7 +11132,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -11246,7 +11169,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -11276,14 +11199,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -11308,7 +11231,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -11352,19 +11275,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -11454,9 +11377,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -11483,7 +11406,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -11584,7 +11507,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -11633,7 +11556,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -11671,7 +11594,7 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
@@ -11710,7 +11633,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -11740,14 +11663,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -11772,7 +11695,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -11818,19 +11741,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -11929,19 +11852,19 @@ public:
       const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
       // Table(s) of coefficients
-      const static double coefficients0[3][3] =   \
+      static const double coefficients0[3][3] =   \
       {{0.471404520791032, -0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0.288675134594813, -0.166666666666667},
       {0.471404520791032, 0, 0.333333333333333}};
     
       // Interesting (new) part
       // Tables of derivatives of the polynomial base (transpose)
-      const static double dmats0[3][3] =   \
+      static const double dmats0[3][3] =   \
       {{0, 0, 0},
       {4.89897948556636, 0, 0},
       {0, 0, 0}};
     
-      const static double dmats1[3][3] =   \
+      static const double dmats1[3][3] =   \
       {{0, 0, 0},
       {2.44948974278318, 0, 0},
       {4.24264068711928, 0, 0}};
@@ -12033,9 +11956,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
-    const static double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
+    static const double X[6][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}, {{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[6][1] = {{1}, {1}, {1}, {1}, {1}, {1}};
+    static const double D[6][1][2] = {{{1, 0}}, {{1, 0}}, {{1, 0}}, {{0, 1}}, {{0, 1}}, {{0, 1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -12062,7 +11985,7 @@ public:
     // Take directional components
     for(int k = 0; k < 2; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -12176,7 +12099,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -12222,7 +12145,7 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
@@ -12259,7 +12182,7 @@ public:
     const double J_01 = element_coordinates[2][0] - element_coordinates[0][0];
     const double J_10 = element_coordinates[1][1] - element_coordinates[0][1];
     const double J_11 = element_coordinates[2][1] - element_coordinates[0][1];
-      
+    
     // Compute determinant of Jacobian
     const double detJ = J_00*J_11 - J_01*J_10;
     
@@ -12289,14 +12212,14 @@ public:
     
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       combinations[j] = new unsigned int [n];
       for (unsigned int k = 0; k < n; k++)
         combinations[j][k] = 0;
     }
-        
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -12321,7 +12244,7 @@ public:
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-        
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
@@ -12365,19 +12288,19 @@ public:
     const double basisvalue2 = psitilde_a_0*scalings_y_0*psitilde_bs_0_1;
     
     // Table(s) of coefficients
-    const static double coefficients0[3][3] = \
+    static const double coefficients0[3][3] = \
     {{0.471404520791032, -0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0.288675134594813, -0.166666666666667},
     {0.471404520791032, 0, 0.333333333333333}};
     
     // Interesting (new) part
     // Tables of derivatives of the polynomial base (transpose)
-    const static double dmats0[3][3] = \
+    static const double dmats0[3][3] = \
     {{0, 0, 0},
     {4.89897948556636, 0, 0},
     {0, 0, 0}};
     
-    const static double dmats1[3][3] = \
+    static const double dmats1[3][3] = \
     {{0, 0, 0},
     {2.44948974278318, 0, 0},
     {4.24264068711928, 0, 0}};
@@ -12467,9 +12390,9 @@ public:
                               const ufc::cell& c) const
   {
     // The reference points, direction and weights:
-    const static double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
-    const static double W[3][1] = {{1}, {1}, {1}};
-    const static double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
+    static const double X[3][1][2] = {{{0, 0}}, {{1, 0}}, {{0, 1}}};
+    static const double W[3][1] = {{1}, {1}, {1}};
+    static const double D[3][1][1] = {{{1}}, {{1}}, {{1}}};
     
     const double * const * x = c.coordinates;
     double result = 0.0;
@@ -12496,7 +12419,7 @@ public:
     // Take directional components
     for(int k = 0; k < 1; k++)
       result += values[k]*D[i][0][k];
-    // Multiply by weights 
+    // Multiply by weights
     result *= W[i][0];
     
     return result;
@@ -14171,10 +14094,10 @@ public:
     const double J_01 = x[2][0] - x[0][0];
     const double J_10 = x[1][1] - x[0][1];
     const double J_11 = x[2][1] - x[0][1];
-      
+    
     // Compute determinant of Jacobian
     double detJ = J_00*J_11 - J_01*J_10;
-      
+    
     // Compute inverse of Jacobian
     const double Jinv_00 =  J_11 / detJ;
     const double Jinv_01 = -J_01 / detJ;
@@ -14186,38 +14109,40 @@ public:
     
     
     // Array of quadrature weights
-    const static double W4[4] = {0.159020690871988, 0.0909793091280112, 0.159020690871988, 0.0909793091280112};
+    static const double W4[4] = {0.159020690871988, 0.0909793091280113, 0.159020690871988, 0.0909793091280113};
+    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
-    
-    const static double FE1_C0[4][3] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.0750311102226081, 0.644948974278318},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
-    // Array of non-zero columns
-    static const unsigned int nzc0[3] = {0, 1, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc1[3] = {3, 4, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc9[3] = {3, 4, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc10[3] = {0, 1, 2};
-    
-    const static double FE1_C1_D10[4][2] = \
+    // Value of basis functions at quadrature points.
+    static const double FE2_C1_D01[4][2] = \
     {{-1, 1},
     {-1, 1},
     {-1, 1},
     {-1, 1}};
+    
     // Array of non-zero columns
-    static const unsigned int nzc4[2] = {6, 7};
+    static const unsigned int nzc5[2] = {6, 7};
     // Array of non-zero columns
-    static const unsigned int nzc5[2] = {6, 8};
+    static const unsigned int nzc6[2] = {6, 8};
+    static const double FE2_C0[4][3] = \
+    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
+    {0.280019915499074, 0.0750311102226082, 0.644948974278318},
+    {0.178558728263616, 0.666390246014701, 0.155051025721682},
+    {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc3[3] = {0, 1, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc4[3] = {3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc7[3] = {3, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc2[3] = {0, 1, 2};
     
     // Number of operations to compute geometry constants: 8
-    const double G0 = 0.2*Jinv_00*det;
-    const double G1 = 0.2*Jinv_01*det;
-    const double G2 = 0.2*Jinv_10*det;
-    const double G3 = 0.2*Jinv_11*det;
+    const double G0 = 0.2*Jinv_11*det;
+    const double G1 = 0.2*Jinv_10*det;
+    const double G2 = 0.2*Jinv_01*det;
+    const double G3 = 0.2*Jinv_00*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -14236,41 +14161,41 @@ public:
       // Total number of operations to compute function values = 18
       for (unsigned int r = 0; r < 3; r++)
       {
-        F0 += FE1_C0[ip][r]*w[0][nzc10[r]];
-        F1 += FE1_C0[ip][r]*w[1][r];
-        F2 += FE1_C0[ip][r]*w[0][nzc9[r]];
+        F0 += FE2_C0[ip][r]*w[0][nzc3[r]];
+        F1 += FE2_C0[ip][r]*w[1][r];
+        F2 += FE2_C0[ip][r]*w[0][nzc4[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 16
-      // Number of operations: 2
-      const double Gip0 = F2*W4[ip]*det;
-      
       // Number of operations: 6
-      const double Gip1 = F1*F1*W4[ip]*(F0*G0 + F2*G1);
-      
-      // Number of operations: 6
-      const double Gip2 = F1*F1*W4[ip]*(F0*G2 + F2*G3);
+      const double Gip0 = F1*F1*W4[ip]*(F0*G1 + F2*G0);
       
       // Number of operations: 2
-      const double Gip3 = F0*W4[ip]*det;
+      const double Gip1 = F0*W4[ip]*det;
+      
+      // Number of operations: 6
+      const double Gip2 = F1*F1*W4[ip]*(F0*G3 + F2*G2);
+      
+      // Number of operations: 2
+      const double Gip3 = F2*W4[ip]*det;
       
       
       // Number of operations for primary indices = 12
       for (unsigned int j = 0; j < 3; j++)
       {
         // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE1_C0[ip][j]*Gip0;
+        A[nzc2[j]] += FE2_C0[ip][j]*Gip1;
         // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE1_C0[ip][j]*Gip3;
+        A[nzc7[j]] += FE2_C0[ip][j]*Gip3;
       }// end loop over 'j'
       
       // Number of operations for primary indices = 8
       for (unsigned int j = 0; j < 2; j++)
       {
         // Number of operations to compute entry = 2
-        A[nzc4[j]] += FE1_C1_D10[ip][j]*Gip1;
+        A[nzc6[j]] += FE2_C1_D01[ip][j]*Gip0;
         // Number of operations to compute entry = 2
-        A[nzc5[j]] += FE1_C1_D10[ip][j]*Gip2;
+        A[nzc5[j]] += FE2_C1_D01[ip][j]*Gip2;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -14307,15 +14232,8 @@ public:
                                const ufc::cell& c) const
   {
     // Reset values of the element tensor block
-    A[0] = 0;
-    A[1] = 0;
-    A[2] = 0;
-    A[3] = 0;
-    A[4] = 0;
-    A[5] = 0;
-    A[6] = 0;
-    A[7] = 0;
-    A[8] = 0;
+    for (unsigned int j = 0; j < 9; j++)
+      A[j] = 0;
     
     // Add all contributions to element tensor
     integral_0_quadrature.tabulate_tensor(A, w, c);
@@ -14357,7 +14275,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((FixedIndex(2),), {})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Product(Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1), Product(FloatValue(0.20000000000000001, (), (), {}), Function(FiniteElement('Lagrange', Cell('triangle', 1), 1), 1)))), MultiIndex((Index(2),), {Index(2): 2})), ListTensor(Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1), 1)], **{'value_shape': (3,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})))), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((FixedIndex(2),), {})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Product(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Product(FloatValue(0.20000000000000001, (), (), {}), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1)))), MultiIndex((Index(2),), {Index(2): 2})), ListTensor(Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), Indexed(BasisFunction(MixedElement(*[VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (3,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})))), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
