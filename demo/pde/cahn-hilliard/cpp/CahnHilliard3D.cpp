@@ -9833,13 +9833,13 @@ unsigned int cahnhilliard3d_form_0::num_cell_integrals() const
 {
     return 1;
 }
-  
+
 /// Return the number of exterior facet integrals
 unsigned int cahnhilliard3d_form_0::num_exterior_facet_integrals() const
 {
     return 0;
 }
-  
+
 /// Return the number of interior facet integrals
 unsigned int cahnhilliard3d_form_0::num_interior_facet_integrals() const
 {
@@ -19741,13 +19741,13 @@ unsigned int cahnhilliard3d_form_1::num_cell_integrals() const
 {
     return 1;
 }
-  
+
 /// Return the number of exterior facet integrals
 unsigned int cahnhilliard3d_form_1::num_exterior_facet_integrals() const
 {
     return 0;
 }
-  
+
 /// Return the number of interior facet integrals
 unsigned int cahnhilliard3d_form_1::num_interior_facet_integrals() const
 {
