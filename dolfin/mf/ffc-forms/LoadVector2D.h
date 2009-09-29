@@ -1387,100 +1387,17 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Function.h>
 #include <dolfin/function/Coefficient.h>
+#include <dolfin/function/CoefficientAssigner.h>
 
 namespace LoadVector2D
 {
-
-class CoefficientReference
-{
-public:
-  
-  CoefficientReference(const std::string & name):
-    _name(name)
-  {}
-  
-  ~CoefficientReference()
-  {}
-
-  CoefficientReference& operator=(dolfin::Function & f)
-  {
-    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
-    return *this;
-  }
-  
-  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
-  {
-    _function_pointer = f;
-    return *this;
-  }
-
-  std::string name() const
-  {
-    return _name;
-  }
-
-  dolfin::Function & function() const
-  {
-    return *_function_pointer;
-  }
-
-  boost::shared_ptr<dolfin::Function> function_pointer() const
-  {
-    return _function_pointer;
-  }
-
-private:
-
-  boost::shared_ptr<dolfin::Function> _function_pointer;
-  std::string _name;
-
-};
-
-class CoefficientSet
-{
-public:
-
-  CoefficientSet():
-    c("c")
-  {}
-  
-  ~CoefficientSet()
-  {}
-
-  dolfin::uint num_coefficients() const
-  {
-    return 1;
-  }
-
-  std::string name(dolfin::uint i) const
-  {
-    switch(i)
-    {
-    case 0: return "c";
-    default:
-        throw std::runtime_error("Invalid coefficient number.");
-    }
-  }
-
-  void disp() const
-  {
-    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
-    {
-        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
-    }
-  }
-
-  CoefficientReference c;
-};
 
 class CoefficientSpace_c: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_c(const dolfin::Mesh & mesh):
+  CoefficientSpace_c(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new loadvector2d_0_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new loadvector2d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1488,7 +1405,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_c(dolfin::Mesh & mesh):
+  CoefficientSpace_c(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new loadvector2d_0_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new loadvector2d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1511,20 +1428,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_c()
   {
   }
-  
+
 };
 
 class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new loadvector2d_0_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new loadvector2d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1532,7 +1448,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new loadvector2d_0_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new loadvector2d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1555,152 +1471,78 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_0()
   {
   }
-  
+
 };
 
 typedef CoefficientSpace_c Form_0_FunctionSpace_1;
-
-class Form_0_Coefficient_c: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_c(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_c()
-  {}
-
-  const Form_0_Coefficient_c& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_c& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_1(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 0;
-  }
-
-  std::string name() const
-  {
-    return "c";
-  }
-
-};
 
 class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0):
-    dolfin::Form(1, 1), c(*this)
+  Form_0(const dolfin::FunctionSpace& V0):
+    dolfin::Form(1, 1), c(*this, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 1), c(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::Coefficient& c):
+    dolfin::Form(1, 1), c(*this, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _function_spaces[0] = _pV0;
-
-    update_coefficients(coefficients);
+    this->c = c;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, dolfin::Function & _c):
-    dolfin::Form(1, 1), c(*this)
+  Form_0(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::Coefficient> c):
+    dolfin::Form(1, 1), c(*this, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _function_spaces[0] = _pV0;
-
-    boost::shared_ptr<dolfin::Function> _pc = dolfin::reference_to_no_delete_pointer(_c);
-
-    c = _pc;
+    this->c = *c;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pc):
-    dolfin::Form(1, 1), c(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(1, 1), c(*this, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-
-    _function_spaces[0] = _pV0;
-
-    c = _pc;
+    _function_spaces[0] = V0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
-    dolfin::Form(1, 1), c(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::Coefficient& c):
+    dolfin::Form(1, 1), c(*this, 0)
   {
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = V0;
+
+    this->c = c;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 1), c(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::Coefficient> c):
+    dolfin::Form(1, 1), c(*this, 0)
   {
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = V0;
 
-    update_coefficients(coefficients);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _c):
-    dolfin::Form(1, 1), c(*this)
-  {
-    _function_spaces[0] = _pV0;
-
-    boost::shared_ptr<dolfin::Function> _pc = dolfin::reference_to_no_delete_pointer(_c);
-
-    c = _pc;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pc):
-    dolfin::Form(1, 1), c(*this)
-  {
-    _function_spaces[0] = _pV0;
-
-    c = _pc;
+    this->c = *c;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new loadvector2d_form_0());
   }
@@ -1709,26 +1551,25 @@ public:
   ~Form_0()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-    c = coefficients.c.function_pointer();
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if(name == "c") return 0;
+    if (name == "c")
+      return 0;
+
     dolfin::error("Invalid coefficient.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch(i)
+    switch (i)
     {
-      case 0: return "c";
+    case 0:
+      return "c";
     }
+
     dolfin::error("Invalid coefficient.");
     return "unnamed";
   }
@@ -1738,7 +1579,7 @@ public:
   typedef Form_0_FunctionSpace_1 CoefficientSpace_c;
 
   // Coefficients
-  Form_0_Coefficient_c c;
+  dolfin::CoefficientAssigner c;
 };
 
 // Class typedefs
