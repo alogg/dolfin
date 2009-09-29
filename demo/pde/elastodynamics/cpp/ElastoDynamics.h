@@ -28549,128 +28549,17 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Function.h>
 #include <dolfin/function/Coefficient.h>
+#include <dolfin/function/CoefficientAssigner.h>
 
 namespace ElastoDynamics
 {
-
-class CoefficientReference
-{
-public:
-  
-  CoefficientReference(const std::string & name):
-    _name(name)
-  {}
-  
-  ~CoefficientReference()
-  {}
-
-  CoefficientReference& operator=(dolfin::Function & f)
-  {
-    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
-    return *this;
-  }
-  
-  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
-  {
-    _function_pointer = f;
-    return *this;
-  }
-
-  std::string name() const
-  {
-    return _name;
-  }
-
-  dolfin::Function & function() const
-  {
-    return *_function_pointer;
-  }
-
-  boost::shared_ptr<dolfin::Function> function_pointer() const
-  {
-    return _function_pointer;
-  }
-
-private:
-
-  boost::shared_ptr<dolfin::Function> _function_pointer;
-  std::string _name;
-
-};
-
-class CoefficientSet
-{
-public:
-
-  CoefficientSet():
-    a0("a0"), alpha_f("alpha_f"), alpha_m("alpha_m"), beta("beta"), dt("dt"), eta("eta"), f("f"), gamma("gamma"), lmbda("lmbda"), mu("mu"), p("p"), p0("p0"), rho("rho"), u0("u0"), v0("v0")
-  {}
-  
-  ~CoefficientSet()
-  {}
-
-  dolfin::uint num_coefficients() const
-  {
-    return 15;
-  }
-
-  std::string name(dolfin::uint i) const
-  {
-    switch(i)
-    {
-    case 0: return "a0";
-    case 1: return "alpha_f";
-    case 2: return "alpha_m";
-    case 3: return "beta";
-    case 4: return "dt";
-    case 5: return "eta";
-    case 6: return "f";
-    case 7: return "gamma";
-    case 8: return "lmbda";
-    case 9: return "mu";
-    case 10: return "p";
-    case 11: return "p0";
-    case 12: return "rho";
-    case 13: return "u0";
-    case 14: return "v0";
-    default:
-        throw std::runtime_error("Invalid coefficient number.");
-    }
-  }
-
-  void disp() const
-  {
-    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
-    {
-        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
-    }
-  }
-
-  CoefficientReference a0;
-  CoefficientReference alpha_f;
-  CoefficientReference alpha_m;
-  CoefficientReference beta;
-  CoefficientReference dt;
-  CoefficientReference eta;
-  CoefficientReference f;
-  CoefficientReference gamma;
-  CoefficientReference lmbda;
-  CoefficientReference mu;
-  CoefficientReference p;
-  CoefficientReference p0;
-  CoefficientReference rho;
-  CoefficientReference u0;
-  CoefficientReference v0;
-};
 
 class CoefficientSpace_a0: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_a0(const dolfin::Mesh & mesh):
+  CoefficientSpace_a0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_3()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28678,7 +28567,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_a0(dolfin::Mesh & mesh):
+  CoefficientSpace_a0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28701,20 +28590,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_a0()
   {
   }
-  
+
 };
 
 class CoefficientSpace_alpha_f: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_alpha_f(const dolfin::Mesh & mesh):
+  CoefficientSpace_alpha_f(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_12()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_12()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28722,7 +28610,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_alpha_f(dolfin::Mesh & mesh):
+  CoefficientSpace_alpha_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_12()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_12()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28745,20 +28633,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_alpha_f()
   {
   }
-  
+
 };
 
 class CoefficientSpace_alpha_m: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_alpha_m(const dolfin::Mesh & mesh):
+  CoefficientSpace_alpha_m(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_11()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_11()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28766,7 +28653,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_alpha_m(dolfin::Mesh & mesh):
+  CoefficientSpace_alpha_m(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_11()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_11()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28789,20 +28676,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_alpha_m()
   {
   }
-  
+
 };
 
 class CoefficientSpace_beta: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_beta(const dolfin::Mesh & mesh):
+  CoefficientSpace_beta(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_13()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_13()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28810,7 +28696,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_beta(dolfin::Mesh & mesh):
+  CoefficientSpace_beta(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_13()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_13()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28833,20 +28719,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_beta()
   {
   }
-  
+
 };
 
 class CoefficientSpace_dt: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_dt(const dolfin::Mesh & mesh):
+  CoefficientSpace_dt(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_15()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_15()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28854,7 +28739,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_dt(dolfin::Mesh & mesh):
+  CoefficientSpace_dt(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_15()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_15()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28877,20 +28762,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_dt()
   {
   }
-  
+
 };
 
 class CoefficientSpace_eta: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_eta(const dolfin::Mesh & mesh):
+  CoefficientSpace_eta(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_8()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_8()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28898,7 +28782,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_eta(dolfin::Mesh & mesh):
+  CoefficientSpace_eta(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_8()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_8()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28921,20 +28805,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_eta()
   {
   }
-  
+
 };
 
 class CoefficientSpace_f: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_f(const dolfin::Mesh & mesh):
+  CoefficientSpace_f(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_5()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28942,7 +28825,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_f(dolfin::Mesh & mesh):
+  CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_5()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28965,20 +28848,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_f()
   {
   }
-  
+
 };
 
 class CoefficientSpace_gamma: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_gamma(const dolfin::Mesh & mesh):
+  CoefficientSpace_gamma(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_14()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_14()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28986,7 +28868,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_gamma(dolfin::Mesh & mesh):
+  CoefficientSpace_gamma(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_14()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_14()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29009,20 +28891,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_gamma()
   {
   }
-  
+
 };
 
 class CoefficientSpace_lmbda: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_lmbda(const dolfin::Mesh & mesh):
+  CoefficientSpace_lmbda(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_9()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_9()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29030,7 +28911,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_lmbda(dolfin::Mesh & mesh):
+  CoefficientSpace_lmbda(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_9()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_9()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29053,20 +28934,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_lmbda()
   {
   }
-  
+
 };
 
 class CoefficientSpace_mu: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_mu(const dolfin::Mesh & mesh):
+  CoefficientSpace_mu(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_10()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_10()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29074,7 +28954,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_mu(dolfin::Mesh & mesh):
+  CoefficientSpace_mu(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_10()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_10()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29097,20 +28977,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_mu()
   {
   }
-  
+
 };
 
 class CoefficientSpace_p: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_p(const dolfin::Mesh & mesh):
+  CoefficientSpace_p(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_6()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29118,7 +28997,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_p(dolfin::Mesh & mesh):
+  CoefficientSpace_p(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_6()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_6()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29141,20 +29020,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_p()
   {
   }
-  
+
 };
 
 class CoefficientSpace_p0: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_p0(const dolfin::Mesh & mesh):
+  CoefficientSpace_p0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_4()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29162,7 +29040,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_p0(dolfin::Mesh & mesh):
+  CoefficientSpace_p0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_4()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29185,20 +29063,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_p0()
   {
   }
-  
+
 };
 
 class CoefficientSpace_rho: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_rho(const dolfin::Mesh & mesh):
+  CoefficientSpace_rho(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_7()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_7()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29206,7 +29083,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_rho(dolfin::Mesh & mesh):
+  CoefficientSpace_rho(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_7()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_7()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29229,20 +29106,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_rho()
   {
   }
-  
+
 };
 
 class CoefficientSpace_u0: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_u0(const dolfin::Mesh & mesh):
+  CoefficientSpace_u0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29250,7 +29126,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_u0(dolfin::Mesh & mesh):
+  CoefficientSpace_u0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29273,20 +29149,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_u0()
   {
   }
-  
+
 };
 
 class CoefficientSpace_v0: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_v0(const dolfin::Mesh & mesh):
+  CoefficientSpace_v0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29294,7 +29169,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_v0(dolfin::Mesh & mesh):
+  CoefficientSpace_v0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_2()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29317,20 +29192,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_v0()
   {
   }
-  
+
 };
 
 class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29338,7 +29212,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29361,20 +29235,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_0()
   {
   }
-  
+
 };
 
 class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29382,7 +29255,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_0_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -29405,12 +29278,12 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_1()
   {
   }
-  
+
 };
 
 typedef CoefficientSpace_rho Form_0_FunctionSpace_2;
@@ -29431,522 +29304,106 @@ typedef CoefficientSpace_gamma Form_0_FunctionSpace_9;
 
 typedef CoefficientSpace_dt Form_0_FunctionSpace_10;
 
-class Form_0_Coefficient_rho: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_rho(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_rho()
-  {}
-
-  const Form_0_Coefficient_rho& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_rho& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_2(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 0;
-  }
-
-  std::string name() const
-  {
-    return "rho";
-  }
-
-};
-
-class Form_0_Coefficient_eta: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_eta(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_eta()
-  {}
-
-  const Form_0_Coefficient_eta& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_eta& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_3(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 1;
-  }
-
-  std::string name() const
-  {
-    return "eta";
-  }
-
-};
-
-class Form_0_Coefficient_lmbda: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_lmbda(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_lmbda()
-  {}
-
-  const Form_0_Coefficient_lmbda& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_4(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 2;
-  }
-
-  std::string name() const
-  {
-    return "lmbda";
-  }
-
-};
-
-class Form_0_Coefficient_mu: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_mu(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_mu()
-  {}
-
-  const Form_0_Coefficient_mu& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_mu& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_5(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 3;
-  }
-
-  std::string name() const
-  {
-    return "mu";
-  }
-
-};
-
-class Form_0_Coefficient_alpha_m: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_alpha_m(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_alpha_m()
-  {}
-
-  const Form_0_Coefficient_alpha_m& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_alpha_m& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_6(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 4;
-  }
-
-  std::string name() const
-  {
-    return "alpha_m";
-  }
-
-};
-
-class Form_0_Coefficient_alpha_f: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_alpha_f(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_alpha_f()
-  {}
-
-  const Form_0_Coefficient_alpha_f& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_alpha_f& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_7(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 5;
-  }
-
-  std::string name() const
-  {
-    return "alpha_f";
-  }
-
-};
-
-class Form_0_Coefficient_beta: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_beta(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_beta()
-  {}
-
-  const Form_0_Coefficient_beta& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_beta& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_8(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 6;
-  }
-
-  std::string name() const
-  {
-    return "beta";
-  }
-
-};
-
-class Form_0_Coefficient_gamma: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_gamma(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_gamma()
-  {}
-
-  const Form_0_Coefficient_gamma& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_gamma& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_9(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 7;
-  }
-
-  std::string name() const
-  {
-    return "gamma";
-  }
-
-};
-
-class Form_0_Coefficient_dt: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_dt(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_dt()
-  {}
-
-  const Form_0_Coefficient_dt& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_dt& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_10(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 8;
-  }
-
-  std::string name() const
-  {
-    return "dt";
-  }
-
-};
-
 class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1):
+    dolfin::Form(2, 9), rho(*this, 0), eta(*this, 1), lmbda(*this, 2), mu(*this, 3), alpha_m(*this, 4), alpha_f(*this, 5), beta(*this, 6), gamma(*this, 7), dt(*this, 8)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
-
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::Coefficient& rho, const dolfin::Coefficient& eta, const dolfin::Coefficient& lmbda, const dolfin::Coefficient& mu, const dolfin::Coefficient& alpha_m, const dolfin::Coefficient& alpha_f, const dolfin::Coefficient& beta, const dolfin::Coefficient& gamma, const dolfin::Coefficient& dt):
+    dolfin::Form(2, 9), rho(*this, 0), eta(*this, 1), lmbda(*this, 2), mu(*this, 3), alpha_m(*this, 4), alpha_f(*this, 5), beta(*this, 6), gamma(*this, 7), dt(*this, 8)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    update_coefficients(coefficients);
+    this->rho = rho;
+    this->eta = eta;
+    this->lmbda = lmbda;
+    this->mu = mu;
+    this->alpha_m = alpha_m;
+    this->alpha_f = alpha_f;
+    this->beta = beta;
+    this->gamma = gamma;
+    this->dt = dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::Coefficient> rho, boost::shared_ptr<const dolfin::Coefficient> eta, boost::shared_ptr<const dolfin::Coefficient> lmbda, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> alpha_m, boost::shared_ptr<const dolfin::Coefficient> alpha_f, boost::shared_ptr<const dolfin::Coefficient> beta, boost::shared_ptr<const dolfin::Coefficient> gamma, boost::shared_ptr<const dolfin::Coefficient> dt):
+    dolfin::Form(2, 9), rho(*this, 0), eta(*this, 1), lmbda(*this, 2), mu(*this, 3), alpha_m(*this, 4), alpha_f(*this, 5), beta(*this, 6), gamma(*this, 7), dt(*this, 8)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
-    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
-    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
-    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
-    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
-    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
-
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
+    this->rho = *rho;
+    this->eta = *eta;
+    this->lmbda = *lmbda;
+    this->mu = *mu;
+    this->alpha_m = *alpha_m;
+    this->alpha_f = *alpha_f;
+    this->beta = *beta;
+    this->gamma = *gamma;
+    this->dt = *dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1):
+    dolfin::Form(2, 9), rho(*this, 0), eta(*this, 1), lmbda(*this, 2), mu(*this, 3), alpha_m(*this, 4), alpha_f(*this, 5), beta(*this, 6), gamma(*this, 7), dt(*this, 8)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
-
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::Coefficient& rho, const dolfin::Coefficient& eta, const dolfin::Coefficient& lmbda, const dolfin::Coefficient& mu, const dolfin::Coefficient& alpha_m, const dolfin::Coefficient& alpha_f, const dolfin::Coefficient& beta, const dolfin::Coefficient& gamma, const dolfin::Coefficient& dt):
+    dolfin::Form(2, 9), rho(*this, 0), eta(*this, 1), lmbda(*this, 2), mu(*this, 3), alpha_m(*this, 4), alpha_f(*this, 5), beta(*this, 6), gamma(*this, 7), dt(*this, 8)
   {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
+
+    this->rho = rho;
+    this->eta = eta;
+    this->lmbda = lmbda;
+    this->mu = mu;
+    this->alpha_m = alpha_m;
+    this->alpha_f = alpha_f;
+    this->beta = beta;
+    this->gamma = gamma;
+    this->dt = dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::Coefficient> rho, boost::shared_ptr<const dolfin::Coefficient> eta, boost::shared_ptr<const dolfin::Coefficient> lmbda, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> alpha_m, boost::shared_ptr<const dolfin::Coefficient> alpha_f, boost::shared_ptr<const dolfin::Coefficient> beta, boost::shared_ptr<const dolfin::Coefficient> gamma, boost::shared_ptr<const dolfin::Coefficient> dt):
+    dolfin::Form(2, 9), rho(*this, 0), eta(*this, 1), lmbda(*this, 2), mu(*this, 3), alpha_m(*this, 4), alpha_f(*this, 5), beta(*this, 6), gamma(*this, 7), dt(*this, 8)
   {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
-    update_coefficients(coefficients);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
-    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
-    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
-    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
-    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
-    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
-
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
-    dolfin::Form(2, 9), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
+    this->rho = *rho;
+    this->eta = *eta;
+    this->lmbda = *lmbda;
+    this->mu = *mu;
+    this->alpha_m = *alpha_m;
+    this->alpha_f = *alpha_f;
+    this->beta = *beta;
+    this->gamma = *gamma;
+    this->dt = *dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_0());
   }
@@ -29955,50 +29412,57 @@ public:
   ~Form_0()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-    rho = coefficients.rho.function_pointer();
-    eta = coefficients.eta.function_pointer();
-    lmbda = coefficients.lmbda.function_pointer();
-    mu = coefficients.mu.function_pointer();
-    alpha_m = coefficients.alpha_m.function_pointer();
-    alpha_f = coefficients.alpha_f.function_pointer();
-    beta = coefficients.beta.function_pointer();
-    gamma = coefficients.gamma.function_pointer();
-    dt = coefficients.dt.function_pointer();
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if(name == "rho") return 0;
-    else if(name == "eta") return 1;
-    else if(name == "lmbda") return 2;
-    else if(name == "mu") return 3;
-    else if(name == "alpha_m") return 4;
-    else if(name == "alpha_f") return 5;
-    else if(name == "beta") return 6;
-    else if(name == "gamma") return 7;
-    else if(name == "dt") return 8;
+    if (name == "rho")
+      return 0;
+    else if (name == "eta")
+      return 1;
+    else if (name == "lmbda")
+      return 2;
+    else if (name == "mu")
+      return 3;
+    else if (name == "alpha_m")
+      return 4;
+    else if (name == "alpha_f")
+      return 5;
+    else if (name == "beta")
+      return 6;
+    else if (name == "gamma")
+      return 7;
+    else if (name == "dt")
+      return 8;
+
     dolfin::error("Invalid coefficient.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch(i)
+    switch (i)
     {
-      case 0: return "rho";
-      case 1: return "eta";
-      case 2: return "lmbda";
-      case 3: return "mu";
-      case 4: return "alpha_m";
-      case 5: return "alpha_f";
-      case 6: return "beta";
-      case 7: return "gamma";
-      case 8: return "dt";
+    case 0:
+      return "rho";
+    case 1:
+      return "eta";
+    case 2:
+      return "lmbda";
+    case 3:
+      return "mu";
+    case 4:
+      return "alpha_m";
+    case 5:
+      return "alpha_f";
+    case 6:
+      return "beta";
+    case 7:
+      return "gamma";
+    case 8:
+      return "dt";
     }
+
     dolfin::error("Invalid coefficient.");
     return "unnamed";
   }
@@ -30017,23 +29481,22 @@ public:
   typedef Form_0_FunctionSpace_10 CoefficientSpace_dt;
 
   // Coefficients
-  Form_0_Coefficient_rho rho;
-  Form_0_Coefficient_eta eta;
-  Form_0_Coefficient_lmbda lmbda;
-  Form_0_Coefficient_mu mu;
-  Form_0_Coefficient_alpha_m alpha_m;
-  Form_0_Coefficient_alpha_f alpha_f;
-  Form_0_Coefficient_beta beta;
-  Form_0_Coefficient_gamma gamma;
-  Form_0_Coefficient_dt dt;
+  dolfin::CoefficientAssigner rho;
+  dolfin::CoefficientAssigner eta;
+  dolfin::CoefficientAssigner lmbda;
+  dolfin::CoefficientAssigner mu;
+  dolfin::CoefficientAssigner alpha_m;
+  dolfin::CoefficientAssigner alpha_f;
+  dolfin::CoefficientAssigner beta;
+  dolfin::CoefficientAssigner gamma;
+  dolfin::CoefficientAssigner dt;
 };
 
 class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+  Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -30041,7 +29504,7 @@ public:
     // Do nothing
   }
 
-  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+  Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_1_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -30064,12 +29527,12 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_1_FunctionSpace_0()
   {
   }
-  
+
 };
 
 typedef CoefficientSpace_u0 Form_1_FunctionSpace_1;
@@ -30102,786 +29565,124 @@ typedef CoefficientSpace_gamma Form_1_FunctionSpace_14;
 
 typedef CoefficientSpace_dt Form_1_FunctionSpace_15;
 
-class Form_1_Coefficient_u0: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_u0(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_u0()
-  {}
-
-  const Form_1_Coefficient_u0& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_u0& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_1(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 0;
-  }
-
-  std::string name() const
-  {
-    return "u0";
-  }
-
-};
-
-class Form_1_Coefficient_v0: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_v0(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_v0()
-  {}
-
-  const Form_1_Coefficient_v0& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_v0& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_2(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 1;
-  }
-
-  std::string name() const
-  {
-    return "v0";
-  }
-
-};
-
-class Form_1_Coefficient_a0: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_a0(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_a0()
-  {}
-
-  const Form_1_Coefficient_a0& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_a0& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_3(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 2;
-  }
-
-  std::string name() const
-  {
-    return "a0";
-  }
-
-};
-
-class Form_1_Coefficient_p0: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_p0(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_p0()
-  {}
-
-  const Form_1_Coefficient_p0& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_p0& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_4(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 3;
-  }
-
-  std::string name() const
-  {
-    return "p0";
-  }
-
-};
-
-class Form_1_Coefficient_f: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_f(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_f()
-  {}
-
-  const Form_1_Coefficient_f& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_f& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_5(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 4;
-  }
-
-  std::string name() const
-  {
-    return "f";
-  }
-
-};
-
-class Form_1_Coefficient_p: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_p(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_p()
-  {}
-
-  const Form_1_Coefficient_p& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_p& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_6(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 5;
-  }
-
-  std::string name() const
-  {
-    return "p";
-  }
-
-};
-
-class Form_1_Coefficient_rho: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_rho(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_rho()
-  {}
-
-  const Form_1_Coefficient_rho& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_rho& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_7(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 6;
-  }
-
-  std::string name() const
-  {
-    return "rho";
-  }
-
-};
-
-class Form_1_Coefficient_eta: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_eta(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_eta()
-  {}
-
-  const Form_1_Coefficient_eta& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_eta& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_8(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 7;
-  }
-
-  std::string name() const
-  {
-    return "eta";
-  }
-
-};
-
-class Form_1_Coefficient_lmbda: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_lmbda(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_lmbda()
-  {}
-
-  const Form_1_Coefficient_lmbda& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_9(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 8;
-  }
-
-  std::string name() const
-  {
-    return "lmbda";
-  }
-
-};
-
-class Form_1_Coefficient_mu: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_mu(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_mu()
-  {}
-
-  const Form_1_Coefficient_mu& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_mu& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_10(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 9;
-  }
-
-  std::string name() const
-  {
-    return "mu";
-  }
-
-};
-
-class Form_1_Coefficient_alpha_m: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_alpha_m(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_alpha_m()
-  {}
-
-  const Form_1_Coefficient_alpha_m& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_alpha_m& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_11(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 10;
-  }
-
-  std::string name() const
-  {
-    return "alpha_m";
-  }
-
-};
-
-class Form_1_Coefficient_alpha_f: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_alpha_f(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_alpha_f()
-  {}
-
-  const Form_1_Coefficient_alpha_f& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_alpha_f& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_12(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 11;
-  }
-
-  std::string name() const
-  {
-    return "alpha_f";
-  }
-
-};
-
-class Form_1_Coefficient_beta: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_beta(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_beta()
-  {}
-
-  const Form_1_Coefficient_beta& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_beta& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_13(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 12;
-  }
-
-  std::string name() const
-  {
-    return "beta";
-  }
-
-};
-
-class Form_1_Coefficient_gamma: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_gamma(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_gamma()
-  {}
-
-  const Form_1_Coefficient_gamma& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_gamma& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_14(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 13;
-  }
-
-  std::string name() const
-  {
-    return "gamma";
-  }
-
-};
-
-class Form_1_Coefficient_dt: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_dt(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_dt()
-  {}
-
-  const Form_1_Coefficient_dt& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_dt& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_15(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 14;
-  }
-
-  std::string name() const
-  {
-    return "dt";
-  }
-
-};
-
 class Form_1: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_1(const dolfin::FunctionSpace& V0):
+    dolfin::Form(1, 15), u0(*this, 0), v0(*this, 1), a0(*this, 2), p0(*this, 3), f(*this, 4), p(*this, 5), rho(*this, 6), eta(*this, 7), lmbda(*this, 8), mu(*this, 9), alpha_m(*this, 10), alpha_f(*this, 11), beta(*this, 12), gamma(*this, 13), dt(*this, 14)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_1(const dolfin::FunctionSpace& V0, const dolfin::Coefficient& u0, const dolfin::Coefficient& v0, const dolfin::Coefficient& a0, const dolfin::Coefficient& p0, const dolfin::Coefficient& f, const dolfin::Coefficient& p, const dolfin::Coefficient& rho, const dolfin::Coefficient& eta, const dolfin::Coefficient& lmbda, const dolfin::Coefficient& mu, const dolfin::Coefficient& alpha_m, const dolfin::Coefficient& alpha_f, const dolfin::Coefficient& beta, const dolfin::Coefficient& gamma, const dolfin::Coefficient& dt):
+    dolfin::Form(1, 15), u0(*this, 0), v0(*this, 1), a0(*this, 2), p0(*this, 3), f(*this, 4), p(*this, 5), rho(*this, 6), eta(*this, 7), lmbda(*this, 8), mu(*this, 9), alpha_m(*this, 10), alpha_f(*this, 11), beta(*this, 12), gamma(*this, 13), dt(*this, 14)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _function_spaces[0] = _pV0;
-
-    update_coefficients(coefficients);
+    this->u0 = u0;
+    this->v0 = v0;
+    this->a0 = a0;
+    this->p0 = p0;
+    this->f = f;
+    this->p = p;
+    this->rho = rho;
+    this->eta = eta;
+    this->lmbda = lmbda;
+    this->mu = mu;
+    this->alpha_m = alpha_m;
+    this->alpha_f = alpha_f;
+    this->beta = beta;
+    this->gamma = gamma;
+    this->dt = dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _u0, dolfin::Function & _v0, dolfin::Function & _a0, dolfin::Function & _p0, dolfin::Function & _f, dolfin::Function & _p, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::Coefficient> u0, boost::shared_ptr<const dolfin::Coefficient> v0, boost::shared_ptr<const dolfin::Coefficient> a0, boost::shared_ptr<const dolfin::Coefficient> p0, boost::shared_ptr<const dolfin::Coefficient> f, boost::shared_ptr<const dolfin::Coefficient> p, boost::shared_ptr<const dolfin::Coefficient> rho, boost::shared_ptr<const dolfin::Coefficient> eta, boost::shared_ptr<const dolfin::Coefficient> lmbda, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> alpha_m, boost::shared_ptr<const dolfin::Coefficient> alpha_f, boost::shared_ptr<const dolfin::Coefficient> beta, boost::shared_ptr<const dolfin::Coefficient> gamma, boost::shared_ptr<const dolfin::Coefficient> dt):
+    dolfin::Form(1, 15), u0(*this, 0), v0(*this, 1), a0(*this, 2), p0(*this, 3), f(*this, 4), p(*this, 5), rho(*this, 6), eta(*this, 7), lmbda(*this, 8), mu(*this, 9), alpha_m(*this, 10), alpha_f(*this, 11), beta(*this, 12), gamma(*this, 13), dt(*this, 14)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _function_spaces[0] = _pV0;
-
-    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
-    boost::shared_ptr<dolfin::Function> _pv0 = dolfin::reference_to_no_delete_pointer(_v0);
-    boost::shared_ptr<dolfin::Function> _pa0 = dolfin::reference_to_no_delete_pointer(_a0);
-    boost::shared_ptr<dolfin::Function> _pp0 = dolfin::reference_to_no_delete_pointer(_p0);
-    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
-    boost::shared_ptr<dolfin::Function> _pp = dolfin::reference_to_no_delete_pointer(_p);
-    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
-    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
-    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
-    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
-    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
-    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
-
-    u0 = _pu0;
-    v0 = _pv0;
-    a0 = _pa0;
-    p0 = _pp0;
-    f = _pf;
-    p = _pp;
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
+    this->u0 = *u0;
+    this->v0 = *v0;
+    this->a0 = *a0;
+    this->p0 = *p0;
+    this->f = *f;
+    this->p = *p;
+    this->rho = *rho;
+    this->eta = *eta;
+    this->lmbda = *lmbda;
+    this->mu = *mu;
+    this->alpha_m = *alpha_m;
+    this->alpha_f = *alpha_f;
+    this->beta = *beta;
+    this->gamma = *gamma;
+    this->dt = *dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pu0, boost::shared_ptr<dolfin::Function> _pv0, boost::shared_ptr<dolfin::Function> _pa0, boost::shared_ptr<dolfin::Function> _pp0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pp, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(1, 15), u0(*this, 0), v0(*this, 1), a0(*this, 2), p0(*this, 3), f(*this, 4), p(*this, 5), rho(*this, 6), eta(*this, 7), lmbda(*this, 8), mu(*this, 9), alpha_m(*this, 10), alpha_f(*this, 11), beta(*this, 12), gamma(*this, 13), dt(*this, 14)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-
-    _function_spaces[0] = _pV0;
-
-    u0 = _pu0;
-    v0 = _pv0;
-    a0 = _pa0;
-    p0 = _pp0;
-    f = _pf;
-    p = _pp;
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
+    _function_spaces[0] = V0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::Coefficient& u0, const dolfin::Coefficient& v0, const dolfin::Coefficient& a0, const dolfin::Coefficient& p0, const dolfin::Coefficient& f, const dolfin::Coefficient& p, const dolfin::Coefficient& rho, const dolfin::Coefficient& eta, const dolfin::Coefficient& lmbda, const dolfin::Coefficient& mu, const dolfin::Coefficient& alpha_m, const dolfin::Coefficient& alpha_f, const dolfin::Coefficient& beta, const dolfin::Coefficient& gamma, const dolfin::Coefficient& dt):
+    dolfin::Form(1, 15), u0(*this, 0), v0(*this, 1), a0(*this, 2), p0(*this, 3), f(*this, 4), p(*this, 5), rho(*this, 6), eta(*this, 7), lmbda(*this, 8), mu(*this, 9), alpha_m(*this, 10), alpha_f(*this, 11), beta(*this, 12), gamma(*this, 13), dt(*this, 14)
   {
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = V0;
+
+    this->u0 = u0;
+    this->v0 = v0;
+    this->a0 = a0;
+    this->p0 = p0;
+    this->f = f;
+    this->p = p;
+    this->rho = rho;
+    this->eta = eta;
+    this->lmbda = lmbda;
+    this->mu = mu;
+    this->alpha_m = alpha_m;
+    this->alpha_f = alpha_f;
+    this->beta = beta;
+    this->gamma = gamma;
+    this->dt = dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::Coefficient> u0, boost::shared_ptr<const dolfin::Coefficient> v0, boost::shared_ptr<const dolfin::Coefficient> a0, boost::shared_ptr<const dolfin::Coefficient> p0, boost::shared_ptr<const dolfin::Coefficient> f, boost::shared_ptr<const dolfin::Coefficient> p, boost::shared_ptr<const dolfin::Coefficient> rho, boost::shared_ptr<const dolfin::Coefficient> eta, boost::shared_ptr<const dolfin::Coefficient> lmbda, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> alpha_m, boost::shared_ptr<const dolfin::Coefficient> alpha_f, boost::shared_ptr<const dolfin::Coefficient> beta, boost::shared_ptr<const dolfin::Coefficient> gamma, boost::shared_ptr<const dolfin::Coefficient> dt):
+    dolfin::Form(1, 15), u0(*this, 0), v0(*this, 1), a0(*this, 2), p0(*this, 3), f(*this, 4), p(*this, 5), rho(*this, 6), eta(*this, 7), lmbda(*this, 8), mu(*this, 9), alpha_m(*this, 10), alpha_f(*this, 11), beta(*this, 12), gamma(*this, 13), dt(*this, 14)
   {
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = V0;
 
-    update_coefficients(coefficients);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
-  }
-
-  // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _u0, dolfin::Function & _v0, dolfin::Function & _a0, dolfin::Function & _p0, dolfin::Function & _f, dolfin::Function & _p, dolfin::Function & _rho, dolfin::Function & _eta, dolfin::Function & _lmbda, dolfin::Function & _mu, dolfin::Function & _alpha_m, dolfin::Function & _alpha_f, dolfin::Function & _beta, dolfin::Function & _gamma, dolfin::Function & _dt):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    _function_spaces[0] = _pV0;
-
-    boost::shared_ptr<dolfin::Function> _pu0 = dolfin::reference_to_no_delete_pointer(_u0);
-    boost::shared_ptr<dolfin::Function> _pv0 = dolfin::reference_to_no_delete_pointer(_v0);
-    boost::shared_ptr<dolfin::Function> _pa0 = dolfin::reference_to_no_delete_pointer(_a0);
-    boost::shared_ptr<dolfin::Function> _pp0 = dolfin::reference_to_no_delete_pointer(_p0);
-    boost::shared_ptr<dolfin::Function> _pf = dolfin::reference_to_no_delete_pointer(_f);
-    boost::shared_ptr<dolfin::Function> _pp = dolfin::reference_to_no_delete_pointer(_p);
-    boost::shared_ptr<dolfin::Function> _prho = dolfin::reference_to_no_delete_pointer(_rho);
-    boost::shared_ptr<dolfin::Function> _peta = dolfin::reference_to_no_delete_pointer(_eta);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _palpha_m = dolfin::reference_to_no_delete_pointer(_alpha_m);
-    boost::shared_ptr<dolfin::Function> _palpha_f = dolfin::reference_to_no_delete_pointer(_alpha_f);
-    boost::shared_ptr<dolfin::Function> _pbeta = dolfin::reference_to_no_delete_pointer(_beta);
-    boost::shared_ptr<dolfin::Function> _pgamma = dolfin::reference_to_no_delete_pointer(_gamma);
-    boost::shared_ptr<dolfin::Function> _pdt = dolfin::reference_to_no_delete_pointer(_dt);
-
-    u0 = _pu0;
-    v0 = _pv0;
-    a0 = _pa0;
-    p0 = _pp0;
-    f = _pf;
-    p = _pp;
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
-  }
-
-  // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pu0, boost::shared_ptr<dolfin::Function> _pv0, boost::shared_ptr<dolfin::Function> _pa0, boost::shared_ptr<dolfin::Function> _pp0, boost::shared_ptr<dolfin::Function> _pf, boost::shared_ptr<dolfin::Function> _pp, boost::shared_ptr<dolfin::Function> _prho, boost::shared_ptr<dolfin::Function> _peta, boost::shared_ptr<dolfin::Function> _plmbda, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _palpha_m, boost::shared_ptr<dolfin::Function> _palpha_f, boost::shared_ptr<dolfin::Function> _pbeta, boost::shared_ptr<dolfin::Function> _pgamma, boost::shared_ptr<dolfin::Function> _pdt):
-    dolfin::Form(1, 15), u0(*this), v0(*this), a0(*this), p0(*this), f(*this), p(*this), rho(*this), eta(*this), lmbda(*this), mu(*this), alpha_m(*this), alpha_f(*this), beta(*this), gamma(*this), dt(*this)
-  {
-    _function_spaces[0] = _pV0;
-
-    u0 = _pu0;
-    v0 = _pv0;
-    a0 = _pa0;
-    p0 = _pp0;
-    f = _pf;
-    p = _pp;
-    rho = _prho;
-    eta = _peta;
-    lmbda = _plmbda;
-    mu = _pmu;
-    alpha_m = _palpha_m;
-    alpha_f = _palpha_f;
-    beta = _pbeta;
-    gamma = _pgamma;
-    dt = _pdt;
+    this->u0 = *u0;
+    this->v0 = *v0;
+    this->a0 = *a0;
+    this->p0 = *p0;
+    this->f = *f;
+    this->p = *p;
+    this->rho = *rho;
+    this->eta = *eta;
+    this->lmbda = *lmbda;
+    this->mu = *mu;
+    this->alpha_m = *alpha_m;
+    this->alpha_f = *alpha_f;
+    this->beta = *beta;
+    this->gamma = *gamma;
+    this->dt = *dt;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new elastodynamics_form_1());
   }
@@ -30890,68 +29691,81 @@ public:
   ~Form_1()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-    u0 = coefficients.u0.function_pointer();
-    v0 = coefficients.v0.function_pointer();
-    a0 = coefficients.a0.function_pointer();
-    p0 = coefficients.p0.function_pointer();
-    f = coefficients.f.function_pointer();
-    p = coefficients.p.function_pointer();
-    rho = coefficients.rho.function_pointer();
-    eta = coefficients.eta.function_pointer();
-    lmbda = coefficients.lmbda.function_pointer();
-    mu = coefficients.mu.function_pointer();
-    alpha_m = coefficients.alpha_m.function_pointer();
-    alpha_f = coefficients.alpha_f.function_pointer();
-    beta = coefficients.beta.function_pointer();
-    gamma = coefficients.gamma.function_pointer();
-    dt = coefficients.dt.function_pointer();
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if(name == "u0") return 0;
-    else if(name == "v0") return 1;
-    else if(name == "a0") return 2;
-    else if(name == "p0") return 3;
-    else if(name == "f") return 4;
-    else if(name == "p") return 5;
-    else if(name == "rho") return 6;
-    else if(name == "eta") return 7;
-    else if(name == "lmbda") return 8;
-    else if(name == "mu") return 9;
-    else if(name == "alpha_m") return 10;
-    else if(name == "alpha_f") return 11;
-    else if(name == "beta") return 12;
-    else if(name == "gamma") return 13;
-    else if(name == "dt") return 14;
+    if (name == "u0")
+      return 0;
+    else if (name == "v0")
+      return 1;
+    else if (name == "a0")
+      return 2;
+    else if (name == "p0")
+      return 3;
+    else if (name == "f")
+      return 4;
+    else if (name == "p")
+      return 5;
+    else if (name == "rho")
+      return 6;
+    else if (name == "eta")
+      return 7;
+    else if (name == "lmbda")
+      return 8;
+    else if (name == "mu")
+      return 9;
+    else if (name == "alpha_m")
+      return 10;
+    else if (name == "alpha_f")
+      return 11;
+    else if (name == "beta")
+      return 12;
+    else if (name == "gamma")
+      return 13;
+    else if (name == "dt")
+      return 14;
+
     dolfin::error("Invalid coefficient.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch(i)
+    switch (i)
     {
-      case 0: return "u0";
-      case 1: return "v0";
-      case 2: return "a0";
-      case 3: return "p0";
-      case 4: return "f";
-      case 5: return "p";
-      case 6: return "rho";
-      case 7: return "eta";
-      case 8: return "lmbda";
-      case 9: return "mu";
-      case 10: return "alpha_m";
-      case 11: return "alpha_f";
-      case 12: return "beta";
-      case 13: return "gamma";
-      case 14: return "dt";
+    case 0:
+      return "u0";
+    case 1:
+      return "v0";
+    case 2:
+      return "a0";
+    case 3:
+      return "p0";
+    case 4:
+      return "f";
+    case 5:
+      return "p";
+    case 6:
+      return "rho";
+    case 7:
+      return "eta";
+    case 8:
+      return "lmbda";
+    case 9:
+      return "mu";
+    case 10:
+      return "alpha_m";
+    case 11:
+      return "alpha_f";
+    case 12:
+      return "beta";
+    case 13:
+      return "gamma";
+    case 14:
+      return "dt";
     }
+
     dolfin::error("Invalid coefficient.");
     return "unnamed";
   }
@@ -30975,21 +29789,21 @@ public:
   typedef Form_1_FunctionSpace_15 CoefficientSpace_dt;
 
   // Coefficients
-  Form_1_Coefficient_u0 u0;
-  Form_1_Coefficient_v0 v0;
-  Form_1_Coefficient_a0 a0;
-  Form_1_Coefficient_p0 p0;
-  Form_1_Coefficient_f f;
-  Form_1_Coefficient_p p;
-  Form_1_Coefficient_rho rho;
-  Form_1_Coefficient_eta eta;
-  Form_1_Coefficient_lmbda lmbda;
-  Form_1_Coefficient_mu mu;
-  Form_1_Coefficient_alpha_m alpha_m;
-  Form_1_Coefficient_alpha_f alpha_f;
-  Form_1_Coefficient_beta beta;
-  Form_1_Coefficient_gamma gamma;
-  Form_1_Coefficient_dt dt;
+  dolfin::CoefficientAssigner u0;
+  dolfin::CoefficientAssigner v0;
+  dolfin::CoefficientAssigner a0;
+  dolfin::CoefficientAssigner p0;
+  dolfin::CoefficientAssigner f;
+  dolfin::CoefficientAssigner p;
+  dolfin::CoefficientAssigner rho;
+  dolfin::CoefficientAssigner eta;
+  dolfin::CoefficientAssigner lmbda;
+  dolfin::CoefficientAssigner mu;
+  dolfin::CoefficientAssigner alpha_m;
+  dolfin::CoefficientAssigner alpha_f;
+  dolfin::CoefficientAssigner beta;
+  dolfin::CoefficientAssigner gamma;
+  dolfin::CoefficientAssigner dt;
 };
 
 // Class typedefs

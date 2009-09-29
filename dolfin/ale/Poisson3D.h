@@ -1741,99 +1741,17 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Function.h>
 #include <dolfin/function/Coefficient.h>
+#include <dolfin/function/CoefficientAssigner.h>
 
 namespace Poisson3D
 {
-
-class CoefficientReference
-{
-public:
-  
-  CoefficientReference(const std::string & name):
-    _name(name)
-  {}
-  
-  ~CoefficientReference()
-  {}
-
-  CoefficientReference& operator=(dolfin::Function & f)
-  {
-    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
-    return *this;
-  }
-  
-  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
-  {
-    _function_pointer = f;
-    return *this;
-  }
-
-  std::string name() const
-  {
-    return _name;
-  }
-
-  dolfin::Function & function() const
-  {
-    return *_function_pointer;
-  }
-
-  boost::shared_ptr<dolfin::Function> function_pointer() const
-  {
-    return _function_pointer;
-  }
-
-private:
-
-  boost::shared_ptr<dolfin::Function> _function_pointer;
-  std::string _name;
-
-};
-
-class CoefficientSet
-{
-public:
-
-  CoefficientSet()
-  {}
-  
-  ~CoefficientSet()
-  {}
-
-  dolfin::uint num_coefficients() const
-  {
-    return 0;
-  }
-
-  std::string name(dolfin::uint i) const
-  {
-    switch(i)
-    {
-
-    default:
-        throw std::runtime_error("Invalid coefficient number.");
-    }
-  }
-
-  void disp() const
-  {
-    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
-    {
-        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
-    }
-  }
-
-
-};
 
 class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_0_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1841,7 +1759,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_0_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1864,20 +1782,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_0()
   {
   }
-  
+
 };
 
 class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_0_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1885,7 +1802,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_0_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1908,12 +1825,12 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_1()
   {
   }
-  
+
 };
 
 class Form_0: public dolfin::Form
@@ -1921,51 +1838,21 @@ class Form_0: public dolfin::Form
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1):
     dolfin::Form(2, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
-
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new poisson3d_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1):
     dolfin::Form(2, 0)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
-
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    update_coefficients(coefficients);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson3d_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
-    dolfin::Form(2, 0)
-  {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new poisson3d_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 0)
-  {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    update_coefficients(coefficients);
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new poisson3d_form_0());
   }
@@ -1974,21 +1861,18 @@ public:
   ~Form_0()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
+
     dolfin::error("No coefficients.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
+
     dolfin::error("No coefficients.");
     return "unnamed";
   }

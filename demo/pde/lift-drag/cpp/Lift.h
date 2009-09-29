@@ -856,25 +856,25 @@ public:
   {
     return 0;
   }
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 1;
   }
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 0;
   }
-    
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
     return new lift_0_finite_element_0();
   }
-  
+
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
@@ -912,100 +912,17 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Function.h>
 #include <dolfin/function/Coefficient.h>
+#include <dolfin/function/CoefficientAssigner.h>
 
 namespace Lift
 {
-
-class CoefficientReference
-{
-public:
-  
-  CoefficientReference(const std::string & name):
-    _name(name)
-  {}
-  
-  ~CoefficientReference()
-  {}
-
-  CoefficientReference& operator=(dolfin::Function & f)
-  {
-    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
-    return *this;
-  }
-  
-  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
-  {
-    _function_pointer = f;
-    return *this;
-  }
-
-  std::string name() const
-  {
-    return _name;
-  }
-
-  dolfin::Function & function() const
-  {
-    return *_function_pointer;
-  }
-
-  boost::shared_ptr<dolfin::Function> function_pointer() const
-  {
-    return _function_pointer;
-  }
-
-private:
-
-  boost::shared_ptr<dolfin::Function> _function_pointer;
-  std::string _name;
-
-};
-
-class CoefficientSet
-{
-public:
-
-  CoefficientSet():
-    p("p")
-  {}
-  
-  ~CoefficientSet()
-  {}
-
-  dolfin::uint num_coefficients() const
-  {
-    return 1;
-  }
-
-  std::string name(dolfin::uint i) const
-  {
-    switch(i)
-    {
-    case 0: return "p";
-    default:
-        throw std::runtime_error("Invalid coefficient number.");
-    }
-  }
-
-  void disp() const
-  {
-    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
-    {
-        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
-    }
-  }
-
-  CoefficientReference p;
-};
 
 class CoefficientSpace_p: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_p(const dolfin::Mesh & mesh):
+  CoefficientSpace_p(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1013,7 +930,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_p(dolfin::Mesh & mesh):
+  CoefficientSpace_p(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -1036,55 +953,15 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_p()
   {
   }
-  
+
 };
 
 typedef CoefficientSpace_p Form_0_FunctionSpace_0;
-
-class Form_0_Coefficient_p: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_p(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_p()
-  {}
-
-  const Form_0_Coefficient_p& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_p& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_0(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 0;
-  }
-
-  std::string name() const
-  {
-    return "p";
-  }
-
-};
 
 class Form_0: public dolfin::Form
 {
@@ -1092,36 +969,25 @@ public:
 
   // Constructor
   Form_0():
-    dolfin::Form(0, 1), p(*this)
+    dolfin::Form(0, 1), p(*this, 0)
   {
     _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
   }
 
   // Constructor
-  Form_0(const CoefficientSet & coefficients):
-    dolfin::Form(0, 1), p(*this)
+  Form_0(const dolfin::Coefficient& p):
+    dolfin::Form(0, 1), p(*this, 0)
   {
-    update_coefficients(coefficients);
+    this->p = p;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
   }
 
   // Constructor
-  Form_0(dolfin::Function & _p):
-    dolfin::Form(0, 1), p(*this)
+  Form_0(boost::shared_ptr<const dolfin::Coefficient> p):
+    dolfin::Form(0, 1), p(*this, 0)
   {
-    boost::shared_ptr<dolfin::Function> _pp = dolfin::reference_to_no_delete_pointer(_p);
-
-    p = _pp;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<dolfin::Function> _pp):
-    dolfin::Form(0, 1), p(*this)
-  {
-    p = _pp;
+    this->p = *p;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
   }
@@ -1130,26 +996,25 @@ public:
   ~Form_0()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-    p = coefficients.p.function_pointer();
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if(name == "p") return 0;
+    if (name == "p")
+      return 0;
+
     dolfin::error("Invalid coefficient.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch(i)
+    switch (i)
     {
-      case 0: return "p";
+    case 0:
+      return "p";
     }
+
     dolfin::error("Invalid coefficient.");
     return "unnamed";
   }
@@ -1158,7 +1023,7 @@ public:
   typedef Form_0_FunctionSpace_0 CoefficientSpace_p;
 
   // Coefficients
-  Form_0_Coefficient_p p;
+  dolfin::CoefficientAssigner p;
 };
 
 // Class typedefs
