@@ -12053,19 +12053,19 @@ public:
   {
     return 1;
   }
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 0;
   }
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 0;
   }
-    
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
@@ -12089,7 +12089,7 @@ public:
     }
     return 0;
   }
-  
+
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
@@ -27679,19 +27679,19 @@ public:
   {
     return 1;
   }
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 1;
   }
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 0;
   }
-    
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
@@ -27718,7 +27718,7 @@ public:
     }
     return 0;
   }
-  
+
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
@@ -27777,108 +27777,17 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Function.h>
 #include <dolfin/function/Coefficient.h>
+#include <dolfin/function/CoefficientAssigner.h>
 
 namespace HyperElasticity
 {
-
-class CoefficientReference
-{
-public:
-  
-  CoefficientReference(const std::string & name):
-    _name(name)
-  {}
-  
-  ~CoefficientReference()
-  {}
-
-  CoefficientReference& operator=(dolfin::Function & f)
-  {
-    _function_pointer = dolfin::reference_to_no_delete_pointer(f);
-    return *this;
-  }
-  
-  CoefficientReference& operator=(const boost::shared_ptr<dolfin::Function> f)
-  {
-    _function_pointer = f;
-    return *this;
-  }
-
-  std::string name() const
-  {
-    return _name;
-  }
-
-  dolfin::Function & function() const
-  {
-    return *_function_pointer;
-  }
-
-  boost::shared_ptr<dolfin::Function> function_pointer() const
-  {
-    return _function_pointer;
-  }
-
-private:
-
-  boost::shared_ptr<dolfin::Function> _function_pointer;
-  std::string _name;
-
-};
-
-class CoefficientSet
-{
-public:
-
-  CoefficientSet():
-    B("B"), T("T"), lmbda("lmbda"), mu("mu"), u("u")
-  {}
-  
-  ~CoefficientSet()
-  {}
-
-  dolfin::uint num_coefficients() const
-  {
-    return 5;
-  }
-
-  std::string name(dolfin::uint i) const
-  {
-    switch(i)
-    {
-    case 0: return "B";
-    case 1: return "T";
-    case 2: return "lmbda";
-    case 3: return "mu";
-    case 4: return "u";
-    default:
-        throw std::runtime_error("Invalid coefficient number.");
-    }
-  }
-
-  void disp() const
-  {
-    for(dolfin::uint i = 0; i < num_coefficients(); ++i)
-    {
-        dolfin::cout << "Coefficient " << i << ": \t" << name(i) << dolfin::endl;
-    }
-  }
-
-  CoefficientReference B;
-  CoefficientReference T;
-  CoefficientReference lmbda;
-  CoefficientReference mu;
-  CoefficientReference u;
-};
 
 class CoefficientSpace_B: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_B(const dolfin::Mesh & mesh):
+  CoefficientSpace_B(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -27886,7 +27795,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_B(dolfin::Mesh & mesh):
+  CoefficientSpace_B(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_2()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -27909,20 +27818,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_B()
   {
   }
-  
+
 };
 
 class CoefficientSpace_T: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_T(const dolfin::Mesh & mesh):
+  CoefficientSpace_T(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_3()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -27930,7 +27838,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_T(dolfin::Mesh & mesh):
+  CoefficientSpace_T(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -27953,20 +27861,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_T()
   {
   }
-  
+
 };
 
 class CoefficientSpace_lmbda: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_lmbda(const dolfin::Mesh & mesh):
+  CoefficientSpace_lmbda(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_5()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -27974,7 +27881,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_lmbda(dolfin::Mesh & mesh):
+  CoefficientSpace_lmbda(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_5()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -27997,20 +27904,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_lmbda()
   {
   }
-  
+
 };
 
 class CoefficientSpace_mu: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_mu(const dolfin::Mesh & mesh):
+  CoefficientSpace_mu(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_4()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28018,7 +27924,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_mu(dolfin::Mesh & mesh):
+  CoefficientSpace_mu(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_4()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28041,20 +27947,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_mu()
   {
   }
-  
+
 };
 
 class CoefficientSpace_u: public dolfin::FunctionSpace
 {
 public:
 
-
-  CoefficientSpace_u(const dolfin::Mesh & mesh):
+  CoefficientSpace_u(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28062,7 +27967,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_u(dolfin::Mesh & mesh):
+  CoefficientSpace_u(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28085,20 +27990,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~CoefficientSpace_u()
   {
   }
-  
+
 };
 
 class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_0(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28106,7 +28010,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28129,20 +28033,19 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_0()
   {
   }
-  
+
 };
 
 class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_0_FunctionSpace_1(const dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28150,7 +28053,7 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh & mesh):
+  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28173,12 +28076,12 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_0_FunctionSpace_1()
   {
   }
-  
+
 };
 
 typedef CoefficientSpace_u Form_0_FunctionSpace_2;
@@ -28187,246 +28090,82 @@ typedef CoefficientSpace_mu Form_0_FunctionSpace_3;
 
 typedef CoefficientSpace_lmbda Form_0_FunctionSpace_4;
 
-class Form_0_Coefficient_u: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_u(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_u()
-  {}
-
-  const Form_0_Coefficient_u& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_u& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_2(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 0;
-  }
-
-  std::string name() const
-  {
-    return "u";
-  }
-
-};
-
-class Form_0_Coefficient_mu: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_mu(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_mu()
-  {}
-
-  const Form_0_Coefficient_mu& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_mu& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_3(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 1;
-  }
-
-  std::string name() const
-  {
-    return "mu";
-  }
-
-};
-
-class Form_0_Coefficient_lmbda: public dolfin::Coefficient
-{
-public:
-
-  Form_0_Coefficient_lmbda(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_0_Coefficient_lmbda()
-  {}
-
-  const Form_0_Coefficient_lmbda& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_0_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_0_FunctionSpace_4(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 2;
-  }
-
-  std::string name() const
-  {
-    return "lmbda";
-  }
-
-};
-
 class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1):
+    dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
-
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::Coefficient& u, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+    dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    update_coefficients(coefficients);
+    this->u = u;
+    this->mu = mu;
+    this->lmbda = lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, dolfin::Function & _u, dolfin::Function & _mu, dolfin::Function & _lmbda):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+    dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-
-    u = _pu;
-    mu = _pmu;
-    lmbda = _plmbda;
+    this->u = *u;
+    this->mu = *mu;
+    this->lmbda = *lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace & _V0, const dolfin::FunctionSpace & _V1, boost::shared_ptr<dolfin::Function> _pu, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _plmbda):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1):
+    dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV1 = dolfin::reference_to_no_delete_pointer(_V1);
-
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    u = _pu;
-    mu = _pmu;
-    lmbda = _plmbda;
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::Coefficient& u, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+    dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
+
+    this->u = u;
+    this->mu = mu;
+    this->lmbda = lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, const CoefficientSet & coefficients):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+    dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
-    update_coefficients(coefficients);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, dolfin::Function & _u, dolfin::Function & _mu, dolfin::Function & _lmbda):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
-  {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-
-    u = _pu;
-    mu = _pmu;
-    lmbda = _plmbda;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<const dolfin::FunctionSpace> _pV1, boost::shared_ptr<dolfin::Function> _pu, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _plmbda):
-    dolfin::Form(2, 3), u(*this), mu(*this), lmbda(*this)
-  {
-    _function_spaces[0] = _pV0;
-    _function_spaces[1] = _pV1;
-
-    u = _pu;
-    mu = _pmu;
-    lmbda = _plmbda;
+    this->u = *u;
+    this->mu = *mu;
+    this->lmbda = *lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_0());
   }
@@ -28435,32 +28174,33 @@ public:
   ~Form_0()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-    u = coefficients.u.function_pointer();
-    mu = coefficients.mu.function_pointer();
-    lmbda = coefficients.lmbda.function_pointer();
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if(name == "u") return 0;
-    else if(name == "mu") return 1;
-    else if(name == "lmbda") return 2;
+    if (name == "u")
+      return 0;
+    else if (name == "mu")
+      return 1;
+    else if (name == "lmbda")
+      return 2;
+
     dolfin::error("Invalid coefficient.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch(i)
+    switch (i)
     {
-      case 0: return "u";
-      case 1: return "mu";
-      case 2: return "lmbda";
+    case 0:
+      return "u";
+    case 1:
+      return "mu";
+    case 2:
+      return "lmbda";
     }
+
     dolfin::error("Invalid coefficient.");
     return "unnamed";
   }
@@ -28473,17 +28213,16 @@ public:
   typedef Form_0_FunctionSpace_4 CoefficientSpace_lmbda;
 
   // Coefficients
-  Form_0_Coefficient_u u;
-  Form_0_Coefficient_mu mu;
-  Form_0_Coefficient_lmbda lmbda;
+  dolfin::CoefficientAssigner u;
+  dolfin::CoefficientAssigner mu;
+  dolfin::CoefficientAssigner lmbda;
 };
 
 class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-
-  Form_1_FunctionSpace_0(const dolfin::Mesh & mesh):
+  Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_0()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28491,7 +28230,7 @@ public:
     // Do nothing
   }
 
-  Form_1_FunctionSpace_0(dolfin::Mesh & mesh):
+  Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
@@ -28514,12 +28253,12 @@ public:
   {
       // Do nothing
   }
- 
+
 
   ~Form_1_FunctionSpace_0()
   {
   }
-  
+
 };
 
 typedef CoefficientSpace_u Form_1_FunctionSpace_1;
@@ -28532,326 +28271,84 @@ typedef CoefficientSpace_mu Form_1_FunctionSpace_4;
 
 typedef CoefficientSpace_lmbda Form_1_FunctionSpace_5;
 
-class Form_1_Coefficient_u: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_u(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_u()
-  {}
-
-  const Form_1_Coefficient_u& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_u& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_1(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 0;
-  }
-
-  std::string name() const
-  {
-    return "u";
-  }
-
-};
-
-class Form_1_Coefficient_B: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_B(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_B()
-  {}
-
-  const Form_1_Coefficient_B& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_B& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_2(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 1;
-  }
-
-  std::string name() const
-  {
-    return "B";
-  }
-
-};
-
-class Form_1_Coefficient_T: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_T(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_T()
-  {}
-
-  const Form_1_Coefficient_T& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_T& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_3(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 2;
-  }
-
-  std::string name() const
-  {
-    return "T";
-  }
-
-};
-
-class Form_1_Coefficient_mu: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_mu(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_mu()
-  {}
-
-  const Form_1_Coefficient_mu& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_mu& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_4(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 3;
-  }
-
-  std::string name() const
-  {
-    return "mu";
-  }
-
-};
-
-class Form_1_Coefficient_lmbda: public dolfin::Coefficient
-{
-public:
-
-  Form_1_Coefficient_lmbda(dolfin::Form & form):
-    dolfin::Coefficient(form)
-  {}
-  
-  ~Form_1_Coefficient_lmbda()
-  {}
-
-  const Form_1_Coefficient_lmbda& operator=(dolfin::Function & f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const Form_1_Coefficient_lmbda& operator=(boost::shared_ptr<dolfin::Function> f)
-  {
-    attach(f);
-    return *this;
-  }
-  
-  const dolfin::FunctionSpace * create_function_space() const
-  {
-    return new Form_1_FunctionSpace_5(form.mesh());
-  }
-  
-  dolfin::uint number() const
-  {
-    return 4;
-  }
-
-  std::string name() const
-  {
-    return "lmbda";
-  }
-
-};
-
 class Form_1: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
+  Form_1(const dolfin::FunctionSpace& V0):
+    dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
+  Form_1(const dolfin::FunctionSpace& V0, const dolfin::Coefficient& u, const dolfin::Coefficient& B, const dolfin::Coefficient& T, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+    dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _function_spaces[0] = _pV0;
-
-    update_coefficients(coefficients);
+    this->u = u;
+    this->B = B;
+    this->T = T;
+    this->mu = mu;
+    this->lmbda = lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, dolfin::Function & _u, dolfin::Function & _B, dolfin::Function & _T, dolfin::Function & _mu, dolfin::Function & _lmbda):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
+  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> B, boost::shared_ptr<const dolfin::Coefficient> T, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+    dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _function_spaces[0] = _pV0;
-
-    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
-    boost::shared_ptr<dolfin::Function> _pB = dolfin::reference_to_no_delete_pointer(_B);
-    boost::shared_ptr<dolfin::Function> _pT = dolfin::reference_to_no_delete_pointer(_T);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-
-    u = _pu;
-    B = _pB;
-    T = _pT;
-    mu = _pmu;
-    lmbda = _plmbda;
+    this->u = *u;
+    this->B = *B;
+    this->T = *T;
+    this->mu = *mu;
+    this->lmbda = *lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace & _V0, boost::shared_ptr<dolfin::Function> _pu, boost::shared_ptr<dolfin::Function> _pB, boost::shared_ptr<dolfin::Function> _pT, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _plmbda):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
-    boost::shared_ptr<const dolfin::FunctionSpace> _pV0 = dolfin::reference_to_no_delete_pointer(_V0);
-
-    _function_spaces[0] = _pV0;
-
-    u = _pu;
-    B = _pB;
-    T = _pT;
-    mu = _pmu;
-    lmbda = _plmbda;
+    _function_spaces[0] = V0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::Coefficient& u, const dolfin::Coefficient& B, const dolfin::Coefficient& T, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+    dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = V0;
+
+    this->u = u;
+    this->B = B;
+    this->T = T;
+    this->mu = mu;
+    this->lmbda = lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, const CoefficientSet & coefficients):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> B, boost::shared_ptr<const dolfin::Coefficient> T, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+    dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
-    _function_spaces[0] = _pV0;
+    _function_spaces[0] = V0;
 
-    update_coefficients(coefficients);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
-  }
-
-  // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, dolfin::Function & _u, dolfin::Function & _B, dolfin::Function & _T, dolfin::Function & _mu, dolfin::Function & _lmbda):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
-  {
-    _function_spaces[0] = _pV0;
-
-    boost::shared_ptr<dolfin::Function> _pu = dolfin::reference_to_no_delete_pointer(_u);
-    boost::shared_ptr<dolfin::Function> _pB = dolfin::reference_to_no_delete_pointer(_B);
-    boost::shared_ptr<dolfin::Function> _pT = dolfin::reference_to_no_delete_pointer(_T);
-    boost::shared_ptr<dolfin::Function> _pmu = dolfin::reference_to_no_delete_pointer(_mu);
-    boost::shared_ptr<dolfin::Function> _plmbda = dolfin::reference_to_no_delete_pointer(_lmbda);
-
-    u = _pu;
-    B = _pB;
-    T = _pT;
-    mu = _pmu;
-    lmbda = _plmbda;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
-  }
-
-  // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> _pV0, boost::shared_ptr<dolfin::Function> _pu, boost::shared_ptr<dolfin::Function> _pB, boost::shared_ptr<dolfin::Function> _pT, boost::shared_ptr<dolfin::Function> _pmu, boost::shared_ptr<dolfin::Function> _plmbda):
-    dolfin::Form(1, 5), u(*this), B(*this), T(*this), mu(*this), lmbda(*this)
-  {
-    _function_spaces[0] = _pV0;
-
-    u = _pu;
-    B = _pB;
-    T = _pT;
-    mu = _pmu;
-    lmbda = _plmbda;
+    this->u = *u;
+    this->B = *B;
+    this->T = *T;
+    this->mu = *mu;
+    this->lmbda = *lmbda;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new hyperelasticity_form_1());
   }
@@ -28860,38 +28357,41 @@ public:
   ~Form_1()
   {}
 
-  void update_coefficients(const CoefficientSet & coefficients)
-  {
-    u = coefficients.u.function_pointer();
-    B = coefficients.B.function_pointer();
-    T = coefficients.T.function_pointer();
-    mu = coefficients.mu.function_pointer();
-    lmbda = coefficients.lmbda.function_pointer();
-  }
-
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string & name) const
+  virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if(name == "u") return 0;
-    else if(name == "B") return 1;
-    else if(name == "T") return 2;
-    else if(name == "mu") return 3;
-    else if(name == "lmbda") return 4;
+    if (name == "u")
+      return 0;
+    else if (name == "B")
+      return 1;
+    else if (name == "T")
+      return 2;
+    else if (name == "mu")
+      return 3;
+    else if (name == "lmbda")
+      return 4;
+
     dolfin::error("Invalid coefficient.");
     return 0;
   }
-  
+
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch(i)
+    switch (i)
     {
-      case 0: return "u";
-      case 1: return "B";
-      case 2: return "T";
-      case 3: return "mu";
-      case 4: return "lmbda";
+    case 0:
+      return "u";
+    case 1:
+      return "B";
+    case 2:
+      return "T";
+    case 3:
+      return "mu";
+    case 4:
+      return "lmbda";
     }
+
     dolfin::error("Invalid coefficient.");
     return "unnamed";
   }
@@ -28905,11 +28405,11 @@ public:
   typedef Form_1_FunctionSpace_5 CoefficientSpace_lmbda;
 
   // Coefficients
-  Form_1_Coefficient_u u;
-  Form_1_Coefficient_B B;
-  Form_1_Coefficient_T T;
-  Form_1_Coefficient_mu mu;
-  Form_1_Coefficient_lmbda lmbda;
+  dolfin::CoefficientAssigner u;
+  dolfin::CoefficientAssigner B;
+  dolfin::CoefficientAssigner T;
+  dolfin::CoefficientAssigner mu;
+  dolfin::CoefficientAssigner lmbda;
 };
 
 // Class typedefs
