@@ -3214,19 +3214,19 @@ public:
   {
     return 1;
   }
-
+  
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 1;
   }
-
+  
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 1;
   }
-
+    
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
@@ -3244,7 +3244,7 @@ public:
     }
     return 0;
   }
-
+  
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
@@ -4637,19 +4637,19 @@ public:
   {
     return 1;
   }
-
+  
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 0;
   }
-
+  
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 0;
   }
-
+    
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
@@ -4664,7 +4664,7 @@ public:
     }
     return 0;
   }
-
+  
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
