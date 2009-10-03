@@ -912,7 +912,7 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
 namespace Drag
@@ -975,7 +975,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::Coefficient& p):
+  Form_0(const dolfin::GenericFunction& p):
     dolfin::Form(0, 1), p(*this, 0)
   {
     this->p = p;
@@ -984,7 +984,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Coefficient> p):
+  Form_0(boost::shared_ptr<const dolfin::GenericFunction> p):
     dolfin::Form(0, 1), p(*this, 0)
   {
     this->p = *p;

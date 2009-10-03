@@ -3214,19 +3214,19 @@ public:
   {
     return 1;
   }
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 1;
   }
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 1;
   }
-    
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
@@ -3244,7 +3244,7 @@ public:
     }
     return 0;
   }
-  
+
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
@@ -4637,19 +4637,19 @@ public:
   {
     return 1;
   }
-  
+
   /// Return the number of exterior facet integrals
   virtual unsigned int num_exterior_facet_integrals() const
   {
     return 0;
   }
-  
+
   /// Return the number of interior facet integrals
   virtual unsigned int num_interior_facet_integrals() const
   {
     return 0;
   }
-    
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const
   {
@@ -4664,7 +4664,7 @@ public:
     }
     return 0;
   }
-  
+
   /// Create a new dof map for argument function i
   virtual ufc::dof_map* create_dof_map(unsigned int i) const
   {
@@ -4711,7 +4711,7 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
 namespace Poisson
@@ -4906,7 +4906,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::Coefficient& h):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::GenericFunction& h):
     dolfin::Form(2, 1), h(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -4918,7 +4918,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::Coefficient> h):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::GenericFunction> h):
     dolfin::Form(2, 1), h(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -4940,7 +4940,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::Coefficient& h):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::GenericFunction& h):
     dolfin::Form(2, 1), h(*this, 0)
   {
     _function_spaces[0] = V0;
@@ -4952,7 +4952,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::Coefficient> h):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::GenericFunction> h):
     dolfin::Form(2, 1), h(*this, 0)
   {
     _function_spaces[0] = V0;
@@ -5058,7 +5058,7 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, const dolfin::Coefficient& f):
+  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -5069,7 +5069,7 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::Coefficient> f):
+  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -5089,7 +5089,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::Coefficient& f):
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = V0;
@@ -5100,7 +5100,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::Coefficient> f):
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = V0;

@@ -946,7 +946,7 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
 namespace EnergyNorm
@@ -1009,7 +1009,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::Coefficient& v):
+  Form_0(const dolfin::GenericFunction& v):
     dolfin::Form(0, 1), v(*this, 0)
   {
     this->v = v;
@@ -1018,7 +1018,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Coefficient> v):
+  Form_0(boost::shared_ptr<const dolfin::GenericFunction> v):
     dolfin::Form(0, 1), v(*this, 0)
   {
     this->v = *v;

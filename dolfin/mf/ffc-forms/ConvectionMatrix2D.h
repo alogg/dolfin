@@ -2551,7 +2551,7 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
 namespace ConvectionMatrix2D
@@ -2748,7 +2748,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::Coefficient& cx, const dolfin::Coefficient& cy):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::GenericFunction& cx, const dolfin::GenericFunction& cy):
     dolfin::Form(2, 2), cx(*this, 0), cy(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -2761,7 +2761,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::Coefficient> cx, boost::shared_ptr<const dolfin::Coefficient> cy):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::GenericFunction> cx, boost::shared_ptr<const dolfin::GenericFunction> cy):
     dolfin::Form(2, 2), cx(*this, 0), cy(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -2784,7 +2784,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::Coefficient& cx, const dolfin::Coefficient& cy):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::GenericFunction& cx, const dolfin::GenericFunction& cy):
     dolfin::Form(2, 2), cx(*this, 0), cy(*this, 1)
   {
     _function_spaces[0] = V0;
@@ -2797,7 +2797,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::Coefficient> cx, boost::shared_ptr<const dolfin::Coefficient> cy):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::GenericFunction> cx, boost::shared_ptr<const dolfin::GenericFunction> cy):
     dolfin::Form(2, 2), cx(*this, 0), cy(*this, 1)
   {
     _function_spaces[0] = V0;

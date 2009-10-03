@@ -27777,7 +27777,7 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
 namespace HyperElasticity
@@ -28105,7 +28105,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::Coefficient& u, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::GenericFunction& u, const dolfin::GenericFunction& mu, const dolfin::GenericFunction& lmbda):
     dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -28119,7 +28119,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> mu, boost::shared_ptr<const dolfin::GenericFunction> lmbda):
     dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -28143,7 +28143,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::Coefficient& u, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::GenericFunction& u, const dolfin::GenericFunction& mu, const dolfin::GenericFunction& lmbda):
     dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
     _function_spaces[0] = V0;
@@ -28157,7 +28157,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> mu, boost::shared_ptr<const dolfin::GenericFunction> lmbda):
     dolfin::Form(2, 3), u(*this, 0), mu(*this, 1), lmbda(*this, 2)
   {
     _function_spaces[0] = V0;
@@ -28285,7 +28285,7 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, const dolfin::Coefficient& u, const dolfin::Coefficient& B, const dolfin::Coefficient& T, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& u, const dolfin::GenericFunction& B, const dolfin::GenericFunction& T, const dolfin::GenericFunction& mu, const dolfin::GenericFunction& lmbda):
     dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -28300,7 +28300,7 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> B, boost::shared_ptr<const dolfin::Coefficient> T, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> B, boost::shared_ptr<const dolfin::GenericFunction> T, boost::shared_ptr<const dolfin::GenericFunction> mu, boost::shared_ptr<const dolfin::GenericFunction> lmbda):
     dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -28324,7 +28324,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::Coefficient& u, const dolfin::Coefficient& B, const dolfin::Coefficient& T, const dolfin::Coefficient& mu, const dolfin::Coefficient& lmbda):
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& u, const dolfin::GenericFunction& B, const dolfin::GenericFunction& T, const dolfin::GenericFunction& mu, const dolfin::GenericFunction& lmbda):
     dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
     _function_spaces[0] = V0;
@@ -28339,7 +28339,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::Coefficient> u, boost::shared_ptr<const dolfin::Coefficient> B, boost::shared_ptr<const dolfin::Coefficient> T, boost::shared_ptr<const dolfin::Coefficient> mu, boost::shared_ptr<const dolfin::Coefficient> lmbda):
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> B, boost::shared_ptr<const dolfin::GenericFunction> T, boost::shared_ptr<const dolfin::GenericFunction> mu, boost::shared_ptr<const dolfin::GenericFunction> lmbda):
     dolfin::Form(1, 5), u(*this, 0), B(*this, 1), T(*this, 2), mu(*this, 3), lmbda(*this, 4)
   {
     _function_spaces[0] = V0;

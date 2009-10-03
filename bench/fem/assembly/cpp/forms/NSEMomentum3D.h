@@ -12841,7 +12841,7 @@ public:
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
 #include <dolfin/function/FunctionSpace.h>
-#include <dolfin/function/Coefficient.h>
+#include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
 namespace NSEMomentum3D
@@ -13173,7 +13173,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::Coefficient& w, const dolfin::Coefficient& d1, const dolfin::Coefficient& d2, const dolfin::Coefficient& k, const dolfin::Coefficient& nu):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::GenericFunction& w, const dolfin::GenericFunction& d1, const dolfin::GenericFunction& d2, const dolfin::GenericFunction& k, const dolfin::GenericFunction& nu):
     dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -13189,7 +13189,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::Coefficient> w, boost::shared_ptr<const dolfin::Coefficient> d1, boost::shared_ptr<const dolfin::Coefficient> d2, boost::shared_ptr<const dolfin::Coefficient> k, boost::shared_ptr<const dolfin::Coefficient> nu):
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::GenericFunction> w, boost::shared_ptr<const dolfin::GenericFunction> d1, boost::shared_ptr<const dolfin::GenericFunction> d2, boost::shared_ptr<const dolfin::GenericFunction> k, boost::shared_ptr<const dolfin::GenericFunction> nu):
     dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -13215,7 +13215,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::Coefficient& w, const dolfin::Coefficient& d1, const dolfin::Coefficient& d2, const dolfin::Coefficient& k, const dolfin::Coefficient& nu):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::GenericFunction& w, const dolfin::GenericFunction& d1, const dolfin::GenericFunction& d2, const dolfin::GenericFunction& k, const dolfin::GenericFunction& nu):
     dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = V0;
@@ -13231,7 +13231,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::Coefficient> w, boost::shared_ptr<const dolfin::Coefficient> d1, boost::shared_ptr<const dolfin::Coefficient> d2, boost::shared_ptr<const dolfin::Coefficient> k, boost::shared_ptr<const dolfin::Coefficient> nu):
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::GenericFunction> w, boost::shared_ptr<const dolfin::GenericFunction> d1, boost::shared_ptr<const dolfin::GenericFunction> d2, boost::shared_ptr<const dolfin::GenericFunction> k, boost::shared_ptr<const dolfin::GenericFunction> nu):
     dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = V0;
