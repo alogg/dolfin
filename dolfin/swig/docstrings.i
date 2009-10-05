@@ -196,6 +196,9 @@ Apply boundary condition to a linear system for a nonlinear problem.
 ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -329,21 +332,9 @@ C++ includes: SpecialFunctions.h ";
 
 Constructor. ";
 
-%feature("docstring")  dolfin::CellSize::CellSize "
-
-Constructor. ";
-
 %feature("docstring")  dolfin::CellSize::eval "
 
 Function evaluation. ";
-
-%feature("docstring")  dolfin::CellSize::min "
-
-Compute minimal cell diameter. ";
-
-%feature("docstring")  dolfin::CellSize::max "
-
-Compute maximal cell diameter. ";
 
 
 // File: classdolfin_1_1CellType.xml
@@ -609,8 +600,7 @@ Update for real-valued ODE. ";
 // File: classdolfin_1_1Constant.xml
 %feature("docstring") dolfin::Constant "
 
-This class implements the functionality for functions that take a
-single constant value.
+This class represents a constant-valued expression.
 
 C++ includes: Constant.h ";
 
@@ -664,10 +654,6 @@ C++ includes: Data.h ";
 
 Constructor. ";
 
-%feature("docstring")  dolfin::Data::Data "
-
-Constructor. ";
-
 %feature("docstring")  dolfin::Data::~Data "
 
 Destructor. ";
@@ -688,13 +674,25 @@ Return current facet (if available). ";
 
 Return current facet normal (if available). ";
 
+%feature("docstring")  dolfin::Data::geometric_dimension "
+
+Return geometric dimension of cell. ";
+
 %feature("docstring")  dolfin::Data::on_facet "
 
 Check if we are on a facet. ";
 
-%feature("docstring")  dolfin::Data::geometric_dimension "
+%feature("docstring")  dolfin::Data::is_valid "
 
-Return geometric dimension of cell. ";
+Check if data is valid. ";
+
+%feature("docstring")  dolfin::Data::update "
+
+Update cell data. ";
+
+%feature("docstring")  dolfin::Data::update "
+
+Update cell data. ";
 
 
 // File: classdolfin_1_1DefaultFactory.xml
@@ -781,28 +779,19 @@ C++ includes: DirectedClique.h ";
 // File: classdolfin_1_1DirichletBC.xml
 %feature("docstring") dolfin::DirichletBC "
 
-The BCMethod variable may be used to specify the type of method used
-to identify degrees of freedom on the boundary. Available methods are:
-topological approach (default), geometric approach, and pointwise
-approach. The topological approach is faster, but will only identify
-degrees of freedom that are located on a facet that is entirely on the
-boundary. In particular, the topological approach will not identify
-degrees of freedom for discontinuous elements (which are all internal
-to the cell). A remedy for this is to use the geometric approach. To
-apply pointwise boundary conditions e.g. pointloads, one will have to
-use the pointwise approach which in turn is the slowest of the three
-possible methods. The three possibilties are: \"topological\"
-\"geometric\" \"pointwise\" This class specifies the interface for
-setting (strong) Dirichlet boundary conditions for partial
-differential equations,
+This class specifies the interface for setting (strong).
+
+This class specifies the interface for setting (strong) Dirichlet
+boundary conditions for partial differential equations,
 
 u = g on G,
 
 where u is the solution to be computed, g is a function and G is a sub
 domain of the mesh.
 
-A DirichletBC is specified by the Function g, the FunctionSpace (trial
-space) and boundary indicators on (a subset of) the mesh boundary.
+A DirichletBC is specified by the function g, the function space
+(trial space) and boundary indicators on (a subset of) the mesh
+boundary.
 
 The boundary indicators may be specified in a number of different
 ways.
@@ -818,6 +807,19 @@ facets should be included in the boundary.
 The third option is to attach the boundary information to the mesh.
 This is handled automatically when exporting a mesh from for example
 VMTK.
+
+The BCMethod variable may be used to specify the type of method used
+to identify degrees of freedom on the boundary. Available methods are:
+topological approach (default), geometric approach, and pointwise
+approach. The topological approach is faster, but will only identify
+degrees of freedom that are located on a facet that is entirely on the
+boundary. In particular, the topological approach will not identify
+degrees of freedom for discontinuous elements (which are all internal
+to the cell). A remedy for this is to use the geometric approach. To
+apply pointwise boundary conditions e.g. pointloads, one will have to
+use the pointwise approach which in turn is the slowest of the three
+possible methods. The three possibilties are \"topological\",
+\"geometric\" and \"pointwise\".
 
 C++ includes: DirichletBC.h ";
 
@@ -883,41 +885,6 @@ Get Dirichlet values and indicators. ";
 
 Check if given function is compatible with boundary condition
 (checking only vertex values). ";
-
-
-// File: classdolfin_1_1DiscreteFunction.xml
-%feature("docstring") dolfin::DiscreteFunction "
-
-This function is used for the Python interface. By inheriting from
-this function instead of dolfin::Function, we avoid unnecessary calls
-through the SWIG created director class, when dealing with discrete
-functions in PyDOLFIN.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
-
-Constructor (deep copy of the vector). ";
-
-%feature("docstring")  dolfin::DiscreteFunction::DiscreteFunction "
-
-Sub-function constructor (shallow copy of the vector). ";
-
-%feature("docstring")  dolfin::DiscreteFunction::~DiscreteFunction "
-
-Destructor. ";
 
 
 // File: classdolfin_1_1DofMap.xml
@@ -1233,6 +1200,42 @@ Display count. ";
 Maximum display count. ";
 
 
+// File: classdolfin_1_1Expression.xml
+%feature("docstring") dolfin::Expression "
+
+This class represents a user-defined expression. Expressions can be
+used as coefficients in variational forms or interpolated into finite
+element spaces.
+
+An expression is defined by overloading the eval() method. Users may
+choose to overload either a simple version of eval(), in the case of
+expressions only depending on the coordinate x, or an optional version
+for functions depending on x and mesh data like cell indices or facet
+normals.
+
+C++ includes: Expression.h ";
+
+%feature("docstring")  dolfin::Expression::Expression "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::Expression::~Expression "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Expression::eval "
+
+Evaluate expression, must be overloaded by user (simple version). ";
+
+%feature("docstring")  dolfin::Expression::eval "
+
+Evaluate expression, must be overloaded by user (optional version). ";
+
+%feature("docstring")  dolfin::Expression::restrict "
+
+Restrict function to local cell (compute expansion coefficients w). ";
+
+
 // File: classdolfin_1_1Face.xml
 %feature("docstring") dolfin::Face "
 
@@ -1283,10 +1286,6 @@ Destructor. ";
 This function represents the area/length of a cell facet.
 
 C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::FacetArea::FacetArea "
-
-Constructor. ";
 
 %feature("docstring")  dolfin::FacetArea::FacetArea "
 
@@ -1411,6 +1410,10 @@ Destructor. ";
 Return rank of form (bilinear form = 2, linear form = 1, functional =
 0, etc). ";
 
+%feature("docstring")  dolfin::Form::num_coefficients "
+
+Return number of coefficients. ";
+
 %feature("docstring")  dolfin::Form::mesh "
 
 Return mesh. ";
@@ -1423,13 +1426,42 @@ Return function space for given argument. ";
 
 Return function spaces for arguments. ";
 
+%feature("docstring")  dolfin::Form::set_coefficient "
+
+Set coefficient with given number. ";
+
+%feature("docstring")  dolfin::Form::set_coefficient "
+
+Set coefficient with given number (shared pointer version). ";
+
+%feature("docstring")  dolfin::Form::set_coefficient "
+
+Set coefficient with given name. ";
+
+%feature("docstring")  dolfin::Form::set_coefficient "
+
+Set coefficient with given name (shared pointer version). ";
+
+%feature("docstring")  dolfin::Form::set_coefficients "
+
+Set all coefficients in given map, possibly a subset. ";
+
+%feature("docstring")  dolfin::Form::set_coefficients "
+
+Set all coefficients in given map, possibly a subset (shared pointer
+version). ";
+
 %feature("docstring")  dolfin::Form::coefficient "
 
-Return function for given coefficient. ";
+Return coefficient with given number. ";
+
+%feature("docstring")  dolfin::Form::coefficient "
+
+Return coefficient with given name. ";
 
 %feature("docstring")  dolfin::Form::coefficients "
 
-Return coefficient functions. ";
+Return all coefficients. ";
 
 %feature("docstring")  dolfin::Form::coefficient_number "
 
@@ -1460,11 +1492,6 @@ where {phi_i}_i is a basis for V_h, and U is a vector of expansion
 coefficients for u_h.
 
 C++ includes: Function.h ";
-
-%feature("docstring")  dolfin::Function::Function "
-
-Create function (and let DOLFIN figure out the correct function
-space). ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1510,25 +1537,15 @@ Return the function space. ";
 
 %feature("docstring")  dolfin::Function::function_space_ptr "
 
-Return the function space. ";
+Return shared pointer to the function space. ";
 
 %feature("docstring")  dolfin::Function::vector "
 
-Return the vector of expansion coefficients, automatically initialized
-to zero if coefficients have not been computed (non-const version) ";
+Return the vector of expansion coefficients (non-const version). ";
 
 %feature("docstring")  dolfin::Function::vector "
 
-Return the vector of expansion coefficients, automatically initialized
-to zero if coefficients have not been computed (const version) ";
-
-%feature("docstring")  dolfin::Function::has_function_space "
-
-Check if function has a function space. ";
-
-%feature("docstring")  dolfin::Function::has_vector "
-
-Check if function has a vector of expansion coefficients. ";
+Return the vector of expansion coefficients (const version). ";
 
 %feature("docstring")  dolfin::Function::in "
 
@@ -1540,43 +1557,37 @@ Return geometric dimension. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
-Function evaluation (overload for user-defined function, simple
-version). ";
+Function evaluation. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
-Function evaluation (overload for user-defined function, alternate
-version). ";
+Function evaluation. ";
 
 %feature("docstring")  dolfin::Function::eval "
 
-Evaluate function v at given point in given cell. ";
-
-%feature("docstring")  dolfin::Function::interpolate "
-
-Interpolate function to local function space on cell. ";
-
-%feature("docstring")  dolfin::Function::interpolate "
-
-Interpolate function to local function space on cell with check on
-function space. ";
+Evaluate function at given point in given cell. ";
 
 %feature("docstring")  dolfin::Function::interpolate "
 
 Interpolate function (possibly non-matching meshes). ";
 
-%feature("docstring")  dolfin::Function::interpolate "
+%feature("docstring")  dolfin::Function::compute_vertex_values "
 
-Interpolate function to its function space (if not already a discrete
-function). ";
+Compute values at all mesh vertices. ";
 
-%feature("docstring")  dolfin::Function::interpolate_vertex_values "
+%feature("docstring")  dolfin::Function::restrict "
 
-Interpolate function to vertices of mesh. ";
+Restrict function to local cell (compute expansion coefficients w). ";
 
 %feature("docstring")  dolfin::Function::gather "
 
 Collect off-process coefficients to prepare for interpolation. ";
+
+
+// File: classdolfin_1_1Function_1_1GatherScratch.xml
+
+
+// File: classdolfin_1_1Function_1_1Scratch0.xml
 
 
 // File: classdolfin_1_1FunctionPlotData.xml
@@ -1647,23 +1658,10 @@ Return dofmap. ";
 
 Return dimension of function space. ";
 
-%feature("docstring")  dolfin::FunctionSpace::eval "
-
-Evaluate function v in function space at given point. ";
-
-%feature("docstring")  dolfin::FunctionSpace::eval "
-
-Evaluate function v in function space at given point in given cell. ";
-
 %feature("docstring")  dolfin::FunctionSpace::interpolate "
 
-Interpolate function v in function space (meshes = \"matching\" or
-\"non-matching\"). ";
-
-%feature("docstring")
-dolfin::FunctionSpace::interpolate_vertex_values "
-
-Interpolate function v in function space to vertices of mesh. ";
+Interpolate function v into function space, returning the vector of
+expansion coefficients. ";
 
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
 
@@ -1673,9 +1671,17 @@ Extract sub space for component. ";
 
 Return function space with a new dof map. ";
 
-%feature("docstring")  dolfin::FunctionSpace::attach "";
+%feature("docstring")  dolfin::FunctionSpace::has_element "
 
-%feature("docstring")  dolfin::FunctionSpace::restriction "";
+Check if function space has given element. ";
+
+%feature("docstring")  dolfin::FunctionSpace::attach "
+
+Attach restriction meshfunction. ";
+
+%feature("docstring")  dolfin::FunctionSpace::restriction "
+
+Create function space based on the restriction. ";
 
 %feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
 
@@ -1720,6 +1726,52 @@ Create Gauss quadrature with n points. ";
 %feature("docstring")  dolfin::GaussQuadrature::str "
 
 Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1GenericFunction.xml
+%feature("docstring") dolfin::GenericFunction "
+
+This is a common base class for functions. Functions can be evaluated
+at a given point and they can be restricted to a given cell in a
+finite element mesh. This functionality is implemented by subclasses
+that implement the eval() and restrict() functions.
+
+DOLFIN provides two implementations of the GenericFunction interface
+in the form of the classes Function and Expression.
+
+Sub classes may optionally implement the gather() function that will
+be called prior to restriction when running in parallel.
+
+C++ includes: GenericFunction.h ";
+
+%feature("docstring")  dolfin::GenericFunction::GenericFunction "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::GenericFunction::~GenericFunction "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::GenericFunction::eval "
+
+Evaluate coefficient function. ";
+
+%feature("docstring")  dolfin::GenericFunction::restrict "
+
+Restrict coefficient to local cell (compute expansion coefficients w).
+";
+
+%feature("docstring")  dolfin::GenericFunction::gather "
+
+Collect off-process coefficients to prepare for interpolation. ";
+
+%feature("docstring")  dolfin::GenericFunction::restrict "
+
+Convenience function for restriction when facet is unknown. ";
+
+%feature("docstring")  dolfin::GenericFunction::evaluate "
+
+Implementation of ufc::function interface. ";
 
 
 // File: classdolfin_1_1GenericLinearSolver.xml
@@ -2605,9 +2657,6 @@ Create Lobatto quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1LocalMeshData.xml
 %feature("docstring") dolfin::LocalMeshData "
 
@@ -2678,9 +2727,7 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
-%feature("docstring")  dolfin::LUSolver::solve "
-
-Solve linear system Ax = b. ";
+%feature("docstring")  dolfin::LUSolver::solve "";
 
 %feature("docstring")  dolfin::LUSolver::factorize "";
 
@@ -3009,6 +3056,14 @@ Compute intersection with curve defined by points. ";
 
 Compute intersection with mesh. ";
 
+%feature("docstring")  dolfin::Mesh::hmin "
+
+Compute minimum cell diameter. ";
+
+%feature("docstring")  dolfin::Mesh::hmax "
+
+Compute maximum cell diameter. ";
+
 %feature("docstring")  dolfin::Mesh::str "
 
 Return informal string representation (pretty-print). ";
@@ -3089,10 +3144,6 @@ Return informal string representation (pretty-print). ";
 This Function represents the mesh coordinates on a given mesh.
 
 C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::MeshCoordinates::MeshCoordinates "
-
-Constructor. ";
 
 %feature("docstring")  dolfin::MeshCoordinates::MeshCoordinates "
 
@@ -3487,6 +3538,14 @@ Set value at given entity. ";
 %feature("docstring")  dolfin::MeshFunction::set_all "
 
 Set all values to given value. ";
+
+%feature("docstring")  dolfin::MeshFunction::str "
+
+Return informal string representation (pretty-print). ";
+
+%feature("docstring")  dolfin::MeshFunction::str "
+
+Return informal string representation (pretty-print). ";
 
 %feature("docstring")  dolfin::MeshFunction::str "
 
@@ -4687,8 +4746,8 @@ number of cells (nx, ny) in each direction, the total number of
 triangles will be 2*nx*ny and the total number of vertices will be (nx
 + 1)*(ny + 1).
 
-std::string diagonal (\"left\", \"right\" or \"crossed\") indicates
-the direction of the diagonals.
+std::string diagonal (\"left\", \"right\", \"right/left\" or
+\"crossed\") indicates the direction of the diagonals.
 
 C++ includes: Rectangle.h ";
 
@@ -4762,15 +4821,6 @@ Return a factory for the default linear algebra backend. ";
 %feature("docstring")  dolfin::Scalar::getval "
 
 Get value. ";
-
-
-// File: classdolfin_1_1Function_1_1Scratch.xml
-
-
-// File: classdolfin_1_1FunctionSpace_1_1Scratch.xml
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1SingularSolver.xml
@@ -5174,29 +5224,6 @@ Create subspace for given component (n levels). ";
 %feature("docstring")  dolfin::SubVector::~SubVector "";
 
 
-// File: classdolfin_1_1SUPGStabilizer.xml
-%feature("docstring") dolfin::SUPGStabilizer "
-
-Streamline Upwind Petrov Galerkin stabilizing function Given the
-advective field a, this function computes the stabilizing factor
-
-s = h*tau*a/(2*|a|)
-
-where h is the local size of the mesh, tau the local stabilizing
-factor calculated from the local Peclet number, a the advective field.
-
-C++ includes: SpecialFunctions.h ";
-
-%feature("docstring")  dolfin::SUPGStabilizer::SUPGStabilizer "";
-
-%feature("docstring")  dolfin::SUPGStabilizer::~SUPGStabilizer "";
-
-%feature("docstring")  dolfin::SUPGStabilizer::eval "
-
-Function evaluation (overload for user-defined function, alternate
-version). ";
-
-
 // File: classdolfin_1_1SystemAssembler.xml
 %feature("docstring") dolfin::SystemAssembler "
 
@@ -5206,6 +5233,9 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -5886,8 +5916,8 @@ C++ includes: UnitSphere.h ";
 Triangular mesh of the 2D unit square (0,1) x (0,1). Given the number
 of cells (nx, ny) in each direction, the total number of triangles
 will be 2*nx*ny and the total number of vertices will be (nx + 1)*(ny
-+ 1). std::string diagonal (\"left\", \"right\" or \"crossed\")
-indicates the direction of the diagonals.
++ 1). std::string diagonal (\"left\", \"right\", \"right/left\" or
+\"crossed\") indicates the direction of the diagonals.
 
 C++ includes: UnitSquare.h ";
 
@@ -6447,10 +6477,16 @@ Assemble scalar on sub domains. ";
 // File: Data_8h.xml
 
 
+// File: Expression_8h.xml
+
+
 // File: Function_8h.xml
 
 
 // File: FunctionSpace_8h.xml
+
+
+// File: GenericFunction_8h.xml
 
 
 // File: SpecialFunctions_8h.xml
@@ -6801,53 +6837,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_ac6b7943ecf8030e1346db289f4c2cd6.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_03613cad185bd4526295d1361797faed.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_c85a779edcf8521471aad7e33110a6cd.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_5cb902bde2cbe592f3d22455691e5e23.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_c41790806b9f12926bd69969acf3f52d.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_e1564fb1e084d18db82426e299c858fb.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_b4908de97cbb2a1bd5064d288117e536.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_5e987678464f0b17025f77d3ddc49939.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_0e26997eb85892eb2fca18ed4c646c36.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_795e4032e668c76188c3f1895ebdaf36.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_b4ce194c30a40e5d8aab502a2479a264.xml
 
 
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
+// File: dir_dcd3f54f24953567babdf0bef3e996db.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_08bc3ccc80c74ab453fa2e7d34d0b9af.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_9f0be79a6017ee2eae93920e77ed823a.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_b79e1d919a8339628f92b5c986b13bd0.xml
 
 
-// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
+// File: dir_ae91351e9acdfa30062170c130694ed9.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_a9b2155e7758d936c961b81eff978a01.xml
 
