@@ -1002,25 +1002,56 @@ class Form_0: public dolfin::Form
 public:
 
   // Constructor
-  Form_0():
+  Form_0(const dolfin::Mesh& mesh):
     dolfin::Form(0, 1), v(*this, 0)
   {
+    _mesh = reference_to_no_delete_pointer(mesh);
     _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::GenericFunction& v):
+  Form_0(const dolfin::Mesh& mesh, const dolfin::GenericFunction& v):
     dolfin::Form(0, 1), v(*this, 0)
   {
+    _mesh = reference_to_no_delete_pointer(mesh);
     this->v = v;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::GenericFunction> v):
+  Form_0(const dolfin::Mesh& mesh, boost::shared_ptr<const dolfin::GenericFunction> v):
     dolfin::Form(0, 1), v(*this, 0)
   {
+    _mesh = reference_to_no_delete_pointer(mesh);
+    this->v = *v;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::Form(0, 1), v(*this, 0)
+  {
+    _mesh = mesh;
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::GenericFunction& v):
+    dolfin::Form(0, 1), v(*this, 0)
+  {
+    _mesh = mesh;
+    this->v = v;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
+  }
+
+  // Constructor
+  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::GenericFunction> v):
+    dolfin::Form(0, 1), v(*this, 0)
+  {
+    _mesh = mesh;
     this->v = *v;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new energynorm_form_0());
