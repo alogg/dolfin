@@ -196,9 +196,6 @@ Apply boundary condition to a linear system for a nonlinear problem.
 ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -334,7 +331,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::CellSize::eval "
 
-Function evaluation. ";
+Evaluate function. ";
 
 
 // File: classdolfin_1_1CellType.xml
@@ -606,19 +603,37 @@ C++ includes: Constant.h ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Create constant scalar function with given value. ";
+Create scalar constant. ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Create constant vector function with given size and value. ";
+Create vector constant (dim = 2). ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Create constant vector function with given size and values. ";
+Create vector constant (dim = 3). ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Create constant tensor function with given shape and values. ";
+Create scalar constant with geometric dimension derived from mesh. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create vector-valued constant. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create vector-valued constant with geometric dimension derived from
+mesh. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create tensor-valued constant for flattened array of values. ";
+
+%feature("docstring")  dolfin::Constant::Constant "
+
+Create tensor-valued constant for flattened array of values, with
+geometric dimension derived from mesh ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
@@ -630,15 +645,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Constant::eval "
 
-Function evaluation. ";
-
-%feature("docstring")  dolfin::Constant::size "
-
-Return size. ";
-
-%feature("docstring")  dolfin::Constant::values "
-
-Return values. ";
+Evaluate function. ";
 
 
 // File: classdolfin_1_1Data.xml
@@ -1210,18 +1217,46 @@ element spaces.
 An expression is defined by overloading the eval() method. Users may
 choose to overload either a simple version of eval(), in the case of
 expressions only depending on the coordinate x, or an optional version
-for functions depending on x and mesh data like cell indices or facet
-normals.
+for expressions depending on x and mesh data like cell indices or
+facet normals.
+
+The geometric dimension (the size of x) and the value rank and
+dimensions of an expression must supplied as arguments to the
+constructor.
 
 C++ includes: Expression.h ";
 
 %feature("docstring")  dolfin::Expression::Expression "
 
-Constructor. ";
+Create scalar expression. ";
+
+%feature("docstring")  dolfin::Expression::Expression "
+
+Create vector-valued expression with given dimension. ";
+
+%feature("docstring")  dolfin::Expression::Expression "
+
+Create tensor-valued expression with given shape. ";
+
+%feature("docstring")  dolfin::Expression::Expression "
+
+Copy constructor. ";
 
 %feature("docstring")  dolfin::Expression::~Expression "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Expression::geometric_dimension "
+
+Return geometric dimension. ";
+
+%feature("docstring")  dolfin::Expression::value_rank "
+
+Return value rank. ";
+
+%feature("docstring")  dolfin::Expression::value_dimension "
+
+Return value dimension for given axis. ";
 
 %feature("docstring")  dolfin::Expression::eval "
 
@@ -1283,7 +1318,8 @@ Destructor. ";
 // File: classdolfin_1_1FacetArea.xml
 %feature("docstring") dolfin::FacetArea "
 
-This function represents the area/length of a cell facet.
+This function represents the area/length of a cell facet on a given
+mesh.
 
 C++ includes: SpecialFunctions.h ";
 
@@ -1293,7 +1329,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::FacetArea::eval "
 
-Function evaluation. ";
+Evaluate function. ";
 
 
 // File: classdolfin_1_1FacetIterator.xml
@@ -1352,6 +1388,10 @@ Destructor. ";
 
 %feature("docstring")  dolfin::FiniteElement::signature "";
 
+%feature("docstring")  dolfin::FiniteElement::hash "
+
+Return simple hash of the signature string. ";
+
 %feature("docstring")  dolfin::FiniteElement::value_rank "";
 
 %feature("docstring")  dolfin::FiniteElement::value_dimension "";
@@ -1391,10 +1431,6 @@ C++ includes: Form.h ";
 
 %feature("docstring")  dolfin::Form::Form "
 
-Constructor. ";
-
-%feature("docstring")  dolfin::Form::Form "
-
 Create form of given rank with given number of coefficients. ";
 
 %feature("docstring")  dolfin::Form::Form "
@@ -1413,6 +1449,16 @@ Return rank of form (bilinear form = 2, linear form = 1, functional =
 %feature("docstring")  dolfin::Form::num_coefficients "
 
 Return number of coefficients. ";
+
+%feature("docstring")  dolfin::Form::set_mesh "
+
+Set mesh, necessary for functionals when there are no function spaces.
+";
+
+%feature("docstring")  dolfin::Form::set_mesh "
+
+Set mesh, necessary for functionals when there are no function spaces.
+";
 
 %feature("docstring")  dolfin::Form::mesh "
 
@@ -1555,6 +1601,14 @@ Check if function is a member of the given function space. ";
 
 Return geometric dimension. ";
 
+%feature("docstring")  dolfin::Function::value_rank "
+
+Return value rank. ";
+
+%feature("docstring")  dolfin::Function::value_dimension "
+
+Return value dimension for given axis. ";
+
 %feature("docstring")  dolfin::Function::eval "
 
 Function evaluation. ";
@@ -1582,12 +1636,6 @@ Restrict function to local cell (compute expansion coefficients w). ";
 %feature("docstring")  dolfin::Function::gather "
 
 Collect off-process coefficients to prepare for interpolation. ";
-
-
-// File: classdolfin_1_1Function_1_1GatherScratch.xml
-
-
-// File: classdolfin_1_1Function_1_1Scratch0.xml
 
 
 // File: classdolfin_1_1FunctionPlotData.xml
@@ -1690,6 +1738,9 @@ Create function space based on the restriction. ";
 Update function space when mesh has changed. ";
 
 
+// File: classdolfin_1_1Function_1_1GatherScratch.xml
+
+
 // File: classdolfin_1_1GaussianQuadrature.xml
 %feature("docstring") dolfin::GaussianQuadrature "
 
@@ -1752,14 +1803,21 @@ Constructor. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::GenericFunction::value_rank "
+
+Return value rank. ";
+
+%feature("docstring")  dolfin::GenericFunction::value_dimension "
+
+Return value dimension for given axis. ";
+
 %feature("docstring")  dolfin::GenericFunction::eval "
 
-Evaluate coefficient function. ";
+Evaluate function. ";
 
 %feature("docstring")  dolfin::GenericFunction::restrict "
 
-Restrict coefficient to local cell (compute expansion coefficients w).
-";
+Restrict function to local cell (compute expansion coefficients w). ";
 
 %feature("docstring")  dolfin::GenericFunction::gather "
 
@@ -2657,6 +2715,9 @@ Create Lobatto quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1LocalMeshData.xml
 %feature("docstring") dolfin::LocalMeshData "
 
@@ -2727,7 +2788,9 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
-%feature("docstring")  dolfin::LUSolver::solve "";
+%feature("docstring")  dolfin::LUSolver::solve "
+
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::LUSolver::factorize "";
 
@@ -3151,7 +3214,7 @@ Constructor. ";
 
 %feature("docstring")  dolfin::MeshCoordinates::eval "
 
-Function evaluation. ";
+Evaluate function. ";
 
 
 // File: classdolfin_1_1MeshData.xml
@@ -4823,6 +4886,12 @@ Return a factory for the default linear algebra backend. ";
 Get value. ";
 
 
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
+// File: classdolfin_1_1Function_1_1Scratch0.xml
+
+
 // File: classdolfin_1_1SingularSolver.xml
 %feature("docstring") dolfin::SingularSolver "
 
@@ -5233,9 +5302,6 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -6837,53 +6903,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_ac6b7943ecf8030e1346db289f4c2cd6.xml
+// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
 
 
-// File: dir_03613cad185bd4526295d1361797faed.xml
+// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
 
 
-// File: dir_c85a779edcf8521471aad7e33110a6cd.xml
+// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
 
 
-// File: dir_5cb902bde2cbe592f3d22455691e5e23.xml
+// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
 
 
-// File: dir_c41790806b9f12926bd69969acf3f52d.xml
+// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
 
 
-// File: dir_e1564fb1e084d18db82426e299c858fb.xml
+// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
 
 
-// File: dir_b4908de97cbb2a1bd5064d288117e536.xml
+// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
 
 
-// File: dir_5e987678464f0b17025f77d3ddc49939.xml
+// File: dir_29c16e73653a7fc876ded90673bae460.xml
 
 
-// File: dir_0e26997eb85892eb2fca18ed4c646c36.xml
+// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
 
 
-// File: dir_795e4032e668c76188c3f1895ebdaf36.xml
+// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
 
 
-// File: dir_b4ce194c30a40e5d8aab502a2479a264.xml
+// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
 
 
-// File: dir_dcd3f54f24953567babdf0bef3e996db.xml
+// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
 
 
-// File: dir_08bc3ccc80c74ab453fa2e7d34d0b9af.xml
+// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
 
 
-// File: dir_9f0be79a6017ee2eae93920e77ed823a.xml
+// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
 
 
-// File: dir_b79e1d919a8339628f92b5c986b13bd0.xml
+// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
 
 
-// File: dir_ae91351e9acdfa30062170c130694ed9.xml
+// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
 
 
-// File: dir_a9b2155e7758d936c961b81eff978a01.xml
+// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
 
