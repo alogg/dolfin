@@ -692,6 +692,10 @@ Return geometric dimension of cell. ";
 
 Check if we are on a facet. ";
 
+%feature("docstring")  dolfin::Data::matching_cell "
+
+Check for matching cells. ";
+
 %feature("docstring")  dolfin::Data::is_valid "
 
 Check if data is valid. ";
