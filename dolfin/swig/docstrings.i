@@ -196,9 +196,6 @@ Apply boundary condition to a linear system for a nonlinear problem.
 ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -1649,12 +1646,6 @@ Compute values at all mesh vertices. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
-// File: classdolfin_1_1Function_1_1GatherScratch.xml
-
-
-// File: classdolfin_1_1Function_1_1LocalScratch.xml
-
-
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1755,6 +1746,9 @@ Create function space based on the restriction. ";
 %feature("docstring")  dolfin::FunctionSpace::update "
 
 Update function space when mesh has changed. ";
+
+
+// File: classdolfin_1_1Function_1_1GatherScratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2740,6 +2734,9 @@ Create Lobatto quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1LocalMeshData.xml
 %feature("docstring") dolfin::LocalMeshData "
 
@@ -2778,6 +2775,9 @@ Destructor. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1Function_1_1LocalScratch.xml
+
+
 // File: classdolfin_1_1LogStream.xml
 %feature("docstring") dolfin::LogStream "
 
@@ -2810,7 +2810,9 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
-%feature("docstring")  dolfin::LUSolver::solve "";
+%feature("docstring")  dolfin::LUSolver::solve "
+
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::LUSolver::factorize "";
 
@@ -4942,6 +4944,9 @@ Return a factory for the default linear algebra backend. ";
 Get value. ";
 
 
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
 // File: classdolfin_1_1SingularSolver.xml
 %feature("docstring") dolfin::SingularSolver "
 
@@ -5352,9 +5357,6 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -7046,53 +7048,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_56abe1b05c3f6726115b3cfef724a842.xml
+// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
 
 
-// File: dir_958ed9fe5566c915bb700dbd037c4fe9.xml
+// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
 
 
-// File: dir_12c887cfb9140a1c447c2c859b8e276a.xml
+// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
 
 
-// File: dir_ebcef13846acecaa92dda19f3ba2427a.xml
+// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
 
 
-// File: dir_8b22d6ac8e1fe7210ee1151755cb1548.xml
+// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
 
 
-// File: dir_4873d6f7852be200e44569d5969eb56c.xml
+// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
 
 
-// File: dir_a30d0fdabdb6fe1eb0055958fdf52842.xml
+// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
 
 
-// File: dir_fa43b93ff9aab9562f5ad5be4a0425d6.xml
+// File: dir_29c16e73653a7fc876ded90673bae460.xml
 
 
-// File: dir_4be61312807fd4c00275f0629815d583.xml
+// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
 
 
-// File: dir_3690e19dc0dc498072ba5b0883127a34.xml
+// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
 
 
-// File: dir_9d07a00d1f59da56a4e6986a972ea114.xml
+// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
 
 
-// File: dir_846d49a5ead30070ea21039259bdd139.xml
+// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
 
 
-// File: dir_472600429a7ae84228624a5bd7ae2caa.xml
+// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
 
 
-// File: dir_bec17510e887fbd71f6bc60fe10d7303.xml
+// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
 
 
-// File: dir_24b7e2d69b64c695e4d5516d3e2caea0.xml
+// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
 
 
-// File: dir_305756c00060c0f036d35c9b441cb290.xml
+// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
 
 
-// File: dir_152bf7391bd5fd20d92d745cbf1518be.xml
+// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
 
