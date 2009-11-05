@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -459,7 +459,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -699,8 +699,8 @@ public:
       const double Gip0 = F0*G0;
       
       
-      // Number of operations for primary indices = 1
-      // Number of operations to compute entry = 1
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
       A[0] += Gip0;
       }
       break;
@@ -726,8 +726,8 @@ public:
       const double Gip0 = F0*G0;
       
       
-      // Number of operations for primary indices = 1
-      // Number of operations to compute entry = 1
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
       A[0] += Gip0;
       }
       break;
@@ -753,8 +753,8 @@ public:
       const double Gip0 = F0*G0;
       
       
-      // Number of operations for primary indices = 1
-      // Number of operations to compute entry = 1
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
       A[0] += Gip0;
       }
       break;
@@ -925,7 +925,7 @@ public:
   CoefficientSpace_p(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -933,7 +933,7 @@ public:
   CoefficientSpace_p(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -941,7 +941,7 @@ public:
   CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -949,7 +949,7 @@ public:
   CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }

@@ -15,7 +15,7 @@ cahnhilliard3d_0_finite_element_0_0::~cahnhilliard3d_0_finite_element_0_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_0_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -538,7 +538,7 @@ cahnhilliard3d_0_finite_element_0_1::~cahnhilliard3d_0_finite_element_0_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_0_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -1061,7 +1061,7 @@ cahnhilliard3d_0_finite_element_0::~cahnhilliard3d_0_finite_element_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_0::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -1798,7 +1798,7 @@ cahnhilliard3d_0_finite_element_1_0::~cahnhilliard3d_0_finite_element_1_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_1_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -2321,7 +2321,7 @@ cahnhilliard3d_0_finite_element_1_1::~cahnhilliard3d_0_finite_element_1_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_1_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -2844,7 +2844,7 @@ cahnhilliard3d_0_finite_element_1::~cahnhilliard3d_0_finite_element_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_1::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -3581,7 +3581,7 @@ cahnhilliard3d_0_finite_element_2_0::~cahnhilliard3d_0_finite_element_2_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_2_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -4104,7 +4104,7 @@ cahnhilliard3d_0_finite_element_2_1::~cahnhilliard3d_0_finite_element_2_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_2_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -4627,7 +4627,7 @@ cahnhilliard3d_0_finite_element_2::~cahnhilliard3d_0_finite_element_2()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_2::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -5364,7 +5364,7 @@ cahnhilliard3d_0_finite_element_3::~cahnhilliard3d_0_finite_element_3()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_3::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -5826,7 +5826,7 @@ cahnhilliard3d_0_finite_element_4::~cahnhilliard3d_0_finite_element_4()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_4::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -6288,7 +6288,7 @@ cahnhilliard3d_0_finite_element_5::~cahnhilliard3d_0_finite_element_5()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_5::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -6750,7 +6750,7 @@ cahnhilliard3d_0_finite_element_6::~cahnhilliard3d_0_finite_element_6()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_0_finite_element_6::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -7211,7 +7211,7 @@ cahnhilliard3d_0_dof_map_0_0::~cahnhilliard3d_0_dof_map_0_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_0_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7385,7 +7385,7 @@ cahnhilliard3d_0_dof_map_0_1::~cahnhilliard3d_0_dof_map_0_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_0_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7559,7 +7559,7 @@ cahnhilliard3d_0_dof_map_0::~cahnhilliard3d_0_dof_map_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_0::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7771,7 +7771,7 @@ cahnhilliard3d_0_dof_map_1_0::~cahnhilliard3d_0_dof_map_1_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_1_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7945,7 +7945,7 @@ cahnhilliard3d_0_dof_map_1_1::~cahnhilliard3d_0_dof_map_1_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_1_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8119,7 +8119,7 @@ cahnhilliard3d_0_dof_map_1::~cahnhilliard3d_0_dof_map_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_1::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8331,7 +8331,7 @@ cahnhilliard3d_0_dof_map_2_0::~cahnhilliard3d_0_dof_map_2_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_2_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8505,7 +8505,7 @@ cahnhilliard3d_0_dof_map_2_1::~cahnhilliard3d_0_dof_map_2_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_2_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8679,7 +8679,7 @@ cahnhilliard3d_0_dof_map_2::~cahnhilliard3d_0_dof_map_2()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_2::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -8891,7 +8891,7 @@ cahnhilliard3d_0_dof_map_3::~cahnhilliard3d_0_dof_map_3()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_3::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9045,7 +9045,7 @@ cahnhilliard3d_0_dof_map_4::~cahnhilliard3d_0_dof_map_4()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_4::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9199,7 +9199,7 @@ cahnhilliard3d_0_dof_map_5::~cahnhilliard3d_0_dof_map_5()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_5::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9353,7 +9353,7 @@ cahnhilliard3d_0_dof_map_6::~cahnhilliard3d_0_dof_map_6()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_0_dof_map_6::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -9559,48 +9559,7 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     // Quadrature points on the UFC reference element: (0.0952198798417149, 0.0821215678634425, 0.0729940240731498), (0.0670742417520586, 0.0578476039361427, 0.347003766038352), (0.0303014811742758, 0.0261332522867349, 0.705002209888498), (0.0616960186091465, 0.379578230280591, 0.0729940240731498), (0.0434595556538024, 0.267380320411884, 0.347003766038352), (0.0196333029354845, 0.120791820133903, 0.705002209888498), (0.0221843026408197, 0.730165028047632, 0.0729940240731498), (0.0156269392579017, 0.514338662174092, 0.347003766038352), (0.00705963113955477, 0.232357800579865, 0.705002209888498), (0.422442204031704, 0.0821215678634425, 0.0729940240731498), (0.297574315012753, 0.0578476039361427, 0.347003766038352), (0.134432268912383, 0.0261332522867349, 0.705002209888498), (0.27371387282313, 0.379578230280591, 0.0729940240731498), (0.192807956774882, 0.267380320411884, 0.347003766038352), (0.0871029849887995, 0.120791820133903, 0.705002209888498), (0.0984204739396093, 0.730165028047632, 0.0729940240731498), (0.0693287858937781, 0.514338662174092, 0.347003766038352), (0.0313199947658185, 0.232357800579865, 0.705002209888498), (0.749664528221693, 0.0821215678634425, 0.0729940240731498), (0.528074388273447, 0.0578476039361427, 0.347003766038352), (0.238563056650491, 0.0261332522867349, 0.705002209888498), (0.485731727037113, 0.379578230280591, 0.0729940240731498), (0.342156357895961, 0.267380320411884, 0.347003766038352), (0.154572667042115, 0.120791820133903, 0.705002209888498), (0.174656645238399, 0.730165028047632, 0.0729940240731498), (0.123030632529655, 0.514338662174092, 0.347003766038352), (0.0555803583920821, 0.232357800579865, 0.705002209888498)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1_D001[27][2] = \
-    {{-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {4, 7};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {4, 6};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {4, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc4[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc5[2] = {0, 3};
-    static const double FE0_C1[27][4] = \
+    static const double FE1_C0[27][4] = \
     {{0.749664528221693, 0.0952198798417149, 0.0821215678634425, 0.0729940240731498},
     {0.528074388273447, 0.0670742417520586, 0.0578476039361427, 0.347003766038352},
     {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
@@ -9630,26 +9589,67 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     {0.00705963113955483, 0.0555803583920822, 0.232357800579865, 0.705002209888498}};
     
     // Array of non-zero columns
-    static const unsigned int nzc6[4] = {4, 5, 6, 7};
+    static const unsigned int nzc0[4] = {0, 1, 2, 3};
     // Array of non-zero columns
-    static const unsigned int nzc7[4] = {0, 1, 2, 3};
+    static const unsigned int nzc4[4] = {4, 5, 6, 7};
+    static const double FE1_C0_D001[27][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 3};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc6[2] = {4, 6};
+    // Array of non-zero columns
+    static const unsigned int nzc7[2] = {4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {4, 7};
     
     // Number of operations to compute geometry constants: 96
-    const double G0 = -det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G1 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G2 = -det*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G3 = -det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G4 = 12*det*w[2][0];
-    const double G5 = -2*det*w[2][0];
-    const double G6 = -12*det*w[2][0];
-    const double G7 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G0 = -det*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G1 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G2 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G3 = 12*det*w[2][0];
+    const double G4 = -2*det*w[2][0];
+    const double G5 = -12*det*w[2][0];
+    const double G6 = -det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G7 = -det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
     const double G8 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G9 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G10 = -det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G11 = -det*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G12 = det*w[3][0]*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G13 = -det*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G14 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G9 = -det*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G10 = -det*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G11 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G12 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G13 = -det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G14 = det*w[3][0]*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -9666,7 +9666,7 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       // Total number of operations to compute function values = 8
       for (unsigned int r = 0; r < 4; r++)
       {
-        F0 += FE0_C1[ip][r]*w[0][nzc6[r]];
+        F0 += FE1_C0[ip][r]*w[0][nzc4[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 18
@@ -9679,11 +9679,11 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       // Number of operations: 1
       const double Gip2 = G2*W27[ip];
       
-      // Number of operations: 1
-      const double Gip3 = G3*W27[ip];
-      
       // Number of operations: 5
-      const double Gip4 = W27[ip]*(G5 + F0*(G4 + F0*G6));
+      const double Gip3 = W27[ip]*(G4 + F0*(G3 + F0*G5));
+      
+      // Number of operations: 1
+      const double Gip4 = G6*W27[ip];
       
       // Number of operations: 1
       const double Gip5 = G7*W27[ip];
@@ -9695,79 +9695,79 @@ void cahnhilliard3d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       const double Gip7 = G9*W27[ip];
       
       // Number of operations: 1
-      const double Gip8 = W27[ip]*det;
+      const double Gip8 = G10*W27[ip];
       
       // Number of operations: 1
-      const double Gip9 = G10*W27[ip];
+      const double Gip9 = G11*W27[ip];
       
       // Number of operations: 1
-      const double Gip10 = G11*W27[ip];
+      const double Gip10 = G12*W27[ip];
       
       // Number of operations: 1
-      const double Gip11 = G12*W27[ip];
+      const double Gip11 = G13*W27[ip];
       
       // Number of operations: 1
-      const double Gip12 = G13*W27[ip];
+      const double Gip12 = W27[ip]*det;
       
       // Number of operations: 1
       const double Gip13 = G14*W27[ip];
       
       
-      // Number of operations for primary indices = 216
+      // Number of operations for primary indices: 216
       for (unsigned int j = 0; j < 2; j++)
       {
         for (unsigned int k = 0; k < 2; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*8 + nzc1[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip0;
-          // Number of operations to compute entry = 3
-          A[nzc4[j]*8 + nzc3[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*8 + nzc2[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*8 + nzc2[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip3;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*8 + nzc1[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip3;
-          // Number of operations to compute entry = 3
-          A[nzc3[j]*8 + nzc5[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip5;
-          // Number of operations to compute entry = 3
-          A[nzc4[j]*8 + nzc4[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip6;
-          // Number of operations to compute entry = 3
-          A[nzc5[j]*8 + nzc4[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip7;
-          // Number of operations to compute entry = 3
-          A[nzc4[j]*8 + nzc5[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip7;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*8 + nzc2[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip9;
-          // Number of operations to compute entry = 3
-          A[nzc5[j]*8 + nzc3[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip5;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip10;
-          // Number of operations to compute entry = 3
-          A[nzc5[j]*8 + nzc5[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip11;
-          // Number of operations to compute entry = 3
-          A[nzc3[j]*8 + nzc4[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip12;
-          // Number of operations to compute entry = 3
-          A[nzc3[j]*8 + nzc3[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip13;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*8 + nzc0[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*8 + nzc1[k]] += FE0_C1_D001[ip][j]*FE0_C1_D001[ip][k]*Gip10;
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*8 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*8 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip1;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*8 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip2;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*8 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip1;
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*8 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip4;
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*8 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip5;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*8 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip6;
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*8 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip7;
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*8 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip8;
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*8 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip9;
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*8 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*8 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip8;
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*8 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip10;
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*8 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip11;
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*8 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip5;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*8 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip13;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*8 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip10;
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*8 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*Gip2;
         }// end loop over 'k'
       }// end loop over 'j'
       
-      // Number of operations for primary indices = 144
+      // Number of operations for primary indices: 144
       for (unsigned int j = 0; j < 4; j++)
       {
         for (unsigned int k = 0; k < 4; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc6[j]*8 + nzc6[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip4;
-          // Number of operations to compute entry = 3
-          A[nzc7[j]*8 + nzc6[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip8;
-          // Number of operations to compute entry = 3
-          A[nzc6[j]*8 + nzc7[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip8;
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*8 + nzc4[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip3;
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*8 + nzc0[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip12;
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*8 + nzc4[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip12;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -9940,7 +9940,7 @@ cahnhilliard3d_1_finite_element_0_0::~cahnhilliard3d_1_finite_element_0_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_0_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -10463,7 +10463,7 @@ cahnhilliard3d_1_finite_element_0_1::~cahnhilliard3d_1_finite_element_0_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_0_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -10986,7 +10986,7 @@ cahnhilliard3d_1_finite_element_0::~cahnhilliard3d_1_finite_element_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_0::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -11723,7 +11723,7 @@ cahnhilliard3d_1_finite_element_1_0::~cahnhilliard3d_1_finite_element_1_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_1_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -12246,7 +12246,7 @@ cahnhilliard3d_1_finite_element_1_1::~cahnhilliard3d_1_finite_element_1_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_1_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -12769,7 +12769,7 @@ cahnhilliard3d_1_finite_element_1::~cahnhilliard3d_1_finite_element_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_1::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -13506,7 +13506,7 @@ cahnhilliard3d_1_finite_element_2_0::~cahnhilliard3d_1_finite_element_2_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_2_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -14029,7 +14029,7 @@ cahnhilliard3d_1_finite_element_2_1::~cahnhilliard3d_1_finite_element_2_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_2_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return the cell shape
@@ -14552,7 +14552,7 @@ cahnhilliard3d_1_finite_element_2::~cahnhilliard3d_1_finite_element_2()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_2::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -15289,7 +15289,7 @@ cahnhilliard3d_1_finite_element_3::~cahnhilliard3d_1_finite_element_3()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_3::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -15751,7 +15751,7 @@ cahnhilliard3d_1_finite_element_4::~cahnhilliard3d_1_finite_element_4()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_4::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -16213,7 +16213,7 @@ cahnhilliard3d_1_finite_element_5::~cahnhilliard3d_1_finite_element_5()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_5::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -16675,7 +16675,7 @@ cahnhilliard3d_1_finite_element_6::~cahnhilliard3d_1_finite_element_6()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_1_finite_element_6::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return the cell shape
@@ -17136,7 +17136,7 @@ cahnhilliard3d_1_dof_map_0_0::~cahnhilliard3d_1_dof_map_0_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_0_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17310,7 +17310,7 @@ cahnhilliard3d_1_dof_map_0_1::~cahnhilliard3d_1_dof_map_0_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_0_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17484,7 +17484,7 @@ cahnhilliard3d_1_dof_map_0::~cahnhilliard3d_1_dof_map_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_0::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17696,7 +17696,7 @@ cahnhilliard3d_1_dof_map_1_0::~cahnhilliard3d_1_dof_map_1_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_1_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -17870,7 +17870,7 @@ cahnhilliard3d_1_dof_map_1_1::~cahnhilliard3d_1_dof_map_1_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_1_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18044,7 +18044,7 @@ cahnhilliard3d_1_dof_map_1::~cahnhilliard3d_1_dof_map_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_1::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18256,7 +18256,7 @@ cahnhilliard3d_1_dof_map_2_0::~cahnhilliard3d_1_dof_map_2_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_2_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18430,7 +18430,7 @@ cahnhilliard3d_1_dof_map_2_1::~cahnhilliard3d_1_dof_map_2_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_2_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18604,7 +18604,7 @@ cahnhilliard3d_1_dof_map_2::~cahnhilliard3d_1_dof_map_2()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_2::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18816,7 +18816,7 @@ cahnhilliard3d_1_dof_map_3::~cahnhilliard3d_1_dof_map_3()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_3::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -18970,7 +18970,7 @@ cahnhilliard3d_1_dof_map_4::~cahnhilliard3d_1_dof_map_4()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_4::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -19124,7 +19124,7 @@ cahnhilliard3d_1_dof_map_5::~cahnhilliard3d_1_dof_map_5()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_5::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -19278,7 +19278,7 @@ cahnhilliard3d_1_dof_map_6::~cahnhilliard3d_1_dof_map_6()
 /// Return a string identifying the dof map
 const char* cahnhilliard3d_1_dof_map_6::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -19484,48 +19484,7 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     // Quadrature points on the UFC reference element: (0.0952198798417149, 0.0821215678634425, 0.0729940240731498), (0.0670742417520586, 0.0578476039361427, 0.347003766038352), (0.0303014811742758, 0.0261332522867349, 0.705002209888498), (0.0616960186091465, 0.379578230280591, 0.0729940240731498), (0.0434595556538024, 0.267380320411884, 0.347003766038352), (0.0196333029354845, 0.120791820133903, 0.705002209888498), (0.0221843026408197, 0.730165028047632, 0.0729940240731498), (0.0156269392579017, 0.514338662174092, 0.347003766038352), (0.00705963113955477, 0.232357800579865, 0.705002209888498), (0.422442204031704, 0.0821215678634425, 0.0729940240731498), (0.297574315012753, 0.0578476039361427, 0.347003766038352), (0.134432268912383, 0.0261332522867349, 0.705002209888498), (0.27371387282313, 0.379578230280591, 0.0729940240731498), (0.192807956774882, 0.267380320411884, 0.347003766038352), (0.0871029849887995, 0.120791820133903, 0.705002209888498), (0.0984204739396093, 0.730165028047632, 0.0729940240731498), (0.0693287858937781, 0.514338662174092, 0.347003766038352), (0.0313199947658185, 0.232357800579865, 0.705002209888498), (0.749664528221693, 0.0821215678634425, 0.0729940240731498), (0.528074388273447, 0.0578476039361427, 0.347003766038352), (0.238563056650491, 0.0261332522867349, 0.705002209888498), (0.485731727037113, 0.379578230280591, 0.0729940240731498), (0.342156357895961, 0.267380320411884, 0.347003766038352), (0.154572667042115, 0.120791820133903, 0.705002209888498), (0.174656645238399, 0.730165028047632, 0.0729940240731498), (0.123030632529655, 0.514338662174092, 0.347003766038352), (0.0555803583920821, 0.232357800579865, 0.705002209888498)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1_D001[27][2] = \
-    {{-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {4, 7};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {4, 6};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {4, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc4[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc5[2] = {0, 3};
-    static const double FE0_C1[27][4] = \
+    static const double FE1_C0[27][4] = \
     {{0.749664528221693, 0.0952198798417149, 0.0821215678634425, 0.0729940240731498},
     {0.528074388273447, 0.0670742417520586, 0.0578476039361427, 0.347003766038352},
     {0.238563056650491, 0.0303014811742758, 0.0261332522867349, 0.705002209888498},
@@ -19555,32 +19514,73 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     {0.00705963113955483, 0.0555803583920822, 0.232357800579865, 0.705002209888498}};
     
     // Array of non-zero columns
-    static const unsigned int nzc6[4] = {4, 5, 6, 7};
+    static const unsigned int nzc0[4] = {0, 1, 2, 3};
     // Array of non-zero columns
-    static const unsigned int nzc7[4] = {0, 1, 2, 3};
+    static const unsigned int nzc4[4] = {4, 5, 6, 7};
+    static const double FE1_C0_D001[27][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 3};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc6[2] = {4, 6};
+    // Array of non-zero columns
+    static const unsigned int nzc7[2] = {4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {4, 7};
     
     // Number of operations to compute geometry constants: 180
-    const double G0 = -det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G1 = -det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G2 = -det*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G3 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G4 = det*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22-w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G5 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G6 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G7 = det*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12-w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G8 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12-w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G9 = -det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G10 = -det*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G11 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G12 = det*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22-w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G13 = det*w[4][0]*w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G14 = det*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22-w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G15 = -det*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G16 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G17 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02-w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G18 = -2*det*w[3][0];
-    const double G19 = 6*det*w[3][0];
-    const double G20 = -4*det*w[3][0];
+    const double G0 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G1 = det*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22-w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G2 = det*w[4][0]*w[5][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G3 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G4 = det*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22-w[5][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G5 = det*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22-w[5][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G6 = -det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G7 = -det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G8 = -det*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G9 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
+    const double G10 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G11 = det*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12-w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G12 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12-w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G13 = -det*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G14 = -det*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
+    const double G15 = -2*det*w[3][0];
+    const double G16 = 6*det*w[3][0];
+    const double G17 = -4*det*w[3][0];
+    const double G18 = -det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G19 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G20 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02-w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -19608,75 +19608,75 @@ void cahnhilliard3d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
       // Total number of operations to compute function values = 36
       for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_C1_D001[ip][r]*w[0][nzc3[r]];
-        F1 += FE0_C1_D001[ip][r]*w[0][nzc4[r]];
-        F2 += FE0_C1_D001[ip][r]*w[0][nzc5[r]];
-        F3 += FE0_C1_D001[ip][r]*w[1][nzc3[r]];
-        F4 += FE0_C1_D001[ip][r]*w[1][nzc4[r]];
-        F5 += FE0_C1_D001[ip][r]*w[1][nzc5[r]];
-        F8 += FE0_C1_D001[ip][r]*w[0][nzc2[r]];
-        F9 += FE0_C1_D001[ip][r]*w[0][nzc1[r]];
-        F10 += FE0_C1_D001[ip][r]*w[0][nzc0[r]];
+        F0 += FE1_C0_D001[ip][r]*w[0][nzc3[r]];
+        F1 += FE1_C0_D001[ip][r]*w[0][nzc2[r]];
+        F2 += FE1_C0_D001[ip][r]*w[0][nzc1[r]];
+        F3 += FE1_C0_D001[ip][r]*w[1][nzc3[r]];
+        F4 += FE1_C0_D001[ip][r]*w[1][nzc2[r]];
+        F5 += FE1_C0_D001[ip][r]*w[1][nzc1[r]];
+        F8 += FE1_C0_D001[ip][r]*w[0][nzc7[r]];
+        F9 += FE1_C0_D001[ip][r]*w[0][nzc6[r]];
+        F10 += FE1_C0_D001[ip][r]*w[0][nzc5[r]];
       }// end loop over 'r'
       
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 4; r++)
       {
-        F6 += FE0_C1[ip][r]*w[0][nzc6[r]];
-        F7 += FE0_C1[ip][r]*w[1][nzc6[r]];
-        F11 += FE0_C1[ip][r]*w[0][nzc7[r]];
+        F6 += FE1_C0[ip][r]*w[0][nzc4[r]];
+        F7 += FE1_C0[ip][r]*w[1][nzc4[r]];
+        F11 += FE1_C0[ip][r]*w[0][nzc0[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 65
-      // Number of operations: 6
-      const double Gip0 = W27[ip]*(F10*G2 + F8*G0 + F9*G1);
-      
-      // Number of operations: 12
-      const double Gip1 = W27[ip]*(F0*G3 + F1*G6 + F2*G5 + F3*G7 + F4*G8 + F5*G4);
-      
-      // Number of operations: 6
-      const double Gip2 = W27[ip]*(F10*G10 + F8*G9 + F9*G0);
-      
-      // Number of operations: 12
-      const double Gip3 = W27[ip]*(F0*G11 + F1*G5 + F2*G13 + F3*G14 + F4*G4 + F5*G12);
-      
       // Number of operations: 3
-      const double Gip4 = W27[ip]*det*(F6-F7);
-      
-      // Number of operations: 6
-      const double Gip5 = W27[ip]*(F10*G15 + F8*G10 + F9*G2);
+      const double Gip0 = W27[ip]*det*(F6-F7);
       
       // Number of operations: 12
-      const double Gip6 = W27[ip]*(F0*G16 + F1*G3 + F2*G11 + F3*G17 + F4*G7 + F5*G14);
+      const double Gip1 = W27[ip]*(F0*G0 + F1*G3 + F2*G2 + F3*G4 + F4*G5 + F5*G1);
+      
+      // Number of operations: 6
+      const double Gip2 = W27[ip]*(F10*G8 + F8*G6 + F9*G7);
+      
+      // Number of operations: 12
+      const double Gip3 = W27[ip]*(F0*G9 + F1*G10 + F2*G3 + F3*G11 + F4*G12 + F5*G5);
+      
+      // Number of operations: 6
+      const double Gip4 = W27[ip]*(F10*G14 + F8*G8 + F9*G13);
       
       // Number of operations: 8
-      const double Gip7 = W27[ip]*(F11*det + F6*(G18 + F6*(G19 + F6*G20)));
+      const double Gip5 = W27[ip]*(F11*det + F6*(G15 + F6*(G16 + F6*G17)));
+      
+      // Number of operations: 6
+      const double Gip6 = W27[ip]*(F10*G13 + F8*G7 + F9*G18);
+      
+      // Number of operations: 12
+      const double Gip7 = W27[ip]*(F0*G19 + F1*G9 + F2*G0 + F3*G20 + F4*G11 + F5*G4);
       
       
-      // Number of operations for primary indices = 24
+      // Number of operations for primary indices: 24
       for (unsigned int j = 0; j < 2; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE0_C1_D001[ip][j]*Gip0;
-        // Number of operations to compute entry = 2
-        A[nzc4[j]] += FE0_C1_D001[ip][j]*Gip1;
-        // Number of operations to compute entry = 2
-        A[nzc2[j]] += FE0_C1_D001[ip][j]*Gip2;
-        // Number of operations to compute entry = 2
-        A[nzc5[j]] += FE0_C1_D001[ip][j]*Gip3;
-        // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE0_C1_D001[ip][j]*Gip5;
-        // Number of operations to compute entry = 2
-        A[nzc3[j]] += FE0_C1_D001[ip][j]*Gip6;
+        // Number of operations to compute entry: 2
+        A[nzc1[j]] += FE1_C0_D001[ip][j]*Gip1;
+        // Number of operations to compute entry: 2
+        A[nzc7[j]] += FE1_C0_D001[ip][j]*Gip2;
+        // Number of operations to compute entry: 2
+        A[nzc2[j]] += FE1_C0_D001[ip][j]*Gip3;
+        // Number of operations to compute entry: 2
+        A[nzc5[j]] += FE1_C0_D001[ip][j]*Gip4;
+        // Number of operations to compute entry: 2
+        A[nzc6[j]] += FE1_C0_D001[ip][j]*Gip6;
+        // Number of operations to compute entry: 2
+        A[nzc3[j]] += FE1_C0_D001[ip][j]*Gip7;
       }// end loop over 'j'
       
-      // Number of operations for primary indices = 16
+      // Number of operations for primary indices: 16
       for (unsigned int j = 0; j < 4; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc7[j]] += FE0_C1[ip][j]*Gip4;
-        // Number of operations to compute entry = 2
-        A[nzc6[j]] += FE0_C1[ip][j]*Gip7;
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE1_C0[ip][j]*Gip0;
+        // Number of operations to compute entry: 2
+        A[nzc4[j]] += FE1_C0[ip][j]*Gip5;
       }// end loop over 'j'
     }// end loop over 'ip'
 }

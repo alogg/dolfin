@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return the cell shape
@@ -503,7 +503,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return the cell shape
@@ -973,7 +973,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
   }
 
   /// Return the cell shape
@@ -1360,7 +1360,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
   }
 
   /// Return the cell shape
@@ -1752,7 +1752,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1933,7 +1933,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2114,7 +2114,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2273,7 +2273,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2462,22 +2462,22 @@ public:
     {{4, 4, -8}};
     
     // Array of non-zero columns
-    static const unsigned int nzc3[3] = {0, 2, 4};
+    static const unsigned int nzc1[3] = {0, 2, 4};
     // Array of non-zero columns
     static const unsigned int nzc4[3] = {0, 1, 5};
     static const double FE0_D11[1][4] = \
     {{4, 4, -4, -4}};
     
     // Array of non-zero columns
-    static const unsigned int nzc1[4] = {0, 3, 4, 5};
+    static const unsigned int nzc3[4] = {0, 3, 4, 5};
     
     // Number of operations to compute geometry constants: 81
-    const double G0 = W1*det*(Jinv_10*Jinv_10*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G1 = W1*det*(Jinv_10*Jinv_10*(2*Jinv_11*Jinv_11 + Jinv_10*Jinv_10) + Jinv_11*Jinv_11*Jinv_11*Jinv_11);
+    const double G0 = W1*det*(4*Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_00*Jinv_10*(4*Jinv_00*Jinv_10 + 8*Jinv_01*Jinv_11));
+    const double G1 = 2*W1*det*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
     const double G2 = 2*W1*det*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_01*Jinv_10 + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
-    const double G3 = 2*W1*det*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G4 = W1*det*(4*Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_00*Jinv_10*(4*Jinv_00*Jinv_10 + 8*Jinv_01*Jinv_11));
-    const double G5 = W1*det*(Jinv_00*Jinv_00*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00) + Jinv_01*Jinv_01*Jinv_01*Jinv_01);
+    const double G3 = W1*det*(Jinv_10*Jinv_10*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G4 = W1*det*(Jinv_00*Jinv_00*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00) + Jinv_01*Jinv_01*Jinv_01*Jinv_01);
+    const double G5 = W1*det*(Jinv_10*Jinv_10*(2*Jinv_11*Jinv_11 + Jinv_10*Jinv_10) + Jinv_11*Jinv_11*Jinv_11*Jinv_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -2487,53 +2487,53 @@ public:
     // Number of operations to compute element tensor for following IP loop = 300
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices = 108
+    // Number of operations for primary indices: 108
     for (unsigned int j = 0; j < 3; j++)
     {
       for (unsigned int k = 0; k < 3; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc3[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G0;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc3[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G1;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc4[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G5;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc4[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G0;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc1[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc4[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G4;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc4[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc1[k]] += FE0_D02[0][j]*FE0_D02[0][k]*G5;
       }// end loop over 'k'
     }// end loop over 'j'
     
-    // Number of operations for primary indices = 72
+    // Number of operations for primary indices: 72
     for (unsigned int j = 0; j < 4; j++)
     {
       for (unsigned int k = 0; k < 3; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc4[k]] += FE0_D02[0][k]*FE0_D11[0][j]*G2;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc3[k]] += FE0_D02[0][k]*FE0_D11[0][j]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*6 + nzc1[k]] += FE0_D02[0][k]*FE0_D11[0][j]*G1;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*6 + nzc4[k]] += FE0_D02[0][k]*FE0_D11[0][j]*G2;
       }// end loop over 'k'
     }// end loop over 'j'
     
-    // Number of operations for primary indices = 48
+    // Number of operations for primary indices: 48
     for (unsigned int j = 0; j < 4; j++)
     {
       for (unsigned int k = 0; k < 4; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc1[k]] += FE0_D11[0][j]*FE0_D11[0][k]*G4;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*6 + nzc3[k]] += FE0_D11[0][j]*FE0_D11[0][k]*G0;
       }// end loop over 'k'
     }// end loop over 'j'
     
-    // Number of operations for primary indices = 72
+    // Number of operations for primary indices: 72
     for (unsigned int j = 0; j < 3; j++)
     {
       for (unsigned int k = 0; k < 4; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc1[k]] += FE0_D02[0][j]*FE0_D11[0][k]*G3;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc1[k]] += FE0_D02[0][j]*FE0_D11[0][k]*G2;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc3[k]] += FE0_D02[0][j]*FE0_D11[0][k]*G1;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc3[k]] += FE0_D02[0][j]*FE0_D11[0][k]*G2;
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -2671,101 +2671,101 @@ public:
     // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0_D20[2][3] = \
-    {{4, 4, -8},
-    {3.99999999999999, 3.99999999999999, -7.99999999999999}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc3[3] = {0, 1, 5};
-    static const double FE0_f2_D02[2][3] = \
-    {{4, 4, -8},
-    {4, 4, -8}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc4[3] = {0, 2, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc8[3] = {0, 1, 5};
-    static const double FE0_f2_D01[2][5] = \
-    {{-2.15470053837925, -1, 0.845299461620749, 3.15470053837925, -0.845299461620749},
-    {0.154700538379252, -1, 3.15470053837925, 0.845299461620748, -3.15470053837925}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc5[5] = {0, 2, 3, 4, 5};
     static const double FE0_f0_D01[2][5] = \
     {{1, -0.154700538379252, 3.15470053837925, -0.845299461620749, -3.15470053837925},
     {1, 2.15470053837925, 0.845299461620748, -3.15470053837925, -0.845299461620748}};
     
     // Array of non-zero columns
-    static const unsigned int nzc6[5] = {0, 2, 3, 4, 5};
+    static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
+    static const double FE0_f0_D02[2][3] = \
+    {{4, 4, -8},
+    {4, 4, -8}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[3] = {0, 2, 4};
+    // Array of non-zero columns
+    static const unsigned int nzc13[3] = {0, 1, 5};
     static const double FE0_f0_D10[2][5] = \
     {{1, 2.15470053837925, 0.845299461620748, -0.845299461620748, -3.15470053837925},
     {1, -0.154700538379252, 3.15470053837925, -3.15470053837925, -0.845299461620748}};
     
     // Array of non-zero columns
-    static const unsigned int nzc7[5] = {0, 1, 3, 4, 5};
+    static const unsigned int nzc3[5] = {0, 1, 3, 4, 5};
     static const double FE0_f0_D11[2][4] = \
     {{4, 4, -4, -3.99999999999999},
     {4, 4, -4, -4}};
     
     // Array of non-zero columns
-    static const unsigned int nzc12[4] = {0, 3, 4, 5};
+    static const unsigned int nzc4[4] = {0, 3, 4, 5};
+    static const double FE0_f0_D20[2][3] = \
+    {{4, 4, -8},
+    {3.99999999999999, 3.99999999999999, -7.99999999999999}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc5[3] = {0, 1, 5};
+    static const double FE0_f1_D01[2][3] = \
+    {{-2.15470053837925, -0.154700538379252, 2.3094010767585},
+    {0.154700538379252, 2.15470053837925, -2.3094010767585}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc12[3] = {0, 1, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc7[3] = {0, 2, 4};
+    static const double FE0_f1_D10[2][5] = \
+    {{-2.15470053837925, -1, 0.845299461620748, -0.845299461620748, 3.15470053837925},
+    {0.154700538379253, -1, 3.15470053837925, -3.15470053837925, 0.845299461620747}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc8[5] = {0, 1, 3, 4, 5};
     static const double FE0_f1_D11[2][4] = \
     {{4, 4, -4, -4},
     {4, 4, -4, -4}};
     
     // Array of non-zero columns
     static const unsigned int nzc9[4] = {0, 3, 4, 5};
-    static const double FE0_f1_D10[2][5] = \
-    {{-2.15470053837925, -1, 0.845299461620748, -0.845299461620748, 3.15470053837925},
-    {0.154700538379253, -1, 3.15470053837925, -3.15470053837925, 0.845299461620747}};
+    static const double FE0_f2_D01[2][5] = \
+    {{-2.15470053837925, -1, 0.845299461620749, 3.15470053837925, -0.845299461620749},
+    {0.154700538379252, -1, 3.15470053837925, 0.845299461620748, -3.15470053837925}};
     
     // Array of non-zero columns
-    static const unsigned int nzc10[5] = {0, 1, 3, 4, 5};
-    static const double FE0_f2_D10[2][3] = \
-    {{-2.15470053837925, -0.154700538379252, 2.3094010767585},
-    {0.154700538379252, 2.15470053837925, -2.3094010767585}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc11[3] = {0, 1, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc13[3] = {0, 2, 4};
+    static const unsigned int nzc11[5] = {0, 2, 3, 4, 5};
     
     // Number of operations to compute geometry constants: 470
     // Should be added to total operation count.
-    const double G0 = -0.5*det*(Jinv1_10*(Jinv1_10*Jinv1_11*n11 + n10*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11)) + Jinv1_11*Jinv1_11*Jinv1_11*n11);
-    const double G1 = -0.5*det*(Jinv0_00*(Jinv0_00*(Jinv0_00*n00 + Jinv0_01*n01) + Jinv0_01*Jinv0_01*n00) + Jinv0_01*Jinv0_01*Jinv0_01*n01);
-    const double G2 = -det*(Jinv0_00*Jinv0_10*Jinv0_10*n00 + Jinv0_11*(Jinv0_01*Jinv0_11*n01 + Jinv0_10*(Jinv0_00*n01 + Jinv0_01*n00)));
-    const double G3 = det*w[1][0]*(Jinv0_01*Jinv0_11*n01*n01 + n00*(Jinv0_00*(Jinv0_10*n00 + Jinv0_11*n01) + Jinv0_01*Jinv0_10*n01))/(0.5*(w[0][0] + w[0][1]));
-    const double G4 = -0.5*det*(Jinv0_10*n00*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11) + Jinv0_11*n01*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11));
-    const double G5 = -0.5*det*(Jinv0_10*Jinv0_10*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_11*Jinv0_11*(Jinv1_10*n10 + Jinv1_11*n11));
-    const double G6 = -0.5*det*(Jinv1_00*n10*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01) + Jinv1_01*n11*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01));
-    const double G7 = -det*(Jinv1_01*Jinv1_11*Jinv1_11*n11 + Jinv1_10*(Jinv1_00*Jinv1_11*n11 + n10*(Jinv1_00*Jinv1_10 + Jinv1_01*Jinv1_11)));
-    const double G8 = det*w[1][0]*(Jinv1_01*Jinv1_11*n11*n11 + n10*(Jinv1_00*Jinv1_10*n10 + n11*(Jinv1_00*Jinv1_11 + Jinv1_01*Jinv1_10)))/(0.5*(w[0][0] + w[0][1]));
-    const double G9 = -det*(Jinv0_00*Jinv0_10*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_01*Jinv0_11*(Jinv1_10*n10 + Jinv1_11*n11));
-    const double G10 = -det*(Jinv1_00*(Jinv1_00*Jinv1_10*n10 + Jinv1_01*(Jinv1_10*n11 + Jinv1_11*n10)) + Jinv1_01*Jinv1_01*Jinv1_11*n11);
-    const double G11 = -0.5*det*(Jinv0_00*n00*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01) + Jinv0_01*n01*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01));
-    const double G12 = -0.5*det*(Jinv1_00*n10*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11) + Jinv1_01*n11*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11));
-    const double G13 = -det*(Jinv1_00*Jinv1_10*(Jinv0_00*n00 + Jinv0_01*n01) + Jinv1_01*Jinv1_11*(Jinv0_00*n00 + Jinv0_01*n01));
-    const double G14 = -0.5*det*(Jinv0_10*Jinv0_10*Jinv0_10*n00 + Jinv0_11*(Jinv0_10*Jinv0_10*n01 + Jinv0_11*(Jinv0_10*n00 + Jinv0_11*n01)));
-    const double G15 = det*w[1][0]*(Jinv0_10*Jinv0_10*n00*n00 + Jinv0_11*n01*(2*Jinv0_10*n00 + Jinv0_11*n01))/(0.5*(w[0][0] + w[0][1]));
-    const double G16 = -0.5*det*(Jinv1_00*n10*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11) + Jinv1_01*n11*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11));
-    const double G17 = -det*(Jinv0_00*Jinv0_10*(Jinv1_00*n10 + Jinv1_01*n11) + Jinv0_01*Jinv0_11*(Jinv1_00*n10 + Jinv1_01*n11));
-    const double G18 = det*w[1][0]*(Jinv0_00*n00*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_01*n01*(Jinv1_10*n10 + Jinv1_11*n11))/(0.5*(w[0][0] + w[0][1]));
-    const double G19 = -0.5*det*(Jinv0_10*n00*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01) + Jinv0_11*n01*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01));
-    const double G20 = -det*(Jinv0_00*Jinv0_00*Jinv0_10*n00 + Jinv0_01*(Jinv0_00*Jinv0_10*n01 + Jinv0_11*(Jinv0_00*n00 + Jinv0_01*n01)));
-    const double G21 = -0.5*det*(Jinv0_00*n00*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11) + Jinv0_01*n01*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11));
-    const double G22 = det*w[1][0]*(Jinv1_10*Jinv1_10*n10*n10 + Jinv1_11*n11*(2*Jinv1_10*n10 + Jinv1_11*n11))/(0.5*(w[0][0] + w[0][1]));
-    const double G23 = -0.5*det*(Jinv1_00*Jinv1_00*Jinv1_00*n10 + Jinv1_01*(Jinv1_00*Jinv1_00*n11 + Jinv1_01*(Jinv1_00*n10 + Jinv1_01*n11)));
-    const double G24 = det*w[1][0]*(Jinv0_00*n00*(Jinv1_00*n10 + Jinv1_01*n11) + Jinv0_01*n01*(Jinv1_00*n10 + Jinv1_01*n11))/(0.5*(w[0][0] + w[0][1]));
-    const double G25 = -det*(Jinv1_00*Jinv1_10*(Jinv0_10*n00 + Jinv0_11*n01) + Jinv1_01*Jinv1_11*(Jinv0_10*n00 + Jinv0_11*n01));
-    const double G26 = -0.5*det*(Jinv1_10*n10*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01) + Jinv1_11*n11*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01));
-    const double G27 = det*w[1][0]*(Jinv0_10*n00*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_11*n01*(Jinv1_10*n10 + Jinv1_11*n11))/(0.5*(w[0][0] + w[0][1]));
-    const double G28 = -0.5*det*(Jinv0_00*n00*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11) + Jinv0_01*n01*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11));
-    const double G29 = -0.5*det*(Jinv0_10*n00*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01) + Jinv0_11*n01*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01));
-    const double G30 = -0.5*det*(Jinv1_00*Jinv1_00*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv1_01*Jinv1_01*(Jinv1_10*n10 + Jinv1_11*n11));
-    const double G31 = det*w[1][0]*(Jinv0_00*Jinv0_00*n00*n00 + Jinv0_01*n01*(2*Jinv0_00*n00 + Jinv0_01*n01))/(0.5*(w[0][0] + w[0][1]));
-    const double G32 = det*w[1][0]*(Jinv0_10*n00*(Jinv1_00*n10 + Jinv1_01*n11) + Jinv0_11*n01*(Jinv1_00*n10 + Jinv1_01*n11))/(0.5*(w[0][0] + w[0][1]));
-    const double G33 = det*w[1][0]*(Jinv1_00*Jinv1_00*n10*n10 + Jinv1_01*n11*(2*Jinv1_00*n10 + Jinv1_01*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G0 = -0.5*det*(Jinv0_10*Jinv0_10*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_11*Jinv0_11*(Jinv1_10*n10 + Jinv1_11*n11));
+    const double G1 = -0.5*det*(Jinv1_00*n10*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11) + Jinv1_01*n11*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11));
+    const double G2 = -0.5*det*(Jinv0_10*n00*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01) + Jinv0_11*n01*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01));
+    const double G3 = -0.5*det*(Jinv1_00*Jinv1_00*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv1_01*Jinv1_01*(Jinv1_10*n10 + Jinv1_11*n11));
+    const double G4 = -det*(Jinv0_00*Jinv0_10*Jinv0_10*n00 + Jinv0_11*(Jinv0_01*Jinv0_11*n01 + Jinv0_10*(Jinv0_00*n01 + Jinv0_01*n00)));
+    const double G5 = -0.5*det*(Jinv1_10*n10*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01) + Jinv1_11*n11*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01));
+    const double G6 = -det*(Jinv1_01*Jinv1_11*Jinv1_11*n11 + Jinv1_10*(Jinv1_00*Jinv1_11*n11 + n10*(Jinv1_00*Jinv1_10 + Jinv1_01*Jinv1_11)));
+    const double G7 = -0.5*det*(Jinv0_00*n00*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11) + Jinv0_01*n01*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11));
+    const double G8 = det*w[1][0]*(Jinv0_00*n00*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_01*n01*(Jinv1_10*n10 + Jinv1_11*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G9 = -0.5*det*(Jinv1_00*n10*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11) + Jinv1_01*n11*(Jinv0_10*Jinv0_10 + Jinv0_11*Jinv0_11));
+    const double G10 = det*w[1][0]*(Jinv0_10*n00*(Jinv1_00*n10 + Jinv1_01*n11) + Jinv0_11*n01*(Jinv1_00*n10 + Jinv1_01*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G11 = det*w[1][0]*(Jinv0_10*n00*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_11*n01*(Jinv1_10*n10 + Jinv1_11*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G12 = -det*(Jinv1_00*Jinv1_10*(Jinv0_10*n00 + Jinv0_11*n01) + Jinv1_01*Jinv1_11*(Jinv0_10*n00 + Jinv0_11*n01));
+    const double G13 = det*w[1][0]*(Jinv1_10*Jinv1_10*n10*n10 + Jinv1_11*n11*(2*Jinv1_10*n10 + Jinv1_11*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G14 = -0.5*det*(Jinv0_10*n00*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01) + Jinv0_11*n01*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01));
+    const double G15 = -det*(Jinv0_00*Jinv0_00*Jinv0_10*n00 + Jinv0_01*(Jinv0_00*Jinv0_10*n01 + Jinv0_11*(Jinv0_00*n00 + Jinv0_01*n01)));
+    const double G16 = -0.5*det*(Jinv0_00*n00*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01) + Jinv0_01*n01*(Jinv1_00*Jinv1_00 + Jinv1_01*Jinv1_01));
+    const double G17 = -0.5*det*(Jinv0_10*n00*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11) + Jinv0_11*n01*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11));
+    const double G18 = det*w[1][0]*(Jinv0_00*n00*(Jinv1_00*n10 + Jinv1_01*n11) + Jinv0_01*n01*(Jinv1_00*n10 + Jinv1_01*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G19 = -det*(Jinv0_00*Jinv0_10*(Jinv1_10*n10 + Jinv1_11*n11) + Jinv0_01*Jinv0_11*(Jinv1_10*n10 + Jinv1_11*n11));
+    const double G20 = -0.5*det*(Jinv0_00*n00*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11) + Jinv0_01*n01*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11));
+    const double G21 = -0.5*det*(Jinv1_00*Jinv1_00*Jinv1_00*n10 + Jinv1_01*(Jinv1_00*Jinv1_00*n11 + Jinv1_01*(Jinv1_00*n10 + Jinv1_01*n11)));
+    const double G22 = det*w[1][0]*(Jinv0_10*Jinv0_10*n00*n00 + Jinv0_11*n01*(2*Jinv0_10*n00 + Jinv0_11*n01))/(0.5*(w[0][0] + w[0][1]));
+    const double G23 = -det*(Jinv1_00*(Jinv1_00*Jinv1_10*n10 + Jinv1_01*(Jinv1_10*n11 + Jinv1_11*n10)) + Jinv1_01*Jinv1_01*Jinv1_11*n11);
+    const double G24 = -det*(Jinv1_00*Jinv1_10*(Jinv0_00*n00 + Jinv0_01*n01) + Jinv1_01*Jinv1_11*(Jinv0_00*n00 + Jinv0_01*n01));
+    const double G25 = -0.5*det*(Jinv1_00*n10*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01) + Jinv1_01*n11*(Jinv0_00*Jinv0_00 + Jinv0_01*Jinv0_01));
+    const double G26 = -0.5*det*(Jinv0_00*(Jinv0_00*(Jinv0_00*n00 + Jinv0_01*n01) + Jinv0_01*Jinv0_01*n00) + Jinv0_01*Jinv0_01*Jinv0_01*n01);
+    const double G27 = det*w[1][0]*(Jinv1_00*Jinv1_00*n10*n10 + Jinv1_01*n11*(2*Jinv1_00*n10 + Jinv1_01*n11))/(0.5*(w[0][0] + w[0][1]));
+    const double G28 = det*w[1][0]*(Jinv0_00*Jinv0_00*n00*n00 + Jinv0_01*n01*(2*Jinv0_00*n00 + Jinv0_01*n01))/(0.5*(w[0][0] + w[0][1]));
+    const double G29 = -0.5*det*(Jinv1_10*(Jinv1_10*Jinv1_11*n11 + n10*(Jinv1_10*Jinv1_10 + Jinv1_11*Jinv1_11)) + Jinv1_11*Jinv1_11*Jinv1_11*n11);
+    const double G30 = -det*(Jinv0_00*Jinv0_10*(Jinv1_00*n10 + Jinv1_01*n11) + Jinv0_01*Jinv0_11*(Jinv1_00*n10 + Jinv1_01*n11));
+    const double G31 = det*w[1][0]*(Jinv0_01*Jinv0_11*n01*n01 + n00*(Jinv0_00*(Jinv0_10*n00 + Jinv0_11*n01) + Jinv0_01*Jinv0_10*n01))/(0.5*(w[0][0] + w[0][1]));
+    const double G32 = det*w[1][0]*(Jinv1_01*Jinv1_11*n11*n11 + n10*(Jinv1_00*Jinv1_10*n10 + n11*(Jinv1_00*Jinv1_11 + Jinv1_01*Jinv1_10)))/(0.5*(w[0][0] + w[0][1]));
+    const double G33 = -0.5*det*(Jinv0_10*Jinv0_10*Jinv0_10*n00 + Jinv0_11*(Jinv0_10*Jinv0_10*n01 + Jinv0_11*(Jinv0_10*n00 + Jinv0_11*n01)));
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -2887,171 +2887,171 @@ public:
           const double Gip33 = G33*W2[ip];
           
           
-          // Number of operations for primary indices = 480
+          // Number of operations for primary indices: 480
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc12[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc12[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc12[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc12[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc12[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc12[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip15;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 720
+          // Number of operations for primary indices: 720
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc2[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc5[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc5[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc2[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc5[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc5[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc5[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc5[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc2[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip33;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 480
+          // Number of operations for primary indices: 480
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip6;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 1200
+          // Number of operations for primary indices: 1200
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc7[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc6[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc7[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc7[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc7[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc1[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip32;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip11;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 720
+          // Number of operations for primary indices: 720
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip23;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip29;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip26;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip29;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -3068,297 +3068,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G26*W2[ip];
+          const double Gip0 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G1*W2[ip];
+          const double Gip1 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G23*W2[ip];
+          const double Gip2 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G6*W2[ip];
+          const double Gip3 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G19*W2[ip];
+          const double Gip4 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G3*W2[ip];
+          const double Gip5 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G4*W2[ip];
+          const double Gip6 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G27*W2[ip];
+          const double Gip7 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G16*W2[ip];
+          const double Gip8 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G8*W2[ip];
+          const double Gip9 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G30*W2[ip];
+          const double Gip10 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G25*W2[ip];
+          const double Gip11 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G11*W2[ip];
+          const double Gip12 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G2*W2[ip];
+          const double Gip13 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G14*W2[ip];
+          const double Gip14 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G15*W2[ip];
+          const double Gip15 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G32*W2[ip];
+          const double Gip16 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G33*W2[ip];
+          const double Gip17 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G21*W2[ip];
+          const double Gip18 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G5*W2[ip];
+          const double Gip19 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G0*W2[ip];
+          const double Gip20 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G12*W2[ip];
+          const double Gip21 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G17*W2[ip];
+          const double Gip22 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G7*W2[ip];
+          const double Gip23 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G18*W2[ip];
+          const double Gip24 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G20*W2[ip];
+          const double Gip25 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G24*W2[ip];
+          const double Gip26 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G28*W2[ip];
+          const double Gip27 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G10*W2[ip];
+          const double Gip28 = G28*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G29*W2[ip];
+          const double Gip29 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G13*W2[ip];
+          const double Gip30 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G9*W2[ip];
+          const double Gip31 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G22*W2[ip];
+          const double Gip32 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G31*W2[ip];
+          const double Gip33 = G27*W2[ip];
           
           
-          // Number of operations for primary indices = 243
+          // Number of operations for primary indices: 243
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc13[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc7[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip11;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
+          // Number of operations for primary indices: 360
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + (nzc10[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f1_D10[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip28;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip18;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + (nzc8[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f1_D10[ip][k]*Gip8;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc10[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D10[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip29;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D10[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc8[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f1_D01[ip][j]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip32;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f1_D01[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip19;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
+          // Number of operations for primary indices: 360
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc9[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc12[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc9[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc12[k]] += FE0_f0_D11[ip][k]*FE0_f1_D10[ip][j]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc12[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc4[k]] += FE0_f0_D11[ip][k]*FE0_f1_D10[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc9[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc9[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip13;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 72
+          // Number of operations for primary indices: 72
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc12[k]] += FE0_f0_D11[ip][k]*FE0_f2_D10[ip][j]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc4[k]] += FE0_f0_D11[ip][k]*FE0_f1_D01[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip27;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc13[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D10[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc4[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc13[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip29;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc5[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc2[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc5[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc5[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc5[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D01[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc7[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D01[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc2[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip32;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc7[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc6[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f1_D10[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f1_D10[ip][j]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc10[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D10[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc7[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc10[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D10[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f1_D10[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc1[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f1_D10[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc8[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D10[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc8[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D10[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip31;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 72
+          // Number of operations for primary indices: 72
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + (nzc13[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f2_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + (nzc7[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f1_D01[ip][k]*Gip29;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -3375,297 +3375,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G11*W2[ip];
+          const double Gip0 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G0*W2[ip];
+          const double Gip1 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G1*W2[ip];
+          const double Gip2 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G12*W2[ip];
+          const double Gip3 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G2*W2[ip];
+          const double Gip4 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G19*W2[ip];
+          const double Gip5 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G13*W2[ip];
+          const double Gip6 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G3*W2[ip];
+          const double Gip7 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G4*W2[ip];
+          const double Gip8 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G23*W2[ip];
+          const double Gip9 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G16*W2[ip];
+          const double Gip10 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G8*W2[ip];
+          const double Gip11 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G26*W2[ip];
+          const double Gip12 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G32*W2[ip];
+          const double Gip13 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G25*W2[ip];
+          const double Gip14 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G6*W2[ip];
+          const double Gip15 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G9*W2[ip];
+          const double Gip16 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G14*W2[ip];
+          const double Gip17 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G7*W2[ip];
+          const double Gip18 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G15*W2[ip];
+          const double Gip19 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G30*W2[ip];
+          const double Gip20 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G27*W2[ip];
+          const double Gip21 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G17*W2[ip];
+          const double Gip22 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G22*W2[ip];
+          const double Gip23 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G20*W2[ip];
+          const double Gip24 = G11*W2[ip];
           
           // Number of operations: 1
           const double Gip25 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G18*W2[ip];
+          const double Gip26 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G24*W2[ip];
+          const double Gip27 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G5*W2[ip];
+          const double Gip28 = G28*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G31*W2[ip];
+          const double Gip29 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G21*W2[ip];
+          const double Gip30 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G28*W2[ip];
+          const double Gip31 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G29*W2[ip];
+          const double Gip32 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G33*W2[ip];
+          const double Gip33 = G27*W2[ip];
           
           
-          // Number of operations for primary indices = 243
+          // Number of operations for primary indices: 243
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc11[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip15;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc12[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip20;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
+          // Number of operations for primary indices: 360
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + (nzc5[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f2_D01[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + (nzc11[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f2_D01[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip8;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D10[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip17;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D10[ip][j]*Gip27;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip32;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip2;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc11[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + nzc3[k]] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f1_D01[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip32;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f1_D01[ip][j]*Gip25;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 4; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc9[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc9[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc12[k]] += FE0_f0_D11[ip][k]*FE0_f2_D01[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc12[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc12[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip4;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 72
-          for (unsigned int j = 0; j < 3; j++)
-          {
-            for (unsigned int k = 0; k < 4; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc12[k]] += FE0_f0_D11[ip][k]*FE0_f2_D10[ip][j]*Gip22;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 675
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 3; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc8[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc11[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D10[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc8[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc11[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D10[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc4[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip32;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 675
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc7[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + nzc6[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[nzc6[j]*12 + (nzc5[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D01[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][k]*FE0_f2_D01[ip][j]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + nzc7[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip29;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc6[k]] += FE0_f0_D01[ip][k]*FE0_f2_D01[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc7[j]*12 + (nzc5[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D01[ip][k]*Gip26;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 72
+          // Number of operations for primary indices: 72
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc12[j]*12 + (nzc11[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f2_D10[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*12 + (nzc12[k] + 6)] += FE0_f0_D11[ip][j]*FE0_f1_D01[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip27;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 72
+          for (unsigned int j = 0; j < 3; j++)
+          {
+            for (unsigned int k = 0; k < 4; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc4[k]] += FE0_f0_D11[ip][k]*FE0_f1_D01[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip27;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 675
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 3; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc5[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc12[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D01[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc12[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D01[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc5[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc13[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc2[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc2[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip32;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 675
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc11[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D01[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc1[k]] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc11[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D01[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f2_D01[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc1[k]] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][k]*FE0_f2_D01[ip][j]*Gip9;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 360
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 4; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc4[k]] += FE0_f0_D11[ip][k]*FE0_f2_D01[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + (nzc9[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*12 + (nzc9[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip12;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -3687,297 +3687,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G2*W2[ip];
+          const double Gip0 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G0*W2[ip];
+          const double Gip1 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G24*W2[ip];
+          const double Gip2 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G14*W2[ip];
+          const double Gip3 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G32*W2[ip];
+          const double Gip4 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G12*W2[ip];
+          const double Gip5 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G6*W2[ip];
+          const double Gip6 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G7*W2[ip];
+          const double Gip7 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G8*W2[ip];
+          const double Gip8 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G10*W2[ip];
+          const double Gip9 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G29*W2[ip];
+          const double Gip10 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G4*W2[ip];
+          const double Gip11 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G18*W2[ip];
+          const double Gip12 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G1*W2[ip];
+          const double Gip13 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G17*W2[ip];
+          const double Gip14 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G20*W2[ip];
+          const double Gip15 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G21*W2[ip];
+          const double Gip16 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G15*W2[ip];
+          const double Gip17 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G27*W2[ip];
+          const double Gip18 = G28*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G30*W2[ip];
+          const double Gip19 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G3*W2[ip];
+          const double Gip20 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G11*W2[ip];
+          const double Gip21 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G25*W2[ip];
+          const double Gip22 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G28*W2[ip];
+          const double Gip23 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G23*W2[ip];
+          const double Gip24 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G22*W2[ip];
+          const double Gip25 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G13*W2[ip];
+          const double Gip26 = G27*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G26*W2[ip];
+          const double Gip27 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G9*W2[ip];
+          const double Gip28 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G16*W2[ip];
+          const double Gip29 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G19*W2[ip];
+          const double Gip30 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G5*W2[ip];
+          const double Gip31 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G31*W2[ip];
+          const double Gip32 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G33*W2[ip];
+          const double Gip33 = G17*W2[ip];
           
           
-          // Number of operations for primary indices = 243
+          // Number of operations for primary indices: 243
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc13[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc13[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc13[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc7[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc7[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc7[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip32;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
+          // Number of operations for primary indices: 360
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + nzc10[k]] += FE0_f0_D11[ip][j]*FE0_f1_D10[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc8[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + nzc8[k]] += FE0_f0_D11[ip][j]*FE0_f1_D10[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip5;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D10[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D10[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc10[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc10[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip31;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip19;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc8[k]] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc8[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc8[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D01[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D01[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip29;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 72
+          // Number of operations for primary indices: 360
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 4; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc9[k]] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc9[k]] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc4[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f1_D10[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip20;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 72
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc13[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + nzc13[k]] += FE0_f0_D11[ip][j]*FE0_f2_D10[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + nzc7[k]] += FE0_f0_D11[ip][j]*FE0_f1_D01[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip30;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 72
-          for (unsigned int j = 0; j < 3; j++)
-          {
-            for (unsigned int k = 0; k < 4; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc12[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f2_D10[ip][j]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip0;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc13[k]] += FE0_f0_D10[ip][j]*FE0_f2_D10[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc13[k]] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc3[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc4[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc4[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc3[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip29;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc13[k]] += FE0_f0_D01[ip][j]*FE0_f2_D10[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc2[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc5[k]] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc7[k]] += FE0_f0_D01[ip][j]*FE0_f1_D01[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc5[k]] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc7[k]] += FE0_f0_D10[ip][j]*FE0_f1_D01[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip22;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip25;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 675
+          // Number of operations for primary indices: 675
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc10[k]] += FE0_f0_D10[ip][j]*FE0_f1_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D10[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc10[k]] += FE0_f0_D01[ip][j]*FE0_f1_D10[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc10[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D10[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D10[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc8[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc8[k]] += FE0_f0_D10[ip][j]*FE0_f1_D10[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc8[k]] += FE0_f0_D01[ip][j]*FE0_f1_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D10[ip][j]*Gip31;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
-          for (unsigned int j = 0; j < 5; j++)
+          // Number of operations for primary indices: 72
+          for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc9[k]] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc9[k]] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc12[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f1_D10[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc4[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f1_D01[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip30;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -3994,297 +3994,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G2*W2[ip];
+          const double Gip0 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G26*W2[ip];
+          const double Gip1 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G14*W2[ip];
+          const double Gip2 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G23*W2[ip];
+          const double Gip3 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G32*W2[ip];
+          const double Gip4 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G25*W2[ip];
+          const double Gip5 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G5*W2[ip];
+          const double Gip6 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G24*W2[ip];
+          const double Gip7 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G8*W2[ip];
+          const double Gip8 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G30*W2[ip];
+          const double Gip9 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G29*W2[ip];
+          const double Gip10 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G4*W2[ip];
+          const double Gip11 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G21*W2[ip];
+          const double Gip12 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G1*W2[ip];
+          const double Gip13 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G16*W2[ip];
+          const double Gip14 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G18*W2[ip];
+          const double Gip15 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G9*W2[ip];
+          const double Gip16 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G15*W2[ip];
+          const double Gip17 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G13*W2[ip];
+          const double Gip18 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G3*W2[ip];
+          const double Gip19 = G28*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G17*W2[ip];
+          const double Gip20 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G12*W2[ip];
+          const double Gip21 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G11*W2[ip];
+          const double Gip22 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G33*W2[ip];
+          const double Gip23 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G27*W2[ip];
+          const double Gip24 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G20*W2[ip];
+          const double Gip25 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G28*W2[ip];
+          const double Gip26 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G6*W2[ip];
+          const double Gip27 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G7*W2[ip];
+          const double Gip28 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G10*W2[ip];
+          const double Gip29 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G19*W2[ip];
+          const double Gip30 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G22*W2[ip];
+          const double Gip31 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G0*W2[ip];
+          const double Gip32 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G31*W2[ip];
+          const double Gip33 = G27*W2[ip];
           
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc13[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc13[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc13[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc13[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip31;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc13[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip32;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc13[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc7[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc7[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc7[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc7[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc7[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip31;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip14;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 240
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip23;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 240
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc8[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc8[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip23;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc10[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc10[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc10[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc8[k]] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc8[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc8[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc8[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc8[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc8[k]] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip21;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 144
+          // Number of operations for primary indices: 144
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc13[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc13[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc13[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip22;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc13[k]] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc4[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc13[k]] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc4[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc4[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc13[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip22;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip18;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip30;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 300
+          // Number of operations for primary indices: 300
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc10[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc8[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc8[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip33;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 144
+          // Number of operations for primary indices: 144
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip24;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -4301,297 +4301,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G2*W2[ip];
+          const double Gip0 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G9*W2[ip];
+          const double Gip1 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G14*W2[ip];
+          const double Gip2 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G24*W2[ip];
+          const double Gip3 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G19*W2[ip];
+          const double Gip4 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G27*W2[ip];
+          const double Gip5 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G13*W2[ip];
+          const double Gip6 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G25*W2[ip];
+          const double Gip7 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G0*W2[ip];
+          const double Gip8 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G23*W2[ip];
+          const double Gip9 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G16*W2[ip];
+          const double Gip10 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G8*W2[ip];
+          const double Gip11 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G26*W2[ip];
+          const double Gip12 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G12*W2[ip];
+          const double Gip13 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G29*W2[ip];
+          const double Gip14 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G17*W2[ip];
+          const double Gip15 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G4*W2[ip];
+          const double Gip16 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G6*W2[ip];
+          const double Gip17 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G1*W2[ip];
+          const double Gip18 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G11*W2[ip];
+          const double Gip19 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G20*W2[ip];
+          const double Gip20 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G15*W2[ip];
+          const double Gip21 = G28*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G7*W2[ip];
+          const double Gip22 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G3*W2[ip];
+          const double Gip23 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G32*W2[ip];
+          const double Gip24 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G30*W2[ip];
+          const double Gip25 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G21*W2[ip];
+          const double Gip26 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G22*W2[ip];
+          const double Gip27 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G28*W2[ip];
+          const double Gip28 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G10*W2[ip];
+          const double Gip29 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G18*W2[ip];
+          const double Gip30 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G5*W2[ip];
+          const double Gip31 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G31*W2[ip];
+          const double Gip32 = G27*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G33*W2[ip];
+          const double Gip33 = G8*W2[ip];
           
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc13[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc11[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc13[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc13[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc11[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc13[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc8[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc7[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc7[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc12[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc7[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc7[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip23;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 240
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 4; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip22;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 240
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc5[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc8[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc8[k]] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip13;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc3[j]*12 + nzc10[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip28;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip26;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + (nzc11[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc8[k]] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc8[k]] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc5[j]*12 + nzc8[k]] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc11[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc8[k]] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip27;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 144
-          for (unsigned int j = 0; j < 4; j++)
-          {
-            for (unsigned int k = 0; k < 3; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc13[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip29;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc13[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip7;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 5; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc13[k]] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc3[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc13[k]] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc4[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc4[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc4[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc11[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip6;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 300
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc10[k]] += FE0_f1_D10[ip][k]*FE0_f2_D01[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + nzc10[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[nzc10[j]*12 + (nzc5[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D01[ip][k]*Gip30;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 144
+          // Number of operations for primary indices: 144
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip15;
-              // Number of operations to compute entry = 3
-              A[nzc13[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc7[j]*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip29;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 540
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 3; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc5[k]] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip18;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip25;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip16;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 300
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + nzc8[k]] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc8[j]*12 + (nzc11[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D01[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc8[k]] += FE0_f1_D10[ip][k]*FE0_f2_D01[ip][j]*Gip33;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 144
+          for (unsigned int j = 0; j < 4; j++)
+          {
+            for (unsigned int k = 0; k < 3; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc7[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip12;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -4616,294 +4616,294 @@ public:
           const double Gip0 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G2*W2[ip];
+          const double Gip1 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G30*W2[ip];
+          const double Gip2 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G4*W2[ip];
+          const double Gip3 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G26*W2[ip];
+          const double Gip4 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G3*W2[ip];
+          const double Gip5 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G29*W2[ip];
+          const double Gip6 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G32*W2[ip];
+          const double Gip7 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G15*W2[ip];
+          const double Gip8 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G7*W2[ip];
+          const double Gip9 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G8*W2[ip];
+          const double Gip10 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G14*W2[ip];
+          const double Gip11 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G10*W2[ip];
+          const double Gip12 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G24*W2[ip];
+          const double Gip13 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G18*W2[ip];
+          const double Gip14 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G23*W2[ip];
+          const double Gip15 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G17*W2[ip];
+          const double Gip16 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G31*W2[ip];
+          const double Gip17 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G13*W2[ip];
+          const double Gip18 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G12*W2[ip];
+          const double Gip19 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G1*W2[ip];
+          const double Gip20 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G6*W2[ip];
+          const double Gip21 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G19*W2[ip];
+          const double Gip22 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G22*W2[ip];
+          const double Gip23 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G11*W2[ip];
+          const double Gip24 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G27*W2[ip];
+          const double Gip25 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G9*W2[ip];
+          const double Gip26 = G27*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G28*W2[ip];
+          const double Gip27 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G16*W2[ip];
+          const double Gip28 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G20*W2[ip];
+          const double Gip29 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G25*W2[ip];
+          const double Gip30 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G21*W2[ip];
+          const double Gip31 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G5*W2[ip];
+          const double Gip32 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G33*W2[ip];
+          const double Gip33 = G28*W2[ip];
           
           
-          // Number of operations for primary indices = 243
+          // Number of operations for primary indices: 243
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc11[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc8[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip27;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip31;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc11[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc12[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc12[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip32;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 360
-          for (unsigned int j = 0; j < 4; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc5[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + nzc5[k]] += FE0_f0_D11[ip][j]*FE0_f2_D01[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip26;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 675
-          for (unsigned int j = 0; j < 3; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D10[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D10[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip15;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip19;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D02[ip][j]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D02[ip][j]*Gip28;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 360
+          // Number of operations for primary indices: 360
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc9[k]] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc9[k]] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc12[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f2_D01[ip][j]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D11[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc9[k]] += FE0_f0_D01[ip][j]*FE0_f1_D11[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc9[k]] += FE0_f0_D10[ip][j]*FE0_f1_D11[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D11[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc4[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f2_D01[ip][j]*Gip24;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 72
-          for (unsigned int j = 0; j < 3; j++)
-          {
-            for (unsigned int k = 0; k < 4; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc12[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f2_D10[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip29;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 675
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 3; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc4[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc8[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc4[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc11[k]] += FE0_f0_D01[ip][j]*FE0_f2_D10[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc11[k]] += FE0_f0_D10[ip][j]*FE0_f2_D10[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc8[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc4[k]] += FE0_f0_D10[ip][j]*FE0_f2_D02[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc8[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip22;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc4[k]] += FE0_f0_D01[ip][j]*FE0_f2_D02[ip][k]*Gip32;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 675
-          for (unsigned int j = 0; j < 5; j++)
+          // Number of operations for primary indices: 360
+          for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + nzc5[k]] += FE0_f0_D10[ip][j]*FE0_f2_D01[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc5[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc6[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D01[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D01[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc7[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[(nzc6[j] + 6)*12 + nzc5[k]] += FE0_f0_D01[ip][j]*FE0_f2_D01[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D11[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D11[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + nzc11[k]] += FE0_f0_D11[ip][j]*FE0_f2_D01[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D11[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D11[ip][j]*Gip28;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 72
+          // Number of operations for primary indices: 675
+          for (unsigned int j = 0; j < 3; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc11[k]] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D20[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f1_D01[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f1_D01[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f0_D20[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f0_D10[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc11[k]] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D02[ip][j]*Gip31;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 72
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc12[j] + 6)*12 + nzc11[k]] += FE0_f0_D11[ip][j]*FE0_f2_D10[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 6)*12 + nzc12[k]] += FE0_f0_D11[ip][j]*FE0_f1_D01[ip][k]*Gip23;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 675
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 3; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc2[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc12[k]] += FE0_f0_D01[ip][j]*FE0_f1_D01[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc12[k]] += FE0_f0_D10[ip][j]*FE0_f1_D01[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f0_D10[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc13[k]] += FE0_f0_D01[ip][j]*FE0_f0_D02[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D20[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D20[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip2;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 675
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D01[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + nzc11[k]] += FE0_f0_D01[ip][j]*FE0_f2_D01[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + nzc11[k]] += FE0_f0_D10[ip][j]*FE0_f2_D01[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f2_D01[ip][j]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][j]*FE0_f0_D10[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D01[ip][j]*FE0_f0_D10[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 6)*12 + (nzc1[k] + 6)] += FE0_f0_D01[ip][k]*FE0_f0_D10[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc3[k] + 6)] += FE0_f0_D10[ip][k]*FE0_f2_D01[ip][j]*Gip22;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 72
+          for (unsigned int j = 0; j < 3; j++)
+          {
+            for (unsigned int k = 0; k < 4; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc4[k] + 6)] += FE0_f0_D11[ip][k]*FE0_f1_D01[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip14;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -4920,297 +4920,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G26*W2[ip];
+          const double Gip0 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G23*W2[ip];
+          const double Gip1 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G25*W2[ip];
+          const double Gip2 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G29*W2[ip];
+          const double Gip3 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G5*W2[ip];
+          const double Gip4 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G15*W2[ip];
+          const double Gip5 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip6 = G8*W2[ip];
+          const double Gip6 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G30*W2[ip];
+          const double Gip7 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G14*W2[ip];
+          const double Gip8 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G21*W2[ip];
+          const double Gip9 = G32*W2[ip];
           
           // Number of operations: 1
           const double Gip10 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G11*W2[ip];
+          const double Gip11 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G31*W2[ip];
+          const double Gip12 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G9*W2[ip];
+          const double Gip13 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G32*W2[ip];
+          const double Gip14 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G19*W2[ip];
+          const double Gip15 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G17*W2[ip];
+          const double Gip16 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G12*W2[ip];
+          const double Gip17 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G27*W2[ip];
+          const double Gip18 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G33*W2[ip];
+          const double Gip19 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G13*W2[ip];
+          const double Gip20 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G6*W2[ip];
+          const double Gip21 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G7*W2[ip];
+          const double Gip22 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G4*W2[ip];
+          const double Gip23 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G1*W2[ip];
+          const double Gip24 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G16*W2[ip];
+          const double Gip25 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G18*W2[ip];
+          const double Gip26 = G28*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G24*W2[ip];
+          const double Gip27 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G28*W2[ip];
+          const double Gip28 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G10*W2[ip];
+          const double Gip29 = G21*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G20*W2[ip];
+          const double Gip30 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G3*W2[ip];
+          const double Gip31 = G27*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G22*W2[ip];
+          const double Gip32 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G0*W2[ip];
+          const double Gip33 = G18*W2[ip];
           
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc8[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc11[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc11[k]] += FE0_f0_D20[ip][j]*FE0_f2_D10[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc8[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc13[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip28;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D10[ip][j]*Gip7;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc11[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip33;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D01[ip][j]*Gip4;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc12[k]] += FE0_f0_D20[ip][j]*FE0_f1_D01[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc12[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + (nzc7[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc12[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip27;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 240
-          for (unsigned int j = 0; j < 4; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc5[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc5[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip29;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 540
-          for (unsigned int j = 0; j < 3; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc3[j] + 6)*12 + nzc5[k]] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip17;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip23;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D02[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D10[ip][j]*Gip27;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 240
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc9[k]] += FE0_f1_D10[ip][j]*FE0_f1_D11[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip5;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 144
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 4; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f1_D11[ip][j]*Gip18;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 540
+          for (unsigned int j = 0; j < 3; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc11[k]] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc11[k]] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + nzc11[k]] += FE0_f0_D20[ip][j]*FE0_f2_D01[ip][k]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc5[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f0_D20[ip][j]*FE0_f1_D10[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + (nzc8[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D10[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc8[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D10[ip][k]*Gip33;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 144
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc13[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip25;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc8[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc4[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc4[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc11[k]] += FE0_f1_D10[ip][j]*FE0_f2_D10[ip][k]*Gip27;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc13[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc4[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc3[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc8[k]] += FE0_f1_D10[ip][j]*FE0_f2_D02[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f2_D01[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip2;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f0_D20[ip][k]*FE0_f1_D10[ip][j]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f1_D10[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc7[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f1_D10[ip][j]*Gip33;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 300
+          // Number of operations for primary indices: 300
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc5[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + nzc5[k]] += FE0_f1_D10[ip][j]*FE0_f2_D01[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D01[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc10[j] + 6)*12 + (nzc10[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip19;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][k]*FE0_f2_D01[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f1_D10[ip][j]*FE0_f1_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc8[j] + 6)*12 + nzc11[k]] += FE0_f1_D10[ip][j]*FE0_f2_D01[ip][k]*Gip28;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 144
+          // Number of operations for primary indices: 144
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[(nzc13[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc7[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip25;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -5227,297 +5227,297 @@ public:
           
           // Number of operations to compute ip constants: 34
           // Number of operations: 1
-          const double Gip0 = G11*W2[ip];
+          const double Gip0 = G22*W2[ip];
           
           // Number of operations: 1
-          const double Gip1 = G0*W2[ip];
+          const double Gip1 = G31*W2[ip];
           
           // Number of operations: 1
-          const double Gip2 = G12*W2[ip];
+          const double Gip2 = G11*W2[ip];
           
           // Number of operations: 1
-          const double Gip3 = G4*W2[ip];
+          const double Gip3 = G30*W2[ip];
           
           // Number of operations: 1
-          const double Gip4 = G25*W2[ip];
+          const double Gip4 = G19*W2[ip];
           
           // Number of operations: 1
-          const double Gip5 = G13*W2[ip];
+          const double Gip5 = G21*W2[ip];
           
           // Number of operations: 1
           const double Gip6 = G29*W2[ip];
           
           // Number of operations: 1
-          const double Gip7 = G27*W2[ip];
+          const double Gip7 = G14*W2[ip];
           
           // Number of operations: 1
-          const double Gip8 = G23*W2[ip];
+          const double Gip8 = G33*W2[ip];
           
           // Number of operations: 1
-          const double Gip9 = G24*W2[ip];
+          const double Gip9 = G8*W2[ip];
           
           // Number of operations: 1
-          const double Gip10 = G16*W2[ip];
+          const double Gip10 = G6*W2[ip];
           
           // Number of operations: 1
-          const double Gip11 = G8*W2[ip];
+          const double Gip11 = G24*W2[ip];
           
           // Number of operations: 1
-          const double Gip12 = G14*W2[ip];
+          const double Gip12 = G12*W2[ip];
           
           // Number of operations: 1
-          const double Gip13 = G2*W2[ip];
+          const double Gip13 = G16*W2[ip];
           
           // Number of operations: 1
-          const double Gip14 = G32*W2[ip];
+          const double Gip14 = G3*W2[ip];
           
           // Number of operations: 1
-          const double Gip15 = G31*W2[ip];
+          const double Gip15 = G5*W2[ip];
           
           // Number of operations: 1
-          const double Gip16 = G6*W2[ip];
+          const double Gip16 = G15*W2[ip];
           
           // Number of operations: 1
-          const double Gip17 = G17*W2[ip];
+          const double Gip17 = G7*W2[ip];
           
           // Number of operations: 1
-          const double Gip18 = G15*W2[ip];
+          const double Gip18 = G1*W2[ip];
           
           // Number of operations: 1
-          const double Gip19 = G19*W2[ip];
+          const double Gip19 = G13*W2[ip];
           
           // Number of operations: 1
-          const double Gip20 = G30*W2[ip];
+          const double Gip20 = G9*W2[ip];
           
           // Number of operations: 1
-          const double Gip21 = G7*W2[ip];
+          const double Gip21 = G17*W2[ip];
           
           // Number of operations: 1
-          const double Gip22 = G18*W2[ip];
+          const double Gip22 = G25*W2[ip];
           
           // Number of operations: 1
-          const double Gip23 = G22*W2[ip];
+          const double Gip23 = G0*W2[ip];
           
           // Number of operations: 1
-          const double Gip24 = G1*W2[ip];
+          const double Gip24 = G32*W2[ip];
           
           // Number of operations: 1
-          const double Gip25 = G28*W2[ip];
+          const double Gip25 = G23*W2[ip];
           
           // Number of operations: 1
-          const double Gip26 = G5*W2[ip];
+          const double Gip26 = G2*W2[ip];
           
           // Number of operations: 1
-          const double Gip27 = G26*W2[ip];
+          const double Gip27 = G4*W2[ip];
           
           // Number of operations: 1
-          const double Gip28 = G3*W2[ip];
+          const double Gip28 = G10*W2[ip];
           
           // Number of operations: 1
-          const double Gip29 = G21*W2[ip];
+          const double Gip29 = G18*W2[ip];
           
           // Number of operations: 1
-          const double Gip30 = G20*W2[ip];
+          const double Gip30 = G26*W2[ip];
           
           // Number of operations: 1
-          const double Gip31 = G10*W2[ip];
+          const double Gip31 = G20*W2[ip];
           
           // Number of operations: 1
-          const double Gip32 = G9*W2[ip];
+          const double Gip32 = G27*W2[ip];
           
           // Number of operations: 1
-          const double Gip33 = G33*W2[ip];
+          const double Gip33 = G28*W2[ip];
           
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip0;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc11[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip8;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc11[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip15;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc8[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc8[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip24;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip16;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc4[k]] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip25;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc4[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip29;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc8[k] + 6)] += FE0_f2_D02[ip][k]*FE0_f2_D10[ip][j]*Gip0;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip2;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc11[k]] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip9;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip10;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D10[ip][j]*FE0_f2_D10[ip][k]*Gip33;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc11[k]] += FE0_f2_D02[ip][j]*FE0_f2_D10[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip5;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip17;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip17;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip20;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip22;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc12[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip29;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip30;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip13;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc12[k]] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip32;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f1_D01[ip][k]*Gip18;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc12[k]] += FE0_f1_D01[ip][j]*FE0_f1_D01[ip][k]*Gip33;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f1_D01[ip][j]*Gip20;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 240
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc5[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc5[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc5[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip32;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip21;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip4;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D01[ip][k]*Gip10;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 540
+          // Number of operations for primary indices: 540
           for (unsigned int j = 0; j < 3; j++)
           {
             for (unsigned int k = 0; k < 5; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip1;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip14;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip11;
-              // Number of operations to compute entry = 3
-              A[(nzc4[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip19;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc4[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip26;
-              // Number of operations to compute entry = 3
-              A[nzc8[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip27;
-              // Number of operations to compute entry = 3
-              A[(nzc8[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][k]*FE0_f2_D02[ip][j]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc5[k]] += FE0_f2_D01[ip][k]*FE0_f2_D10[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc11[k]] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip1;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip7;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip8;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc11[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip9;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip14;
+              // Number of operations to compute entry: 3
+              A[nzc13[j]*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip15;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*12 + (nzc11[k] + 6)] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip23;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc13[j] + 6)*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip26;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc11[k]] += FE0_f1_D01[ip][j]*FE0_f2_D01[ip][k]*Gip28;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 6)*12 + nzc11[k]] += FE0_f0_D02[ip][j]*FE0_f2_D01[ip][k]*Gip21;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 240
+          // Number of operations for primary indices: 240
           for (unsigned int j = 0; j < 5; j++)
           {
             for (unsigned int k = 0; k < 4; k++)
             {
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip4;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip13;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip21;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip32;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip10;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip12;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip27;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D01[ip][j]*Gip4;
             }// end loop over 'k'
           }// end loop over 'j'
           
-          // Number of operations for primary indices = 144
-          for (unsigned int j = 0; j < 3; j++)
-          {
-            for (unsigned int k = 0; k < 4; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip5;
-              // Number of operations to compute entry = 3
-              A[(nzc11[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip31;
-              // Number of operations to compute entry = 3
-              A[nzc11[j]*12 + nzc9[k]] += FE0_f1_D11[ip][k]*FE0_f2_D10[ip][j]*Gip30;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 540
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 3; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc4[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip1;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc4[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip3;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip11;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc8[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip6;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip14;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc8[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip19;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc8[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip20;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc4[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip12;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip22;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D10[ip][k]*Gip28;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc4[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip26;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc8[k]] += FE0_f2_D01[ip][j]*FE0_f2_D02[ip][k]*Gip27;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 300
-          for (unsigned int j = 0; j < 5; j++)
-          {
-            for (unsigned int k = 0; k < 5; k++)
-            {
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + nzc5[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip7;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + nzc5[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip18;
-              // Number of operations to compute entry = 3
-              A[(nzc5[j] + 6)*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip23;
-              // Number of operations to compute entry = 3
-              A[nzc5[j]*12 + (nzc5[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip7;
-            }// end loop over 'k'
-          }// end loop over 'j'
-          
-          // Number of operations for primary indices = 144
+          // Number of operations for primary indices: 144
           for (unsigned int j = 0; j < 4; j++)
           {
             for (unsigned int k = 0; k < 3; k++)
             {
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip5;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip17;
-              // Number of operations to compute entry = 3
-              A[nzc9[j]*12 + nzc11[k]] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip30;
-              // Number of operations to compute entry = 3
-              A[(nzc9[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f1_D11[ip][j]*FE0_f2_D10[ip][k]*Gip31;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip16;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip11;
+              // Number of operations to compute entry: 3
+              A[nzc9[j]*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip3;
+              // Number of operations to compute entry: 3
+              A[(nzc9[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f1_D11[ip][j]*Gip25;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 540
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 3; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip7;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc13[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip15;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip6;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc2[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip21;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip24;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip23;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip26;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc12[k] + 6)] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip28;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc2[k]] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip8;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc13[k] + 6)] += FE0_f0_D02[ip][k]*FE0_f2_D01[ip][j]*Gip14;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip9;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc12[k]] += FE0_f1_D01[ip][k]*FE0_f2_D01[ip][j]*Gip1;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 300
+          for (unsigned int j = 0; j < 5; j++)
+          {
+            for (unsigned int k = 0; k < 5; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip0;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + nzc11[k]] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[nzc11[j]*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip2;
+              // Number of operations to compute entry: 3
+              A[(nzc11[j] + 6)*12 + (nzc11[k] + 6)] += FE0_f2_D01[ip][j]*FE0_f2_D01[ip][k]*Gip19;
+            }// end loop over 'k'
+          }// end loop over 'j'
+          
+          // Number of operations for primary indices: 144
+          for (unsigned int j = 0; j < 3; j++)
+          {
+            for (unsigned int k = 0; k < 4; k++)
+            {
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip3;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip11;
+              // Number of operations to compute entry: 3
+              A[(nzc12[j] + 6)*12 + (nzc9[k] + 6)] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip25;
+              // Number of operations to compute entry: 3
+              A[nzc12[j]*12 + nzc9[k]] += FE0_f1_D01[ip][j]*FE0_f1_D11[ip][k]*Gip16;
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -5722,7 +5722,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return the cell shape
@@ -6192,7 +6192,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 2)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return the cell shape
@@ -6667,7 +6667,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6848,7 +6848,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 2)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7086,10 +7086,10 @@ public:
       const double Gip0 = F0*W9[ip]*det;
       
       
-      // Number of operations for primary indices = 12
+      // Number of operations for primary indices: 12
       for (unsigned int j = 0; j < 6; j++)
       {
-        // Number of operations to compute entry = 2
+        // Number of operations to compute entry: 2
         A[j] += FE0[ip][j]*Gip0;
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -7277,7 +7277,7 @@ public:
   CoefficientSpace_alpha(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), mesh)))
   {
     // Do nothing
   }
@@ -7285,7 +7285,7 @@ public:
   CoefficientSpace_alpha(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), mesh)))
   {
     // Do nothing
   }
@@ -7293,7 +7293,7 @@ public:
   CoefficientSpace_alpha(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -7301,7 +7301,7 @@ public:
   CoefficientSpace_alpha(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -7320,7 +7320,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7328,7 +7328,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7336,7 +7336,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7344,7 +7344,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7363,7 +7363,7 @@ public:
   CoefficientSpace_h(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -7371,7 +7371,7 @@ public:
   CoefficientSpace_h(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -7379,7 +7379,7 @@ public:
   CoefficientSpace_h(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7387,7 +7387,7 @@ public:
   CoefficientSpace_h(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7406,7 +7406,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7414,7 +7414,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7422,7 +7422,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7430,7 +7430,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7449,7 +7449,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7457,7 +7457,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7465,7 +7465,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7473,7 +7473,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7614,7 +7614,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7622,7 +7622,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7630,7 +7630,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7638,7 +7638,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }

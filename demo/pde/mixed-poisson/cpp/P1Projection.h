@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -454,7 +454,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -875,7 +875,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2)";
   }
 
   /// Return the cell shape
@@ -1467,7 +1467,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -1888,7 +1888,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -2309,7 +2309,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2)";
   }
 
   /// Return the cell shape
@@ -2906,7 +2906,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3074,7 +3074,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3242,7 +3242,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3435,7 +3435,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3603,7 +3603,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3771,7 +3771,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3986,16 +3986,16 @@ public:
     // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1[4][3] = \
+    static const double FE0_C0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[3] = {3, 4, 5};
+    static const unsigned int nzc1[3] = {3, 4, 5};
     // Array of non-zero columns
-    static const unsigned int nzc1[3] = {0, 1, 2};
+    static const unsigned int nzc0[3] = {0, 1, 2};
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -4011,15 +4011,15 @@ public:
       const double Gip0 = W4[ip]*det;
       
       
-      // Number of operations for primary indices = 54
+      // Number of operations for primary indices: 54
       for (unsigned int j = 0; j < 3; j++)
       {
         for (unsigned int k = 0; k < 3; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*6 + nzc1[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip0;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*6 + nzc0[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*6 + nzc1[k]] += FE0_C0[ip][j]*FE0_C0[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*6 + nzc0[k]] += FE0_C0[ip][j]*FE0_C0[ip][k]*Gip0;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -4204,7 +4204,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -4625,7 +4625,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -5046,7 +5046,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2)";
   }
 
   /// Return the cell shape
@@ -5638,7 +5638,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Brezzi-Douglas-Marini', 'triangle', 1)";
+    return "FiniteElement('Brezzi-Douglas-Marini', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return the cell shape
@@ -6156,7 +6156,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6324,7 +6324,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6492,7 +6492,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6685,7 +6685,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Brezzi-Douglas-Marini', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Brezzi-Douglas-Marini', Cell('triangle', 1, Space(2)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6884,34 +6884,34 @@ public:
     // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_C0[4][6] = \
+    static const double FE0_C0[4][6] = \
     {{0.357117456527233, -0.178558728263617, 1.17772946630772, -0.356288194571337, -0.178558728263617, 0.357117456527233},
     {0.150062220445216, -0.075031110222608, -0.0849091432801696, 1.00987803305756, -0.0750311102226082, 0.150062220445216},
     {1.3327804920294, -0.666390246014701, 0.202066430805551, 0.131543323179748, -0.666390246014702, 1.3327804920294},
     {0.560039830998148, -0.280019915499074, -0.494886753833102, 1.21486683833403, -0.280019915499074, 0.560039830998148}};
     
-    static const double FE1_C1[4][6] = \
+    static const double FE0_C1[4][6] = \
     {{-0.155051025721682, 0.310102051443364, 0.155051025721682, -0.310102051443364, -1.15422176376579, 0.309272789487469},
     {-0.644948974278318, 1.28989794855664, 0.644948974278318, -1.28989794855664, -0.48500872077554, 0.129957695053858},
     {-0.155051025721682, 0.310102051443364, 0.155051025721682, -0.310102051443364, 0.309272789487469, -1.15422176376579},
     {-0.644948974278318, 1.28989794855664, 0.644948974278318, -1.28989794855664, 0.129957695053858, -0.48500872077554}};
     
-    static const double FE0_C1[4][3] = \
+    static const double FE1_C0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226082, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226081, 0.280019915499074, 0.644948974278318}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[3] = {3, 4, 5};
+    static const unsigned int nzc0[3] = {0, 1, 2};
     // Array of non-zero columns
-    static const unsigned int nzc1[3] = {0, 1, 2};
+    static const unsigned int nzc1[3] = {3, 4, 5};
     
     // Number of operations to compute geometry constants: 8
-    const double G0 = J_01*det/detJ;
-    const double G1 = J_00*det/detJ;
-    const double G2 = J_11*det/detJ;
-    const double G3 = J_10*det/detJ;
+    const double G0 = J_11*det/detJ;
+    const double G1 = J_10*det/detJ;
+    const double G2 = J_01*det/detJ;
+    const double G3 = J_00*det/detJ;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -6929,8 +6929,8 @@ public:
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 6; r++)
       {
-        F0 += FE1_C0[ip][r]*w[0][r];
-        F1 += FE1_C1[ip][r]*w[0][r];
+        F0 += FE0_C0[ip][r]*w[0][r];
+        F1 += FE0_C1[ip][r]*w[0][r];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 8
@@ -6941,13 +6941,13 @@ public:
       const double Gip1 = W4[ip]*(F0*G3 + F1*G2);
       
       
-      // Number of operations for primary indices = 12
+      // Number of operations for primary indices: 12
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE0_C1[ip][j]*Gip0;
-        // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE0_C1[ip][j]*Gip1;
+        // Number of operations to compute entry: 2
+        A[nzc1[j]] += FE1_C0[ip][j]*Gip0;
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE1_C0[ip][j]*Gip1;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -7134,7 +7134,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7142,7 +7142,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7150,7 +7150,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7158,7 +7158,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7177,7 +7177,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7185,7 +7185,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7193,7 +7193,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7201,7 +7201,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7220,7 +7220,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7228,7 +7228,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -7236,7 +7236,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7244,7 +7244,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7314,7 +7314,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7322,7 +7322,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7330,7 +7330,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7338,7 +7338,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1projection_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1projection_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }

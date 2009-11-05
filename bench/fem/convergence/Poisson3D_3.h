@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return the cell shape
@@ -861,7 +861,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return the cell shape
@@ -1694,7 +1694,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1974,7 +1974,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2334,37 +2334,6 @@ public:
     
     // Array of non-zero columns
     static const unsigned int nzc0[16] = {0, 3, 4, 5, 6, 7, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
-    static const double FE0_D100[27][16] = \
-    {{-1.83997746180178, 0.26542322590502, -0.140810088891143, -0.256543386398887, -0.158417698127495, -0.278503704622767, -1.14899471840544, 0.256543386398888, -1.29267085820219, 0.278503704622767, 2.71461720801775, -1.14006297212099, 0.161848359941821, -0.161848359941821, 1.28980480729659, 1.45108855632969},
-    {-0.0119750594690424, 0.457067701970756, -0.933091555885042, 0.0640398370322062, -0.155551945090507, -0.21513855641708, -3.38606569276811, -0.0640398370322061, -0.564477409952264, 0.21513855641708, 0.733798786666479, -1.17889142916819, 0.541980083397684, -0.541980083397684, 4.31915724865315, 0.720029355042772},
-    {0.378751027875676, 0.739682096209811, -2.59571944234775, 3.53736962079525, -0.0962189764812033, -0.108379852476699, -1.36855207318324, -3.53736962079526, -0.0507299354447247, 0.108379852476698, -0.364038584853484, -0.754394539232003, 0.497448016570486, -0.497448016570485, 3.96427151553099, 0.146948911925927},
-    {0.186458849552854, 0.496122215132654, -0.206880210304688, -0.256543386398888, -1.07580346616917, 0.236973007927101, -0.628825752834697, 0.256543386398888, -3.26997407591416, -0.2369730079271, 0.46783773675628, -1.15041880144179, 0.748087446926113, -0.748087446926113, 0.835705963139385, 4.34577754208333},
-    {0.498949082207158, 0.634361894313729, -1.15433995115257, 0.0640398370322059, -0.889465234130341, -0.238066259315393, -1.64418076145176, -0.0640398370322061, -1.26690722648653, 0.238066259315393, -0.165166479746832, -0.968144496774055, 2.50511340998156, -2.50511340998156, 2.79852071260433, 2.15637246061687},
-    {0.0686024265261138, 0.828504072466753, -2.79878885166122, 3.53736962079525, -0.479531545888491, -0.346589229150537, 0.230210004465898, -3.53736962079525, 0.0394431181384069, 0.346589229150537, -0.366614405561674, -0.530492093431192, 2.29927950353309, -2.29927950353309, 2.56857884719532, 0.440088427750084},
-    {0.160093066845509, 0.806985210562026, -0.284751427261901, -0.256543386398888, -2.84839117329566, 3.91166044426694, -0.015746958581641, 0.256543386398888, -0.157518079054076, -3.91166044426694, -0.378923970046395, -0.588154307361139, 1.43903745813638, -1.43903745813638, 0.300498385843542, 3.00590925234973},
-    {-0.0970675505318421, 0.862654263291583, -1.41510656427068, 0.0640398370322062, -2.09751042592522, 1.25682352221155, 0.408830440874077, -0.0640398370322067, 0.605979884356575, -1.25682352221155, -0.330883366402012, -0.434703346357729, 4.81889122542551, -4.81889122542551, 1.00627612339661, 1.49153054156864},
-    {-0.541480653697656, 0.937136138033666, -3.03812944452988, 3.53736962079525, -1.0013203727681, -0.316743111490177, 2.1145345061923, -3.53736962079525, 0.696917797160922, 0.316743111490177, -0.187233567788989, -0.208421916547021, 4.42294459812816, -4.42294459812816, 0.923594938337578, 0.304402575607182},
-    {0.392804723698625, -0.392804723698624, 0.50409231475715, -0.256543386398888, 0.567126580037346, -0.278503704622767, -0.504092314757152, 0.256543386398888, -0.567126580037347, 0.278503704622767, -2.40917511258671, 2.40917511258671, 0.16184835994182, -0.16184835994182, 0, 0},
-    {0.482737450218103, -0.482737450218103, 1.22648706844153, 0.0640398370322068, 0.204462732430878, -0.215138556417079, -1.22648706844153, -0.0640398370322065, -0.204462732430878, 0.215138556417079, -1.19543138489667, 1.19543138489667, 0.541980083397684, -0.541980083397685, 0, 0},
-    {-0.0340820512751228, 0.0340820512751235, -0.613583684582255, 3.53736962079525, -0.0227445205182398, -0.108379852476699, 0.613583684582254, -3.53736962079525, 0.0227445205182389, 0.108379852476699, -0.243972471486573, 0.243972471486573, 0.497448016570487, -0.497448016570487, 0, 0},
-    {0.452014519034376, -0.452014519034376, 0.210972771265004, -0.256543386398888, 1.0970853048725, 0.236973007927101, -0.210972771265004, 0.256543386398888, -1.0970853048725, -0.2369730079271, -1.01141033637379, 1.01141033637379, 0.748087446926114, -0.748087446926114, 0, 0},
-    {0.233410350331923, -0.233410350331923, 0.244920405149598, 0.0640398370322065, 0.188720996178094, -0.238066259315393, -0.244920405149597, -0.0640398370322065, -0.188720996178094, 0.238066259315393, -0.501861260642014, 0.501861260642014, 2.50511340998156, -2.50511340998156, 0, 0},
-    {-0.318496690019251, 0.318496690019251, -1.51449942806356, 3.53736962079525, -0.259487332013449, -0.346589229150537, 1.51449942806356, -3.53736962079525, 0.259487332013449, 0.346589229150537, -0.102423554918446, 0.102423554918446, 2.29927950353309, -2.29927950353309, 0, 0},
-    {-0.24498469536523, 0.24498469536523, -0.134502234340129, -0.256543386398889, -1.34543654712079, 3.91166044426694, 0.134502234340131, 0.256543386398889, 1.34543654712079, -3.91166044426694, -0.130768960821714, 0.130768960821713, 1.43903745813638, -1.43903745813638, 0, 0},
-    {-0.440928414428319, 0.440928414428319, -0.911968502572378, 0.0640398370322064, -1.3517451551409, 1.25682352221155, 0.911968502572381, -0.0640398370322069, 1.3517451551409, -1.25682352221155, -0.0648874874723219, 0.0648874874723213, 4.81889122542551, -4.81889122542551, 0, 0},
-    {-0.731362765081401, 0.731362765081401, -2.57633197536109, 3.53736962079525, -0.849119084964512, -0.316743111490177, 2.57633197536109, -3.53736962079525, 0.849119084964514, 0.316743111490177, -0.0132427179737654, 0.0132427179737651, 4.42294459812816, -4.42294459812816, 0, 0},
-    {-0.265423225905021, 1.83997746180178, 1.14899471840544, -0.256543386398887, 1.29267085820219, -0.278503704622767, 0.140810088891143, 0.256543386398888, 0.158417698127497, 0.278503704622767, 1.14006297212099, -2.71461720801775, 0.161848359941818, -0.161848359941819, -1.28980480729659, -1.45108855632969},
-    {-0.457067701970757, 0.0119750594690431, 3.38606569276811, 0.0640398370322065, 0.564477409952263, -0.215138556417079, 0.933091555885043, -0.064039837032206, 0.155551945090508, 0.21513855641708, 1.1788914291682, -0.733798786666482, 0.541980083397685, -0.541980083397686, -4.31915724865315, -0.72002935504277},
-    {-0.73968209620981, -0.378751027875676, 1.36855207318324, 3.53736962079525, 0.0507299354447233, -0.108379852476699, 2.59571944234775, -3.53736962079525, 0.0962189764812021, 0.108379852476699, 0.754394539232003, 0.364038584853484, 0.497448016570488, -0.497448016570488, -3.96427151553099, -0.146948911925926},
-    {-0.496122215132655, -0.186458849552854, 0.628825752834697, -0.256543386398888, 3.26997407591417, 0.236973007927101, 0.206880210304689, 0.256543386398888, 1.07580346616917, -0.236973007927101, 1.15041880144179, -0.467837736756283, 0.748087446926115, -0.748087446926116, -0.835705963139386, -4.34577754208333},
-    {-0.634361894313729, -0.498949082207159, 1.64418076145176, 0.0640398370322066, 1.26690722648653, -0.238066259315393, 1.15433995115257, -0.0640398370322065, 0.889465234130342, 0.238066259315393, 0.968144496774055, 0.165166479746832, 2.50511340998156, -2.50511340998156, -2.79852071260433, -2.15637246061687},
-    {-0.828504072466753, -0.0686024265261139, -0.230210004465896, 3.53736962079525, -0.0394431181384064, -0.346589229150537, 2.79878885166122, -3.53736962079525, 0.479531545888491, 0.346589229150537, 0.530492093431192, 0.366614405561675, 2.29927950353309, -2.29927950353309, -2.56857884719532, -0.440088427750085},
-    {-0.806985210562025, -0.160093066845509, 0.015746958581643, -0.256543386398889, 0.157518079054077, 3.91166044426694, 0.284751427261903, 0.256543386398889, 2.84839117329566, -3.91166044426694, 0.588154307361138, 0.378923970046396, 1.43903745813639, -1.43903745813639, -0.300498385843546, -3.00590925234974},
-    {-0.862654263291583, 0.0970675505318418, -0.408830440874073, 0.0640398370322066, -0.605979884356571, 1.25682352221155, 1.41510656427069, -0.064039837032207, 2.09751042592522, -1.25682352221155, 0.434703346357728, 0.330883366402013, 4.81889122542551, -4.81889122542551, -1.00627612339661, -1.49153054156865},
-    {-0.937136138033665, 0.541480653697656, -2.1145345061923, 3.53736962079525, -0.696917797160919, -0.316743111490177, 3.03812944452988, -3.53736962079525, 1.00132037276811, 0.316743111490177, 0.20842191654702, 0.187233567788989, 4.42294459812816, -4.42294459812816, -0.923594938337581, -0.304402575607187}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc1[16] = {0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
     static const double FE0_D010[27][16] = \
     {{-1.83997746180178, 0.351949239991742, -0.166624748387353, -0.256543386398887, -0.306087314807263, -0.217360102029722, -1.14899471840545, 0.256543386398887, 2.92079698059721, -1.43276875878717, -1.49885063078165, 0.306087314807263, 0.187663019438031, 1.3156194667928, -0.187663019438031, 1.71621073281137},
     {-0.0119750594690429, 0.524547225870279, -1.0195368637749, 0.0640398370322063, -0.241098210144981, -0.197071815262129, -3.38606569276811, -0.0640398370322061, 0.823832396747289, -1.33640456314853, -0.654511020033074, 0.241098210144981, 0.628425391287542, 4.40560255654301, -0.62842539128754, 0.851582835295204},
@@ -2395,14 +2364,45 @@ public:
     {-0.937136138033666, -0.362353214099567, 1.25043465362992, 3.53736962079525, -0.208407733537974, 0.0985806926841008, 3.03812944452988, -3.53736962079525, 0.970224850929767, 0.329264501203466, 0.239517438385358, 0.208407733537973, 1.05797543830594, -4.2885640981598, -1.05797543830594, -0.338098131069459}};
     
     // Array of non-zero columns
-    static const unsigned int nzc2[16] = {0, 2, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+    static const unsigned int nzc1[16] = {0, 2, 4, 5, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
+    static const double FE0_D100[27][16] = \
+    {{-1.83997746180178, 0.26542322590502, -0.140810088891143, -0.256543386398887, -0.158417698127495, -0.278503704622767, -1.14899471840544, 0.256543386398888, -1.29267085820219, 0.278503704622767, 2.71461720801775, -1.14006297212099, 0.161848359941821, -0.161848359941821, 1.28980480729659, 1.45108855632969},
+    {-0.0119750594690424, 0.457067701970756, -0.933091555885042, 0.0640398370322062, -0.155551945090507, -0.21513855641708, -3.38606569276811, -0.0640398370322061, -0.564477409952264, 0.21513855641708, 0.733798786666479, -1.17889142916819, 0.541980083397684, -0.541980083397684, 4.31915724865315, 0.720029355042772},
+    {0.378751027875676, 0.739682096209811, -2.59571944234775, 3.53736962079525, -0.0962189764812033, -0.108379852476699, -1.36855207318324, -3.53736962079526, -0.0507299354447247, 0.108379852476698, -0.364038584853484, -0.754394539232003, 0.497448016570486, -0.497448016570485, 3.96427151553099, 0.146948911925927},
+    {0.186458849552854, 0.496122215132654, -0.206880210304688, -0.256543386398888, -1.07580346616917, 0.236973007927101, -0.628825752834697, 0.256543386398888, -3.26997407591416, -0.2369730079271, 0.46783773675628, -1.15041880144179, 0.748087446926113, -0.748087446926113, 0.835705963139385, 4.34577754208333},
+    {0.498949082207158, 0.634361894313729, -1.15433995115257, 0.0640398370322059, -0.889465234130341, -0.238066259315393, -1.64418076145176, -0.0640398370322061, -1.26690722648653, 0.238066259315393, -0.165166479746832, -0.968144496774055, 2.50511340998156, -2.50511340998156, 2.79852071260433, 2.15637246061687},
+    {0.0686024265261138, 0.828504072466753, -2.79878885166122, 3.53736962079525, -0.479531545888491, -0.346589229150537, 0.230210004465898, -3.53736962079525, 0.0394431181384069, 0.346589229150537, -0.366614405561674, -0.530492093431192, 2.29927950353309, -2.29927950353309, 2.56857884719532, 0.440088427750084},
+    {0.160093066845509, 0.806985210562026, -0.284751427261901, -0.256543386398888, -2.84839117329566, 3.91166044426694, -0.015746958581641, 0.256543386398888, -0.157518079054076, -3.91166044426694, -0.378923970046395, -0.588154307361139, 1.43903745813638, -1.43903745813638, 0.300498385843542, 3.00590925234973},
+    {-0.0970675505318421, 0.862654263291583, -1.41510656427068, 0.0640398370322062, -2.09751042592522, 1.25682352221155, 0.408830440874077, -0.0640398370322067, 0.605979884356575, -1.25682352221155, -0.330883366402012, -0.434703346357729, 4.81889122542551, -4.81889122542551, 1.00627612339661, 1.49153054156864},
+    {-0.541480653697656, 0.937136138033666, -3.03812944452988, 3.53736962079525, -1.0013203727681, -0.316743111490177, 2.1145345061923, -3.53736962079525, 0.696917797160922, 0.316743111490177, -0.187233567788989, -0.208421916547021, 4.42294459812816, -4.42294459812816, 0.923594938337578, 0.304402575607182},
+    {0.392804723698625, -0.392804723698624, 0.50409231475715, -0.256543386398888, 0.567126580037346, -0.278503704622767, -0.504092314757152, 0.256543386398888, -0.567126580037347, 0.278503704622767, -2.40917511258671, 2.40917511258671, 0.16184835994182, -0.16184835994182, 0, 0},
+    {0.482737450218103, -0.482737450218103, 1.22648706844153, 0.0640398370322068, 0.204462732430878, -0.215138556417079, -1.22648706844153, -0.0640398370322065, -0.204462732430878, 0.215138556417079, -1.19543138489667, 1.19543138489667, 0.541980083397684, -0.541980083397685, 0, 0},
+    {-0.0340820512751228, 0.0340820512751235, -0.613583684582255, 3.53736962079525, -0.0227445205182398, -0.108379852476699, 0.613583684582254, -3.53736962079525, 0.0227445205182389, 0.108379852476699, -0.243972471486573, 0.243972471486573, 0.497448016570487, -0.497448016570487, 0, 0},
+    {0.452014519034376, -0.452014519034376, 0.210972771265004, -0.256543386398888, 1.0970853048725, 0.236973007927101, -0.210972771265004, 0.256543386398888, -1.0970853048725, -0.2369730079271, -1.01141033637379, 1.01141033637379, 0.748087446926114, -0.748087446926114, 0, 0},
+    {0.233410350331923, -0.233410350331923, 0.244920405149598, 0.0640398370322065, 0.188720996178094, -0.238066259315393, -0.244920405149597, -0.0640398370322065, -0.188720996178094, 0.238066259315393, -0.501861260642014, 0.501861260642014, 2.50511340998156, -2.50511340998156, 0, 0},
+    {-0.318496690019251, 0.318496690019251, -1.51449942806356, 3.53736962079525, -0.259487332013449, -0.346589229150537, 1.51449942806356, -3.53736962079525, 0.259487332013449, 0.346589229150537, -0.102423554918446, 0.102423554918446, 2.29927950353309, -2.29927950353309, 0, 0},
+    {-0.24498469536523, 0.24498469536523, -0.134502234340129, -0.256543386398889, -1.34543654712079, 3.91166044426694, 0.134502234340131, 0.256543386398889, 1.34543654712079, -3.91166044426694, -0.130768960821714, 0.130768960821713, 1.43903745813638, -1.43903745813638, 0, 0},
+    {-0.440928414428319, 0.440928414428319, -0.911968502572378, 0.0640398370322064, -1.3517451551409, 1.25682352221155, 0.911968502572381, -0.0640398370322069, 1.3517451551409, -1.25682352221155, -0.0648874874723219, 0.0648874874723213, 4.81889122542551, -4.81889122542551, 0, 0},
+    {-0.731362765081401, 0.731362765081401, -2.57633197536109, 3.53736962079525, -0.849119084964512, -0.316743111490177, 2.57633197536109, -3.53736962079525, 0.849119084964514, 0.316743111490177, -0.0132427179737654, 0.0132427179737651, 4.42294459812816, -4.42294459812816, 0, 0},
+    {-0.265423225905021, 1.83997746180178, 1.14899471840544, -0.256543386398887, 1.29267085820219, -0.278503704622767, 0.140810088891143, 0.256543386398888, 0.158417698127497, 0.278503704622767, 1.14006297212099, -2.71461720801775, 0.161848359941818, -0.161848359941819, -1.28980480729659, -1.45108855632969},
+    {-0.457067701970757, 0.0119750594690431, 3.38606569276811, 0.0640398370322065, 0.564477409952263, -0.215138556417079, 0.933091555885043, -0.064039837032206, 0.155551945090508, 0.21513855641708, 1.1788914291682, -0.733798786666482, 0.541980083397685, -0.541980083397686, -4.31915724865315, -0.72002935504277},
+    {-0.73968209620981, -0.378751027875676, 1.36855207318324, 3.53736962079525, 0.0507299354447233, -0.108379852476699, 2.59571944234775, -3.53736962079525, 0.0962189764812021, 0.108379852476699, 0.754394539232003, 0.364038584853484, 0.497448016570488, -0.497448016570488, -3.96427151553099, -0.146948911925926},
+    {-0.496122215132655, -0.186458849552854, 0.628825752834697, -0.256543386398888, 3.26997407591417, 0.236973007927101, 0.206880210304689, 0.256543386398888, 1.07580346616917, -0.236973007927101, 1.15041880144179, -0.467837736756283, 0.748087446926115, -0.748087446926116, -0.835705963139386, -4.34577754208333},
+    {-0.634361894313729, -0.498949082207159, 1.64418076145176, 0.0640398370322066, 1.26690722648653, -0.238066259315393, 1.15433995115257, -0.0640398370322065, 0.889465234130342, 0.238066259315393, 0.968144496774055, 0.165166479746832, 2.50511340998156, -2.50511340998156, -2.79852071260433, -2.15637246061687},
+    {-0.828504072466753, -0.0686024265261139, -0.230210004465896, 3.53736962079525, -0.0394431181384064, -0.346589229150537, 2.79878885166122, -3.53736962079525, 0.479531545888491, 0.346589229150537, 0.530492093431192, 0.366614405561675, 2.29927950353309, -2.29927950353309, -2.56857884719532, -0.440088427750085},
+    {-0.806985210562025, -0.160093066845509, 0.015746958581643, -0.256543386398889, 0.157518079054077, 3.91166044426694, 0.284751427261903, 0.256543386398889, 2.84839117329566, -3.91166044426694, 0.588154307361138, 0.378923970046396, 1.43903745813639, -1.43903745813639, -0.300498385843546, -3.00590925234974},
+    {-0.862654263291583, 0.0970675505318418, -0.408830440874073, 0.0640398370322066, -0.605979884356571, 1.25682352221155, 1.41510656427069, -0.064039837032207, 2.09751042592522, -1.25682352221155, 0.434703346357728, 0.330883366402013, 4.81889122542551, -4.81889122542551, -1.00627612339661, -1.49153054156865},
+    {-0.937136138033665, 0.541480653697656, -2.1145345061923, 3.53736962079525, -0.696917797160919, -0.316743111490177, 3.03812944452988, -3.53736962079525, 1.00132037276811, 0.316743111490177, 0.20842191654702, 0.187233567788989, 4.42294459812816, -4.42294459812816, -0.923594938337581, -0.304402575607187}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[16] = {0, 1, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19};
     
     // Number of operations to compute geometry constants: 36
     const double G0 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G1 = det*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
-    const double G2 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G3 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
-    const double G4 = det*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G1 = det*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
+    const double G2 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G3 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
+    const double G4 = det*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
     const double G5 = det*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
     
     // Compute element tensor using UFL quadrature representation
@@ -2434,29 +2434,29 @@ public:
       const double Gip5 = G5*W27[ip];
       
       
-      // Number of operations for primary indices = 6912
+      // Number of operations for primary indices: 6912
       for (unsigned int j = 0; j < 16; j++)
       {
         for (unsigned int k = 0; k < 16; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*20 + nzc2[k]] += FE0_D010[ip][k]*FE0_D100[ip][j]*Gip0;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*20 + nzc0[k]] += FE0_D001[ip][k]*FE0_D100[ip][j]*Gip1;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*20 + nzc2[k]] += FE0_D010[ip][j]*FE0_D010[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*20 + nzc1[k]] += FE0_D100[ip][j]*FE0_D100[ip][k]*Gip3;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*20 + nzc2[k]] += FE0_D001[ip][j]*FE0_D010[ip][k]*Gip4;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*20 + nzc1[k]] += FE0_D010[ip][j]*FE0_D100[ip][k]*Gip0;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*20 + nzc2[k]] += FE0_D010[ip][j]*FE0_D100[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*20 + nzc0[k]] += FE0_D001[ip][k]*FE0_D010[ip][j]*Gip1;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*20 + nzc2[k]] += FE0_D100[ip][j]*FE0_D100[ip][k]*Gip2;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*20 + nzc1[k]] += FE0_D010[ip][j]*FE0_D010[ip][k]*Gip3;
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*20 + nzc2[k]] += FE0_D001[ip][j]*FE0_D100[ip][k]*Gip4;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*20 + nzc1[k]] += FE0_D010[ip][k]*FE0_D100[ip][j]*Gip0;
+          // Number of operations to compute entry: 3
           A[nzc0[j]*20 + nzc0[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip5;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*20 + nzc1[k]] += FE0_D001[ip][j]*FE0_D100[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*20 + nzc0[k]] += FE0_D001[ip][k]*FE0_D010[ip][j]*Gip4;
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*20 + nzc1[k]] += FE0_D001[ip][j]*FE0_D010[ip][k]*Gip1;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*20 + nzc0[k]] += FE0_D001[ip][k]*FE0_D100[ip][j]*Gip4;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -2641,7 +2641,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return the cell shape
@@ -3469,7 +3469,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return the cell shape
@@ -4302,7 +4302,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4582,7 +4582,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 3)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4986,10 +4986,10 @@ public:
       const double Gip0 = F0*W64[ip]*det;
       
       
-      // Number of operations for primary indices = 40
+      // Number of operations for primary indices: 40
       for (unsigned int j = 0; j < 20; j++)
       {
-        // Number of operations to compute entry = 2
+        // Number of operations to compute entry: 2
         A[j] += FE0[ip][j]*Gip0;
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -5177,7 +5177,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -5185,7 +5185,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -5193,7 +5193,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -5201,7 +5201,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -5220,7 +5220,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -5228,7 +5228,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -5236,7 +5236,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -5244,7 +5244,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -5263,7 +5263,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -5271,7 +5271,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -5279,7 +5279,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -5287,7 +5287,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -5357,7 +5357,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -5365,7 +5365,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -5373,7 +5373,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -5381,7 +5381,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3d_3_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3d_3_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }

@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -563,7 +563,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -1093,7 +1093,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -1623,7 +1623,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -2567,7 +2567,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -3097,7 +3097,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -3627,7 +3627,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -4157,7 +4157,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -5101,7 +5101,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -5631,7 +5631,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -6161,7 +6161,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -6691,7 +6691,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -7635,7 +7635,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return the cell shape
@@ -8104,7 +8104,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return the cell shape
@@ -8578,7 +8578,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8764,7 +8764,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8950,7 +8950,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -9136,7 +9136,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -9392,7 +9392,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -9578,7 +9578,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -9764,7 +9764,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -9950,7 +9950,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -10206,7 +10206,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -10392,7 +10392,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -10578,7 +10578,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -10764,7 +10764,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -11020,7 +11020,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -11186,7 +11186,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -11405,224 +11405,378 @@ public:
     {{-1, 1}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 3};
+    static const unsigned int nzc1[2] = {0, 3};
     // Array of non-zero columns
-    static const unsigned int nzc4[2] = {0, 1};
+    static const unsigned int nzc3[2] = {0, 1};
     // Array of non-zero columns
-    static const unsigned int nzc5[2] = {0, 2};
+    static const unsigned int nzc2[2] = {0, 2};
     // Array of non-zero columns
-    static const unsigned int nzc6[2] = {8, 10};
+    static const unsigned int nzc9[2] = {8, 11};
     // Array of non-zero columns
-    static const unsigned int nzc7[2] = {4, 6};
+    static const unsigned int nzc6[2] = {4, 6};
     // Array of non-zero columns
-    static const unsigned int nzc8[2] = {4, 5};
+    static const unsigned int nzc7[2] = {4, 5};
     // Array of non-zero columns
-    static const unsigned int nzc9[2] = {8, 9};
+    static const unsigned int nzc11[2] = {8, 9};
     // Array of non-zero columns
-    static const unsigned int nzc10[2] = {8, 11};
+    static const unsigned int nzc10[2] = {8, 10};
     // Array of non-zero columns
-    static const unsigned int nzc11[2] = {4, 7};
+    static const unsigned int nzc5[2] = {4, 7};
     
-    // Number of operations to compute geometry constants: 6104
-    const double G0 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G1 = Jinv_00*W1*det*(3*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 6*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G2 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_00*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_01*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_02*Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[1][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G3 = W1*det*(Jinv_00*(w[1][0]*(4*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + w[2][0]*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 3*Jinv_00*Jinv_10)) + Jinv_10*(Jinv_01*Jinv_01*(w[2][0] + 2*w[1][0]) + Jinv_02*Jinv_02*(w[2][0] + 2*w[1][0])));
-    const double G4 = W1*det*(w[1][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))) + w[2][0]*(0.5*(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 1.5*Jinv_02*Jinv_02*Jinv_12*Jinv_12 + Jinv_00*Jinv_10*(1.5*Jinv_00*Jinv_10 + 2*Jinv_02*Jinv_12) + Jinv_01*Jinv_11*(1.5*Jinv_01*Jinv_11 + 2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G5 = W1*det*(2*w[1][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G6 = W1*det*(0.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[1][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G7 = W1*det*(w[1][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[2][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 1.5*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(1.5*Jinv_00*Jinv_20 + 2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(1.5*Jinv_02*Jinv_22 + 2*Jinv_01*Jinv_21)));
-    const double G8 = W1*det*(3*w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + 6*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G9 = Jinv_02*W1*det*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G10 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_22*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G11 = W1*det*(Jinv_00*Jinv_00*Jinv_00*Jinv_00*(1.5*w[2][0] + 3*w[1][0]) + Jinv_01*Jinv_01*(w[1][0]*(3*Jinv_01*Jinv_01 + 6*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[2][0]*(1.5*Jinv_01*Jinv_01 + 3*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02))) + Jinv_02*Jinv_02*(Jinv_00*Jinv_00*(3*w[2][0] + 6*w[1][0]) + Jinv_02*Jinv_02*(1.5*w[2][0] + 3*w[1][0])));
-    const double G12 = W1*det*(w[1][0]*(Jinv_00*(4*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + Jinv_01*(4*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[2][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)));
-    const double G13 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G14 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G15 = W1*det*(Jinv_00*Jinv_00*Jinv_00*Jinv_00*(w[1][0] + 0.5*w[2][0]) + Jinv_01*Jinv_01*(w[1][0]*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_01*Jinv_01) + w[2][0]*(0.5*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + Jinv_02*Jinv_02*(Jinv_00*Jinv_00*(w[2][0] + 2*w[1][0]) + Jinv_02*Jinv_02*(w[1][0] + 0.5*w[2][0])));
-    const double G16 = Jinv_01*W1*det*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G17 = W1*det*(Jinv_00*(w[1][0]*(4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20) + w[2][0]*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 3*Jinv_00*Jinv_20)) + Jinv_20*(Jinv_01*Jinv_01*(w[2][0] + 2*w[1][0]) + Jinv_02*Jinv_02*(w[2][0] + 2*w[1][0])));
-    const double G18 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_12*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G19 = W1*det*(Jinv_00*Jinv_00*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G20 = W1*det*(3*w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + 6*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G21 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_11*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G22 = W1*det*(w[1][0]*(2*Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_10*Jinv_20*(2*Jinv_10*Jinv_20 + 4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_12*Jinv_22*(2*Jinv_12*Jinv_22 + 4*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
-    const double G23 = W1*det*(w[1][0]*(2*(Jinv_10*Jinv_10*Jinv_20*Jinv_20 + Jinv_11*Jinv_21*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*Jinv_22*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G24 = W1*det*(2*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G25 = W1*det*(Jinv_12*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[1][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G26 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_12*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G27 = W1*det*(2*w[1][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_00*Jinv_10*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_11*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
-    const double G28 = W1*det*(2*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G29 = W1*det*(Jinv_11*Jinv_22*w[1][0] + Jinv_12*Jinv_21*w[2][0]);
-    const double G30 = W1*det*(Jinv_21*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[1][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22)));
-    const double G31 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G32 = W1*det*(Jinv_11*w[1][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[1][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G33 = W1*det*(w[1][0]*(Jinv_00*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_02*Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22));
-    const double G34 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G35 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_21*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G36 = W1*det*(w[1][0]*(Jinv_10*(Jinv_10*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G37 = W1*det*(Jinv_12*(Jinv_10*Jinv_20*(w[1][0] + w[2][0]) + Jinv_11*Jinv_21*(w[1][0] + w[2][0]) + Jinv_12*Jinv_22*(w[2][0] + 2*w[1][0])) + Jinv_22*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
-    const double G38 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G39 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G40 = W1*det*(Jinv_10*Jinv_10*(Jinv_10*Jinv_10*(w[1][0] + 0.5*w[2][0]) + Jinv_11*Jinv_11*(w[2][0] + 2*w[1][0])) + Jinv_11*Jinv_11*Jinv_11*Jinv_11*(w[1][0] + 0.5*w[2][0]) + Jinv_12*Jinv_12*(w[1][0]*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*Jinv_12) + w[2][0]*(0.5*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
-    const double G41 = W1*det*(3*w[2][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + 6*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G42 = Jinv_10*W1*det*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G43 = W1*det*(0.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[1][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G44 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_02*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G45 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G46 = Jinv_12*W1*det*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G47 = W1*det*(w[1][0]*(Jinv_10*(4*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + Jinv_12*(4*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22))) + w[2][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G48 = W1*det*(Jinv_10*Jinv_10*(w[1][0]*(3*Jinv_10*Jinv_10 + 6*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[2][0]*(1.5*Jinv_10*Jinv_10 + 3*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + Jinv_11*Jinv_11*(Jinv_11*Jinv_11*(1.5*w[2][0] + 3*w[1][0]) + Jinv_12*Jinv_12*(3*w[2][0] + 6*w[1][0])) + Jinv_12*Jinv_12*Jinv_12*Jinv_12*(1.5*w[2][0] + 3*w[1][0]));
-    const double G49 = W1*det*(Jinv_11*(2*w[2][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 4*w[1][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_21*(w[1][0]*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11) + w[2][0]*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12)));
-    const double G50 = W1*det*(w[1][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))) + w[2][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + 1.5*Jinv_10*Jinv_10*Jinv_20*Jinv_20 + Jinv_11*Jinv_21*(1.5*Jinv_11*Jinv_21 + 2*Jinv_10*Jinv_20) + Jinv_12*Jinv_22*(1.5*Jinv_12*Jinv_22 + 2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G51 = W1*det*(Jinv_01*(w[1][0]*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11) + w[2][0]*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + Jinv_11*(Jinv_00*Jinv_10*(2*w[2][0] + 4*w[1][0]) + Jinv_02*Jinv_12*(2*w[2][0] + 4*w[1][0])));
-    const double G52 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G53 = W1*det*(Jinv_11*Jinv_11*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
-    const double G54 = W1*det*(3*w[2][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + 6*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G55 = Jinv_11*W1*det*(3*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G56 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_10*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_02*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G57 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G58 = W1*det*(Jinv_00*(w[1][0]*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10) + w[2][0]*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + Jinv_10*(Jinv_01*Jinv_11*(2*w[2][0] + 4*w[1][0]) + Jinv_02*Jinv_12*(2*w[2][0] + 4*w[1][0])));
-    const double G59 = W1*det*(1.5*w[2][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + 3*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G60 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_10*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_11*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + w[1][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G61 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 1.5*Jinv_00*Jinv_10) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(0.5*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 1.5*Jinv_01*Jinv_11) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(0.5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 1.5*Jinv_02*Jinv_12))));
-    const double G62 = W1*det*(Jinv_02*(w[1][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_12*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G63 = W1*det*(Jinv_22*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[1][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)));
-    const double G64 = W1*det*(Jinv_02*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(w[1][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G65 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G66 = W1*det*(Jinv_01*(w[1][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_11*w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
-    const double G67 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[2][0]*(Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10)));
-    const double G68 = W1*det*(1.5*w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + 3*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G69 = W1*det*(Jinv_00*Jinv_10*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G70 = W1*det*(w[1][0]*(2*(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 6*Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_00*Jinv_10*(6*Jinv_00*Jinv_10 + 8*Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(6*Jinv_02*Jinv_12 + 8*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))));
-    const double G71 = W1*det*(Jinv_01*w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(w[1][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G72 = W1*det*(Jinv_00*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[1][0]*(Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G73 = W1*det*(Jinv_00*(w[1][0]*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_10*w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G74 = W1*det*(w[1][0]*(2*Jinv_02*Jinv_02*Jinv_12*Jinv_12 + Jinv_00*Jinv_10*(2*Jinv_00*Jinv_10 + 4*Jinv_02*Jinv_12) + Jinv_01*Jinv_11*(2*Jinv_01*Jinv_11 + 4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_01*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_02*Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
-    const double G75 = W1*det*(Jinv_00*Jinv_12*w[2][0] + Jinv_02*Jinv_10*w[1][0]);
-    const double G76 = W1*det*(Jinv_12*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_10*Jinv_20*(w[1][0] + w[2][0]) + Jinv_11*Jinv_21*(w[1][0] + w[2][0]) + Jinv_12*Jinv_22*(w[2][0] + 2*w[1][0])));
-    const double G77 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G78 = W1*det*(Jinv_10*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[1][0]*(Jinv_00*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G79 = W1*det*(Jinv_10*Jinv_22*w[2][0] + Jinv_12*Jinv_20*w[1][0]);
-    const double G80 = W1*det*(Jinv_10*(w[1][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_20*w[1][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G81 = Jinv_11*W1*det*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G82 = W1*det*(Jinv_10*Jinv_10*(Jinv_10*Jinv_10*(w[2][0] + 2*w[1][0]) + Jinv_11*Jinv_11*(2*w[2][0] + 4*w[1][0])) + Jinv_11*Jinv_11*Jinv_11*Jinv_11*(w[2][0] + 2*w[1][0]) + Jinv_12*Jinv_12*(w[1][0]*(2*Jinv_12*Jinv_12 + 4*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[2][0]*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*Jinv_12)));
-    const double G83 = W1*det*(Jinv_00*w[1][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(w[1][0]*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G84 = Jinv_10*Jinv_11*W1*det*(w[1][0] + w[2][0]);
-    const double G85 = W1*det*(Jinv_11*(w[1][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_21*w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
-    const double G86 = W1*det*(Jinv_02*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[1][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G87 = W1*det*(2*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G88 = W1*det*(Jinv_20*Jinv_20*Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + Jinv_21*Jinv_21*(Jinv_20*Jinv_20*(2*w[2][0] + 4*w[1][0]) + Jinv_21*Jinv_21*(w[2][0] + 2*w[1][0])) + Jinv_22*Jinv_22*(w[1][0]*(2*Jinv_22*Jinv_22 + 4*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[2][0]*(2*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*Jinv_22)));
-    const double G89 = Jinv_21*Jinv_22*W1*det*(w[1][0] + w[2][0]);
-    const double G90 = W1*det*(Jinv_01*w[1][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[1][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G91 = Jinv_21*W1*det*(2*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G92 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G93 = Jinv_22*W1*det*(2*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G94 = W1*det*(Jinv_00*Jinv_11*w[2][0] + Jinv_01*Jinv_10*w[1][0]);
-    const double G95 = W1*det*(Jinv_11*w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[1][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G96 = W1*det*(Jinv_00*(w[1][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G97 = W1*det*(0.5*w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_12*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G98 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + Jinv_21*(4*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + Jinv_22*(4*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12))) + w[2][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G99 = W1*det*(1.5*w[2][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + 3*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G100 = W1*det*(0.5*w[2][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G101 = W1*det*(Jinv_02*(Jinv_00*Jinv_20*(2*w[2][0] + 4*w[1][0]) + Jinv_01*Jinv_21*(2*w[2][0] + 4*w[1][0])) + Jinv_22*(w[1][0]*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02) + w[2][0]*(3*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
-    const double G102 = W1*det*(Jinv_02*(Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + Jinv_21*Jinv_21*(w[2][0] + 2*w[1][0])) + Jinv_22*(w[1][0]*(4*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22) + w[2][0]*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 3*Jinv_02*Jinv_22)));
-    const double G103 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[2][0]*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G104 = W1*det*(w[1][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_10*(Jinv_10*(0.5*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 1.5*Jinv_00*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(0.5*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 1.5*Jinv_01*Jinv_21) + Jinv_12*(0.5*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(1.5*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G105 = W1*det*(w[1][0]*(2*(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 6*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(6*Jinv_00*Jinv_20 + 8*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(6*Jinv_02*Jinv_22 + 8*Jinv_01*Jinv_21)) + w[2][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)));
-    const double G106 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G107 = W1*det*(1.5*w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + 3*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G108 = W1*det*(Jinv_01*(w[1][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_21*w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
-    const double G109 = W1*det*(Jinv_00*w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[1][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G110 = W1*det*(Jinv_02*Jinv_22*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21));
-    const double G111 = Jinv_01*Jinv_02*W1*det*(w[1][0] + w[2][0]);
-    const double G112 = W1*det*(Jinv_00*Jinv_00*Jinv_00*Jinv_00*(w[2][0] + 2*w[1][0]) + Jinv_01*Jinv_01*(w[1][0]*(2*Jinv_01*Jinv_01 + 4*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[2][0]*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_01*Jinv_01)) + Jinv_02*Jinv_02*(Jinv_00*Jinv_00*(2*w[2][0] + 4*w[1][0]) + Jinv_02*Jinv_02*(w[2][0] + 2*w[1][0])));
-    const double G113 = W1*det*(Jinv_02*(w[1][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_22*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G114 = Jinv_00*W1*det*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G115 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_10*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G116 = Jinv_02*W1*det*(3*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 6*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G117 = W1*det*(Jinv_02*(Jinv_00*Jinv_10*(2*w[2][0] + 4*w[1][0]) + Jinv_01*Jinv_11*(2*w[2][0] + 4*w[1][0])) + Jinv_12*(w[1][0]*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02) + w[2][0]*(3*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
-    const double G118 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G119 = W1*det*(Jinv_02*Jinv_02*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G120 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_01*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G121 = W1*det*(Jinv_00*Jinv_11*w[1][0] + Jinv_01*Jinv_10*w[2][0]);
-    const double G122 = W1*det*(Jinv_01*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[1][0]*(Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G123 = W1*det*(w[1][0]*(2*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(2*Jinv_00*Jinv_20 + 4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(2*Jinv_02*Jinv_22 + 4*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G124 = W1*det*(Jinv_01*Jinv_22*w[1][0] + Jinv_02*Jinv_21*w[2][0]);
-    const double G125 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_02*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G126 = W1*det*(Jinv_02*w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[1][0]*(Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G127 = Jinv_12*W1*det*(3*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G128 = W1*det*(Jinv_02*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + Jinv_12*(w[1][0]*(4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12) + w[2][0]*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 3*Jinv_02*Jinv_12)));
-    const double G129 = W1*det*(Jinv_12*(Jinv_10*Jinv_20*(2*w[2][0] + 4*w[1][0]) + Jinv_11*Jinv_21*(2*w[2][0] + 4*w[1][0])) + Jinv_22*(w[1][0]*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12) + w[2][0]*(3*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
-    const double G130 = W1*det*(Jinv_12*Jinv_12*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
-    const double G131 = W1*det*(Jinv_00*(w[1][0]*(2*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 6*Jinv_20*Jinv_20) + w[2][0]*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + Jinv_20*(2*w[2][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 4*w[1][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G132 = W1*det*(Jinv_00*Jinv_20*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G133 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G134 = W1*det*(Jinv_00*Jinv_21*w[2][0] + Jinv_01*Jinv_20*w[1][0]);
-    const double G135 = W1*det*(Jinv_10*Jinv_21*w[2][0] + Jinv_11*Jinv_20*w[1][0]);
-    const double G136 = W1*det*(Jinv_20*Jinv_20*Jinv_20*Jinv_20*(w[1][0] + 0.5*w[2][0]) + Jinv_21*Jinv_21*(Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + Jinv_21*Jinv_21*(w[1][0] + 0.5*w[2][0])) + Jinv_22*Jinv_22*(w[1][0]*(2*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*Jinv_22) + w[2][0]*(0.5*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)));
-    const double G137 = W1*det*(3*w[2][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + 6*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G138 = Jinv_21*W1*det*(3*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 6*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G139 = W1*det*(Jinv_20*Jinv_20*Jinv_20*Jinv_20*(1.5*w[2][0] + 3*w[1][0]) + Jinv_21*Jinv_21*(Jinv_20*Jinv_20*(3*w[2][0] + 6*w[1][0]) + Jinv_21*Jinv_21*(1.5*w[2][0] + 3*w[1][0])) + Jinv_22*Jinv_22*(w[1][0]*(3*Jinv_22*Jinv_22 + 6*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[2][0]*(1.5*Jinv_22*Jinv_22 + 3*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21))));
-    const double G140 = W1*det*(Jinv_01*(Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + Jinv_22*Jinv_22*(w[2][0] + 2*w[1][0])) + Jinv_21*(w[1][0]*(4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + w[2][0]*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 3*Jinv_01*Jinv_21)));
-    const double G141 = Jinv_20*W1*det*(2*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G142 = W1*det*(Jinv_21*Jinv_21*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22));
-    const double G143 = W1*det*(3*w[2][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + 6*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G144 = W1*det*(Jinv_11*(Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + Jinv_22*Jinv_22*(w[2][0] + 2*w[1][0])) + Jinv_21*(w[1][0]*(4*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21) + w[2][0]*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 3*Jinv_11*Jinv_21)));
-    const double G145 = Jinv_00*Jinv_01*W1*det*(w[1][0] + w[2][0]);
-    const double G146 = W1*det*(Jinv_01*(Jinv_00*Jinv_20*(2*w[2][0] + 4*w[1][0]) + Jinv_02*Jinv_22*(2*w[2][0] + 4*w[1][0])) + Jinv_21*(w[1][0]*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01) + w[2][0]*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)));
-    const double G147 = W1*det*(Jinv_01*Jinv_21*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22));
-    const double G148 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[2][0]*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)));
-    const double G149 = W1*det*(Jinv_01*Jinv_12*w[1][0] + Jinv_02*Jinv_11*w[2][0]);
-    const double G150 = Jinv_20*Jinv_21*W1*det*(w[1][0] + w[2][0]);
-    const double G151 = W1*det*(Jinv_10*w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[1][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G152 = W1*det*(Jinv_01*(w[1][0]*(4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11) + w[2][0]*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 3*Jinv_01*Jinv_11)) + Jinv_11*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)));
-    const double G153 = W1*det*(Jinv_20*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[1][0]*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G154 = W1*det*(Jinv_01*Jinv_11*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12));
-    const double G155 = W1*det*(Jinv_02*Jinv_12*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11));
-    const double G156 = W1*det*(Jinv_01*Jinv_22*w[2][0] + Jinv_02*Jinv_21*w[1][0]);
-    const double G157 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G158 = W1*det*(Jinv_10*Jinv_21*w[1][0] + Jinv_11*Jinv_20*w[2][0]);
-    const double G159 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_11*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G160 = Jinv_11*Jinv_12*W1*det*(w[1][0] + w[2][0]);
-    const double G161 = W1*det*(Jinv_10*Jinv_22*w[1][0] + Jinv_12*Jinv_20*w[2][0]);
-    const double G162 = W1*det*(Jinv_01*Jinv_12*w[2][0] + Jinv_02*Jinv_11*w[1][0]);
-    const double G163 = Jinv_00*Jinv_02*W1*det*(w[1][0] + w[2][0]);
-    const double G164 = W1*det*(Jinv_11*Jinv_22*w[2][0] + Jinv_12*Jinv_21*w[1][0]);
-    const double G165 = W1*det*(Jinv_00*Jinv_22*w[2][0] + Jinv_02*Jinv_20*w[1][0]);
-    const double G166 = W1*det*(Jinv_00*Jinv_12*w[1][0] + Jinv_02*Jinv_10*w[2][0]);
-    const double G167 = W1*det*(Jinv_00*Jinv_21*w[1][0] + Jinv_01*Jinv_20*w[2][0]);
-    const double G168 = Jinv_22*W1*det*(3*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 6*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G169 = W1*det*(Jinv_12*(Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + Jinv_21*Jinv_21*(w[2][0] + 2*w[1][0])) + Jinv_22*(w[1][0]*(4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22) + w[2][0]*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 3*Jinv_12*Jinv_22)));
-    const double G170 = W1*det*(Jinv_22*Jinv_22*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21));
-    const double G171 = W1*det*(0.5*w[2][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G172 = W1*det*(0.5*w[2][0]*(Jinv_10*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[1][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22));
-    const double G173 = W1*det*(0.5*w[2][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G174 = W1*det*(1.5*w[2][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + 3*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G175 = W1*det*(w[1][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_00*(Jinv_00*(0.5*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 1.5*Jinv_10*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(0.5*Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(1.5*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*(0.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 1.5*Jinv_12*Jinv_22)));
-    const double G176 = W1*det*(1.5*w[2][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + 3*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G177 = W1*det*(Jinv_11*Jinv_21*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22));
-    const double G178 = W1*det*(w[1][0]*(2*(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + 6*Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_10*Jinv_20*(6*Jinv_10*Jinv_20 + 8*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_12*Jinv_22*(6*Jinv_12*Jinv_22 + 8*Jinv_11*Jinv_21)) + w[2][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))));
-    const double G179 = W1*det*(Jinv_12*Jinv_22*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21));
-    const double G180 = W1*det*(Jinv_00*Jinv_22*w[1][0] + Jinv_02*Jinv_20*w[2][0]);
-    const double G181 = W1*det*(Jinv_10*(Jinv_11*Jinv_21*(2*w[2][0] + 4*w[1][0]) + Jinv_12*Jinv_22*(2*w[2][0] + 4*w[1][0])) + Jinv_20*(w[1][0]*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10) + w[2][0]*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
-    const double G182 = W1*det*(Jinv_10*(Jinv_21*Jinv_21*(w[2][0] + 2*w[1][0]) + Jinv_22*Jinv_22*(w[2][0] + 2*w[1][0])) + Jinv_20*(w[1][0]*(4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20) + w[2][0]*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 3*Jinv_10*Jinv_20)));
-    const double G183 = W1*det*(Jinv_10*Jinv_20*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G184 = Jinv_20*W1*det*(3*w[2][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 6*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G185 = W1*det*(Jinv_20*Jinv_20*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G186 = Jinv_10*W1*det*(3*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G187 = W1*det*(Jinv_10*Jinv_10*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G188 = Jinv_01*W1*det*(3*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 6*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G189 = W1*det*(Jinv_01*Jinv_01*(w[2][0] + 2*w[1][0]) + w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
-    const double G190 = Jinv_10*Jinv_12*W1*det*(w[1][0] + w[2][0]);
-    const double G191 = Jinv_20*Jinv_22*W1*det*(w[1][0] + w[2][0]);
+    // Number of operations to compute geometry constants: 15479
+    const double G0 = -12*0;
+    const double G1 = W1*det*(2*(Jinv_00*(Jinv_00*Jinv_00*Jinv_10*w[1][0] + Jinv_01*(w[1][0]*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_02*(Jinv_00*(Jinv_10*w[2][0] + Jinv_12*w[1][0]) + Jinv_02*(Jinv_10*w[1][0] + Jinv_12*w[2][0]))) + Jinv_01*(Jinv_01*Jinv_01*Jinv_11*w[1][0] + Jinv_02*(Jinv_01*(Jinv_11*w[2][0] + Jinv_12*w[1][0]) + Jinv_02*(Jinv_11*w[1][0] + Jinv_12*w[2][0]))) + Jinv_02*Jinv_02*Jinv_02*Jinv_12*w[1][0]) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
+    const double G2 = W1*det*(6*Jinv_01*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(3*Jinv_01*Jinv_01*Jinv_01 + Jinv_00*(5*Jinv_01*Jinv_01 + Jinv_00*(Jinv_00 + 3*Jinv_01) + Jinv_02*(Jinv_00 + Jinv_02 + 4*Jinv_01)) + Jinv_02*(5*Jinv_01*Jinv_01 + Jinv_02*(Jinv_02 + 3*Jinv_01))));
+    const double G3 = W1*det*(w[1][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_11*Jinv_11*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_12*Jinv_12*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02))));
+    const double G4 = W1*det*(w[1][0]*(4*Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_10 + Jinv_12 + 2*Jinv_11)) + Jinv_01*(Jinv_00*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_01*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_02*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11)) + Jinv_02*Jinv_02*(Jinv_11 + Jinv_12)));
+    const double G5 = W1*det*(w[1][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))) + w[2][0]*(Jinv_00*(Jinv_10*(2*(Jinv_01*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_00*(Jinv_11 + Jinv_12 + 1.5*Jinv_10) + Jinv_01*Jinv_12 + Jinv_02*Jinv_11) + Jinv_11*Jinv_11*(Jinv_02 + 0.5*Jinv_00 + 2*Jinv_01) + Jinv_12*(Jinv_11*(Jinv_01 + Jinv_02) + Jinv_12*(Jinv_01 + 0.5*Jinv_00 + 2*Jinv_02))) + Jinv_01*Jinv_01*(0.5*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(Jinv_10 + Jinv_12 + 1.5*Jinv_11)) + Jinv_02*(Jinv_10*Jinv_10*(Jinv_01 + 0.5*Jinv_02) + Jinv_11*(Jinv_01*Jinv_10 + Jinv_11*(0.5*Jinv_02 + 2*Jinv_01)) + Jinv_12*(Jinv_01*(Jinv_10 + 2*(Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_10 + Jinv_11 + 1.5*Jinv_12)))));
+    const double G6 = W1*det*(2*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20*w[1][0] + Jinv_01*(w[1][0]*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22))) + Jinv_01*Jinv_01*Jinv_11*Jinv_21*w[1][0] + Jinv_02*(w[1][0]*(Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01)))) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G7 = W1*det*(w[1][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[2][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_21*Jinv_21*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_22*Jinv_22*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02))));
+    const double G8 = W1*det*(w[1][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[2][0]*(Jinv_00*(Jinv_20*(2*(Jinv_01*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_20 + Jinv_22)) + Jinv_00*(Jinv_21 + Jinv_22 + 1.5*Jinv_20) + Jinv_01*Jinv_22 + Jinv_02*Jinv_21) + Jinv_21*Jinv_21*(Jinv_02 + 0.5*Jinv_00 + 2*Jinv_01) + Jinv_22*(Jinv_21*(Jinv_01 + Jinv_02) + Jinv_22*(Jinv_01 + 0.5*Jinv_00 + 2*Jinv_02))) + Jinv_01*Jinv_01*(0.5*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(Jinv_20 + Jinv_22 + 1.5*Jinv_21)) + Jinv_02*(Jinv_20*(Jinv_01*Jinv_21 + Jinv_20*(Jinv_01 + 0.5*Jinv_02)) + Jinv_21*Jinv_21*(0.5*Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_01*(Jinv_20 + 2*(Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_20 + Jinv_21 + 1.5*Jinv_22)))));
+    const double G9 = W1*det*(6*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_00*(Jinv_21 + Jinv_22 + 3*Jinv_20) + Jinv_02*(Jinv_21 + 3*Jinv_22 + 5*Jinv_20)) + Jinv_01*(4*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_22 + 3*Jinv_21 + 5*Jinv_20) + Jinv_01*(Jinv_22 + 3*Jinv_20 + 5*Jinv_21)) + Jinv_02*Jinv_02*(Jinv_21 + 3*Jinv_20 + 5*Jinv_22)) + Jinv_01*Jinv_01*(Jinv_01*(Jinv_20 + Jinv_22 + 3*Jinv_21) + Jinv_02*(Jinv_20 + 3*Jinv_22 + 5*Jinv_21)) + Jinv_02*Jinv_02*(Jinv_01*(Jinv_20 + 3*Jinv_21 + 5*Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + 3*Jinv_22))));
+    const double G10 = Jinv_00*W1*det*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G11 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_00*w[1][0] + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G12 = W1*det*(3*Jinv_00*Jinv_01*Jinv_01*Jinv_02*w[2][0] + Jinv_00*Jinv_00*(1.5*Jinv_00*Jinv_00*w[2][0] + 3*(Jinv_00*Jinv_00*w[1][0] + w[2][0]*(Jinv_01*(Jinv_00 + Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + Jinv_02))) + 6*w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_01*Jinv_01*Jinv_01*(3*Jinv_01*w[1][0] + w[2][0]*(1.5*Jinv_01 + 3*(Jinv_00 + Jinv_02))) + Jinv_02*Jinv_02*(1.5*Jinv_02*Jinv_02*w[2][0] + 3*(Jinv_02*Jinv_02*w[1][0] + w[2][0]*(Jinv_00*Jinv_02 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02))) + 6*Jinv_01*Jinv_01*w[1][0]));
+    const double G13 = W1*det*(w[1][0]*(Jinv_00*(4*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + Jinv_01*(4*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_11) + Jinv_22*(Jinv_10 + Jinv_12)) + Jinv_01*(Jinv_00*(Jinv_20*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_21*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_22*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*Jinv_22 + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11)) + Jinv_02*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11) + Jinv_22*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12))) + Jinv_02*(Jinv_00*(Jinv_20*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12)) + Jinv_02*(Jinv_20*(Jinv_10 + Jinv_12) + Jinv_21*(Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + 3*Jinv_12)))));
+    const double G14 = W1*det*(2*(Jinv_00*(Jinv_00*Jinv_00*Jinv_20*w[1][0] + Jinv_01*(w[1][0]*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_02*(Jinv_00*(Jinv_20*w[2][0] + Jinv_22*w[1][0]) + Jinv_02*(Jinv_20*w[1][0] + Jinv_22*w[2][0]))) + Jinv_01*(Jinv_01*Jinv_01*Jinv_21*w[1][0] + Jinv_02*(Jinv_01*(Jinv_21*w[2][0] + Jinv_22*w[1][0]) + Jinv_02*(Jinv_21*w[1][0] + Jinv_22*w[2][0]))) + Jinv_02*Jinv_02*Jinv_02*Jinv_22*w[1][0]) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
+    const double G15 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_02*w[1][0] + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G16 = W1*det*(Jinv_00*Jinv_00*(w[1][0]*(2*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*Jinv_00) + w[2][0]*(Jinv_00*(Jinv_01 + 0.5*Jinv_00) + Jinv_01*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_00*Jinv_01*Jinv_01*Jinv_02*w[2][0] + Jinv_01*Jinv_01*Jinv_01*(Jinv_01*w[1][0] + w[2][0]*(Jinv_00 + Jinv_02 + 0.5*Jinv_01)) + Jinv_02*Jinv_02*(w[1][0]*(2*Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_01*(Jinv_00 + Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02))));
+    const double G17 = Jinv_02*W1*det*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G18 = W1*det*(w[1][0]*(4*Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_20 + Jinv_22 + 2*Jinv_21)) + Jinv_01*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(3*Jinv_01 + 4*(Jinv_00 + Jinv_02)) + Jinv_22*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_02*Jinv_02*(Jinv_21 + Jinv_22)));
+    const double G19 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_10*(2*Jinv_00*Jinv_00*w[1][0] + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G20 = W1*det*(Jinv_01*(2*Jinv_01*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
+    const double G21 = W1*det*(6*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_00*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_02*(Jinv_11 + 3*Jinv_12 + 5*Jinv_10)) + Jinv_01*(4*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(Jinv_12 + 3*Jinv_11 + 5*Jinv_10) + Jinv_01*(Jinv_12 + 3*Jinv_10 + 5*Jinv_11)) + Jinv_02*Jinv_02*(Jinv_11 + 3*Jinv_10 + 5*Jinv_12)) + Jinv_01*Jinv_01*(Jinv_01*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_02*(Jinv_10 + 3*Jinv_12 + 5*Jinv_11)) + Jinv_02*Jinv_02*(Jinv_01*(Jinv_10 + 3*Jinv_11 + 5*Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + 3*Jinv_12))));
+    const double G22 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_12*(2*Jinv_02*Jinv_02*w[1][0] + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G23 = W1*det*(Jinv_00*(w[1][0]*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_10*w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G24 = W1*det*(2*Jinv_00*Jinv_01*Jinv_01*Jinv_02*w[2][0] + Jinv_00*Jinv_00*(w[1][0]*(2*Jinv_00*Jinv_00 + 4*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[2][0]*(2*(Jinv_01*(Jinv_00 + Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_00*Jinv_00)) + Jinv_01*Jinv_01*Jinv_01*(2*Jinv_01*w[1][0] + w[2][0]*(Jinv_01 + 2*(Jinv_00 + Jinv_02))) + Jinv_02*Jinv_02*(w[1][0]*(2*Jinv_02*Jinv_02 + 4*Jinv_01*Jinv_01) + w[2][0]*(2*(Jinv_00*Jinv_02 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*Jinv_02)));
+    const double G25 = W1*det*(w[1][0]*(Jinv_00*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_02*Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)))));
+    const double G26 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01)) + Jinv_01*Jinv_21*(Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_02*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G27 = W1*det*(Jinv_00*(w[1][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_20*w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G28 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G29 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G30 = W1*det*(w[1][0]*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22 + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*Jinv_20 + Jinv_22*(Jinv_00 + Jinv_02))));
+    const double G31 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00 + Jinv_01*(Jinv_00*Jinv_00 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_02*Jinv_02) + Jinv_02*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))));
+    const double G32 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_10*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_02*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[2][0]*(Jinv_02*Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_00*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_02*Jinv_12*(Jinv_01 + Jinv_02)) + Jinv_11*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12))));
+    const double G33 = W1*det*(w[1][0]*(Jinv_00*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_02*Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_00*(Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_01*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_02*Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G34 = Jinv_00*W1*det*(Jinv_01*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G35 = W1*det*(w[1][0]*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)));
+    const double G36 = W1*det*(w[1][0]*(Jinv_12*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G37 = W1*det*(Jinv_11*w[1][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[1][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G38 = W1*det*(2*(Jinv_10*(Jinv_10*Jinv_10*Jinv_20*w[1][0] + Jinv_11*(Jinv_10*(Jinv_20*w[2][0] + Jinv_21*w[1][0]) + Jinv_11*(Jinv_20*w[1][0] + Jinv_21*w[2][0])) + Jinv_12*(w[1][0]*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_22))) + Jinv_11*Jinv_11*Jinv_11*Jinv_21*w[1][0] + Jinv_12*(Jinv_11*(Jinv_11*(Jinv_21*w[2][0] + Jinv_22*w[1][0]) + Jinv_12*(Jinv_21*w[1][0] + Jinv_22*w[2][0])) + Jinv_12*Jinv_12*Jinv_22*w[1][0])) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
+    const double G39 = W1*det*(w[1][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + w[2][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G40 = W1*det*(Jinv_21*(2*Jinv_01*Jinv_11*w[1][0] + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)));
+    const double G41 = W1*det*(w[1][0]*(2*Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_10*Jinv_20*(2*Jinv_10*Jinv_20 + 4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_12*Jinv_22*(2*Jinv_12*Jinv_22 + 4*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G42 = W1*det*(2*(Jinv_02*Jinv_12*Jinv_12*Jinv_22*w[1][0] + Jinv_10*(Jinv_00*Jinv_10*Jinv_20*w[1][0] + Jinv_12*(w[1][0]*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22))) + Jinv_11*(w[1][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_12)))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_12*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
+    const double G43 = W1*det*(w[1][0]*(Jinv_10*(Jinv_10*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_12*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G44 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)))));
+    const double G45 = W1*det*(Jinv_11*Jinv_22*w[1][0] + Jinv_21*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G46 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G47 = W1*det*(w[1][0]*(2*(Jinv_10*Jinv_10*Jinv_20*Jinv_20 + Jinv_11*Jinv_21*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*Jinv_22*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11)) + Jinv_11*Jinv_21*(Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)))));
+    const double G48 = W1*det*(2*w[1][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G49 = W1*det*(2*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G50 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*Jinv_11*Jinv_11*w[1][0] + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G51 = Jinv_01*W1*det*(2*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G52 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*Jinv_01*Jinv_01*w[1][0] + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G53 = W1*det*(6*Jinv_00*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*(3*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 4*Jinv_01*Jinv_02 + 5*Jinv_00*(Jinv_01 + Jinv_02)) + Jinv_01*Jinv_01*Jinv_01 + Jinv_02*(Jinv_01*Jinv_01 + Jinv_02*(Jinv_01 + Jinv_02))));
+    const double G54 = W1*det*(w[1][0]*(4*Jinv_00*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 6*Jinv_00*Jinv_00)) + w[2][0]*(Jinv_00*(Jinv_20*(3*Jinv_00 + 4*(Jinv_01 + Jinv_02)) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_01*(Jinv_01*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_21 + Jinv_22 + 2*Jinv_20)) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_22)));
+    const double G55 = W1*det*(w[1][0]*(2*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(4*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10)) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_01*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_02*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10)) + Jinv_01*(Jinv_01*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_11 + Jinv_12 + 2*Jinv_10)) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_12)));
+    const double G56 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_01*w[1][0] + w[2][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G57 = W1*det*(Jinv_00*(2*Jinv_00*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G58 = W1*det*(0.5*w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G59 = W1*det*(3*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_00*(0.5*(Jinv_21 + Jinv_22) + 1.5*Jinv_20) + Jinv_01*(0.5*Jinv_22 + 1.5*Jinv_21 + 2.5*Jinv_20)) + Jinv_01*Jinv_01*(Jinv_00*(0.5*Jinv_22 + 1.5*Jinv_20 + 2.5*Jinv_21) + Jinv_01*(0.5*(Jinv_20 + Jinv_22) + 1.5*Jinv_21)) + Jinv_02*(Jinv_00*(Jinv_00*(0.5*Jinv_21 + 1.5*Jinv_22 + 2.5*Jinv_20) + Jinv_02*(0.5*Jinv_21 + 1.5*Jinv_20 + 2.5*Jinv_22)) + Jinv_01*(0.5*Jinv_20*(Jinv_01 + Jinv_02) + 1.5*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21) + 2*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + 2.5*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_02*(0.5*(Jinv_20 + Jinv_21) + 1.5*Jinv_22))));
+    const double G60 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(3*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G61 = W1*det*(w[1][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(0.5*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(0.5*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G62 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_22*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G63 = W1*det*(0.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G64 = W1*det*(w[1][0]*(2*(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 6*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(6*Jinv_00*Jinv_20 + 8*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(6*Jinv_02*Jinv_22 + 8*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(2*(Jinv_21 + Jinv_22) + 3*Jinv_20) + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_20*Jinv_20*(Jinv_01 + 2*Jinv_02 + 4*Jinv_00) + Jinv_21*(2*(Jinv_20*(Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01)) + 3*Jinv_01*Jinv_21 + 4*(Jinv_00*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_21 + Jinv_22))) + Jinv_22*(2*(Jinv_00*Jinv_22 + Jinv_20*(Jinv_00 + Jinv_02)) + Jinv_22*(Jinv_01 + 4*Jinv_02))) + Jinv_02*(Jinv_20*(2*Jinv_00*Jinv_21 + Jinv_20*(Jinv_02 + 4*Jinv_00)) + Jinv_21*Jinv_21*(Jinv_02 + 2*Jinv_00) + Jinv_22*(Jinv_00*(2*Jinv_21 + 4*(Jinv_20 + Jinv_22)) + Jinv_02*(2*(Jinv_20 + Jinv_21) + 3*Jinv_22)))));
+    const double G65 = W1*det*(Jinv_00*w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[1][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G66 = W1*det*(Jinv_10*(2*Jinv_00*Jinv_20*w[1][0] + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[1][0]*(Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20)));
+    const double G67 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + Jinv_21*(4*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + Jinv_22*(4*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12))) + w[2][0]*(2*Jinv_21*Jinv_22*(Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_20*(2*(Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_20*(3*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_21*Jinv_21*(3*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(3*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G68 = W1*det*(Jinv_02*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[1][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G69 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
+    const double G70 = W1*det*(Jinv_02*(w[1][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_22*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G71 = W1*det*(w[1][0]*(2*Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(2*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + 3*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G72 = W1*det*(1.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + 3*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G73 = W1*det*(Jinv_21*(2*Jinv_01*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22));
+    const double G74 = W1*det*(Jinv_12*(2*Jinv_02*Jinv_22*w[1][0] + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[1][0]*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)));
+    const double G75 = W1*det*(2*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G76 = W1*det*(2*Jinv_10*Jinv_11*Jinv_12*Jinv_12*w[2][0] + Jinv_10*Jinv_10*(w[1][0]*(2*Jinv_10*Jinv_10 + 4*Jinv_12*Jinv_12) + w[2][0]*(2*(Jinv_10*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_10*Jinv_10)) + Jinv_11*Jinv_11*(w[1][0]*(2*Jinv_11*Jinv_11 + 4*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + w[2][0]*(2*(Jinv_10*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_12*(Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11)) + Jinv_12*Jinv_12*Jinv_12*(2*Jinv_12*w[1][0] + w[2][0]*(Jinv_12 + 2*(Jinv_10 + Jinv_11))));
+    const double G77 = W1*det*(w[1][0]*(Jinv_00*(2*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_11 + Jinv_10*(Jinv_00 + Jinv_01)) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G78 = W1*det*(2*(Jinv_01*Jinv_11*Jinv_11*Jinv_11*w[1][0] + Jinv_10*(Jinv_00*Jinv_10*Jinv_10*w[1][0] + Jinv_11*(Jinv_10*(Jinv_00*w[2][0] + Jinv_01*w[1][0]) + Jinv_11*(Jinv_00*w[1][0] + Jinv_01*w[2][0])) + Jinv_12*(w[1][0]*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)))) + Jinv_12*(Jinv_02*Jinv_12*Jinv_12*w[1][0] + Jinv_11*(Jinv_01*(Jinv_11*w[2][0] + Jinv_12*w[1][0]) + Jinv_02*(Jinv_11*w[1][0] + Jinv_12*w[2][0])))) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G79 = Jinv_12*W1*det*(Jinv_10*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G80 = W1*det*(Jinv_02*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(w[1][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G81 = W1*det*(w[1][0]*(Jinv_10*(Jinv_10*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)))));
+    const double G82 = W1*det*(Jinv_12*(w[1][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_22*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
+    const double G83 = W1*det*(w[1][0]*(Jinv_10*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G84 = Jinv_12*W1*det*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G85 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G86 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G87 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*(2*Jinv_10*Jinv_10*w[1][0] + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G88 = W1*det*(Jinv_00*(2*Jinv_10*Jinv_20*w[1][0] + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_01*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)));
+    const double G89 = W1*det*(2*w[1][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G90 = W1*det*(w[1][0]*(2*Jinv_02*Jinv_02*Jinv_12*Jinv_12 + Jinv_00*Jinv_10*(2*Jinv_00*Jinv_10 + 4*Jinv_02*Jinv_12) + Jinv_01*Jinv_11*(2*Jinv_01*Jinv_11 + 4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_00*Jinv_00*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_01*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G91 = W1*det*(w[1][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G92 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G93 = W1*det*(Jinv_00*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_10*w[1][0]);
+    const double G94 = W1*det*(w[1][0]*(Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_11 + Jinv_10*(Jinv_00 + Jinv_01)) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G95 = W1*det*(Jinv_01*(2*Jinv_11*Jinv_21*w[1][0] + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
+    const double G96 = W1*det*(0.5*w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
+    const double G97 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22));
+    const double G98 = W1*det*(w[1][0]*(Jinv_10*(4*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + Jinv_12*(4*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22))) + w[2][0]*(2*Jinv_10*Jinv_11*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_10*Jinv_10*(3*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(2*(Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_12*(3*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)))));
+    const double G99 = W1*det*(Jinv_11*(w[1][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_21*w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
+    const double G100 = W1*det*(0.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
+    const double G101 = W1*det*(Jinv_10*w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[1][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G102 = W1*det*(Jinv_10*(w[1][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_20*w[1][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G103 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + Jinv_21*(4*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + Jinv_22*(4*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12))) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_00*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_22*(Jinv_00*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_02*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12))) + Jinv_21*(Jinv_00*(Jinv_20*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_11) + Jinv_22*(Jinv_11 + Jinv_12 + 2*Jinv_10)) + Jinv_01*(Jinv_20*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_22*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11)) + Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + 2*Jinv_12) + Jinv_21*(Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12))) + Jinv_22*Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + 3*Jinv_12) + Jinv_12*(Jinv_00 + Jinv_01))));
+    const double G104 = W1*det*(1.5*w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + 3*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
+    const double G105 = W1*det*(w[1][0]*(2*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_10 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_21*Jinv_21*(Jinv_11 + Jinv_12) + Jinv_22*(Jinv_20*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12) + Jinv_21*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + 3*Jinv_12))));
+    const double G106 = W1*det*(w[1][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_00*(0.5*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_00*Jinv_02*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(Jinv_00*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(0.5*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_02*Jinv_02*(0.5*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G107 = W1*det*(3*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[2][0]*(Jinv_20*(Jinv_20*(0.5*(Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21)) + 1.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 2.5*Jinv_10*(Jinv_21 + Jinv_22)) + Jinv_21*Jinv_21*(0.5*Jinv_12 + 1.5*Jinv_10 + 2.5*Jinv_11) + Jinv_22*(2*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(0.5*Jinv_11 + 1.5*Jinv_10 + 2.5*Jinv_12))) + Jinv_21*Jinv_21*(Jinv_21*(0.5*(Jinv_10 + Jinv_12) + 1.5*Jinv_11) + Jinv_22*(0.5*Jinv_10 + 1.5*Jinv_12 + 2.5*Jinv_11)) + Jinv_22*Jinv_22*(Jinv_21*(0.5*Jinv_10 + 1.5*Jinv_11 + 2.5*Jinv_12) + Jinv_22*(0.5*(Jinv_10 + Jinv_11) + 1.5*Jinv_12))));
+    const double G108 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(3*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G109 = W1*det*(Jinv_12*(2*Jinv_22*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21));
+    const double G110 = W1*det*(w[1][0]*(2*(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + 6*Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_10*Jinv_20*(6*Jinv_10*Jinv_20 + 8*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_12*Jinv_22*(6*Jinv_12*Jinv_22 + 8*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10*(2*(Jinv_11 + Jinv_12) + 3*Jinv_10) + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*(Jinv_10*Jinv_10*(Jinv_21 + 2*Jinv_22 + 4*Jinv_20) + Jinv_11*(2*(Jinv_10*(Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21)) + 3*Jinv_11*Jinv_21 + 4*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*Jinv_22)) + Jinv_12*(2*(Jinv_10*Jinv_22 + Jinv_20*(Jinv_10 + Jinv_12)) + Jinv_12*(Jinv_21 + 4*Jinv_22))) + Jinv_22*(Jinv_20*(2*Jinv_11*(Jinv_10 + Jinv_11 + Jinv_12) + 4*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_12*Jinv_12)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(2*(Jinv_10 + Jinv_11) + 3*Jinv_12)))));
+    const double G111 = W1*det*(w[1][0]*(4*Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + 3*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G112 = W1*det*(2*(Jinv_10*Jinv_20*Jinv_20*Jinv_20*w[1][0] + Jinv_21*(Jinv_11*Jinv_21*Jinv_21*w[1][0] + Jinv_20*(w[1][0]*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + w[2][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_22*(Jinv_11*(Jinv_21*w[2][0] + Jinv_22*w[1][0]) + Jinv_12*(Jinv_21*w[1][0] + Jinv_22*w[2][0]))) + Jinv_22*(Jinv_12*Jinv_22*Jinv_22*w[1][0] + Jinv_20*(Jinv_10*(Jinv_20*w[2][0] + Jinv_22*w[1][0]) + Jinv_12*(Jinv_20*w[1][0] + Jinv_22*w[2][0])))) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
+    const double G113 = W1*det*(w[1][0]*(Jinv_00*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G114 = W1*det*(2*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G115 = W1*det*(2*Jinv_20*Jinv_21*Jinv_21*Jinv_22*w[2][0] + Jinv_20*Jinv_20*(w[1][0]*(2*Jinv_20*Jinv_20 + 4*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + w[2][0]*(2*(Jinv_21*(Jinv_20 + Jinv_21) + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_20*Jinv_20)) + Jinv_21*Jinv_21*Jinv_21*(2*(Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_22)) + Jinv_21*w[2][0]) + Jinv_22*Jinv_22*(w[1][0]*(2*Jinv_22*Jinv_22 + 4*Jinv_21*Jinv_21) + w[2][0]*(2*(Jinv_20*Jinv_22 + Jinv_21*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_22*Jinv_22)));
+    const double G116 = Jinv_22*W1*det*(Jinv_20*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G117 = W1*det*(2*(Jinv_00*Jinv_20*Jinv_20*Jinv_20*w[1][0] + Jinv_21*(Jinv_01*Jinv_21*Jinv_21*w[1][0] + Jinv_20*(w[1][0]*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + w[2][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_22*(Jinv_01*(Jinv_21*w[2][0] + Jinv_22*w[1][0]) + Jinv_02*(Jinv_21*w[1][0] + Jinv_22*w[2][0]))) + Jinv_22*(Jinv_02*Jinv_22*Jinv_22*w[1][0] + Jinv_20*(Jinv_00*(Jinv_20*w[2][0] + Jinv_22*w[1][0]) + Jinv_02*(Jinv_20*w[1][0] + Jinv_22*w[2][0])))) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G118 = Jinv_22*W1*det*(2*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G119 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G120 = W1*det*(Jinv_12*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[1][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G121 = W1*det*(w[1][0]*(Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G122 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00 + Jinv_01*(Jinv_00*Jinv_00 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_02*Jinv_02) + Jinv_02*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))));
+    const double G123 = Jinv_02*W1*det*(Jinv_00*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G124 = W1*det*(w[1][0]*(Jinv_00*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22 + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*Jinv_20 + Jinv_22*(Jinv_00 + Jinv_02))));
+    const double G125 = W1*det*(Jinv_02*(w[1][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_12*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G126 = W1*det*(w[1][0]*(Jinv_00*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)));
+    const double G127 = Jinv_10*W1*det*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G128 = W1*det*(w[1][0]*(Jinv_11*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G129 = W1*det*(Jinv_00*w[1][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(w[1][0]*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G130 = Jinv_10*W1*det*(Jinv_11*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G131 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G132 = W1*det*(w[1][0]*(2*Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_10*Jinv_20*(2*Jinv_10*Jinv_20 + 4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_12*Jinv_22*(2*Jinv_12*Jinv_22 + 4*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_10*Jinv_10*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_11*Jinv_11*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_12*Jinv_12*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G133 = W1*det*(w[1][0]*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[2][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G134 = W1*det*(Jinv_10*Jinv_22*w[1][0] + Jinv_12*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G135 = W1*det*(2*(Jinv_00*Jinv_10*Jinv_20*Jinv_20*w[1][0] + Jinv_21*(Jinv_01*Jinv_11*Jinv_21*w[1][0] + Jinv_20*(w[1][0]*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12))) + Jinv_22*(w[1][0]*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21)))) + w[2][0]*(Jinv_00*Jinv_10*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_11*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G136 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(2*Jinv_22*Jinv_22*w[1][0] + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G137 = W1*det*(2*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G138 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G139 = W1*det*(Jinv_01*(w[1][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_21*w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
+    const double G140 = W1*det*(Jinv_11*(2*Jinv_01*Jinv_21*w[1][0] + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[1][0]*(Jinv_10*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)));
+    const double G141 = W1*det*(w[1][0]*(2*Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(4*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(2*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + 3*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G142 = W1*det*(w[1][0]*(4*Jinv_02*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_22) + Jinv_01*(Jinv_00*(Jinv_20 + Jinv_21 + 2*Jinv_22) + Jinv_01*(Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(3*Jinv_02 + 4*(Jinv_00 + Jinv_01)))));
+    const double G143 = W1*det*(Jinv_01*w[1][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[1][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G144 = W1*det*(Jinv_22*(2*Jinv_02*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21));
+    const double G145 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(3*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G146 = W1*det*(w[1][0]*(4*Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(2*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + 3*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G147 = W1*det*(0.5*w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G148 = W1*det*(w[1][0]*(2*Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01) + Jinv_11*(Jinv_00*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_01*(3*Jinv_11 + 4*(Jinv_10 + Jinv_12)) + Jinv_02*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_12*(Jinv_10*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_12*(Jinv_01 + Jinv_02))));
+    const double G149 = W1*det*(3*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_01*Jinv_10 + Jinv_02*(Jinv_10 + Jinv_11)) + 1.5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 2.5*Jinv_00*Jinv_11) + Jinv_11*Jinv_11*(0.5*(Jinv_02*Jinv_10 + Jinv_11*(Jinv_00 + Jinv_02)) + 1.5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 2.5*Jinv_01*Jinv_10) + Jinv_12*(Jinv_10*(0.5*Jinv_01*(Jinv_10 + Jinv_12) + 1.5*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + 2*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + 2.5*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_11*Jinv_11*(0.5*Jinv_00 + 1.5*Jinv_02 + 2.5*Jinv_01) + Jinv_12*(0.5*(Jinv_00*(Jinv_11 + Jinv_12) + Jinv_01*Jinv_12) + 1.5*Jinv_02*Jinv_12 + Jinv_11*(1.5*Jinv_01 + 2.5*Jinv_02)))));
+    const double G150 = W1*det*(0.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G151 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_20*(0.5*Jinv_20*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*(1.5*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(0.5*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_22*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(0.5*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G152 = W1*det*(w[1][0]*(Jinv_00*(4*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + Jinv_01*(4*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[2][0]*(2*Jinv_00*Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*Jinv_00*(3*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(2*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_01*(3*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_02*Jinv_02*(3*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G153 = W1*det*(Jinv_20*(2*Jinv_00*Jinv_10*w[1][0] + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_21*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10)));
+    const double G154 = W1*det*(1.5*w[2][0]*(Jinv_00*Jinv_00*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + 3*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
+    const double G155 = W1*det*(w[1][0]*(Jinv_10*(4*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + Jinv_12*(4*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_01 + Jinv_02 + 3*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_00 + Jinv_02)) + Jinv_11*(Jinv_10*(Jinv_20*(Jinv_02 + 2*Jinv_01 + 4*Jinv_00) + Jinv_21*(Jinv_02 + 2*Jinv_00 + 4*Jinv_01) + Jinv_22*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01) + Jinv_21*(Jinv_00 + Jinv_02 + 3*Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02))) + Jinv_12*(Jinv_10*(Jinv_20*(Jinv_01 + 2*Jinv_02 + 4*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_01 + 2*Jinv_00 + 4*Jinv_02)) + Jinv_11*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(Jinv_00 + 2*Jinv_02 + 4*Jinv_01) + Jinv_22*(Jinv_00 + 2*Jinv_01 + 4*Jinv_02)) + Jinv_12*(Jinv_20*(Jinv_00 + Jinv_02) + Jinv_21*(Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + 3*Jinv_02)))));
+    const double G156 = W1*det*(Jinv_22*(2*Jinv_02*Jinv_12*w[1][0] + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)));
+    const double G157 = W1*det*(0.5*w[2][0]*(Jinv_00*Jinv_00*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
+    const double G158 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[2][0]*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(3*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G159 = W1*det*(Jinv_01*(2*Jinv_11*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12));
+    const double G160 = W1*det*(w[1][0]*(2*(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 6*Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_00*Jinv_10*(6*Jinv_00*Jinv_10 + 8*Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(6*Jinv_02*Jinv_12 + 8*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*(2*(Jinv_01 + Jinv_02) + 3*Jinv_00) + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*(Jinv_00*(2*(Jinv_00*Jinv_12 + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_00*(Jinv_11 + 4*Jinv_10)) + Jinv_01*(2*(Jinv_00*(Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11)) + 3*Jinv_01*Jinv_11 + 4*(Jinv_00*Jinv_10 + Jinv_01*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12)) + Jinv_12*(Jinv_10*(2*Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + 4*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*(2*(Jinv_00 + Jinv_01) + 3*Jinv_02)))));
+    const double G161 = W1*det*(w[1][0]*(2*(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 6*Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_00*Jinv_10*(6*Jinv_00*Jinv_10 + 8*Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(6*Jinv_02*Jinv_12 + 8*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10*(2*(Jinv_11 + Jinv_12) + 3*Jinv_10) + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*(Jinv_10*Jinv_10*(Jinv_01 + 2*Jinv_02 + 4*Jinv_00) + Jinv_11*(2*(Jinv_00*Jinv_12 + Jinv_01*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_10) + 3*Jinv_01*Jinv_11 + 4*(Jinv_00*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_11 + Jinv_12))) + Jinv_12*(2*(Jinv_00*Jinv_12 + Jinv_10*(Jinv_00 + Jinv_02)) + Jinv_12*(Jinv_01 + 4*Jinv_02))) + Jinv_02*(Jinv_00*(2*Jinv_11*(Jinv_10 + Jinv_11 + Jinv_12) + 4*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_12*Jinv_12)) + Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(2*(Jinv_10 + Jinv_11) + 3*Jinv_12)))));
+    const double G162 = W1*det*(Jinv_01*(w[1][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_11*w[1][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
+    const double G163 = W1*det*(1.5*w[2][0]*(Jinv_10*Jinv_10*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + 3*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G164 = W1*det*(Jinv_01*w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(w[1][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G165 = W1*det*(w[1][0]*(Jinv_10*(4*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + Jinv_12*(4*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22))) + w[2][0]*(2*Jinv_10*Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*Jinv_10*(3*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(3*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*(2*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_12*(3*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G166 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_20*Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*(0.5*Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(1.5*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(0.5*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G167 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[2][0]*(Jinv_10*(3*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G168 = W1*det*(w[1][0]*(4*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10)) + w[2][0]*(Jinv_10*(2*(Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + 3*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G169 = W1*det*(3*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_00*(0.5*(Jinv_11 + Jinv_12) + 1.5*Jinv_10) + Jinv_02*(0.5*Jinv_11 + 1.5*Jinv_12 + 2.5*Jinv_10)) + Jinv_01*(2*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(0.5*Jinv_12 + 1.5*Jinv_11 + 2.5*Jinv_10) + Jinv_01*(0.5*Jinv_12 + 1.5*Jinv_10 + 2.5*Jinv_11)) + Jinv_02*Jinv_02*(0.5*Jinv_11 + 1.5*Jinv_10 + 2.5*Jinv_12)) + Jinv_01*Jinv_01*(0.5*(Jinv_01*Jinv_12 + Jinv_10*(Jinv_01 + Jinv_02)) + 1.5*Jinv_02*Jinv_12 + Jinv_11*(1.5*Jinv_01 + 2.5*Jinv_02)) + Jinv_02*Jinv_02*(0.5*(Jinv_01*Jinv_10 + Jinv_02*(Jinv_10 + Jinv_11)) + 1.5*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 2.5*Jinv_01*Jinv_12)));
+    const double G170 = W1*det*(Jinv_10*(2*Jinv_00*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G171 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G172 = W1*det*(w[1][0]*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G173 = Jinv_22*W1*det*(Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G174 = W1*det*(w[1][0]*(Jinv_11*(2*Jinv_21*Jinv_21 + Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G175 = Jinv_11*W1*det*(Jinv_10*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G176 = Jinv_11*W1*det*(2*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G177 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G178 = W1*det*(w[1][0]*(Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G179 = W1*det*(w[1][0]*(2*Jinv_02*Jinv_02*Jinv_12*Jinv_12 + Jinv_00*Jinv_10*(2*Jinv_00*Jinv_10 + 4*Jinv_02*Jinv_12) + Jinv_01*Jinv_11*(2*Jinv_01*Jinv_11 + 4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[2][0]*(Jinv_10*Jinv_10*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G180 = W1*det*(Jinv_01*Jinv_10*w[1][0] + Jinv_11*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G181 = W1*det*(6*Jinv_02*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*(Jinv_00*(Jinv_00 + Jinv_01) + Jinv_01*Jinv_01 + Jinv_02*(3*Jinv_00 + 4*Jinv_01 + 5*Jinv_02)) + Jinv_01*Jinv_01*Jinv_01 + Jinv_02*(3*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 5*Jinv_01*Jinv_02)));
+    const double G182 = W1*det*(Jinv_02*(2*Jinv_02*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G183 = W1*det*(w[1][0]*(2*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_12) + Jinv_01*(Jinv_00*(Jinv_10 + Jinv_11 + 2*Jinv_12) + Jinv_01*(Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_00*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12) + Jinv_01*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + 3*Jinv_12))));
+    const double G184 = W1*det*(w[1][0]*(2*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(2*Jinv_00*Jinv_20 + 4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(2*Jinv_02*Jinv_22 + 4*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_00*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_01*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_02*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G185 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_01*(2*Jinv_21*Jinv_21*w[1][0] + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G186 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G187 = W1*det*(Jinv_00*Jinv_21*w[1][0] + Jinv_01*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G188 = W1*det*(Jinv_02*(2*Jinv_12*Jinv_22*w[1][0] + w[2][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[1][0]*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)));
+    const double G189 = W1*det*(2*Jinv_01*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G190 = W1*det*(Jinv_01*Jinv_22*w[1][0] + Jinv_02*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G191 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_02*(2*Jinv_22*Jinv_22*w[1][0] + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G192 = W1*det*(w[1][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + w[2][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G193 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_02*(2*Jinv_12*Jinv_12*w[1][0] + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G194 = W1*det*(Jinv_01*Jinv_12*w[1][0] + Jinv_02*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G195 = W1*det*(3*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[2][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_10*(Jinv_21 + Jinv_22) + Jinv_11*Jinv_22) + 1.5*Jinv_10*Jinv_20 + Jinv_11*(1.5*Jinv_21 + 2.5*Jinv_20)) + Jinv_11*Jinv_11*(0.5*(Jinv_10*Jinv_22 + Jinv_11*(Jinv_20 + Jinv_22)) + 1.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 2.5*Jinv_10*Jinv_21) + Jinv_12*(Jinv_10*(2*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(0.5*Jinv_21 + 1.5*Jinv_22 + 2.5*Jinv_20)) + Jinv_11*Jinv_11*(0.5*Jinv_20 + 1.5*Jinv_22 + 2.5*Jinv_21) + Jinv_12*(0.5*(Jinv_20*(Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_12)) + 1.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(1.5*Jinv_12 + 2.5*(Jinv_10 + Jinv_11))))));
+    const double G196 = W1*det*(w[1][0]*(2*(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + 6*Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_10*Jinv_20*(6*Jinv_10*Jinv_20 + 8*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_12*Jinv_22*(6*Jinv_12*Jinv_22 + 8*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20*(2*(Jinv_21 + Jinv_22) + 3*Jinv_20) + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_11*(Jinv_20*(2*Jinv_10*Jinv_22 + Jinv_20*(Jinv_11 + 4*Jinv_10)) + Jinv_21*(Jinv_10*(2*Jinv_22 + 4*(Jinv_20 + Jinv_21)) + Jinv_11*(2*(Jinv_20 + Jinv_22) + 3*Jinv_21)) + Jinv_22*Jinv_22*(Jinv_11 + 2*Jinv_10)) + Jinv_12*(Jinv_20*Jinv_20*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_21*(2*(Jinv_10*Jinv_21 + Jinv_20*(Jinv_10 + Jinv_11)) + Jinv_21*(Jinv_12 + 4*Jinv_11)) + Jinv_22*(2*(Jinv_20*(Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_12)) + 3*Jinv_12*Jinv_22 + 4*(Jinv_10*(Jinv_20 + Jinv_22) + Jinv_11*(Jinv_21 + Jinv_22))))));
+    const double G197 = W1*det*(1.5*w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + 3*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
+    const double G198 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[2][0]*(Jinv_00*(3*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G199 = W1*det*(w[1][0]*(2*Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + w[2][0]*(Jinv_20*(2*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + 3*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G200 = W1*det*(w[1][0]*(4*Jinv_10*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10)) + w[2][0]*(Jinv_10*(Jinv_20*(3*Jinv_10 + 4*(Jinv_11 + Jinv_12)) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21) + Jinv_12*(Jinv_11*(Jinv_21 + Jinv_22 + 2*Jinv_20) + Jinv_12*(Jinv_20 + Jinv_22))));
+    const double G201 = W1*det*(w[1][0]*(Jinv_20*Jinv_20*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + Jinv_21*(4*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + Jinv_22*(4*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12))) + w[2][0]*(2*Jinv_20*Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_20*Jinv_20*(3*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*(2*(Jinv_20*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_21*(3*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_22*Jinv_22*(3*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G202 = W1*det*(w[1][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_00*(0.5*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(0.5*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_02*Jinv_02*(0.5*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G203 = W1*det*(Jinv_20*(2*Jinv_10*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G204 = W1*det*(w[1][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + w[2][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G205 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G206 = W1*det*(Jinv_01*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_21*w[1][0]);
+    const double G207 = W1*det*(w[1][0]*(Jinv_02*(2*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + w[2][0]*(Jinv_01*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G208 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(2*Jinv_12*Jinv_12*w[1][0] + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G209 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G210 = W1*det*(Jinv_12*Jinv_21*w[1][0] + Jinv_22*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G211 = Jinv_10*W1*det*(Jinv_12*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G212 = W1*det*(w[1][0]*(Jinv_02*(2*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + w[2][0]*(Jinv_00*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_11 + Jinv_10*(Jinv_00 + Jinv_01)) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G213 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G214 = W1*det*(w[1][0]*(2*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(2*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + 3*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G215 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[2][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(3*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G216 = W1*det*(Jinv_22*(2*Jinv_12*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21));
+    const double G217 = W1*det*(w[1][0]*(4*Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12)) + w[2][0]*(Jinv_10*(Jinv_10*(Jinv_20 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + 2*Jinv_22)) + Jinv_11*Jinv_11*(Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(3*Jinv_12 + 4*(Jinv_10 + Jinv_11)))));
+    const double G218 = W1*det*(w[1][0]*(2*Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(2*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + 3*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G219 = W1*det*(Jinv_11*(2*Jinv_01*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12));
+    const double G220 = W1*det*(2*Jinv_00*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G221 = W1*det*(Jinv_00*Jinv_12*w[1][0] + Jinv_02*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G222 = W1*det*(w[1][0]*(Jinv_00*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G223 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*(2*Jinv_20*Jinv_20*w[1][0] + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G224 = W1*det*(Jinv_10*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_20*w[1][0]);
+    const double G225 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G226 = W1*det*(w[1][0]*(2*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(2*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + 3*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G227 = W1*det*(Jinv_02*(2*Jinv_12*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11));
+    const double G228 = W1*det*(w[1][0]*(4*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_02*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12)) + w[2][0]*(Jinv_10*(Jinv_10*(Jinv_00 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_11*Jinv_11*(Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_02*(3*Jinv_12 + 4*(Jinv_10 + Jinv_11)))));
+    const double G229 = W1*det*(w[1][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + w[2][0]*(Jinv_10*Jinv_10*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_11*Jinv_11*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_12*Jinv_12*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21))));
+    const double G230 = W1*det*(w[1][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[2][0]*(Jinv_00*Jinv_00*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_01*Jinv_01*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_02*Jinv_02*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21))));
+    const double G231 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(2*Jinv_21*Jinv_21*w[1][0] + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G232 = W1*det*(Jinv_20*Jinv_20*(w[1][0]*(2*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*Jinv_20) + w[2][0]*(Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_21 + Jinv_22) + Jinv_22*Jinv_22)) + Jinv_20*Jinv_21*Jinv_21*Jinv_22*w[2][0] + Jinv_21*Jinv_21*Jinv_21*(Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_22 + 0.5*Jinv_21)) + Jinv_22*Jinv_22*(w[1][0]*(2*Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_21*(Jinv_20 + Jinv_21) + Jinv_22*(Jinv_20 + Jinv_21 + 0.5*Jinv_22))));
+    const double G233 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*(2*Jinv_20*Jinv_20*w[1][0] + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G234 = Jinv_20*W1*det*(2*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G235 = W1*det*(6*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_20*(Jinv_01 + Jinv_02 + 3*Jinv_00) + Jinv_21*(Jinv_02 + 3*Jinv_01 + 5*Jinv_00) + Jinv_22*(Jinv_01 + 3*Jinv_02 + 5*Jinv_00)) + Jinv_21*Jinv_21*(Jinv_02 + 3*Jinv_00 + 5*Jinv_01) + Jinv_22*(4*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_01 + 3*Jinv_00 + 5*Jinv_02))) + Jinv_21*Jinv_21*(Jinv_21*(Jinv_00 + Jinv_02 + 3*Jinv_01) + Jinv_22*(Jinv_00 + 3*Jinv_02 + 5*Jinv_01)) + Jinv_22*Jinv_22*(Jinv_21*(Jinv_00 + 3*Jinv_01 + 5*Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + 3*Jinv_02))));
+    const double G236 = W1*det*(w[1][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))) + w[2][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(Jinv_11 + Jinv_12 + 1.5*Jinv_10)) + Jinv_21*(Jinv_10*Jinv_10*(Jinv_22 + 0.5*Jinv_21 + 2*Jinv_20) + Jinv_11*(2*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*Jinv_22) + Jinv_10*Jinv_22 + Jinv_12*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_12 + 1.5*Jinv_11)) + Jinv_12*(Jinv_10*(Jinv_20 + Jinv_22) + Jinv_12*(Jinv_20 + 0.5*Jinv_21 + 2*Jinv_22))) + Jinv_22*(Jinv_20*(2*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_12*Jinv_12) + Jinv_11*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(0.5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(Jinv_10 + Jinv_11 + 1.5*Jinv_12)))));
+    const double G237 = W1*det*(6*Jinv_22*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(3*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 5*Jinv_21*Jinv_22 + Jinv_20*(3*Jinv_20 + 4*Jinv_21 + 5*Jinv_22))));
+    const double G238 = W1*det*(w[1][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(Jinv_01 + Jinv_02 + 1.5*Jinv_00)) + Jinv_21*(Jinv_00*(Jinv_00*(Jinv_22 + 0.5*Jinv_21 + 2*Jinv_20) + Jinv_02*(Jinv_20 + Jinv_22)) + Jinv_01*(2*(Jinv_20*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02)) + Jinv_00*Jinv_22 + Jinv_02*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_02 + 1.5*Jinv_01)) + Jinv_02*Jinv_02*(Jinv_20 + 0.5*Jinv_21 + 2*Jinv_22)) + Jinv_22*(Jinv_20*(2*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02)) + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + 1.5*Jinv_02)))));
+    const double G239 = W1*det*(3*Jinv_20*Jinv_21*Jinv_21*Jinv_22*w[2][0] + Jinv_20*Jinv_20*(1.5*Jinv_20*Jinv_20*w[2][0] + 3*(Jinv_20*Jinv_20*w[1][0] + w[2][0]*(Jinv_21*(Jinv_20 + Jinv_21) + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))) + 6*w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + Jinv_21*Jinv_21*Jinv_21*(3*Jinv_21*w[1][0] + w[2][0]*(1.5*Jinv_21 + 3*(Jinv_20 + Jinv_22))) + Jinv_22*Jinv_22*(1.5*Jinv_22*Jinv_22*w[2][0] + 3*(Jinv_22*Jinv_22*w[1][0] + w[2][0]*(Jinv_20*Jinv_22 + Jinv_21*(Jinv_20 + Jinv_21 + Jinv_22))) + 6*Jinv_21*Jinv_21*w[1][0]));
+    const double G240 = W1*det*(w[1][0]*(2*Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(4*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_02) + Jinv_21*(Jinv_20*(Jinv_00 + Jinv_01 + 2*Jinv_02) + Jinv_21*(Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_20*(Jinv_01 + 2*Jinv_00 + 4*Jinv_02) + Jinv_21*(Jinv_00 + 2*Jinv_01 + 4*Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + 3*Jinv_02))));
+    const double G241 = Jinv_21*W1*det*(2*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G242 = W1*det*(Jinv_22*(2*Jinv_22*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21));
+    const double G243 = W1*det*(6*w[1][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_21*(Jinv_12 + 3*Jinv_11 + 5*Jinv_10)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_12 + 3*Jinv_10 + 5*Jinv_11) + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11)) + Jinv_22*(Jinv_20*(4*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_11 + 3*Jinv_12 + 5*Jinv_10) + Jinv_22*(Jinv_11 + 3*Jinv_10 + 5*Jinv_12)) + Jinv_21*Jinv_21*(Jinv_10 + 3*Jinv_12 + 5*Jinv_11) + Jinv_22*(Jinv_21*(Jinv_10 + 3*Jinv_11 + 5*Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + 3*Jinv_12)))));
+    const double G244 = W1*det*(Jinv_00*Jinv_12*w[1][0] + Jinv_10*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G245 = W1*det*(w[1][0]*(Jinv_02*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)));
+    const double G246 = W1*det*(w[1][0]*(Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G247 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G248 = Jinv_21*W1*det*(Jinv_20*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G249 = W1*det*(Jinv_00*Jinv_11*w[1][0] + Jinv_01*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G250 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*(2*Jinv_11*Jinv_11*w[1][0] + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G251 = W1*det*(Jinv_00*Jinv_22*w[1][0] + Jinv_02*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G252 = W1*det*(w[1][0]*(2*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(4*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10)) + w[2][0]*(Jinv_00*(2*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + 3*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G253 = W1*det*(w[1][0]*(4*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10)) + w[2][0]*(Jinv_10*(Jinv_00*(3*Jinv_10 + 4*(Jinv_11 + Jinv_12)) + Jinv_01*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_02*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01) + Jinv_12*(Jinv_11*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_12*(Jinv_00 + Jinv_02))));
+    const double G254 = W1*det*(Jinv_00*(2*Jinv_10*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G255 = W1*det*(w[1][0]*(Jinv_00*(4*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + Jinv_01*(4*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[2][0]*(2*Jinv_00*Jinv_02*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_00*Jinv_00*(3*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(2*(Jinv_00*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_01*(3*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G256 = W1*det*(w[1][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_10*Jinv_11*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*Jinv_11*(0.5*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(0.5*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)))));
+    const double G257 = W1*det*(3*w[1][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[2][0]*(Jinv_20*(Jinv_20*(0.5*(Jinv_01*(Jinv_20 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21)) + 1.5*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 2.5*Jinv_00*(Jinv_21 + Jinv_22)) + Jinv_21*Jinv_21*(0.5*Jinv_02 + 1.5*Jinv_00 + 2.5*Jinv_01) + Jinv_22*(2*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(0.5*Jinv_01 + 1.5*Jinv_00 + 2.5*Jinv_02))) + Jinv_21*Jinv_21*(Jinv_21*(0.5*(Jinv_00 + Jinv_02) + 1.5*Jinv_01) + Jinv_22*(0.5*Jinv_00 + 1.5*Jinv_02 + 2.5*Jinv_01)) + Jinv_22*Jinv_22*(Jinv_21*(0.5*Jinv_00 + 1.5*Jinv_01 + 2.5*Jinv_02) + Jinv_22*(0.5*(Jinv_00 + Jinv_01) + 1.5*Jinv_02))));
+    const double G258 = W1*det*(w[1][0]*(4*Jinv_00*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 6*Jinv_00*Jinv_00)) + w[2][0]*(Jinv_00*(2*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + 3*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G259 = W1*det*(w[1][0]*(2*Jinv_00*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_01 + Jinv_02 + 3*Jinv_00) + Jinv_21*(Jinv_02 + 2*Jinv_01 + 4*Jinv_00) + Jinv_22*(Jinv_01 + 2*Jinv_02 + 4*Jinv_00)) + Jinv_21*(Jinv_21*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02 + 2*Jinv_00)) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_02)));
+    const double G260 = W1*det*(w[1][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[2][0]*(Jinv_00*(3*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G261 = W1*det*(w[1][0]*(2*(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 6*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(6*Jinv_00*Jinv_20 + 8*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(6*Jinv_02*Jinv_22 + 8*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00*(2*(Jinv_01 + Jinv_02) + 3*Jinv_00) + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*(Jinv_00*(2*(Jinv_00*Jinv_22 + Jinv_02*(Jinv_20 + Jinv_22)) + Jinv_00*(Jinv_21 + 4*Jinv_20)) + Jinv_01*(2*(Jinv_00*(Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21)) + 3*Jinv_01*Jinv_21 + 4*(Jinv_20*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02))) + Jinv_02*Jinv_02*(Jinv_21 + 2*Jinv_20 + 4*Jinv_22)) + Jinv_22*(Jinv_20*(2*Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + 4*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))) + Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*(2*(Jinv_00 + Jinv_01) + 3*Jinv_02)))));
+    const double G262 = W1*det*(1.5*w[2][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + 3*w[1][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
+    const double G263 = W1*det*(Jinv_00*(2*Jinv_20*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G264 = W1*det*(w[1][0]*(Jinv_12*(2*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[2][0]*(Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G265 = Jinv_21*W1*det*(Jinv_22*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G266 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G267 = W1*det*(Jinv_11*Jinv_22*w[1][0] + Jinv_12*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G268 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G269 = W1*det*(Jinv_11*Jinv_20*w[1][0] + Jinv_21*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G270 = W1*det*(w[1][0]*(Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G271 = W1*det*(Jinv_02*Jinv_11*w[1][0] + Jinv_12*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G272 = W1*det*(2*Jinv_11*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G273 = W1*det*(Jinv_00*Jinv_11*w[1][0] + Jinv_10*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G274 = W1*det*(Jinv_00*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_20*w[1][0]);
+    const double G275 = W1*det*(Jinv_10*Jinv_10*(w[1][0]*(2*Jinv_12*Jinv_12 + Jinv_10*Jinv_10) + w[2][0]*(Jinv_10*(Jinv_11 + Jinv_12 + 0.5*Jinv_10) + Jinv_12*(Jinv_11 + Jinv_12))) + Jinv_10*Jinv_11*Jinv_12*Jinv_12*w[2][0] + Jinv_11*Jinv_11*(w[1][0]*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*Jinv_11) + w[2][0]*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11) + Jinv_12*Jinv_12)) + Jinv_12*Jinv_12*Jinv_12*(Jinv_12*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + 0.5*Jinv_12)));
+    const double G276 = W1*det*(w[1][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[2][0]*(Jinv_00*Jinv_00*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_01*Jinv_01*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_02*Jinv_02*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11))));
+    const double G277 = W1*det*(6*w[1][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_10*(Jinv_01 + Jinv_02 + 3*Jinv_00) + Jinv_11*(Jinv_02 + 3*Jinv_01 + 5*Jinv_00)) + Jinv_11*Jinv_11*(Jinv_10*(Jinv_02 + 3*Jinv_00 + 5*Jinv_01) + Jinv_11*(Jinv_00 + Jinv_02 + 3*Jinv_01)) + Jinv_12*(Jinv_10*(4*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_01 + 3*Jinv_02 + 5*Jinv_00)) + Jinv_11*Jinv_11*(Jinv_00 + 3*Jinv_02 + 5*Jinv_01) + Jinv_12*(Jinv_00*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_02*(3*Jinv_12 + 5*(Jinv_10 + Jinv_11))))));
+    const double G278 = W1*det*(w[1][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + w[2][0]*(Jinv_20*Jinv_20*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_21*Jinv_21*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_22*Jinv_22*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11))));
+    const double G279 = W1*det*(2*Jinv_10*w[1][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_10*Jinv_10*w[1][0] + w[2][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G280 = W1*det*(3*Jinv_10*Jinv_10*Jinv_11*Jinv_12*w[2][0] + Jinv_10*Jinv_10*Jinv_10*(3*Jinv_10*w[1][0] + w[2][0]*(1.5*Jinv_10 + 3*(Jinv_11 + Jinv_12))) + Jinv_11*Jinv_11*(1.5*Jinv_11*Jinv_11*w[2][0] + 3*(Jinv_11*Jinv_11*w[1][0] + w[2][0]*(Jinv_10*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_12*(Jinv_11 + Jinv_12))) + 6*w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + Jinv_12*Jinv_12*(1.5*Jinv_12*Jinv_12*w[2][0] + 3*(Jinv_12*Jinv_12*w[1][0] + w[2][0]*(Jinv_10*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_11*Jinv_12)) + 6*Jinv_10*Jinv_10*w[1][0]));
+    const double G281 = W1*det*(w[1][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))) + w[2][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(Jinv_01 + Jinv_02 + 1.5*Jinv_00)) + Jinv_11*(Jinv_00*(Jinv_00*(Jinv_12 + 0.5*Jinv_11 + 2*Jinv_10) + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_01*(2*(Jinv_00*Jinv_10 + Jinv_01*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12) + Jinv_00*Jinv_12 + Jinv_02*Jinv_10 + Jinv_11*(Jinv_00 + Jinv_02 + 1.5*Jinv_01)) + Jinv_02*Jinv_02*(Jinv_10 + 0.5*Jinv_11 + 2*Jinv_12)) + Jinv_12*(Jinv_10*(2*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02)) + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + 1.5*Jinv_02)))));
+    const double G282 = W1*det*(w[1][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))) + w[2][0]*(Jinv_10*(0.5*Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_12*(2*Jinv_22*Jinv_22 + Jinv_21*(Jinv_21 + Jinv_22)) + Jinv_20*(Jinv_10*(Jinv_21 + Jinv_22 + 1.5*Jinv_20) + Jinv_12*(Jinv_21 + 2*(Jinv_20 + Jinv_22)))) + Jinv_11*(Jinv_20*Jinv_20*(Jinv_12 + 0.5*Jinv_11 + 2*Jinv_10) + Jinv_21*(2*(Jinv_10*(Jinv_20 + Jinv_21) + Jinv_12*(Jinv_21 + Jinv_22)) + Jinv_10*Jinv_22 + Jinv_11*(Jinv_20 + Jinv_22 + 1.5*Jinv_21) + Jinv_12*Jinv_20) + Jinv_22*(Jinv_20*(Jinv_10 + Jinv_12) + Jinv_22*(Jinv_10 + 0.5*Jinv_11 + 2*Jinv_12))) + Jinv_12*Jinv_12*(0.5*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_20 + Jinv_21 + 1.5*Jinv_22))));
+    const double G283 = W1*det*(Jinv_12*(2*Jinv_12*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
+    const double G284 = W1*det*(6*w[1][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_10*(Jinv_21 + Jinv_22 + 3*Jinv_20) + Jinv_11*(Jinv_22 + 3*Jinv_21 + 5*Jinv_20)) + Jinv_11*Jinv_11*(Jinv_10*(Jinv_22 + 3*Jinv_20 + 5*Jinv_21) + Jinv_11*(Jinv_20 + Jinv_22 + 3*Jinv_21)) + Jinv_12*(Jinv_10*(4*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_21 + 3*Jinv_22 + 5*Jinv_20)) + Jinv_11*Jinv_11*(Jinv_20 + 3*Jinv_22 + 5*Jinv_21) + Jinv_12*(Jinv_20*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_22*(3*Jinv_12 + 5*(Jinv_10 + Jinv_11))))));
+    const double G285 = W1*det*(6*Jinv_12*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(3*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 4*Jinv_10*Jinv_11 + 5*Jinv_12*(Jinv_10 + Jinv_11))));
+    const double G286 = Jinv_20*W1*det*(Jinv_22*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G287 = W1*det*(Jinv_00*Jinv_22*w[1][0] + Jinv_20*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G288 = W1*det*(w[1][0]*(Jinv_02*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22 + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*Jinv_20 + Jinv_22*(Jinv_00 + Jinv_02))));
+    const double G289 = W1*det*(w[1][0]*(2*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(2*Jinv_00*Jinv_20 + 4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(2*Jinv_02*Jinv_22 + 4*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G290 = W1*det*(2*Jinv_22*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G291 = W1*det*(w[1][0]*(2*Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01) + Jinv_21*(Jinv_20*(Jinv_02 + 2*Jinv_00 + 4*Jinv_01) + Jinv_21*(Jinv_00 + Jinv_02 + 3*Jinv_01) + Jinv_22*(Jinv_00 + 2*Jinv_02 + 4*Jinv_01)) + Jinv_22*(Jinv_20*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02))));
+    const double G292 = W1*det*(w[1][0]*(2*Jinv_11*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(4*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11) + Jinv_21*(Jinv_20*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_22*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_11 + Jinv_12))));
+    const double G293 = W1*det*(6*Jinv_21*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(3*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(5*Jinv_21*Jinv_21 + Jinv_20*(Jinv_20 + 3*Jinv_21)) + Jinv_22*(Jinv_20*(Jinv_20 + Jinv_22 + 4*Jinv_21) + Jinv_21*(3*Jinv_22 + 5*Jinv_21) + Jinv_22*Jinv_22)));
+    const double G294 = W1*det*(Jinv_21*(2*Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22));
+    const double G295 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[2][0]*(Jinv_00*Jinv_00*Jinv_00 + Jinv_01*(Jinv_00*Jinv_00 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_02*Jinv_02) + Jinv_02*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))));
+    const double G296 = Jinv_01*W1*det*(Jinv_02*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G297 = W1*det*(2*Jinv_20*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G298 = W1*det*(Jinv_01*Jinv_20*w[1][0] + Jinv_21*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G299 = W1*det*(Jinv_12*(2*Jinv_02*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11));
+    const double G300 = W1*det*(w[1][0]*(4*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_02*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(2*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + 3*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G301 = W1*det*(Jinv_01*Jinv_22*w[1][0] + Jinv_21*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G302 = Jinv_12*W1*det*(Jinv_11*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G303 = W1*det*(Jinv_10*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_20*w[1][0]);
+    const double G304 = W1*det*(2*Jinv_12*w[1][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G305 = Jinv_11*W1*det*(Jinv_12*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G306 = W1*det*(Jinv_02*Jinv_10*w[1][0] + Jinv_12*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G307 = W1*det*(Jinv_01*Jinv_12*w[1][0] + Jinv_11*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G308 = W1*det*(w[1][0]*(4*Jinv_02*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(2*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + 3*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G309 = W1*det*(Jinv_02*(2*Jinv_22*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21));
+    const double G310 = W1*det*(w[1][0]*(2*Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + w[2][0]*(Jinv_20*(Jinv_20*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_21*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_22*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10)) + Jinv_21*(Jinv_21*(Jinv_10 + Jinv_11) + Jinv_22*(Jinv_11 + Jinv_12 + 2*Jinv_10)) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_12)));
+    const double G311 = W1*det*(w[1][0]*(4*Jinv_10*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10)) + w[2][0]*(Jinv_10*(2*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + 3*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G312 = W1*det*(Jinv_10*(2*Jinv_20*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G313 = W1*det*(6*Jinv_10*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(3*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(5*Jinv_10*Jinv_10 + Jinv_11*(Jinv_11 + 3*Jinv_10)) + Jinv_12*(Jinv_10*(3*Jinv_12 + 5*Jinv_10) + Jinv_11*(Jinv_11 + Jinv_12 + 4*Jinv_10) + Jinv_12*Jinv_12)));
+    const double G314 = W1*det*(Jinv_10*(2*Jinv_10*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G315 = W1*det*(Jinv_12*Jinv_20*w[1][0] + Jinv_22*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G316 = W1*det*(Jinv_00*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_20*w[1][0]);
+    const double G317 = W1*det*(Jinv_10*Jinv_21*w[1][0] + Jinv_11*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G318 = W1*det*(2*Jinv_21*w[1][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G319 = W1*det*(Jinv_02*Jinv_21*w[1][0] + Jinv_22*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G320 = Jinv_20*W1*det*(Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G321 = W1*det*(Jinv_10*Jinv_22*w[1][0] + Jinv_20*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G322 = W1*det*(6*Jinv_11*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[2][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(3*Jinv_10*Jinv_10 + Jinv_11*(3*Jinv_11 + 5*Jinv_10)) + Jinv_12*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_11*(3*Jinv_12 + 4*Jinv_10 + 5*Jinv_11) + Jinv_12*Jinv_12)));
+    const double G323 = W1*det*(w[1][0]*(4*Jinv_11*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21) + Jinv_11*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(3*Jinv_11 + 4*(Jinv_10 + Jinv_12)) + Jinv_22*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_12*(Jinv_10*(Jinv_20 + Jinv_22 + 2*Jinv_21) + Jinv_12*(Jinv_21 + Jinv_22))));
+    const double G324 = W1*det*(Jinv_11*(2*Jinv_11*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
+    const double G325 = Jinv_01*W1*det*(Jinv_00*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G326 = W1*det*(Jinv_11*w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_21*w[1][0]);
+    const double G327 = W1*det*(Jinv_00*Jinv_21*w[1][0] + Jinv_20*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G328 = W1*det*(2*Jinv_02*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G329 = W1*det*(Jinv_01*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_11*w[1][0]);
+    const double G330 = W1*det*(w[1][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[2][0]*(Jinv_00*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(3*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G331 = W1*det*(w[1][0]*(4*Jinv_11*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11)) + w[2][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(2*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + 3*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G332 = W1*det*(Jinv_11*(2*Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22));
+    const double G333 = W1*det*(w[1][0]*(2*Jinv_00*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + w[2][0]*(Jinv_20*(2*(Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + 3*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G334 = W1*det*(Jinv_20*(2*Jinv_00*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[1][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G335 = W1*det*(Jinv_00*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_10*w[1][0]);
+    const double G336 = Jinv_02*W1*det*(Jinv_01*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G337 = W1*det*(6*Jinv_20*w[1][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[2][0]*(Jinv_20*(3*Jinv_21*Jinv_21 + Jinv_20*(3*Jinv_20 + 5*Jinv_21)) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*(3*Jinv_22 + 4*Jinv_21 + 5*Jinv_20) + Jinv_21*(Jinv_21 + Jinv_22) + Jinv_22*Jinv_22)));
+    const double G338 = W1*det*(Jinv_20*(2*Jinv_20*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G339 = W1*det*(Jinv_10*Jinv_21*w[1][0] + Jinv_20*w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G340 = Jinv_00*W1*det*(Jinv_02*w[1][0] + w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G341 = W1*det*(Jinv_02*Jinv_20*w[1][0] + Jinv_22*w[2][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G342 = W1*det*(w[1][0]*(2*Jinv_11*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(4*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + w[2][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + 3*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G343 = W1*det*(Jinv_21*(2*Jinv_11*w[1][0] + w[2][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[1][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22));
+    const double G344 = W1*det*(w[1][0]*(4*Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01)) + w[2][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(2*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + 3*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G345 = W1*det*(Jinv_01*(2*Jinv_21*w[1][0] + w[2][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[1][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22));
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 8895
+    // Total number of operations to compute element tensor: 19681
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 2791
+    // Number of operations to compute element tensor for following IP loop = 4202
     // Only 1 integration point, omitting IP loop.
     
     // Function declarations
@@ -11639,321 +11793,429 @@ public:
     // Total number of operations to compute function values = 36
     for (unsigned int r = 0; r < 2; r++)
     {
-      F0 += FE1_C0_D001[0][r]*w[0][nzc9[r]];
-      F1 += FE1_C0_D001[0][r]*w[0][nzc6[r]];
-      F2 += FE1_C0_D001[0][r]*w[0][nzc10[r]];
-      F3 += FE1_C0_D001[0][r]*w[0][nzc4[r]];
-      F4 += FE1_C0_D001[0][r]*w[0][nzc5[r]];
-      F5 += FE1_C0_D001[0][r]*w[0][nzc0[r]];
-      F6 += FE1_C0_D001[0][r]*w[0][nzc8[r]];
-      F7 += FE1_C0_D001[0][r]*w[0][nzc7[r]];
-      F8 += FE1_C0_D001[0][r]*w[0][nzc11[r]];
+      F0 += FE1_C0_D001[0][r]*w[0][nzc3[r]];
+      F1 += FE1_C0_D001[0][r]*w[0][nzc2[r]];
+      F2 += FE1_C0_D001[0][r]*w[0][nzc1[r]];
+      F3 += FE1_C0_D001[0][r]*w[0][nzc7[r]];
+      F4 += FE1_C0_D001[0][r]*w[0][nzc6[r]];
+      F5 += FE1_C0_D001[0][r]*w[0][nzc5[r]];
+      F6 += FE1_C0_D001[0][r]*w[0][nzc11[r]];
+      F7 += FE1_C0_D001[0][r]*w[0][nzc10[r]];
+      F8 += FE1_C0_D001[0][r]*w[0][nzc9[r]];
     }// end loop over 'r'
     
-    // Number of operations to compute ip constants: 1783
+    // Number of operations to compute ip constants: 3086
     // Number of operations: 54
-    const double Gip0 = (G19 + F0*(G9 + F0*G15 + F1*G0 + F2*G13) + F1*(G18 + F1*G2 + F2*G5) + F2*(G10 + F2*G6) + F3*(G1 + F3*G11 + F4*G20) + F4*(G3 + F4*G4) + F5*(G17 + F3*G8 + F4*G12 + F5*G7) + F6*(G16 + F6*G15 + F7*G0) + F7*(G21 + F7*G2) + F8*(G14 + F6*G13 + F7*G5 + F8*G6));
+    const double Gip0 = (G20 + F0*(G10 + F0*G16) + F1*(G19 + F0*G1 + F1*G3) + F2*(G11 + F0*G14 + F1*G6 + F2*G7) + F3*(G2 + F3*G12) + F4*(G4 + F3*G21 + F4*G5 + F5*G13) + F5*(G18 + F3*G9 + F5*G8) + F6*(G17 + F6*G16 + F7*G1) + F7*(G22 + F7*G3) + F8*(G15 + F6*G14 + F7*G6 + F8*G7));
     
     // Number of operations: 30
-    const double Gip1 = (G29 + F0*G30 + F1*G35 + F2*G32 + F6*(G25 + F0*G33 + F1*G26 + F2*G31) + F7*(G37 + F0*G36 + F1*G24 + F2*G23) + F8*(G34 + F0*G27 + F1*G22 + F2*G28));
-    
-    // Number of operations: 54
-    const double Gip2 = (G53 + F0*(G44 + F0*G2 + F1*G38 + F2*G26) + F1*(G46 + F1*G40 + F2*G24) + F2*(G45 + F2*G43) + F3*(G39 + F3*G2 + F4*G38) + F4*(G42 + F4*G40) + F5*(G52 + F3*G26 + F4*G24 + F5*G43) + F6*(G51 + F6*G4 + F7*G41) + F7*(G55 + F7*G48) + F8*(G49 + F6*G47 + F7*G54 + F8*G50));
-    
-    // Number of operations: 54
-    const double Gip3 = (G69 + F0*(G62 + F0*G65) + F1*(G64 + F0*G56 + F1*G57) + F2*(G63 + F0*G33 + F1*G36 + F2*G60) + F3*(G3 + F3*G68 + F4*G70) + F4*(G58 + F4*G59) + F5*(G67 + F3*G12 + F4*G47 + F5*G61) + F6*(G66 + F6*G65 + F7*G56) + F7*(G71 + F7*G57) + F8*(G30 + F6*G33 + F7*G36 + F8*G60));
+    const double Gip1 = (G34 + F0*G31 + F1*G35 + F2*G30 + F3*(G10 + F0*G24 + F1*G1 + F2*G14) + F4*(G23 + F0*G29 + F1*G32 + F2*G25) + F5*(G27 + F0*G28 + F1*G33 + F2*G26));
     
     // Number of operations: 30
-    const double Gip4 = (G75 + F0*G73 + F1*G39 + F2*G72 + F3*(G18 + F0*G0 + F1*G74 + F2*G5) + F4*(G64 + F0*G56 + F1*G38 + F2*G36) + F5*(G25 + F0*G33 + F1*G26 + F2*G31));
-    
-    // Number of operations: 30
-    const double Gip5 = (G79 + F0*G78 + F1*G80 + F2*G77 + F3*(G63 + F0*G33 + F1*G36 + F2*G27) + F4*(G45 + F0*G26 + F1*G24 + F2*G22) + F5*(G76 + F0*G31 + F1*G23 + F2*G28));
-    
-    // Number of operations: 30
-    const double Gip6 = (G84 + F3*(G71 + F6*G56 + F7*G38 + F8*G36) + F4*(G81 + F6*G38 + F7*G82 + F8*G24) + F5*(G85 + F6*G36 + F7*G24 + F8*G23) + F6*G83 + F7*G42 + F8*G80);
-    
-    // Number of operations: 30
-    const double Gip7 = (G89 + F0*G90 + F1*G32 + F2*G91 + F6*(G86 + F0*G92 + F1*G31 + F2*G87) + F7*(G76 + F0*G31 + F1*G23 + F2*G28) + F8*(G93 + F0*G87 + F1*G28 + F2*G88));
-    
-    // Number of operations: 30
-    const double Gip8 = (G94 + F3*(G21 + F6*G0 + F7*G74 + F8*G5) + F4*(G71 + F6*G56 + F7*G38 + F8*G36) + F5*(G95 + F6*G33 + F7*G26 + F8*G31) + F6*G73 + F7*G39 + F8*G72);
+    const double Gip2 = (G45 + F3*(G39 + F6*G25 + F7*G42 + F8*G44) + F4*(G36 + F6*G43 + F7*G38 + F8*G47) + F5*(G46 + F6*G48 + F7*G41 + F8*G49) + F6*G40 + F7*G50 + F8*G37);
     
     // Number of operations: 54
-    const double Gip9 = (G110 + F0*(G101 + F0*G107 + F1*G12 + F2*G105) + F1*(G103 + F1*G104 + F2*G98) + F2*(G102 + F2*G99) + F3*(G96 + F3*G106 + F4*G33) + F4*(G78 + F4*G97) + F5*(G109 + F3*G92 + F4*G31 + F5*G100) + F6*(G108 + F6*G106 + F7*G33 + F8*G92) + F7*(G95 + F7*G97 + F8*G31) + F8*(G90 + F8*G100));
-    
-    // Number of operations: 30
-    const double Gip10 = (G111 + F0*G16 + F1*G66 + F2*G108 + F6*(G9 + F0*G112 + F1*G0 + F2*G13) + F7*(G62 + F0*G0 + F1*G56 + F2*G33) + F8*(G113 + F0*G13 + F1*G33 + F2*G92));
+    const double Gip3 = (G57 + F0*(G53 + F0*G12) + F1*(G55 + F0*G21 + F1*G5) + F2*(G54 + F0*G9 + F1*G13 + F2*G8) + F3*(G51 + F3*G16) + F4*(G52 + F3*G1 + F4*G3 + F5*G6) + F5*(G56 + F3*G14 + F5*G7) + F6*(G17 + F6*G16 + F7*G1) + F7*(G22 + F7*G3) + F8*(G15 + F6*G14 + F7*G6 + F8*G7));
     
     // Number of operations: 54
-    const double Gip11 = (G119 + F0*(G116 + F0*G11 + F1*G20 + F2*G8) + F1*(G117 + F1*G4 + F2*G12) + F2*(G101 + F2*G7) + F3*(G114 + F3*G15 + F4*G0) + F4*(G115 + F4*G2) + F5*(G118 + F3*G13 + F4*G5 + F5*G6) + F6*(G16 + F6*G15 + F7*G0) + F7*(G21 + F7*G2) + F8*(G14 + F6*G13 + F7*G5 + F8*G6));
+    const double Gip4 = (G73 + F0*(G27 + F0*G69) + F1*(G66 + F0*G33 + F1*G58 + F2*G62) + F2*(G65 + F0*G26 + F2*G63) + F3*(G18 + F3*G59 + F4*G13) + F4*(G60 + F4*G61) + F5*(G71 + F3*G64 + F4*G67 + F5*G72) + F6*(G70 + F6*G69 + F7*G33) + F7*(G74 + F7*G58) + F8*(G68 + F6*G26 + F7*G62 + F8*G63));
     
     // Number of operations: 30
-    const double Gip12 = (G121 + F3*(G66 + F6*G0 + F7*G56 + F8*G33) + F4*(G120 + F6*G74 + F7*G38 + F8*G26) + F5*(G122 + F6*G5 + F7*G36 + F8*G31) + F6*G115 + F7*G83 + F8*G78);
+    const double Gip5 = (G79 + F0*G80 + F1*G84 + F2*G82 + F6*(G77 + F0*G32 + F1*G78 + F2*G81) + F7*(G86 + F0*G85 + F1*G76 + F2*G75) + F8*(G83 + F0*G43 + F1*G38 + F2*G47));
     
     // Number of operations: 30
-    const double Gip13 = (G124 + F0*G14 + F1*G30 + F2*G90 + F6*(G113 + F0*G13 + F1*G33 + F2*G92) + F7*(G126 + F0*G5 + F1*G36 + F2*G31) + F8*(G125 + F0*G123 + F1*G27 + F2*G87));
+    const double Gip6 = (G93 + F0*G92 + F1*G94 + F2*G91 + F3*(G23 + F0*G29 + F1*G32 + F2*G25) + F4*(G87 + F0*G90 + F1*G78 + F2*G42) + F5*(G88 + F0*G89 + F1*G81 + F2*G44));
+    
+    // Number of operations: 54
+    const double Gip7 = (G109 + F0*(G88 + F0*G97 + F1*G81 + F2*G44) + F1*(G102 + F1*G96 + F2*G47) + F2*(G101 + F2*G100) + F3*(G95 + F3*G97) + F4*(G99 + F3*G81 + F4*G96 + F5*G47) + F5*(G37 + F3*G44 + F5*G100) + F6*(G108 + F6*G106 + F7*G98) + F7*(G111 + F7*G104) + F8*(G105 + F6*G103 + F7*G110 + F8*G107));
+    
+    // Number of operations: 30
+    const double Gip8 = (G116 + F0*G68 + F1*G120 + F2*G118 + F6*(G113 + F0*G26 + F1*G44 + F2*G117) + F7*(G121 + F0*G62 + F1*G47 + F2*G112) + F8*(G119 + F0*G114 + F1*G49 + F2*G115));
+    
+    // Number of operations: 30
+    const double Gip9 = (G123 + F0*G17 + F1*G125 + F2*G70 + F6*(G122 + F0*G24 + F1*G29 + F2*G28) + F7*(G126 + F0*G1 + F1*G32 + F2*G33) + F8*(G124 + F0*G14 + F1*G25 + F2*G26));
+    
+    // Number of operations: 30
+    const double Gip10 = (G130 + F0*G94 + F1*G131 + F2*G128 + F3*(G129 + F0*G32 + F1*G85 + F2*G43) + F4*(G127 + F0*G78 + F1*G76 + F2*G38) + F5*(G102 + F0*G81 + F1*G75 + F2*G47));
+    
+    // Number of operations: 30
+    const double Gip11 = (G134 + F0*G74 + F1*G82 + F2*G136 + F6*(G133 + F0*G33 + F1*G81 + F2*G135) + F7*(G138 + F0*G137 + F1*G75 + F2*G132) + F8*(G121 + F0*G62 + F1*G47 + F2*G112));
+    
+    // Number of operations: 54
+    const double Gip12 = (G144 + F0*(G27 + F0*G69) + F1*(G66 + F0*G33 + F1*G58) + F2*(G65 + F0*G26 + F1*G62 + F2*G63) + F3*(G139 + F3*G69 + F4*G33) + F4*(G140 + F4*G58) + F5*(G143 + F3*G26 + F4*G62 + F5*G63) + F6*(G142 + F6*G59 + F7*G13) + F7*(G145 + F7*G61) + F8*(G141 + F6*G64 + F7*G67 + F8*G72));
+    
+    // Number of operations: 54
+    const double Gip13 = (G159 + F0*(G23 + F0*G157 + F1*G32 + F2*G25) + F1*(G129 + F1*G147 + F2*G43) + F2*(G153 + F2*G150) + F3*(G146 + F3*G154 + F4*G160) + F4*(G148 + F4*G149) + F5*(G158 + F3*G152 + F4*G155 + F5*G151) + F6*(G125 + F6*G157 + F7*G32) + F7*(G80 + F7*G147) + F8*(G156 + F6*G25 + F7*G43 + F8*G150));
     
     // Number of operations: 55
-    const double Gip14 = (G130 + F0*(G128 + F0*G4 + F1*G41 + F2*G47) + F1*(G127 + F1*G48 + F2*G54) + F2*(G129 + F2*G50) + F3*(G39 + F3*G2 + F4*G38) + F4*G42 + F5*(G52 + F3*G26 + F4*G24 + F5*G43) + F6*(G120 + F6*G2 + F7*G38) + F7*G81 + F8*(G35 + F6*G26 + F7*G24 + F8*G43) + G40*(F4*F4 + F7*F7));
+    const double Gip14 = (G170 + F0*(G55 + F0*G169 + F1*G161 + F2*G13) + F1*(G168 + F1*G163 + F2*G165) + F2*(G167 + F2*G166) + F3*(G162 + F3*G157 + F4*G32) + F4*G164 + F5*(G40 + F3*G25 + F4*G43 + F5*G150) + F6*(G125 + F6*G157 + F7*G32) + F7*G80 + F8*(G156 + F6*G25 + F7*G43 + F8*G150) + G147*(F4*F4 + F7*F7));
+    
+    // Number of operations: 30
+    const double Gip15 = (G173 + F3*(G68 + F6*G26 + F7*G62 + F8*G114) + F4*(G120 + F6*G44 + F7*G47 + F8*G49) + F5*(G118 + F6*G117 + F7*G112 + F8*G115) + F6*G172 + F7*G174 + F8*G171);
+    
+    // Number of operations: 30
+    const double Gip16 = (G175 + F0*G164 + F1*G176 + F2*G99 + F3*(G77 + F0*G32 + F1*G78 + F2*G81) + F4*(G86 + F0*G85 + F1*G76 + F2*G75) + F5*(G83 + F0*G43 + F1*G38 + F2*G47));
+    
+    // Number of operations: 30
+    const double Gip17 = (G180 + F0*G52 + F1*G164 + F2*G140 + F3*(G126 + F0*G1 + F1*G32 + F2*G33) + F4*(G177 + F0*G179 + F1*G85 + F2*G137) + F5*(G178 + F0*G6 + F1*G43 + F2*G62));
     
     // Number of operations: 54
-    const double Gip15 = (G132 + F0*(G113 + F0*G106) + F1*(G25 + F0*G33 + F1*G97) + F2*(G86 + F0*G92 + F1*G31 + F2*G100) + F3*(G17 + F3*G107 + F4*G12) + F4*(G67 + F4*G104) + F5*(G131 + F3*G105 + F4*G98 + F5*G99) + F6*(G108 + F6*G106 + F7*G33 + F8*G92) + F7*(G95 + F7*G97 + F8*G31) + F8*(G90 + F8*G100));
+    const double Gip18 = (G182 + F0*(G10 + F0*G16) + F1*(G19 + F0*G1 + F1*G3) + F2*(G11 + F0*G14 + F1*G6 + F2*G7) + F3*(G51 + F3*G16) + F4*(G52 + F3*G1 + F4*G3 + F5*G6) + F5*(G56 + F3*G14 + F5*G7) + F6*(G181 + F6*G12 + F7*G21) + F7*(G183 + F7*G5) + F8*(G142 + F6*G9 + F7*G13 + F8*G8));
     
     // Number of operations: 30
-    const double Gip16 = (G134 + F3*(G14 + F6*G13 + F7*G5 + F8*G123) + F4*(G30 + F6*G33 + F7*G36 + F8*G27) + F5*(G90 + F6*G92 + F7*G31 + F8*G87) + F6*G96 + F7*G72 + F8*G133);
+    const double Gip19 = (G187 + F0*G139 + F1*G95 + F2*G185 + F3*(G186 + F0*G28 + F1*G89 + F2*G184) + F4*(G133 + F0*G33 + F1*G81 + F2*G135) + F5*(G113 + F0*G26 + F1*G44 + F2*G117));
     
     // Number of operations: 30
-    const double Gip17 = (G135 + F3*(G30 + F6*G33 + F7*G36 + F8*G27) + F4*(G35 + F6*G26 + F7*G24 + F8*G22) + F5*(G32 + F6*G31 + F7*G23 + F8*G28) + F6*G78 + F7*G80 + F8*G77);
+    const double Gip20 = (G190 + F3*(G70 + F6*G28 + F7*G33 + F8*G26) + F4*(G188 + F6*G89 + F7*G81 + F8*G44) + F5*(G191 + F6*G184 + F7*G135 + F8*G117) + F6*G189 + F7*G192 + F8*G172);
+    
+    // Number of operations: 30
+    const double Gip21 = (G194 + F3*(G125 + F6*G29 + F7*G32 + F8*G25) + F4*(G193 + F6*G90 + F7*G78 + F8*G42) + F5*(G188 + F6*G89 + F7*G81 + F8*G44) + F6*G92 + F7*G94 + F8*G91);
+    
+    // Number of operations: 55
+    const double Gip22 = (G203 + F0*(G198 + F0*G202 + F1*G155 + F2*G201) + F1*(G200 + F1*G195 + F2*G196) + F2*(G199 + F2*G197) + F3*(G95 + F3*G97 + F4*G81) + F4*G99 + F5*(G37 + F3*G44 + F4*G47 + F5*G100) + F6*(G188 + F6*G97 + F7*G81) + F7*G82 + F8*(G120 + F6*G44 + F7*G47 + F8*G100) + G96*(F4*F4 + F7*F7));
+    
+    // Number of operations: 30
+    const double Gip23 = (G206 + F3*(G205 + F6*G28 + F7*G89 + F8*G184) + F4*(G204 + F6*G33 + F7*G81 + F8*G135) + F5*(G207 + F6*G26 + F7*G44 + F8*G117) + F6*G139 + F7*G95 + F8*G185);
+    
+    // Number of operations: 30
+    const double Gip24 = (G210 + F3*(G156 + F6*G25 + F7*G43 + F8*G48) + F4*(G208 + F6*G42 + F7*G38 + F8*G41) + F5*(G120 + F6*G44 + F7*G47 + F8*G49) + F6*G91 + F7*G128 + F8*G209);
+    
+    // Number of operations: 30
+    const double Gip25 = (G211 + F0*G212 + F1*G213 + F2*G36 + F6*(G129 + F0*G32 + F1*G85 + F2*G43) + F7*(G127 + F0*G78 + F1*G76 + F2*G38) + F8*(G102 + F0*G81 + F1*G75 + F2*G47));
     
     // Number of operations: 54
-    const double Gip18 = (G142 + F0*(G125 + F0*G6 + F1*G27 + F2*G87) + F1*(G34 + F1*G43 + F2*G28) + F2*(G93 + F2*G136) + F3*(G133 + F3*G6 + F4*G27) + F4*(G77 + F4*G43) + F5*(G141 + F3*G87 + F4*G28 + F5*G136) + F6*(G140 + F6*G7 + F8*G137) + F7*(G144 + F6*G98 + F7*G50 + F8*G143) + F8*(G138 + F8*G139));
-    
-    // Number of operations: 30
-    const double Gip19 = (G145 + F3*(G16 + F6*G112 + F7*G0 + F8*G13) + F4*(G66 + F6*G0 + F7*G56 + F8*G33) + F5*(G108 + F6*G13 + F7*G33 + F8*G92) + F6*G114 + F7*G73 + F8*G96);
+    const double Gip26 = (G216 + F0*(G88 + F0*G97 + F1*G81 + F2*G44) + F1*(G102 + F1*G96 + F2*G47) + F2*(G101 + F2*G100) + F3*(G95 + F3*G97) + F4*(G99 + F3*G81 + F4*G96 + F5*G47) + F5*(G37 + F3*G44 + F5*G100) + F6*(G215 + F6*G202 + F7*G155) + F7*(G217 + F7*G195) + F8*(G214 + F6*G201 + F7*G196 + F8*G197));
     
     // Number of operations: 54
-    const double Gip20 = (G147 + F0*(G113 + F0*G106) + F1*(G25 + F0*G33 + F1*G97) + F2*(G86 + F0*G92 + F1*G31 + F2*G100) + F3*(G96 + F3*G106 + F4*G33) + F4*(G78 + F4*G97) + F5*(G109 + F3*G92 + F4*G31 + F5*G100) + F6*(G146 + F6*G107 + F7*G12 + F8*G105) + F7*(G148 + F7*G104 + F8*G98) + F8*(G140 + F8*G99));
+    const double Gip27 = (G219 + F0*(G23 + F0*G157 + F1*G32 + F2*G25) + F1*(G129 + F1*G147 + F2*G43) + F2*(G153 + F2*G150) + F3*(G4 + F3*G169 + F4*G161) + F4*(G218 + F4*G163) + F5*(G60 + F3*G13 + F4*G165 + F5*G166) + F6*(G125 + F6*G157 + F7*G32) + F7*(G80 + F7*G147) + F8*(G156 + F6*G25 + F7*G43 + F8*G150));
     
     // Number of operations: 30
-    const double Gip21 = (G149 + F0*G21 + F1*G71 + F2*G95 + F6*(G62 + F0*G0 + F1*G56 + F2*G33) + F7*(G44 + F0*G74 + F1*G38 + F2*G26) + F8*(G126 + F0*G5 + F1*G36 + F2*G31));
+    const double Gip28 = (G221 + F0*G125 + F1*G193 + F2*G188 + F6*(G220 + F0*G29 + F1*G90 + F2*G89) + F7*(G77 + F0*G32 + F1*G78 + F2*G81) + F8*(G222 + F0*G25 + F1*G42 + F2*G44));
     
     // Number of operations: 30
-    const double Gip22 = (G150 + F3*(G90 + F6*G92 + F7*G31 + F8*G87) + F4*(G32 + F6*G31 + F7*G23 + F8*G28) + F5*(G91 + F6*G87 + F7*G28 + F8*G88) + F6*G109 + F7*G151 + F8*G141);
+    const double Gip29 = (G224 + F0*G192 + F1*G225 + F2*G174 + F3*(G66 + F0*G33 + F1*G137 + F2*G62) + F4*(G102 + F0*G81 + F1*G75 + F2*G47) + F5*(G223 + F0*G135 + F1*G132 + F2*G112));
     
     // Number of operations: 54
-    const double Gip23 = (G154 + F0*(G62 + F0*G65) + F1*(G64 + F0*G56 + F1*G57) + F2*(G63 + F0*G33 + F1*G36 + F2*G60) + F3*(G73 + F3*G65 + F4*G56) + F4*(G83 + F4*G57) + F5*(G153 + F3*G33 + F4*G36 + F5*G60) + F6*(G152 + F6*G68 + F7*G70) + F7*(G51 + F7*G59) + F8*(G148 + F6*G12 + F7*G47 + F8*G61));
+    const double Gip30 = (G227 + F0*(G23 + F0*G157 + F1*G32 + F2*G25) + F1*(G129 + F1*G147 + F2*G43) + F2*(G153 + F2*G150) + F3*(G162 + F3*G157 + F4*G32) + F4*(G164 + F4*G147) + F5*(G40 + F3*G25 + F4*G43 + F5*G150) + F6*(G226 + F6*G154 + F7*G160) + F7*(G228 + F7*G149) + F8*(G215 + F6*G152 + F7*G155 + F8*G151));
     
     // Number of operations: 54
-    const double Gip24 = (G155 + F0*(G117 + F0*G68 + F1*G70 + F2*G12) + F1*(G128 + F1*G59 + F2*G47) + F2*(G103 + F2*G61) + F3*(G73 + F3*G65 + F4*G56) + F4*(G83 + F4*G57) + F5*(G153 + F3*G33 + F4*G36 + F5*G60) + F6*(G66 + F6*G65 + F7*G56 + F8*G33) + F7*(G71 + F7*G57 + F8*G36) + F8*(G30 + F8*G60));
+    const double Gip31 = (G242 + F0*(G233 + F0*G230 + F1*G135 + F2*G117) + F1*(G223 + F1*G229 + F2*G112) + F2*(G234 + F2*G232) + F3*(G185 + F3*G230 + F4*G135) + F4*(G231 + F4*G229) + F5*(G241 + F3*G117 + F4*G112 + F5*G232) + F6*(G240 + F6*G238 + F7*G103) + F7*(G105 + F7*G236) + F8*(G237 + F6*G235 + F7*G243 + F8*G239));
     
     // Number of operations: 30
-    const double Gip25 = (G156 + F0*G108 + F1*G122 + F2*G157 + F6*(G10 + F0*G13 + F1*G5 + F2*G123) + F7*(G63 + F0*G33 + F1*G36 + F2*G27) + F8*(G86 + F0*G92 + F1*G31 + F2*G87));
+    const double Gip32 = (G244 + F0*G245 + F1*G247 + F2*G246 + F6*(G19 + F0*G1 + F1*G179 + F2*G6) + F7*(G129 + F0*G32 + F1*G85 + F2*G43) + F8*(G66 + F0*G33 + F1*G137 + F2*G62));
     
     // Number of operations: 30
-    const double Gip26 = (G158 + F3*(G95 + F6*G33 + F7*G26 + F8*G31) + F4*(G85 + F6*G36 + F7*G24 + F8*G23) + F5*(G159 + F6*G27 + F7*G22 + F8*G28) + F6*G153 + F7*G52 + F8*G151);
+    const double Gip33 = (G248 + F0*G143 + F1*G37 + F2*G241 + F3*(G113 + F0*G26 + F1*G44 + F2*G117) + F4*(G121 + F0*G62 + F1*G47 + F2*G112) + F5*(G119 + F0*G114 + F1*G49 + F2*G115));
     
     // Number of operations: 30
-    const double Gip27 = (G160 + F0*G71 + F1*G81 + F2*G85 + F6*(G64 + F0*G56 + F1*G38 + F2*G36) + F7*(G46 + F0*G38 + F1*G82 + F2*G24) + F8*(G37 + F0*G36 + F1*G24 + F2*G23));
+    const double Gip34 = (G249 + F0*G162 + F1*G250 + F2*G95 + F3*(G220 + F0*G29 + F1*G90 + F2*G89) + F4*(G77 + F0*G32 + F1*G78 + F2*G81) + F5*(G222 + F0*G25 + F1*G42 + F2*G44));
     
     // Number of operations: 30
-    const double Gip28 = (G161 + F0*G153 + F1*G52 + F2*G151 + F3*(G25 + F0*G33 + F1*G26 + F2*G31) + F4*(G37 + F0*G36 + F1*G24 + F2*G23) + F5*(G34 + F0*G27 + F1*G22 + F2*G28));
+    const double Gip35 = (G251 + F0*G70 + F1*G188 + F2*G191 + F6*(G186 + F0*G28 + F1*G89 + F2*G184) + F7*(G133 + F0*G33 + F1*G81 + F2*G135) + F8*(G113 + F0*G26 + F1*G44 + F2*G117));
+    
+    // Number of operations: 55
+    const double Gip36 = (G254 + F0*(G252 + F0*G154 + F1*G160 + F2*G152) + F1*(G253 + F1*G149 + F2*G155) + F2*(G198 + F2*G151) + F3*(G162 + F3*G157 + F4*G32) + F4*G164 + F5*(G40 + F3*G25 + F4*G43 + F5*G150) + F6*(G125 + F6*G157 + F7*G32) + F7*G80 + F8*(G156 + F6*G25 + F7*G43 + F8*G150) + G147*(F4*F4 + F7*F7));
+    
+    // Number of operations: 55
+    const double Gip37 = (G263 + F0*(G258 + F0*G262) + F1*(G260 + F0*G255 + F1*G256 + F2*G103) + F2*(G259 + F0*G261 + F2*G257) + F3*(G139 + F3*G69 + F4*G33) + F4*G140 + F5*(G143 + F3*G26 + F4*G62 + F5*G63) + F6*(G70 + F6*G69 + F7*G33) + F7*G74 + F8*(G68 + F6*G26 + F7*G62 + F8*G63) + G58*(F4*F4 + F7*F7));
     
     // Number of operations: 30
-    const double Gip29 = (G162 + F0*G66 + F1*G120 + F2*G122 + F6*(G18 + F0*G0 + F1*G74 + F2*G5) + F7*(G64 + F0*G56 + F1*G38 + F2*G36) + F8*(G25 + F0*G33 + F1*G26 + F2*G31));
+    const double Gip38 = (G265 + F3*(G207 + F6*G26 + F7*G44 + F8*G117) + F4*(G264 + F6*G62 + F7*G47 + F8*G112) + F5*(G266 + F6*G114 + F7*G49 + F8*G115) + F6*G143 + F7*G37 + F8*G241);
     
     // Number of operations: 30
-    const double Gip30 = (G163 + F0*G114 + F1*G73 + F2*G96 + F3*(G9 + F0*G112 + F1*G0 + F2*G13) + F4*(G62 + F0*G0 + F1*G56 + F2*G33) + F5*(G113 + F0*G13 + F1*G33 + F2*G92));
+    const double Gip39 = (G267 + F3*(G74 + F6*G33 + F7*G137 + F8*G62) + F4*(G82 + F6*G81 + F7*G75 + F8*G47) + F5*(G136 + F6*G135 + F7*G132 + F8*G112) + F6*G192 + F7*G225 + F8*G174);
     
     // Number of operations: 30
-    const double Gip31 = (G164 + F0*G95 + F1*G85 + F2*G159 + F6*(G63 + F0*G33 + F1*G36 + F2*G27) + F7*(G45 + F0*G26 + F1*G24 + F2*G22) + F8*(G76 + F0*G31 + F1*G23 + F2*G28));
+    const double Gip40 = (G269 + F0*G40 + F1*G50 + F2*G37 + F3*(G222 + F0*G25 + F1*G42 + F2*G44) + F4*(G83 + F0*G43 + F1*G38 + F2*G47) + F5*(G268 + F0*G48 + F1*G41 + F2*G49));
     
     // Number of operations: 30
-    const double Gip32 = (G165 + F0*G96 + F1*G72 + F2*G133 + F3*(G10 + F0*G13 + F1*G5 + F2*G123) + F4*(G63 + F0*G33 + F1*G36 + F2*G27) + F5*(G86 + F0*G92 + F1*G31 + F2*G87));
+    const double Gip41 = (G271 + F3*(G22 + F6*G1 + F7*G179 + F8*G6) + F4*(G80 + F6*G32 + F7*G85 + F8*G43) + F5*(G74 + F6*G33 + F7*G137 + F8*G62) + F6*G35 + F7*G272 + F8*G270);
     
     // Number of operations: 30
-    const double Gip33 = (G166 + F0*G115 + F1*G83 + F2*G78 + F3*(G62 + F0*G0 + F1*G56 + F2*G33) + F4*(G44 + F0*G74 + F1*G38 + F2*G26) + F5*(G126 + F0*G5 + F1*G36 + F2*G31));
+    const double Gip42 = (G273 + F0*G35 + F1*G272 + F2*G270 + F3*(G19 + F0*G1 + F1*G179 + F2*G6) + F4*(G129 + F0*G32 + F1*G85 + F2*G43) + F5*(G66 + F0*G33 + F1*G137 + F2*G62));
     
     // Number of operations: 30
-    const double Gip34 = (G167 + F3*(G108 + F6*G13 + F7*G33 + F8*G92) + F4*(G122 + F6*G5 + F7*G36 + F8*G31) + F5*(G157 + F6*G123 + F7*G27 + F8*G87) + F6*G118 + F7*G153 + F8*G109);
+    const double Gip43 = (G274 + F0*G205 + F1*G204 + F2*G207 + F6*(G27 + F0*G28 + F1*G33 + F2*G26) + F7*(G88 + F0*G89 + F1*G81 + F2*G44) + F8*(G233 + F0*G184 + F1*G135 + F2*G117));
     
     // Number of operations: 54
-    const double Gip35 = (G170 + F0*(G102 + F0*G7 + F1*G98 + F2*G137) + F1*(G169 + F1*G50 + F2*G143) + F2*(G168 + F2*G139) + F3*(G133 + F3*G6) + F4*(G77 + F3*G27 + F4*G43 + F5*G28) + F5*(G141 + F3*G87 + F5*G136) + F6*(G157 + F6*G6 + F8*G87) + F7*(G159 + F6*G27 + F7*G43 + F8*G28) + F8*(G91 + F8*G136));
-    
-    // Number of operations: 54
-    const double Gip36 = (G177 + F0*(G126 + F0*G172) + F1*(G37 + F0*G36 + F1*G171) + F2*(G76 + F0*G31 + F1*G23 + F2*G173) + F3*(G72 + F3*G172 + F4*G36) + F4*(G80 + F4*G171) + F5*(G151 + F3*G31 + F4*G23 + F5*G173) + F6*(G148 + F6*G175 + F7*G47) + F7*(G49 + F7*G174) + F8*(G144 + F6*G98 + F7*G178 + F8*G176));
-    
-    // Number of operations: 54
-    const double Gip37 = (G179 + F0*(G103 + F0*G175) + F1*(G129 + F0*G47 + F1*G174) + F2*(G169 + F0*G98 + F1*G178 + F2*G176) + F3*(G72 + F3*G172 + F4*G36) + F4*(G80 + F4*G171) + F5*(G151 + F3*G31 + F4*G23 + F5*G173) + F6*(G122 + F6*G172 + F7*G36) + F7*(G85 + F7*G171) + F8*(G32 + F6*G31 + F7*G23 + F8*G173));
+    const double Gip44 = (G283 + F0*(G87 + F0*G276 + F1*G78 + F2*G42) + F1*(G127 + F1*G275 + F2*G38) + F2*(G279 + F2*G278) + F3*(G250 + F3*G276 + F4*G78) + F4*(G176 + F4*G275) + F5*(G50 + F3*G42 + F4*G38 + F5*G278) + F6*(G228 + F6*G281 + F7*G277) + F7*(G285 + F7*G280) + F8*(G217 + F6*G155 + F7*G284 + F8*G282));
     
     // Number of operations: 30
-    const double Gip38 = (G180 + F0*G118 + F1*G153 + F2*G109 + F3*(G113 + F0*G13 + F1*G33 + F2*G92) + F4*(G126 + F0*G5 + F1*G36 + F2*G31) + F5*(G125 + F0*G123 + F1*G27 + F2*G87));
-    
-    // Number of operations: 54
-    const double Gip39 = (G183 + F0*(G126 + F0*G172) + F1*(G37 + F0*G36 + F1*G171) + F2*(G76 + F0*G31 + F1*G23 + F2*G173) + F3*(G67 + F3*G175 + F4*G47) + F4*(G181 + F4*G174) + F5*(G182 + F3*G98 + F4*G178 + F5*G176) + F6*(G122 + F6*G172 + F7*G36) + F7*(G85 + F7*G171) + F8*(G32 + F6*G31 + F7*G23 + F8*G173));
-    
-    // Number of operations: 54
-    const double Gip40 = (G185 + F0*(G125 + F0*G6 + F1*G27 + F2*G87) + F1*(G34 + F1*G43 + F2*G28) + F2*(G93 + F2*G136) + F3*(G131 + F3*G7 + F4*G98) + F4*(G182 + F4*G50) + F5*(G184 + F3*G137 + F4*G143 + F5*G139) + F6*(G157 + F6*G6 + F8*G87) + F7*(G159 + F6*G27 + F7*G43 + F8*G28) + F8*(G91 + F8*G136));
-    
-    // Number of operations: 54
-    const double Gip41 = (G187 + F0*(G44 + F0*G2 + F1*G38 + F2*G26) + F1*(G46 + F1*G40 + F2*G24) + F2*(G45 + F2*G43) + F3*(G58 + F3*G4 + F4*G41) + F4*(G186 + F4*G48) + F5*(G181 + F3*G47 + F4*G54 + F5*G50) + F6*(G120 + F6*G2 + F7*G38) + F7*(G81 + F7*G40) + F8*(G35 + F6*G26 + F7*G24 + F8*G43));
-    
-    // Number of operations: 54
-    const double Gip42 = (G189 + F0*(G9 + F0*G15 + F1*G0 + F2*G13) + F1*(G18 + F1*G2 + F2*G5) + F2*(G10 + F2*G6) + F3*(G114 + F3*G15 + F4*G0) + F4*(G115 + F4*G2) + F5*(G118 + F3*G13 + F4*G5 + F5*G6) + F6*(G188 + F6*G11 + F7*G20) + F7*(G152 + F7*G4) + F8*(G146 + F6*G8 + F7*G12 + F8*G7));
+    const double Gip45 = (G286 + F0*G207 + F1*G264 + F2*G266 + F6*(G65 + F0*G26 + F1*G62 + F2*G114) + F7*(G101 + F0*G44 + F1*G47 + F2*G49) + F8*(G234 + F0*G117 + F1*G112 + F2*G115));
     
     // Number of operations: 30
-    const double Gip43 = (G190 + F0*G83 + F1*G42 + F2*G80 + F3*(G64 + F0*G56 + F1*G38 + F2*G36) + F4*(G46 + F0*G38 + F1*G82 + F2*G24) + F5*(G37 + F0*G36 + F1*G24 + F2*G23));
+    const double Gip46 = (G287 + F0*G288 + F1*G246 + F2*G290 + F6*(G11 + F0*G14 + F1*G6 + F2*G289) + F7*(G153 + F0*G25 + F1*G43 + F2*G48) + F8*(G65 + F0*G26 + F1*G62 + F2*G114));
+    
+    // Number of operations: 54
+    const double Gip47 = (G294 + F0*(G233 + F0*G230 + F1*G135 + F2*G117) + F1*(G223 + F1*G229 + F2*G112) + F2*(G234 + F2*G232) + F3*(G291 + F3*G238 + F4*G103) + F4*(G292 + F4*G236) + F5*(G293 + F3*G235 + F4*G243 + F5*G239) + F6*(G191 + F6*G230 + F8*G117) + F7*(G136 + F6*G135 + F7*G229 + F8*G112) + F8*(G118 + F8*G232));
     
     // Number of operations: 30
-    const double Gip44 = (G191 + F0*G109 + F1*G151 + F2*G141 + F3*(G86 + F0*G92 + F1*G31 + F2*G87) + F4*(G76 + F0*G31 + F1*G23 + F2*G28) + F5*(G93 + F0*G87 + F1*G28 + F2*G88));
+    const double Gip48 = (G296 + F3*(G295 + F6*G24 + F7*G29 + F8*G28) + F4*(G245 + F6*G1 + F7*G32 + F8*G33) + F5*(G288 + F6*G14 + F7*G25 + F8*G26) + F6*G51 + F7*G162 + F8*G139);
+    
+    // Number of operations: 30
+    const double Gip49 = (G298 + F0*G56 + F1*G40 + F2*G143 + F3*(G124 + F0*G14 + F1*G25 + F2*G26) + F4*(G178 + F0*G6 + F1*G43 + F2*G62) + F5*(G297 + F0*G289 + F1*G48 + F2*G114));
+    
+    // Number of operations: 54
+    const double Gip50 = (G299 + F0*(G23 + F0*G157) + F1*(G129 + F0*G32 + F1*G147) + F2*(G153 + F0*G25 + F1*G43 + F2*G150) + F3*(G162 + F3*G157 + F4*G32) + F4*(G164 + F4*G147) + F5*(G40 + F3*G25 + F4*G43 + F5*G150) + F6*(G183 + F6*G169 + F8*G13) + F7*(G300 + F6*G161 + F7*G163 + F8*G165) + F8*(G145 + F8*G166));
+    
+    // Number of operations: 30
+    const double Gip51 = (G301 + F3*(G288 + F6*G14 + F7*G25 + F8*G26) + F4*(G246 + F6*G6 + F7*G43 + F8*G62) + F5*(G290 + F6*G289 + F7*G48 + F8*G114) + F6*G56 + F7*G40 + F8*G143);
+    
+    // Number of operations: 30
+    const double Gip52 = (G302 + F3*(G80 + F6*G32 + F7*G85 + F8*G43) + F4*(G84 + F6*G78 + F7*G76 + F8*G38) + F5*(G82 + F6*G81 + F7*G75 + F8*G47) + F6*G94 + F7*G131 + F8*G128);
+    
+    // Number of operations: 30
+    const double Gip53 = (G303 + F0*G204 + F1*G304 + F2*G264 + F6*(G66 + F0*G33 + F1*G137 + F2*G62) + F7*(G102 + F0*G81 + F1*G75 + F2*G47) + F8*(G223 + F0*G135 + F1*G132 + F2*G112));
+    
+    // Number of operations: 30
+    const double Gip54 = (G305 + F3*(G212 + F6*G32 + F7*G78 + F8*G81) + F4*(G213 + F6*G85 + F7*G76 + F8*G75) + F5*(G36 + F6*G43 + F7*G38 + F8*G47) + F6*G164 + F7*G176 + F8*G99);
+    
+    // Number of operations: 30
+    const double Gip55 = (G306 + F0*G22 + F1*G80 + F2*G74 + F6*(G126 + F0*G1 + F1*G32 + F2*G33) + F7*(G177 + F0*G179 + F1*G85 + F2*G137) + F8*(G178 + F0*G6 + F1*G43 + F2*G62));
+    
+    // Number of operations: 30
+    const double Gip56 = (G307 + F3*(G245 + F6*G1 + F7*G32 + F8*G33) + F4*(G247 + F6*G179 + F7*G85 + F8*G137) + F5*(G246 + F6*G6 + F7*G43 + F8*G62) + F6*G52 + F7*G164 + F8*G140);
+    
+    // Number of operations: 54
+    const double Gip57 = (G309 + F0*(G27 + F0*G69) + F1*(G66 + F0*G33 + F1*G58) + F2*(G65 + F0*G26 + F1*G62 + F2*G63) + F3*(G139 + F3*G69 + F4*G33) + F4*(G140 + F4*G58) + F5*(G143 + F3*G26 + F4*G62 + F5*G63) + F6*(G308 + F6*G262 + F7*G255) + F7*(G108 + F7*G256) + F8*(G240 + F6*G261 + F7*G103 + F8*G257));
+    
+    // Number of operations: 55
+    const double Gip58 = (G312 + F0*(G260 + F0*G106 + F1*G98 + F2*G103) + F1*(G311 + F1*G104 + F2*G110) + F2*(G310 + F2*G107) + F3*(G95 + F3*G97 + F4*G81) + F4*G99 + F5*(G37 + F3*G44 + F4*G47 + F5*G100) + F6*(G188 + F6*G97 + F7*G81) + F7*G82 + F8*(G120 + F6*G44 + F7*G47 + F8*G100) + G96*(F4*F4 + F7*F7));
+    
+    // Number of operations: 55
+    const double Gip59 = (G314 + F0*(G253 + F0*G281 + F1*G277 + F2*G155) + F1*(G313 + F1*G280 + F2*G284) + F2*(G200 + F2*G282) + F3*(G250 + F3*G276 + F4*G78) + F4*G176 + F5*(G50 + F3*G42 + F4*G38 + F5*G278) + F6*(G193 + F6*G276 + F7*G78) + F7*G84 + F8*(G208 + F6*G42 + F7*G38 + F8*G278) + G275*(F4*F4 + F7*F7));
+    
+    // Number of operations: 30
+    const double Gip60 = (G315 + F0*G156 + F1*G208 + F2*G120 + F6*(G222 + F0*G25 + F1*G42 + F2*G44) + F7*(G83 + F0*G43 + F1*G38 + F2*G47) + F8*(G268 + F0*G48 + F1*G41 + F2*G49));
+    
+    // Number of operations: 30
+    const double Gip61 = (G316 + F0*G189 + F1*G192 + F2*G172 + F3*(G27 + F0*G28 + F1*G33 + F2*G26) + F4*(G88 + F0*G89 + F1*G81 + F2*G44) + F5*(G233 + F0*G184 + F1*G135 + F2*G117));
+    
+    // Number of operations: 30
+    const double Gip62 = (G317 + F0*G140 + F1*G99 + F2*G231 + F3*(G133 + F0*G33 + F1*G81 + F2*G135) + F4*(G138 + F0*G137 + F1*G75 + F2*G132) + F5*(G121 + F0*G62 + F1*G47 + F2*G112));
+    
+    // Number of operations: 30
+    const double Gip63 = (G319 + F3*(G15 + F6*G14 + F7*G6 + F8*G289) + F4*(G156 + F6*G25 + F7*G43 + F8*G48) + F5*(G68 + F6*G26 + F7*G62 + F8*G114) + F6*G30 + F7*G270 + F8*G318);
+    
+    // Number of operations: 30
+    const double Gip64 = (G320 + F0*G172 + F1*G174 + F2*G171 + F3*(G65 + F0*G26 + F1*G62 + F2*G114) + F4*(G101 + F0*G44 + F1*G47 + F2*G49) + F5*(G234 + F0*G117 + F1*G112 + F2*G115));
+    
+    // Number of operations: 30
+    const double Gip65 = (G321 + F0*G39 + F1*G36 + F2*G46 + F6*(G153 + F0*G25 + F1*G43 + F2*G48) + F7*(G279 + F0*G42 + F1*G38 + F2*G41) + F8*(G101 + F0*G44 + F1*G47 + F2*G49));
+    
+    // Number of operations: 54
+    const double Gip66 = (G324 + F0*(G87 + F0*G276 + F1*G78 + F2*G42) + F1*(G127 + F1*G275 + F2*G38) + F2*(G279 + F2*G278) + F3*(G148 + F3*G281 + F4*G277) + F4*(G322 + F4*G280) + F5*(G323 + F3*G155 + F4*G284 + F5*G282) + F6*(G193 + F6*G276 + F7*G78) + F7*(G84 + F7*G275) + F8*(G208 + F6*G42 + F7*G38 + F8*G278));
+    
+    // Number of operations: 30
+    const double Gip67 = (G325 + F0*G51 + F1*G162 + F2*G139 + F3*(G122 + F0*G24 + F1*G29 + F2*G28) + F4*(G126 + F0*G1 + F1*G32 + F2*G33) + F5*(G124 + F0*G14 + F1*G25 + F2*G26));
+    
+    // Number of operations: 30
+    const double Gip68 = (G326 + F3*(G204 + F6*G33 + F7*G81 + F8*G135) + F4*(G304 + F6*G137 + F7*G75 + F8*G132) + F5*(G264 + F6*G62 + F7*G47 + F8*G112) + F6*G140 + F7*G99 + F8*G231);
+    
+    // Number of operations: 30
+    const double Gip69 = (G327 + F0*G30 + F1*G270 + F2*G318 + F3*(G11 + F0*G14 + F1*G6 + F2*G289) + F4*(G153 + F0*G25 + F1*G43 + F2*G48) + F5*(G65 + F0*G26 + F1*G62 + F2*G114));
+    
+    // Number of operations: 30
+    const double Gip70 = (G329 + F3*(G328 + F6*G29 + F7*G90 + F8*G89) + F4*(G212 + F6*G32 + F7*G78 + F8*G81) + F5*(G39 + F6*G25 + F7*G42 + F8*G44) + F6*G162 + F7*G250 + F8*G95);
+    
+    // Number of operations: 54
+    const double Gip71 = (G332 + F0*(G88 + F0*G97 + F1*G81 + F2*G44) + F1*(G102 + F1*G96 + F2*G47) + F2*(G101 + F2*G100) + F3*(G330 + F3*G106) + F4*(G331 + F3*G98 + F4*G104 + F5*G110) + F5*(G292 + F3*G103 + F5*G107) + F6*(G188 + F6*G97 + F7*G81) + F7*(G82 + F7*G96) + F8*(G120 + F6*G44 + F7*G47 + F8*G100));
+    
+    // Number of operations: 55
+    const double Gip72 = (G334 + F0*(G54 + F0*G59 + F1*G13 + F2*G64) + F1*(G167 + F1*G61 + F2*G67) + F2*(G333 + F2*G72) + F3*(G139 + F3*G69 + F4*G33) + F4*G140 + F5*(G143 + F3*G26 + F4*G62 + F5*G63) + F6*(G70 + F6*G69 + F7*G33) + F7*G74 + F8*(G68 + F6*G26 + F7*G62 + F8*G63) + G58*(F4*F4 + F7*F7));
+    
+    // Number of operations: 30
+    const double Gip73 = (G335 + F0*G328 + F1*G212 + F2*G39 + F6*(G23 + F0*G29 + F1*G32 + F2*G25) + F7*(G87 + F0*G90 + F1*G78 + F2*G42) + F8*(G88 + F0*G89 + F1*G81 + F2*G44));
+    
+    // Number of operations: 30
+    const double Gip74 = (G336 + F3*(G17 + F6*G24 + F7*G1 + F8*G14) + F4*(G125 + F6*G29 + F7*G32 + F8*G25) + F5*(G70 + F6*G28 + F7*G33 + F8*G26) + F6*G31 + F7*G35 + F8*G30);
+    
+    // Number of operations: 55
+    const double Gip75 = (G338 + F0*(G259 + F0*G238 + F1*G103) + F1*(G310 + F1*G236) + F2*(G337 + F0*G235 + F1*G243 + F2*G239) + F3*(G185 + F3*G230 + F4*G135) + F4*G231 + F5*(G241 + F3*G117 + F4*G112 + F5*G232) + F6*(G191 + F6*G230 + F7*G135) + F7*G136 + F8*(G118 + F6*G117 + F7*G112 + F8*G232) + G229*(F4*F4 + F7*F7));
+    
+    // Number of operations: 30
+    const double Gip76 = (G339 + F0*G91 + F1*G128 + F2*G209 + F3*(G153 + F0*G25 + F1*G43 + F2*G48) + F4*(G279 + F0*G42 + F1*G38 + F2*G41) + F5*(G101 + F0*G44 + F1*G47 + F2*G49));
+    
+    // Number of operations: 30
+    const double Gip77 = (G340 + F0*G295 + F1*G245 + F2*G288 + F6*(G10 + F0*G24 + F1*G1 + F2*G14) + F7*(G23 + F0*G29 + F1*G32 + F2*G25) + F8*(G27 + F0*G28 + F1*G33 + F2*G26));
+    
+    // Number of operations: 30
+    const double Gip78 = (G341 + F0*G15 + F1*G156 + F2*G68 + F6*(G124 + F0*G14 + F1*G25 + F2*G26) + F7*(G178 + F0*G6 + F1*G43 + F2*G62) + F8*(G297 + F0*G289 + F1*G48 + F2*G114));
+    
+    // Number of operations: 54
+    const double Gip79 = (G343 + F0*(G88 + F0*G97 + F1*G81 + F2*G44) + F1*(G102 + F1*G96 + F2*G47) + F2*(G101 + F2*G100) + F3*(G158 + F3*G202 + F4*G155) + F4*(G323 + F4*G195) + F5*(G342 + F3*G201 + F4*G196 + F5*G197) + F6*(G188 + F6*G97 + F7*G81) + F7*(G82 + F7*G96) + F8*(G120 + F6*G44 + F7*G47 + F8*G100));
+    
+    // Number of operations: 54
+    const double Gip80 = (G345 + F0*(G27 + F0*G69) + F1*(G66 + F0*G33 + F1*G58 + F2*G62) + F2*(G65 + F0*G26 + F2*G63) + F3*(G344 + F3*G262) + F4*(G330 + F3*G255 + F4*G256 + F5*G103) + F5*(G291 + F3*G261 + F5*G257) + F6*(G70 + F6*G69 + F7*G33) + F7*(G74 + F7*G58) + F8*(G68 + F6*G26 + F7*G62 + F8*G63));
     
     
-    // Number of operations for primary indices = 972
+    // Number of operations for primary indices: 1080
     for (unsigned int j = 0; j < 2; j++)
     {
       for (unsigned int k = 0; k < 2; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip0;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip1;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip2;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip3;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip4;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip5;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip6;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip7;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip8;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip9;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip10;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip11;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip12;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip3;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip13;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip14;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip15;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip16;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip17;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip18;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip19;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip20;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip21;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip12;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip22;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip23;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 4
+        A[nzc7[j]*12 + nzc7[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip0 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip1;
+        // Number of operations to compute entry: 3
+        A[nzc10[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip2;
+        // Number of operations to compute entry: 4
+        A[nzc3[j]*12 + nzc3[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip3 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc7[j]*12 + nzc5[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip4 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip5;
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip6;
+        // Number of operations to compute entry: 4
+        A[nzc9[j]*12 + nzc10[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip7 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip8;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip9;
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip10;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip11;
+        // Number of operations to compute entry: 4
+        A[nzc11[j]*12 + nzc9[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip12 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc6[j]*12 + nzc7[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip13 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc3[j]*12 + nzc2[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip14 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip15;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip16;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip17;
+        // Number of operations to compute entry: 4
+        A[nzc11[j]*12 + nzc11[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip18 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip19;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip20;
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip21;
+        // Number of operations to compute entry: 4
+        A[nzc2[j]*12 + nzc1[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip22 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc9[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip23;
+        // Number of operations to compute entry: 3
         A[nzc6[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip24;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip25;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip1;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip26;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip27;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip28;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip16;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip9;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip29;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip13;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip25;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip30;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip31;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip28;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc4[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip32;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip33;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip34;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip23;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip20;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip31;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip35;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip32;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip36;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip30;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip34;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip22;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip37;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip38;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip7;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip39;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip37;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip39;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip40;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip41;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip42;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip27;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip21;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip26;
-        // Number of operations to compute entry = 3
-        A[nzc11[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip17;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip6;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip8;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip15;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip24;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip10;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip4;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip43;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*12 + nzc8[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip19;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip5;
-        // Number of operations to compute entry = 3
-        A[nzc10[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip44;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip44;
-        // Number of operations to compute entry = 3
-        A[nzc9[j]*12 + nzc0[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip38;
-        // Number of operations to compute entry = 3
-        A[nzc7[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip36;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip33;
-        // Number of operations to compute entry = 3
-        A[nzc6[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip43;
-        // Number of operations to compute entry = 3
-        A[nzc8[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip29;
+        // Number of operations to compute entry: 3
+        A[nzc10[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip25;
+        // Number of operations to compute entry: 4
+        A[nzc10[j]*12 + nzc9[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip26 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc7[j]*12 + nzc6[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip27 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip28;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip29;
+        // Number of operations to compute entry: 4
+        A[nzc10[j]*12 + nzc11[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip30 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc9[j]*12 + nzc9[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip31 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc11[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip32;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip33;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip34;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip35;
+        // Number of operations to compute entry: 4
+        A[nzc2[j]*12 + nzc3[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip36 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc1[j]*12 + nzc3[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip37 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc9[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip38;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip39;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip40;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip41;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip42;
+        // Number of operations to compute entry: 3
+        A[nzc9[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip43;
+        // Number of operations to compute entry: 4
+        A[nzc10[j]*12 + nzc10[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip44 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc9[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip45;
+        // Number of operations to compute entry: 3
+        A[nzc11[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip46;
+        // Number of operations to compute entry: 4
+        A[nzc5[j]*12 + nzc5[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip47 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc11[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip48;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip49;
+        // Number of operations to compute entry: 4
+        A[nzc11[j]*12 + nzc10[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip50 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc11[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip51;
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip52;
+        // Number of operations to compute entry: 3
+        A[nzc9[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip53;
+        // Number of operations to compute entry: 3
+        A[nzc10[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip54;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip55;
+        // Number of operations to compute entry: 3
+        A[nzc11[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip56;
+        // Number of operations to compute entry: 4
+        A[nzc9[j]*12 + nzc11[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip57 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc1[j]*12 + nzc2[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip58 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc2[j]*12 + nzc2[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip59 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip60;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip61;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip62;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip63;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip64;
+        // Number of operations to compute entry: 3
+        A[nzc10[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip65;
+        // Number of operations to compute entry: 4
+        A[nzc6[j]*12 + nzc6[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip66 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip67;
+        // Number of operations to compute entry: 3
+        A[nzc9[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip68;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip69;
+        // Number of operations to compute entry: 3
+        A[nzc10[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip70;
+        // Number of operations to compute entry: 4
+        A[nzc5[j]*12 + nzc6[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip71 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc3[j]*12 + nzc1[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip72 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc10[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip73;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip74;
+        // Number of operations to compute entry: 4
+        A[nzc1[j]*12 + nzc1[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip75 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip76;
+        // Number of operations to compute entry: 3
+        A[nzc11[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip77;
+        // Number of operations to compute entry: 3
+        A[nzc3[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip78;
+        // Number of operations to compute entry: 4
+        A[nzc6[j]*12 + nzc5[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip79 + G0);
+        // Number of operations to compute entry: 4
+        A[nzc5[j]*12 + nzc7[k]] += (FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*Gip80 + G0);
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -12155,7 +12417,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -12685,7 +12947,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -13215,7 +13477,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -13745,7 +14007,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -14689,7 +14951,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -15219,7 +15481,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -15749,7 +16011,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -16279,7 +16541,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -17223,7 +17485,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -17753,7 +18015,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -18283,7 +18545,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -18813,7 +19075,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -19757,7 +20019,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -20287,7 +20549,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -20817,7 +21079,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -21347,7 +21609,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -22291,7 +22553,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return the cell shape
@@ -22760,7 +23022,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return the cell shape
@@ -23234,7 +23496,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -23420,7 +23682,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -23606,7 +23868,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -23792,7 +24054,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -24048,7 +24310,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -24234,7 +24496,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -24420,7 +24682,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -24606,7 +24868,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -24862,7 +25124,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -25048,7 +25310,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -25234,7 +25496,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -25420,7 +25682,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -25676,7 +25938,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -25862,7 +26124,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -26048,7 +26310,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -26234,7 +26496,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -26490,7 +26752,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -26656,7 +26918,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -26882,11 +27144,11 @@ public:
     {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
     
     // Array of non-zero columns
-    static const unsigned int nzc1[4] = {0, 1, 2, 3};
+    static const unsigned int nzc0[4] = {0, 1, 2, 3};
     // Array of non-zero columns
-    static const unsigned int nzc2[4] = {4, 5, 6, 7};
+    static const unsigned int nzc4[4] = {4, 5, 6, 7};
     // Array of non-zero columns
-    static const unsigned int nzc3[4] = {8, 9, 10, 11};
+    static const unsigned int nzc8[4] = {8, 9, 10, 11};
     static const double FE1_C0_D001[8][2] = \
     {{-1, 1},
     {-1, 1},
@@ -26898,251 +27160,333 @@ public:
     {-1, 1}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 3};
+    static const unsigned int nzc1[2] = {0, 3};
     // Array of non-zero columns
-    static const unsigned int nzc4[2] = {0, 1};
+    static const unsigned int nzc3[2] = {0, 1};
     // Array of non-zero columns
-    static const unsigned int nzc5[2] = {0, 2};
+    static const unsigned int nzc2[2] = {0, 2};
     // Array of non-zero columns
-    static const unsigned int nzc6[2] = {8, 10};
+    static const unsigned int nzc9[2] = {8, 11};
     // Array of non-zero columns
-    static const unsigned int nzc7[2] = {4, 6};
+    static const unsigned int nzc6[2] = {4, 6};
     // Array of non-zero columns
-    static const unsigned int nzc8[2] = {4, 5};
+    static const unsigned int nzc7[2] = {4, 5};
     // Array of non-zero columns
-    static const unsigned int nzc9[2] = {8, 9};
+    static const unsigned int nzc11[2] = {8, 9};
     // Array of non-zero columns
-    static const unsigned int nzc10[2] = {8, 11};
+    static const unsigned int nzc10[2] = {8, 10};
     // Array of non-zero columns
-    static const unsigned int nzc11[2] = {4, 7};
+    static const unsigned int nzc5[2] = {4, 7};
     
-    // Number of operations to compute geometry constants: 5946
-    const double G0 = det*(0.5*w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G1 = det*(Jinv_10*Jinv_10*Jinv_10*Jinv_10*(w[3][0] + 0.5*w[4][0]) + Jinv_11*Jinv_11*(Jinv_10*Jinv_10*(w[4][0] + 2*w[3][0]) + Jinv_11*Jinv_11*(w[3][0] + 0.5*w[4][0])) + Jinv_12*Jinv_12*(w[3][0]*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*Jinv_12) + w[4][0]*(0.5*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
-    const double G2 = det*(1.5*w[4][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + 3*w[3][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G3 = det*(Jinv_10*(w[3][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_20*w[3][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G4 = Jinv_11*det*(0.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G5 = det*(w[3][0]*(Jinv_20*Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G6 = det*(Jinv_01*Jinv_11*w[4][0] + w[3][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12));
-    const double G7 = det*(w[3][0]*(Jinv_10*(4*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + Jinv_12*(4*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22))) + w[4][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G8 = det*(w[3][0]*(Jinv_10*(Jinv_10*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G9 = det*(Jinv_11*(w[3][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_21*w[3][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
-    const double G10 = det*(2*w[3][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[4][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G11 = det*(2*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_10*Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_12*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G12 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[4][0]*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)));
-    const double G13 = det*(Jinv_01*(w[3][0]*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 3*Jinv_01*Jinv_11) + w[4][0]*(1.5*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_11*(0.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)));
-    const double G14 = det*(Jinv_10*w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[3][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G15 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_01*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_02*Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + det*w[3][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G16 = Jinv_11*Jinv_12*det*(w[3][0] + w[4][0]);
-    const double G17 = det*(0.5*Jinv_11*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_21*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G18 = det*(2*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G19 = det*(Jinv_00*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[3][0]*(Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G20 = det*(Jinv_22*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[3][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)));
-    const double G21 = det*(Jinv_02*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(Jinv_00*Jinv_10*(w[3][0] + w[4][0]) + Jinv_01*Jinv_11*(w[3][0] + w[4][0]) + Jinv_02*Jinv_12*(w[4][0] + 2*w[3][0])));
-    const double G22 = det*(w[3][0]*(2*(Jinv_10*Jinv_10*Jinv_20*Jinv_20 + Jinv_11*Jinv_21*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*Jinv_22*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[4][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G23 = det*(Jinv_01*(w[3][0]*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11) + w[4][0]*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + Jinv_11*(2*w[4][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 4*w[3][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G24 = det*(0.5*w[4][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[3][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G25 = det*(w[3][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 1.5*Jinv_00*Jinv_10) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(0.5*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 1.5*Jinv_01*Jinv_11) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(0.5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 1.5*Jinv_02*Jinv_12))));
-    const double G26 = det*(Jinv_11*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[3][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G27 = det*(0.5*w[4][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G28 = Jinv_10*det*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G29 = det*(0.5*w[4][0]*(Jinv_00*Jinv_10*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_11*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + w[3][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G30 = det*(Jinv_20*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[3][0]*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G31 = det*(0.5*w[4][0]*(Jinv_10*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[3][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22));
-    const double G32 = det*(Jinv_00*Jinv_11*w[4][0] + Jinv_01*Jinv_10*w[3][0]);
-    const double G33 = det*(Jinv_12*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[3][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G34 = det*(Jinv_02*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[3][0]*(Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G35 = det*(2*Jinv_12*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_02*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G36 = det*(Jinv_11*Jinv_22*w[4][0] + Jinv_12*Jinv_21*w[3][0]);
-    const double G37 = Jinv_11*det*(1.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 3*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G38 = det*(w[3][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_00*(Jinv_00*(0.5*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 1.5*Jinv_10*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(0.5*Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(1.5*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*(0.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 1.5*Jinv_12*Jinv_22)));
-    const double G39 = det*(1.5*w[4][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + 3*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G40 = det*(w[3][0]*(Jinv_00*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_02*Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22));
-    const double G41 = det*(2*Jinv_10*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G42 = det*(Jinv_11*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22)) + Jinv_21*(w[3][0]*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 3*Jinv_11*Jinv_21) + w[4][0]*(1.5*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)));
-    const double G43 = det*(Jinv_01*w[3][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(Jinv_00*Jinv_10*(w[3][0] + w[4][0]) + Jinv_01*Jinv_11*(w[4][0] + 2*w[3][0]) + Jinv_02*Jinv_12*(w[3][0] + w[4][0])));
-    const double G44 = det*(w[3][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))) + w[4][0]*(0.5*(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 1.5*Jinv_02*Jinv_02*Jinv_12*Jinv_12 + Jinv_00*Jinv_10*(1.5*Jinv_00*Jinv_10 + 2*Jinv_02*Jinv_12) + Jinv_01*Jinv_11*(1.5*Jinv_01*Jinv_11 + 2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G45 = det*(Jinv_12*(w[3][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_22*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
-    const double G46 = det*(0.5*Jinv_11*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_01*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G47 = det*(0.5*w[4][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[3][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
-    const double G48 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + det*w[3][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G49 = det*(w[3][0]*(2*(Jinv_00*Jinv_10*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_02*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G50 = det*(Jinv_02*(Jinv_00*Jinv_10*(w[3][0] + w[4][0]) + Jinv_01*Jinv_11*(w[3][0] + w[4][0]) + Jinv_02*Jinv_12*(w[4][0] + 2*w[3][0])) + Jinv_12*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G51 = Jinv_12*det*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G52 = det*(Jinv_10*Jinv_21*w[3][0] + Jinv_11*Jinv_20*w[4][0]);
-    const double G53 = det*(2*Jinv_10*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G54 = det*(Jinv_11*(2*w[4][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 4*w[3][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_21*(w[3][0]*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11) + w[4][0]*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12)));
-    const double G55 = det*(Jinv_01*Jinv_12*w[3][0] + Jinv_02*Jinv_11*w[4][0]);
-    const double G56 = Jinv_10*Jinv_11*det*(w[3][0] + w[4][0]);
-    const double G57 = det*(Jinv_00*(Jinv_00*Jinv_10*(w[4][0] + 2*w[3][0]) + Jinv_01*Jinv_11*(w[3][0] + w[4][0]) + Jinv_02*Jinv_12*(w[3][0] + w[4][0])) + Jinv_10*w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G58 = det*(Jinv_11*Jinv_11*w[4][0] + w[3][0]*(2*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
-    const double G59 = det*(Jinv_00*w[3][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(Jinv_00*Jinv_10*(w[4][0] + 2*w[3][0]) + Jinv_01*Jinv_11*(w[3][0] + w[4][0]) + Jinv_02*Jinv_12*(w[3][0] + w[4][0])));
-    const double G60 = det*(Jinv_11*Jinv_21*w[4][0] + w[3][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22));
-    const double G61 = det*(w[3][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))) + w[4][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + 1.5*Jinv_10*Jinv_10*Jinv_20*Jinv_20 + Jinv_11*Jinv_21*(1.5*Jinv_11*Jinv_21 + 2*Jinv_10*Jinv_20) + Jinv_12*Jinv_22*(1.5*Jinv_12*Jinv_22 + 2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G62 = det*(2*Jinv_12*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G63 = Jinv_12*det*(0.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G64 = det*(Jinv_01*Jinv_12*w[4][0] + Jinv_02*Jinv_11*w[3][0]);
-    const double G65 = det*(Jinv_12*(2*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 4*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(w[3][0]*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12) + w[4][0]*(3*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
-    const double G66 = det*(Jinv_12*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[3][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G67 = det*(0.5*Jinv_12*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_02*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G68 = det*(0.5*Jinv_12*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G69 = det*(Jinv_01*w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[3][0]*(Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G70 = det*(2*Jinv_11*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_01*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G71 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[4][0]*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G72 = det*(Jinv_12*Jinv_12*w[4][0] + w[3][0]*(2*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
-    const double G73 = det*(Jinv_11*w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[3][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G74 = det*(Jinv_12*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + Jinv_22*(w[3][0]*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 3*Jinv_12*Jinv_22) + w[4][0]*(1.5*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)));
-    const double G75 = det*(Jinv_21*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[3][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22)));
-    const double G76 = det*(Jinv_12*Jinv_22*w[4][0] + w[3][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21));
-    const double G77 = det*(Jinv_00*Jinv_12*w[4][0] + Jinv_02*Jinv_10*w[3][0]);
-    const double G78 = det*(Jinv_02*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + Jinv_12*(w[3][0]*(4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12) + w[4][0]*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 3*Jinv_02*Jinv_12)));
-    const double G79 = det*(2*Jinv_11*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_21*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G80 = det*(Jinv_01*(Jinv_00*Jinv_10*(w[3][0] + w[4][0]) + Jinv_01*Jinv_11*(w[4][0] + 2*w[3][0]) + Jinv_02*Jinv_12*(w[3][0] + w[4][0])) + Jinv_11*w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
-    const double G81 = det*(Jinv_02*(2*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(w[3][0]*(3*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + w[4][0]*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 1.5*Jinv_02*Jinv_02)));
-    const double G82 = Jinv_11*det*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G83 = det*(Jinv_10*Jinv_22*w[3][0] + Jinv_12*Jinv_20*w[4][0]);
-    const double G84 = det*(Jinv_02*Jinv_12*w[4][0] + w[3][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11));
-    const double G85 = Jinv_10*Jinv_12*det*(w[3][0] + w[4][0]);
-    const double G86 = Jinv_12*det*(1.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 3*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G87 = det*(Jinv_11*Jinv_22*w[3][0] + Jinv_12*Jinv_21*w[4][0]);
-    const double G88 = det*(w[3][0]*(2*(Jinv_00*Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G89 = det*(Jinv_00*Jinv_00*Jinv_00*Jinv_00*(w[3][0] + 0.5*w[4][0]) + Jinv_01*Jinv_01*(w[3][0]*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_01*Jinv_01) + w[4][0]*(0.5*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + Jinv_02*Jinv_02*(Jinv_00*Jinv_00*(w[4][0] + 2*w[3][0]) + Jinv_02*Jinv_02*(w[3][0] + 0.5*w[4][0])));
-    const double G90 = det*(0.5*Jinv_02*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G91 = det*(1.5*w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + 3*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G92 = Jinv_01*Jinv_02*det*(w[3][0] + w[4][0]);
-    const double G93 = det*(Jinv_02*(w[3][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_22*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G94 = Jinv_02*det*(0.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G95 = det*(0.5*Jinv_02*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G96 = det*(1.5*w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + 3*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G97 = det*(Jinv_01*(w[3][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_21*w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
-    const double G98 = det*(Jinv_00*(w[3][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G99 = det*(Jinv_02*(2*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 4*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(w[3][0]*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02) + w[4][0]*(3*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
-    const double G100 = det*(Jinv_10*w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[3][0]*(Jinv_00*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G101 = det*(2*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G102 = det*(w[3][0]*(Jinv_00*(4*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + Jinv_01*(4*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[4][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)));
-    const double G103 = det*(2*Jinv_00*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_10*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G104 = det*(0.5*w[4][0]*(Jinv_10*Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_12*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G105 = det*(0.5*w[4][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[3][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G106 = det*(2*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
-    const double G107 = det*(Jinv_01*w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[3][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G108 = det*(Jinv_02*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + Jinv_22*(Jinv_00*Jinv_20*(w[4][0] + 2*w[3][0]) + Jinv_01*Jinv_21*(w[4][0] + 2*w[3][0]) + Jinv_02*Jinv_22*(1.5*w[4][0] + 3*w[3][0])));
-    const double G109 = det*(2*Jinv_01*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G110 = det*(2*Jinv_01*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_11*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G111 = det*(2*w[3][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G112 = det*(Jinv_02*Jinv_22*w[4][0] + w[3][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21));
-    const double G113 = det*(w[3][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[4][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + 1.5*Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_00*Jinv_20*(1.5*Jinv_00*Jinv_20 + 2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_22*(1.5*Jinv_02*Jinv_22 + 2*Jinv_01*Jinv_21)));
-    const double G114 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + det*w[3][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G115 = det*(w[3][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[4][0]*(Jinv_10*(Jinv_10*(0.5*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 1.5*Jinv_00*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(0.5*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 1.5*Jinv_01*Jinv_21) + Jinv_12*(0.5*Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(1.5*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G116 = Jinv_00*Jinv_02*det*(w[3][0] + w[4][0]);
-    const double G117 = det*(Jinv_02*(2*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 4*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(w[3][0]*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02) + w[4][0]*(3*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
-    const double G118 = Jinv_01*det*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G119 = Jinv_02*det*(1.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 3*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G120 = det*(0.5*w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
-    const double G121 = det*(2*Jinv_00*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G122 = det*(Jinv_00*Jinv_22*w[3][0] + Jinv_02*Jinv_20*w[4][0]);
-    const double G123 = det*(Jinv_02*Jinv_02*w[4][0] + w[3][0]*(2*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G124 = Jinv_00*det*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G125 = det*(Jinv_00*w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[3][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G126 = det*(Jinv_00*Jinv_12*w[3][0] + Jinv_02*Jinv_10*w[4][0]);
-    const double G127 = det*(Jinv_02*(0.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + Jinv_12*(w[3][0]*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 3*Jinv_02*Jinv_12) + w[4][0]*(1.5*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)));
-    const double G128 = det*(Jinv_01*Jinv_22*w[3][0] + Jinv_02*Jinv_21*w[4][0]);
-    const double G129 = det*(Jinv_00*(w[3][0]*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(0.5*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 1.5*Jinv_10*Jinv_10)) + Jinv_10*(2*w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[4][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G130 = Jinv_00*Jinv_01*det*(w[3][0] + w[4][0]);
-    const double G131 = det*(Jinv_02*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[3][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G132 = Jinv_00*det*(0.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G133 = det*(Jinv_00*(w[3][0]*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(0.5*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 1.5*Jinv_20*Jinv_20)) + Jinv_20*(2*w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G134 = det*(2*Jinv_02*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_22*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G135 = det*(w[3][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[4][0]*(Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10)));
-    const double G136 = det*(Jinv_00*Jinv_00*w[4][0] + w[3][0]*(2*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G137 = det*(0.5*Jinv_00*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G138 = det*(Jinv_00*Jinv_22*w[4][0] + Jinv_02*Jinv_20*w[3][0]);
-    const double G139 = det*(0.5*Jinv_00*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G140 = Jinv_00*det*(1.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 3*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G141 = det*(Jinv_00*(w[3][0]*(4*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + w[4][0]*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 3*Jinv_00*Jinv_10)) + Jinv_10*(2*w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G142 = det*(Jinv_00*Jinv_20*(w[4][0] + 2*w[3][0]) + w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G143 = Jinv_02*det*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G144 = det*(Jinv_00*Jinv_10*(w[4][0] + 2*w[3][0]) + w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G145 = det*(2*Jinv_02*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_12*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G146 = det*(Jinv_00*Jinv_21*w[4][0] + Jinv_01*Jinv_20*w[3][0]);
-    const double G147 = det*(Jinv_00*(2*w[4][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 4*w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20*(3*w[4][0] + 6*w[3][0])) + Jinv_20*(2*w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G148 = det*(0.5*Jinv_01*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_11*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G149 = det*(Jinv_01*Jinv_01*w[4][0] + w[3][0]*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
-    const double G150 = det*(Jinv_01*(2*w[4][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 4*w[3][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + Jinv_21*(w[3][0]*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01) + w[4][0]*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)));
-    const double G151 = Jinv_01*det*(1.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 3*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G152 = det*(0.5*Jinv_01*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_21*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G153 = det*(Jinv_01*(w[3][0]*(4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11) + w[4][0]*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 3*Jinv_01*Jinv_11)) + Jinv_11*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)));
-    const double G154 = det*(Jinv_01*Jinv_22*w[4][0] + Jinv_02*Jinv_21*w[3][0]);
-    const double G155 = det*(Jinv_01*(w[3][0]*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + w[4][0]*(0.5*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 1.5*Jinv_11*Jinv_11)) + Jinv_11*(2*w[3][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[4][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
-    const double G156 = det*(Jinv_01*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22)) + Jinv_21*(Jinv_00*Jinv_20*(w[4][0] + 2*w[3][0]) + Jinv_01*Jinv_21*(1.5*w[4][0] + 3*w[3][0]) + Jinv_02*Jinv_22*(w[4][0] + 2*w[3][0])));
-    const double G157 = Jinv_01*det*(0.5*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
-    const double G158 = det*(Jinv_00*Jinv_21*w[3][0] + Jinv_01*Jinv_20*w[4][0]);
-    const double G159 = det*(Jinv_00*Jinv_11*w[3][0] + Jinv_01*Jinv_10*w[4][0]);
-    const double G160 = det*(Jinv_01*Jinv_21*w[4][0] + w[3][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22));
-    const double G161 = Jinv_10*det*(1.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 3*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G162 = det*(0.5*Jinv_10*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G163 = det*(Jinv_10*(0.5*w[4][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + Jinv_20*(w[3][0]*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 3*Jinv_10*Jinv_20) + w[4][0]*(1.5*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)));
-    const double G164 = det*(Jinv_10*(2*w[4][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 4*w[3][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_20*(w[3][0]*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10) + w[4][0]*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
-    const double G165 = det*(0.5*Jinv_10*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G166 = det*(Jinv_10*Jinv_22*w[4][0] + Jinv_12*Jinv_20*w[3][0]);
-    const double G167 = Jinv_10*det*(0.5*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G168 = det*(Jinv_00*(w[3][0]*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10) + w[4][0]*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + Jinv_10*(2*w[4][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 4*w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12)));
-    const double G169 = det*(Jinv_10*Jinv_20*w[4][0] + w[3][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G170 = det*(Jinv_00*(w[3][0]*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 3*Jinv_00*Jinv_10) + w[4][0]*(1.5*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_10*(0.5*w[4][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G171 = det*(Jinv_10*Jinv_10*w[4][0] + w[3][0]*(2*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
-    const double G172 = det*(Jinv_10*Jinv_21*w[4][0] + Jinv_11*Jinv_20*w[3][0]);
-    const double G173 = det*(Jinv_10*(2*w[3][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_20*(w[3][0]*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(0.5*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 1.5*Jinv_10*Jinv_10)));
-    const double G174 = det*(Jinv_20*Jinv_20*(Jinv_20*Jinv_20*(w[3][0] + 0.5*w[4][0]) + Jinv_21*Jinv_21*(w[4][0] + 2*w[3][0])) + Jinv_21*Jinv_21*Jinv_21*Jinv_21*(w[3][0] + 0.5*w[4][0]) + Jinv_22*Jinv_22*(w[3][0]*(2*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*Jinv_22) + w[4][0]*(0.5*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)));
-    const double G175 = Jinv_22*det*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G176 = det*(1.5*w[4][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + 3*w[3][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G177 = det*(0.5*Jinv_20*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G178 = Jinv_21*det*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G179 = Jinv_20*det*(1.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 3*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G180 = det*(2*w[3][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G181 = det*(Jinv_10*(2*w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + Jinv_20*(w[3][0]*(4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20) + w[4][0]*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 3*Jinv_10*Jinv_20)));
-    const double G182 = det*(2*w[3][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[4][0]*(Jinv_00*Jinv_10*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_11*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
-    const double G183 = det*(2*w[3][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G184 = det*(2*Jinv_22*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G185 = det*(2*Jinv_21*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G186 = Jinv_20*det*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G187 = Jinv_20*Jinv_22*det*(w[3][0] + w[4][0]);
-    const double G188 = det*(0.5*Jinv_20*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G189 = det*(2*Jinv_22*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_02*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G190 = det*(w[3][0]*(Jinv_20*Jinv_20*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + Jinv_21*(4*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + Jinv_22*(4*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12))) + w[4][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
-    const double G191 = det*(Jinv_20*Jinv_20*w[4][0] + w[3][0]*(2*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G192 = det*(2*Jinv_21*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_11*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G193 = det*(Jinv_00*(2*w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20*(1.5*w[4][0] + 3*w[3][0]) + w[4][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*(0.5*w[4][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
-    const double G194 = det*(1.5*w[4][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + 3*w[3][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
-    const double G195 = Jinv_20*Jinv_21*det*(w[3][0] + w[4][0]);
-    const double G196 = det*(Jinv_00*(w[3][0]*(2*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 6*Jinv_20*Jinv_20) + w[4][0]*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)) + Jinv_20*(2*w[4][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 4*w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)));
-    const double G197 = det*(2*Jinv_20*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G198 = det*(0.5*Jinv_21*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_11*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G199 = det*(Jinv_01*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22)) + Jinv_21*(Jinv_00*Jinv_20*(2*w[4][0] + 4*w[3][0]) + Jinv_01*Jinv_21*(3*w[4][0] + 6*w[3][0]) + Jinv_02*Jinv_22*(2*w[4][0] + 4*w[3][0])));
-    const double G200 = det*(Jinv_01*(2*w[3][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + Jinv_21*(w[3][0]*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + w[4][0]*(0.5*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 1.5*Jinv_01*Jinv_01)));
-    const double G201 = Jinv_20*det*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G202 = Jinv_21*det*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G203 = det*(2*Jinv_20*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G204 = Jinv_21*Jinv_22*det*(w[3][0] + w[4][0]);
-    const double G205 = det*(Jinv_11*(2*w[3][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_21*(w[3][0]*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + w[4][0]*(0.5*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 1.5*Jinv_11*Jinv_11)));
-    const double G206 = Jinv_21*det*(1.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 3*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G207 = det*(0.5*Jinv_21*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_01*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G208 = det*(Jinv_11*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22)) + Jinv_21*(w[3][0]*(4*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21) + w[4][0]*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 3*Jinv_11*Jinv_21)));
-    const double G209 = det*(Jinv_21*Jinv_21*w[4][0] + w[3][0]*(2*Jinv_21*Jinv_21 + Jinv_20*Jinv_20 + Jinv_22*Jinv_22));
-    const double G210 = det*(0.5*Jinv_22*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
-    const double G211 = det*(Jinv_12*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + Jinv_22*(w[3][0]*(4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22) + w[4][0]*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 3*Jinv_12*Jinv_22)));
-    const double G212 = det*(0.5*Jinv_22*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_02*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
-    const double G213 = Jinv_22*det*(0.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G214 = det*(Jinv_02*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + Jinv_22*(Jinv_00*Jinv_20*(2*w[4][0] + 4*w[3][0]) + Jinv_01*Jinv_21*(2*w[4][0] + 4*w[3][0]) + Jinv_02*Jinv_22*(3*w[4][0] + 6*w[3][0])));
-    const double G215 = Jinv_22*det*(1.5*w[4][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 3*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
-    const double G216 = det*(Jinv_22*Jinv_22*w[4][0] + w[3][0]*(2*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21));
-    const double G217 = det*(Jinv_02*(2*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(w[3][0]*(3*Jinv_02*Jinv_02 + Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + w[4][0]*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 1.5*Jinv_02*Jinv_02)));
-    const double G218 = det*(Jinv_12*(2*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(w[3][0]*(3*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + w[4][0]*(0.5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 1.5*Jinv_12*Jinv_12)));
+    // Number of operations to compute geometry constants: 11354
+    const double G0 = -40*0;
+    const double G1 = det*(w[3][0]*(Jinv_00*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_02*Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_00*(Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_01*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_02*Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G2 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + det*w[3][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G3 = det*(w[3][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[4][0]*(Jinv_00*Jinv_00*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_01*Jinv_01*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_02*Jinv_02*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21))));
+    const double G4 = det*(Jinv_00*(2*Jinv_20*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G5 = det*(w[3][0]*(2*Jinv_00*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[4][0]*(0.5*(Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_00*(1.5*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G6 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_10*det*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G7 = det*(w[3][0]*(Jinv_20*Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_22*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G8 = det*(w[3][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[4][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_10*Jinv_11*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*Jinv_11*(0.5*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(0.5*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)))));
+    const double G9 = det*(Jinv_10*(2*Jinv_20*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G10 = det*(w[3][0]*(Jinv_20*Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)))));
+    const double G11 = det*(2*Jinv_21*w[3][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(2*Jinv_21*Jinv_21*w[3][0] + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G12 = det*(w[3][0]*(Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G13 = det*(Jinv_20*Jinv_20*(w[3][0]*(2*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*Jinv_20) + w[4][0]*(Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_21 + Jinv_22) + Jinv_22*Jinv_22)) + Jinv_20*Jinv_21*Jinv_21*Jinv_22*w[4][0] + Jinv_21*Jinv_21*Jinv_21*(Jinv_21*w[3][0] + w[4][0]*(Jinv_20 + Jinv_22 + 0.5*Jinv_21)) + Jinv_22*Jinv_22*(w[3][0]*(2*Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(Jinv_21*(Jinv_20 + Jinv_21) + Jinv_22*(Jinv_20 + Jinv_21 + 0.5*Jinv_22))));
+    const double G14 = det*(2*Jinv_21*w[3][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_01*(2*Jinv_21*Jinv_21*w[3][0] + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G15 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + det*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G16 = det*(w[3][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_00*Jinv_00*(0.5*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_00*Jinv_02*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(Jinv_00*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(0.5*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_02*Jinv_02*(0.5*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + 1.5*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G17 = det*(Jinv_02*(w[3][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_22*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G18 = (0.5*det*w[4][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_20*det*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G19 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + det*w[3][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
+    const double G20 = det*(Jinv_02*(2*Jinv_12*Jinv_22*w[3][0] + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[3][0]*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)));
+    const double G21 = det*(Jinv_11*(2*Jinv_01*Jinv_21*w[3][0] + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[3][0]*(Jinv_10*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)));
+    const double G22 = Jinv_22*det*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G23 = det*(Jinv_11*w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[3][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G24 = det*(w[3][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[4][0]*(Jinv_00*(3*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G25 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + det*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
+    const double G26 = det*(w[3][0]*(Jinv_00*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G27 = det*(w[3][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + w[4][0]*(Jinv_10*Jinv_10*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_11*Jinv_11*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21)) + Jinv_12*Jinv_12*(0.5*Jinv_22*Jinv_22 + Jinv_20*(Jinv_21 + Jinv_22 + 0.5*Jinv_20) + Jinv_21*(Jinv_22 + 0.5*Jinv_21))));
+    const double G28 = det*(Jinv_02*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[3][0]*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G29 = (Jinv_10*Jinv_21*det*w[3][0] + Jinv_11*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G30 = det*(2*(Jinv_00*Jinv_20*Jinv_20*Jinv_20*w[3][0] + Jinv_21*(Jinv_01*Jinv_21*Jinv_21*w[3][0] + Jinv_20*(w[3][0]*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_22*(w[3][0]*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21) + w[4][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22))) + Jinv_22*(Jinv_02*Jinv_22*Jinv_22*w[3][0] + Jinv_20*(Jinv_00*(Jinv_20*w[4][0] + Jinv_22*w[3][0]) + Jinv_02*(Jinv_20*w[3][0] + Jinv_22*w[4][0])))) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G31 = (Jinv_00*Jinv_22*det*w[3][0] + Jinv_02*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G32 = det*(2*Jinv_22*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_02*(2*Jinv_22*Jinv_22*w[3][0] + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G33 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + det*w[3][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
+    const double G34 = det*(2*(Jinv_10*Jinv_20*Jinv_20*Jinv_20*w[3][0] + Jinv_21*(Jinv_11*Jinv_21*Jinv_21*w[3][0] + Jinv_20*(w[3][0]*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_22*(Jinv_11*(Jinv_21*w[4][0] + Jinv_22*w[3][0]) + Jinv_12*(Jinv_21*w[3][0] + Jinv_22*w[4][0]))) + Jinv_22*(Jinv_12*Jinv_22*Jinv_22*w[3][0] + Jinv_20*(w[3][0]*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)))) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))));
+    const double G35 = det*(w[3][0]*(2*(Jinv_10*Jinv_10*Jinv_20*Jinv_20 + Jinv_11*Jinv_21*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*Jinv_22*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11)) + Jinv_11*Jinv_21*(Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)))));
+    const double G36 = det*(Jinv_12*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(w[3][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G37 = det*(Jinv_12*(2*Jinv_02*Jinv_22*w[3][0] + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[3][0]*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)));
+    const double G38 = det*(Jinv_20*(2*Jinv_20*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G39 = Jinv_21*det*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G40 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + det*w[3][0]*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_02*Jinv_02*Jinv_12*Jinv_22));
+    const double G41 = det*(w[3][0]*(2*Jinv_00*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(4*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + w[4][0]*(Jinv_20*(Jinv_20*(Jinv_01 + Jinv_02 + 3*Jinv_00) + Jinv_21*(Jinv_02 + 2*Jinv_01 + 4*Jinv_00) + Jinv_22*(Jinv_01 + 2*Jinv_02 + 4*Jinv_00)) + Jinv_21*(Jinv_21*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02 + 2*Jinv_00)) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_02)));
+    const double G42 = det*(w[3][0]*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[4][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G43 = det*(w[3][0]*(2*Jinv_10*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[4][0]*(0.5*(Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_10*(1.5*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G44 = det*(Jinv_01*(2*Jinv_11*Jinv_21*w[3][0] + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[3][0]*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)));
+    const double G45 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_00*det*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G46 = det*(Jinv_11*(w[3][0]*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_21*w[3][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
+    const double G47 = det*(w[3][0]*(Jinv_20*Jinv_20*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10) + Jinv_21*(4*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + Jinv_22*(4*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12))) + w[4][0]*(Jinv_20*(Jinv_20*(Jinv_00*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_22*(Jinv_00*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_02*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12))) + Jinv_21*(Jinv_00*(Jinv_20*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_11) + Jinv_22*(Jinv_11 + Jinv_12 + 2*Jinv_10)) + Jinv_01*(Jinv_20*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_22*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11)) + Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + 2*Jinv_12) + Jinv_21*(Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12))) + Jinv_22*Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + 3*Jinv_12) + Jinv_12*(Jinv_00 + Jinv_01))));
+    const double G48 = det*(2*(Jinv_00*Jinv_10*Jinv_20*Jinv_20*w[3][0] + Jinv_21*(Jinv_01*Jinv_11*Jinv_21*w[3][0] + Jinv_20*(w[3][0]*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12))) + Jinv_22*(w[3][0]*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + w[4][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21)))) + w[4][0]*(Jinv_00*Jinv_10*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*Jinv_11*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_02*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G49 = det*(Jinv_12*(w[3][0]*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_22*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
+    const double G50 = det*(w[3][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))) + w[4][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(Jinv_11 + Jinv_12 + 1.5*Jinv_10)) + Jinv_21*(Jinv_10*Jinv_10*(Jinv_22 + 0.5*Jinv_21 + 2*Jinv_20) + Jinv_11*(2*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*Jinv_22) + Jinv_10*Jinv_22 + Jinv_12*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_12 + 1.5*Jinv_11)) + Jinv_12*(Jinv_10*(Jinv_20 + Jinv_22) + Jinv_12*(Jinv_20 + 0.5*Jinv_21 + 2*Jinv_22))) + Jinv_22*(Jinv_20*(2*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_12*Jinv_12) + Jinv_11*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(0.5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(Jinv_10 + Jinv_11 + 1.5*Jinv_12)))));
+    const double G51 = det*(w[3][0]*(2*(Jinv_00*Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01)) + Jinv_01*Jinv_21*(Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_02*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G52 = det*(w[3][0]*(Jinv_10*(Jinv_10*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)))));
+    const double G53 = det*(3*Jinv_20*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(0.5*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(1.5*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + 2.5*Jinv_20*Jinv_21) + Jinv_22*(0.5*(Jinv_21*(Jinv_21 + Jinv_22) + Jinv_22*Jinv_22) + Jinv_20*(1.5*Jinv_22 + 2*Jinv_21 + 2.5*Jinv_20))));
+    const double G54 = det*(Jinv_01*(w[3][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_21*w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
+    const double G55 = Jinv_22*det*(Jinv_20*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G56 = det*(Jinv_01*w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(w[3][0]*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G57 = det*(w[3][0]*(2*Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(4*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + w[4][0]*(Jinv_20*(Jinv_20*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_21*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_22*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10)) + Jinv_21*(Jinv_21*(Jinv_10 + Jinv_11) + Jinv_22*(Jinv_11 + Jinv_12 + 2*Jinv_10)) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_12)));
+    const double G58 = det*(2*Jinv_22*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(2*Jinv_22*Jinv_22*w[3][0] + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G59 = (Jinv_00*Jinv_21*det*w[3][0] + Jinv_01*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G60 = Jinv_21*det*(Jinv_20*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G61 = det*(w[3][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[4][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(Jinv_01 + Jinv_02 + 1.5*Jinv_00)) + Jinv_21*(Jinv_00*(Jinv_00*(Jinv_22 + 0.5*Jinv_21 + 2*Jinv_20) + Jinv_02*(Jinv_20 + Jinv_22)) + Jinv_01*(2*(Jinv_20*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02)) + Jinv_00*Jinv_22 + Jinv_02*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_02 + 1.5*Jinv_01)) + Jinv_02*Jinv_02*(Jinv_20 + 0.5*Jinv_21 + 2*Jinv_22)) + Jinv_22*(Jinv_20*(2*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02)) + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + 1.5*Jinv_02)))));
+    const double G62 = det*(3*w[3][0]*(Jinv_01*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[4][0]*(Jinv_20*(Jinv_20*(0.5*(Jinv_01*(Jinv_20 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21)) + 1.5*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 2.5*Jinv_00*(Jinv_21 + Jinv_22)) + Jinv_21*Jinv_21*(0.5*Jinv_02 + 1.5*Jinv_00 + 2.5*Jinv_01) + Jinv_22*(2*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(0.5*Jinv_01 + 1.5*Jinv_00 + 2.5*Jinv_02))) + Jinv_21*Jinv_21*(Jinv_21*(0.5*(Jinv_00 + Jinv_02) + 1.5*Jinv_01) + Jinv_22*(0.5*Jinv_00 + 1.5*Jinv_02 + 2.5*Jinv_01)) + Jinv_22*Jinv_22*(Jinv_21*(0.5*Jinv_00 + 1.5*Jinv_01 + 2.5*Jinv_02) + Jinv_22*(0.5*(Jinv_00 + Jinv_01) + 1.5*Jinv_02))));
+    const double G63 = (Jinv_10*Jinv_22*det*w[3][0] + Jinv_12*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G64 = det*(3*w[3][0]*(Jinv_11*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21))) + w[4][0]*(Jinv_20*(Jinv_20*(0.5*(Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21)) + 1.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 2.5*Jinv_10*(Jinv_21 + Jinv_22)) + Jinv_21*Jinv_21*(0.5*Jinv_12 + 1.5*Jinv_10 + 2.5*Jinv_11) + Jinv_22*(2*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(0.5*Jinv_11 + 1.5*Jinv_10 + 2.5*Jinv_12))) + Jinv_21*Jinv_21*(Jinv_21*(0.5*(Jinv_10 + Jinv_12) + 1.5*Jinv_11) + Jinv_22*(0.5*Jinv_10 + 1.5*Jinv_12 + 2.5*Jinv_11)) + Jinv_22*Jinv_22*(Jinv_21*(0.5*Jinv_10 + 1.5*Jinv_11 + 2.5*Jinv_12) + Jinv_22*(0.5*(Jinv_10 + Jinv_11) + 1.5*Jinv_12))));
+    const double G65 = det*(2*(Jinv_00*(Jinv_00*Jinv_00*Jinv_10*w[3][0] + Jinv_01*(w[3][0]*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_02*(w[3][0]*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + w[4][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + Jinv_01*(Jinv_01*Jinv_01*Jinv_11*w[3][0] + Jinv_02*(Jinv_11*(Jinv_01*w[4][0] + Jinv_02*w[3][0]) + Jinv_12*(Jinv_01*w[3][0] + Jinv_02*w[4][0]))) + Jinv_02*Jinv_02*Jinv_02*Jinv_12*w[3][0]) + w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
+    const double G66 = det*(Jinv_00*Jinv_00*(w[3][0]*(2*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*Jinv_00) + w[4][0]*(Jinv_00*(Jinv_01 + 0.5*Jinv_00) + Jinv_01*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_00*Jinv_01*Jinv_01*Jinv_02*w[4][0] + Jinv_01*Jinv_01*Jinv_01*(Jinv_01*w[3][0] + w[4][0]*(Jinv_00 + Jinv_02 + 0.5*Jinv_01)) + Jinv_02*Jinv_02*(w[3][0]*(2*Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(Jinv_01*(Jinv_00 + Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02))));
+    const double G67 = Jinv_00*det*(Jinv_01*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G68 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*Jinv_00 + Jinv_01*(Jinv_00*Jinv_00 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_02*Jinv_02) + Jinv_02*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))) + Jinv_01*det*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G69 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G70 = det*(3*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + w[4][0]*(Jinv_00*Jinv_00*(Jinv_00*(0.5*(Jinv_21 + Jinv_22) + 1.5*Jinv_20) + Jinv_01*(0.5*Jinv_22 + 1.5*Jinv_21 + 2.5*Jinv_20)) + Jinv_01*Jinv_01*(Jinv_00*(0.5*Jinv_22 + 1.5*Jinv_20 + 2.5*Jinv_21) + Jinv_01*(0.5*(Jinv_20 + Jinv_22) + 1.5*Jinv_21)) + Jinv_02*(Jinv_00*(Jinv_00*(0.5*Jinv_21 + 1.5*Jinv_22 + 2.5*Jinv_20) + Jinv_02*(0.5*Jinv_21 + 1.5*Jinv_20 + 2.5*Jinv_22)) + Jinv_01*(0.5*Jinv_20*(Jinv_01 + Jinv_02) + 1.5*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21) + 2*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + 2.5*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_02*Jinv_02*(0.5*(Jinv_20 + Jinv_21) + 1.5*Jinv_22))));
+    const double G71 = det*(w[3][0]*(Jinv_00*(Jinv_00*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_02*Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)))));
+    const double G72 = (Jinv_00*Jinv_11*det*w[3][0] + Jinv_10*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G73 = det*(Jinv_20*(2*Jinv_00*Jinv_10*w[3][0] + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[3][0]*(Jinv_21*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10)));
+    const double G74 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(3*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G75 = det*(2*Jinv_00*w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_00*w[3][0] + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G76 = det*(Jinv_02*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(w[3][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G77 = det*(w[3][0]*(2*(Jinv_00*Jinv_10*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_01*Jinv_01*Jinv_11*Jinv_11 + Jinv_02*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(Jinv_02*Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_00*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_02*Jinv_12*(Jinv_01 + Jinv_02)) + Jinv_11*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12))));
+    const double G78 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*det*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G79 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_01*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*Jinv_02*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + det*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))));
+    const double G80 = det*(3*w[3][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_12 + Jinv_02*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12))) + w[4][0]*(Jinv_00*(Jinv_00*(Jinv_00*(0.5*(Jinv_11 + Jinv_12) + 1.5*Jinv_10) + Jinv_02*(0.5*Jinv_11 + 1.5*Jinv_12 + 2.5*Jinv_10)) + Jinv_01*(2*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(0.5*Jinv_12 + 1.5*Jinv_11 + 2.5*Jinv_10) + Jinv_01*(0.5*Jinv_12 + 1.5*Jinv_10 + 2.5*Jinv_11)) + Jinv_02*Jinv_02*(0.5*Jinv_11 + 1.5*Jinv_10 + 2.5*Jinv_12)) + Jinv_01*Jinv_01*(0.5*(Jinv_01*Jinv_12 + Jinv_10*(Jinv_01 + Jinv_02)) + 1.5*Jinv_02*Jinv_12 + Jinv_11*(1.5*Jinv_01 + 2.5*Jinv_02)) + Jinv_02*Jinv_02*(0.5*(Jinv_01*Jinv_10 + Jinv_02*(Jinv_10 + Jinv_11)) + 1.5*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 2.5*Jinv_01*Jinv_12)));
+    const double G81 = det*(w[3][0]*(Jinv_10*(Jinv_10*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + Jinv_11*Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_10*Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_12*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G82 = det*(Jinv_00*(w[3][0]*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_10*w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G83 = det*(Jinv_10*(2*Jinv_00*Jinv_20*w[3][0] + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + w[3][0]*(Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20)));
+    const double G84 = det*(2*(Jinv_00*(Jinv_00*Jinv_10*Jinv_20*w[3][0] + Jinv_01*(w[3][0]*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22))) + Jinv_01*Jinv_01*Jinv_11*Jinv_21*w[3][0] + Jinv_02*(w[3][0]*(Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01)))) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G85 = det*(w[3][0]*(Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)));
+    const double G86 = det*(w[3][0]*(Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G87 = det*(w[3][0]*(4*Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01)) + w[4][0]*(Jinv_00*(Jinv_00*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_20 + Jinv_22 + 2*Jinv_21)) + Jinv_01*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(3*Jinv_01 + 4*(Jinv_00 + Jinv_02)) + Jinv_22*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_02*Jinv_02*(Jinv_21 + Jinv_22)));
+    const double G88 = det*(2*(Jinv_00*(Jinv_00*Jinv_00*Jinv_20*w[3][0] + Jinv_01*(w[3][0]*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + w[4][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_02*(Jinv_00*(Jinv_20*w[4][0] + Jinv_22*w[3][0]) + Jinv_02*(Jinv_20*w[3][0] + Jinv_22*w[4][0]))) + Jinv_01*(Jinv_01*Jinv_01*Jinv_21*w[3][0] + Jinv_02*(w[3][0]*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21) + w[4][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*Jinv_02*Jinv_22*w[3][0]) + w[4][0]*(Jinv_00*Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + Jinv_02*(Jinv_00*Jinv_00*Jinv_22 + Jinv_02*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))));
+    const double G89 = det*(w[3][0]*(Jinv_00*(4*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 6*Jinv_10*Jinv_20)) + Jinv_01*(4*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + Jinv_02*Jinv_02*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[4][0]*(Jinv_00*Jinv_00*(Jinv_20*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_11) + Jinv_22*(Jinv_10 + Jinv_12)) + Jinv_01*(Jinv_00*(Jinv_20*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_21*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_22*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_22) + Jinv_12*Jinv_22 + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11)) + Jinv_02*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11) + Jinv_22*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12))) + Jinv_02*(Jinv_00*(Jinv_20*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12)) + Jinv_02*(Jinv_20*(Jinv_10 + Jinv_12) + Jinv_21*(Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + 3*Jinv_12)))));
+    const double G90 = det*(2*Jinv_02*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_12*(2*Jinv_02*Jinv_02*w[3][0] + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G91 = det*(Jinv_11*(2*Jinv_01*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12));
+    const double G92 = det*(Jinv_22*(2*Jinv_02*Jinv_12*w[3][0] + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[3][0]*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)));
+    const double G93 = det*(w[3][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_11*Jinv_11*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_12*Jinv_12*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02))));
+    const double G94 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_11*Jinv_11*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_12*Jinv_12*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + det*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G95 = det*(w[3][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))) + w[4][0]*(Jinv_00*(Jinv_10*(2*(Jinv_01*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_00*(Jinv_11 + Jinv_12 + 1.5*Jinv_10) + Jinv_01*Jinv_12 + Jinv_02*Jinv_11) + Jinv_11*Jinv_11*(Jinv_02 + 0.5*Jinv_00 + 2*Jinv_01) + Jinv_12*(Jinv_11*(Jinv_01 + Jinv_02) + Jinv_12*(Jinv_01 + 0.5*Jinv_00 + 2*Jinv_02))) + Jinv_01*Jinv_01*(0.5*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(Jinv_10 + Jinv_12 + 1.5*Jinv_11)) + Jinv_02*(Jinv_10*Jinv_10*(Jinv_01 + 0.5*Jinv_02) + Jinv_11*(Jinv_01*Jinv_10 + Jinv_11*(0.5*Jinv_02 + 2*Jinv_01)) + Jinv_12*(Jinv_01*(Jinv_10 + 2*(Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_10 + Jinv_11 + 1.5*Jinv_12)))));
+    const double G96 = det*(w[3][0]*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 3*Jinv_01*Jinv_21)) + w[4][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*(1.5*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G97 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + det*w[3][0]*(Jinv_01*Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_11*Jinv_21 + Jinv_10*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G98 = det*(Jinv_21*(2*Jinv_01*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22));
+    const double G99 = det*(w[3][0]*(4*Jinv_00*Jinv_02*Jinv_20*Jinv_22 + Jinv_00*Jinv_00*(3*Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_01*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_21 + 4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22))) + Jinv_02*Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[4][0]*(Jinv_00*(Jinv_20*(2*(Jinv_01*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_20 + Jinv_22)) + Jinv_00*(Jinv_21 + Jinv_22 + 1.5*Jinv_20) + Jinv_01*Jinv_22 + Jinv_02*Jinv_21) + Jinv_21*Jinv_21*(Jinv_02 + 0.5*Jinv_00 + 2*Jinv_01) + Jinv_22*(Jinv_21*(Jinv_01 + Jinv_02) + Jinv_22*(Jinv_01 + 0.5*Jinv_00 + 2*Jinv_02))) + Jinv_01*Jinv_01*(0.5*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(Jinv_20 + Jinv_22 + 1.5*Jinv_21)) + Jinv_02*(Jinv_20*(Jinv_01*Jinv_21 + Jinv_20*(Jinv_01 + 0.5*Jinv_02)) + Jinv_21*Jinv_21*(0.5*Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_01*(Jinv_20 + 2*(Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_20 + Jinv_21 + 1.5*Jinv_22)))));
+    const double G100 = det*(w[3][0]*(Jinv_10*(2*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(3*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_12*(2*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(3*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21))) + w[4][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_11*(0.5*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(0.5*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)))));
+    const double G101 = Jinv_02*det*(Jinv_01*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G102 = (Jinv_00*Jinv_21*det*w[3][0] + Jinv_20*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G103 = det*(w[3][0]*(Jinv_00*Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*Jinv_20) + Jinv_01*Jinv_01*Jinv_21*Jinv_21 + Jinv_02*Jinv_22*(2*Jinv_01*Jinv_21 + Jinv_02*Jinv_22)) + w[4][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_21*Jinv_21*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02)) + Jinv_22*Jinv_22*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01 + 0.5*Jinv_02))));
+    const double G104 = det*(2*Jinv_02*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_02*w[3][0] + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G105 = det*(w[3][0]*(Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22 + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*Jinv_20 + Jinv_22*(Jinv_00 + Jinv_02))));
+    const double G106 = det*(w[3][0]*(4*Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 6*Jinv_01*Jinv_01)) + w[4][0]*(Jinv_00*(Jinv_00*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_10 + Jinv_12 + 2*Jinv_11)) + Jinv_01*(Jinv_00*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_01*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_02*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11)) + Jinv_02*Jinv_02*(Jinv_11 + Jinv_12)));
+    const double G107 = det*(2*Jinv_00*w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_10*(2*Jinv_00*Jinv_00*w[3][0] + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G108 = det*(Jinv_00*w[3][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(w[3][0]*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G109 = det*(3*Jinv_01*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(1.5*Jinv_01*Jinv_01*Jinv_01 + Jinv_00*(0.5*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02)) + Jinv_01*(1.5*Jinv_00 + 2*Jinv_02 + 2.5*Jinv_01)) + Jinv_02*(2.5*Jinv_01*Jinv_01 + Jinv_02*(0.5*Jinv_02 + 1.5*Jinv_01))));
+    const double G110 = det*(Jinv_02*(w[3][0]*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_12*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G111 = Jinv_00*det*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G112 = (Jinv_02*Jinv_21*det*w[3][0] + Jinv_22*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G113 = det*(Jinv_00*(w[3][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))) + Jinv_20*w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G114 = det*(Jinv_01*(2*Jinv_01*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
+    const double G115 = Jinv_02*det*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G116 = (Jinv_02*Jinv_11*det*w[3][0] + Jinv_12*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G117 = det*(Jinv_00*w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[3][0]*(2*Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G118 = det*(w[3][0]*(Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 3*Jinv_01*Jinv_11)) + w[4][0]*(0.5*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*(1.5*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G119 = det*(w[3][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_20*Jinv_20*(0.5*(Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_20*Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_21*(0.5*Jinv_21*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(1.5*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*Jinv_22*(0.5*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + 1.5*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G120 = det*(Jinv_00*(2*Jinv_10*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G121 = det*(w[3][0]*(Jinv_00*(2*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 3*Jinv_00*Jinv_10) + Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[4][0]*(0.5*(Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*(1.5*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G122 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_10*det*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G123 = det*(3*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_01*Jinv_10 + Jinv_02*(Jinv_10 + Jinv_11)) + 1.5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 2.5*Jinv_00*Jinv_11) + Jinv_11*Jinv_11*(0.5*(Jinv_02*Jinv_10 + Jinv_11*(Jinv_00 + Jinv_02)) + 1.5*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 2.5*Jinv_01*Jinv_10) + Jinv_12*(Jinv_10*(0.5*Jinv_01*(Jinv_10 + Jinv_12) + 1.5*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + 2*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + 2.5*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_11*Jinv_11*(0.5*Jinv_00 + 1.5*Jinv_02 + 2.5*Jinv_01) + Jinv_12*(0.5*(Jinv_00*(Jinv_11 + Jinv_12) + Jinv_01*Jinv_12) + 1.5*Jinv_02*Jinv_12 + Jinv_11*(1.5*Jinv_01 + 2.5*Jinv_02)))));
+    const double G124 = det*(Jinv_10*(2*Jinv_10*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G125 = det*(2*w[3][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_01*Jinv_10*Jinv_20 + Jinv_21*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_00*Jinv_20*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_21*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_02*Jinv_22*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G126 = det*(w[3][0]*(Jinv_10*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[4][0]*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G127 = det*(w[3][0]*(4*Jinv_00*Jinv_01*Jinv_10*Jinv_11 + Jinv_10*Jinv_10*(3*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*(Jinv_02*(3*Jinv_02*Jinv_12 + 4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01))) + w[4][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(Jinv_01 + Jinv_02 + 1.5*Jinv_00)) + Jinv_11*(Jinv_00*(Jinv_00*(Jinv_12 + 0.5*Jinv_11 + 2*Jinv_10) + Jinv_02*(Jinv_10 + Jinv_12)) + Jinv_01*(2*(Jinv_00*Jinv_10 + Jinv_01*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12) + Jinv_00*Jinv_12 + Jinv_02*Jinv_10 + Jinv_11*(Jinv_00 + Jinv_02 + 1.5*Jinv_01)) + Jinv_02*Jinv_02*(Jinv_10 + 0.5*Jinv_11 + 2*Jinv_12)) + Jinv_12*(Jinv_10*(2*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02)) + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*(0.5*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(Jinv_00 + Jinv_01 + 1.5*Jinv_02)))));
+    const double G128 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_20*det*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G129 = det*(Jinv_10*Jinv_10*(w[3][0]*(2*Jinv_12*Jinv_12 + Jinv_10*Jinv_10) + w[4][0]*(Jinv_10*(Jinv_11 + Jinv_12 + 0.5*Jinv_10) + Jinv_12*(Jinv_11 + Jinv_12))) + Jinv_10*Jinv_11*Jinv_12*Jinv_12*w[4][0] + Jinv_11*Jinv_11*(w[3][0]*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*Jinv_11) + w[4][0]*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11) + Jinv_12*Jinv_12)) + Jinv_12*Jinv_12*Jinv_12*(Jinv_12*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + 0.5*Jinv_12)));
+    const double G130 = det*(2*Jinv_12*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_02*(2*Jinv_12*Jinv_12*w[3][0] + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G131 = det*(Jinv_01*w[3][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(w[3][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G132 = det*(2*Jinv_11*w[3][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*Jinv_11*Jinv_11*w[3][0] + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G133 = det*(w[3][0]*(4*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10)) + w[4][0]*(Jinv_10*(Jinv_00*(3*Jinv_10 + 4*(Jinv_11 + Jinv_12)) + Jinv_01*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_02*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01) + Jinv_12*(Jinv_11*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_12*(Jinv_00 + Jinv_02))));
+    const double G134 = det*(w[3][0]*(Jinv_00*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G135 = Jinv_11*det*(Jinv_10*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G136 = (Jinv_00*Jinv_12*det*w[3][0] + Jinv_02*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G137 = det*(w[3][0]*(Jinv_10*Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*Jinv_20) + Jinv_11*Jinv_11*Jinv_21*Jinv_21 + Jinv_12*Jinv_22*(2*Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + w[4][0]*(Jinv_20*Jinv_20*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_21*Jinv_21*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_22*Jinv_22*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11))));
+    const double G138 = det*(2*(Jinv_10*(Jinv_10*Jinv_10*Jinv_20*w[3][0] + Jinv_11*(w[3][0]*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(w[3][0]*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + w[4][0]*(Jinv_10*Jinv_20 + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_22))) + Jinv_11*Jinv_11*Jinv_11*Jinv_21*w[3][0] + Jinv_12*(Jinv_11*(Jinv_11*(Jinv_21*w[4][0] + Jinv_22*w[3][0]) + Jinv_12*(Jinv_21*w[3][0] + Jinv_22*w[4][0])) + Jinv_12*Jinv_12*Jinv_22*w[3][0])) + w[4][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))));
+    const double G139 = det*(2*Jinv_12*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(2*Jinv_12*Jinv_12*w[3][0] + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G140 = det*(Jinv_20*(2*Jinv_10*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G141 = det*(w[3][0]*(Jinv_00*Jinv_00*Jinv_10*Jinv_10 + Jinv_01*Jinv_11*(2*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*Jinv_11) + Jinv_02*Jinv_12*(2*Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_00*Jinv_00*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_01*Jinv_01*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11)) + Jinv_02*Jinv_02*(0.5*Jinv_12*Jinv_12 + Jinv_10*(Jinv_12 + 0.5*Jinv_10) + Jinv_11*(Jinv_10 + Jinv_12 + 0.5*Jinv_11))));
+    const double G142 = det*(w[3][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[4][0]*(Jinv_00*(3*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G143 = det*(w[3][0]*(Jinv_00*(2*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_11 + Jinv_10*(Jinv_00 + Jinv_01)) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G144 = det*(3*Jinv_10*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(0.5*(Jinv_11*(Jinv_11*(Jinv_11 + Jinv_12) + Jinv_12*Jinv_12) + Jinv_12*Jinv_12*Jinv_12) + Jinv_10*(1.5*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 2.5*Jinv_10*Jinv_11 + Jinv_12*(1.5*Jinv_12 + 2*Jinv_11 + 2.5*Jinv_10))));
+    const double G145 = det*(2*Jinv_11*w[3][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_01*(2*Jinv_11*Jinv_11*w[3][0] + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G146 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G147 = Jinv_11*det*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G148 = det*(w[3][0]*(Jinv_10*(4*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_10*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 6*Jinv_00*Jinv_20)) + Jinv_11*Jinv_11*(2*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21) + Jinv_12*(4*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21)) + Jinv_12*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22))) + w[4][0]*(Jinv_10*Jinv_10*(Jinv_20*(Jinv_01 + Jinv_02 + 3*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_01) + Jinv_22*(Jinv_00 + Jinv_02)) + Jinv_11*(Jinv_10*(Jinv_20*(Jinv_02 + 2*Jinv_01 + 4*Jinv_00) + Jinv_21*(Jinv_02 + 2*Jinv_00 + 4*Jinv_01) + Jinv_22*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_11*(Jinv_20*(Jinv_00 + Jinv_01) + Jinv_21*(Jinv_00 + Jinv_02 + 3*Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02))) + Jinv_12*(Jinv_10*(Jinv_20*(Jinv_01 + 2*Jinv_02 + 4*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_01 + 2*Jinv_00 + 4*Jinv_02)) + Jinv_11*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(Jinv_00 + 2*Jinv_02 + 4*Jinv_01) + Jinv_22*(Jinv_00 + 2*Jinv_01 + 4*Jinv_02)) + Jinv_12*(Jinv_20*(Jinv_00 + Jinv_02) + Jinv_21*(Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + 3*Jinv_02)))));
+    const double G149 = Jinv_12*det*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G150 = det*(3*w[3][0]*(Jinv_10*Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_10*Jinv_21 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_12*(Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12))) + w[4][0]*(Jinv_10*Jinv_10*(0.5*(Jinv_10*(Jinv_21 + Jinv_22) + Jinv_11*Jinv_22) + 1.5*Jinv_10*Jinv_20 + Jinv_11*(1.5*Jinv_21 + 2.5*Jinv_20)) + Jinv_11*Jinv_11*(0.5*(Jinv_10*Jinv_22 + Jinv_11*(Jinv_20 + Jinv_22)) + 1.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 2.5*Jinv_10*Jinv_21) + Jinv_12*(Jinv_10*(2*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(0.5*Jinv_21 + 1.5*Jinv_22 + 2.5*Jinv_20)) + Jinv_11*Jinv_11*(0.5*Jinv_20 + 1.5*Jinv_22 + 2.5*Jinv_21) + Jinv_12*(0.5*(Jinv_20*(Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_12)) + 1.5*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(1.5*Jinv_12 + 2.5*(Jinv_10 + Jinv_11))))));
+    const double G151 = det*(2*(Jinv_01*Jinv_11*Jinv_11*Jinv_11*w[3][0] + Jinv_10*(Jinv_00*Jinv_10*Jinv_10*w[3][0] + Jinv_11*(Jinv_10*(Jinv_00*w[4][0] + Jinv_01*w[3][0]) + Jinv_11*(Jinv_00*w[3][0] + Jinv_01*w[4][0])) + Jinv_12*(w[3][0]*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + w[4][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)))) + Jinv_12*(Jinv_02*Jinv_12*Jinv_12*w[3][0] + Jinv_11*(Jinv_11*(Jinv_01*w[4][0] + Jinv_02*w[3][0]) + Jinv_12*(Jinv_01*w[3][0] + Jinv_02*w[4][0])))) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_10*Jinv_10 + Jinv_11*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + Jinv_12*(Jinv_02*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))));
+    const double G152 = det*(w[3][0]*(Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(2*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + 3*Jinv_10*Jinv_20)) + w[4][0]*(0.5*(Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_20*(1.5*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G153 = det*(Jinv_01*(w[3][0]*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_11*w[3][0]*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02));
+    const double G154 = (Jinv_12*Jinv_20*det*w[3][0] + Jinv_22*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G155 = det*(Jinv_21*(2*Jinv_01*Jinv_11*w[3][0] + w[4][0]*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))) + w[3][0]*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)));
+    const double G156 = det*(w[3][0]*(4*Jinv_10*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 6*Jinv_10*Jinv_10)) + w[4][0]*(Jinv_10*(Jinv_20*(3*Jinv_10 + 4*(Jinv_11 + Jinv_12)) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21) + Jinv_12*(Jinv_11*(Jinv_21 + Jinv_22 + 2*Jinv_20) + Jinv_12*(Jinv_20 + Jinv_22))));
+    const double G157 = (Jinv_00*Jinv_11*det*w[3][0] + Jinv_01*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G158 = (Jinv_11*Jinv_20*det*w[3][0] + Jinv_21*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G159 = det*(w[3][0]*(Jinv_00*(2*Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_00*(3*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*(2*(Jinv_11*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_01*(3*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_02*Jinv_02*(3*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_00*Jinv_00*(0.5*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*Jinv_02*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(0.5*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_02*Jinv_02*(0.5*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G160 = det*(w[3][0]*(Jinv_20*Jinv_20*(3*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(2*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10) + Jinv_22*(Jinv_01*Jinv_12 + Jinv_02*Jinv_11)) + Jinv_21*(3*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(2*Jinv_20*(Jinv_00*Jinv_12 + Jinv_02*Jinv_10) + Jinv_22*(3*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11))) + w[4][0]*(Jinv_20*(0.5*Jinv_20*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_00*(1.5*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_21*(0.5*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*Jinv_22*(Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*Jinv_22*(0.5*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + 1.5*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G161 = Jinv_12*det*(Jinv_10*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G162 = det*(w[3][0]*(4*Jinv_10*Jinv_11*Jinv_20*Jinv_21 + Jinv_20*Jinv_20*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(3*Jinv_11*Jinv_11 + Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*(Jinv_12*(3*Jinv_12*Jinv_22 + 4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11))) + w[4][0]*(Jinv_10*(0.5*Jinv_10*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_12*(2*Jinv_22*Jinv_22 + Jinv_21*(Jinv_21 + Jinv_22)) + Jinv_20*(Jinv_10*(Jinv_21 + Jinv_22 + 1.5*Jinv_20) + Jinv_12*(Jinv_21 + 2*(Jinv_20 + Jinv_22)))) + Jinv_11*(Jinv_20*Jinv_20*(Jinv_12 + 0.5*Jinv_11 + 2*Jinv_10) + Jinv_21*(2*(Jinv_10*(Jinv_20 + Jinv_21) + Jinv_12*(Jinv_21 + Jinv_22)) + Jinv_10*Jinv_22 + Jinv_11*(Jinv_20 + Jinv_22 + 1.5*Jinv_21) + Jinv_12*Jinv_20) + Jinv_22*(Jinv_20*(Jinv_10 + Jinv_12) + Jinv_22*(Jinv_10 + 0.5*Jinv_11 + 2*Jinv_12))) + Jinv_12*Jinv_12*(0.5*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_20 + Jinv_21 + 1.5*Jinv_22))));
+    const double G163 = (Jinv_00*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_10*det*w[3][0]);
+    const double G164 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G165 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_11*det*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G166 = Jinv_10*det*(Jinv_11*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G167 = det*(2*Jinv_10*w[3][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_20*(2*Jinv_10*Jinv_10*w[3][0] + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G168 = det*(w[3][0]*(4*Jinv_11*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + 6*Jinv_11*Jinv_11)) + w[4][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21) + Jinv_11*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(3*Jinv_11 + 4*(Jinv_10 + Jinv_12)) + Jinv_22*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_12*(Jinv_10*(Jinv_20 + Jinv_22 + 2*Jinv_21) + Jinv_12*(Jinv_21 + Jinv_22))));
+    const double G169 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*det*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G170 = det*(2*Jinv_10*w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*(2*Jinv_10*Jinv_10*w[3][0] + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)));
+    const double G171 = det*(Jinv_10*(w[3][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_20*w[3][0]*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G172 = det*(w[3][0]*(Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_11 + Jinv_10*(Jinv_00 + Jinv_01)) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G173 = det*(w[3][0]*(Jinv_11*(2*Jinv_11*Jinv_21 + Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + w[4][0]*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G174 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[4][0]*(Jinv_00*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(3*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G175 = det*(Jinv_11*(2*Jinv_11*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12));
+    const double G176 = det*(w[3][0]*(2*Jinv_21*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(3*Jinv_21*Jinv_21 + Jinv_20*Jinv_20 + Jinv_22*Jinv_22)) + w[4][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_21*(1.5*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G177 = det*(Jinv_21*(2*Jinv_11*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22));
+    const double G178 = (Jinv_01*Jinv_12*det*w[3][0] + Jinv_02*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G179 = (Jinv_10*Jinv_21*det*w[3][0] + Jinv_20*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G180 = det*(w[3][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_11 + Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G181 = det*(w[3][0]*(2*Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_11*(4*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + 6*Jinv_01*Jinv_11)) + w[4][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01) + Jinv_11*(Jinv_00*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_01*(3*Jinv_11 + 4*(Jinv_10 + Jinv_12)) + Jinv_02*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_12*(Jinv_10*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_12*(Jinv_01 + Jinv_02))));
+    const double G182 = Jinv_10*det*(2*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(2*(Jinv_10*Jinv_12 + Jinv_11*(Jinv_10 + Jinv_12)) + Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G183 = det*(w[3][0]*(2*Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[4][0]*(0.5*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_01*(1.5*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G184 = (Jinv_12*Jinv_21*det*w[3][0] + Jinv_22*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G185 = det*(Jinv_00*(2*Jinv_10*Jinv_20*w[3][0] + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))) + w[3][0]*(Jinv_01*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)));
+    const double G186 = det*(Jinv_01*(2*Jinv_11*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12));
+    const double G187 = Jinv_12*det*(Jinv_11*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G188 = det*(Jinv_10*w[3][0]*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(w[3][0]*(2*Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + w[4][0]*(Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G189 = det*(3*Jinv_11*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(0.5*Jinv_12*Jinv_12*Jinv_12 + Jinv_10*(0.5*(Jinv_10*(Jinv_10 + Jinv_12) + Jinv_12*Jinv_12) + Jinv_11*(1.5*Jinv_10 + 2*Jinv_12 + 2.5*Jinv_11)) + Jinv_11*(1.5*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + 2.5*Jinv_11*Jinv_12)));
+    const double G190 = Jinv_00*det*(Jinv_02*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G191 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*Jinv_00 + Jinv_01*(Jinv_00*Jinv_00 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_02*Jinv_02) + Jinv_02*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))) + Jinv_02*det*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G192 = det*(w[3][0]*(2*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_02*(3*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[4][0]*(0.5*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*(1.5*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G193 = (Jinv_01*Jinv_12*det*w[3][0] + Jinv_11*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G194 = (Jinv_00*Jinv_12*det*w[3][0] + Jinv_10*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G195 = det*(w[3][0]*(Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G196 = det*(w[3][0]*(2*Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_02*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[4][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(1.5*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G197 = det*(w[3][0]*(Jinv_02*(2*Jinv_02*Jinv_12 + Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)));
+    const double G198 = det*(2*Jinv_01*w[3][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_01*w[3][0] + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G199 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(3*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G200 = det*(w[3][0]*(Jinv_02*(2*Jinv_02*Jinv_22 + Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22 + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*Jinv_20 + Jinv_22*(Jinv_00 + Jinv_02))));
+    const double G201 = det*(Jinv_02*(2*Jinv_02*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G202 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_22*det*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G203 = (Jinv_01*Jinv_22*det*w[3][0] + Jinv_21*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G204 = (Jinv_00*Jinv_22*det*w[3][0] + Jinv_20*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G205 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_12*det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G206 = det*(3*Jinv_02*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(0.5*Jinv_01*Jinv_01*Jinv_01 + Jinv_00*(0.5*(Jinv_00*(Jinv_00 + Jinv_01) + Jinv_01*Jinv_01) + Jinv_02*(1.5*Jinv_00 + 2*Jinv_01 + 2.5*Jinv_02)) + Jinv_02*(1.5*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 2.5*Jinv_01*Jinv_02)));
+    const double G207 = det*(w[3][0]*(2*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + Jinv_02*(4*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 6*Jinv_02*Jinv_12)) + w[4][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_12) + Jinv_01*(Jinv_00*(Jinv_10 + Jinv_11 + 2*Jinv_12) + Jinv_01*(Jinv_11 + Jinv_12)) + Jinv_02*(Jinv_00*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12) + Jinv_01*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12) + Jinv_02*(Jinv_10 + Jinv_11 + 3*Jinv_12))));
+    const double G208 = det*(Jinv_22*(2*Jinv_02*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21));
+    const double G209 = Jinv_01*det*(Jinv_02*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G210 = Jinv_01*det*(2*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G211 = det*(Jinv_12*(2*Jinv_02*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11));
+    const double G212 = det*(2*Jinv_01*w[3][0]*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12) + Jinv_11*(2*Jinv_01*Jinv_01*w[3][0] + w[4][0]*(2*(Jinv_00*Jinv_01 + Jinv_02*(Jinv_00 + Jinv_01)) + Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)));
+    const double G213 = det*(w[3][0]*(4*Jinv_02*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + Jinv_22*(2*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01) + 6*Jinv_02*Jinv_02)) + w[4][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_22) + Jinv_01*(Jinv_00*(Jinv_20 + Jinv_21 + 2*Jinv_22) + Jinv_01*(Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_20*(Jinv_01 + Jinv_02 + 2*Jinv_00) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(3*Jinv_02 + 4*(Jinv_00 + Jinv_01)))));
+    const double G214 = (Jinv_00*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_20*det*w[3][0]);
+    const double G215 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*det*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G216 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*det*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G217 = (Jinv_10*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_20*det*w[3][0]);
+    const double G218 = det*(w[3][0]*(2*Jinv_11*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(4*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 6*Jinv_11*Jinv_21)) + w[4][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11) + Jinv_21*(Jinv_20*(Jinv_12 + 2*Jinv_10 + 4*Jinv_11) + Jinv_21*(Jinv_10 + Jinv_12 + 3*Jinv_11) + Jinv_22*(Jinv_10 + 2*Jinv_12 + 4*Jinv_11)) + Jinv_22*(Jinv_20*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(Jinv_11 + Jinv_12))));
+    const double G219 = (0.5*det*w[4][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_21*det*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G220 = det*(2*Jinv_20*w[3][0]*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_10*(2*Jinv_20*Jinv_20*w[3][0] + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G221 = det*(w[3][0]*(Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_11*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + w[4][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G222 = det*(w[3][0]*(Jinv_11*(2*Jinv_21*Jinv_21 + Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G223 = det*(w[3][0]*(2*Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(4*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + 6*Jinv_01*Jinv_21)) + w[4][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01) + Jinv_21*(Jinv_20*(Jinv_02 + 2*Jinv_00 + 4*Jinv_01) + Jinv_21*(Jinv_00 + Jinv_02 + 3*Jinv_01) + Jinv_22*(Jinv_00 + 2*Jinv_02 + 4*Jinv_01)) + Jinv_22*(Jinv_20*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_01 + Jinv_02))));
+    const double G224 = det*(Jinv_11*(2*Jinv_21*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22));
+    const double G225 = det*(3*Jinv_21*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(1.5*Jinv_21*Jinv_21*Jinv_21 + Jinv_20*(2.5*Jinv_21*Jinv_21 + Jinv_20*(0.5*Jinv_20 + 1.5*Jinv_21)) + Jinv_22*(0.5*Jinv_22*Jinv_22 + Jinv_20*(0.5*(Jinv_20 + Jinv_22) + 2*Jinv_21) + Jinv_21*(1.5*Jinv_22 + 2.5*Jinv_21))));
+    const double G226 = det*(Jinv_21*(2*Jinv_21*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22));
+    const double G227 = (Jinv_01*Jinv_22*det*w[3][0] + Jinv_02*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G228 = Jinv_20*det*(Jinv_21*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G229 = det*(w[3][0]*(Jinv_01*(Jinv_20*Jinv_20 + Jinv_22*Jinv_22) + Jinv_21*(2*Jinv_01*Jinv_21 + Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G230 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)) + 6*Jinv_01*Jinv_11*Jinv_21) + w[4][0]*(Jinv_00*(Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(3*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G231 = det*(w[3][0]*(2*Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22) + Jinv_21*(3*Jinv_01*Jinv_01 + Jinv_00*Jinv_00 + Jinv_02*Jinv_02)) + w[4][0]*(0.5*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_01*(1.5*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G232 = Jinv_22*det*(Jinv_21*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G233 = det*(2*Jinv_20*w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_00*(2*Jinv_20*Jinv_20*w[3][0] + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22)));
+    const double G234 = det*(Jinv_01*(2*Jinv_21*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22));
+    const double G235 = (Jinv_11*Jinv_22*det*w[3][0] + Jinv_12*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G236 = Jinv_20*det*(2*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(2*(Jinv_20*(Jinv_21 + Jinv_22) + Jinv_21*Jinv_22) + Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G237 = det*(w[3][0]*(Jinv_11*(2*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + 3*Jinv_11*Jinv_21) + Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)) + w[4][0]*(0.5*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*(1.5*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G238 = (Jinv_00*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_20*det*w[3][0]);
+    const double G239 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*det*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G240 = det*(w[3][0]*(Jinv_12*(2*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 3*Jinv_12*Jinv_22) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[4][0]*(0.5*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(1.5*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G241 = (Jinv_11*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_21*det*w[3][0]);
+    const double G242 = (Jinv_10*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_20*det*w[3][0]);
+    const double G243 = det*(w[3][0]*(Jinv_12*(2*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + w[4][0]*(Jinv_11*Jinv_21*Jinv_21 + Jinv_20*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G244 = det*(3*Jinv_22*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + w[4][0]*(0.5*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21) + Jinv_22*(1.5*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + 2.5*Jinv_21*Jinv_22 + Jinv_20*(1.5*Jinv_20 + 2*Jinv_21 + 2.5*Jinv_22))));
+    const double G245 = det*(w[3][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + w[4][0]*(Jinv_00*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)));
+    const double G246 = det*(w[3][0]*(2*Jinv_12*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(4*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + 6*Jinv_12*Jinv_22)) + w[4][0]*(Jinv_20*(Jinv_20*(Jinv_10 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + 2*Jinv_12)) + Jinv_21*Jinv_21*(Jinv_11 + Jinv_12) + Jinv_22*(Jinv_20*(Jinv_11 + 2*Jinv_10 + 4*Jinv_12) + Jinv_21*(Jinv_10 + 2*Jinv_11 + 4*Jinv_12) + Jinv_22*(Jinv_10 + Jinv_11 + 3*Jinv_12))));
+    const double G247 = det*(w[3][0]*(Jinv_02*(2*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)) + w[4][0]*(Jinv_01*Jinv_21*Jinv_21 + Jinv_20*(Jinv_00*Jinv_20 + Jinv_21*(Jinv_00 + Jinv_01)) + Jinv_22*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G248 = det*(Jinv_02*(2*Jinv_22*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21));
+    const double G249 = (0.5*det*w[4][0]*(Jinv_20*(Jinv_20*(Jinv_20 + Jinv_21) + Jinv_21*Jinv_21) + Jinv_21*Jinv_21*Jinv_21 + Jinv_22*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*(Jinv_20 + Jinv_21 + Jinv_22))) + Jinv_22*det*w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22));
+    const double G250 = Jinv_21*det*(Jinv_22*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G251 = Jinv_20*det*(Jinv_22*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22));
+    const double G252 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_11*Jinv_11*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_12*Jinv_12*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*det*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G253 = det*(w[3][0]*(Jinv_02*(2*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 3*Jinv_02*Jinv_22) + Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(0.5*(Jinv_00*Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_02*(1.5*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G254 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[4][0]*(Jinv_10*(Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_11*(Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22)) + Jinv_12*(3*Jinv_02*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_00*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_01*(Jinv_20 + Jinv_21 + Jinv_22))));
+    const double G255 = det*(Jinv_22*(2*Jinv_22*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21));
+    const double G256 = (Jinv_01*det*w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22) + Jinv_02*Jinv_21*det*w[3][0]);
+    const double G257 = det*(Jinv_12*(2*Jinv_22*w[3][0] + w[4][0]*(Jinv_20 + Jinv_21 + Jinv_22)) + w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21));
+    const double G258 = det*(w[3][0]*(2*Jinv_02*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21) + Jinv_22*(4*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21) + 6*Jinv_02*Jinv_22)) + w[4][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_02) + Jinv_21*(Jinv_20*(Jinv_00 + Jinv_01 + 2*Jinv_02) + Jinv_21*(Jinv_01 + Jinv_02)) + Jinv_22*(Jinv_20*(Jinv_01 + 2*Jinv_00 + 4*Jinv_02) + Jinv_21*(Jinv_00 + 2*Jinv_01 + 4*Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + 3*Jinv_02))));
+    const double G259 = (Jinv_00*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_10*det*w[3][0]);
+    const double G260 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G261 = det*(3*Jinv_12*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + w[4][0]*(1.5*Jinv_12*Jinv_12*Jinv_12 + Jinv_10*(2.5*Jinv_12*Jinv_12 + Jinv_10*(0.5*Jinv_10 + 1.5*Jinv_12) + Jinv_11*(0.5*(Jinv_10 + Jinv_11) + 2*Jinv_12)) + Jinv_11*(2.5*Jinv_12*Jinv_12 + Jinv_11*(0.5*Jinv_11 + 1.5*Jinv_12))));
+    const double G262 = Jinv_11*det*(Jinv_12*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G263 = Jinv_10*det*(Jinv_12*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G264 = det*(w[3][0]*(Jinv_12*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)) + w[4][0]*(Jinv_10*Jinv_10*Jinv_20 + Jinv_11*(Jinv_10*Jinv_20 + Jinv_21*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G265 = det*(w[3][0]*(2*Jinv_22*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(3*Jinv_22*Jinv_22 + Jinv_20*Jinv_20 + Jinv_21*Jinv_21)) + w[4][0]*(0.5*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(1.5*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G266 = det*(w[3][0]*(Jinv_02*(2*Jinv_12*Jinv_12 + Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + w[4][0]*(Jinv_00*Jinv_10*Jinv_10 + Jinv_11*(Jinv_01*Jinv_11 + Jinv_10*(Jinv_00 + Jinv_01)) + Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G267 = det*(w[3][0]*(4*Jinv_12*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12)) + w[4][0]*(Jinv_10*(Jinv_10*(Jinv_20 + Jinv_22) + Jinv_11*(Jinv_20 + Jinv_21 + 2*Jinv_22)) + Jinv_11*Jinv_11*(Jinv_21 + Jinv_22) + Jinv_12*(Jinv_20*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_21*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_22*(3*Jinv_12 + 4*(Jinv_10 + Jinv_11)))));
+    const double G268 = det*(w[3][0]*(Jinv_02*(2*Jinv_12*Jinv_22 + Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)) + w[4][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)));
+    const double G269 = det*(Jinv_02*(2*Jinv_12*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11));
+    const double G270 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_22*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*det*w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22));
+    const double G271 = (Jinv_11*Jinv_22*det*w[3][0] + Jinv_21*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G272 = (Jinv_10*Jinv_22*det*w[3][0] + Jinv_20*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12));
+    const double G273 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*Jinv_10 + Jinv_11*(Jinv_10*Jinv_10 + Jinv_11*(Jinv_10 + Jinv_11)) + Jinv_12*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*(Jinv_10 + Jinv_11 + Jinv_12))) + Jinv_12*det*w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12));
+    const double G274 = det*(w[3][0]*(Jinv_02*(2*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + 3*Jinv_02*Jinv_12) + Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)) + w[4][0]*(0.5*(Jinv_00*Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_02*(1.5*Jinv_02*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G275 = det*(w[3][0]*(4*Jinv_12*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11) + Jinv_02*(2*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11) + 6*Jinv_12*Jinv_12)) + w[4][0]*(Jinv_10*(Jinv_10*(Jinv_00 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_11*Jinv_11*(Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00*(Jinv_11 + Jinv_12 + 2*Jinv_10) + Jinv_01*(Jinv_10 + Jinv_12 + 2*Jinv_11) + Jinv_02*(3*Jinv_12 + 4*(Jinv_10 + Jinv_11)))));
+    const double G276 = det*(Jinv_22*(2*Jinv_12*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21));
+    const double G277 = (Jinv_01*det*w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*Jinv_11*det*w[3][0]);
+    const double G278 = det*(Jinv_12*(2*Jinv_12*w[3][0] + w[4][0]*(Jinv_10 + Jinv_11 + Jinv_12)) + w[3][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
+    const double G279 = det*(w[3][0]*(2*(Jinv_00*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_01*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21) + Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)) + 6*Jinv_02*Jinv_12*Jinv_22) + w[4][0]*(Jinv_00*Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_02*(3*Jinv_22*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_20*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_21*(Jinv_10 + Jinv_11 + Jinv_12)) + Jinv_22*(Jinv_00*(Jinv_10 + Jinv_11 + Jinv_12) + Jinv_01*(Jinv_10 + Jinv_11 + Jinv_12))));
+    const double G280 = det*(Jinv_00*(2*Jinv_00*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G281 = det*(3*Jinv_00*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + w[4][0]*(0.5*(Jinv_01*Jinv_01*Jinv_01 + Jinv_02*(Jinv_01*Jinv_01 + Jinv_02*(Jinv_01 + Jinv_02))) + Jinv_00*(1.5*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + 2.5*Jinv_00*Jinv_02 + Jinv_01*(1.5*Jinv_01 + 2*Jinv_02 + 2.5*Jinv_00))));
+    const double G282 = (0.5*det*w[4][0]*(Jinv_10*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*det*w[3][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G283 = det*(Jinv_10*(2*Jinv_00*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G284 = det*(w[3][0]*(Jinv_10*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + w[4][0]*(Jinv_10*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)));
+    const double G285 = (0.5*det*w[4][0]*(Jinv_20*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_20*det*w[3][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G286 = det*(w[3][0]*(2*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_00*(4*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + 6*Jinv_00*Jinv_10)) + w[4][0]*(Jinv_00*(Jinv_00*(Jinv_11 + Jinv_12 + 3*Jinv_10) + Jinv_01*(Jinv_12 + 2*Jinv_11 + 4*Jinv_10) + Jinv_02*(Jinv_11 + 2*Jinv_12 + 4*Jinv_10)) + Jinv_01*(Jinv_01*(Jinv_10 + Jinv_11) + Jinv_02*(Jinv_11 + Jinv_12 + 2*Jinv_10)) + Jinv_02*Jinv_02*(Jinv_10 + Jinv_12)));
+    const double G287 = det*(w[3][0]*(Jinv_00*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_20 + Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22 + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*Jinv_20 + Jinv_22*(Jinv_00 + Jinv_02))));
+    const double G288 = (Jinv_01*Jinv_10*det*w[3][0] + Jinv_11*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G289 = Jinv_02*det*(Jinv_00*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G290 = det*(Jinv_20*(2*Jinv_00*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02)) + w[3][0]*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22));
+    const double G291 = det*(w[3][0]*(4*Jinv_00*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_20*(2*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + 6*Jinv_00*Jinv_00)) + w[4][0]*(Jinv_00*(Jinv_20*(3*Jinv_00 + 4*(Jinv_01 + Jinv_02)) + Jinv_21*(Jinv_00 + Jinv_02 + 2*Jinv_01) + Jinv_22*(Jinv_00 + Jinv_01 + 2*Jinv_02)) + Jinv_01*(Jinv_01*(Jinv_20 + Jinv_21) + Jinv_02*(Jinv_21 + Jinv_22 + 2*Jinv_20)) + Jinv_02*Jinv_02*(Jinv_20 + Jinv_22)));
+    const double G292 = det*(w[3][0]*(Jinv_00*(2*Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)) + w[4][0]*(Jinv_00*Jinv_00*Jinv_10 + Jinv_01*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12 + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_02*(Jinv_00*(Jinv_10 + Jinv_12) + Jinv_02*Jinv_12)));
+    const double G293 = det*(w[3][0]*(2*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_00*(3*Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12)) + w[4][0]*(0.5*(Jinv_11*Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_10*(1.5*Jinv_10*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G294 = (0.5*det*w[4][0]*(Jinv_00*Jinv_00*Jinv_00 + Jinv_01*(Jinv_00*Jinv_00 + Jinv_01*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_02*Jinv_02) + Jinv_02*(Jinv_00*Jinv_00 + Jinv_02*(Jinv_00 + Jinv_02))) + Jinv_00*det*w[3][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02));
+    const double G295 = det*(w[3][0]*(Jinv_00*(Jinv_21*Jinv_21 + Jinv_22*Jinv_22) + Jinv_20*(2*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + 3*Jinv_00*Jinv_20)) + w[4][0]*(0.5*(Jinv_21*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_20*(1.5*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G296 = (Jinv_02*Jinv_20*det*w[3][0] + Jinv_22*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G297 = det*(w[3][0]*(2*(Jinv_00*Jinv_12*Jinv_22 + Jinv_01*Jinv_10*Jinv_21 + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20) + Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20)) + 6*Jinv_00*Jinv_10*Jinv_20) + w[4][0]*(Jinv_10*(3*Jinv_20*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02)) + Jinv_11*Jinv_21*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*Jinv_22*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_20*(Jinv_11*(Jinv_00 + Jinv_01 + Jinv_02) + Jinv_12*(Jinv_00 + Jinv_01 + Jinv_02))));
+    const double G298 = Jinv_01*det*(Jinv_00*w[3][0] + w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G299 = (Jinv_01*Jinv_20*det*w[3][0] + Jinv_21*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
+    const double G300 = (Jinv_02*Jinv_10*det*w[3][0] + Jinv_12*det*w[4][0]*(Jinv_00 + Jinv_01 + Jinv_02));
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 20178
+    // Total number of operations to compute element tensor: 25746
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 14232
+    // Number of operations to compute element tensor for following IP loop = 14392
     for (unsigned int ip = 0; ip < 8; ip++)
     {
       
@@ -27163,95 +27507,95 @@ public:
       // Total number of operations to compute function values = 36
       for (unsigned int r = 0; r < 2; r++)
       {
-        F3 += FE1_C0_D001[ip][r]*w[0][nzc9[r]];
+        F0 += FE1_C0_D001[ip][r]*w[0][nzc3[r]];
+        F1 += FE1_C0_D001[ip][r]*w[0][nzc2[r]];
+        F2 += FE1_C0_D001[ip][r]*w[0][nzc1[r]];
+        F3 += FE1_C0_D001[ip][r]*w[0][nzc7[r]];
         F4 += FE1_C0_D001[ip][r]*w[0][nzc6[r]];
-        F5 += FE1_C0_D001[ip][r]*w[0][nzc10[r]];
-        F6 += FE1_C0_D001[ip][r]*w[0][nzc4[r]];
-        F7 += FE1_C0_D001[ip][r]*w[0][nzc5[r]];
-        F8 += FE1_C0_D001[ip][r]*w[0][nzc0[r]];
-        F9 += FE1_C0_D001[ip][r]*w[0][nzc8[r]];
-        F10 += FE1_C0_D001[ip][r]*w[0][nzc7[r]];
-        F11 += FE1_C0_D001[ip][r]*w[0][nzc11[r]];
+        F5 += FE1_C0_D001[ip][r]*w[0][nzc5[r]];
+        F6 += FE1_C0_D001[ip][r]*w[0][nzc11[r]];
+        F7 += FE1_C0_D001[ip][r]*w[0][nzc10[r]];
+        F8 += FE1_C0_D001[ip][r]*w[0][nzc9[r]];
       }// end loop over 'r'
       
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 4; r++)
       {
-        F0 += FE1_C0[ip][r]*w[1][nzc3[r]];
-        F1 += FE1_C0[ip][r]*w[1][nzc1[r]];
-        F2 += FE1_C0[ip][r]*w[1][nzc2[r]];
+        F9 += FE1_C0[ip][r]*w[1][nzc0[r]];
+        F10 += FE1_C0[ip][r]*w[1][nzc4[r]];
+        F11 += FE1_C0[ip][r]*w[1][nzc8[r]];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 1659
-      // Number of operations: 2
-      const double Gip0 = -F0*W8[ip]*det;
-      
-      // Number of operations: 184
-      const double Gip1 = W8[ip]*(F10*(G58 + F10*(G37 + F10*G1 + F9*G39) + F11*(G54 + F10*G2 + F11*G61 + F9*G7) + F3*(G35 + F3*G15 + F4*G18) + F4*(G51 + F4*G1) + F5*(G62 + F3*G11 + F4*G10 + F5*G48) + F6*(G41 + F6*G15 + F8*G11) + F7*(G28 + F6*G18 + F7*G1 + F8*G10) + F8*(G53 + F8*G48) + F9*(G23 + F9*G44)) + F11*(G60 + F11*(G42 + F11*G24 + F9*G25) + F3*(G34 + F3*G31 + F4*G8) + F4*G45 + F5*(G33 + F3*G5 + F4*G22 + F5*G24) + F6*(G19 + F6*G31 + F7*G8) + F7*G3 + F8*(G14 + F6*G5 + F7*G22 + F8*G24) + F9*(G12 + F9*G38) + G47*(F4*F4 + F7*F7)) + F3*(G55 + F3*G46 + F4*G43) + F4*(G16 + F4*G4) + F5*(G36 + F3*G26 + F4*G9 + F5*G17) + F6*(G32 + F6*G46 + F8*G26) + F7*(G56 + F6*G43 + F7*G4 + F8*G9) + F8*(G52 + F8*G17) + F9*(G6 + F3*(G50 + F3*G0 + F4*G49) + F4*G21 + F5*(G20 + F3*G40 + F4*G8 + F5*G29) + F6*(G57 + F6*G0 + F7*G49) + F7*G59 + F8*(G30 + F6*G40 + F7*G8 + F8*G29) + F9*(G13 + F9*G0) + G27*(F4*F4 + F7*F7)));
-      
-      // Number of operations: 182
-      const double Gip2 = W8[ip]*(F10*(G16 + F10*G63 + F9*G21) + F11*(G87 + F10*G45 + F11*G68 + F9*G66) + F3*(G84 + F10*(G43 + F10*G27 + F9*G49) + F11*(G75 + F10*G8 + F11*G29 + F9*G40) + F3*(G81 + F3*G0) + F5*(G71 + F3*G38 + F5*G25) + F6*(G57 + F6*G0 + F7*G49) + F7*(G59 + F7*G27) + F8*(G30 + F6*G40 + F7*G8 + F8*G29) + F9*(G80 + F9*G0)) + F4*(G72 + F10*(G82 + F10*G1 + F9*G18) + F11*(G79 + F10*G10 + F11*G48 + F9*G11) + F3*(G78 + F3*G44 + F4*G39) + F4*(G86 + F4*G1) + F5*(G65 + F3*G7 + F4*G2 + F5*G61) + F6*(G41 + F6*G15 + F8*G11) + F7*(G28 + F6*G18 + F7*G1 + F8*G10) + F8*(G53 + F8*G48) + F9*(G70 + F9*G15)) + F5*(G76 + F10*(G9 + F10*G47 + F9*G8) + F11*(G73 + F10*G22 + F11*G24 + F9*G5) + F5*(G74 + F5*G24) + F6*(G19 + F6*G31 + F7*G8) + F7*(G3 + F7*G47) + F8*(G14 + F6*G5 + F7*G22 + F8*G24) + F9*(G69 + F9*G31)) + F6*(G77 + F6*G67 + F7*G21) + F7*(G85 + F7*G63) + F8*(G83 + F6*G66 + F7*G45 + F8*G68) + F9*(G64 + F9*G67));
-      
-      // Number of operations: 184
-      const double Gip3 = W8[ip]*(F10*(G55 + F10*G90) + F11*(G128 + F10*G34 + F11*G95 + F9*G93) + F3*(G123 + F10*(G110 + F10*G15 + F9*G106) + F11*(G109 + F10*G111 + F11*G114 + F9*G101) + F3*G119 + F5*(G99 + F3*G91 + F5*G113) + F6*G124 + F7*(G103 + F6*G106 + F7*G15) + F8*(G121 + F6*G101 + F7*G111 + F8*G114) + F9*G118 + G89*(F3*F3 + F6*F6 + F9*F9)) + F4*(G84 + F10*G43 + F11*(G75 + F10*G8 + F11*G29 + F9*G40) + F3*(G117 + F3*G96 + F4*G44) + F4*G127 + F5*(G71 + F3*G102 + F4*G115 + F5*G25) + F6*(G57 + F6*G0 + F7*G49) + F7*G59 + F8*(G30 + F6*G40 + F7*G8 + F8*G29) + F9*(G80 + F10*G49 + F9*G0) + G27*(F10*F10 + F4*F4 + F7*F7)) + F5*(G112 + F10*(G26 + F10*G104 + F9*G40) + F11*(G107 + F10*G5 + F11*G105 + F9*G88) + F5*(G108 + F5*G105) + F6*(G98 + F6*G120 + F7*G40) + F7*(G100 + F7*G104) + F8*(G125 + F6*G88 + F7*G5 + F8*G105) + F9*(G97 + F9*G120)) + F6*(G116 + F6*G94 + F8*G93) + F7*(G126 + F6*G50 + F7*G90 + F8*G34) + F8*(G122 + F8*G95) + F9*(G92 + F10*G50 + F9*G94));
-      
-      // Number of operations: 184
-      const double Gip4 = W8[ip]*(F10*(G32 + F10*G139 + F9*G57) + F11*(G146 + F10*G19 + F11*G137 + F9*G98) + F3*(G116 + F3*G132 + F4*G57) + F4*(G77 + F4*G139) + F5*(G138 + F3*G98 + F4*G19 + F5*G137) + F6*(G136 + F10*(G110 + F10*G15 + F9*G106) + F11*(G109 + F10*G111 + F11*G114 + F9*G101) + F3*(G143 + F3*G89 + F4*G106) + F4*(G145 + F4*G15) + F5*(G134 + F3*G101 + F4*G111 + F5*G114) + F6*G140 + F9*G118 + G89*(F6*F6 + F9*F9)) + F7*(G144 + F10*G43 + F11*(G75 + F10*G8 + F11*G29 + F9*G40) + F3*(G50 + F3*G0 + F4*G49) + F4*G21 + F5*(G20 + F3*G40 + F4*G8 + F5*G29) + F6*(G141 + F6*G96 + F7*G44) + F7*G129 + F8*(G135 + F6*G102 + F7*G115 + F8*G25) + F9*(G80 + F10*G49 + F9*G0) + G27*(F10*F10 + F4*F4 + F7*F7)) + F8*(G142 + F10*(G26 + F10*G104 + F9*G40) + F11*(G107 + F10*G5 + F11*G105 + F9*G88) + F3*(G93 + F3*G120 + F4*G40) + F4*(G66 + F4*G104) + F5*(G131 + F3*G88 + F4*G5 + F5*G105) + F6*(G147 + F6*G91 + F8*G113) + F8*(G133 + F8*G105) + F9*(G97 + F9*G120)) + F9*(G130 + F9*G132));
+      // Number of operations to compute ip constants: 1661
+      // Number of operations: 185
+      const double Gip0 = W8[ip]*(F0*(G4 + F0*(G5 + F0*G25) + F2*(G41 + F0*G61 + F2*G62) + F3*(G54 + F3*G25 + F4*G1) + F4*(G21 + F4*G15) + F5*(G56 + F3*G51 + F4*G7 + F5*G2) + F6*(G17 + F6*G25 + F8*G51) + F7*(G37 + F6*G1 + F7*G15 + F8*G7) + F8*(G28 + F8*G2)) + F1*(G9 + F0*(G24 + F0*G16 + F1*G8 + F2*G47) + F1*G43 + F2*(G57 + F1*G50 + F2*G64) + F3*(G44 + F3*G40 + F4*G52) + F4*G46 + F5*(G23 + F3*G10 + F4*G35 + F5*G33) + F6*(G20 + F6*G40 + F7*G52) + F7*G49 + F8*(G36 + F6*G10 + F7*G35 + F8*G33) + G19*(F1*F1 + F4*F4 + F7*F7)) + F2*(G38 + F2*(G53 + F2*G13) + F3*(G14 + F3*G3 + F4*G48) + F4*G11 + F5*(G39 + F3*G30 + F4*G34 + F5*G13) + F6*(G32 + F6*G3 + F7*G48) + F7*G58 + F8*(G22 + F6*G30 + F7*G34 + F8*G13) + G27*(F4*F4 + F7*F7)) + F3*(G59 + F3*G45 + F4*G42) + F4*G29 + F5*(G60 + F3*G26 + F4*G12 + F5*G18) + F6*(G31 + F6*G45 + F7*G42) + F7*G63 + F8*(G55 + F6*G26 + F7*G12 + F8*G18) + G6*(F4*F4 + F7*F7));
       
       // Number of operations: 185
-      const double Gip5 = W8[ip]*(F10*(G6 + F10*G155 + F11*(G12 + F10*G115 + F11*G25 + F9*G102) + F3*(G50 + F3*G0 + F4*G49) + F4*G21 + F5*(G20 + F3*G40 + F4*G8 + F5*G29) + F6*(G57 + F6*G0 + F7*G49) + F7*G59 + F8*(G30 + F6*G40 + F7*G8 + F8*G29) + F9*(G153 + F10*G44 + F9*G96) + G27*(F10*F10 + F4*F4 + F7*F7)) + F11*(G160 + F11*(G156 + F11*G105 + F9*G113) + F3*(G93 + F3*G120 + F4*G40) + F4*G66 + F5*(G131 + F3*G88 + F4*G5 + F5*G105) + F6*(G98 + F6*G120 + F7*G40) + F7*G100 + F8*(G125 + F6*G88 + F7*G5 + F8*G105) + F9*(G150 + F9*G91) + G104*(F4*F4 + F7*F7)) + F3*(G92 + F3*G157 + F4*G80) + F4*(G64 + F4*G148) + F5*(G154 + F3*G97 + F4*G69 + F5*G152) + F6*(G130 + F6*G157 + F8*G97) + F7*(G159 + F6*G80 + F7*G148 + F8*G69) + F8*(G158 + F8*G152) + F9*(G149 + F3*(G143 + F3*G89 + F4*G106) + F4*G145 + F5*(G134 + F3*G101 + F4*G111 + F5*G114) + F6*(G124 + F6*G89 + F7*G106) + F7*G103 + F8*(G121 + F6*G101 + F7*G111 + F8*G114) + F9*(G151 + F9*G89) + G15*(F4*F4 + F7*F7)));
+      const double Gip1 = W8[ip]*(F0*(G67 + F0*G68 + F1*G85 + F2*G105) + F1*(G72 + F1*G69 + F2*G86) + F2*(G102 + F2*G78) + F3*(G114 + F0*(G111 + F0*G66 + F1*G65 + F2*G88) + F1*G107 + F2*(G75 + F1*G84 + F2*G103) + F3*(G109 + F3*G66) + F5*(G87 + F3*G70 + F5*G99) + F6*(G115 + F6*G66 + F7*G65) + F7*G90 + F8*(G104 + F6*G88 + F7*G84 + F8*G103) + G93*(F1*F1 + F7*F7)) + F4*(G91 + F0*(G82 + F0*G79) + F1*(G108 + F0*G77 + F1*G94 + F2*G81) + F2*(G73 + F0*G71 + F2*G97) + F3*(G106 + F3*G80 + F4*G95) + F4*G118 + F5*(G74 + F3*G89 + F4*G100 + F5*G119) + F6*(G110 + F6*G79 + F7*G77) + F7*G76 + F8*(G92 + F6*G71 + F7*G81 + F8*G97) + G94*(F4*F4 + F7*F7)) + F5*(G98 + F0*(G113 + F0*G25 + F1*G1 + F2*G51) + F1*(G83 + F1*G15 + F2*G7) + F2*G117 + F5*G96 + F6*(G17 + F6*G25 + F8*G51) + F7*(G37 + F6*G1 + F7*G15 + F8*G7) + F8*G28 + G2*(F2*F2 + F5*F5 + F8*F8)) + F6*(G101 + F6*G68 + F7*G85) + F7*(G116 + F7*G69) + F8*(G112 + F6*G105 + F7*G86 + F8*G78));
+      
+      // Number of operations: 184
+      const double Gip2 = W8[ip]*(F0*(G120 + F0*G121 + F2*(G142 + F0*G159 + F2*G160) + F3*G153 + F4*(G131 + F3*G77 + F4*G94) + F5*(G155 + F3*G71 + F4*G81 + F5*G97) + F6*G110 + F7*(G76 + F6*G77 + F7*G94) + F8*(G92 + F6*G71 + F7*G81 + F8*G97) + G79*(F0*F0 + F3*F3 + F6*F6)) + F1*(G124 + F0*(G133 + F0*G127 + F1*G123 + F2*G148) + F1*(G144 + F1*G129 + F2*G150) + F2*(G156 + F2*G162) + F3*(G145 + F3*G141 + F4*G151) + F4*G147 + F5*(G132 + F3*G125 + F4*G138 + F5*G137) + F6*(G130 + F6*G141 + F7*G151) + F7*G149 + F8*(G139 + F6*G125 + F7*G138 + F8*G137) + G129*(F4*F4 + F7*F7)) + F2*(G140 + F2*(G152 + F2*G33) + F3*(G44 + F3*G40 + F4*G52) + F4*(G46 + F4*G19) + F5*(G23 + F3*G10 + F4*G35 + F5*G33) + F6*(G20 + F6*G40 + F7*G52) + F7*(G49 + F7*G19) + F8*(G36 + F6*G10 + F7*G35 + F8*G33)) + F3*(G157 + F3*G146 + F4*G143) + F4*(G135 + F4*G122) + F5*(G158 + F3*G134 + F4*G126 + F5*G128) + F6*(G136 + F6*G146 + F7*G143) + F7*(G161 + F7*G122) + F8*(G154 + F6*G134 + F7*G126 + F8*G128));
+      
+      // Number of operations: 184
+      const double Gip3 = W8[ip]*(F0*(G163 + F0*G164 + F1*G172 + F2*G180) + F1*(G166 + F1*G165 + F2*G173) + F2*(G179 + F2*G169) + F3*(G186 + F0*(G82 + F0*G79) + F1*(G108 + F0*G77 + F1*G94 + F2*G81) + F2*(G73 + F0*G71 + F2*G97) + F3*(G183 + F3*G79) + F5*(G174 + F3*G159 + F5*G160) + F6*(G110 + F6*G79 + F8*G71) + F7*(G76 + F6*G77 + F7*G94 + F8*G81) + F8*(G92 + F8*G97)) + F4*(G175 + F0*(G170 + F0*G141 + F1*G151 + F2*G125) + F1*(G182 + F1*G129 + F2*G138) + F2*(G167 + F2*G137) + F3*(G181 + F3*G127 + F4*G123) + F4*G189 + F5*(G168 + F3*G148 + F4*G150 + F5*G162) + F6*(G130 + F6*G141 + F7*G151) + F7*G149 + F8*(G139 + F6*G125 + F7*G138 + F8*G137) + G129*(F4*F4 + F7*F7)) + F5*(G177 + F0*(G185 + F0*G40 + F1*G52 + F2*G10) + F1*(G171 + F1*G19 + F2*G35) + F2*G188 + F5*G176 + F6*(G20 + F6*G40 + F7*G52 + F8*G10) + F7*(G49 + F7*G19 + F8*G35) + F8*G36 + G33*(F2*F2 + F5*F5 + F8*F8)) + F6*(G178 + F6*G164 + F7*G172) + F7*(G187 + F7*G165) + F8*(G184 + F6*G180 + F7*G173 + F8*G169));
       
       // Number of operations: 183
-      const double Gip6 = W8[ip]*(F10*(G56 + F10*G167 + F9*G59) + F11*(G172 + F10*G3 + F11*G165 + F9*G100) + F3*(G126 + F3*G162 + F4*G59) + F4*(G85 + F4*G167) + F5*(G166 + F3*G100 + F4*G3 + F5*G165) + F6*(G144 + F10*(G43 + F10*G27 + F9*G49) + F11*(G75 + F10*G8 + F11*G29 + F9*G40) + F3*(G50 + F3*G0 + F4*G49) + F4*(G21 + F4*G27) + F5*(G20 + F3*G40 + F4*G8 + F5*G29) + F6*(G170 + F6*G0) + F9*(G80 + F9*G0)) + F7*(G171 + F10*G82 + F11*(G79 + F10*G10 + F11*G48 + F9*G11) + F3*(G35 + F3*G15 + F4*G18) + F4*G51 + F5*(G62 + F3*G11 + F4*G10 + F5*G48) + F6*(G168 + F6*G44 + F7*G39) + F7*G161 + F8*(G164 + F6*G7 + F7*G2 + F8*G61) + F9*(G70 + F10*G18 + F9*G15) + G1*(F10*F10 + F4*F4 + F7*F7)) + F8*(G169 + F10*(G9 + F10*G47 + F9*G8) + F11*(G73 + F10*G22 + F11*G24 + F9*G5) + F3*(G34 + F3*G31 + F4*G8) + F4*(G45 + F4*G47) + F5*(G33 + F3*G5 + F4*G22 + F5*G24) + F6*(G135 + F6*G38 + F8*G25) + F8*(G163 + F8*G24) + F9*(G69 + F9*G31)) + F9*(G159 + F9*G162));
+      const double Gip4 = W8[ip]*(F0*(G190 + F0*G191 + F1*G197 + F2*G200) + F1*(G194 + F1*G205 + F2*G195) + F2*(G204 + F2*G202) + F3*(G209 + F3*G191 + F5*G200) + F4*(G193 + F3*G197 + F4*G205 + F5*G195) + F5*(G203 + F5*G202) + F6*(G201 + F0*(G111 + F0*G66 + F1*G65 + F2*G88) + F1*(G107 + F1*G93 + F2*G84) + F2*(G75 + F2*G103) + F3*(G210 + F3*G66 + F4*G65) + F4*(G212 + F4*G93) + F5*(G198 + F3*G88 + F4*G84 + F5*G103) + F6*(G206 + F6*G66)) + F7*(G211 + F0*(G82 + F0*G79) + F1*(G108 + F0*G77 + F1*G94 + F2*G81) + F2*(G73 + F0*G71 + F2*G97) + F3*(G153 + F3*G79 + F4*G77) + F4*G131 + F5*(G155 + F3*G71 + F4*G81 + F5*G97) + F6*(G207 + F6*G80 + F7*G95) + F7*G192 + F8*(G199 + F6*G89 + F7*G100 + F8*G119) + G94*(F4*F4 + F7*F7)) + F8*(G208 + F0*(G113 + F0*G25) + F1*(G83 + F0*G1 + F1*G15 + F2*G7) + F2*(G117 + F0*G51 + F2*G2) + F3*(G54 + F3*G25 + F4*G1) + F4*(G21 + F4*G15) + F5*(G56 + F3*G51 + F4*G7 + F5*G2) + F6*(G213 + F6*G70 + F8*G99) + F8*(G196 + F8*G2)));
+      
+      // Number of operations: 2
+      const double Gip5 = -F11*W8[ip]*det;
+      
+      // Number of operations: 2
+      const double Gip6 = -F9*W8[ip]*det;
+      
+      // Number of operations: 2
+      const double Gip7 = -F10*W8[ip]*det;
+      
+      // Number of operations: 183
+      const double Gip8 = W8[ip]*(F0*(G214 + F0*G215 + F1*G221 + F2*G229) + F1*(G217 + F1*G216 + F2*G222) + F2*(G228 + F2*G219) + F3*(G234 + F0*(G113 + F0*G25 + F1*G1 + F2*G51) + F1*(G83 + F1*G15 + F2*G7) + F2*(G117 + F2*G2) + F3*(G231 + F3*G25) + F5*(G223 + F3*G61 + F5*G62) + F6*(G17 + F6*G25 + F8*G51) + F7*(G37 + F6*G1 + F7*G15 + F8*G7) + F8*(G28 + F8*G2)) + F4*(G224 + F0*(G185 + F0*G40 + F1*G52 + F2*G10) + F1*G171 + F2*(G188 + F1*G35 + F2*G33) + F3*(G230 + F3*G16 + F4*G8) + F4*G237 + F5*(G218 + F3*G47 + F4*G50 + F5*G64) + F6*(G20 + F6*G40 + F7*G52) + F7*G49 + F8*(G36 + F6*G10 + F7*G35 + F8*G33) + G19*(F1*F1 + F4*F4 + F7*F7)) + F5*(G226 + F0*(G233 + F0*G3) + F1*(G220 + F0*G48 + F1*G27) + F2*(G236 + F0*G30 + F1*G34 + F2*G13) + F5*(G225 + F5*G13) + F6*(G32 + F6*G3 + F7*G48) + F7*(G58 + F7*G27) + F8*(G22 + F6*G30 + F7*G34 + F8*G13)) + F6*(G227 + F6*G215 + F7*G221) + F7*(G235 + F7*G216) + F8*(G232 + F6*G229 + F7*G222 + F8*G219));
+      
+      // Number of operations: 183
+      const double Gip9 = W8[ip]*(F0*(G238 + F0*G239 + F1*G245 + F2*G247) + F1*(G242 + F1*G252 + F2*G243) + F2*(G251 + F2*G249) + F3*(G256 + F3*G239 + F4*G245) + F4*(G241 + F4*G252) + F5*(G250 + F3*G247 + F4*G243 + F5*G249) + F6*(G248 + F0*(G113 + F0*G25 + F1*G1 + F2*G51) + F1*(G83 + F1*G15 + F2*G7) + F2*(G117 + F2*G2) + F3*(G54 + F3*G25 + F4*G1) + F4*(G21 + F4*G15) + F5*(G56 + F3*G51 + F4*G7 + F5*G2) + F6*(G253 + F6*G25)) + F7*(G257 + F0*(G185 + F0*G40 + F1*G52 + F2*G10) + F1*G171 + F2*(G188 + F1*G35 + F2*G33) + F3*(G44 + F3*G40 + F4*G52) + F4*G46 + F5*(G23 + F3*G10 + F4*G35 + F5*G33) + F6*(G254 + F6*G16 + F7*G8) + F7*G240 + F8*(G246 + F6*G47 + F7*G50 + F8*G64) + G19*(F1*F1 + F4*F4 + F7*F7)) + F8*(G255 + F0*(G233 + F0*G3) + F1*(G220 + F0*G48 + F1*G27 + F2*G34) + F2*(G236 + F0*G30 + F2*G13) + F3*(G14 + F3*G3 + F4*G48) + F4*(G11 + F4*G27) + F5*(G39 + F3*G30 + F4*G34 + F5*G13) + F6*(G258 + F6*G61 + F8*G62) + F8*(G244 + F8*G13)));
       
       // Number of operations: 184
-      const double Gip7 = W8[ip]*(F10*(G52 + F10*G188 + F9*G30) + F11*(G195 + F10*G14 + F11*G186 + F9*G125) + F3*(G122 + F3*G177 + F4*G30) + F4*(G83 + F4*G188) + F5*(G187 + F3*G125 + F4*G14 + F5*G186) + F6*(G142 + F10*(G26 + F10*G104 + F9*G40) + F11*(G107 + F10*G5 + F11*G105 + F9*G88) + F3*(G93 + F3*G120 + F4*G40) + F4*(G66 + F4*G104) + F5*(G131 + F3*G88 + F4*G5 + F5*G105) + F6*G193 + F9*G97 + G120*(F6*F6 + F9*F9)) + F7*(G169 + F10*(G9 + F10*G47 + F9*G8) + F11*(G73 + F10*G22 + F11*G24 + F9*G5) + F3*G34 + F4*(G45 + F3*G8 + F4*G47 + F5*G22) + F5*(G33 + F3*G5 + F5*G24) + F6*(G135 + F6*G38 + F7*G115) + F7*(G173 + F7*G47) + F8*(G181 + F6*G190 + F7*G61 + F8*G194) + F9*G69 + G31*(F3*F3 + F9*F9)) + F8*(G191 + F10*(G192 + F10*G48 + F9*G182) + F11*(G178 + F10*G183 + F11*G174 + F9*G180) + F3*(G189 + F3*G114 + F4*G182) + F4*(G184 + F4*G48) + F5*(G175 + F3*G180 + F4*G183 + F5*G174) + F6*(G196 + F6*G113 + F8*G176) + F8*(G179 + F8*G174) + F9*(G185 + F9*G114)) + F9*(G158 + F9*G177));
+      const double Gip10 = W8[ip]*(F0*(G259 + F0*G260 + F1*G266 + F2*G268) + F1*(G263 + F1*G273 + F2*G264) + F2*(G272 + F2*G270) + F3*(G277 + F3*G260 + F4*G266) + F4*(G262 + F4*G273) + F5*(G271 + F3*G268 + F4*G264 + F5*G270) + F6*(G269 + F0*G82 + F1*(G108 + F0*G77 + F1*G94 + F2*G81) + F2*(G73 + F0*G71 + F2*G97) + F3*G153 + F4*(G131 + F3*G77 + F4*G94) + F5*(G155 + F3*G71 + F4*G81 + F5*G97) + F6*G274 + G79*(F0*F0 + F3*F3 + F6*F6)) + F7*(G278 + F0*(G170 + F0*G141 + F1*G151 + F2*G125) + F1*(G182 + F1*G129 + F2*G138) + F2*(G167 + F2*G137) + F3*(G145 + F3*G141 + F4*G151) + F4*G147 + F5*(G132 + F3*G125 + F4*G138 + F5*G137) + F6*(G275 + F6*G127 + F7*G123) + F7*G261 + F8*(G267 + F6*G148 + F7*G150 + F8*G162) + G129*(F4*F4 + F7*F7)) + F8*(G276 + F0*(G185 + F0*G40) + F1*(G171 + F0*G52 + F1*G19 + F2*G35) + F2*(G188 + F0*G10 + F2*G33) + F3*(G44 + F3*G40 + F4*G52) + F4*(G46 + F4*G19) + F5*(G23 + F3*G10 + F4*G35 + F5*G33) + F6*(G279 + F6*G159 + F8*G160) + F8*(G265 + F8*G33)));
       
-      // Number of operations: 185
-      const double Gip8 = W8[ip]*(F10*(G60 + F10*(G205 + F10*G47 + F9*G115) + F11*(G208 + F10*G61 + F11*G194 + F9*G190) + F3*(G34 + F3*G31) + F4*(G45 + F3*G8 + F4*G47 + F5*G22) + F5*(G33 + F3*G5 + F5*G24) + F6*(G19 + F6*G31 + F7*G8) + F7*(G3 + F7*G47) + F8*(G14 + F6*G5 + F7*G22 + F8*G24) + F9*(G12 + F9*G38)) + F11*(G209 + F11*(G206 + F11*G174 + F9*G176) + F3*(G189 + F3*G114 + F4*G182) + F4*G184 + F5*(G175 + F3*G180 + F4*G183 + F5*G174) + F6*(G203 + F6*G114 + F7*G182) + F7*G197 + F8*(G201 + F6*G180 + F7*G183 + F8*G174) + F9*(G199 + F9*G113) + G48*(F4*F4 + F7*F7)) + F3*(G128 + F3*G207 + F4*G75) + F4*G87 + F5*(G204 + F3*G107 + F4*G73 + F5*G202) + F6*(G146 + F6*G207 + F7*G75) + F7*G172 + F8*(G195 + F6*G107 + F7*G73 + F8*G202) + F9*(G160 + F3*(G93 + F3*G120 + F4*G40) + F4*G66 + F5*(G131 + F3*G88 + F4*G5 + F5*G105) + F6*(G98 + F6*G120 + F7*G40) + F7*G100 + F8*(G125 + F6*G88 + F7*G5 + F8*G105) + F9*(G200 + F9*G120) + G104*(F4*F4 + F7*F7)) + G198*(F4*F4 + F7*F7));
-      
-      // Number of operations: 2
-      const double Gip9 = -F2*W8[ip]*det;
-      
-      // Number of operations: 182
-      const double Gip10 = W8[ip]*(F10*(G36 + F10*G210 + F9*G20) + F11*(G204 + F10*G33 + F11*G213 + F9*G131) + F3*(G112 + F10*(G26 + F10*G104 + F9*G40) + F11*(G107 + F10*G5 + F11*G105 + F9*G88) + F3*(G217 + F3*G120) + F5*(G214 + F3*G113 + F5*G176) + F6*(G98 + F6*G120 + F7*G40) + F7*(G100 + F7*G104) + F8*(G125 + F6*G88 + F7*G5 + F8*G105) + F9*(G97 + F9*G120)) + F4*(G76 + F10*(G9 + F10*G47 + F9*G8) + F11*(G73 + F10*G22 + F11*G24 + F9*G5) + F3*(G71 + F3*G38) + F4*(G218 + F3*G115 + F4*G47 + F5*G61) + F5*(G211 + F3*G190 + F5*G194) + F6*(G19 + F6*G31 + F7*G8) + F7*(G3 + F7*G47) + F8*(G14 + F6*G5 + F7*G22 + F8*G24) + F9*(G69 + F9*G31)) + F5*(G216 + F10*(G192 + F10*G48 + F9*G182) + F11*(G178 + F10*G183 + F11*G174 + F9*G180) + F5*(G215 + F5*G174) + F6*(G203 + F6*G114 + F7*G182) + F7*(G197 + F7*G48) + F8*(G201 + F6*G180 + F7*G183 + F8*G174) + F9*(G185 + F9*G114)) + F6*(G138 + F6*G212 + F7*G20) + F7*(G166 + F7*G210) + F8*(G187 + F6*G131 + F7*G33 + F8*G213) + F9*(G154 + F9*G212));
-      
-      // Number of operations: 2
-      const double Gip11 = -F1*W8[ip]*det;
+      // Number of operations: 184
+      const double Gip11 = W8[ip]*(F0*(G280 + F0*G281 + F2*(G291 + F0*G70 + F2*G99) + F3*G210 + F4*(G212 + F3*G65 + F4*G93) + F5*(G198 + F3*G88 + F4*G84 + F5*G103) + F6*G115 + F7*(G90 + F6*G65 + F7*G93) + F8*(G104 + F6*G88 + F7*G84 + F8*G103) + G66*(F0*F0 + F3*F3 + F6*F6)) + F1*(G283 + F0*(G286 + F0*G80 + F1*G95 + F2*G89) + F1*G293 + F2*(G297 + F1*G100 + F2*G119) + F3*(G153 + F3*G79 + F4*G77) + F4*G131 + F5*(G155 + F3*G71 + F4*G81 + F5*G97) + F6*(G110 + F6*G79 + F7*G77) + F7*G76 + F8*(G92 + F6*G71 + F7*G81 + F8*G97) + G94*(F1*F1 + F4*F4 + F7*F7)) + F2*(G290 + F2*(G295 + F2*G2) + F3*(G54 + F3*G25 + F4*G1) + F4*(G21 + F4*G15) + F5*(G56 + F3*G51 + F4*G7 + F5*G2) + F6*(G17 + F6*G25 + F8*G51) + F7*(G37 + F6*G1 + F7*G15 + F8*G7) + F8*(G28 + F8*G2)) + F3*(G298 + F3*G294 + F4*G292) + F4*(G288 + F4*G282) + F5*(G299 + F3*G287 + F4*G284 + F5*G285) + F6*(G289 + F6*G294 + F8*G287) + F7*(G300 + F6*G292 + F7*G282 + F8*G284) + F8*(G296 + F8*G285));
       
       
-      // Number of operations for primary indices = 36
+      // Number of operations for primary indices: 54
       for (unsigned int j = 0; j < 2; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc7[j]] += FE1_C0_D001[ip][j]*Gip1;
-        // Number of operations to compute entry = 2
-        A[nzc6[j]] += FE1_C0_D001[ip][j]*Gip2;
-        // Number of operations to compute entry = 2
-        A[nzc9[j]] += FE1_C0_D001[ip][j]*Gip3;
-        // Number of operations to compute entry = 2
-        A[nzc4[j]] += FE1_C0_D001[ip][j]*Gip4;
-        // Number of operations to compute entry = 2
-        A[nzc8[j]] += FE1_C0_D001[ip][j]*Gip5;
-        // Number of operations to compute entry = 2
-        A[nzc5[j]] += FE1_C0_D001[ip][j]*Gip6;
-        // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE1_C0_D001[ip][j]*Gip7;
-        // Number of operations to compute entry = 2
-        A[nzc11[j]] += FE1_C0_D001[ip][j]*Gip8;
-        // Number of operations to compute entry = 2
-        A[nzc10[j]] += FE1_C0_D001[ip][j]*Gip10;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]] += (FE1_C0_D001[ip][j]*Gip0 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc7[j]] += (FE1_C0_D001[ip][j]*Gip1 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc2[j]] += (FE1_C0_D001[ip][j]*Gip2 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc6[j]] += (FE1_C0_D001[ip][j]*Gip3 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc11[j]] += (FE1_C0_D001[ip][j]*Gip4 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc5[j]] += (FE1_C0_D001[ip][j]*Gip8 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc9[j]] += (FE1_C0_D001[ip][j]*Gip9 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc10[j]] += (FE1_C0_D001[ip][j]*Gip10 + G0);
+        // Number of operations to compute entry: 3
+        A[nzc3[j]] += (FE1_C0_D001[ip][j]*Gip11 + G0);
       }// end loop over 'j'
       
-      // Number of operations for primary indices = 24
+      // Number of operations for primary indices: 24
       for (unsigned int j = 0; j < 4; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc3[j]] += FE1_C0[ip][j]*Gip0;
-        // Number of operations to compute entry = 2
-        A[nzc2[j]] += FE1_C0[ip][j]*Gip9;
-        // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE1_C0[ip][j]*Gip11;
+        // Number of operations to compute entry: 2
+        A[nzc8[j]] += FE1_C0[ip][j]*Gip5;
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE1_C0[ip][j]*Gip6;
+        // Number of operations to compute entry: 2
+        A[nzc4[j]] += FE1_C0[ip][j]*Gip7;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -27361,30 +27705,30 @@ public:
     // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.0750311102226081, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0_C1[4][3] = \
+    static const double FE0_f0_C0[4][3] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.280019915499074, 0.0750311102226081, 0.644948974278318},
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.0750311102226082, 0.280019915499074, 0.644948974278318}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[3] = {5, 6, 7};
+    static const unsigned int nzc1[3] = {5, 6, 7};
     // Array of non-zero columns
-    static const unsigned int nzc1[3] = {1, 2, 3};
+    static const unsigned int nzc0[3] = {1, 2, 3};
     // Array of non-zero columns
-    static const unsigned int nzc2[3] = {4, 5, 7};
+    static const unsigned int nzc7[3] = {4, 5, 7};
     // Array of non-zero columns
-    static const unsigned int nzc3[3] = {9, 10, 11};
+    static const unsigned int nzc2[3] = {9, 10, 11};
     // Array of non-zero columns
-    static const unsigned int nzc4[3] = {8, 9, 11};
+    static const unsigned int nzc8[3] = {8, 9, 11};
     // Array of non-zero columns
-    static const unsigned int nzc5[3] = {0, 1, 3};
+    static const unsigned int nzc6[3] = {0, 1, 3};
     // Array of non-zero columns
-    static const unsigned int nzc6[3] = {8, 10, 11};
+    static const unsigned int nzc5[3] = {8, 10, 11};
     // Array of non-zero columns
-    static const unsigned int nzc7[3] = {0, 2, 3};
+    static const unsigned int nzc3[3] = {0, 2, 3};
     // Array of non-zero columns
-    static const unsigned int nzc8[3] = {4, 6, 7};
+    static const unsigned int nzc4[3] = {4, 6, 7};
     // Array of non-zero columns
     static const unsigned int nzc9[3] = {0, 1, 2};
     // Array of non-zero columns
@@ -27413,9 +27757,9 @@ public:
         // Total number of operations to compute function values = 18
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0_C1[ip][r]*w[2][nzc3[r]];
-          F1 += FE0_f0_C1[ip][r]*w[2][nzc1[r]];
-          F2 += FE0_f0_C1[ip][r]*w[2][nzc0[r]];
+          F0 += FE0_f0_C0[ip][r]*w[2][nzc0[r]];
+          F1 += FE0_f0_C0[ip][r]*w[2][nzc1[r]];
+          F2 += FE0_f0_C0[ip][r]*w[2][nzc2[r]];
         }// end loop over 'r'
         
         // Number of operations to compute ip constants: 6
@@ -27423,21 +27767,21 @@ public:
         const double Gip0 = -F1*W4[ip]*det;
         
         // Number of operations: 2
-        const double Gip1 = -F0*W4[ip]*det;
+        const double Gip1 = -F2*W4[ip]*det;
         
         // Number of operations: 2
-        const double Gip2 = -F2*W4[ip]*det;
+        const double Gip2 = -F0*W4[ip]*det;
         
         
-        // Number of operations for primary indices = 18
+        // Number of operations for primary indices: 18
         for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry = 2
-          A[nzc1[j]] += FE0_f0_C1[ip][j]*Gip0;
-          // Number of operations to compute entry = 2
-          A[nzc3[j]] += FE0_f0_C1[ip][j]*Gip1;
-          // Number of operations to compute entry = 2
-          A[nzc0[j]] += FE0_f0_C1[ip][j]*Gip2;
+          // Number of operations to compute entry: 2
+          A[nzc1[j]] += FE0_f0_C0[ip][j]*Gip0;
+          // Number of operations to compute entry: 2
+          A[nzc2[j]] += FE0_f0_C0[ip][j]*Gip1;
+          // Number of operations to compute entry: 2
+          A[nzc0[j]] += FE0_f0_C0[ip][j]*Gip2;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
@@ -27459,31 +27803,31 @@ public:
         // Total number of operations to compute function values = 18
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0_C1[ip][r]*w[2][nzc6[r]];
-          F1 += FE0_f0_C1[ip][r]*w[2][nzc7[r]];
-          F2 += FE0_f0_C1[ip][r]*w[2][nzc8[r]];
+          F0 += FE0_f0_C0[ip][r]*w[2][nzc3[r]];
+          F1 += FE0_f0_C0[ip][r]*w[2][nzc4[r]];
+          F2 += FE0_f0_C0[ip][r]*w[2][nzc5[r]];
         }// end loop over 'r'
         
         // Number of operations to compute ip constants: 6
         // Number of operations: 2
-        const double Gip0 = -F0*W4[ip]*det;
+        const double Gip0 = -F1*W4[ip]*det;
         
         // Number of operations: 2
-        const double Gip1 = -F1*W4[ip]*det;
+        const double Gip1 = -F2*W4[ip]*det;
         
         // Number of operations: 2
-        const double Gip2 = -F2*W4[ip]*det;
+        const double Gip2 = -F0*W4[ip]*det;
         
         
-        // Number of operations for primary indices = 18
+        // Number of operations for primary indices: 18
         for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry = 2
-          A[nzc6[j]] += FE0_f0_C1[ip][j]*Gip0;
-          // Number of operations to compute entry = 2
-          A[nzc7[j]] += FE0_f0_C1[ip][j]*Gip1;
-          // Number of operations to compute entry = 2
-          A[nzc8[j]] += FE0_f0_C1[ip][j]*Gip2;
+          // Number of operations to compute entry: 2
+          A[nzc4[j]] += FE0_f0_C0[ip][j]*Gip0;
+          // Number of operations to compute entry: 2
+          A[nzc5[j]] += FE0_f0_C0[ip][j]*Gip1;
+          // Number of operations to compute entry: 2
+          A[nzc3[j]] += FE0_f0_C0[ip][j]*Gip2;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
@@ -27505,9 +27849,9 @@ public:
         // Total number of operations to compute function values = 18
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0_C1[ip][r]*w[2][nzc4[r]];
-          F1 += FE0_f0_C1[ip][r]*w[2][nzc5[r]];
-          F2 += FE0_f0_C1[ip][r]*w[2][nzc2[r]];
+          F0 += FE0_f0_C0[ip][r]*w[2][nzc6[r]];
+          F1 += FE0_f0_C0[ip][r]*w[2][nzc7[r]];
+          F2 += FE0_f0_C0[ip][r]*w[2][nzc8[r]];
         }// end loop over 'r'
         
         // Number of operations to compute ip constants: 6
@@ -27521,15 +27865,15 @@ public:
         const double Gip2 = -F2*W4[ip]*det;
         
         
-        // Number of operations for primary indices = 18
+        // Number of operations for primary indices: 18
         for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry = 2
-          A[nzc4[j]] += FE0_f0_C1[ip][j]*Gip0;
-          // Number of operations to compute entry = 2
-          A[nzc5[j]] += FE0_f0_C1[ip][j]*Gip1;
-          // Number of operations to compute entry = 2
-          A[nzc2[j]] += FE0_f0_C1[ip][j]*Gip2;
+          // Number of operations to compute entry: 2
+          A[nzc6[j]] += FE0_f0_C0[ip][j]*Gip0;
+          // Number of operations to compute entry: 2
+          A[nzc7[j]] += FE0_f0_C0[ip][j]*Gip1;
+          // Number of operations to compute entry: 2
+          A[nzc8[j]] += FE0_f0_C0[ip][j]*Gip2;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
@@ -27551,9 +27895,9 @@ public:
         // Total number of operations to compute function values = 18
         for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0_C1[ip][r]*w[2][nzc11[r]];
-          F1 += FE0_f0_C1[ip][r]*w[2][nzc9[r]];
-          F2 += FE0_f0_C1[ip][r]*w[2][nzc10[r]];
+          F0 += FE0_f0_C0[ip][r]*w[2][nzc9[r]];
+          F1 += FE0_f0_C0[ip][r]*w[2][nzc10[r]];
+          F2 += FE0_f0_C0[ip][r]*w[2][nzc11[r]];
         }// end loop over 'r'
         
         // Number of operations to compute ip constants: 6
@@ -27561,21 +27905,21 @@ public:
         const double Gip0 = -F0*W4[ip]*det;
         
         // Number of operations: 2
-        const double Gip1 = -F1*W4[ip]*det;
+        const double Gip1 = -F2*W4[ip]*det;
         
         // Number of operations: 2
-        const double Gip2 = -F2*W4[ip]*det;
+        const double Gip2 = -F1*W4[ip]*det;
         
         
-        // Number of operations for primary indices = 18
+        // Number of operations for primary indices: 18
         for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry = 2
-          A[nzc11[j]] += FE0_f0_C1[ip][j]*Gip0;
-          // Number of operations to compute entry = 2
-          A[nzc9[j]] += FE0_f0_C1[ip][j]*Gip1;
-          // Number of operations to compute entry = 2
-          A[nzc10[j]] += FE0_f0_C1[ip][j]*Gip2;
+          // Number of operations to compute entry: 2
+          A[nzc9[j]] += FE0_f0_C0[ip][j]*Gip0;
+          // Number of operations to compute entry: 2
+          A[nzc11[j]] += FE0_f0_C0[ip][j]*Gip1;
+          // Number of operations to compute entry: 2
+          A[nzc10[j]] += FE0_f0_C0[ip][j]*Gip2;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
@@ -27790,7 +28134,7 @@ public:
   CoefficientSpace_B(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -27798,7 +28142,7 @@ public:
   CoefficientSpace_B(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -27806,7 +28150,7 @@ public:
   CoefficientSpace_B(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -27814,7 +28158,7 @@ public:
   CoefficientSpace_B(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -27833,7 +28177,7 @@ public:
   CoefficientSpace_T(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), mesh)))
   {
     // Do nothing
   }
@@ -27841,7 +28185,7 @@ public:
   CoefficientSpace_T(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), mesh)))
   {
     // Do nothing
   }
@@ -27849,7 +28193,7 @@ public:
   CoefficientSpace_T(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -27857,7 +28201,7 @@ public:
   CoefficientSpace_T(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_3()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -27876,7 +28220,7 @@ public:
   CoefficientSpace_lmbda(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), mesh)))
   {
     // Do nothing
   }
@@ -27884,7 +28228,7 @@ public:
   CoefficientSpace_lmbda(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), mesh)))
   {
     // Do nothing
   }
@@ -27892,7 +28236,7 @@ public:
   CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), *mesh)))
   {
       // Do nothing
   }
@@ -27900,7 +28244,7 @@ public:
   CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_5()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_5()), *mesh)))
   {
       // Do nothing
   }
@@ -27919,7 +28263,7 @@ public:
   CoefficientSpace_mu(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_4()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), mesh)))
   {
     // Do nothing
   }
@@ -27927,7 +28271,7 @@ public:
   CoefficientSpace_mu(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_4()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), mesh)))
   {
     // Do nothing
   }
@@ -27935,7 +28279,7 @@ public:
   CoefficientSpace_mu(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_4()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), *mesh)))
   {
       // Do nothing
   }
@@ -27943,7 +28287,7 @@ public:
   CoefficientSpace_mu(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_4()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_4()), *mesh)))
   {
       // Do nothing
   }
@@ -27962,7 +28306,7 @@ public:
   CoefficientSpace_u(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -27970,7 +28314,7 @@ public:
   CoefficientSpace_u(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -27978,7 +28322,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -27986,7 +28330,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -28005,7 +28349,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -28013,7 +28357,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -28021,7 +28365,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -28029,7 +28373,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -28048,7 +28392,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -28056,7 +28400,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -28064,7 +28408,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -28072,7 +28416,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -28225,7 +28569,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -28233,7 +28577,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -28241,7 +28585,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -28249,7 +28593,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }

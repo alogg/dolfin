@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -563,7 +563,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -1093,7 +1093,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return the cell shape
@@ -1567,7 +1567,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1753,7 +1753,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1939,7 +1939,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'tetrahedron', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2158,19 +2158,19 @@ public:
     {{-1, 1}};
     
     // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 1};
+    static const unsigned int nzc1[2] = {0, 2};
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {0, 3};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Number of operations to compute geometry constants: 48
     const double G0 = W1*det*w[0][0]*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G1 = W1*det*w[0][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G1 = W1*det*w[0][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
     const double G2 = W1*det*w[0][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G3 = W1*det*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G4 = W1*det*w[0][0]*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G5 = W1*det*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G3 = W1*det*w[0][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G4 = W1*det*w[0][0]*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G5 = W1*det*w[0][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -2180,28 +2180,28 @@ public:
     // Number of operations to compute element tensor for following IP loop = 108
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices = 108
+    // Number of operations for primary indices: 108
     for (unsigned int j = 0; j < 2; j++)
     {
       for (unsigned int k = 0; k < 2; k++)
       {
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc0[j]*4 + nzc0[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G0;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc1[j]*4 + nzc0[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G1;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc1[j]*4 + nzc2[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G2;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc2[j]*4 + nzc2[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G3;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc2[j]*4 + nzc0[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G4;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc0[j]*4 + nzc2[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G4;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc2[j]*4 + nzc1[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G2;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc0[j]*4 + nzc1[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G1;
-        // Number of operations to compute entry = 3
+        // Number of operations to compute entry: 3
         A[nzc1[j]*4 + nzc1[k]] += FE0_D001[0][j]*FE0_D001[0][k]*G5;
       }// end loop over 'k'
     }// end loop over 'j'
@@ -2395,7 +2395,7 @@ public:
   CoefficientSpace_c(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -2403,7 +2403,7 @@ public:
   CoefficientSpace_c(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
   {
     // Do nothing
   }
@@ -2411,7 +2411,7 @@ public:
   CoefficientSpace_c(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -2419,7 +2419,7 @@ public:
   CoefficientSpace_c(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_2()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -2438,7 +2438,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -2446,7 +2446,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -2454,7 +2454,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -2462,7 +2462,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -2481,7 +2481,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -2489,7 +2489,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -2497,7 +2497,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -2505,7 +2505,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stiffnessmatrix3d_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new stiffnessmatrix3d_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }

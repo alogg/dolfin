@@ -15,7 +15,7 @@ cahnhilliard2d_0_finite_element_0_0::~cahnhilliard2d_0_finite_element_0_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_0_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -429,7 +429,7 @@ cahnhilliard2d_0_finite_element_0_1::~cahnhilliard2d_0_finite_element_0_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_0_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -843,7 +843,7 @@ cahnhilliard2d_0_finite_element_0::~cahnhilliard2d_0_finite_element_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_0::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -1428,7 +1428,7 @@ cahnhilliard2d_0_finite_element_1_0::~cahnhilliard2d_0_finite_element_1_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_1_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -1842,7 +1842,7 @@ cahnhilliard2d_0_finite_element_1_1::~cahnhilliard2d_0_finite_element_1_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_1_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -2256,7 +2256,7 @@ cahnhilliard2d_0_finite_element_1::~cahnhilliard2d_0_finite_element_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_1::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -2841,7 +2841,7 @@ cahnhilliard2d_0_finite_element_2_0::~cahnhilliard2d_0_finite_element_2_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_2_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -3255,7 +3255,7 @@ cahnhilliard2d_0_finite_element_2_1::~cahnhilliard2d_0_finite_element_2_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_2_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -3669,7 +3669,7 @@ cahnhilliard2d_0_finite_element_2::~cahnhilliard2d_0_finite_element_2()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_2::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -4254,7 +4254,7 @@ cahnhilliard2d_0_finite_element_3::~cahnhilliard2d_0_finite_element_3()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_3::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -4634,7 +4634,7 @@ cahnhilliard2d_0_finite_element_4::~cahnhilliard2d_0_finite_element_4()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_4::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -5014,7 +5014,7 @@ cahnhilliard2d_0_finite_element_5::~cahnhilliard2d_0_finite_element_5()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_5::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -5394,7 +5394,7 @@ cahnhilliard2d_0_finite_element_6::~cahnhilliard2d_0_finite_element_6()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_0_finite_element_6::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -5773,7 +5773,7 @@ cahnhilliard2d_0_dof_map_0_0::~cahnhilliard2d_0_dof_map_0_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_0_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -5929,7 +5929,7 @@ cahnhilliard2d_0_dof_map_0_1::~cahnhilliard2d_0_dof_map_0_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_0_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -6085,7 +6085,7 @@ cahnhilliard2d_0_dof_map_0::~cahnhilliard2d_0_dof_map_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_0::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -6266,7 +6266,7 @@ cahnhilliard2d_0_dof_map_1_0::~cahnhilliard2d_0_dof_map_1_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_1_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -6422,7 +6422,7 @@ cahnhilliard2d_0_dof_map_1_1::~cahnhilliard2d_0_dof_map_1_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_1_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -6578,7 +6578,7 @@ cahnhilliard2d_0_dof_map_1::~cahnhilliard2d_0_dof_map_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_1::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -6759,7 +6759,7 @@ cahnhilliard2d_0_dof_map_2_0::~cahnhilliard2d_0_dof_map_2_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_2_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -6915,7 +6915,7 @@ cahnhilliard2d_0_dof_map_2_1::~cahnhilliard2d_0_dof_map_2_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_2_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7071,7 +7071,7 @@ cahnhilliard2d_0_dof_map_2::~cahnhilliard2d_0_dof_map_2()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_2::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7252,7 +7252,7 @@ cahnhilliard2d_0_dof_map_3::~cahnhilliard2d_0_dof_map_3()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_3::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7399,7 +7399,7 @@ cahnhilliard2d_0_dof_map_4::~cahnhilliard2d_0_dof_map_4()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_4::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7546,7 +7546,7 @@ cahnhilliard2d_0_dof_map_5::~cahnhilliard2d_0_dof_map_5()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_5::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7693,7 +7693,7 @@ cahnhilliard2d_0_dof_map_6::~cahnhilliard2d_0_dof_map_6()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_0_dof_map_6::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -7869,26 +7869,7 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.0665540678391645, 0.409466864440735), (0.0239311322870806, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.80869438567767, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1_D01[9][2] = \
-    {{-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {3, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {3, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 2};
-    static const double FE0_C1[9][3] = \
+    static const double FE1_C0[9][3] = \
     {{0.80869438567767, 0.102717654809626, 0.088587959512704},
     {0.523979067720101, 0.0665540678391645, 0.409466864440735},
     {0.188409405952072, 0.0239311322870807, 0.787659461760847},
@@ -7900,20 +7881,39 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
     {0.0239311322870807, 0.188409405952072, 0.787659461760847}};
     
     // Array of non-zero columns
-    static const unsigned int nzc4[3] = {3, 4, 5};
+    static const unsigned int nzc0[3] = {0, 1, 2};
     // Array of non-zero columns
-    static const unsigned int nzc5[3] = {0, 1, 2};
+    static const unsigned int nzc3[3] = {3, 4, 5};
+    static const double FE1_C0_D01[9][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {3, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {3, 4};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Number of operations to compute geometry constants: 39
-    const double G0 = -det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G1 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2 = -det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G3 = -12*det*w[2][0];
-    const double G4 = 12*det*w[2][0];
-    const double G5 = -2*det*w[2][0];
-    const double G6 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G7 = -det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G8 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G0 = -12*det*w[2][0];
+    const double G1 = 12*det*w[2][0];
+    const double G2 = -2*det*w[2][0];
+    const double G3 = -det*w[1][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G4 = -det*w[1][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G5 = det*w[3][0]*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
+    const double G6 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
+    const double G7 = det*w[3][0]*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
+    const double G8 = -det*w[1][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -7930,24 +7930,24 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       // Total number of operations to compute function values = 6
       for (unsigned int r = 0; r < 3; r++)
       {
-        F0 += FE0_C1[ip][r]*w[0][nzc4[r]];
+        F0 += FE1_C0[ip][r]*w[0][nzc3[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 12
       // Number of operations: 1
       const double Gip0 = W9[ip]*det;
       
-      // Number of operations: 1
-      const double Gip1 = G0*W9[ip];
-      
-      // Number of operations: 1
-      const double Gip2 = G1*W9[ip];
-      
-      // Number of operations: 1
-      const double Gip3 = G2*W9[ip];
-      
       // Number of operations: 5
-      const double Gip4 = W9[ip]*(G5 + F0*(G4 + F0*G3));
+      const double Gip1 = W9[ip]*(G2 + F0*(G1 + F0*G0));
+      
+      // Number of operations: 1
+      const double Gip2 = G3*W9[ip];
+      
+      // Number of operations: 1
+      const double Gip3 = G4*W9[ip];
+      
+      // Number of operations: 1
+      const double Gip4 = G5*W9[ip];
       
       // Number of operations: 1
       const double Gip5 = G6*W9[ip];
@@ -7959,41 +7959,41 @@ void cahnhilliard2d_0_cell_integral_0_quadrature::tabulate_tensor(double* A,
       const double Gip7 = G8*W9[ip];
       
       
-      // Number of operations for primary indices = 81
+      // Number of operations for primary indices: 81
       for (unsigned int j = 0; j < 3; j++)
       {
         for (unsigned int k = 0; k < 3; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc4[j]*6 + nzc5[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip0;
-          // Number of operations to compute entry = 3
-          A[nzc4[j]*6 + nzc4[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip4;
-          // Number of operations to compute entry = 3
-          A[nzc5[j]*6 + nzc4[k]] += FE0_C1[ip][j]*FE0_C1[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*6 + nzc3[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip0;
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*6 + nzc3[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip1;
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*6 + nzc0[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*Gip0;
         }// end loop over 'k'
       }// end loop over 'j'
       
-      // Number of operations for primary indices = 96
+      // Number of operations for primary indices: 96
       for (unsigned int j = 0; j < 2; j++)
       {
         for (unsigned int k = 0; k < 2; k++)
         {
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*6 + nzc1[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*6 + nzc3[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*6 + nzc1[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip3;
-          // Number of operations to compute entry = 3
-          A[nzc3[j]*6 + nzc2[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
-          A[nzc1[j]*6 + nzc0[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
-          A[nzc3[j]*6 + nzc3[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip5;
-          // Number of operations to compute entry = 3
-          A[nzc0[j]*6 + nzc0[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip6;
-          // Number of operations to compute entry = 3
-          A[nzc2[j]*6 + nzc2[k]] += FE0_C1_D01[ip][j]*FE0_C1_D01[ip][k]*Gip7;
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*6 + nzc4[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip2;
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*6 + nzc4[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip3;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*6 + nzc1[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip4;
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*6 + nzc2[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip5;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*6 + nzc1[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip5;
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*6 + nzc5[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip2;
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*6 + nzc2[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip6;
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*6 + nzc5[k]] += FE1_C0_D01[ip][j]*FE1_C0_D01[ip][k]*Gip7;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -8166,7 +8166,7 @@ cahnhilliard2d_1_finite_element_0_0::~cahnhilliard2d_1_finite_element_0_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_0_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -8580,7 +8580,7 @@ cahnhilliard2d_1_finite_element_0_1::~cahnhilliard2d_1_finite_element_0_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_0_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -8994,7 +8994,7 @@ cahnhilliard2d_1_finite_element_0::~cahnhilliard2d_1_finite_element_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_0::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -9579,7 +9579,7 @@ cahnhilliard2d_1_finite_element_1_0::~cahnhilliard2d_1_finite_element_1_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_1_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -9993,7 +9993,7 @@ cahnhilliard2d_1_finite_element_1_1::~cahnhilliard2d_1_finite_element_1_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_1_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -10407,7 +10407,7 @@ cahnhilliard2d_1_finite_element_1::~cahnhilliard2d_1_finite_element_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_1::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -10992,7 +10992,7 @@ cahnhilliard2d_1_finite_element_2_0::~cahnhilliard2d_1_finite_element_2_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_2_0::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -11406,7 +11406,7 @@ cahnhilliard2d_1_finite_element_2_1::~cahnhilliard2d_1_finite_element_2_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_2_1::signature() const
 {
-    return "FiniteElement('Lagrange', 'triangle', 1)";
+    return "FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return the cell shape
@@ -11820,7 +11820,7 @@ cahnhilliard2d_1_finite_element_2::~cahnhilliard2d_1_finite_element_2()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_2::signature() const
 {
-    return "MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -12405,7 +12405,7 @@ cahnhilliard2d_1_finite_element_3::~cahnhilliard2d_1_finite_element_3()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_3::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -12785,7 +12785,7 @@ cahnhilliard2d_1_finite_element_4::~cahnhilliard2d_1_finite_element_4()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_4::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -13165,7 +13165,7 @@ cahnhilliard2d_1_finite_element_5::~cahnhilliard2d_1_finite_element_5()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_5::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -13545,7 +13545,7 @@ cahnhilliard2d_1_finite_element_6::~cahnhilliard2d_1_finite_element_6()
 /// Return a string identifying the finite element
 const char* cahnhilliard2d_1_finite_element_6::signature() const
 {
-    return "FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return the cell shape
@@ -13924,7 +13924,7 @@ cahnhilliard2d_1_dof_map_0_0::~cahnhilliard2d_1_dof_map_0_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_0_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -14080,7 +14080,7 @@ cahnhilliard2d_1_dof_map_0_1::~cahnhilliard2d_1_dof_map_0_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_0_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -14236,7 +14236,7 @@ cahnhilliard2d_1_dof_map_0::~cahnhilliard2d_1_dof_map_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_0::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -14417,7 +14417,7 @@ cahnhilliard2d_1_dof_map_1_0::~cahnhilliard2d_1_dof_map_1_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_1_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -14573,7 +14573,7 @@ cahnhilliard2d_1_dof_map_1_1::~cahnhilliard2d_1_dof_map_1_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_1_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -14729,7 +14729,7 @@ cahnhilliard2d_1_dof_map_1::~cahnhilliard2d_1_dof_map_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_1::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -14910,7 +14910,7 @@ cahnhilliard2d_1_dof_map_2_0::~cahnhilliard2d_1_dof_map_2_0()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_2_0::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -15066,7 +15066,7 @@ cahnhilliard2d_1_dof_map_2_1::~cahnhilliard2d_1_dof_map_2_1()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_2_1::signature() const
 {
-    return "FFC dof map for FiniteElement('Lagrange', 'triangle', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -15222,7 +15222,7 @@ cahnhilliard2d_1_dof_map_2::~cahnhilliard2d_1_dof_map_2()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_2::signature() const
 {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'triangle', 1), FiniteElement('Lagrange', 'triangle', 1)])";
+    return "FFC dof map for MixedElement(*[FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -15403,7 +15403,7 @@ cahnhilliard2d_1_dof_map_3::~cahnhilliard2d_1_dof_map_3()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_3::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -15550,7 +15550,7 @@ cahnhilliard2d_1_dof_map_4::~cahnhilliard2d_1_dof_map_4()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_4::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -15697,7 +15697,7 @@ cahnhilliard2d_1_dof_map_5::~cahnhilliard2d_1_dof_map_5()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_5::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -15844,7 +15844,7 @@ cahnhilliard2d_1_dof_map_6::~cahnhilliard2d_1_dof_map_6()
 /// Return a string identifying the dof map
 const char* cahnhilliard2d_1_dof_map_6::signature() const
 {
-    return "FFC dof map for FiniteElement('Discontinuous Lagrange', 'triangle', 0)";
+    return "FFC dof map for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -16020,26 +16020,7 @@ void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.0665540678391645, 0.409466864440735), (0.0239311322870806, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.80869438567767, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1_D01[9][2] = \
-    {{-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1},
-    {-1, 1}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {3, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {3, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 2};
-    static const double FE0_C1[9][3] = \
+    static const double FE1_C0[9][3] = \
     {{0.80869438567767, 0.102717654809626, 0.088587959512704},
     {0.523979067720101, 0.0665540678391645, 0.409466864440735},
     {0.188409405952072, 0.0239311322870807, 0.787659461760847},
@@ -16051,27 +16032,46 @@ void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
     {0.0239311322870807, 0.188409405952072, 0.787659461760847}};
     
     // Array of non-zero columns
-    static const unsigned int nzc4[3] = {3, 4, 5};
+    static const unsigned int nzc0[3] = {0, 1, 2};
     // Array of non-zero columns
-    static const unsigned int nzc5[3] = {0, 1, 2};
+    static const unsigned int nzc3[3] = {3, 4, 5};
+    static const double FE1_C0_D01[9][2] = \
+    {{-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1},
+    {-1, 1}};
     
-    // Number of operations to compute geometry constants: 68
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {3, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {3, 4};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
+    
+    // Number of operations to compute geometry constants: 66
     const double G0 = 6*det*w[3][0];
     const double G1 = -4*det*w[3][0];
     const double G2 = -2*det*w[3][0];
-    const double G3 = det*w[4][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01-w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
+    const double G3 = det*w[4][0]*(Jinv_00*Jinv_00*(1-w[5][0]) + Jinv_01*Jinv_01*(1-w[5][0]));
     const double G4 = det*w[4][0]*(Jinv_00*Jinv_10*(1-w[5][0]) + Jinv_01*Jinv_11*(1-w[5][0]));
     const double G5 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     const double G6 = det*w[4][0]*w[5][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
     const double G7 = -det*w[2][0]*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
     const double G8 = -det*w[2][0]*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
     const double G9 = -det*w[2][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
-    const double G10 = det*w[4][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11-w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
+    const double G10 = det*w[4][0]*(Jinv_10*Jinv_10*(1-w[5][0]) + Jinv_11*Jinv_11*(1-w[5][0]));
     const double G11 = det*w[4][0]*w[5][0]*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 1013
+    // Total number of operations to compute element tensor: 1011
     
     // Loop quadrature points for integral
     // Number of operations to compute element tensor for following IP loop = 945
@@ -16092,20 +16092,20 @@ void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_C1_D01[ip][r]*w[0][nzc2[r]];
-        F1 += FE0_C1_D01[ip][r]*w[0][nzc3[r]];
-        F2 += FE0_C1_D01[ip][r]*w[1][nzc2[r]];
-        F3 += FE0_C1_D01[ip][r]*w[1][nzc3[r]];
-        F6 += FE0_C1_D01[ip][r]*w[0][nzc1[r]];
-        F7 += FE0_C1_D01[ip][r]*w[0][nzc0[r]];
+        F0 += FE1_C0_D01[ip][r]*w[0][nzc2[r]];
+        F1 += FE1_C0_D01[ip][r]*w[0][nzc1[r]];
+        F2 += FE1_C0_D01[ip][r]*w[1][nzc2[r]];
+        F3 += FE1_C0_D01[ip][r]*w[1][nzc1[r]];
+        F6 += FE1_C0_D01[ip][r]*w[0][nzc5[r]];
+        F7 += FE1_C0_D01[ip][r]*w[0][nzc4[r]];
       }// end loop over 'r'
       
       // Total number of operations to compute function values = 18
       for (unsigned int r = 0; r < 3; r++)
       {
-        F4 += FE0_C1[ip][r]*w[0][nzc4[r]];
-        F5 += FE0_C1[ip][r]*w[1][nzc4[r]];
-        F8 += FE0_C1[ip][r]*w[0][nzc5[r]];
+        F4 += FE1_C0[ip][r]*w[0][nzc3[r]];
+        F5 += FE1_C0[ip][r]*w[1][nzc3[r]];
+        F8 += FE1_C0[ip][r]*w[0][nzc0[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 35
@@ -16115,39 +16115,39 @@ void cahnhilliard2d_1_cell_integral_0_quadrature::tabulate_tensor(double* A,
       // Number of operations: 8
       const double Gip1 = W9[ip]*(F0*G5 + F1*G6 + F2*G3 + F3*G4);
       
+      // Number of operations: 4
+      const double Gip2 = W9[ip]*(F6*G7 + F7*G8);
+      
+      // Number of operations: 4
+      const double Gip3 = W9[ip]*(F6*G8 + F7*G9);
+      
       // Number of operations: 3
-      const double Gip2 = W9[ip]*det*(F4-F5);
-      
-      // Number of operations: 4
-      const double Gip3 = W9[ip]*(F6*G7 + F7*G8);
-      
-      // Number of operations: 4
-      const double Gip4 = W9[ip]*(F6*G8 + F7*G9);
+      const double Gip4 = W9[ip]*det*(F4-F5);
       
       // Number of operations: 8
       const double Gip5 = W9[ip]*(F0*G6 + F1*G11 + F2*G4 + F3*G10);
       
       
-      // Number of operations for primary indices = 12
+      // Number of operations for primary indices: 12
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc4[j]] += FE0_C1[ip][j]*Gip0;
-        // Number of operations to compute entry = 2
-        A[nzc5[j]] += FE0_C1[ip][j]*Gip2;
+        // Number of operations to compute entry: 2
+        A[nzc3[j]] += FE1_C0[ip][j]*Gip0;
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE1_C0[ip][j]*Gip4;
       }// end loop over 'j'
       
-      // Number of operations for primary indices = 16
+      // Number of operations for primary indices: 16
       for (unsigned int j = 0; j < 2; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc2[j]] += FE0_C1_D01[ip][j]*Gip1;
-        // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE0_C1_D01[ip][j]*Gip3;
-        // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE0_C1_D01[ip][j]*Gip4;
-        // Number of operations to compute entry = 2
-        A[nzc3[j]] += FE0_C1_D01[ip][j]*Gip5;
+        // Number of operations to compute entry: 2
+        A[nzc2[j]] += FE1_C0_D01[ip][j]*Gip1;
+        // Number of operations to compute entry: 2
+        A[nzc5[j]] += FE1_C0_D01[ip][j]*Gip2;
+        // Number of operations to compute entry: 2
+        A[nzc4[j]] += FE1_C0_D01[ip][j]*Gip3;
+        // Number of operations to compute entry: 2
+        A[nzc1[j]] += FE1_C0_D01[ip][j]*Gip5;
       }// end loop over 'j'
     }// end loop over 'ip'
 }

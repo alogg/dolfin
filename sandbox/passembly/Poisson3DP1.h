@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -563,7 +563,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -1098,7 +1098,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1284,7 +1284,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1519,6 +1519,16 @@ public:
     // Quadrature points on the UFC reference element: (0.156682637336818, 0.136054976802846, 0.122514822655441), (0.0813956670146703, 0.0706797241593969, 0.544151844011225), (0.0658386870600444, 0.565933165072801, 0.122514822655441), (0.0342027932367664, 0.293998800631623, 0.544151844011225), (0.584747563204894, 0.136054976802846, 0.122514822655441), (0.303772764814708, 0.0706797241593969, 0.544151844011225), (0.245713325211713, 0.565933165072801, 0.122514822655441), (0.127646562120385, 0.293998800631623, 0.544151844011225)
     
     // Value of basis functions at quadrature points.
+    static const double FE0[8][4] = \
+    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
+    {0.303772764814708, 0.0813956670146703, 0.0706797241593969, 0.544151844011225},
+    {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
+    {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
+    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
+    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
+    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
+    
     static const double FE0_D001[8][2] = \
     {{-1, 1},
     {-1, 1},
@@ -1530,29 +1540,19 @@ public:
     {-1, 1}};
     
     // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 2};
+    static const unsigned int nzc1[2] = {0, 2};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     // Array of non-zero columns
     static const unsigned int nzc0[2] = {0, 3};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 1};
-    static const double FE0[8][4] = \
-    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
-    {0.303772764814708, 0.0813956670146703, 0.0706797241593969, 0.544151844011225},
-    {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
-    {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
-    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
-    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
-    {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
-    
     
     // Number of operations to compute geometry constants: 36
     const double G0 = det*(Jinv_20*Jinv_20 + Jinv_21*Jinv_21 + Jinv_22*Jinv_22);
-    const double G1 = det*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G1 = det*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
     const double G2 = det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11 + Jinv_02*Jinv_12);
-    const double G3 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
-    const double G4 = det*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21 + Jinv_12*Jinv_22);
-    const double G5 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G3 = det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01 + Jinv_02*Jinv_02);
+    const double G4 = det*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21 + Jinv_02*Jinv_22);
+    const double G5 = det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11 + Jinv_12*Jinv_12);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -1586,38 +1586,38 @@ public:
       const double Gip6 = G5*W8[ip];
       
       
-      // Number of operations for primary indices = 108
+      // Number of operations for primary indices: 108
       for (unsigned int j = 0; j < 2; j++)
       {
         for (unsigned int k = 0; k < 2; k++)
         {
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc0[j]*4 + nzc0[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip0;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc1[j]*4 + nzc0[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc1[j]*4 + nzc2[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc2[j]*4 + nzc2[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip3;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc2[j]*4 + nzc0[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip4;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc0[j]*4 + nzc2[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip4;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc2[j]*4 + nzc1[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip2;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc0[j]*4 + nzc1[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip1;
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[nzc1[j]*4 + nzc1[k]] += FE0_D001[ip][j]*FE0_D001[ip][k]*Gip6;
         }// end loop over 'k'
       }// end loop over 'j'
       
-      // Number of operations for primary indices = 48
+      // Number of operations for primary indices: 48
       for (unsigned int j = 0; j < 4; j++)
       {
         for (unsigned int k = 0; k < 4; k++)
         {
-          // Number of operations to compute entry = 3
+          // Number of operations to compute entry: 3
           A[j*4 + k] += FE0[ip][j]*FE0[ip][k]*Gip5;
         }// end loop over 'k'
       }// end loop over 'j'
@@ -1803,7 +1803,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -2333,7 +2333,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -2868,7 +2868,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3054,7 +3054,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -3308,10 +3308,10 @@ public:
       const double Gip0 = F0*W8[ip]*det;
       
       
-      // Number of operations for primary indices = 8
+      // Number of operations for primary indices: 8
       for (unsigned int j = 0; j < 4; j++)
       {
-        // Number of operations to compute entry = 2
+        // Number of operations to compute entry: 2
         A[j] += FE0[ip][j]*Gip0;
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -3499,7 +3499,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3507,7 +3507,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3515,7 +3515,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -3523,7 +3523,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -3542,7 +3542,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -3550,7 +3550,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -3558,7 +3558,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -3566,7 +3566,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -3585,7 +3585,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3593,7 +3593,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -3601,7 +3601,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -3609,7 +3609,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -3679,7 +3679,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -3687,7 +3687,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -3695,7 +3695,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -3703,7 +3703,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson3dp1_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson3dp1_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }

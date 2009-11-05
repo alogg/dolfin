@@ -33,7 +33,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Nedelec', 'tetrahedron', 1)";
+    return "FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -766,7 +766,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Nedelec', 'tetrahedron', 1)";
+    return "FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -1504,7 +1504,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Nedelec', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1698,7 +1698,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Nedelec', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1941,38 +1941,38 @@ public:
     // Quadrature points on the UFC reference element: (0.25, 0.25, 0.25)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_C1_D001[1][3] = \
+    static const double FE0_C0_D001[1][3] = \
     {{-1, 1, -1}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[3] = {0, 3, 4};
-    // Array of non-zero columns
-    static const unsigned int nzc3[3] = {2, 4, 5};
-    // Array of non-zero columns
-    static const unsigned int nzc4[3] = {1, 3, 5};
-    static const double FE0_C2_D010[1][3] = \
-    {{1, -1, 1}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc1[3] = {0, 3, 4};
+    static const unsigned int nzc4[3] = {0, 3, 4};
     // Array of non-zero columns
     static const unsigned int nzc2[3] = {2, 4, 5};
     // Array of non-zero columns
-    static const unsigned int nzc5[3] = {1, 3, 5};
+    static const unsigned int nzc1[3] = {1, 3, 5};
+    static const double FE0_C1_D100[1][3] = \
+    {{1, -1, 1}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc7[3] = {0, 3, 4};
+    // Array of non-zero columns
+    static const unsigned int nzc5[3] = {2, 4, 5};
+    // Array of non-zero columns
+    static const unsigned int nzc8[3] = {1, 3, 5};
     
     // Number of operations to compute geometry constants: 388
-    const double G0 = W1*det*(Jinv_10*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21))-(Jinv_00*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_02*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
-    const double G1 = W1*det*(Jinv_10*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)-(Jinv_00*(Jinv_01*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)));
-    const double G2 = W1*det*(Jinv_00*(Jinv_01*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)-Jinv_00*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)-(Jinv_01*Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)));
-    const double G3 = W1*det*(Jinv_00*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_02*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)-(Jinv_10*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21))));
-    const double G4 = W1*det*(Jinv_00*(Jinv_00*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12)-2*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_01*Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_02*(Jinv_02*Jinv_10*Jinv_10 + Jinv_11*(Jinv_02*Jinv_11-2*Jinv_01*Jinv_12)));
-    const double G5 = W1*det*(Jinv_20*Jinv_20*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)-Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10)) + Jinv_22*(Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)-(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
-    const double G6 = W1*det*(Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10)-Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)-Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))-Jinv_20*Jinv_20*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
-    const double G7 = W1*det*(2*(Jinv_00*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_01*Jinv_02*Jinv_11*Jinv_12)-(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
-    const double G8 = W1*det*(Jinv_20*(Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)-2*Jinv_00*Jinv_02*Jinv_22) + Jinv_21*(Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)-2*Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
-    const double G9 = W1*det*(2*(Jinv_10*Jinv_20*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_11*Jinv_12*Jinv_21*Jinv_22)-(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
-    const double G10 = W1*det*(Jinv_20*(Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12)-2*Jinv_10*Jinv_12*Jinv_22) + Jinv_21*(Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)-2*Jinv_11*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
-    const double G11 = W1*det*(2*(Jinv_00*Jinv_20*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*Jinv_02*Jinv_21*Jinv_22)-(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
+    const double G0 = W1*det*(Jinv_00*(Jinv_01*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)-Jinv_00*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22)) + Jinv_01*Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)-(Jinv_01*Jinv_01*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22) + Jinv_02*Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21)));
+    const double G1 = W1*det*(2*(Jinv_00*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_01*Jinv_02*Jinv_11*Jinv_12)-(Jinv_10*Jinv_10*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_11*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_12*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
+    const double G2 = W1*det*(Jinv_00*(Jinv_00*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12)-2*Jinv_10*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12)) + Jinv_01*Jinv_01*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_02*(Jinv_02*Jinv_10*Jinv_10 + Jinv_11*(Jinv_02*Jinv_11-2*Jinv_01*Jinv_12)));
+    const double G3 = W1*det*(Jinv_20*Jinv_20*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12) + Jinv_21*(Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)-Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10)) + Jinv_22*(Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11)-(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21))));
+    const double G4 = W1*det*(Jinv_10*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_11*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_12*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)-(Jinv_00*(Jinv_01*(Jinv_10*Jinv_21 + Jinv_11*Jinv_20) + Jinv_02*(Jinv_10*Jinv_22 + Jinv_12*Jinv_20)) + Jinv_01*Jinv_02*(Jinv_11*Jinv_22 + Jinv_12*Jinv_21)));
+    const double G5 = W1*det*(2*(Jinv_00*Jinv_20*(Jinv_01*Jinv_21 + Jinv_02*Jinv_22) + Jinv_01*Jinv_02*Jinv_21*Jinv_22)-(Jinv_20*Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02) + Jinv_21*Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01)));
+    const double G6 = W1*det*(Jinv_10*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21))-(Jinv_00*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_02*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
+    const double G7 = W1*det*(Jinv_00*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_01*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_02*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)-(Jinv_10*Jinv_11*(Jinv_00*Jinv_21 + Jinv_01*Jinv_20) + Jinv_12*(Jinv_10*(Jinv_00*Jinv_22 + Jinv_02*Jinv_20) + Jinv_11*(Jinv_01*Jinv_22 + Jinv_02*Jinv_21))));
+    const double G8 = W1*det*(Jinv_20*(Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12)-2*Jinv_10*Jinv_12*Jinv_22) + Jinv_21*(Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12)-2*Jinv_11*(Jinv_10*Jinv_20 + Jinv_12*Jinv_22)) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11));
+    const double G9 = W1*det*(Jinv_21*(Jinv_20*(Jinv_00*Jinv_11 + Jinv_01*Jinv_10)-Jinv_21*(Jinv_00*Jinv_10 + Jinv_02*Jinv_12)) + Jinv_22*(Jinv_02*(Jinv_10*Jinv_20 + Jinv_11*Jinv_21) + Jinv_12*(Jinv_00*Jinv_20 + Jinv_01*Jinv_21)-Jinv_22*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11))-Jinv_20*Jinv_20*(Jinv_01*Jinv_11 + Jinv_02*Jinv_12));
+    const double G10 = W1*det*(2*(Jinv_10*Jinv_20*(Jinv_11*Jinv_21 + Jinv_12*Jinv_22) + Jinv_11*Jinv_12*Jinv_21*Jinv_22)-(Jinv_20*Jinv_20*(Jinv_11*Jinv_11 + Jinv_12*Jinv_12) + Jinv_21*Jinv_21*(Jinv_10*Jinv_10 + Jinv_12*Jinv_12) + Jinv_22*Jinv_22*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11)));
+    const double G11 = W1*det*(Jinv_20*(Jinv_20*(Jinv_01*Jinv_01 + Jinv_02*Jinv_02)-2*Jinv_00*Jinv_02*Jinv_22) + Jinv_21*(Jinv_21*(Jinv_00*Jinv_00 + Jinv_02*Jinv_02)-2*Jinv_01*(Jinv_00*Jinv_20 + Jinv_02*Jinv_22)) + Jinv_22*Jinv_22*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01));
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -1982,83 +1982,83 @@ public:
     // Number of operations to compute element tensor for following IP loop = 972
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices = 972
+    // Number of operations for primary indices: 972
     for (unsigned int j = 0; j < 3; j++)
     {
       for (unsigned int k = 0; k < 3; k++)
       {
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*6 + nzc3[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G0;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc3[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G1;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc5[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G2;
-        // Number of operations to compute entry = 3
-        A[nzc2[j]*6 + nzc5[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G1;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*6 + nzc2[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G3;
-        // Number of operations to compute entry = 3
-        A[nzc2[j]*6 + nzc2[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G4;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*6 + nzc1[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G5;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*6 + nzc4[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G5;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*6 + nzc0[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G6;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc2[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G0;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc5[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G5;
-        // Number of operations to compute entry = 3
-        A[nzc2[j]*6 + nzc3[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G7;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*6 + nzc3[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G2;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc2[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G2;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc0[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G0;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc4[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G8;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc0[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G9;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc4[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G1;
-        // Number of operations to compute entry = 3
-        A[nzc2[j]*6 + nzc1[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G0;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*6 + nzc0[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G10;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc0[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G5;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc2[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G7;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*6 + nzc5[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G6;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc1[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G6;
-        // Number of operations to compute entry = 3
-        A[nzc2[j]*6 + nzc4[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G2;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc4[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G6;
-        // Number of operations to compute entry = 3
-        A[nzc2[j]*6 + nzc0[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G3;
-        // Number of operations to compute entry = 3
-        A[nzc4[j]*6 + nzc5[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G11;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc3[k]] += FE0_C1_D001[0][j]*FE0_C1_D001[0][k]*G4;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*6 + nzc2[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G1;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*6 + nzc5[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G8;
-        // Number of operations to compute entry = 3
-        A[nzc0[j]*6 + nzc1[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G9;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc3[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G3;
-        // Number of operations to compute entry = 3
-        A[nzc5[j]*6 + nzc4[k]] += FE0_C1_D001[0][k]*FE0_C2_D010[0][j]*G11;
-        // Number of operations to compute entry = 3
-        A[nzc1[j]*6 + nzc1[k]] += FE0_C2_D010[0][j]*FE0_C2_D010[0][k]*G10;
-        // Number of operations to compute entry = 3
-        A[nzc3[j]*6 + nzc1[k]] += FE0_C1_D001[0][j]*FE0_C2_D010[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*6 + nzc2[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G0;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*6 + nzc5[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G1;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*6 + nzc2[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G2;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*6 + nzc1[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G0;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*6 + nzc8[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc2[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G4;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc8[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G5;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc5[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G0;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*6 + nzc7[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G6;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*6 + nzc2[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G7;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*6 + nzc5[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G6;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc2[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G6;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc4[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G8;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*6 + nzc1[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G4;
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*6 + nzc5[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G4;
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*6 + nzc4[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G9;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*6 + nzc7[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G8;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc1[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*6 + nzc4[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G6;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*6 + nzc8[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G4;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*6 + nzc4[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G10;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc7[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G9;
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*6 + nzc7[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc8[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G9;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc4[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G3;
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*6 + nzc1[k]] += FE0_C0_D001[0][j]*FE0_C0_D001[0][k]*G11;
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*6 + nzc1[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G9;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc5[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G7;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*6 + nzc2[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G1;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*6 + nzc5[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G2;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*6 + nzc7[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G7;
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*6 + nzc8[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G0;
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*6 + nzc1[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G5;
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*6 + nzc4[k]] += FE0_C0_D001[0][k]*FE0_C1_D100[0][j]*G7;
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*6 + nzc7[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G10;
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*6 + nzc8[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G11;
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -2242,7 +2242,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Nedelec', 'tetrahedron', 1)";
+    return "FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -2975,7 +2975,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -3505,7 +3505,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -4035,7 +4035,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return the cell shape
@@ -4565,7 +4565,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return the cell shape
@@ -5514,7 +5514,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Nedelec', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5708,7 +5708,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5894,7 +5894,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6080,7 +6080,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for FiniteElement('Lagrange', 'tetrahedron', 1)";
+    return "FFC dof map for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6266,7 +6266,7 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dof map for MixedElement([FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1), FiniteElement('Lagrange', 'tetrahedron', 1)])";
+    return "FFC dof map for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6571,6 +6571,22 @@ public:
     // Quadrature points on the UFC reference element: (0.156682637336818, 0.136054976802846, 0.122514822655441), (0.0813956670146703, 0.0706797241593969, 0.544151844011225), (0.0658386870600444, 0.565933165072801, 0.122514822655441), (0.0342027932367664, 0.293998800631623, 0.544151844011225), (0.584747563204894, 0.136054976802846, 0.122514822655441), (0.303772764814708, 0.0706797241593969, 0.544151844011225), (0.245713325211713, 0.565933165072801, 0.122514822655441), (0.127646562120385, 0.293998800631623, 0.544151844011225)
     
     // Value of basis functions at quadrature points.
+    static const double FE0_C0[8][4] = \
+    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
+    {0.303772764814708, 0.0813956670146703, 0.0706797241593969, 0.544151844011225},
+    {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
+    {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
+    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
+    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
+    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[4] = {8, 9, 10, 11};
+    // Array of non-zero columns
+    static const unsigned int nzc1[4] = {4, 5, 6, 7};
+    // Array of non-zero columns
+    static const unsigned int nzc0[4] = {0, 1, 2, 3};
     static const double FE1_C0[8][5] = \
     {{-0.122514822655441, -0.136054976802846, 0.122514822655441, 0.136054976802846, 0.741430200541712},
     {-0.544151844011226, -0.0706797241593968, 0.544151844011225, 0.0706797241593968, 0.385168431829378},
@@ -6582,7 +6598,7 @@ public:
     {-0.544151844011226, -0.293998800631623, 0.544151844011225, 0.293998800631623, 0.161849355357152}};
     
     // Array of non-zero columns
-    static const unsigned int nzc0[5] = {1, 2, 3, 4, 5};
+    static const unsigned int nzc3[5] = {1, 2, 3, 4, 5};
     static const double FE1_C1[8][5] = \
     {{-0.122514822655441, 0.156682637336818, 0.122514822655441, 0.72080254000774, 0.156682637336818},
     {-0.544151844011225, 0.0813956670146703, 0.544151844011225, 0.374452488974104, 0.0813956670146702},
@@ -6594,7 +6610,7 @@ public:
     {-0.544151844011225, 0.127646562120385, 0.544151844011225, 0.328201593868389, 0.127646562120385}};
     
     // Array of non-zero columns
-    static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
+    static const unsigned int nzc4[5] = {0, 2, 3, 4, 5};
     static const double FE1_C2[8][5] = \
     {{0.136054976802846, 0.156682637336819, 0.707262385860335, 0.136054976802846, 0.156682637336818},
     {0.0706797241593969, 0.0813956670146703, 0.847924608825933, 0.0706797241593967, 0.0813956670146702},
@@ -6606,34 +6622,18 @@ public:
     {0.293998800631623, 0.127646562120385, 0.578354637247992, 0.293998800631623, 0.127646562120385}};
     
     // Array of non-zero columns
-    static const unsigned int nzc2[5] = {0, 1, 3, 4, 5};
-    static const double FE0_C2[8][4] = \
-    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
-    {0.303772764814708, 0.0813956670146703, 0.0706797241593969, 0.544151844011225},
-    {0.245713325211713, 0.0658386870600444, 0.565933165072801, 0.122514822655441},
-    {0.127646562120385, 0.0342027932367665, 0.293998800631623, 0.544151844011225},
-    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.0813956670146703, 0.303772764814708, 0.0706797241593969, 0.544151844011225},
-    {0.0658386870600443, 0.245713325211713, 0.565933165072801, 0.122514822655441},
-    {0.0342027932367664, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc3[4] = {8, 9, 10, 11};
-    // Array of non-zero columns
-    static const unsigned int nzc4[4] = {4, 5, 6, 7};
-    // Array of non-zero columns
-    static const unsigned int nzc5[4] = {0, 1, 2, 3};
+    static const unsigned int nzc5[5] = {0, 1, 3, 4, 5};
     
     // Number of operations to compute geometry constants: 9
-    const double G0 = -Jinv_21*det;
-    const double G1 = -Jinv_20*det;
-    const double G2 = -Jinv_22*det;
-    const double G3 = -Jinv_01*det;
-    const double G4 = -Jinv_00*det;
-    const double G5 = -Jinv_02*det;
-    const double G6 = -Jinv_11*det;
-    const double G7 = -Jinv_10*det;
-    const double G8 = -Jinv_12*det;
+    const double G0 = -Jinv_22*det;
+    const double G1 = -Jinv_21*det;
+    const double G2 = -Jinv_20*det;
+    const double G3 = -Jinv_02*det;
+    const double G4 = -Jinv_01*det;
+    const double G5 = -Jinv_00*det;
+    const double G6 = -Jinv_12*det;
+    const double G7 = -Jinv_11*det;
+    const double G8 = -Jinv_10*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
@@ -6652,9 +6652,9 @@ public:
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 4; r++)
       {
-        F0 += FE0_C2[ip][r]*w[0][nzc3[r]];
-        F1 += FE0_C2[ip][r]*w[0][nzc5[r]];
-        F2 += FE0_C2[ip][r]*w[0][nzc4[r]];
+        F0 += FE0_C0[ip][r]*w[0][nzc0[r]];
+        F1 += FE0_C0[ip][r]*w[0][nzc1[r]];
+        F2 += FE0_C0[ip][r]*w[0][nzc2[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 18
@@ -6668,15 +6668,15 @@ public:
       const double Gip2 = W8[ip]*(F0*G8 + F1*G7 + F2*G6);
       
       
-      // Number of operations for primary indices = 30
+      // Number of operations for primary indices: 30
       for (unsigned int j = 0; j < 5; j++)
       {
-        // Number of operations to compute entry = 2
-        A[nzc2[j]] += FE1_C2[ip][j]*Gip0;
-        // Number of operations to compute entry = 2
-        A[nzc0[j]] += FE1_C0[ip][j]*Gip1;
-        // Number of operations to compute entry = 2
-        A[nzc1[j]] += FE1_C1[ip][j]*Gip2;
+        // Number of operations to compute entry: 2
+        A[nzc5[j]] += FE1_C2[ip][j]*Gip0;
+        // Number of operations to compute entry: 2
+        A[nzc3[j]] += FE1_C0[ip][j]*Gip1;
+        // Number of operations to compute entry: 2
+        A[nzc4[j]] += FE1_C1[ip][j]*Gip2;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -6863,7 +6863,7 @@ public:
   CoefficientSpace_dbdt(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -6871,7 +6871,7 @@ public:
   CoefficientSpace_dbdt(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -6879,7 +6879,7 @@ public:
   CoefficientSpace_dbdt(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6887,7 +6887,7 @@ public:
   CoefficientSpace_dbdt(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6906,7 +6906,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -6914,7 +6914,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -6922,7 +6922,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -6930,7 +6930,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -6949,7 +6949,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -6957,7 +6957,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), mesh)))
   {
     // Do nothing
   }
@@ -6965,7 +6965,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6973,7 +6973,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_0_finite_element_1()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_0_dof_map_1()), *mesh)))
   {
       // Do nothing
   }
@@ -7043,7 +7043,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7051,7 +7051,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), dolfin::reference_to_no_delete_pointer(mesh))))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
@@ -7059,7 +7059,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7067,7 +7067,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new eddycurrents_1_finite_element_0()))),
-                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), mesh)))
+                            boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new eddycurrents_1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
