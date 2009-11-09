@@ -1,15 +1,25 @@
 #include <dolfin.h>
+#include "Poisson.h"
 
 using namespace dolfin;
 
 int main (int argc, char* argv[])
 {
   UnitSquare mesh(3, 3);
-  mesh.init(1, 2);
 
-  dolfin::cout << mesh << dolfin::endl;
+  cout << "creating function space" << endl;
+  Poisson::FunctionSpace V(mesh);
 
-  //info(mesh, true);
+  Function v(V);
+  GenericVector& x = v.vector();
+  for (dolfin::uint i = 0; i < V.dim(); i++)
+    x.setitem(i, static_cast<double>(i));
+
+  plot(v);
+
+  mesh.refine();
+
+  plot(v);
 
   return 0;
 }
