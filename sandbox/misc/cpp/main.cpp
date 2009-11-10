@@ -1,3 +1,4 @@
+
 #include <dolfin.h>
 #include "Poisson.h"
 
@@ -7,8 +8,9 @@ int main (int argc, char* argv[])
 {
   UnitSquare mesh(3, 3);
 
-  cout << "creating function space" << endl;
   Poisson::FunctionSpace V(mesh);
+
+  mesh.refine();
 
   Function v(V);
   GenericVector& x = v.vector();
