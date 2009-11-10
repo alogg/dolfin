@@ -6,14 +6,12 @@ using namespace dolfin;
 
 int main (int argc, char* argv[])
 {
-  UnitSquare mesh(3, 3);
+  UnitSquare mesh(1, 1);
 
   Poisson::FunctionSpace V(mesh);
   Function v(V);
   mesh.refine();
   mesh.refine();
-
-  return 0;
 
   GenericVector& x = v.vector();
   for (dolfin::uint i = 0; i < V.dim(); i++)
