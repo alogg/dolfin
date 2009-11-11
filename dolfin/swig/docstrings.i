@@ -3,6 +3,17 @@
 
 // File: index.xml
 
+// File: classdolfin_1_1AdaptiveObjects.xml
+%feature("docstring") dolfin::AdaptiveObjects "
+
+This class handles the automatic update/refinement of adaptive objects
+when meshes are refined. It is a singleton object that stores a forest
+(set of trees) where the root node of each tree is a mesh, and the
+leaves are function spaces, functions and boundary conditions.
+
+C++ includes: AdaptiveObjects.h ";
+
+
 // File: classdolfin_1_1ALE.xml
 %feature("docstring") dolfin::ALE "
 
@@ -202,9 +213,6 @@ Return function space. ";
 %feature("docstring")  dolfin::BoundaryCondition::function_space_ptr "
 
 Return shared pointer to function space. ";
-
-
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
 
 
 // File: classdolfin_1_1BoundaryMesh.xml
@@ -951,10 +959,6 @@ Create dof map on mesh. ";
 
 Create dof map on mesh (const mesh version). ";
 
-%feature("docstring")  dolfin::DofMap::update "
-
-Update dof map when mesh has changed. ";
-
 %feature("docstring")  dolfin::DofMap::~DofMap "
 
 Destructor. ";
@@ -1011,13 +1015,13 @@ Tabulate the coordinates of all dofs on a cell (UFC cell version). ";
 Tabulate the coordinates of all dofs on a cell (DOLFIN cell version).
 ";
 
-%feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
-
-Extract sub dofmap component. ";
-
 %feature("docstring")  dolfin::DofMap::renumbered "
 
 Test whether dof map has been renumbered. ";
+
+%feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
+
+Extract sub dofmap component. ";
 
 %feature("docstring")  dolfin::DofMap::collapse "
 
@@ -1358,6 +1362,16 @@ Constructor. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::Facet::interior "
+
+Determine whether or not facet is an interior facet. This is
+'relative' to the given partition of the mesh if the mesh is
+distributed ";
+
+%feature("docstring")  dolfin::Facet::adjacent_cells "
+
+Return adjacent cells. ";
+
 
 // File: classdolfin_1_1FacetArea.xml
 %feature("docstring") dolfin::FacetArea "
@@ -1687,12 +1701,6 @@ Compute values at all mesh vertices. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
-// File: classdolfin_1_1Function_1_1GatherScratch.xml
-
-
-// File: classdolfin_1_1Function_1_1LocalScratch.xml
-
-
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1794,9 +1802,12 @@ Create function space based on the restriction. ";
 
 %feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
 
-%feature("docstring")  dolfin::FunctionSpace::update "
+%feature("docstring")  dolfin::FunctionSpace::str "
 
-Update function space when mesh has changed. ";
+Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1Function_1_1GatherScratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2786,6 +2797,9 @@ Create Lobatto quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1LocalMeshData.xml
 %feature("docstring") dolfin::LocalMeshData "
 
@@ -2824,6 +2838,9 @@ Destructor. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1Function_1_1LocalScratch.xml
+
+
 // File: classdolfin_1_1LogStream.xml
 %feature("docstring") dolfin::LogStream "
 
@@ -2856,7 +2873,9 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
-%feature("docstring")  dolfin::LUSolver::solve "";
+%feature("docstring")  dolfin::LUSolver::solve "
+
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::LUSolver::factorize "";
 
@@ -3138,7 +3157,7 @@ Refine mesh uniformly. ";
 
 %feature("docstring")  dolfin::Mesh::refine "
 
-Refine mesh according to cells marked for refinement,. ";
+Refine mesh according to cells marked for refinement. ";
 
 %feature("docstring")  dolfin::Mesh::coarsen "
 
@@ -4585,6 +4604,10 @@ Parse parameters from command-line. ";
 
 Update parameters with another set of parameters. ";
 
+%feature("docstring")  dolfin::Parameters::has_key "
+
+Check if parameter set has given key. ";
+
 %feature("docstring")  dolfin::Parameters::get_parameter_keys "
 
 Return a vector of parameter keys. ";
@@ -4986,6 +5009,9 @@ Return a factory for the default linear algebra backend. ";
 %feature("docstring")  dolfin::Scalar::getval "
 
 Get value. ";
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1SingularSolver.xml
@@ -5404,9 +5430,6 @@ that it applies boundary conditions at the time of assembly.
 C++ includes: SystemAssembler.h ";
 
 
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
-
-
 // File: classdolfin_1_1Table.xml
 %feature("docstring") dolfin::Table "
 
@@ -5519,6 +5542,46 @@ Stop timer. ";
 %feature("docstring")  dolfin::Timer::value "
 
 Return value of timer (or time at start if not stopped). ";
+
+
+// File: classdolfin_1_1TimeSeries.xml
+%feature("docstring") dolfin::TimeSeries "
+
+This class stores a time series of objects to file(s) in a binary
+format which is efficient for reading and writing.
+
+When objects are retrieved, the object stored at the time closest to
+the given time will be used.
+
+C++ includes: TimeSeries.h ";
+
+%feature("docstring")  dolfin::TimeSeries::TimeSeries "
+
+Create empty time series. ";
+
+%feature("docstring")  dolfin::TimeSeries::~TimeSeries "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::TimeSeries::store "
+
+Store vector at given time. ";
+
+%feature("docstring")  dolfin::TimeSeries::store "
+
+Store mesh at given time. ";
+
+%feature("docstring")  dolfin::TimeSeries::retrieve "
+
+Retrieve vector at given time. ";
+
+%feature("docstring")  dolfin::TimeSeries::retrieve "
+
+Retrieve mesh at given time. ";
+
+%feature("docstring")  dolfin::TimeSeries::str "
+
+Return informal string representation (pretty-print). ";
 
 
 // File: classdolfin_1_1uBLASFactory.xml
@@ -6664,6 +6727,12 @@ Assemble scalar on sub domains. ";
 // File: namespaceufc.xml
 
 
+// File: AdaptiveObjects_8h.xml
+
+
+// File: TimeSeries_8h.xml
+
+
 // File: ALE_8h.xml
 
 
@@ -7096,53 +7165,56 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_56abe1b05c3f6726115b3cfef724a842.xml
+// File: dir_92d4af779eea750d7e464f1256129e5e.xml
 
 
-// File: dir_958ed9fe5566c915bb700dbd037c4fe9.xml
+// File: dir_0e5e0b86b41d9000573aadd072faa0dc.xml
 
 
-// File: dir_12c887cfb9140a1c447c2c859b8e276a.xml
+// File: dir_61626f8f8c8774eaa462b97af4c0a252.xml
 
 
-// File: dir_ebcef13846acecaa92dda19f3ba2427a.xml
+// File: dir_2cb12ea2104a8aec4b8dae08301d3209.xml
 
 
-// File: dir_8b22d6ac8e1fe7210ee1151755cb1548.xml
+// File: dir_d0df2a1ab10bb9fcd71ace3b2981978c.xml
 
 
-// File: dir_4873d6f7852be200e44569d5969eb56c.xml
+// File: dir_f2433f5d0256f08d704af3e832947be8.xml
 
 
-// File: dir_a30d0fdabdb6fe1eb0055958fdf52842.xml
+// File: dir_f7aa9f93aae02aa89e597f6f65a28147.xml
 
 
-// File: dir_fa43b93ff9aab9562f5ad5be4a0425d6.xml
+// File: dir_2a2507e206f95ba5c74f6a3fc297b422.xml
 
 
-// File: dir_4be61312807fd4c00275f0629815d583.xml
+// File: dir_449565eb50e230200f96f6a0b17b6e07.xml
 
 
-// File: dir_3690e19dc0dc498072ba5b0883127a34.xml
+// File: dir_0e7ac0b790142585bc3f28b27e1d693c.xml
 
 
-// File: dir_9d07a00d1f59da56a4e6986a972ea114.xml
+// File: dir_e5a30508e9aae611f47294df14ae6493.xml
 
 
-// File: dir_846d49a5ead30070ea21039259bdd139.xml
+// File: dir_680935dbf4f91b75291f72a5f78bda78.xml
 
 
-// File: dir_472600429a7ae84228624a5bd7ae2caa.xml
+// File: dir_7bd684592ef873d98291e2eb4688aeef.xml
 
 
-// File: dir_bec17510e887fbd71f6bc60fe10d7303.xml
+// File: dir_226c3f7db0502d394c9c3450f0eef019.xml
 
 
-// File: dir_24b7e2d69b64c695e4d5516d3e2caea0.xml
+// File: dir_9e225bd197a6b3a6419f642327134d3a.xml
 
 
-// File: dir_305756c00060c0f036d35c9b441cb290.xml
+// File: dir_6f9af259675e617b318bfa6ca6a38176.xml
 
 
-// File: dir_152bf7391bd5fd20d92d745cbf1518be.xml
+// File: dir_ff7823292883bd032ef3ce5f54c32d54.xml
+
+
+// File: dir_74e6714b2427c4debf2a5e534203887f.xml
 
