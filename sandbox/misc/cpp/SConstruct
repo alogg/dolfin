@@ -13,4 +13,4 @@ env = Environment(ENV=os.environ, CXX=compiler)
 env.ParseConfig('pkg-config --cflags --libs dolfin')
 
 # Program name
-env.Program('test', ['main.cpp', 'MyAdaptive.cpp'])
+env.Program('test', ['main.cpp'])

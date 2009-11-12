@@ -10,6 +10,10 @@ int main (int argc, char* argv[])
 
   Poisson::FunctionSpace V(mesh);
   Function v(V);
+  Function g(V);
+  DomainBoundary boundary;
+  DirichletBC bc(V, g, boundary);
+
   mesh.refine();
   mesh.refine();
 
