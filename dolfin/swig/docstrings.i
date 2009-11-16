@@ -634,25 +634,11 @@ Create vector constant (dim = 3). ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Create scalar constant with geometric dimension derived from mesh. ";
-
-%feature("docstring")  dolfin::Constant::Constant "
-
 Create vector-valued constant. ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
-Create vector-valued constant with geometric dimension derived from
-mesh. ";
-
-%feature("docstring")  dolfin::Constant::Constant "
-
 Create tensor-valued constant for flattened array of values. ";
-
-%feature("docstring")  dolfin::Constant::Constant "
-
-Create tensor-valued constant for flattened array of values, with
-geometric dimension derived from mesh ";
 
 %feature("docstring")  dolfin::Constant::Constant "
 
@@ -675,6 +661,10 @@ coordinates x, the time t, and auxiliary data that a function may
 depend on.
 
 C++ includes: Data.h ";
+
+%feature("docstring")  dolfin::Data::Data "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::Data::Data "
 
@@ -707,6 +697,10 @@ Return geometric dimension of cell. ";
 %feature("docstring")  dolfin::Data::on_facet "
 
 Check if we are on a facet. ";
+
+%feature("docstring")  dolfin::Data::set_geometric_dim "
+
+Set geometric dimensions. ";
 
 %feature("docstring")  dolfin::Data::set "
 
@@ -1311,6 +1305,10 @@ Restrict function to local cell (compute expansion coefficients w). ";
 %feature("docstring")  dolfin::Expression::compute_vertex_values "
 
 Compute values at all mesh vertices. ";
+
+%feature("docstring")  dolfin::Expression::eval "
+
+Evaluate expression, must be overloaded by user (simple version). ";
 
 %feature("docstring")  dolfin::Expression::eval "
 
