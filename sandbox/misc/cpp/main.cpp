@@ -1,31 +1,20 @@
-
 #include <dolfin.h>
-#include "Poisson.h"
+#include "M.h"
 
 using namespace dolfin;
 
 int main (int argc, char* argv[])
 {
-  UnitSquare mesh(1, 1);
 
-  Poisson::FunctionSpace V(mesh);
-  Function v(V);
-  Function g(V);
-  DomainBoundary boundary;
-  DirichletBC bc(V, g, boundary);
+  UnitInterval mesh(10);
+  M::FunctionSpace V(mesh);
 
-  mesh.refine();
-  mesh.refine();
+  Function orig(V);
+  orig.vector() = 1.0;
 
-  GenericVector& x = v.vector();
-  for (dolfin::uint i = 0; i < V.dim(); i++)
-    x.setitem(i, static_cast<double>(i));
+  Function copy = orig;
 
-  plot(v);
-
-  mesh.refine();
-
-  plot(v);
+  Function copy2(orig);
 
   return 0;
 }
