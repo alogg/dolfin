@@ -1071,21 +1071,26 @@ public:
     
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
-    // Total number of operations to compute element tensor: 32
+    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Total number of operations to compute element tensor: 26
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 32
+    // Number of operations to compute element tensor for following IP loop = 26
     for (unsigned int ip = 0; ip < 2; ip++)
     {
       
-      // Number of operations for primary indices: 16
+      // Number of operations to compute ip constants: 1
+      // Number of operations: 1
+      const double Gip0 = W2[ip]*det;
+      
+      
+      // Number of operations for primary indices: 12
       for (unsigned int j = 0; j < 2; j++)
       {
         for (unsigned int k = 0; k < 2; k++)
         {
-          // Number of operations to compute entry: 4
-          A[j*2 + k] += FE0[ip][j]*FE0[ip][k]*W2[ip]*det;
+          // Number of operations to compute entry: 3
+          A[j*2 + k] += FE0[ip][j]*FE0[ip][k]*Gip0;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
