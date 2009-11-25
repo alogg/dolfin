@@ -10,7 +10,8 @@
 # Compile this form with FFC: ffc -l dolfin Poisson.ufl.
 
 element = FiniteElement("Lagrange", triangle, 1)
-QE = FiniteElement("Quadrature", triangle, 3)
+#QE = FiniteElement("Quadrature", triangle, 1)
+QE = FiniteElement("Quadrature", triangle, None)
 
 v = TestFunction(element)
 u = TrialFunction(element)
@@ -18,4 +19,6 @@ f = Function(QE)
 g = Function(QE)
 
 a = inner(grad(v), grad(u))*dx
-L = v*f*dx - v*g*ds
+#L = v*f*dx
+L  = v*g*ds
+#L = v*f*dx - v*g*ds
