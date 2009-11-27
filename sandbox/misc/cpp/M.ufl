@@ -1,6 +1,0 @@
-cell = interval
-element = FiniteElement("CG", cell, 1)
-q = TestFunction(element)
-v = TrialFunction(element)
-
-a = q*v*dx
