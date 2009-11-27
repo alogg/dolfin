@@ -1,0 +1,5 @@
+Most of these programms are only tiny code-snippet to try out some C++ features
+and restrictions (I <irony>love</irony> templates) and in particular to get so
+experience with the CGAL library.  It was also used in the early phase of
+testing new intersection class, so there might some old snippets lying around,
+which does not compile. Have a look at the demos to see how the interface is working now.
