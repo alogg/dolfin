@@ -1,10 +1,11 @@
 from dolfin import *
 from numpy  import array, zeros
 
-f1 = Expression("2", degree=2)
 print "-------------------"
-f2,f3 = Expressions("2", "3", element=FiniteElement("CG", tetrahedron, 2))
-#f2,f3 = Expressions("2", "3", degree=2)
+f1 = Expression("2.5", degree=2)
+print "-------------------"
+#f2,f3 = Expressions("2", "3", element=FiniteElement("CG", tetrahedron, 2))
+f2,f3 = Expressions("5", "4", degree=3)
 
 
 #u20 = zeros(1)
