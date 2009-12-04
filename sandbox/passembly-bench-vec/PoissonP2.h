@@ -4554,10 +4554,10 @@ public:
       const double Gip1 = G1*W9[ip];
       
       // Number of operations: 1
-      const double Gip2 = G2*W9[ip];
+      const double Gip2 = W9[ip]*det;
       
       // Number of operations: 1
-      const double Gip3 = W9[ip]*det;
+      const double Gip3 = G2*W9[ip];
       
       
       // Number of operations for primary indices: 216
@@ -4566,9 +4566,9 @@ public:
         for (unsigned int k = 0; k < 6; k++)
         {
           // Number of operations to compute entry: 3
-          A[nzc3[j]*12 + nzc3[k]] += FE0_C0[ip][j]*FE0_C0[ip][k]*Gip3;
+          A[nzc3[j]*12 + nzc3[k]] += FE0_C0[ip][j]*FE0_C0[ip][k]*Gip2;
           // Number of operations to compute entry: 3
-          A[nzc0[j]*12 + nzc0[k]] += FE0_C0[ip][j]*FE0_C0[ip][k]*Gip3;
+          A[nzc0[j]*12 + nzc0[k]] += FE0_C0[ip][j]*FE0_C0[ip][k]*Gip2;
         }// end loop over 'k'
       }// end loop over 'j'
       
@@ -4582,11 +4582,11 @@ public:
           // Number of operations to compute entry: 3
           A[nzc5[j]*12 + nzc4[k]] += FE0_C0_D01[ip][k]*FE0_C0_D10[ip][j]*Gip1;
           // Number of operations to compute entry: 3
-          A[nzc1[j]*12 + nzc1[k]] += FE0_C0_D01[ip][j]*FE0_C0_D01[ip][k]*Gip2;
-          // Number of operations to compute entry: 3
           A[nzc5[j]*12 + nzc5[k]] += FE0_C0_D10[ip][j]*FE0_C0_D10[ip][k]*Gip0;
           // Number of operations to compute entry: 3
-          A[nzc4[j]*12 + nzc4[k]] += FE0_C0_D01[ip][j]*FE0_C0_D01[ip][k]*Gip2;
+          A[nzc1[j]*12 + nzc1[k]] += FE0_C0_D01[ip][j]*FE0_C0_D01[ip][k]*Gip3;
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*12 + nzc4[k]] += FE0_C0_D01[ip][j]*FE0_C0_D01[ip][k]*Gip3;
           // Number of operations to compute entry: 3
           A[nzc2[j]*12 + nzc1[k]] += FE0_C0_D01[ip][k]*FE0_C0_D10[ip][j]*Gip1;
           // Number of operations to compute entry: 3
@@ -4673,7 +4673,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(0), Index(1)), {Index(0): 2, Index(1): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4), Index(5)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1), Index(0)), {Index(0): 2, Index(1): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(5), Index(4)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
