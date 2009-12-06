@@ -25,6 +25,65 @@ for the interior vertices accordingly.
 C++ includes: ALE.h ";
 
 
+// File: classdolfin_1_1Array.xml
+%feature("docstring") dolfin::Array "
+
+This class provides a simple vector-type class for doubles. A purpose
+of this class is to enable the simple and safe exchange of data
+between C++ and Python.
+
+C++ includes: Array.h ";
+
+%feature("docstring")  dolfin::Array::Array "
+
+Create array of size N. ";
+
+%feature("docstring")  dolfin::Array::Array "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::Array::Array "
+
+Construct array from a shared pointer. ";
+
+%feature("docstring")  dolfin::Array::~Array "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Array::str "
+
+Return informal string representation (pretty-print). ";
+
+%feature("docstring")  dolfin::Array::resize "
+
+Resize array to size N. If size changes, contents will be destroyed.
+";
+
+%feature("docstring")  dolfin::Array::size "
+
+Return size of array. ";
+
+%feature("docstring")  dolfin::Array::zero "
+
+Zero array. ";
+
+%feature("docstring")  dolfin::Array::min "
+
+Return minimum value of array. ";
+
+%feature("docstring")  dolfin::Array::max "
+
+Return maximum value of array. ";
+
+%feature("docstring")  dolfin::Array::data "
+
+Return pointer to data (const version). ";
+
+%feature("docstring")  dolfin::Array::data "
+
+Return pointer to data (non-const version). ";
+
+
 // File: classdolfin_1_1Assembler.xml
 %feature("docstring") dolfin::Assembler "
 
@@ -267,6 +326,8 @@ C++ includes: Cell.h ";
 
 Constructor. ";
 
+%feature("docstring")  dolfin::Cell::Cell "";
+
 %feature("docstring")  dolfin::Cell::~Cell "
 
 Destructor. ";
@@ -331,6 +392,8 @@ Check for intersection with cell. ";
 A CellIterator is a MeshEntityIterator of topological codimension 0.
 
 C++ includes: Cell.h ";
+
+%feature("docstring")  dolfin::CellIterator::CellIterator "";
 
 %feature("docstring")  dolfin::CellIterator::CellIterator "";
 
@@ -1286,9 +1349,7 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Expression::value_rank "
 
-Return geometric dimension.
-
-Return value rank ";
+Return value rank. ";
 
 %feature("docstring")  dolfin::Expression::value_dimension "
 
@@ -1305,10 +1366,6 @@ Restrict function to local cell (compute expansion coefficients w). ";
 %feature("docstring")  dolfin::Expression::compute_vertex_values "
 
 Compute values at all mesh vertices. ";
-
-%feature("docstring")  dolfin::Expression::eval "
-
-Evaluate expression, must be overloaded by user (simple version). ";
 
 %feature("docstring")  dolfin::Expression::eval "
 
@@ -2549,6 +2606,84 @@ Compute overlap with mesh. ";
 Compute overlap with mesh (test version). ";
 
 
+// File: classdolfin_1_1IntersectionOperator.xml
+%feature("docstring") dolfin::IntersectionOperator "";
+
+%feature("docstring")
+dolfin::IntersectionOperator::IntersectionOperator "
+
+Create intersection detector for the mesh mesh.
+
+Parameters:
+-----------
+
+kernel_type:  The CGAL geometric kernel is used to compute predicates,
+intersections and such. Depending on this choice the kernel
+(kernel_type = \"ExcactPredicates\") can compute predicates excactly
+(without roundoff error) or only approximately (default, kernel_type =
+\"SimpleCartesian\"). ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::IntersectionOperator "";
+
+%feature("docstring")
+dolfin::IntersectionOperator::~IntersectionOperator "
+
+Destructor. Needed be explicit written, otherwise default inline here,
+with prohibits pImpl with scoped_ptr. ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::all_intersected_entities "
+
+Compute all id of all cells which are intersects by a point.
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected entities are saved in a set
+for efficienty reasons, to avoid to sort out duplicates later on. ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::all_intersected_entities "
+
+Compute all id of all cells which are intersects any point in points.
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected entities are saved in a set
+for efficienty reasons, to avoid to sort out duplicates later on. ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::all_intersected_entities "
+
+Compute all id of all cells which are intersects by the given mesh
+another_mesh;
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected entities are saved in a set
+for efficienty reasons, to avoid to sort out duplicates later on. ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::any_intersected_entity "
+
+Computes only the first id of the entity, which contains the point.
+Returns -1 if no cell is intersected. ";
+
+%feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
+
+Rebuilds the underlying search structure from scratch and uses the
+kernel kernel_type underlying CGAL Geometry kernel. ";
+
+%feature("docstring")  dolfin::IntersectionOperator::clear "
+
+clears search structure. Should be used if the mesh has changed ";
+
+%feature("docstring")  dolfin::IntersectionOperator::mesh "";
+
+
 // File: classdolfin_1_1Interval.xml
 %feature("docstring") dolfin::Interval "
 
@@ -3105,6 +3240,14 @@ Return mesh geometry (non-const version). ";
 
 Return mesh geometry (const version). ";
 
+%feature("docstring")  dolfin::Mesh::intersection_operator "
+
+Return intersectionoperator (const version);. ";
+
+%feature("docstring")  dolfin::Mesh::intersection_operator "
+
+Return intersectionoperator (non-const version);. ";
+
 %feature("docstring")  dolfin::Mesh::data "
 
 Return mesh data (non-const version). ";
@@ -3180,25 +3323,41 @@ Move coordinates of mesh according to displacement function. ";
 
 Smooth mesh using Lagrangian mesh smoothing. ";
 
-%feature("docstring")  dolfin::Mesh::intersection "
+%feature("docstring")  dolfin::Mesh::all_intersected_entities "
 
-Compute cells intersecting point. ";
+Compute all id of all cells which are intersects by a point.
 
-%feature("docstring")  dolfin::Mesh::intersection "
+Parameters:
+-----------
 
-Compute cells overlapping line defined by points. ";
+ids_result:  The ids of the intersected entities are saved in a set
+for efficienty reasons, to avoid to sort out duplicates later on. ";
 
-%feature("docstring")  dolfin::Mesh::intersection "
+%feature("docstring")  dolfin::Mesh::all_intersected_entities "
 
-Compute cells overlapping cell. ";
+Compute all id of all cells which are intersects any point in points.
 
-%feature("docstring")  dolfin::Mesh::intersection "
+Parameters:
+-----------
 
-Compute intersection with curve defined by points. ";
+ids_result:  The ids of the intersected entities are saved in a set
+for efficienty reasons, to avoid to sort out duplicates later on. ";
 
-%feature("docstring")  dolfin::Mesh::intersection "
+%feature("docstring")  dolfin::Mesh::all_intersected_entities "
 
-Compute intersection with mesh. ";
+Compute all id of all cells which are intersects by the given mesh
+another_mesh;
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected entities are saved in a set
+for efficienty reasons, to avoid to sort out duplicates later on. ";
+
+%feature("docstring")  dolfin::Mesh::any_intersected_entity "
+
+Computes only the first id of the entity, which contains the point.
+Returns -1 if no cell is intersected. ";
 
 %feature("docstring")  dolfin::Mesh::hmin "
 
@@ -3500,6 +3659,10 @@ C++ includes: MeshEntity.h ";
 
 %feature("docstring")  dolfin::MeshEntity::MeshEntity "
 
+Default Constructor. ";
+
+%feature("docstring")  dolfin::MeshEntity::MeshEntity "
+
 Constructor. ";
 
 %feature("docstring")  dolfin::MeshEntity::~MeshEntity "
@@ -3567,6 +3730,11 @@ C++ includes: MeshEntityIterator.h ";
 %feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator
 "
 
+Default constructor. ";
+
+%feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator
+"
+
 Create iterator for mesh entities over given topological dimension. ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator
@@ -3580,6 +3748,11 @@ entity. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator
+"
+
+Copy Constructor. ";
+
 %feature("docstring")  dolfin::MeshEntityIterator::pos "
 
 Return current position. ";
@@ -3587,6 +3760,13 @@ Return current position. ";
 %feature("docstring")  dolfin::MeshEntityIterator::end "
 
 Check if iterator has reached the end. ";
+
+%feature("docstring")  dolfin::MeshEntityIterator::end_iterator "
+
+Provide a safeguard iterator pointing beyond the end of an iteration
+process, either iterating over the mesh /or incident entities. Added
+to be bit more like STL iteratoren, since many algorithms rely on a
+kind of beyond iterator. ";
 
 
 // File: classdolfin_1_1MeshFunction.xml
@@ -6642,6 +6822,10 @@ task. ";
 Report that functionality has not (yet) been implemented to work in
 parallel. ";
 
+%feature("docstring")  dolfin::check_equal "
+
+Check value and print an informative error message if invalid. ";
+
 %feature("docstring")  dolfin::__debug "";
 
 %feature("docstring")  dolfin::solve "
@@ -6733,6 +6917,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: ALEType_8h.xml
+
+
+// File: Array_8h.xml
 
 
 // File: constants_8h.xml
@@ -7032,6 +7219,9 @@ Assemble scalar on sub domains. ";
 // File: IntersectionDetector_8h.xml
 
 
+// File: IntersectionOperator_8h.xml
+
+
 // File: Interval_8h.xml
 
 
@@ -7065,10 +7255,16 @@ Assemble scalar on sub domains. ";
 // File: MeshPartitioning_8h.xml
 
 
+// File: MeshPrimitive_8h.xml
+
+
 // File: MeshTopology_8h.xml
 
 
 // File: Point_8h.xml
+
+
+// File: Primitive__Traits_8h.xml
 
 
 // File: Rectangle_8h.xml
