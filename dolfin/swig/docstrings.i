@@ -2846,7 +2846,7 @@ Evaluation of second derivative at given point. ";
 
 %feature("docstring")  dolfin::Legendre::eval "
 
-Evaluation of arbitrary order, nn <= n (usefull ie in
+Evaluation of arbitrary order, nn <= n (useful ie in
 RadauQuadrature). ";
 
 %feature("docstring")  dolfin::Legendre::ddx "";
