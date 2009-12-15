@@ -1,3 +1,6 @@
+// Consider moving functionality from here to
+// unit tests once it works
+
 #include <dolfin.h>
 #include "Poisson.h"
 #include "P1.h"
@@ -13,7 +16,8 @@ class MyExpression : public Expression
   }
 };
 
-int main()
+
+void test_reconstruction()
 {
   // Create function spaces
   UnitSquare mesh(4, 4);
@@ -28,6 +32,35 @@ int main()
   // Create P2 reconstruction
   Function w(W);
   w.reconstruct(v);
+}
+
+void test_least_squares()
+{
+  LAPACKMatrix A(4, 3);
+  LAPACKVector b(4);
+
+  A(0, 0) = 1;
+  A(1, 1) = 1;
+  A(2, 2) = 1;
+  A(3, 0) = 1;
+  A(3, 1) = 1;
+  A(3, 2) = 1;
+
+  b[3] = 1;
+
+  info(A, true);
+  info(b, true);
+
+  LAPACKSolvers::solve_least_squares(A, b);
+
+  // Should be 0.25, 0.25, 0,25
+  info(b, true);
+}
+
+int main()
+{
+  test_least_squares();
+  //test_reconstruction();
 
   return 0;
 }
