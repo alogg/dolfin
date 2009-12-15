@@ -28,10 +28,12 @@ void test_reconstruction()
   MyExpression f;
   Function v(V);
   v.interpolate(f);
+  plot(v);
 
   // Create P2 reconstruction
   Function w(W);
   w.reconstruct(v);
+  plot(w);
 }
 
 void test_least_squares()
@@ -59,8 +61,8 @@ void test_least_squares()
 
 int main()
 {
-  test_least_squares();
-  //test_reconstruction();
+  //test_least_squares();
+  test_reconstruction();
 
   return 0;
 }
