@@ -40,7 +40,7 @@ Create array of size N. ";
 
 %feature("docstring")  dolfin::Array::Array "
 
-Copy constructor. ";
+Copy constructor (arg name need to have a different name that 'x'). ";
 
 %feature("docstring")  dolfin::Array::Array "
 
@@ -53,6 +53,10 @@ Construct array from a pointer. Array will not take ownership. ";
 %feature("docstring")  dolfin::Array::~Array "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Array::update "
+
+Construct array from a pointer. Array will not take ownership. ";
 
 %feature("docstring")  dolfin::Array::str "
 
@@ -93,6 +97,42 @@ that the tensor should be assembled over the entire set of cells or
 facets.
 
 C++ includes: Assembler.h ";
+
+
+// File: classdolfin_1_1BasisFunction.xml
+%feature("docstring") dolfin::BasisFunction "
+
+This class represents a finite element basis function. It can be used
+for computation of basis function values and derivatives.
+
+Evaluation of basis functions is also possible through the use of the
+functions evaluate_basis and evaluate_basis_derivatives available in
+the FiniteElement class. The BasisFunction class relies on these
+functions for evaluation but also implements the ufc::function
+interface which allows evaluate_dof to be evaluated for a basis
+function (on a possibly different element).
+
+C++ includes: BasisFunction.h ";
+
+%feature("docstring")  dolfin::BasisFunction::BasisFunction "
+
+Create basis function with given index on element on given cell. ";
+
+%feature("docstring")  dolfin::BasisFunction::~BasisFunction "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::BasisFunction::eval "
+
+Evaluate basis function at given point. ";
+
+%feature("docstring")  dolfin::BasisFunction::eval_derivatives "
+
+Evaluate all order n derivatives at given point. ";
+
+%feature("docstring")  dolfin::BasisFunction::evaluate "
+
+Evaluate function at given point in cell. ";
 
 
 // File: classdolfin_1_1BlockMatrix.xml
@@ -725,10 +765,6 @@ C++ includes: Data.h ";
 
 Constructor. ";
 
-%feature("docstring")  dolfin::Data::Data "
-
-Constructor. ";
-
 %feature("docstring")  dolfin::Data::~Data "
 
 Destructor. ";
@@ -756,10 +792,6 @@ Return geometric dimension of cell. ";
 %feature("docstring")  dolfin::Data::on_facet "
 
 Check if we are on a facet. ";
-
-%feature("docstring")  dolfin::Data::set_geometric_dim "
-
-Set geometric dimensions. ";
 
 %feature("docstring")  dolfin::Data::set "
 
@@ -1333,6 +1365,10 @@ Create vector-valued expression with given dimension. ";
 
 %feature("docstring")  dolfin::Expression::Expression "
 
+Create matrix-valued expression with given dimensions. ";
+
+%feature("docstring")  dolfin::Expression::Expression "
+
 Create tensor-valued expression with given shape. ";
 
 %feature("docstring")  dolfin::Expression::Expression "
@@ -1362,10 +1398,6 @@ Restrict function to local cell (compute expansion coefficients w). ";
 %feature("docstring")  dolfin::Expression::compute_vertex_values "
 
 Compute values at all mesh vertices. ";
-
-%feature("docstring")  dolfin::Expression::eval "
-
-Evaluate expression, must be overloaded by user (simple version). ";
 
 %feature("docstring")  dolfin::Expression::eval "
 
@@ -1518,6 +1550,9 @@ dolfin::FiniteElement::interpolate_vertex_values "";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis "";
 
+%feature("docstring")
+dolfin::FiniteElement::evaluate_basis_derivatives "";
+
 %feature("docstring")  dolfin::FiniteElement::evaluate_dof "";
 
 %feature("docstring")  dolfin::FiniteElement::create_sub_element "
@@ -1546,7 +1581,7 @@ Create form of given rank with given number of coefficients. ";
 
 %feature("docstring")  dolfin::Form::Form "
 
-Create form from given Constructor used in the python interface. ";
+Create form (constructor used from Python interface). ";
 
 %feature("docstring")  dolfin::Form::~Form "
 
@@ -1728,6 +1763,10 @@ Evaluate function for given coordinate in given cell. ";
 %feature("docstring")  dolfin::Function::interpolate "
 
 Interpolate function (possibly non-matching meshes). ";
+
+%feature("docstring")  dolfin::Function::reconstruct "
+
+Reconstruct function (from a possibly lower-degree function space). ";
 
 %feature("docstring")  dolfin::Function::value_rank "
 
@@ -2820,6 +2859,70 @@ Return derivative q (a constant) of polynomial. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1LAPACKMatrix.xml
+%feature("docstring") dolfin::LAPACKMatrix "
+
+This class provides a simple wrapper for matrix data for use with
+LAPACK (column-major ordering).
+
+This class does currently not implement the GenericMatrix interface
+but may possibly be extended to do so in the future.
+
+C++ includes: LAPACKMatrix.h ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::LAPACKMatrix "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::~LAPACKMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::str "
+
+Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1LAPACKSolvers.xml
+%feature("docstring") dolfin::LAPACKSolvers "
+
+This class provides a simple interface to selected LAPACK solvers.
+
+C++ includes: LAPACKSolvers.h ";
+
+
+// File: classdolfin_1_1LAPACKVector.xml
+%feature("docstring") dolfin::LAPACKVector "
+
+This class provides a simple wrapper for matrix data for use with
+LAPACK (column-major ordering).
+
+This class does currently not implement the GenericVector interface
+but may possibly be extended to do so in the future.
+
+C++ includes: LAPACKVector.h ";
+
+%feature("docstring")  dolfin::LAPACKVector::LAPACKVector "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::LAPACKVector::~LAPACKVector "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::LAPACKVector::size "
+
+Return size of vector. ";
+
+%feature("docstring")  dolfin::LAPACKVector::str "
+
+Return informal string representation (pretty-print). ";
+
+
 // File: classdolfin_1_1Legendre.xml
 %feature("docstring") dolfin::Legendre "
 
@@ -2846,8 +2949,8 @@ Evaluation of second derivative at given point. ";
 
 %feature("docstring")  dolfin::Legendre::eval "
 
-Evaluation of arbitrary order, nn <= n (useful ie in
-RadauQuadrature). ";
+Evaluation of arbitrary order, nn <= n (useful ie in RadauQuadrature).
+";
 
 %feature("docstring")  dolfin::Legendre::ddx "";
 
@@ -6946,6 +7049,9 @@ Assemble scalar on sub domains. ";
 // File: Assembler_8h.xml
 
 
+// File: BasisFunction_8h.xml
+
+
 // File: BoundaryCondition_8h.xml
 
 
@@ -7058,6 +7164,15 @@ Assemble scalar on sub domains. ";
 
 
 // File: KrylovSolver_8h.xml
+
+
+// File: LAPACKMatrix_8h.xml
+
+
+// File: LAPACKSolvers_8h.xml
+
+
+// File: LAPACKVector_8h.xml
 
 
 // File: LinearAlgebraFactory_8h.xml
@@ -7357,56 +7472,56 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_92d4af779eea750d7e464f1256129e5e.xml
+// File: dir_379424271a08527e360cb28c2056ea00.xml
 
 
-// File: dir_0e5e0b86b41d9000573aadd072faa0dc.xml
+// File: dir_04a802dbe12ff46bc314ea4080225d3f.xml
 
 
-// File: dir_61626f8f8c8774eaa462b97af4c0a252.xml
+// File: dir_9d7396b8efe0f62476a466d9a2c8916c.xml
 
 
-// File: dir_2cb12ea2104a8aec4b8dae08301d3209.xml
+// File: dir_969c200a8d347196a09c5098fd8671aa.xml
 
 
-// File: dir_d0df2a1ab10bb9fcd71ace3b2981978c.xml
+// File: dir_229fae6c43b0632e394246ef0b904ae6.xml
 
 
-// File: dir_f2433f5d0256f08d704af3e832947be8.xml
+// File: dir_57723fa1b2b588810cf191fe4da3ac68.xml
 
 
-// File: dir_f7aa9f93aae02aa89e597f6f65a28147.xml
+// File: dir_4c3a011d1a09679b8280435381de81a3.xml
 
 
-// File: dir_2a2507e206f95ba5c74f6a3fc297b422.xml
+// File: dir_02980d0cdf1eaa4e488847af7dc7618c.xml
 
 
-// File: dir_449565eb50e230200f96f6a0b17b6e07.xml
+// File: dir_6f8dfd89ddf7e7abb595df8041003139.xml
 
 
-// File: dir_0e7ac0b790142585bc3f28b27e1d693c.xml
+// File: dir_ad5582c672546cf3cfab93a9b8648a25.xml
 
 
-// File: dir_e5a30508e9aae611f47294df14ae6493.xml
+// File: dir_5f05a7936144acaa039affce8768901c.xml
 
 
-// File: dir_680935dbf4f91b75291f72a5f78bda78.xml
+// File: dir_dc45a63cb7dcbc193fda8e8089019388.xml
 
 
-// File: dir_7bd684592ef873d98291e2eb4688aeef.xml
+// File: dir_63faf586766cd41c755ee233d078f039.xml
 
 
-// File: dir_226c3f7db0502d394c9c3450f0eef019.xml
+// File: dir_97730bd0e29679ef068604deeb420dbf.xml
 
 
-// File: dir_9e225bd197a6b3a6419f642327134d3a.xml
+// File: dir_d2c458b09bf5858dd459a68c7e163a9d.xml
 
 
-// File: dir_6f9af259675e617b318bfa6ca6a38176.xml
+// File: dir_2c19de105d8d87269166a3c23ae6e93e.xml
 
 
-// File: dir_ff7823292883bd032ef3ce5f54c32d54.xml
+// File: dir_0790e02ac1c1500eac4dc864e8b1be83.xml
 
 
-// File: dir_74e6714b2427c4debf2a5e534203887f.xml
+// File: dir_c2380649fca7a68253263a9d4fbed6e3.xml
 
