@@ -1242,40 +1242,28 @@ public:
     // Quadrature points on the UFC reference element: (0.333333333333333, 0.333333333333333)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_D01[1][2] = \
-    {{-1, 1}};
+    static const double FE0_D01[1][3] = \
+    {{-1, 0, 1}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 1};
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 2};
+    static const double FE0_D10[1][3] = \
+    {{-1, 1, 0}};
     
-    // Number of operations to compute geometry constants: 15
-    const double G0 = W1*det*(Jinv_00*Jinv_00 + Jinv_01*Jinv_01);
-    const double G1 = W1*det*(Jinv_00*Jinv_10 + Jinv_01*Jinv_11);
-    const double G2 = W1*det*(Jinv_10*Jinv_10 + Jinv_11*Jinv_11);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 63
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Total number of operations to compute element tensor: 162
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 48
+    // Number of operations to compute element tensor for following IP loop = 162
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices: 48
-    for (unsigned int j = 0; j < 2; j++)
+    // Number of operations for primary indices: 162
+    for (unsigned int j = 0; j < 3; j++)
     {
-      for (unsigned int k = 0; k < 2; k++)
+      for (unsigned int k = 0; k < 3; k++)
       {
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*3 + nzc1[k]] += FE0_D01[0][j]*FE0_D01[0][k]*G0;
-        // Number of operations to compute entry: 3
-        A[nzc0[j]*3 + nzc1[k]] += FE0_D01[0][j]*FE0_D01[0][k]*G1;
-        // Number of operations to compute entry: 3
-        A[nzc0[j]*3 + nzc0[k]] += FE0_D01[0][j]*FE0_D01[0][k]*G2;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*3 + nzc0[k]] += FE0_D01[0][j]*FE0_D01[0][k]*G1;
+        // Number of operations to compute entry: 18
+        A[j*3 + k] += ((Jinv_01*FE0_D10[0][j] + Jinv_11*FE0_D01[0][j])*(Jinv_01*FE0_D10[0][k] + Jinv_11*FE0_D01[0][k]) + (Jinv_00*FE0_D10[0][j] + Jinv_10*FE0_D01[0][j])*(Jinv_00*FE0_D10[0][k] + Jinv_10*FE0_D01[0][k]))*W1*det;
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -1355,7 +1343,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3261,15 +3249,15 @@ public:
     
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
-    // Total number of operations to compute element tensor: 56
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
+    // Total number of operations to compute element tensor: 72
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 56
+    // Number of operations to compute element tensor for following IP loop = 72
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 6
@@ -3278,16 +3266,11 @@ public:
         F0 += FE0[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 2
-      // Number of operations: 2
-      const double Gip0 = F0*W4[ip]*det;
-      
-      
-      // Number of operations for primary indices: 6
+      // Number of operations for primary indices: 12
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry: 2
-        A[j] += FE0[ip][j]*Gip0;
+        // Number of operations to compute entry: 4
+        A[j] += FE0[ip][j]*F0*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -3389,113 +3372,100 @@ public:
     // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[2][2] = \
-    {{0.788675134594813, 0.211324865405187},
-    {0.211324865405187, 0.788675134594813}};
+    static const double FE0_f0[2][3] = \
+    {{0, 0.788675134594813, 0.211324865405187},
+    {0, 0.211324865405187, 0.788675134594813}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {1, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 2};
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 1};
+    static const double FE0_f1[2][3] = \
+    {{0.788675134594813, 0, 0.211324865405187},
+    {0.211324865405187, 0, 0.788675134594813}};
+    
+    static const double FE0_f2[2][3] = \
+    {{0.788675134594813, 0.211324865405187, 0},
+    {0.211324865405187, 0.788675134594813, 0}};
+    
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
     switch ( facet )
     {
     case 0:
       {
-      // Total number of operations to compute element tensor (from this point): 20
+      // Total number of operations to compute element tensor (from this point): 42
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 20
+      // Number of operations to compute element tensor for following IP loop = 42
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
-        // Function declarations
+        // Coefficient declarations
         double F0 = 0;
         
-        // Total number of operations to compute function values = 4
-        for (unsigned int r = 0; r < 2; r++)
+        // Total number of operations to compute function values = 6
+        for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0[ip][r]*w[1][nzc0[r]];
+          F0 += FE0_f0[ip][r]*w[1][r];
         }// end loop over 'r'
         
-        // Number of operations to compute ip constants: 2
-        // Number of operations: 2
-        const double Gip0 = -F0*W2[ip]*det;
-        
-        
-        // Number of operations for primary indices: 4
-        for (unsigned int j = 0; j < 2; j++)
+        // Number of operations for primary indices: 15
+        for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry: 2
-          A[nzc0[j]] += FE0_f0[ip][j]*Gip0;
+          // Number of operations to compute entry: 5
+          A[j] += FE0_f0[ip][j]*F0*-1*W2[ip]*det;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
       break;
     case 1:
       {
-      // Total number of operations to compute element tensor (from this point): 20
+      // Total number of operations to compute element tensor (from this point): 42
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 20
+      // Number of operations to compute element tensor for following IP loop = 42
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
-        // Function declarations
+        // Coefficient declarations
         double F0 = 0;
         
-        // Total number of operations to compute function values = 4
-        for (unsigned int r = 0; r < 2; r++)
+        // Total number of operations to compute function values = 6
+        for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0[ip][r]*w[1][nzc1[r]];
+          F0 += FE0_f1[ip][r]*w[1][r];
         }// end loop over 'r'
         
-        // Number of operations to compute ip constants: 2
-        // Number of operations: 2
-        const double Gip0 = -F0*W2[ip]*det;
-        
-        
-        // Number of operations for primary indices: 4
-        for (unsigned int j = 0; j < 2; j++)
+        // Number of operations for primary indices: 15
+        for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry: 2
-          A[nzc1[j]] += FE0_f0[ip][j]*Gip0;
+          // Number of operations to compute entry: 5
+          A[j] += FE0_f1[ip][j]*F0*-1*W2[ip]*det;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
       break;
     case 2:
       {
-      // Total number of operations to compute element tensor (from this point): 20
+      // Total number of operations to compute element tensor (from this point): 42
       
       // Loop quadrature points for integral
-      // Number of operations to compute element tensor for following IP loop = 20
+      // Number of operations to compute element tensor for following IP loop = 42
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
-        // Function declarations
+        // Coefficient declarations
         double F0 = 0;
         
-        // Total number of operations to compute function values = 4
-        for (unsigned int r = 0; r < 2; r++)
+        // Total number of operations to compute function values = 6
+        for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE0_f0[ip][r]*w[1][nzc2[r]];
+          F0 += FE0_f2[ip][r]*w[1][r];
         }// end loop over 'r'
         
-        // Number of operations to compute ip constants: 2
-        // Number of operations: 2
-        const double Gip0 = -F0*W2[ip]*det;
-        
-        
-        // Number of operations for primary indices: 4
-        for (unsigned int j = 0; j < 2; j++)
+        // Number of operations for primary indices: 15
+        for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry: 2
-          A[nzc2[j]] += FE0_f0[ip][j]*Gip0;
+          // Number of operations to compute entry: 5
+          A[j] += FE0_f2[ip][j]*F0*-1*W2[ip]*det;
         }// end loop over 'j'
       }// end loop over 'ip'
       }
@@ -3579,7 +3549,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None)), Integral(Product(IntValue(-1, (), (), {}), Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None)), Integral(Product(IntValue(-1, (), (), {}), Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3685,11 +3655,11 @@ public:
 namespace Poisson
 {
 
-class CoefficientSpace_f: public dolfin::FunctionSpace
+class CoefficientSpace_w0: public dolfin::FunctionSpace
 {
 public:
 
-  CoefficientSpace_f(const dolfin::Mesh& mesh):
+  CoefficientSpace_w0(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), mesh)))
@@ -3697,7 +3667,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_f(dolfin::Mesh& mesh):
+  CoefficientSpace_w0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), mesh)))
@@ -3705,7 +3675,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+  CoefficientSpace_w0(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), *mesh)))
@@ -3713,7 +3683,7 @@ public:
       // Do nothing
   }
 
-  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+  CoefficientSpace_w0(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_1()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_1()), *mesh)))
@@ -3722,17 +3692,17 @@ public:
   }
 
 
-  ~CoefficientSpace_f()
+  ~CoefficientSpace_w0()
   {
   }
 
 };
 
-class CoefficientSpace_g: public dolfin::FunctionSpace
+class CoefficientSpace_w1: public dolfin::FunctionSpace
 {
 public:
 
-  CoefficientSpace_g(const dolfin::Mesh& mesh):
+  CoefficientSpace_w1(const dolfin::Mesh& mesh):
       dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_2()), mesh)))
@@ -3740,7 +3710,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_g(dolfin::Mesh& mesh):
+  CoefficientSpace_w1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_2()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_2()), mesh)))
@@ -3748,7 +3718,7 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_g(boost::shared_ptr<dolfin::Mesh> mesh):
+  CoefficientSpace_w1(boost::shared_ptr<dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_2()), *mesh)))
@@ -3756,7 +3726,7 @@ public:
       // Do nothing
   }
 
-  CoefficientSpace_g(boost::shared_ptr<const dolfin::Mesh> mesh):
+  CoefficientSpace_w1(boost::shared_ptr<const dolfin::Mesh> mesh):
       dolfin::FunctionSpace(mesh,
                             boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_1_finite_element_2()))),
                             boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson_1_dof_map_2()), *mesh)))
@@ -3765,7 +3735,7 @@ public:
   }
 
 
-  ~CoefficientSpace_g()
+  ~CoefficientSpace_w1()
   {
   }
 
@@ -3951,9 +3921,9 @@ public:
 
 };
 
-typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+typedef CoefficientSpace_w0 Form_1_FunctionSpace_1;
 
-typedef CoefficientSpace_g Form_1_FunctionSpace_2;
+typedef CoefficientSpace_w1 Form_1_FunctionSpace_2;
 
 class Form_1: public dolfin::Form
 {
@@ -3961,7 +3931,7 @@ public:
 
   // Constructor
   Form_1(const dolfin::FunctionSpace& V0):
-    dolfin::Form(1, 2), f(*this, 0), g(*this, 1)
+    dolfin::Form(1, 2), w0(*this, 0), w1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
@@ -3969,32 +3939,32 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f, const dolfin::GenericFunction& g):
-    dolfin::Form(1, 2), f(*this, 0), g(*this, 1)
+  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& w0, const dolfin::GenericFunction& w1):
+    dolfin::Form(1, 2), w0(*this, 0), w1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    this->f = f;
-    this->g = g;
+    this->w0 = w0;
+    this->w1 = w1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f, boost::shared_ptr<const dolfin::GenericFunction> g):
-    dolfin::Form(1, 2), f(*this, 0), g(*this, 1)
+  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> w0, boost::shared_ptr<const dolfin::GenericFunction> w1):
+    dolfin::Form(1, 2), w0(*this, 0), w1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    this->f = *f;
-    this->g = *g;
+    this->w0 = *w0;
+    this->w1 = *w1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
   // Constructor
   Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(1, 2), f(*this, 0), g(*this, 1)
+    dolfin::Form(1, 2), w0(*this, 0), w1(*this, 1)
   {
     _function_spaces[0] = V0;
 
@@ -4002,25 +3972,25 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f, const dolfin::GenericFunction& g):
-    dolfin::Form(1, 2), f(*this, 0), g(*this, 1)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& w0, const dolfin::GenericFunction& w1):
+    dolfin::Form(1, 2), w0(*this, 0), w1(*this, 1)
   {
     _function_spaces[0] = V0;
 
-    this->f = f;
-    this->g = g;
+    this->w0 = w0;
+    this->w1 = w1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f, boost::shared_ptr<const dolfin::GenericFunction> g):
-    dolfin::Form(1, 2), f(*this, 0), g(*this, 1)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> w0, boost::shared_ptr<const dolfin::GenericFunction> w1):
+    dolfin::Form(1, 2), w0(*this, 0), w1(*this, 1)
   {
     _function_spaces[0] = V0;
 
-    this->f = *f;
-    this->g = *g;
+    this->w0 = *w0;
+    this->w1 = *w1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new poisson_form_1());
   }
@@ -4032,9 +4002,9 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if (name == "f")
+    if (name == "w0")
       return 0;
-    else if (name == "g")
+    else if (name == "w1")
       return 1;
 
     dolfin::error("Invalid coefficient.");
@@ -4047,9 +4017,9 @@ public:
     switch (i)
     {
     case 0:
-      return "f";
+      return "w0";
     case 1:
-      return "g";
+      return "w1";
     }
 
     dolfin::error("Invalid coefficient.");
@@ -4058,12 +4028,12 @@ public:
 
   // Typedefs
   typedef Form_1_FunctionSpace_0 TestSpace;
-  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
-  typedef Form_1_FunctionSpace_2 CoefficientSpace_g;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_w0;
+  typedef Form_1_FunctionSpace_2 CoefficientSpace_w1;
 
   // Coefficients
-  dolfin::CoefficientAssigner f;
-  dolfin::CoefficientAssigner g;
+  dolfin::CoefficientAssigner w0;
+  dolfin::CoefficientAssigner w1;
 };
 
 // Class typedefs
