@@ -1,4 +1,0 @@
-Use this directory for random tests.
-
-Please feel free to add anything here, but keep main.cpp,
-Poisson.{ufl, h} and SConstruct in place for easy testing.
