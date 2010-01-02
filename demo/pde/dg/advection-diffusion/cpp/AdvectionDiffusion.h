@@ -5130,7 +5130,7 @@ public:
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       double F1 = 0;
       
@@ -5336,7 +5336,7 @@ public:
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
-        // Function declarations
+        // Coefficient declarations
         double F0 = 0;
         double F1 = 0;
         
@@ -5373,7 +5373,7 @@ public:
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
-        // Function declarations
+        // Coefficient declarations
         double F0 = 0;
         double F1 = 0;
         
@@ -5410,7 +5410,7 @@ public:
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
-        // Function declarations
+        // Coefficient declarations
         double F0 = 0;
         double F1 = 0;
         
@@ -5653,7 +5653,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -5765,7 +5765,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -5877,7 +5877,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -5994,7 +5994,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -6106,7 +6106,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -6218,7 +6218,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -6335,7 +6335,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -6447,7 +6447,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -6559,7 +6559,7 @@ public:
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
-          // Function declarations
+          // Coefficient declarations
           double F0 = 0;
           double F1 = 0;
           double F2 = 0;
@@ -6745,7 +6745,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(Sum(ComponentTensor(Product(Constant(Cell('triangle', 1, Space(2)), 2), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(IntValue(-1, (), (), {}), Indexed(ComponentTensor(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Sum(PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Product(IntValue(-1, (), (), {}), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Sum(Product(IntValue(-1, (), (), {}), Product(NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), NegativeRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(6),), {Index(6): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), IndexSum(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(7),), {Index(7): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(7),), {Index(7): 2}))), FloatValue(2.0, (), (), {}))))), Product(PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), PositiveRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(8),), {Index(8): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(8),), {Index(8): 2}))), MultiIndex((Index(8),), {Index(8): 2}))), IndexSum(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(9),), {Index(9): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(9),), {Index(9): 2}))), MultiIndex((Index(9),), {Index(9): 2}))), FloatValue(2.0, (), (), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(11),), {Index(11): 2})), MultiIndex((Index(11),), {Index(11): 2})))), MultiIndex((Index(12),), {Index(12): 2}))), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(14),), {Index(14): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(14),), {Index(14): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(15),), {Index(15): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(15),), {Index(15): 2}))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2)))), Sum(Product(IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(16),), {Index(16): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(16),), {Index(16): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(17),), {Index(17): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(19),), {Index(19): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(19),), {Index(19): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(20),), {Index(20): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Product(Division(PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 3)), Division(Sum(NegativeRestricted(Constant(Cell('triangle', 1, Space(2)), 1)), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 1))), IntValue(2, (), (), {}))), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2)))), Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21),), {Index(21): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})))), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(25),), {Index(25): 2})), NegativeRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(25),), {Index(25): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(26),), {Index(26): 2})), PositiveRestricted(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2})), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2))))))), Measure('interior_facet', 0, None)), Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Division(Sum(Abs(IndexSum(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(27),), {Index(27): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2}))), IndexSum(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(28),), {Index(28): 2})), Indexed(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2}))), FloatValue(2.0, (), (), {})))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(Sum(ComponentTensor(Product(Constant(Cell('triangle', 1, Space(2)), 2), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(IntValue(-1, (), (), {}), Indexed(ComponentTensor(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Sum(PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Product(IntValue(-1, (), (), {}), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Sum(Product(IntValue(-1, (), (), {}), Product(NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), NegativeRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(7),), {Index(7): 2})), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(7),), {Index(7): 2}))), FloatValue(2.0, (), (), {}))))), Product(PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), PositiveRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(8),), {Index(8): 2})), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(8),), {Index(8): 2}))), MultiIndex((Index(8),), {Index(8): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(9),), {Index(9): 2})), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(9),), {Index(9): 2}))), MultiIndex((Index(9),), {Index(9): 2}))), FloatValue(2.0, (), (), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(11),), {Index(11): 2})), MultiIndex((Index(11),), {Index(11): 2})))), MultiIndex((Index(12),), {Index(12): 2}))), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(14),), {Index(14): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(14),), {Index(14): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(15),), {Index(15): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(15),), {Index(15): 2}))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2)))), Sum(Product(IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(16),), {Index(16): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(16),), {Index(16): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(17),), {Index(17): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(19),), {Index(19): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(19),), {Index(19): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(20),), {Index(20): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Product(Division(PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 3)), Division(Sum(NegativeRestricted(Constant(Cell('triangle', 1, Space(2)), 1)), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 1))), IntValue(2, (), (), {}))), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2)))), Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21),), {Index(21): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})))), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(25),), {Index(25): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(25),), {Index(25): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', 1, Space(2)))), MultiIndex((Index(26),), {Index(26): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2})), PositiveRestricted(Constant(Cell('triangle', 1, Space(2)), 2))))))), Measure('interior_facet', 0, None)), Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 1), Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(27),), {Index(27): 2})), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(28),), {Index(28): 2})), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2}))), FloatValue(2.0, (), (), {})))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8088,7 +8088,7 @@ public:
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 6
@@ -8186,7 +8186,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

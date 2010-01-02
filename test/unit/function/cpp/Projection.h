@@ -1937,7 +1937,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 0), BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 1)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 0), Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 1)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3853,7 +3853,7 @@ public:
     for (unsigned int ip = 0; ip < 27; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 20
@@ -3951,7 +3951,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 0), Function(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 0), Coefficient(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

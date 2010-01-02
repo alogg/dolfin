@@ -1865,7 +1865,7 @@ public:
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       double F1 = 0;
       double F2 = 0;
@@ -2005,7 +2005,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(IntValue(1, (), (), {}), Power(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), IntValue(2, (), (), {})))), Product(Indexed(ComponentTensor(SpatialDerivative(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Product(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(IntValue(2, (), (), {}), BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1))))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(IntValue(1, (), (), {}), Power(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), IntValue(2, (), (), {})))), Product(Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Product(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(IntValue(2, (), (), {}), Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1))))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3944,7 +3944,7 @@ public:
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       double F1 = 0;
       double F2 = 0;
@@ -4068,7 +4068,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(Product(Indexed(ComponentTensor(SpatialDerivative(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Sum(IntValue(1, (), (), {}), Power(Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), IntValue(2, (), (), {})))), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), Product(IntValue(-1, (), (), {}), Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(Product(Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Sum(IntValue(1, (), (), {}), Power(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), IntValue(2, (), (), {})))), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), Product(IntValue(-1, (), (), {}), Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

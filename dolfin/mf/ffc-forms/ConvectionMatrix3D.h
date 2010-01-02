@@ -3540,7 +3540,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Sum(Product(Constant(Cell('tetrahedron', 1, Space(3)), 2), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3}))), Sum(Product(Constant(Cell('tetrahedron', 1, Space(3)), 0), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3}))), Product(Constant(Cell('tetrahedron', 1, Space(3)), 1), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Sum(Product(Constant(Cell('tetrahedron', 1, Space(3)), 2), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3}))), Sum(Product(Constant(Cell('tetrahedron', 1, Space(3)), 0), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3}))), Product(Constant(Cell('tetrahedron', 1, Space(3)), 1), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

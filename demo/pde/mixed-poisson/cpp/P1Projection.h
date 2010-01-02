@@ -4100,7 +4100,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6922,7 +6922,7 @@ public:
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       double F1 = 0;
       
@@ -7027,7 +7027,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Function(FiniteElement('Brezzi-Douglas-Marini', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Coefficient(FiniteElement('Brezzi-Douglas-Marini', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

@@ -2445,7 +2445,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Sum(Product(Constant(Cell('triangle', 1, Space(2)), 0), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(Constant(Cell('triangle', 1, Space(2)), 1), SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Sum(Product(Constant(Cell('triangle', 1, Space(2)), 0), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Product(Constant(Cell('triangle', 1, Space(2)), 1), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

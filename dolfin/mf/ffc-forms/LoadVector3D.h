@@ -1521,7 +1521,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Constant(Cell('tetrahedron', 1, Space(3)), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Constant(Cell('tetrahedron', 1, Space(3)), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

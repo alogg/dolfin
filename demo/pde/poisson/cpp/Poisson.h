@@ -3424,7 +3424,7 @@ public:
         
         // Number of operations to compute ip constants: 2
         // Number of operations: 2
-        const double Gip0 = -F0*W2[ip]*det;
+        const double Gip0 = F0*W2[ip]*det;
         
         
         // Number of operations for primary indices: 4
@@ -3456,7 +3456,7 @@ public:
         
         // Number of operations to compute ip constants: 2
         // Number of operations: 2
-        const double Gip0 = -F0*W2[ip]*det;
+        const double Gip0 = F0*W2[ip]*det;
         
         
         // Number of operations for primary indices: 4
@@ -3488,7 +3488,7 @@ public:
         
         // Number of operations to compute ip constants: 2
         // Number of operations: 2
-        const double Gip0 = -F0*W2[ip]*det;
+        const double Gip0 = F0*W2[ip]*det;
         
         
         // Number of operations for primary indices: 4
@@ -3579,7 +3579,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None)), Integral(Product(IntValue(-1, (), (), {}), Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Measure('cell', 0, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

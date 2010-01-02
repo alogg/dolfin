@@ -2017,7 +2017,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Sum(Indexed(SpatialDerivative(BasisFunction(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(BasisFunction(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})))), Sum(Indexed(SpatialDerivative(BasisFunction(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(BasisFunction(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Sum(Indexed(SpatialDerivative(Argument(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Argument(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})))), Sum(Indexed(SpatialDerivative(Argument(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Argument(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 1), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4123,7 +4123,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(BasisFunction(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 1), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(Argument(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Argument(FiniteElement('Nedelec 1st kind H(curl)', Cell('triangle', 1, Space(2)), 3), 1), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

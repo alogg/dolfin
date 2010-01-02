@@ -685,7 +685,7 @@ public:
       // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 4
@@ -712,7 +712,7 @@ public:
       // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 4
@@ -739,7 +739,7 @@ public:
       // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 4
@@ -836,7 +836,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(IntValue(-1, (), (), {}), Function(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
