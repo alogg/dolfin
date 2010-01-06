@@ -1699,7 +1699,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3})), Product(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3})), Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 1))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3294,7 +3294,7 @@ public:
     for (unsigned int ip = 0; ip < 8; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 8
@@ -3392,7 +3392,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Function(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

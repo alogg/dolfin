@@ -1167,7 +1167,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), MultiIndex((Index(0),), {Index(0): 1})), MultiIndex((Index(0),), {Index(0): 1})), MultiIndex((Index(1),), {Index(1): 1})), Indexed(ComponentTensor(SpatialDerivative(BasisFunction(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 1), MultiIndex((Index(2),), {Index(2): 1})), MultiIndex((Index(2),), {Index(2): 1})), MultiIndex((Index(1),), {Index(1): 1}))), MultiIndex((Index(1),), {Index(1): 1})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), MultiIndex((Index(0),), {Index(0): 1})), MultiIndex((Index(0),), {Index(0): 1})), MultiIndex((Index(1),), {Index(1): 1})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 1), MultiIndex((Index(2),), {Index(2): 1})), MultiIndex((Index(2),), {Index(2): 1})), MultiIndex((Index(1),), {Index(1): 1}))), MultiIndex((Index(1),), {Index(1): 1})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2821,7 +2821,7 @@ public:
     for (unsigned int ip = 0; ip < 2; ip++)
     {
       
-      // Function declarations
+      // Coefficient declarations
       double F0 = 0;
       
       // Total number of operations to compute function values = 4
@@ -3048,7 +3048,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), Function(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0)), Measure('cell', 0, None)), Integral(Product(BasisFunction(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), Function(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 1)), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0)), Measure('cell', 0, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 1)), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

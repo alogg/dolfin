@@ -1243,7 +1243,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 0), BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 1)), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 0), Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 1)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3905,7 +3905,7 @@ public:
     // Number of operations to compute element tensor for following IP loop = 12
     // Only 1 integration point, omitting IP loop.
     
-    // Function declarations
+    // Coefficient declarations
     double F0 = 0;
     double F1 = 0;
     
@@ -4000,7 +4000,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(BasisFunction(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 0), Indexed(SpatialDerivative(Function(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 0), Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

@@ -1700,12 +1700,12 @@ Create function on given function space with a given vector. ";
 %feature("docstring")  dolfin::Function::Function "
 
 Create function on given function space with a given vector (shared
-data). ";
+data) ";
 
 %feature("docstring")  dolfin::Function::Function "
 
 Create function on given function space with a given vector (used by
-Python interface). ";
+Python interface) ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1722,7 +1722,7 @@ Copy constructor. ";
 %feature("docstring")  dolfin::Function::Function "
 
 Sub-function constructor with shallow copy of vector (used in Python
-interface). ";
+interface) ";
 
 %feature("docstring")  dolfin::Function::~Function "
 
@@ -3228,18 +3228,6 @@ Return concrete instance / unwrap (const version). ";
 %feature("docstring")  dolfin::Matrix::instance "
 
 Return concrete instance / unwrap (non-const version). ";
-
-
-// File: classdolfin_1_1MatrixFactory.xml
-%feature("docstring") dolfin::MatrixFactory "
-
-This class provides functionality for computing a set of standard
-finite element matrices, such as the mass matrix and the stiffness
-matrix, with piecewise linear elements. For other matrices (forms) and
-elements, forms must be defined in the FFC form language and
-assembled.
-
-C++ includes: MatrixFactory.h ";
 
 
 // File: classdolfin_1_1Mesh.xml
@@ -7409,9 +7397,6 @@ Assemble scalar on sub domains. ";
 // File: Vertex_8h.xml
 
 
-// File: MatrixFactory_8h.xml
-
-
 // File: NewtonSolver_8h.xml
 
 
@@ -7472,56 +7457,53 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_379424271a08527e360cb28c2056ea00.xml
+// File: dir_68f858635a27044942e1456f397a257e.xml
 
 
-// File: dir_04a802dbe12ff46bc314ea4080225d3f.xml
+// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
 
 
-// File: dir_9d7396b8efe0f62476a466d9a2c8916c.xml
+// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
 
 
-// File: dir_969c200a8d347196a09c5098fd8671aa.xml
+// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
 
 
-// File: dir_229fae6c43b0632e394246ef0b904ae6.xml
+// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
 
 
-// File: dir_57723fa1b2b588810cf191fe4da3ac68.xml
+// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
 
 
-// File: dir_4c3a011d1a09679b8280435381de81a3.xml
+// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
 
 
-// File: dir_02980d0cdf1eaa4e488847af7dc7618c.xml
+// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
 
 
-// File: dir_6f8dfd89ddf7e7abb595df8041003139.xml
+// File: dir_29c16e73653a7fc876ded90673bae460.xml
 
 
-// File: dir_ad5582c672546cf3cfab93a9b8648a25.xml
+// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
 
 
-// File: dir_5f05a7936144acaa039affce8768901c.xml
+// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
 
 
-// File: dir_dc45a63cb7dcbc193fda8e8089019388.xml
+// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
 
 
-// File: dir_63faf586766cd41c755ee233d078f039.xml
+// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
 
 
-// File: dir_97730bd0e29679ef068604deeb420dbf.xml
+// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
 
 
-// File: dir_d2c458b09bf5858dd459a68c7e163a9d.xml
+// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
 
 
-// File: dir_2c19de105d8d87269166a3c23ae6e93e.xml
+// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
 
 
-// File: dir_0790e02ac1c1500eac4dc864e8b1be83.xml
-
-
-// File: dir_c2380649fca7a68253263a9d4fbed6e3.xml
+// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
 

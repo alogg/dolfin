@@ -6890,7 +6890,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), Indexed(BasisFunction(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(0),), {Index(0): 3}))), MultiIndex((Index(0),), {Index(0): 3})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(0),), {Index(0): 3}))), MultiIndex((Index(0),), {Index(0): 3})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -11379,7 +11379,7 @@ public:
     // Number of operations to compute element tensor for following IP loop = 93
     // Only 1 integration point, omitting IP loop.
     
-    // Function declarations
+    // Coefficient declarations
     double F0 = 0;
     double F1 = 0;
     double F2 = 0;
@@ -11496,7 +11496,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(BasisFunction(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), Indexed(ListTensor(Sum(Indexed(SpatialDerivative(Function(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Function(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})))), Sum(Indexed(SpatialDerivative(Function(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Function(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})))), Sum(Indexed(SpatialDerivative(Function(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Function(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3}))))), MultiIndex((Index(0),), {Index(0): 3}))), MultiIndex((Index(0),), {Index(0): 3})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), Indexed(ListTensor(Sum(Indexed(SpatialDerivative(Coefficient(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Coefficient(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})))), Sum(Indexed(SpatialDerivative(Coefficient(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Coefficient(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), MultiIndex((FixedIndex(2),), {FixedIndex(2): 3})))), Sum(Indexed(SpatialDerivative(Coefficient(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3})), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})), Product(IntValue(-1, (), (), {}), Indexed(SpatialDerivative(Coefficient(FiniteElement('Nedelec 1st kind H(curl)', Cell('tetrahedron', 1, Space(3)), 1), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 3})), MultiIndex((FixedIndex(0),), {FixedIndex(0): 3}))))), MultiIndex((Index(0),), {Index(0): 3}))), MultiIndex((Index(0),), {Index(0): 3})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
