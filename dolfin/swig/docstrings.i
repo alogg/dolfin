@@ -801,6 +801,8 @@ Set cell and facet data. ";
 
 Set UFC cell and coordinate. ";
 
+%feature("docstring")  dolfin::Data::set "";
+
 %feature("docstring")  dolfin::Data::clear "
 
 Clear all cell data. ";
@@ -1111,6 +1113,10 @@ Extract sub dofmap component. ";
 %feature("docstring")  dolfin::DofMap::collapse "
 
 \"Collapse\" a sub dofmap ";
+
+%feature("docstring")  dolfin::DofMap::list "
+
+Return the set of dof indices. ";
 
 %feature("docstring")  dolfin::DofMap::str "
 
@@ -3886,6 +3892,11 @@ Create mesh function on given mesh of given dimension. ";
 
 %feature("docstring")  dolfin::MeshFunction::MeshFunction "
 
+Create mesh function on given mesh of given dimension and initialise
+to a value ";
+
+%feature("docstring")  dolfin::MeshFunction::MeshFunction "
+
 Create function from data file. ";
 
 %feature("docstring")  dolfin::MeshFunction::MeshFunction "
@@ -5279,6 +5290,67 @@ Get value. ";
 
 
 // File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
+// File: classdolfin_1_1Set.xml
+%feature("docstring") dolfin::Set "
+
+This is a std::set like data structure. It is not ordered and it is
+based a std::vector. It can be faster than a std::set for some cases.
+
+C++ includes: Set.h ";
+
+%feature("docstring")  dolfin::Set::Set "
+
+Create empty set. ";
+
+%feature("docstring")  dolfin::Set::Set "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::Set::~Set "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Set::find "
+
+Find entry in set and return an iterator to the entry. ";
+
+%feature("docstring")  dolfin::Set::find "
+
+Find entry in set and return an iterator to the entry (const). ";
+
+%feature("docstring")  dolfin::Set::insert "
+
+Insert entry. ";
+
+%feature("docstring")  dolfin::Set::begin "";
+
+%feature("docstring")  dolfin::Set::end "";
+
+%feature("docstring")  dolfin::Set::size "
+
+Set size. ";
+
+%feature("docstring")  dolfin::Set::erase "
+
+Erase an entry. ";
+
+%feature("docstring")  dolfin::Set::sort "
+
+Sort set. ";
+
+%feature("docstring")  dolfin::Set::clear "
+
+Clear set. ";
+
+%feature("docstring")  dolfin::Set::resize "
+
+Resize set. ";
+
+%feature("docstring")  dolfin::Set::set "
+
+Return the vector that stores the data in the Set. ";
 
 
 // File: classdolfin_1_1SingularSolver.xml
@@ -7017,6 +7089,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: real_8h.xml
+
+
+// File: Set_8h.xml
 
 
 // File: Timer_8h.xml
