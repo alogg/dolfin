@@ -3370,260 +3370,52 @@ public:
     // Quadrature points on the UFC reference element: (0.250000000000000, 0.250000000000000, 0.250000000000000)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_C0_D001[1][2] = \
-    {{-1.000000000000000, 1.000000000000000}};
+    static const double FE1_C0_D001[1][12] = \
+    {{-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 3};
+    static const double FE1_C0_D010[1][12] = \
+    {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 1};
+    static const double FE1_C0_D100[1][12] = \
+    {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc9[2] = {8, 11};
+    static const double FE1_C1_D001[1][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 2};
+    static const double FE1_C1_D010[1][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc6[2] = {4, 6};
+    static const double FE1_C1_D100[1][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc7[2] = {4, 5};
+    static const double FE1_C2_D001[1][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc11[2] = {8, 9};
+    static const double FE1_C2_D010[1][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000}};
     
-    // Array of non-zero columns
-    static const unsigned int nzc10[2] = {8, 10};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc5[2] = {4, 7};
+    static const double FE1_C2_D100[1][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000}};
     
     for (unsigned int r = 0; r < 144; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
-    const double G0 = W1*det*(K_01*K_01*w[1][0] + w[0][0]*(2.000000000000000*K_01*K_01 + K_00*K_00 + K_02*K_02));
-    const double G1 = K_00*K_01*W1*det*(w[0][0] + w[1][0]);
-    const double G2 = W1*det*(K_11*K_22*w[0][0] + K_12*K_21*w[1][0]);
-    const double G3 = W1*det*(K_00*K_00*w[1][0] + w[0][0]*(2.000000000000000*K_00*K_00 + K_01*K_01 + K_02*K_02));
-    const double G4 = W1*det*(K_01*K_21*(w[1][0] + 2.000000000000000*w[0][0]) + w[0][0]*(K_00*K_20 + K_02*K_22));
-    const double G5 = K_10*K_12*W1*det*(w[0][0] + w[1][0]);
-    const double G6 = W1*det*(K_00*K_11*w[1][0] + K_01*K_10*w[0][0]);
-    const double G7 = W1*det*(K_12*K_22*w[1][0] + w[0][0]*(2.000000000000000*K_12*K_22 + K_10*K_20 + K_11*K_21));
-    const double G8 = W1*det*(K_00*K_22*w[0][0] + K_02*K_20*w[1][0]);
-    const double G9 = K_00*K_02*W1*det*(w[0][0] + w[1][0]);
-    const double G10 = K_10*K_11*W1*det*(w[0][0] + w[1][0]);
-    const double G11 = W1*det*(K_10*K_22*w[0][0] + K_12*K_20*w[1][0]);
-    const double G12 = W1*det*(K_02*K_22*w[1][0] + w[0][0]*(2.000000000000000*K_02*K_22 + K_00*K_20 + K_01*K_21));
-    const double G13 = W1*det*(K_00*K_10*(w[1][0] + 2.000000000000000*w[0][0]) + w[0][0]*(K_01*K_11 + K_02*K_12));
-    const double G14 = W1*det*(K_01*K_22*w[0][0] + K_02*K_21*w[1][0]);
-    const double G15 = W1*det*(K_02*K_02*w[1][0] + w[0][0]*(2.000000000000000*K_02*K_02 + K_00*K_00 + K_01*K_01));
-    const double G16 = W1*det*(K_00*K_21*w[0][0] + K_01*K_20*w[1][0]);
-    const double G17 = W1*det*(K_01*K_12*w[0][0] + K_02*K_11*w[1][0]);
-    const double G18 = W1*det*(K_10*K_20*w[1][0] + w[0][0]*(2.000000000000000*K_10*K_20 + K_11*K_21 + K_12*K_22));
-    const double G19 = W1*det*(K_01*K_22*w[1][0] + K_02*K_21*w[0][0]);
-    const double G20 = W1*det*(K_11*K_22*w[1][0] + K_12*K_21*w[0][0]);
-    const double G21 = W1*det*(K_01*K_11*w[1][0] + w[0][0]*(2.000000000000000*K_01*K_11 + K_00*K_10 + K_02*K_12));
-    const double G22 = W1*det*(K_00*K_12*w[0][0] + K_02*K_10*w[1][0]);
-    const double G23 = W1*det*(K_10*K_21*w[1][0] + K_11*K_20*w[0][0]);
-    const double G24 = K_20*K_21*W1*det*(w[0][0] + w[1][0]);
-    const double G25 = W1*det*(K_00*K_11*w[0][0] + K_01*K_10*w[1][0]);
-    const double G26 = K_20*K_22*W1*det*(w[0][0] + w[1][0]);
-    const double G27 = W1*det*(K_00*K_20*w[1][0] + w[0][0]*(2.000000000000000*K_00*K_20 + K_01*K_21 + K_02*K_22));
-    const double G28 = K_21*K_22*W1*det*(w[0][0] + w[1][0]);
-    const double G29 = W1*det*(K_01*K_12*w[1][0] + K_02*K_11*w[0][0]);
-    const double G30 = W1*det*(K_00*K_22*w[1][0] + K_02*K_20*w[0][0]);
-    const double G31 = W1*det*(K_12*K_12*w[1][0] + w[0][0]*(2.000000000000000*K_12*K_12 + K_10*K_10 + K_11*K_11));
-    const double G32 = W1*det*(K_21*K_21*w[1][0] + w[0][0]*(2.000000000000000*K_21*K_21 + K_20*K_20 + K_22*K_22));
-    const double G33 = K_01*K_02*W1*det*(w[0][0] + w[1][0]);
-    const double G34 = W1*det*(K_00*K_21*w[1][0] + K_01*K_20*w[0][0]);
-    const double G35 = W1*det*(K_02*K_12*w[1][0] + w[0][0]*(2.000000000000000*K_02*K_12 + K_00*K_10 + K_01*K_11));
-    const double G36 = K_11*K_12*W1*det*(w[0][0] + w[1][0]);
-    const double G37 = W1*det*(K_10*K_22*w[1][0] + K_12*K_20*w[0][0]);
-    const double G38 = W1*det*(K_00*K_12*w[1][0] + K_02*K_10*w[0][0]);
-    const double G39 = W1*det*(K_22*K_22*w[1][0] + w[0][0]*(2.000000000000000*K_22*K_22 + K_20*K_20 + K_21*K_21));
-    const double G40 = W1*det*(K_10*K_10*w[1][0] + w[0][0]*(2.000000000000000*K_10*K_10 + K_11*K_11 + K_12*K_12));
-    const double G41 = W1*det*(K_10*K_21*w[0][0] + K_11*K_20*w[1][0]);
-    const double G42 = W1*det*(K_11*K_11*w[1][0] + w[0][0]*(2.000000000000000*K_11*K_11 + K_10*K_10 + K_12*K_12));
-    const double G43 = W1*det*(K_11*K_21*w[1][0] + w[0][0]*(2.000000000000000*K_11*K_21 + K_10*K_20 + K_12*K_22));
-    const double G44 = W1*det*(K_20*K_20*w[1][0] + w[0][0]*(2.000000000000000*K_20*K_20 + K_21*K_21 + K_22*K_22));
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('simplify expressions', True), ('ignore zero tables', True), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True)
+    // Optimisations: ('simplify expressions', False), ('ignore zero tables', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False)
     
     // Loop quadrature points for integral
-    // Number of operations to compute element tensor for following IP loop = 972
+    // Number of operations to compute element tensor for following IP loop = 43488
     // Only 1 integration point, omitting IP loop.
     
-    // Number of operations for primary indices: 972
-    for (unsigned int j = 0; j < 2; j++)
+    // Number of operations for primary indices: 43488
+    for (unsigned int j = 0; j < 12; j++)
     {
-      for (unsigned int k = 0; k < 2; k++)
+      for (unsigned int k = 0; k < 12; k++)
       {
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G0;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G1;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G2;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G3;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G4;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G5;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G6;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G7;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G8;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G9;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G10;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G11;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G12;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G13;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G14;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G10;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G6;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G15;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G16;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G17;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G18;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G19;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G20;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G5;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G7;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G21;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G22;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G23;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G21;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G12;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G22;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G24;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G25;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G26;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G13;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G27;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G28;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G2;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G23;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G29;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G25;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G30;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G31;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G26;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G8;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G32;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G33;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G34;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G35;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G14;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G36;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G37;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G36;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc10[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G38;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G17;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G39;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G18;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc2[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G40;
-        // Number of operations to compute entry: 3
-        A[nzc2[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G37;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G34;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G41;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G33;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G24;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G11;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G42;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G1;
-        // Number of operations to compute entry: 3
-        A[nzc9[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G20;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G16;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G29;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc6[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G43;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G27;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G38;
-        // Number of operations to compute entry: 3
-        A[nzc7[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G19;
-        // Number of operations to compute entry: 3
-        A[nzc10[j]*12 + nzc11[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G35;
-        // Number of operations to compute entry: 3
-        A[nzc1[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G44;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc1[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G41;
-        // Number of operations to compute entry: 3
-        A[nzc11[j]*12 + nzc3[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G9;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G28;
-        // Number of operations to compute entry: 3
-        A[nzc3[j]*12 + nzc9[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G30;
-        // Number of operations to compute entry: 3
-        A[nzc6[j]*12 + nzc5[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G43;
-        // Number of operations to compute entry: 3
-        A[nzc5[j]*12 + nzc7[k]] += FE1_C0_D001[0][j]*FE1_C0_D001[0][k]*G4;
+        // Number of operations to compute entry: 302
+        A[j*12 + k] += (((((2.000000000000000*((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j])))*0.500000000000000)*((((2.000000000000000*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0] + ((((2.000000000000000*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])))*0.500000000000000 + (2.000000000000000*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])))*0.500000000000000 + (2.000000000000000*((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k])))*0.500000000000000))*w[1][0])*1.000000000000000)) + ((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]) + (K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j])))*0.500000000000000)*(((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]) + (K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0]) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]) + (K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j])))*0.500000000000000)*(((((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]) + (K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0])) + (((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]) + (K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j])))*0.500000000000000)*(((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]) + (K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0]) + ((2.000000000000000*((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j])))*0.500000000000000)*((((((2.000000000000000*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])))*0.500000000000000 + (2.000000000000000*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])))*0.500000000000000 + (2.000000000000000*((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k])))*0.500000000000000))*w[1][0])*1.000000000000000 + ((2.000000000000000*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0])) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]) + (K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j])))*0.500000000000000)*(((((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]) + (K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0])) + (((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]) + (K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j])))*0.500000000000000)*(((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]) + (K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0]) + ((((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]) + (K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j])))*0.500000000000000)*(((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]) + (K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0]) + ((2.000000000000000*((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j])))*0.500000000000000)*((((2.000000000000000*((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k])))*0.500000000000000)*2.000000000000000*w[0][0] + ((((2.000000000000000*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])))*0.500000000000000 + (2.000000000000000*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])))*0.500000000000000 + (2.000000000000000*((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k])))*0.500000000000000))*w[1][0])*1.000000000000000)))))*W1*det;
       }// end loop over 'k'
     }// end loop over 'j'
   }
