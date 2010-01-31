@@ -781,7 +781,6 @@ public:
 
 };
 
-
 // DOLFIN wrappers
 
 // Standard library includes

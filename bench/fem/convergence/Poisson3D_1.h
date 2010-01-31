@@ -1243,6 +1243,7 @@ public:
   }
 
 };
+
 /// This class defines the interface for the assembly of the global
 /// tensor corresponding to a form with r + n arguments, that is, a
 /// mapping
