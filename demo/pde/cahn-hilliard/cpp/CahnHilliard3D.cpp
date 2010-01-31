@@ -4,6 +4,7 @@
 // This code was generated with the option '-l dolfin' and
 // contains DOLFIN-specific wrappers that depend on DOLFIN.
 
+#include "CahnHilliard3D.h"
 
 /// Constructor
 cahnhilliard3d_finite_element_0::cahnhilliard3d_finite_element_0() : ufc::finite_element()
