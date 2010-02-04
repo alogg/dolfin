@@ -409,18 +409,6 @@ Order entities locally. ";
 
 Check if entities are ordered. ";
 
-%feature("docstring")  dolfin::Cell::intersects "
-
-Check for intersection with point. ";
-
-%feature("docstring")  dolfin::Cell::intersects "
-
-Check for intersection with line defined by points. ";
-
-%feature("docstring")  dolfin::Cell::intersects "
-
-Check for intersection with cell. ";
-
 
 // File: classdolfin_1_1CellIterator.xml
 %feature("docstring") dolfin::CellIterator "
@@ -530,18 +518,6 @@ Order entities locally. ";
 %feature("docstring")  dolfin::CellType::ordered "
 
 Check if entities are ordered. ";
-
-%feature("docstring")  dolfin::CellType::intersects "
-
-Check for intersection with point. ";
-
-%feature("docstring")  dolfin::CellType::intersects "
-
-Check for intersection with line defined by points. ";
-
-%feature("docstring")  dolfin::CellType::intersects "
-
-Check for intersection with cell. ";
 
 %feature("docstring")  dolfin::CellType::description "
 
@@ -1114,7 +1090,7 @@ Extract sub dofmap component. ";
 
 \"Collapse\" a sub dofmap ";
 
-%feature("docstring")  dolfin::DofMap::list "
+%feature("docstring")  dolfin::DofMap::dofs "
 
 Return the set of dof indices. ";
 
@@ -1872,7 +1848,7 @@ Return dimension of function space. ";
 %feature("docstring")  dolfin::FunctionSpace::interpolate "
 
 Interpolate function v into function space, returning the vector of
-expansion coefficients. ";
+expansion coefficients ";
 
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
 
@@ -2612,45 +2588,6 @@ This class provides a set of functions to partition a Graph.
 C++ includes: GraphPartition.h ";
 
 
-// File: classdolfin_1_1IntersectionDetector.xml
-%feature("docstring") dolfin::IntersectionDetector "";
-
-%feature("docstring")
-dolfin::IntersectionDetector::IntersectionDetector "
-
-Create intersection detector for mesh. ";
-
-%feature("docstring")
-dolfin::IntersectionDetector::~IntersectionDetector "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute cells overlapping point. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute cells overlapping line defined by points. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute cells overlapping cell. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute overlap with curve defined by points. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute overlap with mesh. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::new_intersection
-"
-
-Compute overlap with mesh (test version). ";
-
-
 // File: classdolfin_1_1IntersectionOperator.xml
 %feature("docstring") dolfin::IntersectionOperator "";
 
@@ -2724,7 +2661,7 @@ kernel kernel_type underlying CGAL Geometry kernel. ";
 
 %feature("docstring")  dolfin::IntersectionOperator::clear "
 
-clears search structure. Should be used if the mesh has changed ";
+Clears search structure. Should be used if the mesh has changed. ";
 
 %feature("docstring")  dolfin::IntersectionOperator::mesh "";
 
@@ -5306,6 +5243,10 @@ Create empty set. ";
 
 %feature("docstring")  dolfin::Set::Set "
 
+Wrap std::vectpr as a set. Contents will be erased. ";
+
+%feature("docstring")  dolfin::Set::Set "
+
 Copy constructor. ";
 
 %feature("docstring")  dolfin::Set::~Set "
@@ -7392,9 +7333,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: Facet_8h.xml
-
-
-// File: IntersectionDetector_8h.xml
 
 
 // File: IntersectionOperator_8h.xml
