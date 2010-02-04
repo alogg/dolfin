@@ -3,6 +3,7 @@
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 
 #include <CGAL/Nef_polyhedron_3.h>
+#include <CGAL/Nef_polyhedron_2.h>
 #include <CGAL/Polyhedron_3.h>
 #include <CGAL/Gmpz.h>
 #include <CGAL/Homogeneous.h>
@@ -10,6 +11,8 @@
 #include <CGAL/IO/Polyhedron_iostream.h>
 #include <CGAL/IO/Nef_polyhedron_iostream_3.h>
 
+//#include <CGAL/IO/Qt_widget_Nef_3.h>
+//#include <qapplication.h>
 
 #include <iostream>
 
@@ -57,6 +60,12 @@ int main()
   Q.make_tetrahedron(a, b, c, d);
   Nef_polyhedron NQ(Q);
 
+  Polyhedron R;
+  R.make_tetrahedron(A, B, C, D);
+  Nef_polyhedron NR(R);
+
+  Nef_polyhedron NQ_NR = NQ * NR;
+
   Polyhedron F;
   F.make_triangle(A,B,C);
   Nef_polyhedron NF(F);
@@ -75,6 +84,7 @@ int main()
   std::cout <<	NF ;
   std ::cout <<"Nef_Polyhedron Intersection: " <<std::endl;
   std::cout <<	N ;
+
 
 //  if(N.is_simple()) {
 //    N.convert_to_polyhedron(P);
@@ -99,4 +109,10 @@ int main()
 //  std::cout << N;
 
   return 0;
+
+//  QApplication a(argc, argv);
+//  CGAL::Qt_widget_Nef_3<Nef_polyhedron_3>* w = new CGAL::Qt_widget_Nef_3<Nef_polyhedron_3>(NQ_NR);
+//  a.setMainWidget(w);
+//  w->show();
+//  return a.exec();
 }

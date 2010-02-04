@@ -61,9 +61,9 @@ void OverlappingMeshes::compute_overlap_map()
   const Mesh & boundary_1 = *(_overlapped_boundary->mesh);
   const Mesh & boundary_2 = *(_overlapping_boundary->mesh);  
 
-  EntityEntitiesMap & cell_cell_map = _overlapped_domain->entity_entities_map[&mesh_2];
-  EntityEntitiesMap & facet_1_cell_2_map = _overlapped_boundary->entity_entities_map[&mesh_2];
-  EntityEntitiesMap & facet_2_cell_1_map = _overlapping_boundary->entity_entities_map[&mesh_1];
+  EntityEntitiesMap & cell_cell_map = _overlapped_domain->entity_entities_map;
+  EntityEntitiesMap & facet_1_cell_2_map = _overlapped_boundary->entity_entities_map;
+  EntityEntitiesMap & facet_2_cell_1_map = _overlapping_boundary->entity_entities_map;
 
   CellIterator cut_cell(mesh_1);
   CellIterator cut_facet(boundary_2);
