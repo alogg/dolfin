@@ -28,9 +28,9 @@ C++ includes: ALE.h ";
 // File: classdolfin_1_1Array.xml
 %feature("docstring") dolfin::Array "
 
-This class provides a simple vector-type class for doubles. A purpose
-of this class is to enable the simple and safe exchange of data
-between C++ and Python.
+This class provides a simple wrapper for a pointer to an array. A
+purpose of this class is to enable the simple and safe exchange of
+data between C++ and Python.
 
 C++ includes: Array.h ";
 
@@ -40,15 +40,23 @@ Create array of size N. ";
 
 %feature("docstring")  dolfin::Array::Array "
 
-Copy constructor. ";
+Copy constructor (arg name need to have a different name that 'x'). ";
 
 %feature("docstring")  dolfin::Array::Array "
 
 Construct array from a shared pointer. ";
 
+%feature("docstring")  dolfin::Array::Array "
+
+Construct array from a pointer. Array will not take ownership. ";
+
 %feature("docstring")  dolfin::Array::~Array "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::Array::update "
+
+Construct array from a pointer. Array will not take ownership. ";
 
 %feature("docstring")  dolfin::Array::str "
 
@@ -66,14 +74,6 @@ Return size of array. ";
 %feature("docstring")  dolfin::Array::zero "
 
 Zero array. ";
-
-%feature("docstring")  dolfin::Array::min "
-
-Return minimum value of array. ";
-
-%feature("docstring")  dolfin::Array::max "
-
-Return maximum value of array. ";
 
 %feature("docstring")  dolfin::Array::data "
 
@@ -97,6 +97,42 @@ that the tensor should be assembled over the entire set of cells or
 facets.
 
 C++ includes: Assembler.h ";
+
+
+// File: classdolfin_1_1BasisFunction.xml
+%feature("docstring") dolfin::BasisFunction "
+
+This class represents a finite element basis function. It can be used
+for computation of basis function values and derivatives.
+
+Evaluation of basis functions is also possible through the use of the
+functions evaluate_basis and evaluate_basis_derivatives available in
+the FiniteElement class. The BasisFunction class relies on these
+functions for evaluation but also implements the ufc::function
+interface which allows evaluate_dof to be evaluated for a basis
+function (on a possibly different element).
+
+C++ includes: BasisFunction.h ";
+
+%feature("docstring")  dolfin::BasisFunction::BasisFunction "
+
+Create basis function with given index on element on given cell. ";
+
+%feature("docstring")  dolfin::BasisFunction::~BasisFunction "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::BasisFunction::eval "
+
+Evaluate basis function at given point. ";
+
+%feature("docstring")  dolfin::BasisFunction::eval_derivatives "
+
+Evaluate all order n derivatives at given point. ";
+
+%feature("docstring")  dolfin::BasisFunction::evaluate "
+
+Evaluate function at given point in cell. ";
 
 
 // File: classdolfin_1_1BlockMatrix.xml
@@ -373,18 +409,6 @@ Order entities locally. ";
 
 Check if entities are ordered. ";
 
-%feature("docstring")  dolfin::Cell::intersects "
-
-Check for intersection with point. ";
-
-%feature("docstring")  dolfin::Cell::intersects "
-
-Check for intersection with line defined by points. ";
-
-%feature("docstring")  dolfin::Cell::intersects "
-
-Check for intersection with cell. ";
-
 
 // File: classdolfin_1_1CellIterator.xml
 %feature("docstring") dolfin::CellIterator "
@@ -494,18 +518,6 @@ Order entities locally. ";
 %feature("docstring")  dolfin::CellType::ordered "
 
 Check if entities are ordered. ";
-
-%feature("docstring")  dolfin::CellType::intersects "
-
-Check for intersection with point. ";
-
-%feature("docstring")  dolfin::CellType::intersects "
-
-Check for intersection with line defined by points. ";
-
-%feature("docstring")  dolfin::CellType::intersects "
-
-Check for intersection with cell. ";
 
 %feature("docstring")  dolfin::CellType::description "
 
@@ -729,10 +741,6 @@ C++ includes: Data.h ";
 
 Constructor. ";
 
-%feature("docstring")  dolfin::Data::Data "
-
-Constructor. ";
-
 %feature("docstring")  dolfin::Data::~Data "
 
 Destructor. ";
@@ -761,10 +769,6 @@ Return geometric dimension of cell. ";
 
 Check if we are on a facet. ";
 
-%feature("docstring")  dolfin::Data::set_geometric_dim "
-
-Set geometric dimensions. ";
-
 %feature("docstring")  dolfin::Data::set "
 
 Set cell and facet data. ";
@@ -772,6 +776,8 @@ Set cell and facet data. ";
 %feature("docstring")  dolfin::Data::set "
 
 Set UFC cell and coordinate. ";
+
+%feature("docstring")  dolfin::Data::set "";
 
 %feature("docstring")  dolfin::Data::clear "
 
@@ -1084,6 +1090,10 @@ Extract sub dofmap component. ";
 
 \"Collapse\" a sub dofmap ";
 
+%feature("docstring")  dolfin::DofMap::dofs "
+
+Return the set of dof indices. ";
+
 %feature("docstring")  dolfin::DofMap::str "
 
 Return informal string representation (pretty-print). ";
@@ -1337,6 +1347,10 @@ Create vector-valued expression with given dimension. ";
 
 %feature("docstring")  dolfin::Expression::Expression "
 
+Create matrix-valued expression with given dimensions. ";
+
+%feature("docstring")  dolfin::Expression::Expression "
+
 Create tensor-valued expression with given shape. ";
 
 %feature("docstring")  dolfin::Expression::Expression "
@@ -1518,6 +1532,9 @@ dolfin::FiniteElement::interpolate_vertex_values "";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis "";
 
+%feature("docstring")
+dolfin::FiniteElement::evaluate_basis_derivatives "";
+
 %feature("docstring")  dolfin::FiniteElement::evaluate_dof "";
 
 %feature("docstring")  dolfin::FiniteElement::create_sub_element "
@@ -1546,7 +1563,7 @@ Create form of given rank with given number of coefficients. ";
 
 %feature("docstring")  dolfin::Form::Form "
 
-Create form from given Constructor used in the python interface. ";
+Create form (constructor used from Python interface). ";
 
 %feature("docstring")  dolfin::Form::~Form "
 
@@ -1665,12 +1682,12 @@ Create function on given function space with a given vector. ";
 %feature("docstring")  dolfin::Function::Function "
 
 Create function on given function space with a given vector (shared
-data). ";
+data) ";
 
 %feature("docstring")  dolfin::Function::Function "
 
 Create function on given function space with a given vector (used by
-Python interface). ";
+Python interface) ";
 
 %feature("docstring")  dolfin::Function::Function "
 
@@ -1687,7 +1704,7 @@ Copy constructor. ";
 %feature("docstring")  dolfin::Function::Function "
 
 Sub-function constructor with shallow copy of vector (used in Python
-interface). ";
+interface) ";
 
 %feature("docstring")  dolfin::Function::~Function "
 
@@ -1728,6 +1745,10 @@ Evaluate function for given coordinate in given cell. ";
 %feature("docstring")  dolfin::Function::interpolate "
 
 Interpolate function (possibly non-matching meshes). ";
+
+%feature("docstring")  dolfin::Function::reconstruct "
+
+Reconstruct function (from a possibly lower-degree function space). ";
 
 %feature("docstring")  dolfin::Function::value_rank "
 
@@ -1827,7 +1848,7 @@ Return dimension of function space. ";
 %feature("docstring")  dolfin::FunctionSpace::interpolate "
 
 Interpolate function v into function space, returning the vector of
-expansion coefficients. ";
+expansion coefficients ";
 
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
 
@@ -2567,45 +2588,6 @@ This class provides a set of functions to partition a Graph.
 C++ includes: GraphPartition.h ";
 
 
-// File: classdolfin_1_1IntersectionDetector.xml
-%feature("docstring") dolfin::IntersectionDetector "";
-
-%feature("docstring")
-dolfin::IntersectionDetector::IntersectionDetector "
-
-Create intersection detector for mesh. ";
-
-%feature("docstring")
-dolfin::IntersectionDetector::~IntersectionDetector "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute cells overlapping point. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute cells overlapping line defined by points. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute cells overlapping cell. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute overlap with curve defined by points. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::intersection "
-
-Compute overlap with mesh. ";
-
-%feature("docstring")  dolfin::IntersectionDetector::new_intersection
-"
-
-Compute overlap with mesh (test version). ";
-
-
 // File: classdolfin_1_1IntersectionOperator.xml
 %feature("docstring") dolfin::IntersectionOperator "";
 
@@ -2679,7 +2661,7 @@ kernel kernel_type underlying CGAL Geometry kernel. ";
 
 %feature("docstring")  dolfin::IntersectionOperator::clear "
 
-clears search structure. Should be used if the mesh has changed ";
+Clears search structure. Should be used if the mesh has changed. ";
 
 %feature("docstring")  dolfin::IntersectionOperator::mesh "";
 
@@ -2820,6 +2802,70 @@ Return derivative q (a constant) of polynomial. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1LAPACKMatrix.xml
+%feature("docstring") dolfin::LAPACKMatrix "
+
+This class provides a simple wrapper for matrix data for use with
+LAPACK (column-major ordering).
+
+This class does currently not implement the GenericMatrix interface
+but may possibly be extended to do so in the future.
+
+C++ includes: LAPACKMatrix.h ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::LAPACKMatrix "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::~LAPACKMatrix "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::size "
+
+Return size of given dimension. ";
+
+%feature("docstring")  dolfin::LAPACKMatrix::str "
+
+Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1LAPACKSolvers.xml
+%feature("docstring") dolfin::LAPACKSolvers "
+
+This class provides a simple interface to selected LAPACK solvers.
+
+C++ includes: LAPACKSolvers.h ";
+
+
+// File: classdolfin_1_1LAPACKVector.xml
+%feature("docstring") dolfin::LAPACKVector "
+
+This class provides a simple wrapper for matrix data for use with
+LAPACK (column-major ordering).
+
+This class does currently not implement the GenericVector interface
+but may possibly be extended to do so in the future.
+
+C++ includes: LAPACKVector.h ";
+
+%feature("docstring")  dolfin::LAPACKVector::LAPACKVector "
+
+Create M x N matrix. ";
+
+%feature("docstring")  dolfin::LAPACKVector::~LAPACKVector "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::LAPACKVector::size "
+
+Return size of vector. ";
+
+%feature("docstring")  dolfin::LAPACKVector::str "
+
+Return informal string representation (pretty-print). ";
+
+
 // File: classdolfin_1_1Legendre.xml
 %feature("docstring") dolfin::Legendre "
 
@@ -2846,8 +2892,8 @@ Evaluation of second derivative at given point. ";
 
 %feature("docstring")  dolfin::Legendre::eval "
 
-Evaluation of arbitrary order, nn <= n (usefull ie in
-RadauQuadrature). ";
+Evaluation of arbitrary order, nn <= n (useful ie in RadauQuadrature).
+";
 
 %feature("docstring")  dolfin::Legendre::ddx "";
 
@@ -3125,18 +3171,6 @@ Return concrete instance / unwrap (const version). ";
 %feature("docstring")  dolfin::Matrix::instance "
 
 Return concrete instance / unwrap (non-const version). ";
-
-
-// File: classdolfin_1_1MatrixFactory.xml
-%feature("docstring") dolfin::MatrixFactory "
-
-This class provides functionality for computing a set of standard
-finite element matrices, such as the mass matrix and the stiffness
-matrix, with piecewise linear elements. For other matrices (forms) and
-elements, forms must be defined in the FFC form language and
-assembled.
-
-C++ includes: MatrixFactory.h ";
 
 
 // File: classdolfin_1_1Mesh.xml
@@ -3792,6 +3826,11 @@ Create empty mesh function on given mesh. ";
 %feature("docstring")  dolfin::MeshFunction::MeshFunction "
 
 Create mesh function on given mesh of given dimension. ";
+
+%feature("docstring")  dolfin::MeshFunction::MeshFunction "
+
+Create mesh function on given mesh of given dimension and initialise
+to a value ";
 
 %feature("docstring")  dolfin::MeshFunction::MeshFunction "
 
@@ -5188,6 +5227,71 @@ Get value. ";
 
 
 // File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
+// File: classdolfin_1_1Set.xml
+%feature("docstring") dolfin::Set "
+
+This is a std::set like data structure. It is not ordered and it is
+based a std::vector. It can be faster than a std::set for some cases.
+
+C++ includes: Set.h ";
+
+%feature("docstring")  dolfin::Set::Set "
+
+Create empty set. ";
+
+%feature("docstring")  dolfin::Set::Set "
+
+Wrap std::vectpr as a set. Contents will be erased. ";
+
+%feature("docstring")  dolfin::Set::Set "
+
+Copy constructor. ";
+
+%feature("docstring")  dolfin::Set::~Set "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::Set::find "
+
+Find entry in set and return an iterator to the entry. ";
+
+%feature("docstring")  dolfin::Set::find "
+
+Find entry in set and return an iterator to the entry (const). ";
+
+%feature("docstring")  dolfin::Set::insert "
+
+Insert entry. ";
+
+%feature("docstring")  dolfin::Set::begin "";
+
+%feature("docstring")  dolfin::Set::end "";
+
+%feature("docstring")  dolfin::Set::size "
+
+Set size. ";
+
+%feature("docstring")  dolfin::Set::erase "
+
+Erase an entry. ";
+
+%feature("docstring")  dolfin::Set::sort "
+
+Sort set. ";
+
+%feature("docstring")  dolfin::Set::clear "
+
+Clear set. ";
+
+%feature("docstring")  dolfin::Set::resize "
+
+Resize set. ";
+
+%feature("docstring")  dolfin::Set::set "
+
+Return the vector that stores the data in the Set. ";
 
 
 // File: classdolfin_1_1SingularSolver.xml
@@ -6928,6 +7032,9 @@ Assemble scalar on sub domains. ";
 // File: real_8h.xml
 
 
+// File: Set_8h.xml
+
+
 // File: Timer_8h.xml
 
 
@@ -6944,6 +7051,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: Assembler_8h.xml
+
+
+// File: BasisFunction_8h.xml
 
 
 // File: BoundaryCondition_8h.xml
@@ -7058,6 +7168,15 @@ Assemble scalar on sub domains. ";
 
 
 // File: KrylovSolver_8h.xml
+
+
+// File: LAPACKMatrix_8h.xml
+
+
+// File: LAPACKSolvers_8h.xml
+
+
+// File: LAPACKVector_8h.xml
 
 
 // File: LinearAlgebraFactory_8h.xml
@@ -7216,9 +7335,6 @@ Assemble scalar on sub domains. ";
 // File: Facet_8h.xml
 
 
-// File: IntersectionDetector_8h.xml
-
-
 // File: IntersectionOperator_8h.xml
 
 
@@ -7292,9 +7408,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: Vertex_8h.xml
-
-
-// File: MatrixFactory_8h.xml
 
 
 // File: NewtonSolver_8h.xml
@@ -7391,9 +7504,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: dir_e9dae39b13f1287e8917eaa1de874624.xml
-
-
-// File: dir_1d8f3c1e30f79d880e965f996dcfb0ac.xml
 
 
 // File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
