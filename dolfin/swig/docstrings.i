@@ -3040,14 +3040,6 @@ Destructor. ";
 Return informal string representation (pretty-print). ";
 
 
-// File: classdolfin_1_1LocalMeshRefinement.xml
-%feature("docstring") dolfin::LocalMeshRefinement "
-
-This class implements local mesh refinement for different mesh types.
-
-C++ includes: LocalMeshRefinement.h ";
-
-
 // File: classdolfin_1_1Function_1_1LocalScratch.xml
 
 
@@ -6400,15 +6392,6 @@ C++ includes: UndirectedClique.h ";
 %feature("docstring")  dolfin::UndirectedClique::UndirectedClique "";
 
 
-// File: classdolfin_1_1UniformMeshRefinement.xml
-%feature("docstring") dolfin::UniformMeshRefinement "
-
-This class implements uniform mesh refinement for different mesh
-types.
-
-C++ includes: UniformMeshRefinement.h ";
-
-
 // File: classdolfin_1_1UnitCircle.xml
 %feature("docstring") dolfin::UnitCircle "
 
@@ -6986,6 +6969,14 @@ Compute residual ||Ax - b||. ";
 
 Normalize vector according to given normalization type. ";
 
+%feature("docstring")  dolfin::refine "
+
+Uniform refinement. ";
+
+%feature("docstring")  dolfin::refine "
+
+Local refinement. ";
+
 %feature("docstring")  dolfin::dolfin_init "
 
 Initialize DOLFIN (and PETSc) with command-line arguments. This should
@@ -7389,9 +7380,6 @@ Assemble scalar on sub domains. ";
 // File: LocalMeshData_8h.xml
 
 
-// File: LocalMeshRefinement_8h.xml
-
-
 // File: Mesh_8h.xml
 
 
@@ -7434,13 +7422,13 @@ Assemble scalar on sub domains. ";
 // File: Rectangle_8h.xml
 
 
+// File: refine_8h.xml
+
+
 // File: SubDomain_8h.xml
 
 
 // File: SubMesh_8h.xml
-
-
-// File: UniformMeshRefinement_8h.xml
 
 
 // File: UnitCircle_8h.xml
