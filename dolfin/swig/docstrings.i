@@ -323,19 +323,19 @@ Create an empty boundary mesh. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
 
-Create boundary mesh from given mesh. ";
+Create (interior) boundary mesh from given mesh. ";
 
 %feature("docstring")  dolfin::BoundaryMesh::~BoundaryMesh "
 
 Destructor. ";
 
-%feature("docstring")  dolfin::BoundaryMesh::init "
+%feature("docstring")  dolfin::BoundaryMesh::init_exterior_boundary "
 
-Initialize boundary mesh. ";
+Initialize exterior boundary of given mesh. ";
 
-%feature("docstring")  dolfin::BoundaryMesh::init_interior "
+%feature("docstring")  dolfin::BoundaryMesh::init_interior_boundary "
 
-Initialize interior boundary mesh. ";
+Initialize interior boundary of given mesh. ";
 
 
 // File: classdolfin_1_1Box.xml
@@ -360,9 +360,11 @@ C++ includes: Cell.h ";
 
 %feature("docstring")  dolfin::Cell::Cell "
 
-Constructor. ";
+Create empty cell. ";
 
-%feature("docstring")  dolfin::Cell::Cell "";
+%feature("docstring")  dolfin::Cell::Cell "
+
+Create cell on given mesh with given index. ";
 
 %feature("docstring")  dolfin::Cell::~Cell "
 
@@ -1457,6 +1459,29 @@ Constructor. ";
 Evaluate function. ";
 
 
+// File: classdolfin_1_1FacetCell.xml
+%feature("docstring") dolfin::FacetCell "
+
+This class represents a cell in a mesh incident to a facet on the
+boundary. It is useful in cases where one needs to iterate over a
+boundary mesh and access the corresponding cells in the original mesh.
+
+C++ includes: FacetCell.h ";
+
+%feature("docstring")  dolfin::FacetCell::FacetCell "
+
+Create cell on mesh corresponding to given facet (cell) on boundary.
+";
+
+%feature("docstring")  dolfin::FacetCell::~FacetCell "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::FacetCell::facet_index "
+
+Return local index of facet with respect to the cell. ";
+
+
 // File: classdolfin_1_1FacetIterator.xml
 %feature("docstring") dolfin::FacetIterator "
 
@@ -1746,9 +1771,9 @@ Evaluate function for given coordinate in given cell. ";
 
 Interpolate function (possibly non-matching meshes). ";
 
-%feature("docstring")  dolfin::Function::reconstruct "
+%feature("docstring")  dolfin::Function::extrapolate "
 
-Reconstruct function (from a possibly lower-degree function space). ";
+Extrapolate function (from a possibly lower-degree function space). ";
 
 %feature("docstring")  dolfin::Function::value_rank "
 
@@ -3013,6 +3038,14 @@ Destructor. ";
 %feature("docstring")  dolfin::LocalMeshData::str "
 
 Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1LocalMeshRefinement.xml
+%feature("docstring") dolfin::LocalMeshRefinement "
+
+This class implements local mesh refinement for different mesh types.
+
+C++ includes: LocalMeshRefinement.h ";
 
 
 // File: classdolfin_1_1Function_1_1LocalScratch.xml
@@ -6367,6 +6400,15 @@ C++ includes: UndirectedClique.h ";
 %feature("docstring")  dolfin::UndirectedClique::UndirectedClique "";
 
 
+// File: classdolfin_1_1UniformMeshRefinement.xml
+%feature("docstring") dolfin::UniformMeshRefinement "
+
+This class implements uniform mesh refinement for different mesh
+types.
+
+C++ includes: UniformMeshRefinement.h ";
+
+
 // File: classdolfin_1_1UnitCircle.xml
 %feature("docstring") dolfin::UnitCircle "
 
@@ -7335,6 +7377,9 @@ Assemble scalar on sub domains. ";
 // File: Facet_8h.xml
 
 
+// File: FacetCell_8h.xml
+
+
 // File: IntersectionOperator_8h.xml
 
 
@@ -7342,6 +7387,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: LocalMeshData_8h.xml
+
+
+// File: LocalMeshRefinement_8h.xml
 
 
 // File: Mesh_8h.xml
@@ -7390,6 +7438,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: SubMesh_8h.xml
+
+
+// File: UniformMeshRefinement_8h.xml
 
 
 // File: UnitCircle_8h.xml
