@@ -855,18 +855,6 @@ Get nodal values. ";
 Return informal string representation (pretty-print). ";
 
 
-// File: classdolfin_1_1DirectedClique.xml
-%feature("docstring") dolfin::DirectedClique "
-
-A directed graph where all vertices are adjacent to each other. The
-number of vertices is given by num_vertices >= 1. The number of edges
-is given by (num_vertices - 1) * num_vertices)
-
-C++ includes: DirectedClique.h ";
-
-%feature("docstring")  dolfin::DirectedClique::DirectedClique "";
-
-
 // File: classdolfin_1_1DirichletBC.xml
 %feature("docstring") dolfin::DirichletBC "
 
@@ -1775,6 +1763,10 @@ Interpolate function (possibly non-matching meshes). ";
 
 Extrapolate function (from a possibly lower-degree function space). ";
 
+%feature("docstring")  dolfin::Function::extrapolate "
+
+Extrapolate function and set equal to v in sub domain. ";
+
 %feature("docstring")  dolfin::Function::value_rank "
 
 Return value rank. ";
@@ -2440,177 +2432,6 @@ Destructor. ";
 %feature("docstring")  dolfin::GlobalParameters::parse "
 
 Parse parameters from command-line. ";
-
-
-// File: classdolfin_1_1Graph.xml
-%feature("docstring") dolfin::Graph "
-
-A Graph consists of a set of vertices and edges.
-
-The graph is stored in Compressed Sparse Row (CSR) format. This format
-stores edges and vertices separately in two arrays, with the indices
-into these arrays corresponding to the identifier for the vertex or
-edge, respectively. The edge array stores the edge destination
-vertices while the vertice array stores the offset into the edge
-array. E.g. the edges connected to vertex i are: edges[vertices[i]],
-edges[vertices[i]+1], ..., edges[vertices[i]-1].
-
-In a graph with n vertices the vertex array will be of size n+1. The
-edge array will be of size m in a directed graph and size 2m in a
-undirected graph (an edge between vertices u and v is stored as (v,u)
-as well as (u,v)).
-
-Example graph: 0 -- 1 | \\\\ | | \\\\ | 2 -- 3
-
-Stored as:
-
-edges = [1 2 3 0 3 0 3 0 1 2] vertices = [0 3 5 7 10]
-
-Note that the last integer of vertices does not represent a vertex,
-but is there to support edge iteration as described above.
-
-CSR format minimizes memory usage and is suitable for large graphs
-that do not change.
-
-C++ includes: Graph.h ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create empty graph. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph of mesh. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Copy constructor. ";
-
-%feature("docstring")  dolfin::Graph::Graph "
-
-Create graph from given file. ";
-
-%feature("docstring")  dolfin::Graph::~Graph "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::Graph::init "
-
-Initialise graph data structures. ";
-
-%feature("docstring")  dolfin::Graph::num_vertices "
-
-Return number of vertices. ";
-
-%feature("docstring")  dolfin::Graph::num_edges "
-
-Return number of edges. ";
-
-%feature("docstring")  dolfin::Graph::num_edges "
-
-Return number of edges incident to vertex u. ";
-
-%feature("docstring")  dolfin::Graph::adjacent "
-
-Check if vertex u is adjacent to vertex v. ";
-
-%feature("docstring")  dolfin::Graph::edge_weights "
-
-Return edge weights. ";
-
-%feature("docstring")  dolfin::Graph::vertex_weights "
-
-Return vertex weights. ";
-
-%feature("docstring")  dolfin::Graph::connectivity "
-
-Return array of edges for all vertices. ";
-
-%feature("docstring")  dolfin::Graph::offsets "
-
-Return array of offsets for edges of all vertices. ";
-
-%feature("docstring")  dolfin::Graph::type "
-
-Return graph type. ";
-
-%feature("docstring")  dolfin::Graph::partition "
-
-Partition a graph into num_part partitions. ";
-
-%feature("docstring")  dolfin::Graph::typestr "
-
-Return graph type as a string. ";
-
-%feature("docstring")  dolfin::Graph::str "
-
-Return informal string representation (pretty-print). ";
-
-%feature("docstring")  dolfin::Graph::clear "
-
-Clear graph data. ";
-
-
-// File: classdolfin_1_1GraphBuilder.xml
-%feature("docstring") dolfin::GraphBuilder "
-
-This class builds a Graph corresponding for various objects ( Mesh,
-matrix sparsity pattern, etc)
-
-C++ includes: GraphBuilder.h ";
-
-
-// File: classdolfin_1_1GraphEditor.xml
-%feature("docstring") dolfin::GraphEditor "
-
-A simple graph editor for creating graphs.
-
-C++ includes: GraphEditor.h ";
-
-%feature("docstring")  dolfin::GraphEditor::GraphEditor "
-
-Constructor. ";
-
-%feature("docstring")  dolfin::GraphEditor::~GraphEditor "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::GraphEditor::open "
-
-Open graph of given type. ";
-
-%feature("docstring")  dolfin::GraphEditor::open "
-
-Open graph of given type. ";
-
-%feature("docstring")  dolfin::GraphEditor::init_vertices "
-
-Specify number of vertices. ";
-
-%feature("docstring")  dolfin::GraphEditor::init_edges "
-
-Specify number of edges. ";
-
-%feature("docstring")  dolfin::GraphEditor::add_vertex "
-
-Add vertex u with num_edges = number of outgoing edges. For undirected
-graphs, edge must \"belong\" to a vertex and not be counted twice. ";
-
-%feature("docstring")  dolfin::GraphEditor::add_edge "
-
-Add edge from vertex u to vertex v. ";
-
-%feature("docstring")  dolfin::GraphEditor::close "
-
-Close graph, finish editing. ";
-
-
-// File: classdolfin_1_1GraphPartition.xml
-%feature("docstring") dolfin::GraphPartition "
-
-This class provides a set of functions to partition a Graph.
-
-C++ includes: GraphPartition.h ";
 
 
 // File: classdolfin_1_1IntersectionOperator.xml
@@ -5858,6 +5679,10 @@ format which is efficient for reading and writing.
 When objects are retrieved, the object stored at the time closest to
 the given time will be used.
 
+A new time series will check if values have been stored to file before
+(for a series with the same name) and in that case reuse those values.
+If new values are stored, old values will be cleared.
+
 C++ includes: TimeSeries.h ";
 
 %feature("docstring")  dolfin::TimeSeries::TimeSeries "
@@ -5883,6 +5708,10 @@ Retrieve vector at given time. ";
 %feature("docstring")  dolfin::TimeSeries::retrieve "
 
 Retrieve mesh at given time. ";
+
+%feature("docstring")  dolfin::TimeSeries::clear "
+
+Clear time series. ";
 
 %feature("docstring")  dolfin::TimeSeries::str "
 
@@ -6378,18 +6207,6 @@ LU-factor sparse matrix A if UMFPACK is installed. ";
 %feature("docstring")  dolfin::UmfpackLUSolver::factorized_solve "
 
 Solve factorized system (UMFPACK). ";
-
-
-// File: classdolfin_1_1UndirectedClique.xml
-%feature("docstring") dolfin::UndirectedClique "
-
-A undirected graph where all vertices are adjacent to each other. The
-number of vertices is given by num_vertices >= 1. The number of edges
-is given by ((num_vertices - 1) * num_vertices) / 2
-
-C++ includes: UndirectedClique.h ";
-
-%feature("docstring")  dolfin::UndirectedClique::UndirectedClique "";
 
 
 // File: classdolfin_1_1UnitCircle.xml
@@ -6971,11 +6788,11 @@ Normalize vector according to given normalization type. ";
 
 %feature("docstring")  dolfin::refine "
 
-Uniform refinement. ";
+Create uniformly refined mesh. ";
 
 %feature("docstring")  dolfin::refine "
 
-Local refinement. ";
+Create locally refined mesh. ";
 
 %feature("docstring")  dolfin::dolfin_init "
 
@@ -7138,24 +6955,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: SubSpace_8h.xml
-
-
-// File: DirectedClique_8h.xml
-
-
-// File: Graph_8h.xml
-
-
-// File: GraphBuilder_8h.xml
-
-
-// File: GraphEditor_8h.xml
-
-
-// File: GraphPartition_8h.xml
-
-
-// File: UndirectedClique_8h.xml
 
 
 // File: File_8h.xml
@@ -7509,53 +7308,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_68f858635a27044942e1456f397a257e.xml
+// File: dir_e99213af5e50d271e1db23a8acfd29bd.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_e4a9e88ef5d851f11fd4e249a6470c04.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_466d8538b2cb6e554a3ed63974f8d600.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_5aebab4ff3f44f7e3d7f6f2557cb3b49.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_48732c53f038dfe4cfc21702413711fd.xml
 
 
-// File: dir_69dd4b725b5ea213568166b61d2048e4.xml
+// File: dir_c68388dd27cd6aed8dcc7bc35fd54b37.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_73a420e2456c9ce3de931fbc4fd32f48.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_14d0628385e53bb306d57f708a82aefa.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_a7e51d6f51d861d0a79863d0de19bab3.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_e2f7914b1efa30faeb849677959cb202.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_c227315e0a55ebdbdb80ecd23c170e85.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_a2dfb96a55ba3b146c5816f8b789c03c.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_b2f22e582c0d9b6b33dae58b18b020cc.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_1fc1dc626b397a3737665cf5ac2b0c20.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_1ac1849fa056bf417afaca7052c98259.xml
 
 
-// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
-
-
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_4250d2e63c24c10dc3c28b13549893db.xml
 
