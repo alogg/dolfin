@@ -3,6 +3,24 @@
 //
 // This code was generated with the option '-l dolfin' and
 // contains DOLFIN-specific wrappers that depend on DOLFIN.
+// 
+// This code was generated with the following parameters:
+// 
+//   cache_dir:                      ''
+//   convert_exceptions_to_warnings: False
+//   cpp_optimize:                   False
+//   epsilon:                        1e-14
+//   form_postfix:                   True
+//   format:                         'dolfin'
+//   log_level:                      10
+//   log_prefix:                     ''
+//   optimize:                       False
+//   output_dir:                     '.'
+//   precision:                      15
+//   quadrature_degree:              'auto'
+//   quadrature_rule:                'auto'
+//   representation:                 'auto'
+//   split:                          False
 
 #ifndef __P2_H
 #define __P2_H
@@ -88,16 +106,16 @@ public:
     double X = (J_01*(C1 - 2.0*coordinates[1]) + J_11*(2.0*coordinates[0] - C0)) / detJ;
     double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
     
-    // Reset values
+    // Reset values.
     *values = 0.000000000000000;
     
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
     
-    // Array of basisvalues
+    // Array of basisvalues.
     double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
     
-    // Declare helper variables
+    // Declare helper variables.
     unsigned int rr = 0;
     unsigned int ss = 0;
     unsigned int tt = 0;
@@ -108,7 +126,7 @@ public:
     double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
     double tmp2 = tmp1*tmp1;
     
-    // Compute basisvalues
+    // Compute basisvalues.
     basisvalues[0] = 1.000000000000000;
     basisvalues[1] = tmp0;
     for (unsigned int r = 1; r < 2; r++)
@@ -147,7 +165,7 @@ public:
       }// end loop over 's'
     }// end loop over 'r'
     
-    // Table(s) of coefficients
+    // Table(s) of coefficients.
     static const double coefficients0[6][6] = \
     {{0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182},
     {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182},
@@ -213,8 +231,7 @@ public:
     double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
     
     // Compute number of derivatives.
-    unsigned int  num_derivatives = 1;
-    
+    unsigned int num_derivatives = 1;
     for (unsigned int r = 0; r < n; r++)
     {
       num_derivatives *= 2;
@@ -280,10 +297,10 @@ public:
     // Map degree of freedom to element degree of freedom
     const unsigned int dof = i;
     
-    // Array of basisvalues
+    // Array of basisvalues.
     double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
     
-    // Declare helper variables
+    // Declare helper variables.
     unsigned int rr = 0;
     unsigned int ss = 0;
     unsigned int tt = 0;
@@ -294,7 +311,7 @@ public:
     double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
     double tmp2 = tmp1*tmp1;
     
-    // Compute basisvalues
+    // Compute basisvalues.
     basisvalues[0] = 1.000000000000000;
     basisvalues[1] = tmp0;
     for (unsigned int r = 1; r < 2; r++)
@@ -333,7 +350,7 @@ public:
       }// end loop over 's'
     }// end loop over 'r'
     
-    // Table(s) of coefficients
+    // Table(s) of coefficients.
     static const double coefficients0[6][6] = \
     {{0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182},
     {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182},
@@ -359,9 +376,9 @@ public:
     {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    // Compute reference derivatives
-    // Declare pointer to array of derivatives on FIAT element
-    double *derivatives = new double [num_derivatives];
+    // Compute reference derivatives.
+    // Declare pointer to array of derivatives on FIAT element.
+    double *derivatives = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
       derivatives[r] = 0.000000000000000;
@@ -455,13 +472,13 @@ public:
     }// end loop over 'r'
     
     // Transform derivatives back to physical element
-    for (unsigned int row = 0; row < num_derivatives; row++)
+    for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      for (unsigned int col = 0; col < num_derivatives; col++)
+      for (unsigned int s = 0; s < num_derivatives; s++)
       {
-        values[row] += transform[row][col]*derivatives[col];
-      }
-    }
+        values[r] += transform[r][s]*derivatives[s];
+      }// end loop over 's'
+    }// end loop over 'r'
     
     // Delete pointer to array of derivatives on FIAT element
     delete [] derivatives;
@@ -486,15 +503,14 @@ public:
                                               const ufc::cell& c) const
   {
     // Compute number of derivatives.
-    unsigned int  num_derivatives = 1;
-    
+    unsigned int num_derivatives = 1;
     for (unsigned int r = 0; r < n; r++)
     {
       num_derivatives *= 2;
     }// end loop over 'r'
     
     // Helper variable to hold values of a single dof.
-    double *dof_values = new double [num_derivatives];
+    double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
       dof_values[r] = 0.000000000000000;
@@ -519,12 +535,11 @@ public:
                               const ufc::function& f,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation
+    // Declare variables for result of evaluation.
     double vals[1];
     
-    // Declare variable for physical coordinates
+    // Declare variable for physical coordinates.
     double y[2];
-    
     const double * const * x = c.coordinates;
     switch (i)
     {
@@ -554,31 +569,31 @@ public:
       }
     case 3:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
+        y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
+      y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
+        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
+      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
+        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
+      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     }
     
-    return 0.0;
+    return 0.000000000000000;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -586,12 +601,11 @@ public:
                              const ufc::function& f,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation
+    // Declare variables for result of evaluation.
     double vals[1];
     
-    // Declare variable for physical coordinates
+    // Declare variable for physical coordinates.
     double y[2];
-    
     const double * const * x = c.coordinates;
     y[0] = x[0][0];
     y[1] = x[0][1];
@@ -605,16 +619,16 @@ public:
     y[1] = x[2][1];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
+    y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
+    y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
+    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
+    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
+    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
+    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
   }
@@ -652,7 +666,6 @@ class p2_dof_map_0: public ufc::dof_map
 private:
 
   unsigned int _global_dimension;
-
 public:
 
   /// Constructor
@@ -779,7 +792,6 @@ public:
                              const ufc::cell& c) const
   {
     unsigned int offset = 0;
-    
     dofs[0] = offset + c.entity_indices[0][0];
     dofs[1] = offset + c.entity_indices[0][1];
     dofs[2] = offset + c.entity_indices[0][2];
@@ -909,12 +921,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
+    coordinates[3][0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
+    coordinates[3][1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+    coordinates[4][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
+    coordinates[4][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+    coordinates[5][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
+    coordinates[5][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
   }
 
   /// Return the number of sub dof maps (for a mixed element)
