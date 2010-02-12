@@ -310,6 +310,9 @@ Return function space. ";
 Return shared pointer to function space. ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -385,10 +388,6 @@ Compute (generalized) volume of cell. ";
 %feature("docstring")  dolfin::Cell::diameter "
 
 Compute diameter of cell. ";
-
-%feature("docstring")  dolfin::Cell::midpoint "
-
-Compute midpoint of cell. ";
 
 %feature("docstring")  dolfin::Cell::normal "
 
@@ -1199,10 +1198,6 @@ Destructor. ";
 
 Compute Euclidian length of edge. ";
 
-%feature("docstring")  dolfin::Edge::midpoint "
-
-Compute coordinates of edge midpoint as a 3D point value. ";
-
 
 // File: classdolfin_1_1EdgeIterator.xml
 %feature("docstring") dolfin::EdgeIterator "
@@ -1792,6 +1787,12 @@ Compute values at all mesh vertices. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
+// File: classdolfin_1_1Function_1_1GatherScratch.xml
+
+
+// File: classdolfin_1_1Function_1_1LocalScratch.xml
+
+
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1896,9 +1897,6 @@ Create function space based on the restriction. ";
 %feature("docstring")  dolfin::FunctionSpace::str "
 
 Return informal string representation (pretty-print). ";
-
-
-// File: classdolfin_1_1Function_1_1GatherScratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2485,6 +2483,30 @@ for efficienty reasons, to avoid to sort out duplicates later on. ";
 %feature("docstring")
 dolfin::IntersectionOperator::all_intersected_entities "
 
+Compute all id of all cells which are intersects by a entity.
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected entities are saved in a
+vector. This allows is more efficent than using a set and allows a map
+between ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::all_intersected_entities "
+
+Compute all id of all cells which are intersects by any of the
+entities in entities. This
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected set are saved in a set for
+efficienty reasons, to avoid to sort out duplicates later on. ";
+
+%feature("docstring")
+dolfin::IntersectionOperator::all_intersected_entities "
+
 Compute all id of all cells which are intersects by the given mesh
 another_mesh;
 
@@ -2820,9 +2842,6 @@ Create Lobatto quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1LocalMeshData.xml
 %feature("docstring") dolfin::LocalMeshData "
 
@@ -2861,9 +2880,6 @@ Destructor. ";
 Return informal string representation (pretty-print). ";
 
 
-// File: classdolfin_1_1Function_1_1LocalScratch.xml
-
-
 // File: classdolfin_1_1LogStream.xml
 %feature("docstring") dolfin::LogStream "
 
@@ -2896,9 +2912,7 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
-%feature("docstring")  dolfin::LUSolver::solve "
-
-Solve linear system Ax = b. ";
+%feature("docstring")  dolfin::LUSolver::solve "";
 
 %feature("docstring")  dolfin::LUSolver::factorize "";
 
@@ -3222,6 +3236,28 @@ Parameters:
 
 ids_result:  The ids of the intersected entities are saved in a set
 for efficienty reasons, to avoid to sort out duplicates later on. ";
+
+%feature("docstring")  dolfin::Mesh::all_intersected_entities "
+
+Compute all id of all cells which are intersects by a entity.
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected entities are saved in a
+vector. This allows is more efficent than using a set and allows a map
+between ";
+
+%feature("docstring")  dolfin::Mesh::all_intersected_entities "
+
+Compute all id of all cells which are intersects by any of the
+entities in entities. This
+
+Parameters:
+-----------
+
+ids_result:  The ids of the intersected set are saved in a set for
+efficienty reasons, to avoid to sort out duplicates later on. ";
 
 %feature("docstring")  dolfin::Mesh::all_intersected_entities "
 
@@ -3579,6 +3615,10 @@ Check if given entity is indicent. ";
 
 Compute local index of given incident entity (error if not found). ";
 
+%feature("docstring")  dolfin::MeshEntity::midpoint "
+
+Compute midpoint of cell. ";
+
 %feature("docstring")  dolfin::MeshEntity::str "
 
 Return informal string representation (pretty-print). ";
@@ -3899,7 +3939,7 @@ that couples the meshes together.
 
 The following mesh data is created:
 
-1. \"global entity indices 0\" ( MeshFunction<uint>)
+1. \"global entity indices 0\" (MeshFunction<uint>)
 
 This maps each local vertex to its global index.
 
@@ -3908,11 +3948,11 @@ This maps each local vertex to its global index.
 This maps each shared vertex to a list of the processes sharing the
 vertex.
 
-3. \"global entity indices %d\" ( MeshFunction<uint>)
+3. \"global entity indices %d\" (MeshFunction<uint>)
 
 After partitioning, the function number_entities() may be called to
 create global indices for all entities of a given topological
-dimension. These are stored as mesh data ( MeshFunction<uint>) named
+dimension. These are stored as mesh data (MeshFunction<uint>) named
 
 \"global entity indices 1\" \"global entity indices 2\" etc
 
@@ -4824,6 +4864,15 @@ Compute dot product with given vector. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1PrimitiveIntersector.xml
+%feature("docstring") dolfin::PrimitiveIntersector "
+
+This class implements an intersection detection, detecting whether two
+given (arbitrary) meshentities intersect.
+
+C++ includes: PrimitiveIntersector.h ";
+
+
 // File: classdolfin_1_1Progress.xml
 %feature("docstring") dolfin::Progress "
 
@@ -5070,9 +5119,6 @@ Return a factory for the default linear algebra backend. ";
 %feature("docstring")  dolfin::Scalar::getval "
 
 Get value. ";
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Set.xml
@@ -5554,6 +5600,9 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
+
+
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -7215,7 +7264,10 @@ Assemble scalar on sub domains. ";
 // File: Point_8h.xml
 
 
-// File: Primitive__Traits_8h.xml
+// File: PrimitiveIntersector_8h.xml
+
+
+// File: PrimitiveTraits_8h.xml
 
 
 // File: Rectangle_8h.xml
@@ -7308,50 +7360,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_e99213af5e50d271e1db23a8acfd29bd.xml
+// File: dir_7523ea4e96139f9d9019bbc8c15103f3.xml
 
 
-// File: dir_e4a9e88ef5d851f11fd4e249a6470c04.xml
+// File: dir_254ecdfca54b6657574cb4d93a53a37f.xml
 
 
-// File: dir_466d8538b2cb6e554a3ed63974f8d600.xml
+// File: dir_ab5dbc7f9ac95835c2d46c2f73ee71cc.xml
 
 
-// File: dir_5aebab4ff3f44f7e3d7f6f2557cb3b49.xml
+// File: dir_8f4acc81424172fc545ec08d2b877596.xml
 
 
-// File: dir_48732c53f038dfe4cfc21702413711fd.xml
+// File: dir_e518219db5a3d5cda6a4fd46a35a0da3.xml
 
 
-// File: dir_c68388dd27cd6aed8dcc7bc35fd54b37.xml
+// File: dir_57f640fb33bbfd5b28deb6a78c4e3b53.xml
 
 
-// File: dir_73a420e2456c9ce3de931fbc4fd32f48.xml
+// File: dir_6f51499975993d21aaa3d3de5f05a675.xml
 
 
-// File: dir_14d0628385e53bb306d57f708a82aefa.xml
+// File: dir_03c5c0e252c1152177bc883b69df119e.xml
 
 
-// File: dir_a7e51d6f51d861d0a79863d0de19bab3.xml
+// File: dir_2c1aa447f1eeee1122576a213d11ed2d.xml
 
 
-// File: dir_e2f7914b1efa30faeb849677959cb202.xml
+// File: dir_ad3ec41f037d28bd8c1ac4b37f488664.xml
 
 
-// File: dir_c227315e0a55ebdbdb80ecd23c170e85.xml
+// File: dir_0d66f35115a6a7b23e59d29242af178a.xml
 
 
-// File: dir_a2dfb96a55ba3b146c5816f8b789c03c.xml
+// File: dir_51435a42ef8fa26fb476b3e7261f54f8.xml
 
 
-// File: dir_b2f22e582c0d9b6b33dae58b18b020cc.xml
+// File: dir_037e248d1ba6cf42e80cc32a9b80d8a3.xml
 
 
-// File: dir_1fc1dc626b397a3737665cf5ac2b0c20.xml
+// File: dir_2f3652d0b08a22dea482a08be1a4acd9.xml
 
 
-// File: dir_1ac1849fa056bf417afaca7052c98259.xml
+// File: dir_7b893257176e80aedcbaeeb1e178dbec.xml
 
 
-// File: dir_4250d2e63c24c10dc3c28b13549893db.xml
+// File: dir_0c157499c0c768262aa3bc85c69a1e84.xml
 
