@@ -4167,8 +4167,6 @@ Destructor. ";
 Solve abstract nonlinear problem F(x) = 0 for given vector F and
 Jacobian dF/dx ";
 
-%feature("docstring")  dolfin::NewtonSolver::test_solve "";
-
 %feature("docstring")  dolfin::NewtonSolver::iteration "
 
 Return Newton iteration number. ";
@@ -4214,8 +4212,6 @@ Compute F at current point x. ";
 %feature("docstring")  dolfin::NonlinearProblem::J "
 
 Compute J = F' at current point x. ";
-
-%feature("docstring")  dolfin::NonlinearProblem::test_F "";
 
 
 // File: classdolfin_1_1NonlinearProblemTest.xml
@@ -7400,50 +7396,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_0bb64f901db5c113d009418142f32bef.xml
+// File: dir_92d4af779eea750d7e464f1256129e5e.xml
 
 
-// File: dir_19e685c0be418ea04883640829b7576c.xml
+// File: dir_0e5e0b86b41d9000573aadd072faa0dc.xml
 
 
-// File: dir_8fe93a27d8a7c7c075ce89289ad47111.xml
+// File: dir_61626f8f8c8774eaa462b97af4c0a252.xml
 
 
-// File: dir_8451bd50874aeda0f58d4531864e8127.xml
+// File: dir_2cb12ea2104a8aec4b8dae08301d3209.xml
 
 
-// File: dir_bbad821709329c6a566105fc00b58f80.xml
+// File: dir_d0df2a1ab10bb9fcd71ace3b2981978c.xml
 
 
-// File: dir_36e3ff43570c51b5eb7c5a30ecf93853.xml
+// File: dir_f7aa9f93aae02aa89e597f6f65a28147.xml
 
 
-// File: dir_93307bca20dcf3bc658bc2bbedf31ac6.xml
+// File: dir_2a2507e206f95ba5c74f6a3fc297b422.xml
 
 
-// File: dir_b560fda643ebed5316f67f025dcd654a.xml
+// File: dir_449565eb50e230200f96f6a0b17b6e07.xml
 
 
-// File: dir_f821b401eaf535ad2a1399c7657bdcbc.xml
+// File: dir_0e7ac0b790142585bc3f28b27e1d693c.xml
 
 
-// File: dir_993837e2f40d6dcf86b2219ad0de91b2.xml
+// File: dir_e5a30508e9aae611f47294df14ae6493.xml
 
 
-// File: dir_36c57b7e74c21e44c6bf8c03df2f29f0.xml
+// File: dir_680935dbf4f91b75291f72a5f78bda78.xml
 
 
-// File: dir_64fa5ff166e7687e11641bd801afd452.xml
+// File: dir_226c3f7db0502d394c9c3450f0eef019.xml
 
 
-// File: dir_fffbee47398e805ab1f74d2c476ecf31.xml
+// File: dir_9e225bd197a6b3a6419f642327134d3a.xml
 
 
-// File: dir_77501c5c47fbe89a4b05ff79a45c5394.xml
+// File: dir_6f9af259675e617b318bfa6ca6a38176.xml
 
 
-// File: dir_8246f41b9eca4a246f6eafc0df1fc738.xml
+// File: dir_ff7823292883bd032ef3ce5f54c32d54.xml
 
 
-// File: dir_192699e98990224552e32d6a0534ba4b.xml
+// File: dir_74e6714b2427c4debf2a5e534203887f.xml
 
