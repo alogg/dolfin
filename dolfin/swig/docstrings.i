@@ -310,9 +310,6 @@ Return function space. ";
 Return shared pointer to function space. ";
 
 
-// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
-
-
 // File: classdolfin_1_1BoundaryMesh.xml
 %feature("docstring") dolfin::BoundaryMesh "
 
@@ -1787,12 +1784,6 @@ Compute values at all mesh vertices. ";
 Collect off-process coefficients to prepare for interpolation. ";
 
 
-// File: classdolfin_1_1Function_1_1GatherScratch.xml
-
-
-// File: classdolfin_1_1Function_1_1LocalScratch.xml
-
-
 // File: classdolfin_1_1FunctionPlotData.xml
 %feature("docstring") dolfin::FunctionPlotData "
 
@@ -1897,6 +1888,9 @@ Create function space based on the restriction. ";
 %feature("docstring")  dolfin::FunctionSpace::str "
 
 Return informal string representation (pretty-print). ";
+
+
+// File: classdolfin_1_1Function_1_1GatherScratch.xml
 
 
 // File: classdolfin_1_1GaussianQuadrature.xml
@@ -2842,6 +2836,9 @@ Create Lobatto quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1BoundaryCondition_1_1LocalData.xml
+
+
 // File: classdolfin_1_1LocalMeshData.xml
 %feature("docstring") dolfin::LocalMeshData "
 
@@ -2880,6 +2877,9 @@ Destructor. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1Function_1_1LocalScratch.xml
+
+
 // File: classdolfin_1_1LogStream.xml
 %feature("docstring") dolfin::LogStream "
 
@@ -2912,7 +2912,9 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
-%feature("docstring")  dolfin::LUSolver::solve "";
+%feature("docstring")  dolfin::LUSolver::solve "
+
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::LUSolver::factorize "";
 
@@ -3939,7 +3941,7 @@ that couples the meshes together.
 
 The following mesh data is created:
 
-1. \"global entity indices 0\" (MeshFunction<uint>)
+1. \"global entity indices 0\" ( MeshFunction<uint>)
 
 This maps each local vertex to its global index.
 
@@ -3948,11 +3950,11 @@ This maps each local vertex to its global index.
 This maps each shared vertex to a list of the processes sharing the
 vertex.
 
-3. \"global entity indices %d\" (MeshFunction<uint>)
+3. \"global entity indices %d\" ( MeshFunction<uint>)
 
 After partitioning, the function number_entities() may be called to
 create global indices for all entities of a given topological
-dimension. These are stored as mesh data (MeshFunction<uint>) named
+dimension. These are stored as mesh data ( MeshFunction<uint>) named
 
 \"global entity indices 1\" \"global entity indices 2\" etc
 
@@ -4165,9 +4167,23 @@ Destructor. ";
 Solve abstract nonlinear problem F(x) = 0 for given vector F and
 Jacobian dF/dx ";
 
+%feature("docstring")  dolfin::NewtonSolver::test_solve "";
+
 %feature("docstring")  dolfin::NewtonSolver::iteration "
 
 Return Newton iteration number. ";
+
+
+// File: classdolfin_1_1NewtonSolverTest.xml
+%feature("docstring") dolfin::NewtonSolverTest "";
+
+%feature("docstring")  dolfin::NewtonSolverTest::NewtonSolverTest "";
+
+%feature("docstring")  dolfin::NewtonSolverTest::~NewtonSolverTest "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NewtonSolverTest::solve "";
 
 
 // File: classdolfin_1_1NonlinearProblem.xml
@@ -4189,7 +4205,7 @@ Destructor. ";
 %feature("docstring")  dolfin::NonlinearProblem::form "
 
 Function called by Newton solver before requesting F or J. This can be
-used when it is used to comoute F and J together ";
+used to comoute F and J together ";
 
 %feature("docstring")  dolfin::NonlinearProblem::F "
 
@@ -4198,6 +4214,24 @@ Compute F at current point x. ";
 %feature("docstring")  dolfin::NonlinearProblem::J "
 
 Compute J = F' at current point x. ";
+
+%feature("docstring")  dolfin::NonlinearProblem::test_F "";
+
+
+// File: classdolfin_1_1NonlinearProblemTest.xml
+%feature("docstring") dolfin::NonlinearProblemTest "";
+
+%feature("docstring")
+dolfin::NonlinearProblemTest::NonlinearProblemTest "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::NonlinearProblemTest::~NonlinearProblemTest "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::NonlinearProblemTest::F "";
 
 
 // File: classdolfin_1_1ODE.xml
@@ -5121,6 +5155,9 @@ Return a factory for the default linear algebra backend. ";
 Get value. ";
 
 
+// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
+
+
 // File: classdolfin_1_1Set.xml
 %feature("docstring") dolfin::Set "
 
@@ -5600,9 +5637,6 @@ both A and b and the same time (leading to better performance) and in
 that it applies boundary conditions at the time of assembly.
 
 C++ includes: SystemAssembler.h ";
-
-
-// File: classdolfin_1_1SystemAssembler_1_1Scratch.xml
 
 
 // File: classdolfin_1_1Table.xml
@@ -7303,7 +7337,13 @@ Assemble scalar on sub domains. ";
 // File: NewtonSolver_8h.xml
 
 
+// File: NewtonSolverTest_8h.xml
+
+
 // File: NonlinearProblem_8h.xml
+
+
+// File: NonlinearProblemTest_8h.xml
 
 
 // File: cGqMethod_8h.xml
@@ -7360,50 +7400,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_7523ea4e96139f9d9019bbc8c15103f3.xml
+// File: dir_0bb64f901db5c113d009418142f32bef.xml
 
 
-// File: dir_254ecdfca54b6657574cb4d93a53a37f.xml
+// File: dir_19e685c0be418ea04883640829b7576c.xml
 
 
-// File: dir_ab5dbc7f9ac95835c2d46c2f73ee71cc.xml
+// File: dir_8fe93a27d8a7c7c075ce89289ad47111.xml
 
 
-// File: dir_8f4acc81424172fc545ec08d2b877596.xml
+// File: dir_8451bd50874aeda0f58d4531864e8127.xml
 
 
-// File: dir_e518219db5a3d5cda6a4fd46a35a0da3.xml
+// File: dir_bbad821709329c6a566105fc00b58f80.xml
 
 
-// File: dir_57f640fb33bbfd5b28deb6a78c4e3b53.xml
+// File: dir_36e3ff43570c51b5eb7c5a30ecf93853.xml
 
 
-// File: dir_6f51499975993d21aaa3d3de5f05a675.xml
+// File: dir_93307bca20dcf3bc658bc2bbedf31ac6.xml
 
 
-// File: dir_03c5c0e252c1152177bc883b69df119e.xml
+// File: dir_b560fda643ebed5316f67f025dcd654a.xml
 
 
-// File: dir_2c1aa447f1eeee1122576a213d11ed2d.xml
+// File: dir_f821b401eaf535ad2a1399c7657bdcbc.xml
 
 
-// File: dir_ad3ec41f037d28bd8c1ac4b37f488664.xml
+// File: dir_993837e2f40d6dcf86b2219ad0de91b2.xml
 
 
-// File: dir_0d66f35115a6a7b23e59d29242af178a.xml
+// File: dir_36c57b7e74c21e44c6bf8c03df2f29f0.xml
 
 
-// File: dir_51435a42ef8fa26fb476b3e7261f54f8.xml
+// File: dir_64fa5ff166e7687e11641bd801afd452.xml
 
 
-// File: dir_037e248d1ba6cf42e80cc32a9b80d8a3.xml
+// File: dir_fffbee47398e805ab1f74d2c476ecf31.xml
 
 
-// File: dir_2f3652d0b08a22dea482a08be1a4acd9.xml
+// File: dir_77501c5c47fbe89a4b05ff79a45c5394.xml
 
 
-// File: dir_7b893257176e80aedcbaeeb1e178dbec.xml
+// File: dir_8246f41b9eca4a246f6eafc0df1fc738.xml
 
 
-// File: dir_0c157499c0c768262aa3bc85c69a1e84.xml
+// File: dir_192699e98990224552e32d6a0534ba4b.xml
 
