@@ -1419,7 +1419,10 @@ distributed ";
 
 %feature("docstring")  dolfin::Facet::adjacent_cells "
 
-Return adjacent cells. ";
+Return adjacent cells. An optional argument that lists for each facet
+the index of the first cell may be given to specify the ordering of
+the two cells. If not specified, the ordering will depend on the
+(arbitrary) ordering of the mesh connectivity. ";
 
 
 // File: classdolfin_1_1FacetArea.xml
@@ -3379,10 +3382,42 @@ Evaluate function. ";
 %feature("docstring") dolfin::MeshData "
 
 The class MeshData is a container for auxiliary mesh data, represented
-either as MeshFunctions over topological mesh entities or arrays. Each
-dataset is identified by a unique user-specified string.
+either as MeshFunctions over topological mesh entities, arrays or
+maps. Each dataset is identified by a unique user-specified string.
+Only uint- valued data are currently supported.
 
-Currently, only uint-valued data is supported.
+The following named mesh data are recognized by DOLFIN:
+
+Boundary indicators
+
+\"exterior facet domains\" - MeshFunction<uint> of dimension D - 1
+
+Facet orientation (used for assembly over interior facets)
+
+\"facet orientation\" - MeshFunction<uint> of dimension D - 1
+
+Boundary extraction
+
+\"vertex map\" - MeshFunction<uint> of dimension 0 \"cell map\" -
+MeshFunction<uint> of dimension D
+
+Mesh partitioning
+
+\"global entity indices %d\" - MeshFunction<uint> of dimension 0, 1,
+..., D \"exterior facets\" - MeshFunction<uint> of dimension D - 1
+\"num global entities\" - Array<uint> of size D + 1 \"overlap\" -
+vector mapping
+
+Sub meshes
+
+\"global vertex indices\" - MeshFunction<uint> of dimension 0
+
+Mesh refinement
+
+\"boundary facet cells\" - MeshFunction<uint> of dimension 0, 1, ...,
+D \"boundary facet numbers\" - MeshFunction<uint> of dimension 0, 1,
+..., D \"boundary indicators\" - MeshFunction<uint> of dimension 0, 1,
+..., D \"material indicators\" - MeshFunction<uint> of dimension D
 
 C++ includes: MeshData.h ";
 
@@ -6051,6 +6086,10 @@ Compress matrix (eliminate all non-zeros from a sparse matrix). ";
 
 Initialize zero tensor using sparsity pattern. ";
 
+%feature("docstring")  dolfin::uBLASMatrix::apply "
+
+Finalize assembly of tensor. ";
+
 %feature("docstring")  dolfin::uBLASMatrix::data "
 
 Return pointers to underlying compresssed row/column storage data For
@@ -7101,7 +7140,7 @@ Assemble scalar on sub domains. ";
 // File: PETScObject_8h.xml
 
 
-// File: PETScPreconditioner_8h.xml
+// File: PETScUserPreconditioner_8h.xml
 
 
 // File: PETScVector_8h.xml
