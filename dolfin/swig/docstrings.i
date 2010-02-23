@@ -7065,6 +7065,12 @@ Assemble scalar on sub domains. ";
 // File: EpetraFactory_8h.xml
 
 
+// File: EpetraKrylovSolver_8h.xml
+
+
+// File: EpetraLUSolver_8h.xml
+
+
 // File: EpetraMatrix_8h.xml
 
 
