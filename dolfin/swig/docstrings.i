@@ -34,6 +34,8 @@ data between C++ and Python.
 
 C++ includes: Array.h ";
 
+%feature("docstring")  dolfin::Array::Array "";
+
 %feature("docstring")  dolfin::Array::Array "
 
 Create array of size N. ";
@@ -1878,15 +1880,13 @@ Check if function space has given cell. ";
 
 Check if function space has given element. ";
 
-%feature("docstring")  dolfin::FunctionSpace::attach "
+%feature("docstring")  dolfin::FunctionSpace::super_space "
 
-Attach restriction meshfunction. ";
+Return super space (for sub spaces). ";
 
-%feature("docstring")  dolfin::FunctionSpace::restriction "
+%feature("docstring")  dolfin::FunctionSpace::component "
 
-Create function space based on the restriction. ";
-
-%feature("docstring")  dolfin::FunctionSpace::is_inside_restriction "";
+Return component (relative to super space). ";
 
 %feature("docstring")  dolfin::FunctionSpace::str "
 
@@ -2124,6 +2124,10 @@ Get value of given entry. ";
 %feature("docstring")  dolfin::GenericMatrix::setitem "
 
 Set given entry to value. ";
+
+%feature("docstring")  dolfin::GenericMatrix::ident_zeros "
+
+Insert one on the diagonal for all zero rows. ";
 
 
 // File: classdolfin_1_1GenericSparsityPattern.xml
@@ -5330,9 +5334,13 @@ Finalize sparsity pattern. ";
 
 Return informal string representation (pretty-print). ";
 
-%feature("docstring")  dolfin::SparsityPattern::pattern "
+%feature("docstring")  dolfin::SparsityPattern::diagonal_pattern "
 
-Return underlying sparsity pattern. ";
+Return underlying sparsity pattern (diagonal). ";
+
+%feature("docstring")  dolfin::SparsityPattern::off_diagonal_pattern "
+
+Return underlying sparsity pattern (off-diagional). ";
 
 
 // File: classdolfin_1_1StabilityAnalysis.xml
@@ -7065,6 +7073,12 @@ Assemble scalar on sub domains. ";
 // File: EpetraFactory_8h.xml
 
 
+// File: EpetraKrylovSolver_8h.xml
+
+
+// File: EpetraLUSolver_8h.xml
+
+
 // File: EpetraMatrix_8h.xml
 
 
@@ -7140,6 +7154,9 @@ Assemble scalar on sub domains. ";
 // File: PETScObject_8h.xml
 
 
+// File: PETScPreconditioner_8h.xml
+
+
 // File: PETScUserPreconditioner_8h.xml
 
 
@@ -7165,6 +7182,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: STLMatrix_8h.xml
+
+
+// File: TrilinosPreconditioner_8h.xml
 
 
 // File: ublas_8h.xml
