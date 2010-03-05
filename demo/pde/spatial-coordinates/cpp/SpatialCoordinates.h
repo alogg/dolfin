@@ -1219,13 +1219,13 @@ public:
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 60
+        // Total number of operations to compute element tensor (from this point): 72
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
       double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 60
+      // Number of operations to compute element tensor for following IP loop = 72
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
@@ -1233,24 +1233,24 @@ public:
         X2[0] = FEA2_f0[ip][0]*x[0][0] + FEA2_f0[ip][1]*x[1][0] + FEA2_f0[ip][2]*x[2][0];
         X2[1] = FEA2_f0[ip][0]*x[0][1] + FEA2_f0[ip][1]*x[1][1] + FEA2_f0[ip][2]*x[2][1];
         
-        // Number of operations for primary indices: 30
+        // Number of operations for primary indices: 36
         for (unsigned int j = 0; j < 6; j++)
         {
-          // Number of operations to compute entry: 5
-          A[j] += FE0_f0[ip][j]*std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+          // Number of operations to compute entry: 6
+          A[j] += FE0_f0[ip][j]*((-1.000000000000000)*std::sin(5.000000000000000*X2[0]))*W2[ip]*det;
         }// end loop over 'j'
       }// end loop over 'ip'
         break;
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 60
+        // Total number of operations to compute element tensor (from this point): 72
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
       double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 60
+      // Number of operations to compute element tensor for following IP loop = 72
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
@@ -1258,24 +1258,24 @@ public:
         X2[0] = FEA2_f1[ip][0]*x[0][0] + FEA2_f1[ip][1]*x[1][0] + FEA2_f1[ip][2]*x[2][0];
         X2[1] = FEA2_f1[ip][0]*x[0][1] + FEA2_f1[ip][1]*x[1][1] + FEA2_f1[ip][2]*x[2][1];
         
-        // Number of operations for primary indices: 30
+        // Number of operations for primary indices: 36
         for (unsigned int j = 0; j < 6; j++)
         {
-          // Number of operations to compute entry: 5
-          A[j] += FE0_f1[ip][j]*std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+          // Number of operations to compute entry: 6
+          A[j] += FE0_f1[ip][j]*((-1.000000000000000)*std::sin(5.000000000000000*X2[0]))*W2[ip]*det;
         }// end loop over 'j'
       }// end loop over 'ip'
         break;
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 60
+        // Total number of operations to compute element tensor (from this point): 72
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
       double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 60
+      // Number of operations to compute element tensor for following IP loop = 72
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
@@ -1283,11 +1283,11 @@ public:
         X2[0] = FEA2_f2[ip][0]*x[0][0] + FEA2_f2[ip][1]*x[1][0] + FEA2_f2[ip][2]*x[2][0];
         X2[1] = FEA2_f2[ip][0]*x[0][1] + FEA2_f2[ip][1]*x[1][1] + FEA2_f2[ip][2]*x[2][1];
         
-        // Number of operations for primary indices: 30
+        // Number of operations for primary indices: 36
         for (unsigned int j = 0; j < 6; j++)
         {
-          // Number of operations to compute entry: 5
-          A[j] += FE0_f2[ip][j]*std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+          // Number of operations to compute entry: 6
+          A[j] += FE0_f2[ip][j]*((-1.000000000000000)*std::sin(5.000000000000000*X2[0]))*W2[ip]*det;
         }// end loop over 'j'
       }// end loop over 'ip'
         break;
@@ -1468,7 +1468,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Product(FloatValue(10.0, (), (), {}), exp(Division(Product(IntValue(-1, (), (), {}), Sum(Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {})))), FloatValue(0.02, (), (), {}))))), Measure('cell', 0, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), sin(Product(FloatValue(5.0, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Product(FloatValue(10.0, (), (), {}), exp(Division(Product(IntValue(-1, (), (), {}), Sum(Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {})))), FloatValue(0.02, (), (), {}))))), Measure('cell', 0, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Product(IntValue(-1, (), (), {}), sin(Product(FloatValue(5.0, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})))))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
