@@ -3,17 +3,6 @@
 
 // File: index.xml
 
-// File: classdolfin_1_1AdaptiveObjects.xml
-%feature("docstring") dolfin::AdaptiveObjects "
-
-This class handles the automatic update/refinement of adaptive objects
-when meshes are refined. It is a singleton object that stores a forest
-(set of trees) where the root node of each tree is a mesh, and the
-leaves are function spaces, functions and boundary conditions.
-
-C++ includes: AdaptiveObjects.h ";
-
-
 // File: classdolfin_1_1ALE.xml
 %feature("docstring") dolfin::ALE "
 
@@ -76,6 +65,14 @@ Return size of array. ";
 %feature("docstring")  dolfin::Array::zero "
 
 Zero array. ";
+
+%feature("docstring")  dolfin::Array::min "
+
+Return minimum value of array. ";
+
+%feature("docstring")  dolfin::Array::max "
+
+Return maximum value of array. ";
 
 %feature("docstring")  dolfin::Array::data "
 
@@ -2266,7 +2263,11 @@ Return concrete instance / unwrap (non-const version). ";
 
 
 // File: classdolfin_1_1GenericVector.xml
-%feature("docstring") dolfin::GenericVector "";
+%feature("docstring") dolfin::GenericVector "
+
+This class defines a common interface for vectors.
+
+C++ includes: GenericVector.h ";
 
 %feature("docstring")  dolfin::GenericVector::~GenericVector "
 
@@ -2386,8 +2387,8 @@ Return sum of vector. ";
 
 %feature("docstring")  dolfin::GenericVector::sum "
 
-Return sum of selected rows in vector. Each process sums its local /
-entries. Off process entries are ignored. ";
+Return sum of selected rows in vector. Repeated entries only summed
+once. ";
 
 %feature("docstring")  dolfin::GenericVector::lambda "
 
@@ -5285,6 +5286,10 @@ Resize set. ";
 
 Return the vector that stores the data in the Set. ";
 
+%feature("docstring")  dolfin::Set::set "
+
+Return the vector that stores the data in the Set. ";
+
 
 // File: classdolfin_1_1SingularSolver.xml
 %feature("docstring") dolfin::SingularSolver "
@@ -6684,6 +6689,11 @@ Return maximum value of vector. ";
 
 Return sum of values of vector. ";
 
+%feature("docstring")  dolfin::Vector::sum "
+
+Return sum of selected rows in vector. Repeated entries only summed
+once. ";
+
 %feature("docstring")  dolfin::Vector::data "
 
 Return pointer to underlying data (const version). ";
@@ -6734,9 +6744,7 @@ Return vertex coordinates as a 3D point value. ";
 
 %feature("docstring")  dolfin::Vertex::x "
 
-Return array of vertex coordinates.
-
-Return array of vertex coordinates (const version) ";
+Return array of vertex coordinates (const version). ";
 
 
 // File: classdolfin_1_1VertexIterator.xml
@@ -7033,9 +7041,6 @@ Assemble scalar on sub domains. ";
 
 
 // File: namespaceufc.xml
-
-
-// File: AdaptiveObjects_8h.xml
 
 
 // File: TimeSeries_8h.xml
