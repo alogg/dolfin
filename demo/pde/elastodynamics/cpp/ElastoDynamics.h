@@ -12,7 +12,7 @@
 //   epsilon:                        1e-14
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
 //   optimize:                       False
 //   output_dir:                     '.'
@@ -442,648 +442,6 @@ public:
 
   /// Destructor
   virtual ~elastodynamics_finite_element_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "VectorElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0, 2)";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::triangle;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 1;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return 2;
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    
-    // Compute Jacobian of affine map from reference cell
-    
-    // Compute determinant of Jacobian
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    
-    // Get coordinates and map to the reference (FIAT) element
-    
-    // Reset values.
-    values[0] = 0.000000000000000;
-    values[1] = 0.000000000000000;
-    switch (i)
-    {
-    case 0:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Compute value(s).
-      for (unsigned int r = 0; r < 1; r++)
-      {
-        values[0] += coefficients0[r]*basisvalues[r];
-      }// end loop over 'r'
-        break;
-      }
-    case 1:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Compute value(s).
-      for (unsigned int r = 0; r < 1; r++)
-      {
-        values[1] += coefficients0[r]*basisvalues[r];
-      }// end loop over 'r'
-        break;
-      }
-    }
-    
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    // Helper variable to hold values of a single dof.
-    double dof_values[2] = {0.000000000000000, 0.000000000000000};
-    
-    // Loop dofs and call evaluate_basis.
-    for (unsigned int r = 0; r < 2; r++)
-    {
-      evaluate_basis(r, dof_values, coordinates, c);
-      for (unsigned int s = 0; s < 2; s++)
-      {
-        values[r*2 + s] = dof_values[s];
-      }// end loop over 's'
-    }// end loop over 'r'
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
-    
-    // Compute constants
-    
-    // Get coordinates and map to the reference (FIAT) element
-    
-    // Compute number of derivatives.
-    unsigned int num_derivatives = 1;
-    for (unsigned int r = 0; r < n; r++)
-    {
-      num_derivatives *= 2;
-    }// end loop over 'r'
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      combinations[row] = new unsigned int [n];
-      for (unsigned int col = 0; col < n; col++)
-        combinations[row][col] = 0;
-    }
-    
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 1)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[2][2] = {{K_00, K_01}, {K_10, K_11}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-    
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values. Assuming that values is always an array.
-    for (unsigned int r = 0; r < 2*num_derivatives; r++)
-    {
-      values[r] = 0.000000000000000;
-    }// end loop over 'r'
-    
-    switch (i)
-    {
-    case 0:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Tables of derivatives of the polynomial base (transpose).
-      static const double dmats0[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats1[1][1] = \
-      {{0.000000000000000}};
-      
-      // Compute reference derivatives.
-      // Declare pointer to array of derivatives on FIAT element.
-      double *derivatives = new double[num_derivatives];
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        derivatives[r] = 0.000000000000000;
-      }// end loop over 'r'
-      
-      // Declare derivative matrix (of polynomial basis).
-      double dmats[1][1] = \
-      {{1.000000000000000}};
-      
-      // Declare (auxiliary) derivative matrix (of polynomial basis).
-      double dmats_old[1][1] = \
-      {{1.000000000000000}};
-      
-      // Loop possible derivatives.
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        // Resetting dmats values to compute next derivative.
-        for (unsigned int t = 0; t < 1; t++)
-        {
-          for (unsigned int u = 0; u < 1; u++)
-          {
-            dmats[t][u] = 0.000000000000000;
-            if (t == u)
-            {
-            dmats[t][u] = 1.000000000000000;
-            }
-            
-          }// end loop over 'u'
-        }// end loop over 't'
-        
-        // Looping derivative order to generate dmats.
-        for (unsigned int s = 0; s < n; s++)
-        {
-          // Updating dmats_old with new values and resetting dmats.
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
-            }// end loop over 'u'
-          }// end loop over 't'
-          
-          // Update dmats using an inner product.
-          if (combinations[r][s] == 0)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 1)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-        }// end loop over 's'
-        for (unsigned int s = 0; s < 1; s++)
-        {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
-          }// end loop over 't'
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Transform derivatives back to physical element
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        for (unsigned int s = 0; s < num_derivatives; s++)
-        {
-          values[r] += transform[r][s]*derivatives[s];
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-      
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] combinations[r];
-      }// end loop over 'r'
-      delete [] combinations;
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] transform[r];
-      }// end loop over 'r'
-      delete [] transform;
-        break;
-      }
-    case 1:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Tables of derivatives of the polynomial base (transpose).
-      static const double dmats0[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats1[1][1] = \
-      {{0.000000000000000}};
-      
-      // Compute reference derivatives.
-      // Declare pointer to array of derivatives on FIAT element.
-      double *derivatives = new double[num_derivatives];
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        derivatives[r] = 0.000000000000000;
-      }// end loop over 'r'
-      
-      // Declare derivative matrix (of polynomial basis).
-      double dmats[1][1] = \
-      {{1.000000000000000}};
-      
-      // Declare (auxiliary) derivative matrix (of polynomial basis).
-      double dmats_old[1][1] = \
-      {{1.000000000000000}};
-      
-      // Loop possible derivatives.
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        // Resetting dmats values to compute next derivative.
-        for (unsigned int t = 0; t < 1; t++)
-        {
-          for (unsigned int u = 0; u < 1; u++)
-          {
-            dmats[t][u] = 0.000000000000000;
-            if (t == u)
-            {
-            dmats[t][u] = 1.000000000000000;
-            }
-            
-          }// end loop over 'u'
-        }// end loop over 't'
-        
-        // Looping derivative order to generate dmats.
-        for (unsigned int s = 0; s < n; s++)
-        {
-          // Updating dmats_old with new values and resetting dmats.
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
-            }// end loop over 'u'
-          }// end loop over 't'
-          
-          // Update dmats using an inner product.
-          if (combinations[r][s] == 0)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 1)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-        }// end loop over 's'
-        for (unsigned int s = 0; s < 1; s++)
-        {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
-          }// end loop over 't'
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Transform derivatives back to physical element
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        for (unsigned int s = 0; s < num_derivatives; s++)
-        {
-          values[num_derivatives + r] += transform[r][s]*derivatives[s];
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-      
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] combinations[r];
-      }// end loop over 'r'
-      delete [] combinations;
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] transform[r];
-      }// end loop over 'r'
-      delete [] transform;
-        break;
-      }
-    }
-    
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    // Compute number of derivatives.
-    unsigned int num_derivatives = 1;
-    for (unsigned int r = 0; r < n; r++)
-    {
-      num_derivatives *= 2;
-    }// end loop over 'r'
-    
-    // Helper variable to hold values of a single dof.
-    double *dof_values = new double[2*num_derivatives];
-    for (unsigned int r = 0; r < 2*num_derivatives; r++)
-    {
-      dof_values[r] = 0.000000000000000;
-    }// end loop over 'r'
-    
-    // Loop dofs and call evaluate_basis_derivatives.
-    for (unsigned int r = 0; r < 2; r++)
-    {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
-      for (unsigned int s = 0; s < 2*num_derivatives; s++)
-      {
-        values[r*2*num_derivatives + s] = dof_values[s];
-      }// end loop over 's'
-    }// end loop over 'r'
-    
-    // Delete pointer.
-    delete [] dof_values;
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // Declare variables for result of evaluation.
-    double vals[2];
-    
-    // Declare variable for physical coordinates.
-    double y[2];
-    const double * const * x = c.coordinates;
-    switch (i)
-    {
-    case 0:
-      {
-        y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-      f.evaluate(vals, y, c);
-      return vals[0];
-        break;
-      }
-    case 1:
-      {
-        y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-      f.evaluate(vals, y, c);
-      return vals[1];
-        break;
-      }
-    }
-    
-    return 0.000000000000000;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    // Declare variables for result of evaluation.
-    double vals[2];
-    
-    // Declare variable for physical coordinates.
-    double y[2];
-    const double * const * x = c.coordinates;
-    y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    f.evaluate(vals, y, c);
-    values[0] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    f.evaluate(vals, y, c);
-    values[1] = vals[1];
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate function and change variables
-    vertex_values[0] = dof_values[0];
-    vertex_values[2] = dof_values[0];
-    vertex_values[4] = dof_values[0];
-    // Evaluate function and change variables
-    vertex_values[1] = dof_values[1];
-    vertex_values[3] = dof_values[1];
-    vertex_values[5] = dof_values[1];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 2;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new elastodynamics_finite_element_0();
-        break;
-      }
-    case 1:
-      {
-        return new elastodynamics_finite_element_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class elastodynamics_finite_element_2: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  elastodynamics_finite_element_2() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~elastodynamics_finite_element_2()
   {
     // Do nothing
   }
@@ -1995,18 +1353,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class elastodynamics_finite_element_3: public ufc::finite_element
+class elastodynamics_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  elastodynamics_finite_element_3() : ufc::finite_element()
+  elastodynamics_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~elastodynamics_finite_element_3()
+  virtual ~elastodynamics_finite_element_2()
   {
     // Do nothing
   }
@@ -3562,12 +2920,12 @@ public:
     {
     case 0:
       {
-        return new elastodynamics_finite_element_2();
+        return new elastodynamics_finite_element_1();
         break;
       }
     case 1:
       {
-        return new elastodynamics_finite_element_2();
+        return new elastodynamics_finite_element_1();
         break;
       }
     }
@@ -3822,247 +3180,6 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dofmap for VectorElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0, 2)";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch (d)
-    {
-    case 0:
-      {
-        return false;
-        break;
-      }
-    case 1:
-      {
-        return false;
-        break;
-      }
-    case 2:
-      {
-        return true;
-        break;
-      }
-    }
-    
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = 2.000000000000000*m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return _global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space for a cell
-  virtual unsigned int local_dimension(const ufc::cell& c) const
-  {
-    return 2;
-  }
-
-  /// Return the maximum dimension of the local finite element function space
-  virtual unsigned int max_local_dimension() const
-  {
-    return 2;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    switch (d)
-    {
-    case 0:
-      {
-        return 0;
-        break;
-      }
-    case 1:
-      {
-        return 0;
-        break;
-      }
-    case 2:
-      {
-        return 2;
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    unsigned int offset = 0;
-    dofs[0] = offset + c.entity_indices[2][0];
-    offset += m.num_entities[2];
-    dofs[1] = offset + c.entity_indices[2][0];
-    offset += m.num_entities[2];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch (facet)
-    {
-    case 0:
-      {
-        
-        break;
-      }
-    case 1:
-      {
-        
-        break;
-      }
-    case 2:
-      {
-        
-        break;
-      }
-    }
-    
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    if (d > 2)
-    {
-    throw std::runtime_error("d is larger than dimension (2)");
-    }
-    
-    switch (d)
-    {
-    case 0:
-      {
-        
-        break;
-      }
-    case 1:
-      {
-        
-        break;
-      }
-    case 2:
-      {
-        if (i > 0)
-      {
-      throw std::runtime_error("i is larger than number of entities (0)");
-      }
-      
-      dofs[0] = 0;
-      dofs[1] = 1;
-        break;
-      }
-    }
-    
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[1][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[1][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 2;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new elastodynamics_dof_map_0();
-        break;
-      }
-    case 1:
-      {
-        return new elastodynamics_dof_map_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class elastodynamics_dof_map_2: public ufc::dof_map
-{
-private:
-
-  unsigned int _global_dimension;
-public:
-
-  /// Constructor
-  elastodynamics_dof_map_2() : ufc::dof_map()
-  {
-    _global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~elastodynamics_dof_map_2()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
   }
 
@@ -4288,7 +3405,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class elastodynamics_dof_map_3: public ufc::dof_map
+class elastodynamics_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -4296,13 +3413,13 @@ private:
 public:
 
   /// Constructor
-  elastodynamics_dof_map_3() : ufc::dof_map()
+  elastodynamics_dof_map_2() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~elastodynamics_dof_map_3()
+  virtual ~elastodynamics_dof_map_2()
   {
     // Do nothing
   }
@@ -4552,12 +3669,12 @@ public:
     {
     case 0:
       {
-        return new elastodynamics_dof_map_2();
+        return new elastodynamics_dof_map_1();
         break;
       }
     case 1:
       {
-        return new elastodynamics_dof_map_2();
+        return new elastodynamics_dof_map_1();
         break;
       }
     }
@@ -4670,7 +3787,7 @@ public:
     // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 15480
+    // Number of operations to compute element tensor for following IP loop = 14328
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -4699,13 +3816,13 @@ public:
         F8 += FE0[ip][r]*w[1][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 3852
+      // Number of operations for primary indices: 3564
       for (unsigned int j = 0; j < 6; j++)
       {
         for (unsigned int k = 0; k < 6; k++)
         {
-          // Number of operations to compute entry: 107
-          A[j*6 + k] += ((((((K_01*FE1_C1_D10[ip][j] + K_11*FE1_C1_D01[ip][j]))*((((2.000000000000000*((K_01*FE1_C1_D10[ip][k] + K_11*FE1_C1_D01[ip][k])))*0.500000000000000)*2.000000000000000*F0 + ((((2.000000000000000*((K_01*FE1_C1_D10[ip][k] + K_11*FE1_C1_D01[ip][k])))*0.500000000000000 + (2.000000000000000*((K_00*FE1_C0_D10[ip][k] + K_10*FE1_C0_D01[ip][k])))*0.500000000000000))*F1)*1.000000000000000)) + ((K_01*FE1_C0_D10[ip][j] + K_11*FE1_C0_D01[ip][j]))*(((((K_01*FE1_C0_D10[ip][k] + K_11*FE1_C0_D01[ip][k]) + (K_00*FE1_C1_D10[ip][k] + K_10*FE1_C1_D01[ip][k])))*0.500000000000000)*2.000000000000000*F0)) + (((K_00*FE1_C1_D10[ip][j] + K_10*FE1_C1_D01[ip][j]))*(((((K_00*FE1_C1_D10[ip][k] + K_10*FE1_C1_D01[ip][k]) + (K_01*FE1_C0_D10[ip][k] + K_11*FE1_C0_D01[ip][k])))*0.500000000000000)*2.000000000000000*F0) + ((K_00*FE1_C0_D10[ip][j] + K_10*FE1_C0_D01[ip][j]))*((((((2.000000000000000*((K_01*FE1_C1_D10[ip][k] + K_11*FE1_C1_D01[ip][k])))*0.500000000000000 + (2.000000000000000*((K_00*FE1_C0_D10[ip][k] + K_10*FE1_C0_D01[ip][k])))*0.500000000000000))*F1)*1.000000000000000 + ((2.000000000000000*((K_00*FE1_C0_D10[ip][k] + K_10*FE1_C0_D01[ip][k])))*0.500000000000000)*2.000000000000000*F0)))))*(((-1.000000000000000)*F2 + 1.000000000000000)) + (((FE1_C0[ip][j]*FE1_C0[ip][k] + FE1_C1[ip][j]*FE1_C1[ip][k]))*(F7*(F8*(((-1.000000000000000)*F2 + 1.000000000000000)))/(F6*F5)) + ((FE1_C0[ip][j]*FE1_C0[ip][k] + FE1_C1[ip][j]*FE1_C1[ip][k]))*(F3*(((-1.000000000000000)*F4 + 1.000000000000000))/(F5*F6*F5))))*W4[ip]*det;
+          // Number of operations to compute entry: 99
+          A[j*6 + k] += ((((((K_00*FE1_C0_D10[ip][j] + K_10*FE1_C0_D01[ip][j]))*(((((2.000000000000000*((K_01*FE1_C1_D10[ip][k] + K_11*FE1_C1_D01[ip][k]))/(2.000000000000000) + 2.000000000000000*((K_00*FE1_C0_D10[ip][k] + K_10*FE1_C0_D01[ip][k]))/(2.000000000000000)))*F1)*1.000000000000000 + (2.000000000000000*((K_00*FE1_C0_D10[ip][k] + K_10*FE1_C0_D01[ip][k]))/(2.000000000000000))*2.000000000000000*F0)) + ((K_00*FE1_C1_D10[ip][j] + K_10*FE1_C1_D01[ip][j]))*((((K_01*FE1_C0_D10[ip][k] + K_11*FE1_C0_D01[ip][k]) + (K_00*FE1_C1_D10[ip][k] + K_10*FE1_C1_D01[ip][k]))/(2.000000000000000))*2.000000000000000*F0)) + (((K_01*FE1_C0_D10[ip][j] + K_11*FE1_C0_D01[ip][j]))*((((K_00*FE1_C1_D10[ip][k] + K_10*FE1_C1_D01[ip][k]) + (K_01*FE1_C0_D10[ip][k] + K_11*FE1_C0_D01[ip][k]))/(2.000000000000000))*2.000000000000000*F0) + ((K_01*FE1_C1_D10[ip][j] + K_11*FE1_C1_D01[ip][j]))*(((2.000000000000000*((K_01*FE1_C1_D10[ip][k] + K_11*FE1_C1_D01[ip][k]))/(2.000000000000000))*2.000000000000000*F0 + (((2.000000000000000*((K_01*FE1_C1_D10[ip][k] + K_11*FE1_C1_D01[ip][k]))/(2.000000000000000) + 2.000000000000000*((K_00*FE1_C0_D10[ip][k] + K_10*FE1_C0_D01[ip][k]))/(2.000000000000000)))*F1)*1.000000000000000)))))*(((-1.000000000000000)*F2 + 1.000000000000000)) + (((FE1_C0[ip][j]*FE1_C0[ip][k] + FE1_C1[ip][j]*FE1_C1[ip][k]))*(F7*(F8*(((-1.000000000000000)*F2 + 1.000000000000000)))/(F6*F5)) + ((FE1_C0[ip][j]*FE1_C0[ip][k] + FE1_C1[ip][j]*FE1_C1[ip][k]))*(F3*(((-1.000000000000000)*F4 + 1.000000000000000))/(F5*F6*F5))))*W4[ip]*det;
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -4770,49 +3887,37 @@ public:
     {1.000000000000000},
     {1.000000000000000}};
     
-    static const double FE1_C0[4][2] = \
-    {{1.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000}};
-    
-    static const double FE1_C1[4][2] = \
-    {{0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 1.000000000000000}};
-    
-    static const double FE2_C0[4][6] = \
+    static const double FE1_C0[4][6] = \
     {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {0.280019915499074, 0.075031110222608, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {0.178558728263616, 0.666390246014701, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {0.075031110222608, 0.280019915499074, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    static const double FE2_C0_D01[4][6] = \
+    static const double FE1_C0_D01[4][6] = \
     {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    static const double FE2_C0_D10[4][6] = \
+    static const double FE1_C0_D10[4][6] = \
     {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
     {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
     
-    static const double FE2_C1[4][6] = \
+    static const double FE1_C1[4][6] = \
     {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.666390246014701, 0.178558728263616, 0.155051025721682},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.280019915499074, 0.075031110222608, 0.644948974278318},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.075031110222608, 0.280019915499074, 0.644948974278318}};
     
-    static const double FE2_C1_D01[4][6] = \
+    static const double FE1_C1_D01[4][6] = \
     {{0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000}};
     
-    static const double FE2_C1_D10[4][6] = \
+    static const double FE1_C1_D10[4][6] = \
     {{0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000},
     {0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000},
@@ -4828,7 +3933,7 @@ public:
     // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 4328
+    // Number of operations to compute element tensor for following IP loop = 4200
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -4869,33 +3974,28 @@ public:
         F20 += FE0[ip][r]*w[10][r];
       }// end loop over 'r'
       
-      // Total number of operations to compute function values = 8
-      for (unsigned int r = 0; r < 2; r++)
+      // Total number of operations to compute function values = 144
+      for (unsigned int r = 0; r < 6; r++)
       {
         F0 += FE1_C0[ip][r]*w[4][r];
         F1 += FE1_C1[ip][r]*w[4][r];
+        F3 += FE1_C0_D10[ip][r]*w[0][r];
+        F4 += FE1_C0_D01[ip][r]*w[0][r];
+        F7 += FE1_C1_D10[ip][r]*w[0][r];
+        F8 += FE1_C1_D01[ip][r]*w[0][r];
+        F13 += FE1_C0[ip][r]*w[2][r];
+        F14 += FE1_C1[ip][r]*w[2][r];
+        F15 += FE1_C0[ip][r]*w[1][r];
+        F16 += FE1_C1[ip][r]*w[1][r];
+        F17 += FE1_C0[ip][r]*w[0][r];
+        F18 += FE1_C1[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Total number of operations to compute function values = 120
-      for (unsigned int r = 0; r < 6; r++)
-      {
-        F3 += FE2_C0_D10[ip][r]*w[0][r];
-        F4 += FE2_C0_D01[ip][r]*w[0][r];
-        F7 += FE2_C1_D10[ip][r]*w[0][r];
-        F8 += FE2_C1_D01[ip][r]*w[0][r];
-        F13 += FE2_C0[ip][r]*w[2][r];
-        F14 += FE2_C1[ip][r]*w[2][r];
-        F15 += FE2_C0[ip][r]*w[1][r];
-        F16 += FE2_C1[ip][r]*w[1][r];
-        F17 += FE2_C0[ip][r]*w[0][r];
-        F18 += FE2_C1[ip][r]*w[0][r];
-      }// end loop over 'r'
-      
-      // Number of operations for primary indices: 936
+      // Number of operations for primary indices: 888
       for (unsigned int j = 0; j < 6; j++)
       {
-        // Number of operations to compute entry: 156
-        A[j] += ((((((((K_00*FE2_C0_D10[ip][j] + K_10*FE2_C0_D01[ip][j]))*(((0.500000000000000*(2.000000000000000*((K_00*F3 + K_10*F4))))*2.000000000000000*F5 + 1.000000000000000*(F6*((0.500000000000000*(2.000000000000000*((K_00*F3 + K_10*F4))) + 0.500000000000000*(2.000000000000000*((K_01*F7 + K_11*F8)))))))) + ((K_00*FE2_C1_D10[ip][j] + K_10*FE2_C1_D01[ip][j]))*((0.500000000000000*(((K_01*F3 + K_11*F4) + (K_00*F7 + K_10*F8))))*2.000000000000000*F5)) + (((K_01*FE2_C1_D10[ip][j] + K_11*FE2_C1_D01[ip][j]))*(((0.500000000000000*(2.000000000000000*((K_01*F7 + K_11*F8))))*2.000000000000000*F5 + 1.000000000000000*(F6*((0.500000000000000*(2.000000000000000*((K_00*F3 + K_10*F4))) + 0.500000000000000*(2.000000000000000*((K_01*F7 + K_11*F8)))))))) + ((K_01*FE2_C0_D10[ip][j] + K_11*FE2_C0_D01[ip][j]))*((0.500000000000000*(((K_00*F7 + K_10*F8) + (K_01*F3 + K_11*F4))))*2.000000000000000*F5))))*F2)*(-1.000000000000000) + ((((((FE2_C0[ip][j]*F13 + FE2_C1[ip][j]*F14))*(F19*((((-1.000000000000000)*F20 + 1.000000000000000) + (-1.000000000000000)*2.000000000000000*F12))/(2.000000000000000*F12)) + (((FE2_C1[ip][j]*F18 + FE2_C0[ip][j]*F17))*(F19*(((-1.000000000000000)*F20 + 1.000000000000000))/(F9*F12*F9)) + ((FE2_C1[ip][j]*F16 + FE2_C0[ip][j]*F15))*(F19*(((-1.000000000000000)*F20 + 1.000000000000000))/(F12*F9)))) + ((FE2_C1[ip][j]*F18 + FE2_C0[ip][j]*F17))*(F11*(F10*(((-1.000000000000000)*F2 + 1.000000000000000)))/(F12*F9))) + ((FE2_C1[ip][j]*F16 + FE2_C0[ip][j]*F15))*(F10*((F11*(((-1.000000000000000)*F2 + 1.000000000000000)) + (-1.000000000000000)*F12))/(F12))) + ((FE2_C0[ip][j]*F13 + FE2_C1[ip][j]*F14))*(F9*((F10*((F11 + (-1.000000000000000)*2.000000000000000*F12)))*(((-1.000000000000000)*F2 + 1.000000000000000)))/(2.000000000000000*F12)))) + (FE2_C0[ip][j]*F0 + FE2_C1[ip][j]*F1))*W4[ip]*det;
+        // Number of operations to compute entry: 148
+        A[j] += ((((((FE1_C0[ip][j]*F15 + FE1_C1[ip][j]*F16))*(F10*((F11*(((-1.000000000000000)*F2 + 1.000000000000000)) + (-1.000000000000000)*F12))/(F12)) + ((((FE1_C1[ip][j]*F14 + FE1_C0[ip][j]*F13))*(F19*((((-1.000000000000000)*F20 + 1.000000000000000) + (-1.000000000000000)*2.000000000000000*F12))/(2.000000000000000*F12)) + (((FE1_C0[ip][j]*F15 + FE1_C1[ip][j]*F16))*(F19*(((-1.000000000000000)*F20 + 1.000000000000000))/(F12*F9)) + ((FE1_C0[ip][j]*F17 + FE1_C1[ip][j]*F18))*(F19*(((-1.000000000000000)*F20 + 1.000000000000000))/(F9*F12*F9)))) + ((FE1_C0[ip][j]*F17 + FE1_C1[ip][j]*F18))*(F11*(F10*(((-1.000000000000000)*F2 + 1.000000000000000)))/(F12*F9)))) + ((FE1_C1[ip][j]*F14 + FE1_C0[ip][j]*F13))*(F9*((F10*((F11 + (-1.000000000000000)*2.000000000000000*F12)))*(((-1.000000000000000)*F2 + 1.000000000000000)))/(2.000000000000000*F12))) + ((((((K_00*FE1_C0_D10[ip][j] + K_10*FE1_C0_D01[ip][j]))*((1.000000000000000*(F6*((2.000000000000000*((K_01*F7 + K_11*F8))/(2.000000000000000) + 2.000000000000000*((K_00*F3 + K_10*F4))/(2.000000000000000)))) + (2.000000000000000*((K_00*F3 + K_10*F4))/(2.000000000000000))*2.000000000000000*F5)) + ((K_00*FE1_C1_D10[ip][j] + K_10*FE1_C1_D01[ip][j]))*((((K_00*F7 + K_10*F8) + (K_01*F3 + K_11*F4))/(2.000000000000000))*2.000000000000000*F5)) + (((K_01*FE1_C1_D10[ip][j] + K_11*FE1_C1_D01[ip][j]))*((1.000000000000000*(F6*((2.000000000000000*((K_01*F7 + K_11*F8))/(2.000000000000000) + 2.000000000000000*((K_00*F3 + K_10*F4))/(2.000000000000000)))) + (2.000000000000000*((K_01*F7 + K_11*F8))/(2.000000000000000))*2.000000000000000*F5)) + ((K_01*FE1_C0_D10[ip][j] + K_11*FE1_C0_D01[ip][j]))*((((K_01*F3 + K_11*F4) + (K_00*F7 + K_10*F8))/(2.000000000000000))*2.000000000000000*F5))))*F2)*(-1.000000000000000)) + (FE1_C0[ip][j]*F0 + FE1_C1[ip][j]*F1))*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -5045,7 +4145,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(Product(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1), Index(0)), {Index(0): 2, Index(1): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(ComponentTensor(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(5), Index(4)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2})), MultiIndex((Index(7), Index(6)), {Index(7): 2, Index(6): 2})), ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(8),), {Index(8): 2})), MultiIndex((Index(9),), {Index(9): 2})), MultiIndex((Index(9), Index(8)), {Index(8): 2, Index(9): 2}))), MultiIndex((Index(10), Index(11)), {Index(11): 2, Index(10): 2}))), MultiIndex((Index(10), Index(11)), {Index(11): 2, Index(10): 2})), MultiIndex((Index(12), Index(13)), {Index(13): 2, Index(12): 2})), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 3))), MultiIndex((Index(12), Index(13)), {Index(13): 2, Index(12): 2})), ComponentTensor(Product(Indexed(Identity(2), MultiIndex((Index(14), Index(15)), {Index(14): 2, Index(15): 2})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 2), IndexSum(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(ComponentTensor(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(16),), {Index(16): 2})), MultiIndex((Index(17),), {Index(17): 2})), MultiIndex((Index(17), Index(16)), {Index(17): 2, Index(16): 2})), MultiIndex((Index(18), Index(19)), {Index(19): 2, Index(18): 2})), MultiIndex((Index(19), Index(18)), {Index(19): 2, Index(18): 2})), ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(20),), {Index(20): 2})), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21), Index(20)), {Index(21): 2, Index(20): 2}))), MultiIndex((Index(22), Index(23)), {Index(22): 2, Index(23): 2}))), MultiIndex((Index(22), Index(23)), {Index(22): 2, Index(23): 2})), MultiIndex((Index(24), Index(24)), {Index(24): 2})), MultiIndex((Index(24),), {Index(24): 2})))), MultiIndex((Index(14), Index(15)), {Index(14): 2, Index(15): 2}))), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 5)))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 0), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 4)))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8)))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(25),), {Index(25): 2})), Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(25),), {Index(25): 2}))), MultiIndex((Index(25),), {Index(25): 2}))), Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 1), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 5))))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(26),), {Index(26): 2})), Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(26),), {Index(26): 2}))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Product(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1), Index(0)), {Index(0): 2, Index(1): 2})), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(ComponentTensor(Division(Sum(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(5), Index(4)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(5), Index(4)), {Index(4): 2, Index(5): 2})), MultiIndex((Index(7), Index(6)), {Index(7): 2, Index(6): 2}))), IntValue(2, (), (), {})), MultiIndex((Index(6), Index(7)), {Index(7): 2, Index(6): 2})), MultiIndex((Index(8), Index(9)), {Index(8): 2, Index(9): 2})), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 3))), MultiIndex((Index(8), Index(9)), {Index(8): 2, Index(9): 2})), ComponentTensor(Product(Indexed(Identity(2), MultiIndex((Index(10), Index(11)), {Index(11): 2, Index(10): 2})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 2), IndexSum(Indexed(ComponentTensor(Division(Sum(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), MultiIndex((Index(13), Index(12)), {Index(13): 2, Index(12): 2})), MultiIndex((Index(14), Index(15)), {Index(14): 2, Index(15): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), MultiIndex((Index(13), Index(12)), {Index(13): 2, Index(12): 2})), MultiIndex((Index(15), Index(14)), {Index(14): 2, Index(15): 2}))), IntValue(2, (), (), {})), MultiIndex((Index(14), Index(15)), {Index(14): 2, Index(15): 2})), MultiIndex((Index(16), Index(16)), {Index(16): 2})), MultiIndex((Index(16),), {Index(16): 2})))), MultiIndex((Index(10), Index(11)), {Index(11): 2, Index(10): 2}))), MultiIndex((Index(2), Index(3)), {Index(2): 2, Index(3): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 5)))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 0), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 4)))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8)))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(17),), {Index(17): 2})), Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(17),), {Index(17): 2}))), Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 1), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 5))))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2}))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5085,12 +4185,12 @@ public:
     {
     case 0:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 1:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 2:
@@ -5150,12 +4250,12 @@ public:
     {
     case 0:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 1:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 2:
@@ -5271,7 +4371,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0, 2), 4), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Sum(Product(IntValue(-1, (), (), {}), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11), IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2), Index(1)), {Index(2): 2, Index(1): 2})), MultiIndex((Index(3), Index(4)), {Index(4): 2, Index(3): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(ComponentTensor(Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(6),), {Index(6): 2})), MultiIndex((Index(6), Index(5)), {Index(5): 2, Index(6): 2})), MultiIndex((Index(7), Index(8)), {Index(7): 2, Index(8): 2})), MultiIndex((Index(8), Index(7)), {Index(7): 2, Index(8): 2})), ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(9),), {Index(9): 2})), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10), Index(9)), {Index(10): 2, Index(9): 2}))), MultiIndex((Index(11), Index(12)), {Index(11): 2, Index(12): 2}))), MultiIndex((Index(11), Index(12)), {Index(11): 2, Index(12): 2})), MultiIndex((Index(13), Index(14)), {Index(14): 2, Index(13): 2})), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 9))), MultiIndex((Index(13), Index(14)), {Index(14): 2, Index(13): 2})), ComponentTensor(Product(Indexed(Identity(2), MultiIndex((Index(15), Index(16)), {Index(16): 2, Index(15): 2})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8), IndexSum(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(ComponentTensor(Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(17),), {Index(17): 2})), MultiIndex((Index(18),), {Index(18): 2})), MultiIndex((Index(18), Index(17)), {Index(17): 2, Index(18): 2})), MultiIndex((Index(19), Index(20)), {Index(19): 2, Index(20): 2})), MultiIndex((Index(20), Index(19)), {Index(19): 2, Index(20): 2})), ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22), Index(21)), {Index(22): 2, Index(21): 2}))), MultiIndex((Index(23), Index(24)), {Index(24): 2, Index(23): 2}))), MultiIndex((Index(23), Index(24)), {Index(24): 2, Index(23): 2})), MultiIndex((Index(25), Index(25)), {Index(25): 2})), MultiIndex((Index(25),), {Index(25): 2})))), MultiIndex((Index(15), Index(16)), {Index(16): 2, Index(15): 2}))), MultiIndex((Index(3), Index(4)), {Index(4): 2, Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14), Product(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Sum(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 13), Product(IntValue(-1, (), (), {}), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11))))), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(26),), {Index(26): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 2), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(26),), {Index(26): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Sum(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 13), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11)))), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12)))), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12)), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(27),), {Index(27): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 13), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11))))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(28),), {Index(28): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Sum(Product(IntValue(-1, (), (), {}), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 10))))), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(29),), {Index(29): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 2), MultiIndex((Index(29),), {Index(29): 2}))), MultiIndex((Index(29),), {Index(29): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 10)))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(30),), {Index(30): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(30),), {Index(30): 2}))), MultiIndex((Index(30),), {Index(30): 2}))), Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 10)))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14)))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(31),), {Index(31): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(31),), {Index(31): 2}))), MultiIndex((Index(31),), {Index(31): 2})))))))))), Measure('cell', 0, None)), Integral(Sum(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(32),), {Index(32): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 3), MultiIndex((Index(32),), {Index(32): 2}))), MultiIndex((Index(32),), {Index(32): 2}))), Product(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(33),), {Index(33): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 5), MultiIndex((Index(33),), {Index(33): 2}))), MultiIndex((Index(33),), {Index(33): 2})), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11))))), Measure('exterior_facet', 3, None))])";
+    return "Form([Integral(Sum(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 4), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Sum(Product(IntValue(-1, (), (), {}), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11), IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2), Index(1)), {Index(2): 2, Index(1): 2})), MultiIndex((Index(3), Index(4)), {Index(4): 2, Index(3): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(ComponentTensor(Division(Sum(Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(6),), {Index(6): 2})), MultiIndex((Index(6), Index(5)), {Index(5): 2, Index(6): 2})), MultiIndex((Index(7), Index(8)), {Index(7): 2, Index(8): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(6),), {Index(6): 2})), MultiIndex((Index(6), Index(5)), {Index(5): 2, Index(6): 2})), MultiIndex((Index(8), Index(7)), {Index(7): 2, Index(8): 2}))), IntValue(2, (), (), {})), MultiIndex((Index(7), Index(8)), {Index(7): 2, Index(8): 2})), MultiIndex((Index(9), Index(10)), {Index(10): 2, Index(9): 2})), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 9))), MultiIndex((Index(9), Index(10)), {Index(10): 2, Index(9): 2})), ComponentTensor(Product(Indexed(Identity(2), MultiIndex((Index(11), Index(12)), {Index(11): 2, Index(12): 2})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 8), IndexSum(Indexed(ComponentTensor(Division(Sum(Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(13),), {Index(13): 2})), MultiIndex((Index(14),), {Index(14): 2})), MultiIndex((Index(14), Index(13)), {Index(14): 2, Index(13): 2})), MultiIndex((Index(15), Index(16)), {Index(16): 2, Index(15): 2})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(13),), {Index(13): 2})), MultiIndex((Index(14),), {Index(14): 2})), MultiIndex((Index(14), Index(13)), {Index(14): 2, Index(13): 2})), MultiIndex((Index(16), Index(15)), {Index(16): 2, Index(15): 2}))), IntValue(2, (), (), {})), MultiIndex((Index(15), Index(16)), {Index(16): 2, Index(15): 2})), MultiIndex((Index(17), Index(17)), {Index(17): 2})), MultiIndex((Index(17),), {Index(17): 2})))), MultiIndex((Index(11), Index(12)), {Index(11): 2, Index(12): 2}))), MultiIndex((Index(3), Index(4)), {Index(4): 2, Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14), Product(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Sum(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 13), Product(IntValue(-1, (), (), {}), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11))))), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 2), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Sum(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 13), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11)))), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12)))), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12)), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(19),), {Index(19): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(19),), {Index(19): 2}))), MultiIndex((Index(19),), {Index(19): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 13), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 7), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11))))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(20),), {Index(20): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(20),), {Index(20): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Sum(Product(IntValue(-1, (), (), {}), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 10))))), Product(FloatValue(2.0, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(21),), {Index(21): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 2), MultiIndex((Index(21),), {Index(21): 2}))), MultiIndex((Index(21),), {Index(21): 2}))), Sum(Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 10)))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(22),), {Index(22): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 1), MultiIndex((Index(22),), {Index(22): 2}))), MultiIndex((Index(22),), {Index(22): 2}))), Product(Division(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 6), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 10)))), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 12), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 14)))), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(23),), {Index(23): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})))))))))), Measure('cell', 0, None)), Integral(Sum(Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11), IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 3), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), Product(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 0), MultiIndex((Index(25),), {Index(25): 2})), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 1, 2), 5), MultiIndex((Index(25),), {Index(25): 2}))), MultiIndex((Index(25),), {Index(25): 2})), Sum(FloatValue(1.0, (), (), {}), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 0), 11))))), Measure('exterior_facet', 3, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5311,37 +4411,37 @@ public:
     {
     case 0:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 1:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 2:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 3:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 4:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 5:
       {
-        return new elastodynamics_finite_element_1();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 6:
       {
-        return new elastodynamics_finite_element_3();
+        return new elastodynamics_finite_element_2();
         break;
       }
     case 7:
@@ -5401,37 +4501,37 @@ public:
     {
     case 0:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 1:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 2:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 3:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 4:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 5:
       {
-        return new elastodynamics_dof_map_1();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 6:
       {
-        return new elastodynamics_dof_map_3();
+        return new elastodynamics_dof_map_2();
         break;
       }
     case 7:
@@ -5545,32 +4645,32 @@ public:
 
   CoefficientSpace_a0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_a0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_a0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_a0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -5797,32 +4897,32 @@ public:
 
   CoefficientSpace_f(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -5965,32 +5065,32 @@ public:
 
   CoefficientSpace_p(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_p(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -6007,32 +5107,32 @@ public:
 
   CoefficientSpace_p0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_p0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_p0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_p0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -6091,32 +5191,32 @@ public:
 
   CoefficientSpace_u0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_u0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_u0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_u0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -6133,32 +5233,32 @@ public:
 
   CoefficientSpace_v0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_v0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_v0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_v0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -6175,32 +5275,32 @@ public:
 
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -6217,32 +5317,32 @@ public:
 
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -6465,32 +5565,32 @@ public:
 
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new elastodynamics_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new elastodynamics_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
