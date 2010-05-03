@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -1253,86 +1253,110 @@ public:
     // Quadrature points on the UFC reference element: (0.500000000000000)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[1][3] = \
-    {{0.000000000000000, 0.500000000000000, 0.500000000000000}};
+    static const double FE0_f0[1][2] = \
+    {{0.500000000000000, 0.500000000000000}};
     
-    static const double FE0_f1[1][3] = \
-    {{0.500000000000000, 0.000000000000000, 0.500000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE0_f2[1][3] = \
-    {{0.500000000000000, 0.500000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Reset values in the element tensor.
     A[0] = 0.000000000000000;
+    // Number of operations to compute geometry constants: 2.
+    double G[1];
+    G[0] = W1*det*n1;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     switch (facet)
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 10
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 10
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f0[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc0[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 4
-      // Number of operations to compute entry: 4
-      A[0] += F0*n1*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 10
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 10
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f1[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc1[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 4
-      // Number of operations to compute entry: 4
-      A[0] += F0*n1*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 10
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 10
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f2[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc2[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 4
-      // Number of operations to compute entry: 4
-      A[0] += F0*n1*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     }

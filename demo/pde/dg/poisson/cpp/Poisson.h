@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -1933,52 +1933,80 @@ public:
     // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_f0[2][3] = \
-    {{0.000000000000000, 0.788675134594813, 0.211324865405187},
-    {0.000000000000000, 0.211324865405187, 0.788675134594813}};
+    static const double FE1_f0[2][2] = \
+    {{0.788675134594813, 0.211324865405187},
+    {0.211324865405187, 0.788675134594813}};
     
-    static const double FE1_f0_D01[2][3] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {0, 1};
     
-    static const double FE1_f0_D10[2][3] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 2};
     
-    static const double FE1_f1[2][3] = \
-    {{0.788675134594813, 0.000000000000000, 0.211324865405187},
-    {0.211324865405187, 0.000000000000000, 0.788675134594813}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE1_f2[2][3] = \
-    {{0.788675134594813, 0.211324865405187, 0.000000000000000},
-    {0.211324865405187, 0.788675134594813, 0.000000000000000}};
+    static const double FE1_f0_D01[2][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 9; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 10.
+    double G[3];
+    G[0] =  - det*(K_00*n0 + K_01*n1);
+    G[1] =  - det*(K_10*n0 + K_11*n1);
+    G[2] = 8.000000000000000*det/w[0][0];
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     switch (facet)
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 558
+        // Total number of operations to compute element tensor (from this point): 126
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 558
+      // Number of operations to compute element tensor for following IP loop = 126
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
-        // Number of operations for primary indices: 279
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 3
+        double I[3];
+        // Number of operations: 1
+        I[0] = G[0]*W2[ip];
+        
+        // Number of operations: 1
+        I[1] = G[1]*W2[ip];
+        
+        // Number of operations: 1
+        I[2] = G[2]*W2[ip];
+        
+        
+        // Number of operations for primary indices: 60
+        for (unsigned int j = 0; j < 2; j++)
         {
-          for (unsigned int k = 0; k < 3; k++)
+          for (unsigned int k = 0; k < 2; k++)
           {
-            // Number of operations to compute entry: 31
-            A[j*3 + k] += ((((FE1_f0[ip][k]*n1*((K_01*FE1_f0_D10[ip][j] + K_11*FE1_f0_D01[ip][j])) + FE1_f0[ip][k]*n0*((K_00*FE1_f0_D10[ip][j] + K_10*FE1_f0_D01[ip][j]))))*(-1.000000000000000) + ((FE1_f0[ip][j]*n1*((K_01*FE1_f0_D10[ip][k] + K_11*FE1_f0_D01[ip][k])) + FE1_f0[ip][j]*n0*((K_00*FE1_f0_D10[ip][k] + K_10*FE1_f0_D01[ip][k]))))*(-1.000000000000000)) + FE1_f0[ip][k]*FE1_f0[ip][j]*8.000000000000000/(w[0][0]))*W2[ip]*det;
+            // Number of operations to compute entry: 3
+            A[nzc0[j]*3 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+            // Number of operations to compute entry: 3
+            A[nzc0[j]*3 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+            // Number of operations to compute entry: 3
+            A[nzc0[j]*3 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[2];
+            // Number of operations to compute entry: 3
+            A[nzc1[j]*3 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+            // Number of operations to compute entry: 3
+            A[nzc2[j]*3 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -1986,20 +2014,40 @@ public:
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 558
+        // Total number of operations to compute element tensor (from this point): 126
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 558
+      // Number of operations to compute element tensor for following IP loop = 126
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
-        // Number of operations for primary indices: 279
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 3
+        double I[3];
+        // Number of operations: 1
+        I[0] = G[1]*W2[ip];
+        
+        // Number of operations: 1
+        I[1] = G[0]*W2[ip];
+        
+        // Number of operations: 1
+        I[2] = G[2]*W2[ip];
+        
+        
+        // Number of operations for primary indices: 60
+        for (unsigned int j = 0; j < 2; j++)
         {
-          for (unsigned int k = 0; k < 3; k++)
+          for (unsigned int k = 0; k < 2; k++)
           {
-            // Number of operations to compute entry: 31
-            A[j*3 + k] += ((((FE1_f1[ip][j]*n0*((K_00*FE1_f0_D10[ip][k] + K_10*FE1_f0_D01[ip][k])) + FE1_f1[ip][j]*n1*((K_01*FE1_f0_D10[ip][k] + K_11*FE1_f0_D01[ip][k]))))*(-1.000000000000000) + ((FE1_f1[ip][k]*n0*((K_00*FE1_f0_D10[ip][j] + K_10*FE1_f0_D01[ip][j])) + FE1_f1[ip][k]*n1*((K_01*FE1_f0_D10[ip][j] + K_11*FE1_f0_D01[ip][j]))))*(-1.000000000000000)) + FE1_f1[ip][k]*FE1_f1[ip][j]*8.000000000000000/(w[0][0]))*W2[ip]*det;
+            // Number of operations to compute entry: 3
+            A[nzc3[j]*3 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+            // Number of operations to compute entry: 3
+            A[nzc3[j]*3 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+            // Number of operations to compute entry: 3
+            A[nzc3[j]*3 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[2];
+            // Number of operations to compute entry: 3
+            A[nzc2[j]*3 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+            // Number of operations to compute entry: 3
+            A[nzc1[j]*3 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -2007,20 +2055,40 @@ public:
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 558
+        // Total number of operations to compute element tensor (from this point): 126
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 558
+      // Number of operations to compute element tensor for following IP loop = 126
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
-        // Number of operations for primary indices: 279
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 3
+        double I[3];
+        // Number of operations: 1
+        I[0] = G[1]*W2[ip];
+        
+        // Number of operations: 1
+        I[1] = G[2]*W2[ip];
+        
+        // Number of operations: 1
+        I[2] = G[0]*W2[ip];
+        
+        
+        // Number of operations for primary indices: 60
+        for (unsigned int j = 0; j < 2; j++)
         {
-          for (unsigned int k = 0; k < 3; k++)
+          for (unsigned int k = 0; k < 2; k++)
           {
-            // Number of operations to compute entry: 31
-            A[j*3 + k] += ((((FE1_f2[ip][j]*n1*((K_01*FE1_f0_D10[ip][k] + K_11*FE1_f0_D01[ip][k])) + FE1_f2[ip][j]*n0*((K_00*FE1_f0_D10[ip][k] + K_10*FE1_f0_D01[ip][k]))))*(-1.000000000000000) + ((FE1_f2[ip][k]*n1*((K_01*FE1_f0_D10[ip][j] + K_11*FE1_f0_D01[ip][j])) + FE1_f2[ip][k]*n0*((K_00*FE1_f0_D10[ip][j] + K_10*FE1_f0_D01[ip][j]))))*(-1.000000000000000)) + FE1_f2[ip][k]*FE1_f2[ip][j]*8.000000000000000/(w[0][0]))*W2[ip]*det;
+            // Number of operations to compute entry: 3
+            A[nzc1[j]*3 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+            // Number of operations to compute entry: 3
+            A[nzc4[j]*3 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[1];
+            // Number of operations to compute entry: 3
+            A[nzc4[j]*3 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+            // Number of operations to compute entry: 3
+            A[nzc4[j]*3 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+            // Number of operations to compute entry: 3
+            A[nzc2[j]*3 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -2117,34 +2185,50 @@ public:
     // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_f0[2][3] = \
-    {{0.000000000000000, 0.788675134594813, 0.211324865405187},
-    {0.000000000000000, 0.211324865405187, 0.788675134594813}};
+    static const double FE1_f0[2][2] = \
+    {{0.788675134594813, 0.211324865405187},
+    {0.211324865405187, 0.788675134594813}};
     
-    static const double FE1_f0_D01[2][3] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {0, 1};
     
-    static const double FE1_f0_D10[2][3] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 2};
     
-    static const double FE1_f1[2][3] = \
-    {{0.788675134594813, 0.000000000000000, 0.211324865405187},
-    {0.211324865405187, 0.000000000000000, 0.788675134594813}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE1_f2[2][3] = \
-    {{0.788675134594813, 0.211324865405187, 0.000000000000000},
-    {0.211324865405187, 0.788675134594813, 0.000000000000000}};
+    static const double FE1_f0_D01[2][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 36; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 64.
+    double G[11];
+    G[0] = -0.500000000000000*det*(K0_10*n10 + K0_11*n11);
+    G[1] = -0.500000000000000*det*(K0_00*n10 + K0_01*n11);
+    G[2] = -0.500000000000000*det*(K1_00*n10 + K1_01*n11);
+    G[3] = -0.500000000000000*det*(K1_10*n00 + K1_11*n01);
+    G[4] = -0.500000000000000*det*(K1_10*n10 + K1_11*n11);
+    G[5] = -0.500000000000000*det*(K0_10*n00 + K0_11*n01);
+    G[6] = 4.000000000000000*det*(n10*n10 + n11*n11)/(0.500000000000000*(w[0][0] + w[0][1]));
+    G[7] = -0.500000000000000*det*(K0_00*n00 + K0_01*n01);
+    G[8] = 4.000000000000000*det*(n00*n10 + n01*n11)/(0.500000000000000*(w[0][0] + w[0][1]));
+    G[9] = 4.000000000000000*det*(n00*n00 + n01*n01)/(0.500000000000000*(w[0][0] + w[0][1]));
+    G[10] = -0.500000000000000*det*(K1_00*n00 + K1_01*n01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     switch (facet0)
     {
     case 0:
@@ -2153,26 +2237,94 @@ public:
       {
       case 0:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[6]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[10]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n01 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n00))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n10 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n10*FE1_f0[ip][k]*n00 + FE1_f0[ip][j]*n11*FE1_f0[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n11 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n01 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n00))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n00*FE1_f0[ip][k]*n10 + FE1_f0[ip][j]*n01*FE1_f0[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n00 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n00*FE1_f0[ip][k]*n00 + FE1_f0[ip][j]*n01*FE1_f0[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((FE1_f0[ip][j]*n11*FE1_f0[ip][k]*n11 + FE1_f0[ip][j]*n10*FE1_f0[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n10 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n11))*(-1.000000000000000)))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[4];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[5];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[10];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[10];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2180,26 +2332,94 @@ public:
         }
       case 1:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[6]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n01 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n00))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n10 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n10*FE1_f0[ip][k]*n00 + FE1_f1[ip][j]*n11*FE1_f0[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n10 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n11))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n01 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n00))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n00*FE1_f1[ip][k]*n10 + FE1_f0[ip][j]*n01*FE1_f1[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n00 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n00*FE1_f0[ip][k]*n00 + FE1_f0[ip][j]*n01*FE1_f0[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n11 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n10))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n10*FE1_f1[ip][k]*n10 + FE1_f1[ip][j]*n11*FE1_f1[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[10];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2207,26 +2427,94 @@ public:
         }
       case 2:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[6]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[0]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n01 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n00))*(-1.000000000000000) + (((((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n11 + (((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n10))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n10*FE1_f0[ip][k]*n00 + FE1_f2[ip][j]*n11*FE1_f0[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n11 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n01 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n00))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n01*FE1_f2[ip][k]*n11 + FE1_f0[ip][j]*n00*FE1_f2[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n00 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n00*FE1_f0[ip][k]*n00 + FE1_f0[ip][j]*n01*FE1_f0[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n10 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n11*FE1_f2[ip][k]*n11 + FE1_f2[ip][j]*n10*FE1_f2[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc0[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc0[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[10];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[10];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2242,26 +2530,94 @@ public:
       {
       case 0:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[6]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[2]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n01 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n00))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n10 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n11*FE1_f1[ip][k]*n01 + FE1_f0[ip][j]*n10*FE1_f1[ip][k]*n00))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n11 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n00 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n01*FE1_f0[ip][k]*n11 + FE1_f1[ip][j]*n00*FE1_f0[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((FE1_f1[ip][j]*n01*FE1_f1[ip][k]*n01 + FE1_f1[ip][j]*n00*FE1_f1[ip][k]*n00))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n01))*(-1.000000000000000) + (((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n01 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n00))*(-1.000000000000000)))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((FE1_f0[ip][j]*n11*FE1_f0[ip][k]*n11 + FE1_f0[ip][j]*n10*FE1_f0[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n10 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n11))*(-1.000000000000000)))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[4];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[9];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[10];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[10];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2269,26 +2625,94 @@ public:
         }
       case 1:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[6]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((FE1_f1[ip][j]*n10*FE1_f1[ip][k]*n00 + FE1_f1[ip][j]*n11*FE1_f1[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n01 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n00))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n10 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n11))*(-1.000000000000000)))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n10 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n11))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n00 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n00*FE1_f1[ip][k]*n10 + FE1_f1[ip][j]*n01*FE1_f1[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((FE1_f1[ip][j]*n01*FE1_f1[ip][k]*n01 + FE1_f1[ip][j]*n00*FE1_f1[ip][k]*n00))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n01))*(-1.000000000000000) + (((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n01 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n00))*(-1.000000000000000)))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n11 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n10))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n10*FE1_f1[ip][k]*n10 + FE1_f1[ip][j]*n11*FE1_f1[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[10];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2296,26 +2720,94 @@ public:
         }
       case 2:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[6]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[10]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n01 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n00))*(-1.000000000000000) + (((((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n11 + (((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n10))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n10*FE1_f1[ip][k]*n00 + FE1_f2[ip][j]*n11*FE1_f1[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n11 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n00 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n00*FE1_f2[ip][k]*n10 + FE1_f1[ip][j]*n01*FE1_f2[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((FE1_f1[ip][j]*n01*FE1_f1[ip][k]*n01 + FE1_f1[ip][j]*n00*FE1_f1[ip][k]*n00))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n01))*(-1.000000000000000) + (((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n01 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n00))*(-1.000000000000000)))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n10 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n11*FE1_f2[ip][k]*n11 + FE1_f2[ip][j]*n10*FE1_f2[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + nzc3[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[5];
+              // Number of operations to compute entry: 3
+              A[nzc3[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[10];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc3[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[10];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2331,26 +2823,94 @@ public:
       {
       case 0:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[6]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[7]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n10 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n11))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n00 + (((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n01))*(-1.000000000000000)) + ((FE1_f0[ip][j]*n11*FE1_f2[ip][k]*n01 + FE1_f0[ip][j]*n10*FE1_f2[ip][k]*n00))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n11 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n01 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n00))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n01*FE1_f0[ip][k]*n11 + FE1_f2[ip][j]*n00*FE1_f0[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n00 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n00*FE1_f2[ip][k]*n00 + FE1_f2[ip][j]*n01*FE1_f2[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((FE1_f0[ip][j]*n11*FE1_f0[ip][k]*n11 + FE1_f0[ip][j]*n10*FE1_f0[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f0[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n10 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f0[ip][j]*n11))*(-1.000000000000000)))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[10];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[10];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc0[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[9];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2358,26 +2918,94 @@ public:
         }
       case 1:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[3]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[6]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((((((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n00 + (((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n10 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n11*FE1_f2[ip][k]*n01 + FE1_f1[ip][j]*n10*FE1_f2[ip][k]*n00))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n10 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n11))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n01 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n00))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n01*FE1_f1[ip][k]*n11 + FE1_f2[ip][j]*n00*FE1_f1[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n00 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n00*FE1_f2[ip][k]*n00 + FE1_f2[ip][j]*n01*FE1_f2[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f1[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n11 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f1[ip][j]*n10))*(-1.000000000000000)) + ((FE1_f1[ip][j]*n10*FE1_f1[ip][k]*n10 + FE1_f1[ip][j]*n11*FE1_f1[ip][k]*n11))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[6];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[7];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc3[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc3[j] + 3)*6 + (nzc3[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[10];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -2385,26 +3013,94 @@ public:
         }
       case 2:
         {
-          // Total number of operations to compute element tensor (from this point): 3024
+          // Total number of operations to compute element tensor (from this point): 502
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 3024
+        // Number of operations to compute element tensor for following IP loop = 502
         for (unsigned int ip = 0; ip < 2; ip++)
         {
           
-          // Number of operations for primary indices: 1512
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 11
+          double I[11];
+          // Number of operations: 1
+          I[0] = G[5]*W2[ip];
+          
+          // Number of operations: 1
+          I[1] = G[10]*W2[ip];
+          
+          // Number of operations: 1
+          I[2] = G[4]*W2[ip];
+          
+          // Number of operations: 1
+          I[3] = G[2]*W2[ip];
+          
+          // Number of operations: 1
+          I[4] = G[8]*W2[ip];
+          
+          // Number of operations: 1
+          I[5] = G[9]*W2[ip];
+          
+          // Number of operations: 1
+          I[6] = G[0]*W2[ip];
+          
+          // Number of operations: 1
+          I[7] = G[6]*W2[ip];
+          
+          // Number of operations: 1
+          I[8] = G[1]*W2[ip];
+          
+          // Number of operations: 1
+          I[9] = G[7]*W2[ip];
+          
+          // Number of operations: 1
+          I[10] = G[3]*W2[ip];
+          
+          
+          // Number of operations for primary indices: 240
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + k] += (((FE1_f2[ip][j]*n10*FE1_f2[ip][k]*n00 + FE1_f2[ip][j]*n11*FE1_f2[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))) + ((((((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n11 + (((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n00 + (((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n01))*(-1.000000000000000)))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + (k + 3)] += (((((((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n11 + (((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n10))*(-1.000000000000000) + (((((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n01 + (((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n00))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n01*FE1_f2[ip][k]*n11 + FE1_f2[ip][j]*n00*FE1_f2[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[j*6 + k] += (((((((K0_00*FE1_f0_D10[ip][j] + K0_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n00 + (((K0_01*FE1_f0_D10[ip][j] + K0_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n01))*(-1.000000000000000) + (((((K0_00*FE1_f0_D10[ip][k] + K0_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n00 + (((K0_01*FE1_f0_D10[ip][k] + K0_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n01))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n00*FE1_f2[ip][k]*n00 + FE1_f2[ip][j]*n01*FE1_f2[ip][k]*n01))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
-              // Number of operations to compute entry: 42
-              A[(j + 3)*6 + (k + 3)] += (((((((K1_01*FE1_f0_D10[ip][j] + K1_11*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n11 + (((K1_00*FE1_f0_D10[ip][j] + K1_10*FE1_f0_D01[ip][j]))*0.500000000000000)*FE1_f2[ip][k]*n10))*(-1.000000000000000) + (((((K1_00*FE1_f0_D10[ip][k] + K1_10*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n10 + (((K1_01*FE1_f0_D10[ip][k] + K1_11*FE1_f0_D01[ip][k]))*0.500000000000000)*FE1_f2[ip][j]*n11))*(-1.000000000000000)) + ((FE1_f2[ip][j]*n11*FE1_f2[ip][k]*n11 + FE1_f2[ip][j]*n10*FE1_f2[ip][k]*n10))*(4.000000000000000/((w[0][0] + w[0][1])/(2.000000000000000))))*W2[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[5];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[3];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc2[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[6];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[7];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[8];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc4[k] + 3)] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[10];
+              // Number of operations to compute entry: 3
+              A[nzc4[j]*6 + (nzc1[k] + 3)] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[10];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc4[k]] += FE1_f0[ip][k]*FE1_f0_D01[ip][j]*I[9];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc4[k]] += FE1_f0[ip][j]*FE1_f0[ip][k]*I[4];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc2[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[8];
+              // Number of operations to compute entry: 3
+              A[(nzc4[j] + 3)*6 + nzc1[k]] += FE1_f0[ip][j]*FE1_f0_D01[ip][k]*I[6];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'

@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -1257,29 +1257,37 @@ public:
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.075031110222608, 0.280019915499074, 0.644948974278318}};
     
-    static const double FE0_D01[4][3] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000}};
+    static const double FE0_D01[4][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
     
-    static const double FE0_D10[4][3] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 1};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 2};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 9; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 27.
+    double G[6];
+    G[0] = det*(K_00*K_10 + K_01*K_11);
+    G[1] = det*(K_00*K_00 + K_01*K_01);
+    G[2] = det*(K_10*K_10 + K_11*K_11);
+    G[3] = 2.000000000000000*det*(K_00*K_10 + K_01*K_11);
+    G[4] = 2.000000000000000*det*(K_10*K_10 + K_11*K_11);
+    G[5] = 2.000000000000000*det*(K_00*K_00 + K_01*K_01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 1440
+    // Number of operations to compute element tensor for following IP loop = 480
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -1288,21 +1296,62 @@ public:
       double F1 = 0.000000000000000;
       double F2 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 18
+      // Total number of operations to compute function values = 8
+      for (unsigned int r = 0; r < 2; r++)
+      {
+        F1 += FE0_D01[ip][r]*w[0][nzc1[r]];
+        F2 += FE0_D01[ip][r]*w[0][nzc0[r]];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 6
       for (unsigned int r = 0; r < 3; r++)
       {
         F0 += FE0[ip][r]*w[0][r];
-        F1 += FE0_D10[ip][r]*w[0][r];
-        F2 += FE0_D01[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 342
-      for (unsigned int j = 0; j < 3; j++)
+      // Number of operations to compute ip constants: 22
+      double I[5];
+      // Number of operations: 4
+      I[0] = G[0]*W4[ip]*(1.000000000000000 + F0*F0);
+      
+      // Number of operations: 4
+      I[1] = G[1]*W4[ip]*(1.000000000000000 + F0*F0);
+      
+      // Number of operations: 4
+      I[2] = G[2]*W4[ip]*(1.000000000000000 + F0*F0);
+      
+      // Number of operations: 5
+      I[3] = F0*W4[ip]*(F1*G[3] + F2*G[4]);
+      
+      // Number of operations: 5
+      I[4] = F0*W4[ip]*(F1*G[5] + F2*G[3]);
+      
+      
+      // Number of operations for primary indices: 48
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        for (unsigned int k = 0; k < 2; k++)
+        {
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*3 + nzc1[k]] += FE0_D01[ip][j]*FE0_D01[ip][k]*I[0];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*3 + nzc1[k]] += FE0_D01[ip][j]*FE0_D01[ip][k]*I[1];
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*3 + nzc0[k]] += FE0_D01[ip][j]*FE0_D01[ip][k]*I[2];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*3 + nzc0[k]] += FE0_D01[ip][j]*FE0_D01[ip][k]*I[0];
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 36
+      for (unsigned int j = 0; j < 2; j++)
       {
         for (unsigned int k = 0; k < 3; k++)
         {
-          // Number of operations to compute entry: 38
-          A[j*3 + k] += (((K_01*FE0_D10[ip][j] + K_11*FE0_D01[ip][j]))*((((K_01*FE0_D10[ip][k] + K_11*FE0_D01[ip][k]))*((F0*F0 + 1.000000000000000)) + FE0[ip][k]*2.000000000000000*F0*((K_01*F1 + K_11*F2)))) + ((K_00*FE0_D10[ip][j] + K_10*FE0_D01[ip][j]))*((FE0[ip][k]*2.000000000000000*F0*((K_00*F1 + K_10*F2)) + ((K_00*FE0_D10[ip][k] + K_10*FE0_D01[ip][k]))*((F0*F0 + 1.000000000000000)))))*W4[ip]*det;
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*3 + k] += FE0[ip][k]*FE0_D01[ip][j]*I[3];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*3 + k] += FE0[ip][k]*FE0_D01[ip][j]*I[4];
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -1367,29 +1416,34 @@ public:
     {0.178558728263616, 0.666390246014701, 0.155051025721682},
     {0.075031110222608, 0.280019915499074, 0.644948974278318}};
     
-    static const double FE0_D01[4][3] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000}};
+    static const double FE0_D01[4][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
     
-    static const double FE0_D10[4][3] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 1};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 2};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 3; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 12.
+    double G[3];
+    G[0] = det*(K_00*K_10 + K_01*K_11);
+    G[1] = det*(K_00*K_00 + K_01*K_01);
+    G[2] = det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 420
+    // Number of operations to compute element tensor for following IP loop = 224
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -1399,20 +1453,46 @@ public:
       double F2 = 0.000000000000000;
       double F3 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 24
+      // Total number of operations to compute function values = 8
+      for (unsigned int r = 0; r < 2; r++)
+      {
+        F0 += FE0_D01[ip][r]*w[1][nzc1[r]];
+        F1 += FE0_D01[ip][r]*w[1][nzc0[r]];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 12
       for (unsigned int r = 0; r < 3; r++)
       {
-        F0 += FE0_D10[ip][r]*w[1][r];
-        F1 += FE0_D01[ip][r]*w[1][r];
         F2 += FE0[ip][r]*w[1][r];
         F3 += FE0[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 81
+      // Number of operations to compute ip constants: 22
+      double I[3];
+      // Number of operations: 2
+      I[0] =  - F3*W4[ip]*det;
+      
+      // Number of operations: 10
+      I[1] = W4[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[0]*(1.000000000000000 + F2*F2));
+      
+      // Number of operations: 10
+      I[2] = W4[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
+      
+      
+      // Number of operations for primary indices: 6
       for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry: 27
-        A[j] += (FE0[ip][j]*F3*(-1.000000000000000) + (((K_00*FE0_D10[ip][j] + K_10*FE0_D01[ip][j]))*(((K_00*F0 + K_10*F1))*((1.000000000000000 + F2*F2))) + ((K_01*FE0_D10[ip][j] + K_11*FE0_D01[ip][j]))*(((K_01*F0 + K_11*F1))*((1.000000000000000 + F2*F2)))))*W4[ip]*det;
+        // Number of operations to compute entry: 2
+        A[j] += FE0[ip][j]*I[0];
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 8
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry: 2
+        A[nzc1[j]] += FE0_D01[ip][j]*I[1];
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE0_D01[ip][j]*I[2];
       }// end loop over 'j'
     }// end loop over 'ip'
   }
