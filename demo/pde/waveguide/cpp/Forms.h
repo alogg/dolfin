@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -5749,22 +5749,35 @@ public:
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 22.
+    double G[2];
+    G[0] = det*(K_00*K_00*K_11*K_11 + K_01*K_10*(K_01*K_10-2.000000000000000*K_00*K_11));
+    G[1] = det*(K_01*K_10*(2.000000000000000*K_00*K_11 - K_01*K_10) - K_00*K_00*K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 105300
+    // Number of operations to compute element tensor for following IP loop = 24318
     for (unsigned int ip = 0; ip < 9; ip++)
     {
       
-      // Number of operations for primary indices: 11700
+      // Number of operations to compute ip constants: 2
+      double I[2];
+      // Number of operations: 1
+      I[0] = G[0]*W9[ip];
+      
+      // Number of operations: 1
+      I[1] = G[1]*W9[ip];
+      
+      
+      // Number of operations for primary indices: 2700
       for (unsigned int j = 0; j < 15; j++)
       {
         for (unsigned int k = 0; k < 15; k++)
         {
-          // Number of operations to compute entry: 52
-          A[j*15 + k] += (((K_00*K_01*FE0_C0_D10[ip][j] + K_00*K_11*FE0_C1_D10[ip][j] + K_10*K_01*FE0_C0_D01[ip][j] + K_10*K_11*FE0_C1_D01[ip][j]) + ((K_01*K_00*FE0_C0_D10[ip][j] + K_01*K_10*FE0_C1_D10[ip][j] + K_11*K_00*FE0_C0_D01[ip][j] + K_11*K_10*FE0_C1_D01[ip][j]))*(-1.000000000000000)))*(((K_00*K_01*FE0_C0_D10[ip][k] + K_00*K_11*FE0_C1_D10[ip][k] + K_10*K_01*FE0_C0_D01[ip][k] + K_10*K_11*FE0_C1_D01[ip][k]) + ((K_01*K_00*FE0_C0_D10[ip][k] + K_01*K_10*FE0_C1_D10[ip][k] + K_11*K_00*FE0_C0_D01[ip][k] + K_11*K_10*FE0_C1_D01[ip][k]))*(-1.000000000000000)))*W9[ip]*det;
+          // Number of operations to compute entry: 12
+          A[j*15 + k] += (FE0_C0_D01[ip][j]*FE0_C0_D01[ip][k]*I[0] + FE0_C0_D01[ip][j]*FE0_C1_D10[ip][k]*I[1] + FE0_C0_D01[ip][k]*FE0_C1_D10[ip][j]*I[1] + FE0_C1_D10[ip][j]*FE0_C1_D10[ip][k]*I[0]);
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'

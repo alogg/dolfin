@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -6255,59 +6255,123 @@ public:
     // Quadrature points on the UFC reference element: (0.333333333333333, 0.333333333333333)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[1][1] = \
-    {{1.000000000000000}};
+    static const double FE1_C0[1][3] = \
+    {{0.333333333333333, 0.333333333333333, 0.333333333333333}};
     
-    static const double FE1_C0_D01[1][9] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc6[3] = {6, 7, 8};
     
-    static const double FE1_C0_D10[1][9] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    static const double FE1_C0_D01[1][2] = \
+    {{-1.000000000000000, 1.000000000000000}};
     
-    static const double FE1_C1_D01[1][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {3, 4};
     
-    static const double FE1_C1_D10[1][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc8[2] = {6, 7};
     
-    static const double FE1_C2[1][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.333333333333333, 0.333333333333333, 0.333333333333333}};
+    // Array of non-zero columns
+    static const unsigned int nzc7[2] = {6, 8};
     
-    static const double FE1_C2_D01[1][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[2] = {3, 5};
     
-    static const double FE1_C2_D10[1][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 81; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 55.
+    double G[14];
+    G[0] = K_01*W1*det;
+    G[1] = K_11*W1*det;
+    G[2] = K_00*W1*det;
+    G[3] = K_10*W1*det;
+    G[4] = W1*det*(K_00*K_10 + K_01*K_11);
+    G[5] = W1*det*(K_10*K_10 + K_11*K_11);
+    G[6] = 0.200000000000000*W1*det*w[0][0]*w[0][0]*(K_00*K_10 + K_01*K_11);
+    G[7] = W1*det*(K_00*K_00 + K_01*K_01);
+    G[8] = 0.200000000000000*W1*det*w[0][0]*w[0][0]*(K_00*K_00 + K_01*K_01);
+    G[9] = 0.200000000000000*W1*det*w[0][0]*w[0][0]*(K_10*K_10 + K_11*K_11);
+    G[10] =  - K_10*W1*det;
+    G[11] =  - K_11*W1*det;
+    G[12] =  - K_01*W1*det;
+    G[13] =  - K_00*W1*det;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 5834
+    // Number of operations to compute element tensor for following IP loop = 288
     // Only 1 integration point, omitting IP loop.
     
-    // Coefficient declarations.
-    double F0 = 0.000000000000000;
-    
-    // Total number of operations to compute function values = 2
-    for (unsigned int r = 0; r < 1; r++)
+    // Number of operations for primary indices: 72
+    for (unsigned int j = 0; j < 3; j++)
     {
-      F0 += FE0[0][r]*w[0][r];
-    }// end loop over 'r'
-    
-    // Number of operations for primary indices: 5832
-    for (unsigned int j = 0; j < 9; j++)
-    {
-      for (unsigned int k = 0; k < 9; k++)
+      for (unsigned int k = 0; k < 2; k++)
       {
-        // Number of operations to compute entry: 72
-        A[j*9 + k] += (((((K_00*FE1_C0_D10[0][k] + K_10*FE1_C0_D01[0][k]) + (K_01*FE1_C1_D10[0][k] + K_11*FE1_C1_D01[0][k])))*FE1_C2[0][j] + (((((K_01*FE1_C1_D10[0][j] + K_11*FE1_C1_D01[0][j]) + (K_00*FE1_C0_D10[0][j] + K_10*FE1_C0_D01[0][j])))*FE1_C2[0][k])*(-1.000000000000000) + ((((K_01*FE1_C0_D10[0][j] + K_11*FE1_C0_D01[0][j]))*((K_01*FE1_C0_D10[0][k] + K_11*FE1_C0_D01[0][k])) + ((K_01*FE1_C1_D10[0][j] + K_11*FE1_C1_D01[0][j]))*((K_01*FE1_C1_D10[0][k] + K_11*FE1_C1_D01[0][k]))) + (((K_00*FE1_C0_D10[0][j] + K_10*FE1_C0_D01[0][j]))*((K_00*FE1_C0_D10[0][k] + K_10*FE1_C0_D01[0][k])) + ((K_00*FE1_C1_D10[0][j] + K_10*FE1_C1_D01[0][j]))*((K_00*FE1_C1_D10[0][k] + K_10*FE1_C1_D01[0][k])))))) + ((((K_00*FE1_C2_D10[0][j] + K_10*FE1_C2_D01[0][j]))*((K_00*FE1_C2_D10[0][k] + K_10*FE1_C2_D01[0][k])) + ((K_01*FE1_C2_D10[0][j] + K_11*FE1_C2_D01[0][j]))*((K_01*FE1_C2_D10[0][k] + K_11*FE1_C2_D01[0][k]))))*F0*0.200000000000000*F0)*W1*det;
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*9 + nzc5[k]] += FE1_C0[0][j]*FE1_C0_D01[0][k]*G[0];
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*9 + nzc4[k]] += FE1_C0[0][j]*FE1_C0_D01[0][k]*G[1];
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*9 + nzc2[k]] += FE1_C0[0][j]*FE1_C0_D01[0][k]*G[2];
+        // Number of operations to compute entry: 3
+        A[nzc6[j]*9 + nzc1[k]] += FE1_C0[0][j]*FE1_C0_D01[0][k]*G[3];
+      }// end loop over 'k'
+    }// end loop over 'j'
+    
+    // Number of operations for primary indices: 144
+    for (unsigned int j = 0; j < 2; j++)
+    {
+      for (unsigned int k = 0; k < 2; k++)
+      {
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*9 + nzc1[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[4];
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*9 + nzc1[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[5];
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*9 + nzc2[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[4];
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*9 + nzc4[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[4];
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*9 + nzc4[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[5];
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*9 + nzc7[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[6];
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*9 + nzc5[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[4];
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*9 + nzc2[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[7];
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*9 + nzc5[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[7];
+        // Number of operations to compute entry: 3
+        A[nzc8[j]*9 + nzc8[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[8];
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*9 + nzc8[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[6];
+        // Number of operations to compute entry: 3
+        A[nzc7[j]*9 + nzc7[k]] += FE1_C0_D01[0][j]*FE1_C0_D01[0][k]*G[9];
+      }// end loop over 'k'
+    }// end loop over 'j'
+    
+    // Number of operations for primary indices: 72
+    for (unsigned int j = 0; j < 2; j++)
+    {
+      for (unsigned int k = 0; k < 3; k++)
+      {
+        // Number of operations to compute entry: 3
+        A[nzc1[j]*9 + nzc6[k]] += FE1_C0[0][k]*FE1_C0_D01[0][j]*G[10];
+        // Number of operations to compute entry: 3
+        A[nzc4[j]*9 + nzc6[k]] += FE1_C0[0][k]*FE1_C0_D01[0][j]*G[11];
+        // Number of operations to compute entry: 3
+        A[nzc5[j]*9 + nzc6[k]] += FE1_C0[0][k]*FE1_C0_D01[0][j]*G[12];
+        // Number of operations to compute entry: 3
+        A[nzc2[j]*9 + nzc6[k]] += FE1_C0[0][k]*FE1_C0_D01[0][j]*G[13];
       }// end loop over 'k'
     }// end loop over 'j'
   }
@@ -6365,85 +6429,98 @@ public:
     // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.075031110222608, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[4][1] = \
-    {{1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000}};
+    static const double FE1_C0[4][3] = \
+    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
+    {0.280019915499074, 0.075031110222608, 0.644948974278318},
+    {0.178558728263616, 0.666390246014701, 0.155051025721682},
+    {0.075031110222608, 0.280019915499074, 0.644948974278318}};
     
-    static const double FE1_C0[4][6] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.280019915499074, 0.075031110222608, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.075031110222608, 0.280019915499074, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc2[3] = {0, 1, 2};
     
-    static const double FE1_C1[4][6] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.280019915499074, 0.075031110222608, 0.644948974278318},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.075031110222608, 0.280019915499074, 0.644948974278318}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[3] = {0, 1, 2};
     
-    static const double FE2_C0[4][9] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.280019915499074, 0.075031110222608, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.075031110222608, 0.280019915499074, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[3] = {3, 4, 5};
     
-    static const double FE2_C1[4][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.666390246014701, 0.178558728263616, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.280019915499074, 0.075031110222608, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.178558728263616, 0.666390246014701, 0.155051025721682, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.075031110222608, 0.280019915499074, 0.644948974278318, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc5[3] = {3, 4, 5};
     
-    static const double FE2_C2_D01[4][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000}};
+    static const double FE2_C0_D01[4][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
     
-    static const double FE2_C2_D10[4][9] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc10[2] = {6, 7};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc9[2] = {6, 8};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 9; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 16.
+    double G[4];
+    G[0] = 0.200000000000000*K_11*det*w[1][0]*w[1][0];
+    G[1] = 0.200000000000000*K_10*det*w[1][0]*w[1][0];
+    G[2] = 0.200000000000000*K_01*det*w[1][0]*w[1][0];
+    G[3] = 0.200000000000000*K_00*det*w[1][0]*w[1][0];
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 824
+    // Number of operations to compute element tensor for following IP loop = 176
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
       // Coefficient declarations.
       double F0 = 0.000000000000000;
       double F1 = 0.000000000000000;
-      double F2 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 2
-      for (unsigned int r = 0; r < 1; r++)
+      // Total number of operations to compute function values = 12
+      for (unsigned int r = 0; r < 3; r++)
       {
-        F1 += FE0[ip][r]*w[1][r];
+        F0 += FE1_C0[ip][r]*w[0][nzc0[r]];
+        F1 += FE1_C0[ip][r]*w[0][nzc1[r]];
       }// end loop over 'r'
       
-      // Total number of operations to compute function values = 24
-      for (unsigned int r = 0; r < 6; r++)
-      {
-        F0 += FE1_C0[ip][r]*w[0][r];
-        F2 += FE1_C1[ip][r]*w[0][r];
-      }// end loop over 'r'
+      // Number of operations to compute ip constants: 12
+      double I[4];
+      // Number of operations: 2
+      I[0] = F0*W4[ip]*det;
       
-      // Number of operations for primary indices: 180
-      for (unsigned int j = 0; j < 9; j++)
+      // Number of operations: 2
+      I[1] = F1*W4[ip]*det;
+      
+      // Number of operations: 4
+      I[2] = W4[ip]*(F0*G[1] + F1*G[0]);
+      
+      // Number of operations: 4
+      I[3] = W4[ip]*(F0*G[3] + F1*G[2]);
+      
+      
+      // Number of operations for primary indices: 12
+      for (unsigned int j = 0; j < 3; j++)
       {
-        // Number of operations to compute entry: 20
-        A[j] += (((FE2_C0[ip][j] + ((K_00*FE2_C2_D10[ip][j] + K_10*FE2_C2_D01[ip][j]))*F1*0.200000000000000*F1))*F0 + ((FE2_C1[ip][j] + ((K_01*FE2_C2_D10[ip][j] + K_11*FE2_C2_D01[ip][j]))*F1*0.200000000000000*F1))*F2)*W4[ip]*det;
+        // Number of operations to compute entry: 2
+        A[nzc2[j]] += FE1_C0[ip][j]*I[0];
+        // Number of operations to compute entry: 2
+        A[nzc5[j]] += FE1_C0[ip][j]*I[1];
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 8
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry: 2
+        A[nzc9[j]] += FE2_C0_D01[ip][j]*I[2];
+        // Number of operations to compute entry: 2
+        A[nzc10[j]] += FE2_C0_D01[ip][j]*I[3];
       }// end loop over 'j'
     }// end loop over 'ip'
   }

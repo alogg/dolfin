@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -2426,15 +2426,18 @@ public:
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 1.
+    double G[1];
+    G[0] = 10.000000000000000*det;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     
     // Loop quadrature points for integral.
     
     // Declare array to hold physical coordinate of quadrature point.
     double X4[2];
-    // Number of operations to compute element tensor for following IP loop = 352
+    // Number of operations to compute element tensor for following IP loop = 132
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
@@ -2442,11 +2445,17 @@ public:
       X4[0] = FEA4_f0[ip][0]*x[0][0] + FEA4_f0[ip][1]*x[1][0] + FEA4_f0[ip][2]*x[2][0];
       X4[1] = FEA4_f0[ip][0]*x[0][1] + FEA4_f0[ip][1]*x[1][1] + FEA4_f0[ip][2]*x[2][1];
       
-      // Number of operations for primary indices: 78
+      // Number of operations to compute ip constants: 11
+      double I[1];
+      // Number of operations: 11
+      I[0] = std::exp( - ((X4[0]-0.500000000000000)*(X4[0]-0.500000000000000) + (X4[1]-0.500000000000000)*(X4[1]-0.500000000000000))/0.020000000000000)*G[0]*W4[ip];
+      
+      
+      // Number of operations for primary indices: 12
       for (unsigned int j = 0; j < 6; j++)
       {
-        // Number of operations to compute entry: 13
-        A[j] += FE0[ip][j]*(10.000000000000000*(std::exp((-1.000000000000000)*((((-0.500000000000000 + X4[0]))*((-0.500000000000000 + X4[0])) + ((X4[1] + -0.500000000000000))*((X4[1] + -0.500000000000000))))/(0.020000000000000))))*W4[ip]*det;
+        // Number of operations to compute entry: 2
+        A[j] += FE0[ip][j]*I[0];
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -2504,17 +2513,18 @@ public:
     // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[2][6] = \
-    {{0.000000000000000, 0.455341801261479, -0.122008467928146, 0.666666666666667, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, -0.122008467928146, 0.455341801261479, 0.666666666666667, 0.000000000000000, 0.000000000000000}};
+    static const double FE0_f0[2][3] = \
+    {{0.455341801261479, -0.122008467928146, 0.666666666666667},
+    {-0.122008467928146, 0.455341801261479, 0.666666666666667}};
     
-    static const double FE0_f1[2][6] = \
-    {{0.455341801261480, 0.000000000000000, -0.122008467928146, 0.000000000000000, 0.666666666666667, 0.000000000000000},
-    {-0.122008467928146, 0.000000000000000, 0.455341801261479, 0.000000000000000, 0.666666666666667, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[3] = {1, 2, 3};
     
-    static const double FE0_f2[2][6] = \
-    {{0.455341801261479, -0.122008467928146, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.666666666666667},
-    {-0.122008467928146, 0.455341801261480, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.666666666666667}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[3] = {0, 2, 4};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[3] = {0, 1, 5};
     
     static const double FEA2_f0[2][3] = \
     {{0.000000000000000, 0.788675134594813, 0.211324865405187},
@@ -2535,18 +2545,18 @@ public:
     }// end loop over 'r'
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', False), ('non zero columns', False), ('remove zero terms', False), ('ignore ones', False), ('ignore zero tables', False)
+    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
     switch (facet)
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 92
+        // Total number of operations to compute element tensor (from this point): 40
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
       double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 92
+      // Number of operations to compute element tensor for following IP loop = 40
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
@@ -2554,24 +2564,30 @@ public:
         X2[0] = FEA2_f0[ip][0]*x[0][0] + FEA2_f0[ip][1]*x[1][0] + FEA2_f0[ip][2]*x[2][0];
         X2[1] = FEA2_f0[ip][0]*x[0][1] + FEA2_f0[ip][1]*x[1][1] + FEA2_f0[ip][2]*x[2][1];
         
-        // Number of operations for primary indices: 36
-        for (unsigned int j = 0; j < 6; j++)
+        // Number of operations to compute ip constants: 4
+        double I[1];
+        // Number of operations: 4
+        I[0] =  - std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+        
+        
+        // Number of operations for primary indices: 6
+        for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry: 6
-          A[j] += FE0_f0[ip][j]*((-1.000000000000000)*std::sin(5.000000000000000*X2[0]))*W2[ip]*det;
+          // Number of operations to compute entry: 2
+          A[nzc0[j]] += FE0_f0[ip][j]*I[0];
         }// end loop over 'j'
       }// end loop over 'ip'
         break;
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 92
+        // Total number of operations to compute element tensor (from this point): 40
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
       double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 92
+      // Number of operations to compute element tensor for following IP loop = 40
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
@@ -2579,24 +2595,30 @@ public:
         X2[0] = FEA2_f1[ip][0]*x[0][0] + FEA2_f1[ip][1]*x[1][0] + FEA2_f1[ip][2]*x[2][0];
         X2[1] = FEA2_f1[ip][0]*x[0][1] + FEA2_f1[ip][1]*x[1][1] + FEA2_f1[ip][2]*x[2][1];
         
-        // Number of operations for primary indices: 36
-        for (unsigned int j = 0; j < 6; j++)
+        // Number of operations to compute ip constants: 4
+        double I[1];
+        // Number of operations: 4
+        I[0] =  - std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+        
+        
+        // Number of operations for primary indices: 6
+        for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry: 6
-          A[j] += FE0_f1[ip][j]*((-1.000000000000000)*std::sin(5.000000000000000*X2[0]))*W2[ip]*det;
+          // Number of operations to compute entry: 2
+          A[nzc1[j]] += FE0_f0[ip][j]*I[0];
         }// end loop over 'j'
       }// end loop over 'ip'
         break;
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 92
+        // Total number of operations to compute element tensor (from this point): 40
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
       double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 92
+      // Number of operations to compute element tensor for following IP loop = 40
       for (unsigned int ip = 0; ip < 2; ip++)
       {
         
@@ -2604,11 +2626,17 @@ public:
         X2[0] = FEA2_f2[ip][0]*x[0][0] + FEA2_f2[ip][1]*x[1][0] + FEA2_f2[ip][2]*x[2][0];
         X2[1] = FEA2_f2[ip][0]*x[0][1] + FEA2_f2[ip][1]*x[1][1] + FEA2_f2[ip][2]*x[2][1];
         
-        // Number of operations for primary indices: 36
-        for (unsigned int j = 0; j < 6; j++)
+        // Number of operations to compute ip constants: 4
+        double I[1];
+        // Number of operations: 4
+        I[0] =  - std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+        
+        
+        // Number of operations for primary indices: 6
+        for (unsigned int j = 0; j < 3; j++)
         {
-          // Number of operations to compute entry: 6
-          A[j] += FE0_f2[ip][j]*((-1.000000000000000)*std::sin(5.000000000000000*X2[0]))*W2[ip]*det;
+          // Number of operations to compute entry: 2
+          A[nzc2[j]] += FE0_f0[ip][j]*I[0];
         }// end loop over 'j'
       }// end loop over 'ip'
         break;
