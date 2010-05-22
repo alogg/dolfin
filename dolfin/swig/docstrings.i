@@ -66,6 +66,10 @@ Return size of array. ";
 
 Zero array. ";
 
+%feature("docstring")  dolfin::Array::zero_eps "
+
+Set entries which meet (abs(x[i]) < eps) to zero. ";
+
 %feature("docstring")  dolfin::Array::min "
 
 Return minimum value of array. ";
@@ -81,6 +85,8 @@ Return pointer to data (const version). ";
 %feature("docstring")  dolfin::Array::data "
 
 Return pointer to data (non-const version). ";
+
+%feature("docstring")  dolfin::Array::zero_eps "";
 
 
 // File: classdolfin_1_1Assembler.xml
@@ -1757,10 +1763,6 @@ Interpolate function (possibly non-matching meshes). ";
 
 Extrapolate function (from a possibly lower-degree function space). ";
 
-%feature("docstring")  dolfin::Function::extrapolate "
-
-Extrapolate function and set equal to v in sub domain. ";
-
 %feature("docstring")  dolfin::Function::value_rank "
 
 Return value rank. ";
@@ -1884,6 +1886,10 @@ Return component (relative to super space). ";
 %feature("docstring")  dolfin::FunctionSpace::str "
 
 Return informal string representation (pretty-print). ";
+
+%feature("docstring")  dolfin::FunctionSpace::print_dofmap "
+
+Print dofmap (useful for debugging). ";
 
 
 // File: classdolfin_1_1Function_1_1GatherScratch.xml
@@ -2689,70 +2695,6 @@ Return derivative q (a constant) of polynomial. ";
 Return informal string representation (pretty-print). ";
 
 
-// File: classdolfin_1_1LAPACKMatrix.xml
-%feature("docstring") dolfin::LAPACKMatrix "
-
-This class provides a simple wrapper for matrix data for use with
-LAPACK (column-major ordering).
-
-This class does currently not implement the GenericMatrix interface
-but may possibly be extended to do so in the future.
-
-C++ includes: LAPACKMatrix.h ";
-
-%feature("docstring")  dolfin::LAPACKMatrix::LAPACKMatrix "
-
-Create M x N matrix. ";
-
-%feature("docstring")  dolfin::LAPACKMatrix::~LAPACKMatrix "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::LAPACKMatrix::size "
-
-Return size of given dimension. ";
-
-%feature("docstring")  dolfin::LAPACKMatrix::str "
-
-Return informal string representation (pretty-print). ";
-
-
-// File: classdolfin_1_1LAPACKSolvers.xml
-%feature("docstring") dolfin::LAPACKSolvers "
-
-This class provides a simple interface to selected LAPACK solvers.
-
-C++ includes: LAPACKSolvers.h ";
-
-
-// File: classdolfin_1_1LAPACKVector.xml
-%feature("docstring") dolfin::LAPACKVector "
-
-This class provides a simple wrapper for matrix data for use with
-LAPACK (column-major ordering).
-
-This class does currently not implement the GenericVector interface
-but may possibly be extended to do so in the future.
-
-C++ includes: LAPACKVector.h ";
-
-%feature("docstring")  dolfin::LAPACKVector::LAPACKVector "
-
-Create M x N matrix. ";
-
-%feature("docstring")  dolfin::LAPACKVector::~LAPACKVector "
-
-Destructor. ";
-
-%feature("docstring")  dolfin::LAPACKVector::size "
-
-Return size of vector. ";
-
-%feature("docstring")  dolfin::LAPACKVector::str "
-
-Return informal string representation (pretty-print). ";
-
-
 // File: classdolfin_1_1Legendre.xml
 %feature("docstring") dolfin::Legendre "
 
@@ -3211,22 +3153,6 @@ set). ";
 
 Return true iff topology is ordered according to the UFC numbering. ";
 
-%feature("docstring")  dolfin::Mesh::refine "
-
-Refine mesh uniformly. ";
-
-%feature("docstring")  dolfin::Mesh::refine "
-
-Refine mesh according to cells marked for refinement. ";
-
-%feature("docstring")  dolfin::Mesh::coarsen "
-
-Coarsen mesh uniformly. ";
-
-%feature("docstring")  dolfin::Mesh::coarsen "
-
-Coarsen mesh according to cells marked for coarsening. ";
-
 %feature("docstring")  dolfin::Mesh::move "
 
 Move coordinates of mesh according to new boundary coordinates. ";
@@ -3435,6 +3361,13 @@ The following named mesh data are recognized by DOLFIN:
 
 Boundary indicators
 
+\"boundary facet cells\" - Array<uint> of size num_facets \"boundary
+facet numbers\" - Array<uint> of size num_facets \"boundary
+indicators\" - Array<uint> of size num_facets \"material indicators\"
+- MeshFunction<uint> of dimension D
+
+Boundary indicators (alternative)
+
 \"exterior facet domains\" - MeshFunction<uint> of dimension D - 1
 
 Facet orientation (used for assembly over interior facets)
@@ -3456,13 +3389,6 @@ vector mapping
 Sub meshes
 
 \"global vertex indices\" - MeshFunction<uint> of dimension 0
-
-Mesh refinement
-
-\"boundary facet cells\" - MeshFunction<uint> of dimension 0, 1, ...,
-D \"boundary facet numbers\" - MeshFunction<uint> of dimension 0, 1,
-..., D \"boundary indicators\" - MeshFunction<uint> of dimension 0, 1,
-..., D \"material indicators\" - MeshFunction<uint> of dimension D
 
 C++ includes: MeshData.h ";
 
@@ -6846,18 +6772,14 @@ Logarithmic function (note: not full precision!). ";
 
 %feature("docstring")  dolfin::tic "
 
-Start timing.
+Start timing (should not be used internally in DOLFIN!).
 
 Timing functions measure CPU time as determined by clock(), the
 precision of which seems to be 0.01 seconds. ";
 
 %feature("docstring")  dolfin::toc "
 
-Return elapsed CPU time. ";
-
-%feature("docstring")  dolfin::tocd "
-
-Return and display elapsed CPU time. ";
+Return elapsed CPU time (should not be used internally in DOLFIN!). ";
 
 %feature("docstring")  dolfin::time "
 
@@ -7187,15 +7109,6 @@ Assemble scalar on sub domains. ";
 // File: KrylovSolver_8h.xml
 
 
-// File: LAPACKMatrix_8h.xml
-
-
-// File: LAPACKSolvers_8h.xml
-
-
-// File: LAPACKVector_8h.xml
-
-
 // File: LinearAlgebraFactory_8h.xml
 
 
@@ -7485,6 +7398,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: FunctionPlotData_8h.xml
+
+
+// File: BarycenterQuadrature_8h.xml
 
 
 // File: GaussianQuadrature_8h.xml
