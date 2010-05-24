@@ -1933,6 +1933,14 @@ Create Gauss quadrature with n points. ";
 Return informal string representation (pretty-print). ";
 
 
+// File: classdolfin_1_1GenericDofMap.xml
+%feature("docstring") dolfin::GenericDofMap "
+
+This class provides a generic interface for dof maps.
+
+C++ includes: GenericDofMap.h ";
+
+
 // File: classdolfin_1_1GenericFunction.xml
 %feature("docstring") dolfin::GenericFunction "
 
@@ -7023,6 +7031,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: Form_8h.xml
+
+
+// File: GenericDofMap_8h.xml
 
 
 // File: PeriodicBC_8h.xml
