@@ -5266,7 +5266,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     G[14] = -12.000000000000000*det*w[2][0];
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
     // Number of operations to compute element tensor for following IP loop = 10422
@@ -5563,7 +5563,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     G[20] = -4.000000000000000*det*w[3][0];
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
     // Number of operations to compute element tensor for following IP loop = 4455

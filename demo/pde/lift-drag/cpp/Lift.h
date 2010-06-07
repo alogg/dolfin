@@ -1272,7 +1272,7 @@ public:
     G[0] = W1*det*n1;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet)
     {
     case 0:

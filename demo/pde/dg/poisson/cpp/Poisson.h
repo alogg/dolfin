@@ -1968,7 +1968,7 @@ public:
     G[2] = 8.000000000000000*det/w[0][0];
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet)
     {
     case 0:
@@ -2228,7 +2228,7 @@ public:
     G[10] = -0.500000000000000*det*(K1_00*n00 + K1_01*n01);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet0)
     {
     case 0:

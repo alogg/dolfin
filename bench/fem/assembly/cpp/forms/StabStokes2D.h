@@ -5816,19 +5816,11 @@ public:
     G[10] = K_01*W1*det;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
     // Number of operations to compute element tensor for following IP loop = 128
     // Only 1 integration point, omitting IP loop.
-    
-    // Number of operations for primary indices: 0
-    for (unsigned int j = 0; j < 7; j++)
-    {
-      for (unsigned int k = 0; k < 7; k++)
-      {
-      }// end loop over 'k'
-    }// end loop over 'j'
     
     // Number of operations for primary indices: 96
     for (unsigned int j = 0; j < 2; j++)

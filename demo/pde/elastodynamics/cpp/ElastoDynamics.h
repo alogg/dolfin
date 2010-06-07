@@ -3785,7 +3785,7 @@ public:
     G[10] = (K_00*K_00*det*w[3][0]*(1.000000000000000 - w[5][0]) + K_01*K_01*det*(w[2][0]*(1.000000000000000 - w[5][0]) + w[3][0]*(2.000000000000000-2.000000000000000*w[5][0])));
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
     // Number of operations to compute element tensor for following IP loop = 1028
@@ -3987,7 +3987,7 @@ public:
     G[12] = det*w[11][0]*(K_10*K_10*( - w[8][0]-2.000000000000000*w[9][0]) - K_11*K_11*w[9][0]);
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
     // Number of operations to compute element tensor for following IP loop = 560
