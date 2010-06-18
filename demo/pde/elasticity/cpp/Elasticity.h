@@ -12,7 +12,7 @@
 //   epsilon:                        1e-14
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
 //   optimize:                       True
 //   output_dir:                     '.'
