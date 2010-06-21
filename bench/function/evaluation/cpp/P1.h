@@ -22,8 +22,8 @@
 //   representation:                 'auto'
 //   split:                          False
 
-#ifndef __LIFT_H
-#define __LIFT_H
+#ifndef __P1_H
+#define __P1_H
 
 #include <cmath>
 #include <stdexcept>
@@ -32,18 +32,18 @@
 
 /// This class defines the interface for a finite element.
 
-class lift_finite_element_0: public ufc::finite_element
+class p1_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  lift_finite_element_0() : ufc::finite_element()
+  p1_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~lift_finite_element_0()
+  virtual ~p1_finite_element_0()
   {
     // Do nothing
   }
@@ -956,7 +956,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class lift_dof_map_0: public ufc::dof_map
+class p1_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -964,13 +964,13 @@ private:
 public:
 
   /// Constructor
-  lift_dof_map_0() : ufc::dof_map()
+  p1_dof_map_0() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~lift_dof_map_0()
+  virtual ~p1_dof_map_0()
   {
     // Do nothing
   }
@@ -1200,297 +1200,6 @@ public:
 
 };
 
-/// This class defines the interface for the tabulation of the
-/// exterior facet tensor corresponding to the local contribution to
-/// a form from the integral over an exterior facet.
-
-class lift_exterior_facet_integral_0_0: public ufc::exterior_facet_integral
-{
-public:
-
-  /// Constructor
-  lift_exterior_facet_integral_0_0() : ufc::exterior_facet_integral()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~lift_exterior_facet_integral_0_0()
-  {
-    // Do nothing
-  }
-
-  /// Tabulate the tensor for the contribution from a local exterior facet
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               unsigned int facet) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    
-    // Compute determinant of Jacobian
-    
-    // Compute inverse of Jacobian
-    
-    // Get vertices on edge
-    static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
-    const unsigned int v0 = edge_vertices[facet][0];
-    const unsigned int v1 = edge_vertices[facet][1];
-    
-    // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
-    const double det = std::sqrt(dx0*dx0 + dx1*dx1);
-    
-    const bool direction = dx1*(x[facet][0] - x[v0][0]) - dx0*(x[facet][1] - x[v0][1]) < 0;// Compute facet normals from the facet scale factor constants
-    const double n1 = direction ? -dx0 / det : dx0 / det;
-    
-    // Array of quadrature weights.
-    static const double W1 = 1.000000000000000;
-    // Quadrature points on the UFC reference element: (0.500000000000000)
-    
-    // Value of basis functions at quadrature points.
-    static const double FE0_f0[1][2] = \
-    {{0.500000000000000, 0.500000000000000}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {1, 2};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 2};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 1};
-    
-    // Reset values in the element tensor.
-    A[0] = 0.000000000000000;
-    // Number of operations to compute geometry constants: 2.
-    double G[1];
-    G[0] = W1*det*n1;
-    
-    // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
-    switch (facet)
-    {
-    case 0:
-      {
-        // Total number of operations to compute element tensor (from this point): 6
-      
-      // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 6
-      // Only 1 integration point, omitting IP loop.
-      
-      // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      
-      // Total number of operations to compute function values = 4
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F0 += FE0_f0[0][r]*w[0][nzc0[r]];
-      }// end loop over 'r'
-      
-      // Number of operations to compute ip constants: 1
-      double I[1];
-      // Number of operations: 1
-      I[0] = F0*G[0];
-      
-      
-      // Number of operations for primary indices: 1
-      // Number of operations to compute entry: 1
-      A[0] += I[0];
-        break;
-      }
-    case 1:
-      {
-        // Total number of operations to compute element tensor (from this point): 6
-      
-      // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 6
-      // Only 1 integration point, omitting IP loop.
-      
-      // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      
-      // Total number of operations to compute function values = 4
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F0 += FE0_f0[0][r]*w[0][nzc1[r]];
-      }// end loop over 'r'
-      
-      // Number of operations to compute ip constants: 1
-      double I[1];
-      // Number of operations: 1
-      I[0] = F0*G[0];
-      
-      
-      // Number of operations for primary indices: 1
-      // Number of operations to compute entry: 1
-      A[0] += I[0];
-        break;
-      }
-    case 2:
-      {
-        // Total number of operations to compute element tensor (from this point): 6
-      
-      // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 6
-      // Only 1 integration point, omitting IP loop.
-      
-      // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      
-      // Total number of operations to compute function values = 4
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F0 += FE0_f0[0][r]*w[0][nzc2[r]];
-      }// end loop over 'r'
-      
-      // Number of operations to compute ip constants: 1
-      double I[1];
-      // Number of operations: 1
-      I[0] = F0*G[0];
-      
-      
-      // Number of operations for primary indices: 1
-      // Number of operations to compute entry: 1
-      A[0] += I[0];
-        break;
-      }
-    }
-    
-  }
-
-};
-
-/// This class defines the interface for the assembly of the global
-/// tensor corresponding to a form with r + n arguments, that is, a
-/// mapping
-///
-///     a : V1 x V2 x ... Vr x W1 x W2 x ... x Wn -> R
-///
-/// with arguments v1, v2, ..., vr, w1, w2, ..., wn. The rank r
-/// global tensor A is defined by
-///
-///     A = a(V1, V2, ..., Vr, w1, w2, ..., wn),
-///
-/// where each argument Vj represents the application to the
-/// sequence of basis functions of Vj and w1, w2, ..., wn are given
-/// fixed functions (coefficients).
-
-class lift_form_0: public ufc::form
-{
-public:
-
-  /// Constructor
-  lift_form_0() : ufc::form()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~lift_form_0()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the form
-  virtual const char* signature() const
-  {
-    return "Form([Integral(Product(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Indexed(FacetNormal(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), Measure('exterior_facet', 0, None))])";
-  }
-
-  /// Return the rank of the global tensor (r)
-  virtual unsigned int rank() const
-  {
-    return 0;
-  }
-
-  /// Return the number of coefficients (n)
-  virtual unsigned int num_coefficients() const
-  {
-    return 1;
-  }
-
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
-  {
-    return 0;
-  }
-
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
-  {
-    return 1;
-  }
-
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
-  {
-    return 0;
-  }
-
-  /// Create a new finite element for argument function i
-  virtual ufc::finite_element* create_finite_element(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new lift_finite_element_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new lift_dof_map_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Create a new cell integral on sub domain i
-  virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
-  {
-    return 0;
-  }
-
-  /// Create a new exterior facet integral on sub domain i
-  virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new lift_exterior_facet_integral_0_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Create a new interior facet integral on sub domain i
-  virtual ufc::interior_facet_integral* create_interior_facet_integral(unsigned int i) const
-  {
-    return 0;
-  }
-
-};
-
 // DOLFIN wrappers
 
 // Standard library includes
@@ -1505,149 +1214,50 @@ public:
 #include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
 
-namespace Lift
+namespace P1
 {
 
-class CoefficientSpace_p: public dolfin::FunctionSpace
+class FunctionSpace: public dolfin::FunctionSpace
 {
 public:
 
-  CoefficientSpace_p(const dolfin::Mesh& mesh):
+  FunctionSpace(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-  CoefficientSpace_p(dolfin::Mesh& mesh):
+  FunctionSpace(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1_dof_map_0()), mesh)))
   {
     // Do nothing
   }
 
-  CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
+  FunctionSpace(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
 
-  CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
+  FunctionSpace(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new lift_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new p1_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new p1_dof_map_0()), *mesh)))
   {
       // Do nothing
   }
 
-  ~CoefficientSpace_p()
+  ~FunctionSpace()
   {
   }
 
 };
-
-typedef CoefficientSpace_p Form_0_FunctionSpace_0;
-
-class Form_0: public dolfin::Form
-{
-public:
-
-  // Constructor
-  Form_0(const dolfin::Mesh& mesh):
-    dolfin::Form(0, 1), p(*this, 0)
-  {
-    _mesh = reference_to_no_delete_pointer(mesh);
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Constructor
-  Form_0(const dolfin::Mesh& mesh, const dolfin::GenericFunction& p):
-    dolfin::Form(0, 1), p(*this, 0)
-  {
-    _mesh = reference_to_no_delete_pointer(mesh);
-    this->p = p;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Constructor
-  Form_0(const dolfin::Mesh& mesh, boost::shared_ptr<const dolfin::GenericFunction> p):
-    dolfin::Form(0, 1), p(*this, 0)
-  {
-    _mesh = reference_to_no_delete_pointer(mesh);
-    this->p = *p;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::Form(0, 1), p(*this, 0)
-  {
-    _mesh = mesh;
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::GenericFunction& p):
-    dolfin::Form(0, 1), p(*this, 0)
-  {
-    _mesh = mesh;
-    this->p = p;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::GenericFunction> p):
-    dolfin::Form(0, 1), p(*this, 0)
-  {
-    _mesh = mesh;
-    this->p = *p;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new lift_form_0());
-  }
-
-  // Destructor
-  ~Form_0()
-  {}
-
-  /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
-  {
-    if (name == "p")
-      return 0;
-
-    dolfin::error("Invalid coefficient.");
-    return 0;
-  }
-
-  /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
-  {
-    switch (i)
-    {
-    case 0:
-      return "p";
-    }
-
-    dolfin::error("Invalid coefficient.");
-    return "unnamed";
-  }
-
-  // Typedefs
-  typedef Form_0_FunctionSpace_0 CoefficientSpace_p;
-
-  // Coefficients
-  dolfin::CoefficientAssigner p;
-};
-
-// Class typedefs
-typedef Form_0 Functional;
 
 }
 

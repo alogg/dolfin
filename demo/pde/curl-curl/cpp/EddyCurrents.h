@@ -8187,7 +8187,7 @@ public:
     G[11] = W1*det*(K_20*K_20*(K_01*K_01 + K_02*K_02) + K_21*(K_21*(K_00*K_00 + K_02*K_02)-2.000000000000000*K_00*K_01*K_20) + K_22*(K_22*(K_00*K_00 + K_01*K_01)-2.000000000000000*K_02*(K_00*K_20 + K_01*K_21)));
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('optimisation', 'simplify_expressions'), ('non zero columns', True), ('remove zero terms', True), ('ignore ones', True), ('ignore zero tables', True)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
     // Number of operations to compute element tensor for following IP loop = 972
@@ -8270,30 +8270,6 @@ public:
         A[nzc4[j]*6 + nzc7[k]] += FE0_C0_D001[0][j]*FE0_C1_D100[0][k]*G[10];
         // Number of operations to compute entry: 3
         A[nzc8[j]*6 + nzc8[k]] += FE0_C1_D100[0][j]*FE0_C1_D100[0][k]*G[11];
-      }// end loop over 'k'
-    }// end loop over 'j'
-    
-    // Number of operations for primary indices: 0
-    for (unsigned int j = 0; j < 6; j++)
-    {
-      for (unsigned int k = 0; k < 6; k++)
-      {
-      }// end loop over 'k'
-    }// end loop over 'j'
-    
-    // Number of operations for primary indices: 0
-    for (unsigned int j = 0; j < 6; j++)
-    {
-      for (unsigned int k = 0; k < 3; k++)
-      {
-      }// end loop over 'k'
-    }// end loop over 'j'
-    
-    // Number of operations for primary indices: 0
-    for (unsigned int j = 0; j < 3; j++)
-    {
-      for (unsigned int k = 0; k < 6; k++)
-      {
       }// end loop over 'k'
     }// end loop over 'j'
   }
