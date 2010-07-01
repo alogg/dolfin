@@ -8196,9 +8196,9 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 5.
     double G[3];
-    G[0] = 0.500000000000000*det*n0;
-    G[1] = 0.500000000000000*det*n1;
-    G[2] = 0.500000000000000*det;
+    G[0] = 0.500000000000000*det;
+    G[1] = 0.500000000000000*det*n0;
+    G[2] = 0.500000000000000*det*n1;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -8227,7 +8227,7 @@ public:
         // Number of operations to compute ip constants: 10
         double I[1];
         // Number of operations: 10
-        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[2] + F0*G[0] + F1*G[1]);
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
         
         
         // Number of operations for primary indices: 12
@@ -8265,7 +8265,7 @@ public:
         // Number of operations to compute ip constants: 10
         double I[1];
         // Number of operations: 10
-        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[2] + F0*G[0] + F1*G[1]);
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
         
         
         // Number of operations for primary indices: 12
@@ -8303,7 +8303,7 @@ public:
         // Number of operations to compute ip constants: 10
         double I[1];
         // Number of operations: 10
-        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[2] + F0*G[0] + F1*G[1]);
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
         
         
         // Number of operations for primary indices: 12
@@ -8469,21 +8469,21 @@ public:
     G[2] = -0.500000000000000*det*w[2][0]*(K1_10*n00 + K1_11*n01);
     G[3] = -0.500000000000000*det*w[2][0]*(K0_10*n00 + K0_11*n01);
     G[4] = -0.500000000000000*det*w[2][0]*(K1_10*n10 + K1_11*n11);
-    G[5] = 0.500000000000000*det;
-    G[6] = det*w[2][0]*w[3][0]*(n10*n10 + n11*n11)/(0.500000000000000*(w[1][0] + w[1][1]));
+    G[5] = det*w[2][0]*w[3][0]*(n10*n10 + n11*n11)/(0.500000000000000*(w[1][0] + w[1][1]));
+    G[6] = 0.500000000000000*det;
     G[7] = 0.500000000000000*det*n10;
     G[8] = 0.500000000000000*det*n11;
     G[9] = -0.500000000000000*det*w[2][0]*(K0_00*n00 + K0_01*n01);
     G[10] = -0.500000000000000*det*w[2][0]*(K1_00*n10 + K1_01*n11);
-    G[11] = det*w[2][0]*w[3][0]*(n00*n10 + n01*n11)/(0.500000000000000*(w[1][0] + w[1][1]));
+    G[11] = -0.500000000000000*det;
     G[12] = -0.500000000000000*det*n00;
     G[13] = -0.500000000000000*det*n01;
-    G[14] = -0.500000000000000*det;
+    G[14] = det*w[2][0]*w[3][0]*(n00*n10 + n01*n11)/(0.500000000000000*(w[1][0] + w[1][1]));
     G[15] = -0.500000000000000*det*n10;
     G[16] = -0.500000000000000*det*n11;
-    G[17] = det*w[2][0]*w[3][0]*(n00*n00 + n01*n01)/(0.500000000000000*(w[1][0] + w[1][1]));
-    G[18] = 0.500000000000000*det*n00;
-    G[19] = 0.500000000000000*det*n01;
+    G[17] = 0.500000000000000*det*n00;
+    G[18] = 0.500000000000000*det*n01;
+    G[19] = det*w[2][0]*w[3][0]*(n00*n00 + n01*n01)/(0.500000000000000*(w[1][0] + w[1][1]));
     G[20] = -0.500000000000000*det*w[2][0]*(K1_00*n00 + K1_01*n01);
     
     // Compute element tensor using UFL quadrature representation
@@ -8536,7 +8536,7 @@ public:
           I[4] = G[4]*W3[ip];
           
           // Number of operations: 11
-          I[5] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[5] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           // Number of operations: 1
           I[6] = G[9]*W3[ip];
@@ -8545,13 +8545,13 @@ public:
           I[7] = G[10]*W3[ip];
           
           // Number of operations: 11
-          I[8] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[8] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 11
-          I[9] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[9] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 11
-          I[10] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[10] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[11] = G[20]*W3[ip];
@@ -8652,22 +8652,22 @@ public:
           I[5] = G[3]*W3[ip];
           
           // Number of operations: 11
-          I[6] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[6] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 1
           I[7] = G[10]*W3[ip];
           
           // Number of operations: 11
-          I[8] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[8] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 11
-          I[9] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[9] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[10] = G[0]*W3[ip];
           
           // Number of operations: 11
-          I[11] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[11] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           
           // Number of operations for primary indices: 240
@@ -8756,7 +8756,7 @@ public:
           I[2] = G[10]*W3[ip];
           
           // Number of operations: 11
-          I[3] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[3] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 1
           I[4] = G[3]*W3[ip];
@@ -8765,16 +8765,16 @@ public:
           I[5] = G[20]*W3[ip];
           
           // Number of operations: 11
-          I[6] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[6] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 1
           I[7] = G[9]*W3[ip];
           
           // Number of operations: 11
-          I[8] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[8] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           // Number of operations: 11
-          I[9] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[9] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[10] = G[1]*W3[ip];
@@ -8883,25 +8883,25 @@ public:
           I[4] = G[9]*W3[ip];
           
           // Number of operations: 11
-          I[5] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[5] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[6] = G[4]*W3[ip];
           
           // Number of operations: 11
-          I[7] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[7] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           // Number of operations: 1
           I[8] = G[1]*W3[ip];
           
           // Number of operations: 11
-          I[9] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[9] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 1
           I[10] = G[20]*W3[ip];
           
           // Number of operations: 11
-          I[11] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[11] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           
           // Number of operations for primary indices: 240
@@ -8999,22 +8999,22 @@ public:
           I[5] = G[10]*W3[ip];
           
           // Number of operations: 11
-          I[6] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[6] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 1
           I[7] = G[20]*W3[ip];
           
           // Number of operations: 11
-          I[8] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[8] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 11
-          I[9] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[9] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 1
           I[10] = G[0]*W3[ip];
           
           // Number of operations: 11
-          I[11] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[11] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           
           // Number of operations for primary indices: 240
@@ -9094,7 +9094,7 @@ public:
           // Number of operations to compute ip constants: 52
           double I[12];
           // Number of operations: 11
-          I[0] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[0] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 1
           I[1] = G[2]*W3[ip];
@@ -9112,19 +9112,19 @@ public:
           I[5] = G[3]*W3[ip];
           
           // Number of operations: 11
-          I[6] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[6] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 1
           I[7] = G[9]*W3[ip];
           
           // Number of operations: 11
-          I[8] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[8] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           // Number of operations: 1
           I[9] = G[1]*W3[ip];
           
           // Number of operations: 11
-          I[10] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[10] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[11] = G[20]*W3[ip];
@@ -9215,7 +9215,7 @@ public:
           // Number of operations to compute ip constants: 52
           double I[12];
           // Number of operations: 11
-          I[0] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[0] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 1
           I[1] = G[0]*W3[ip];
@@ -9230,13 +9230,13 @@ public:
           I[4] = G[20]*W3[ip];
           
           // Number of operations: 11
-          I[5] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[5] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[6] = G[4]*W3[ip];
           
           // Number of operations: 11
-          I[7] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[7] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           // Number of operations: 1
           I[8] = G[1]*W3[ip];
@@ -9248,7 +9248,7 @@ public:
           I[10] = G[2]*W3[ip];
           
           // Number of operations: 11
-          I[11] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[11] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           
           // Number of operations for primary indices: 240
@@ -9340,16 +9340,16 @@ public:
           I[3] = G[20]*W3[ip];
           
           // Number of operations: 11
-          I[4] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[4] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           // Number of operations: 11
-          I[5] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[5] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[6] = G[0]*W3[ip];
           
           // Number of operations: 11
-          I[7] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[7] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 1
           I[8] = G[10]*W3[ip];
@@ -9361,7 +9361,7 @@ public:
           I[10] = G[2]*W3[ip];
           
           // Number of operations: 11
-          I[11] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[11] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           
           // Number of operations for primary indices: 240
@@ -9453,16 +9453,16 @@ public:
           I[3] = G[10]*W3[ip];
           
           // Number of operations: 11
-          I[4] = W3[ip]*(G[11] + std::abs((F2*n10 + F3*n11))*G[14] + F2*G[15] + F3*G[16]);
+          I[4] = W3[ip]*(G[14] + std::abs((F2*n10 + F3*n11))*G[11] + F2*G[15] + F3*G[16]);
           
           // Number of operations: 11
-          I[5] = W3[ip]*(G[17] + std::abs((F0*n00 + F1*n01))*G[5] + F0*G[18] + F1*G[19]);
+          I[5] = W3[ip]*(G[19] + std::abs((F0*n00 + F1*n01))*G[6] + F0*G[17] + F1*G[18]);
           
           // Number of operations: 1
           I[6] = G[0]*W3[ip];
           
           // Number of operations: 11
-          I[7] = W3[ip]*(G[6] + std::abs((F2*n10 + F3*n11))*G[5] + F2*G[7] + F3*G[8]);
+          I[7] = W3[ip]*(G[5] + std::abs((F2*n10 + F3*n11))*G[6] + F2*G[7] + F3*G[8]);
           
           // Number of operations: 1
           I[8] = G[1]*W3[ip];
@@ -9474,7 +9474,7 @@ public:
           I[10] = G[2]*W3[ip];
           
           // Number of operations: 11
-          I[11] = W3[ip]*(G[11] + std::abs((F0*n00 + F1*n01))*G[14] + F0*G[12] + F1*G[13]);
+          I[11] = W3[ip]*(G[14] + std::abs((F0*n00 + F1*n01))*G[11] + F0*G[12] + F1*G[13]);
           
           
           // Number of operations for primary indices: 240

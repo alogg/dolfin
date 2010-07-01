@@ -2774,7 +2774,7 @@ public:
   /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    _global_dimension = 0.000000000000000 + 1;
+    _global_dimension = 1;
     return false;
   }
 
