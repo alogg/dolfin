@@ -584,6 +584,16 @@ dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
 Constructor. ";
 
 %feature("docstring")
+dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
+
+Constructor. ";
+
+%feature("docstring")
+dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
+
+Constructor. ";
+
+%feature("docstring")
 dolfin::CholmodCholeskySolver::~CholmodCholeskySolver "
 
 Destructor. ";
@@ -999,9 +1009,13 @@ Set value g for boundary condition, domain remains unchanged. ";
 // File: classdolfin_1_1DofMap.xml
 %feature("docstring") dolfin::DofMap "
 
-This class handles the mapping of degrees of freedom. It wraps a
-ufc::dof_map on a specific mesh and provides optional precomputation
-and reordering of dofs.
+This class handles the mapping of degrees of freedom. It builds a dof
+map based on a ufc::dof_map on a specific mesh. It will reorder the
+dofs when running in parallel.
+
+If ufc_offset != 0, then the dof map provides a view into a larger dof
+map. A dof map which is a view, can be 'collapsed' such that the dof
+indices are contiguous.
 
 C++ includes: DofMap.h ";
 
@@ -1068,10 +1082,6 @@ Tabulate the coordinates of all dofs on a cell (UFC cell version). ";
 
 Tabulate the coordinates of all dofs on a cell (DOLFIN cell version).
 ";
-
-%feature("docstring")  dolfin::DofMap::renumbered "
-
-Test whether dof map has been renumbered. ";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
 
@@ -1940,6 +1950,74 @@ This class provides a generic interface for dof maps.
 
 C++ includes: GenericDofMap.h ";
 
+%feature("docstring")  dolfin::GenericDofMap::signature "
+
+Return a string identifying the dof map. ";
+
+%feature("docstring")  dolfin::GenericDofMap::needs_mesh_entities "
+
+Return true iff mesh entities of topological dimension d are needed.
+";
+
+%feature("docstring")  dolfin::GenericDofMap::global_dimension "
+
+Return the dimension of the global finite element function space. ";
+
+%feature("docstring")  dolfin::GenericDofMap::local_dimension "
+
+Return the dimension of the local finite element function space on a
+cell ";
+
+%feature("docstring")  dolfin::GenericDofMap::max_local_dimension "
+
+Return the maximum dimension of the local finite element function
+space. ";
+
+%feature("docstring")  dolfin::GenericDofMap::geometric_dimension "";
+
+%feature("docstring")  dolfin::GenericDofMap::num_facet_dofs "
+
+Return number of facet dofs. ";
+
+%feature("docstring")  dolfin::GenericDofMap::tabulate_dofs "
+
+Tabulate the local-to-global mapping of dofs on a cell (UFC cell
+version) ";
+
+%feature("docstring")  dolfin::GenericDofMap::tabulate_dofs "
+
+Tabulate the local-to-global mapping of dofs on a cell (DOLFIN cell
+version) ";
+
+%feature("docstring")  dolfin::GenericDofMap::tabulate_facet_dofs "
+
+Tabulate local-local facet dofs. ";
+
+%feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
+
+Tabulate the coordinates of all dofs on a cell (UFC cell version). ";
+
+%feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
+
+Tabulate the coordinates of all dofs on a cell (DOLFIN cell version).
+";
+
+%feature("docstring")  dolfin::GenericDofMap::extract_sub_dofmap "
+
+Extract sub dofmap component. ";
+
+%feature("docstring")  dolfin::GenericDofMap::collapse "
+
+\"Collapse\" a sub dofmap ";
+
+%feature("docstring")  dolfin::GenericDofMap::dofs "
+
+Return the set of dof indices. ";
+
+%feature("docstring")  dolfin::GenericDofMap::str "
+
+Return informal string representation (pretty-print). ";
+
 
 // File: classdolfin_1_1GenericFunction.xml
 %feature("docstring") dolfin::GenericFunction "
@@ -2011,6 +2089,42 @@ This class provides a general solver for linear systems Ax = b.
 C++ includes: GenericLinearSolver.h ";
 
 %feature("docstring")  dolfin::GenericLinearSolver::solve "
+
+Solve linear system Ax = b. ";
+
+%feature("docstring")  dolfin::GenericLinearSolver::solve "
+
+Solve linear system Ax = b. ";
+
+
+// File: classdolfin_1_1GenericLUSolver.xml
+%feature("docstring") dolfin::GenericLUSolver "
+
+This a base class for LU solvers.
+
+C++ includes: GenericLUSolver.h ";
+
+%feature("docstring")  dolfin::GenericLUSolver::~GenericLUSolver "
+
+Destructor. ";
+
+%feature("docstring")  dolfin::GenericLUSolver::set_operator "
+
+Set operator (matrix). ";
+
+%feature("docstring")  dolfin::GenericLUSolver::solve "
+
+Solve linear system Ax = b. ";
+
+%feature("docstring")  dolfin::GenericLUSolver::factorize "
+
+Factor the sparse matrix A. ";
+
+%feature("docstring")  dolfin::GenericLUSolver::solve_factorized "
+
+Solve factorized system. ";
+
+%feature("docstring")  dolfin::GenericLUSolver::solve "
 
 Solve linear system Ax = b. ";
 
@@ -2130,7 +2244,8 @@ Get value of given entry. ";
 
 %feature("docstring")  dolfin::GenericMatrix::setitem "
 
-Set given entry to value. ";
+Set given entry to value. apply(\"insert\") should be called before
+using using the object. ";
 
 %feature("docstring")  dolfin::GenericMatrix::ident_zeros "
 
@@ -2426,7 +2541,8 @@ Get value of given entry. ";
 
 %feature("docstring")  dolfin::GenericVector::setitem "
 
-Set given entry to value. ";
+Set given entry to value. apply(\"insert\") should be called before
+using using the object. ";
 
 
 // File: classdolfin_1_1GlobalParameters.xml
@@ -2887,13 +3003,25 @@ definite matrices. Cholesky is not yet suppprted for all backends
 
 %feature("docstring")  dolfin::LUSolver::~LUSolver "";
 
+%feature("docstring")  dolfin::LUSolver::set_operator "
+
+Set operator (matrix). ";
+
 %feature("docstring")  dolfin::LUSolver::solve "
 
 Solve linear system Ax = b. ";
 
-%feature("docstring")  dolfin::LUSolver::factorize "";
+%feature("docstring")  dolfin::LUSolver::factorize "
 
-%feature("docstring")  dolfin::LUSolver::factorized_solve "";
+Factor the sparse matrix A. ";
+
+%feature("docstring")  dolfin::LUSolver::solve_factorized "
+
+Solve factorized system. ";
+
+%feature("docstring")  dolfin::LUSolver::solve "
+
+Solve linear system Ax = b. ";
 
 
 // File: classdolfin_1_1Matrix.xml
@@ -4528,6 +4656,8 @@ Get pointer to weights. ";
 %feature("docstring")  dolfin::ODESolutionData::~ODESolutionData "";
 
 %feature("docstring")  dolfin::ODESolutionData::b "";
+
+%feature("docstring")  dolfin::ODESolutionData::eval_a "";
 
 
 // File: classdolfin_1_1ODESolutionIterator.xml
@@ -6285,12 +6415,18 @@ Return reference to uBLAS vector (non-const version). ";
 %feature("docstring") dolfin::UmfpackLUSolver "
 
 This class implements the direct solution (LU factorization) of linear
-systems of the form Ax = b using uBLAS data types. Dense matrices are
-solved using uBLAS LU factorisation, and sparse matrices are solved
-using UMFPACK (http://www.cise.ufl.edu/research/sparse/umfpack/) if
-installed. Matrices can also be inverted.
+systems of the form Ax = b using UMFPACK
+(http://www.cise.ufl.edu/research/sparse/umfpack/) if installed.
 
 C++ includes: UmfpackLUSolver.h ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::UmfpackLUSolver "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::UmfpackLUSolver "
+
+Constructor. ";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::UmfpackLUSolver "
 
@@ -6300,16 +6436,22 @@ Constructor. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::UmfpackLUSolver::set_operator "
+
+Set operator (matrix). ";
+
 %feature("docstring")  dolfin::UmfpackLUSolver::solve "
 
-Solve uBLAS linear system Ax = b for a sparse matrix using UMFPACK if
+Solve linear system Ax = b for a sparse matrix using UMFPACK if
 installed. ";
+
+%feature("docstring")  dolfin::UmfpackLUSolver::symbolic_factorize "";
 
 %feature("docstring")  dolfin::UmfpackLUSolver::factorize "
 
-LU-factor sparse matrix A if UMFPACK is installed. ";
+LU-factor the sparse matrix A if UMFPACK is installed. ";
 
-%feature("docstring")  dolfin::UmfpackLUSolver::factorized_solve "
+%feature("docstring")  dolfin::UmfpackLUSolver::solve_factorized "
 
 Solve factorized system (UMFPACK). ";
 
@@ -7103,6 +7245,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: GenericLinearSolver_8h.xml
+
+
+// File: GenericLUSolver_8h.xml
 
 
 // File: GenericMatrix_8h.xml
