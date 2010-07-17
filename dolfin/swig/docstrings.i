@@ -598,6 +598,10 @@ dolfin::CholmodCholeskySolver::~CholmodCholeskySolver "
 
 Destructor. ";
 
+%feature("docstring")  dolfin::CholmodCholeskySolver::set_operator "
+
+Solve the operator (matrix). ";
+
 %feature("docstring")  dolfin::CholmodCholeskySolver::solve "
 
 Solve linear system Ax = b for a sparse matrix using CHOLMOD. ";
@@ -823,6 +827,10 @@ Create empty vector (local). ";
 %feature("docstring")  dolfin::DefaultFactory::create_pattern "
 
 Create empty sparsity pattern. ";
+
+%feature("docstring")  dolfin::DefaultFactory::create_lu_solver "
+
+Create LU solver. ";
 
 
 // File: classdolfin_1_1dGqMethod.xml
@@ -2088,6 +2096,10 @@ This class provides a general solver for linear systems Ax = b.
 
 C++ includes: GenericLinearSolver.h ";
 
+%feature("docstring")  dolfin::GenericLinearSolver::set_operator "
+
+Solve the operator (matrix). ";
+
 %feature("docstring")  dolfin::GenericLinearSolver::solve "
 
 Solve linear system Ax = b. ";
@@ -2104,10 +2116,6 @@ This a base class for LU solvers.
 
 C++ includes: GenericLUSolver.h ";
 
-%feature("docstring")  dolfin::GenericLUSolver::~GenericLUSolver "
-
-Destructor. ";
-
 %feature("docstring")  dolfin::GenericLUSolver::set_operator "
 
 Set operator (matrix). ";
@@ -2115,14 +2123,6 @@ Set operator (matrix). ";
 %feature("docstring")  dolfin::GenericLUSolver::solve "
 
 Solve linear system Ax = b. ";
-
-%feature("docstring")  dolfin::GenericLUSolver::factorize "
-
-Factor the sparse matrix A. ";
-
-%feature("docstring")  dolfin::GenericLUSolver::solve_factorized "
-
-Solve factorized system. ";
 
 %feature("docstring")  dolfin::GenericLUSolver::solve "
 
@@ -2751,6 +2751,14 @@ Create Krylov solver. ";
 
 Destructor. ";
 
+%feature("docstring")  dolfin::KrylovSolver::set_operator "
+
+Set operator (matrix). ";
+
+%feature("docstring")  dolfin::KrylovSolver::solve "
+
+Solve linear system Ax = b. ";
+
 %feature("docstring")  dolfin::KrylovSolver::solve "
 
 Solve linear system Ax = b. ";
@@ -2883,6 +2891,11 @@ Create empty vector (local). ";
 
 Create empty sparsity pattern (returning zero if not used/needed). ";
 
+%feature("docstring")  dolfin::LinearAlgebraFactory::create_lu_solver
+"
+
+Create LU solver. ";
+
 
 // File: classdolfin_1_1LinearSolver.xml
 %feature("docstring") dolfin::LinearSolver "
@@ -2898,6 +2911,14 @@ Create linear solver. ";
 %feature("docstring")  dolfin::LinearSolver::~LinearSolver "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::LinearSolver::set_operator "
+
+Set the operator (matrix). ";
+
+%feature("docstring")  dolfin::LinearSolver::solve "
+
+Solve linear system Ax = b. ";
 
 %feature("docstring")  dolfin::LinearSolver::solve "
 
@@ -2996,12 +3017,20 @@ Destructor. ";
 
 %feature("docstring")  dolfin::LUSolver::LUSolver "
 
+Constructor.
+
 LU solver for the built-in LA backends. The type can be \"lu\" or
 \"cholesky\". Cholesky is suitable only for symmetric positive-
 definite matrices. Cholesky is not yet suppprted for all backends
 (which will default to LU. ";
 
-%feature("docstring")  dolfin::LUSolver::~LUSolver "";
+%feature("docstring")  dolfin::LUSolver::LUSolver "
+
+Constructor. ";
+
+%feature("docstring")  dolfin::LUSolver::~LUSolver "
+
+Destructor. ";
 
 %feature("docstring")  dolfin::LUSolver::set_operator "
 
@@ -3011,17 +3040,9 @@ Set operator (matrix). ";
 
 Solve linear system Ax = b. ";
 
-%feature("docstring")  dolfin::LUSolver::factorize "
-
-Factor the sparse matrix A. ";
-
-%feature("docstring")  dolfin::LUSolver::solve_factorized "
-
-Solve factorized system. ";
-
 %feature("docstring")  dolfin::LUSolver::solve "
 
-Solve linear system Ax = b. ";
+Solve linear system. ";
 
 
 // File: classdolfin_1_1Matrix.xml
@@ -5513,6 +5534,10 @@ Create empty vector (local). ";
 
 Create empty sparsity pattern. ";
 
+%feature("docstring")  dolfin::STLFactory::create_lu_solver "
+
+Create LU solver. ";
+
 
 // File: classdolfin_1_1STLMatrix.xml
 %feature("docstring") dolfin::STLMatrix "
@@ -5960,10 +5985,6 @@ Destructor. ";
 
 Create empty matrix. ";
 
-%feature("docstring")  dolfin::uBLASFactory::create_pattern "
-
-Create empty sparsity pattern. ";
-
 %feature("docstring")  dolfin::uBLASFactory::create_vector "
 
 Create empty vector. ";
@@ -5971,6 +5992,14 @@ Create empty vector. ";
 %feature("docstring")  dolfin::uBLASFactory::create_local_vector "
 
 Create empty vector (local). ";
+
+%feature("docstring")  dolfin::uBLASFactory::create_pattern "
+
+Create empty sparsity pattern. ";
+
+%feature("docstring")  dolfin::uBLASFactory::create_lu_solver "
+
+Create LU solver. ";
 
 
 // File: classdolfin_1_1uBLASILUPreconditioner.xml
@@ -6061,6 +6090,10 @@ Create Krylov solver for a particular method and uBLASPreconditioner.
 %feature("docstring")  dolfin::uBLASKrylovSolver::~uBLASKrylovSolver "
 
 Destructor. ";
+
+%feature("docstring")  dolfin::uBLASKrylovSolver::set_operator "
+
+Solve the operator (matrix). ";
 
 %feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 
@@ -6445,15 +6478,9 @@ Set operator (matrix). ";
 Solve linear system Ax = b for a sparse matrix using UMFPACK if
 installed. ";
 
-%feature("docstring")  dolfin::UmfpackLUSolver::symbolic_factorize "";
+%feature("docstring")  dolfin::UmfpackLUSolver::solve "
 
-%feature("docstring")  dolfin::UmfpackLUSolver::factorize "
-
-LU-factor the sparse matrix A if UMFPACK is installed. ";
-
-%feature("docstring")  dolfin::UmfpackLUSolver::solve_factorized "
-
-Solve factorized system (UMFPACK). ";
+Solve linear system. ";
 
 
 // File: classdolfin_1_1UnitCircle.xml
@@ -7359,6 +7386,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: uBLASPreconditioner_8h.xml
+
+
+// File: uBLASSparseMatrix_8h.xml
 
 
 // File: uBLASVector_8h.xml
