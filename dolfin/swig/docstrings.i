@@ -832,6 +832,10 @@ Create empty sparsity pattern. ";
 
 Create LU solver. ";
 
+%feature("docstring")  dolfin::DefaultFactory::create_krylov_solver "
+
+Create Krylov solver. ";
+
 
 // File: classdolfin_1_1dGqMethod.xml
 %feature("docstring") dolfin::dGqMethod "
@@ -2895,6 +2899,11 @@ Create empty sparsity pattern (returning zero if not used/needed). ";
 "
 
 Create LU solver. ";
+
+%feature("docstring")
+dolfin::LinearAlgebraFactory::create_krylov_solver "
+
+Create Krylov solver. ";
 
 
 // File: classdolfin_1_1LinearSolver.xml
@@ -5538,6 +5547,10 @@ Create empty sparsity pattern. ";
 
 Create LU solver. ";
 
+%feature("docstring")  dolfin::STLFactory::create_krylov_solver "
+
+Create Krylov solver. ";
+
 
 // File: classdolfin_1_1STLMatrix.xml
 %feature("docstring") dolfin::STLMatrix "
@@ -6000,6 +6013,10 @@ Create empty sparsity pattern. ";
 %feature("docstring")  dolfin::uBLASFactory::create_lu_solver "
 
 Create LU solver. ";
+
+%feature("docstring")  dolfin::uBLASFactory::create_krylov_solver "
+
+Create Krylov solver. ";
 
 
 // File: classdolfin_1_1uBLASILUPreconditioner.xml
@@ -7287,6 +7304,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: GenericVector_8h.xml
+
+
+// File: ITLKrylovSolver_8h.xml
 
 
 // File: KrylovSolver_8h.xml
