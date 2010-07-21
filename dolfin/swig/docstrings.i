@@ -2523,14 +2523,6 @@ Return sum of vector. ";
 Return sum of selected rows in vector. Repeated entries only summed
 once. ";
 
-%feature("docstring")  dolfin::GenericVector::lambda "
-
-Apply lambda function. ";
-
-%feature("docstring")  dolfin::GenericVector::lambda "
-
-Apply lambda function. ";
-
 %feature("docstring")  dolfin::GenericVector::data "
 
 Return pointer to underlying data (const version). ";
@@ -7331,6 +7323,9 @@ Assemble scalar on sub domains. ";
 
 
 // File: MTL4Vector_8h.xml
+
+
+// File: PETScBaseMatrix_8h.xml
 
 
 // File: PETScFactory_8h.xml
