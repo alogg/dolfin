@@ -14,7 +14,7 @@
 //   format:                         'dolfin'
 //   log_level:                      20
 //   log_prefix:                     ''
-//   optimize:                       True
+//   optimize:                       False
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -2291,8 +2291,8 @@ public:
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      11
     // Number of operations (multiply-add pairs) for geometry tensor:    8
-    // Number of operations (multiply-add pairs) for tensor contraction: 17
-    // Total number of operations (multiply-add pairs):                  36
+    // Number of operations (multiply-add pairs) for tensor contraction: 49
+    // Total number of operations (multiply-add pairs):                  68
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -2322,42 +2322,42 @@ public:
     const double G0_1_1 = det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor
-    A[9] = 0.666666666666665*G0_0_1;
-    A[18] = 0.000000000000000;
-    A[20] = A[9];
-    A[13] = -0.166666666666666*G0_1_0;
+    A[0] = 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0 + 0.499999999999999*G0_1_1;
+    A[1] = 0.166666666666666*G0_0_0 + 0.166666666666667*G0_1_0;
+    A[2] = 0.166666666666666*G0_0_1 + 0.166666666666666*G0_1_1;
     A[3] = 0.000000000000000;
-    A[17] = 0.000000000000000;
-    A[8] = -0.166666666666666*G0_0_1;
-    A[11] = -A[9] - 0.666666666666665*G0_0_0;
-    A[30] = A[11];
-    A[4] = -A[9] - 0.666666666666665*G0_1_1;
-    A[25] = 0.000000000000000;
+    A[4] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_1;
+    A[5] = -0.666666666666665*G0_0_0 - 0.666666666666666*G0_1_0;
+    A[6] = 0.166666666666666*G0_0_0 + 0.166666666666667*G0_0_1;
     A[7] = 0.499999999999999*G0_0_0;
-    A[1] = -A[13] + 0.166666666666666*G0_0_0;
-    A[31] = -3.999999999999999*A[1];
-    A[34] = A[9] + 0.666666666666665*G0_1_0;
-    A[29] = A[34];
-    A[14] = 0.499999999999999*G0_1_1;
-    A[0] = A[14] + 0.499999999999999*G0_0_0 + 0.499999999999999*G0_0_1 + 0.499999999999999*G0_1_0;
+    A[8] = -0.166666666666666*G0_0_1;
+    A[9] = 0.666666666666665*G0_0_1;
     A[10] = 0.000000000000000;
-    A[5] = A[31];
-    A[26] = A[4];
-    A[6] = -A[8] + 0.166666666666666*G0_0_0;
-    A[23] = -A[34] - 1.333333333333330*G0_1_1;
-    A[21] = -A[23] + 1.333333333333330*G0_0_0;
-    A[28] = A[21];
-    A[33] = A[23];
-    A[35] = A[21];
+    A[11] = -0.666666666666665*G0_0_0 - 0.666666666666665*G0_0_1;
+    A[12] = 0.166666666666666*G0_1_0 + 0.166666666666666*G0_1_1;
+    A[13] = -0.166666666666666*G0_1_0;
+    A[14] = 0.499999999999999*G0_1_1;
+    A[15] = 0.666666666666665*G0_1_0;
+    A[16] = -0.666666666666665*G0_1_0 - 0.666666666666665*G0_1_1;
+    A[17] = 0.000000000000000;
+    A[18] = 0.000000000000000;
     A[19] = 0.666666666666665*G0_1_0;
-    A[24] = -A[19] - 0.666666666666665*G0_1_1;
-    A[16] = A[24];
-    A[12] = -A[13] + 0.166666666666666*G0_1_1;
-    A[27] = -A[34] - 1.333333333333331*G0_0_0;
-    A[22] = A[27];
-    A[15] = A[19];
+    A[20] = 0.666666666666665*G0_0_1;
+    A[21] = 1.333333333333330*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.333333333333329*G0_1_1;
+    A[22] = -1.333333333333330*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[23] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.333333333333330*G0_1_1;
+    A[24] = -0.666666666666665*G0_1_0 - 0.666666666666665*G0_1_1;
+    A[25] = 0.000000000000000;
+    A[26] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_1;
+    A[27] = -1.333333333333330*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[28] = 1.333333333333331*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666665*G0_1_0 + 1.333333333333330*G0_1_1;
+    A[29] = 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[30] = -0.666666666666665*G0_0_0 - 0.666666666666666*G0_0_1;
+    A[31] = -0.666666666666665*G0_0_0 - 0.666666666666665*G0_1_0;
     A[32] = 0.000000000000000;
-    A[2] = -A[8] + 0.166666666666666*G0_1_1;
+    A[33] = -0.666666666666665*G0_0_1 - 0.666666666666665*G0_1_0 - 1.333333333333330*G0_1_1;
+    A[34] = 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[35] = 1.333333333333331*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.333333333333330*G0_1_1;
   }
 
 };
@@ -2433,34 +2433,30 @@ public:
     }// end loop over 'r'
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
+    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
     
     // Loop quadrature points for integral.
     
     // Declare array to hold physical coordinate of quadrature point.
     double X4[2];
-    // Number of operations to compute element tensor for following IP loop = 128
+    // Number of operations to compute element tensor for following IP loop = 192
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
       X4[0] = FEA4_f0[ip][0]*x[0][0] + FEA4_f0[ip][1]*x[1][0] + FEA4_f0[ip][2]*x[2][0];
       X4[1] = FEA4_f0[ip][0]*x[0][1] + FEA4_f0[ip][1]*x[1][1] + FEA4_f0[ip][2]*x[2][1];
-      double C[1];
-      // Compute conditional, operations: 8.
-      C[0] = (((X4[0]-0.330000000000000)*(X4[0]-0.330000000000000) + (X4[1]-0.670000000000000)*(X4[1]-0.670000000000000)) < 0.025000000000000) ? 1.000000000000000 : 0.000000000000000;
+      double C[2];
+      // Compute conditional, operations: 7.
+      C[0] = ((((X4[1] + -0.670000000000000))*((X4[1] + -0.670000000000000)) + ((-0.330000000000000 + X4[0]))*((-0.330000000000000 + X4[0]))) <= 0.015000000000000) ? -1.000000000000000 : 5.000000000000000;
+      // Compute conditional, operations: 7.
+      C[1] = ((((X4[1] + -0.670000000000000))*((X4[1] + -0.670000000000000)) + ((-0.330000000000000 + X4[0]))*((-0.330000000000000 + X4[0]))) <= 0.025000000000000) ? C[0] : 0.000000000000000;
       
-      // Number of operations to compute ip constants: 2
-      double I[1];
-      // Number of operations: 2
-      I[0] = C[0]*W4[ip]*det;
-      
-      
-      // Number of operations for primary indices: 12
+      // Number of operations for primary indices: 24
       for (unsigned int j = 0; j < 6; j++)
       {
-        // Number of operations to compute entry: 2
-        A[j] += FE0[ip][j]*I[0];
+        // Number of operations to compute entry: 4
+        A[j] += FE0[ip][j]*C[1]*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -2637,7 +2633,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Conditional(LT(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.025000000000000001, (), (), {})), FloatValue(1.0, (), (), {}), Zero((), (), {}))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.025000000000000001, (), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.014999999999999999, (), (), {})), FloatValue(-1.0, (), (), {}), FloatValue(5.0, (), (), {})), Zero((), (), {}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
