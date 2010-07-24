@@ -2439,24 +2439,34 @@ public:
     
     // Declare array to hold physical coordinate of quadrature point.
     double X4[2];
-    // Number of operations to compute element tensor for following IP loop = 192
+    // Number of operations to compute element tensor for following IP loop = 232
     for (unsigned int ip = 0; ip < 4; ip++)
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
       X4[0] = FEA4_f0[ip][0]*x[0][0] + FEA4_f0[ip][1]*x[1][0] + FEA4_f0[ip][2]*x[2][0];
       X4[1] = FEA4_f0[ip][0]*x[0][1] + FEA4_f0[ip][1]*x[1][1] + FEA4_f0[ip][2]*x[2][1];
-      double C[2];
+      double C[7];
+      // Compute conditional, operations: 0.
+      C[0] = (X4[0] >= 0.550000000000000) ? -1.000000000000000 : 0.000000000000000;
+      // Compute conditional, operations: 0.
+      C[1] = (X4[0] <= 0.950000000000000) ? C[0] : 0.000000000000000;
+      // Compute conditional, operations: 0.
+      C[2] = (X4[1] >= 0.050000000000000) ? C[1] : 0.000000000000000;
+      // Compute conditional, operations: 0.
+      C[3] = (X4[1] <= 0.450000000000000) ? C[2] : 0.000000000000000;
+      // Compute conditional, operations: 4.
+      C[4] = ((0.550000000000000 + (-0.050000000000000 + (X4[1] + (-1.000000000000000)*X4[0]))) >= 0.000000000000000) ? C[3] : 0.000000000000000;
       // Compute conditional, operations: 7.
-      C[0] = ((((X4[1] + -0.670000000000000))*((X4[1] + -0.670000000000000)) + ((-0.330000000000000 + X4[0]))*((-0.330000000000000 + X4[0]))) <= 0.015000000000000) ? -1.000000000000000 : 5.000000000000000;
+      C[5] = ((((X4[1] + -0.670000000000000))*((X4[1] + -0.670000000000000)) + ((-0.330000000000000 + X4[0]))*((-0.330000000000000 + X4[0]))) <= 0.015000000000000) ? -1.000000000000000 : 5.000000000000000;
       // Compute conditional, operations: 7.
-      C[1] = ((((X4[1] + -0.670000000000000))*((X4[1] + -0.670000000000000)) + ((-0.330000000000000 + X4[0]))*((-0.330000000000000 + X4[0]))) <= 0.025000000000000) ? C[0] : 0.000000000000000;
+      C[6] = ((((X4[1] + -0.670000000000000))*((X4[1] + -0.670000000000000)) + ((-0.330000000000000 + X4[0]))*((-0.330000000000000 + X4[0]))) <= 0.025000000000000) ? C[5] : 0.000000000000000;
       
-      // Number of operations for primary indices: 24
+      // Number of operations for primary indices: 30
       for (unsigned int j = 0; j < 6; j++)
       {
-        // Number of operations to compute entry: 4
-        A[j] += FE0[ip][j]*C[1]*W4[ip]*det;
+        // Number of operations to compute entry: 5
+        A[j] += FE0[ip][j]*((C[6] + C[4]))*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -2633,7 +2643,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.025000000000000001, (), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.014999999999999999, (), (), {})), FloatValue(-1.0, (), (), {}), FloatValue(5.0, (), (), {})), Zero((), (), {}))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2), 0), Sum(Conditional(GE(Sum(FloatValue(0.55000000000000004, (), (), {}), Sum(FloatValue(-0.050000000000000003, (), (), {}), Sum(Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(-1, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})))))), Zero((), (), {})), Conditional(LE(Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), FloatValue(0.45000000000000001, (), (), {})), Conditional(GE(Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), FloatValue(0.050000000000000003, (), (), {})), Conditional(LE(Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), FloatValue(0.94999999999999996, (), (), {})), Conditional(GE(Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), FloatValue(0.55000000000000004, (), (), {})), FloatValue(-1.0, (), (), {}), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.025000000000000001, (), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33000000000000002, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67000000000000004, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', 1, Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.014999999999999999, (), (), {})), FloatValue(-1.0, (), (), {}), FloatValue(5.0, (), (), {})), Zero((), (), {})))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
