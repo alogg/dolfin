@@ -4351,6 +4351,18 @@ Jacobian dF/dx ";
 
 Return Newton iteration number. ";
 
+%feature("docstring")  dolfin::NewtonSolver::residual "
+
+Return current residual. ";
+
+%feature("docstring")  dolfin::NewtonSolver::relative_residual "
+
+Return current relative residual. ";
+
+%feature("docstring")  dolfin::NewtonSolver::linear_solver "
+
+Return the linear solver. ";
+
 
 // File: classdolfin_1_1NonlinearProblem.xml
 %feature("docstring") dolfin::NonlinearProblem "
@@ -7619,50 +7631,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_68f858635a27044942e1456f397a257e.xml
+// File: dir_92d4af779eea750d7e464f1256129e5e.xml
 
 
-// File: dir_be4abbe9be371fb90858f9b708d1b3fd.xml
+// File: dir_0e5e0b86b41d9000573aadd072faa0dc.xml
 
 
-// File: dir_c9896c264abe1f5ce0b23b00c130609f.xml
+// File: dir_61626f8f8c8774eaa462b97af4c0a252.xml
 
 
-// File: dir_96b86ef69f481d1d80becb314010dfa2.xml
+// File: dir_2cb12ea2104a8aec4b8dae08301d3209.xml
 
 
-// File: dir_13fd81ecff987b0a93366aa1e9319de6.xml
+// File: dir_d0df2a1ab10bb9fcd71ace3b2981978c.xml
 
 
-// File: dir_12eaeb6393c8340c3fcc7bb4666dbe6a.xml
+// File: dir_f7aa9f93aae02aa89e597f6f65a28147.xml
 
 
-// File: dir_5bab3dfda35b11ed9e9fc557c91c04ca.xml
+// File: dir_2a2507e206f95ba5c74f6a3fc297b422.xml
 
 
-// File: dir_29c16e73653a7fc876ded90673bae460.xml
+// File: dir_449565eb50e230200f96f6a0b17b6e07.xml
 
 
-// File: dir_a36793e7aa99483120927e3d6713b3d9.xml
+// File: dir_0e7ac0b790142585bc3f28b27e1d693c.xml
 
 
-// File: dir_3f6ea3b079d98368ba4d0298b8edf7e0.xml
+// File: dir_e5a30508e9aae611f47294df14ae6493.xml
 
 
-// File: dir_e9dae39b13f1287e8917eaa1de874624.xml
+// File: dir_680935dbf4f91b75291f72a5f78bda78.xml
 
 
-// File: dir_8ab656e4681daa02e4b96ad13fdc62c8.xml
+// File: dir_226c3f7db0502d394c9c3450f0eef019.xml
 
 
-// File: dir_bfb3cabb742a51f1c9dcbb782a9883c3.xml
+// File: dir_9e225bd197a6b3a6419f642327134d3a.xml
 
 
-// File: dir_a1ad675c37ae45d8c452a0ce15eff5f1.xml
+// File: dir_6f9af259675e617b318bfa6ca6a38176.xml
 
 
-// File: dir_b6d81790256b0d7b70fdbdc2046bfa2d.xml
+// File: dir_ff7823292883bd032ef3ce5f54c32d54.xml
 
 
-// File: dir_dbf2ee81eba2eb363262fc2ffa131006.xml
+// File: dir_74e6714b2427c4debf2a5e534203887f.xml
 
