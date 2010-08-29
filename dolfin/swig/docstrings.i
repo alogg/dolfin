@@ -51,7 +51,10 @@ Construct array from a pointer. Array will not take ownership. ";
 
 %feature("docstring")  dolfin::Array::str "
 
-Return informal string representation (pretty-print). ";
+Return informal string representation (pretty-print). Note that the
+Array class is not a subclass of Variable (for efficiency) which means
+that one needs to call str() directly instead of using the info()
+function on Array objects. ";
 
 %feature("docstring")  dolfin::Array::resize "
 
@@ -411,6 +414,16 @@ Order entities locally. ";
 %feature("docstring")  dolfin::Cell::ordered "
 
 Check if entities are ordered. ";
+
+
+// File: classdolfin_1_1CellFunction.xml
+%feature("docstring") dolfin::CellFunction "
+
+A CellFunction is a MeshFunction of topological codimension 0.
+
+C++ includes: Cell.h ";
+
+%feature("docstring")  dolfin::CellFunction::CellFunction "";
 
 
 // File: classdolfin_1_1CellIterator.xml
@@ -998,7 +1011,7 @@ Return boundary value g. ";
 
 %feature("docstring")  dolfin::DirichletBC::value_ptr "
 
-Return shared pointer to boundary value g. ";
+Return shared pointer to boundary value g Testing multiline comment ";
 
 %feature("docstring")  dolfin::DirichletBC::get_bc "
 
@@ -1220,7 +1233,17 @@ Destructor. ";
 
 %feature("docstring")  dolfin::Edge::length "
 
-Compute Euclidian length of edge. ";
+Compute Euclidean length of edge. ";
+
+
+// File: classdolfin_1_1EdgeFunction.xml
+%feature("docstring") dolfin::EdgeFunction "
+
+An EdgeFunction is a MeshFunction of topological dimension 1.
+
+C++ includes: Edge.h ";
+
+%feature("docstring")  dolfin::EdgeFunction::EdgeFunction "";
 
 
 // File: classdolfin_1_1EdgeIterator.xml
@@ -1411,6 +1434,16 @@ Constructor. ";
 Destructor. ";
 
 
+// File: classdolfin_1_1FaceFunction.xml
+%feature("docstring") dolfin::FaceFunction "
+
+A FaceFunction is a MeshFunction of topological dimension 2.
+
+C++ includes: Face.h ";
+
+%feature("docstring")  dolfin::FaceFunction::FaceFunction "";
+
+
 // File: classdolfin_1_1FaceIterator.xml
 %feature("docstring") dolfin::FaceIterator "
 
@@ -1490,6 +1523,16 @@ Destructor. ";
 %feature("docstring")  dolfin::FacetCell::facet_index "
 
 Return local index of facet with respect to the cell. ";
+
+
+// File: classdolfin_1_1FacetFunction.xml
+%feature("docstring") dolfin::FacetFunction "
+
+A FacetFunction is a MeshFunction of topological codimension 1.
+
+C++ includes: Facet.h ";
+
+%feature("docstring")  dolfin::FacetFunction::FacetFunction "";
 
 
 // File: classdolfin_1_1FacetIterator.xml
@@ -2104,6 +2147,10 @@ C++ includes: GenericLinearSolver.h ";
 
 Solve the operator (matrix). ";
 
+%feature("docstring")  dolfin::GenericLinearSolver::set_operators "
+
+Solve the operator (matrix) and preconditioner matrix. ";
+
 %feature("docstring")  dolfin::GenericLinearSolver::solve "
 
 Solve linear system Ax = b. ";
@@ -2214,11 +2261,11 @@ Return norm of matrix. ";
 
 %feature("docstring")  dolfin::GenericMatrix::getrow "
 
-Get non-zero values of given row. ";
+Get non-zero values of given row on local process. ";
 
 %feature("docstring")  dolfin::GenericMatrix::setrow "
 
-Set values for given row. ";
+Set values for given row on local process. ";
 
 %feature("docstring")  dolfin::GenericMatrix::zero "
 
@@ -2456,7 +2503,11 @@ Resize vector to size N. ";
 
 %feature("docstring")  dolfin::GenericVector::size "
 
-Return size of vector. ";
+Return global size of vector. ";
+
+%feature("docstring")  dolfin::GenericVector::local_size "
+
+Return local size of vector. ";
 
 %feature("docstring")  dolfin::GenericVector::local_range "
 
@@ -2751,6 +2802,10 @@ Destructor. ";
 
 Set operator (matrix). ";
 
+%feature("docstring")  dolfin::KrylovSolver::set_operators "
+
+Set operator (matrix) and preconditioner matrix. ";
+
 %feature("docstring")  dolfin::KrylovSolver::solve "
 
 Solve linear system Ax = b. ";
@@ -2916,6 +2971,10 @@ Destructor. ";
 %feature("docstring")  dolfin::LinearSolver::set_operator "
 
 Set the operator (matrix). ";
+
+%feature("docstring")  dolfin::LinearSolver::set_operators "
+
+Set the operator (matrix) and preconitioner matrix. ";
 
 %feature("docstring")  dolfin::LinearSolver::solve "
 
@@ -6871,6 +6930,16 @@ Return vertex coordinates as a 3D point value. ";
 Return array of vertex coordinates (const version). ";
 
 
+// File: classdolfin_1_1VertexFunction.xml
+%feature("docstring") dolfin::VertexFunction "
+
+A VertexFunction is a MeshFunction of topological dimension 0.
+
+C++ includes: Vertex.h ";
+
+%feature("docstring")  dolfin::VertexFunction::VertexFunction "";
+
+
 // File: classdolfin_1_1VertexIterator.xml
 %feature("docstring") dolfin::VertexIterator "
 
@@ -7631,50 +7700,50 @@ Assemble scalar on sub domains. ";
 // File: RadauQuadrature_8h.xml
 
 
-// File: dir_92d4af779eea750d7e464f1256129e5e.xml
+// File: dir_5f33195814dd1b6da5b1410a2b81a564.xml
 
 
-// File: dir_0e5e0b86b41d9000573aadd072faa0dc.xml
+// File: dir_9b5ce4ec356a3dbe7a500bd71a277f75.xml
 
 
-// File: dir_61626f8f8c8774eaa462b97af4c0a252.xml
+// File: dir_db5fe76827d17513853988fd1d76812e.xml
 
 
-// File: dir_2cb12ea2104a8aec4b8dae08301d3209.xml
+// File: dir_2070e6078967c6b788877895eaab8c38.xml
 
 
-// File: dir_d0df2a1ab10bb9fcd71ace3b2981978c.xml
+// File: dir_3e0fa1378513fc9b78eb09be7ed1247d.xml
 
 
-// File: dir_f7aa9f93aae02aa89e597f6f65a28147.xml
+// File: dir_8a605f3f58eeeb40110a602f55d05cb1.xml
 
 
-// File: dir_2a2507e206f95ba5c74f6a3fc297b422.xml
+// File: dir_5b4de6327bdc8f17ebe918af2ecf2c52.xml
 
 
-// File: dir_449565eb50e230200f96f6a0b17b6e07.xml
+// File: dir_e8d3ccf315ae63c2fac4e06cab7c84ad.xml
 
 
-// File: dir_0e7ac0b790142585bc3f28b27e1d693c.xml
+// File: dir_31665620fa3bab8de9597b912503918e.xml
 
 
-// File: dir_e5a30508e9aae611f47294df14ae6493.xml
+// File: dir_460c09db307f75bf4429a4166b339c69.xml
 
 
-// File: dir_680935dbf4f91b75291f72a5f78bda78.xml
+// File: dir_bd23deb683533631e9201eabd2af9041.xml
 
 
-// File: dir_226c3f7db0502d394c9c3450f0eef019.xml
+// File: dir_4ddd5d50cf044543d24f33937531fa3b.xml
 
 
-// File: dir_9e225bd197a6b3a6419f642327134d3a.xml
+// File: dir_4c96c00301b7d548fd49b7a15c3ee69b.xml
 
 
-// File: dir_6f9af259675e617b318bfa6ca6a38176.xml
+// File: dir_d7539b54cae97a4bcefd40e97fe0cbc2.xml
 
 
-// File: dir_ff7823292883bd032ef3ce5f54c32d54.xml
+// File: dir_7a7d73e9ed54bd6aedd2602ae2f4c675.xml
 
 
-// File: dir_74e6714b2427c4debf2a5e534203887f.xml
+// File: dir_1c7c2d5755248c1fe50d4fa77097aee8.xml
 
