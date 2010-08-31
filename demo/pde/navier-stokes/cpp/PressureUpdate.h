@@ -8212,7 +8212,7 @@ public:
       for (unsigned int j = 0; j < 3; j++)
       {
         // Number of operations to compute entry: 13
-        A[j] += (FE0[ip][j]*((-1.000000000000000)*1.000000000000000/(w[0][0])))*(((K_00*F0 + K_10*F1) + (K_01*F2 + K_11*F3)))*W4[ip]*det;
+        A[j] += FE0[ip][j]*((((K_00*F0 + K_10*F1) + (K_01*F2 + K_11*F3)))*((-1.000000000000000)*1.000000000000000/(w[0][0])))*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -8389,7 +8389,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(IndexSum(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(IntValue(-1, (), (), {}), Division(IntValue(1, (), (), {}), Constant(Cell('triangle', 1, Space(2)), 0))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(IndexSum(Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), Product(IntValue(-1, (), (), {}), Division(IntValue(1, (), (), {}), Constant(Cell('triangle', 1, Space(2)), 0))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
