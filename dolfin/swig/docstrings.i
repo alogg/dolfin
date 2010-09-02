@@ -38,8 +38,8 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::KrylovSolver::KrylovSolver "
 
-        __init__(self, string solver_type = "default", string pc_type = "default") -> KrylovSolver
-        __init__(self, string solver_type = "default") -> KrylovSolver
+        __init__(self, string solver_type = \"default\", string pc_type = \"default\") -> KrylovSolver
+        __init__(self, string solver_type = \"default\") -> KrylovSolver
         __init__(self) -> KrylovSolver
 
         Create Krylov solver. 
@@ -347,12 +347,12 @@ ksp(self) -> boost::shared_ptr<(KSP)>
 
 %feature("docstring")  dolfin::PETScLUSolver::PETScLUSolver "
 
-        __init__(self, string lu_package = "default") -> PETScLUSolver
+        __init__(self, string lu_package = \"default\") -> PETScLUSolver
         __init__(self) -> PETScLUSolver
-        __init__(self, GenericMatrix A, string lu_package = "default") -> PETScLUSolver
+        __init__(self, GenericMatrix A, string lu_package = \"default\") -> PETScLUSolver
         __init__(self, GenericMatrix A) -> PETScLUSolver
         __init__(self, boost::shared_ptr<(q(const).dolfin::PETScMatrix)> A, 
-            string lu_package = "default") -> PETScLUSolver
+            string lu_package = \"default\") -> PETScLUSolver
         __init__(self, boost::shared_ptr<(q(const).dolfin::PETScMatrix)> A) -> PETScLUSolver
         
 ";
@@ -468,12 +468,12 @@ __init__(self) -> PrimitiveIntersector
     during a computation. A progress bar may be used either in an
     iteration with a known number of steps:
 
-    Progress p("Iterating...", n); for (int i = 0; i < n; i++) { ...
+    Progress p(\"Iterating...\", n); for (int i = 0; i < n; i++) { ...
     p++; }
 
     or in an iteration with an unknown number of steps:
 
-    Progress p("Iterating..."); while (t < T) { ... p = t / T; }
+    Progress p(\"Iterating...\"); while (t < T) { ... p = t / T; }
 
     C++ includes: Progress.h 
     
@@ -938,9 +938,9 @@ copy(self) -> PETScVector
 
 %feature("docstring")  dolfin::PETScVector::PETScVector "
 
-        __init__(self, string type = "global") -> PETScVector
+        __init__(self, string type = \"global\") -> PETScVector
         __init__(self) -> PETScVector
-        __init__(self, uint N, string type = "global") -> PETScVector
+        __init__(self, uint N, string type = \"global\") -> PETScVector
         __init__(self, uint N) -> PETScVector
         __init__(self, PETScVector x) -> PETScVector
         __init__(self, boost::shared_ptr<(Vec)> x) -> PETScVector
@@ -1383,7 +1383,7 @@ Missing docstring
 
     Example of usage:
 
-    Event event("System is stiff, damping is needed."); while () { ...
+    Event event(\"System is stiff, damping is needed.\"); while () { ...
     if ( ... ) { event(); ... } }
 
     C++ includes: Event.h 
@@ -1820,25 +1820,25 @@ __init__(self, uint nx) -> UnitInterval
 
     Parameters may be added as follows:
 
-    Parameters p("my_parameters"); p.add("relative_tolerance", 1e-15);
-    p.add("absolute_tolerance", 1e-15); p.add("gmres_restart", 30);
-    p.add("monitor_convergence", false);
+    Parameters p(\"my_parameters\"); p.add(\"relative_tolerance\", 1e-15);
+    p.add(\"absolute_tolerance\", 1e-15); p.add(\"gmres_restart\", 30);
+    p.add(\"monitor_convergence\", false);
 
     Parameters may be changed as follows:
 
-    p("gmres_restart") = 50;
+    p(\"gmres_restart\") = 50;
 
     Parameter values may be retrieved as follows:
 
-    int gmres_restart = p("gmres_restart");
+    int gmres_restart = p(\"gmres_restart\");
 
     Parameter sets may be nested as follows:
 
-    Parameters q("nested_parameters"); p.add(q);
+    Parameters q(\"nested_parameters\"); p.add(q);
 
     Nested parameters may then be accessed by
 
-    p["nested_parameters"]("...")
+    p[\"nested_parameters\"](\"...\")
 
     Parameters may be nested at arbitrary depths.
 
@@ -1912,7 +1912,7 @@ __init__(self, uint nx) -> UnitInterval
 
 %feature("docstring")  dolfin::Parameters::Parameters "
 
-        __init__(self, string key = "parameters") -> Parameters
+        __init__(self, string key = \"parameters\") -> Parameters
         __init__(self) -> Parameters
         __init__(self, Parameters parameters) -> Parameters
 
@@ -2076,28 +2076,28 @@ assign(self, Parameters parameters) -> Parameters
 
     The following mesh data is created:
 
-    1. "global entity indices 0" ( MeshFunction<uint>)
+    1. \"global entity indices 0\" ( MeshFunction<uint>)
 
     This maps each local vertex to its global index.
 
-    2. "overlap" (std::map<uint, std::vector<uint> >)
+    2. \"overlap\" (std::map<uint, std::vector<uint> >)
 
     This maps each shared vertex to a list of the processes sharing the
     vertex.
 
-    3. "global entity indices %d" ( MeshFunction<uint>)
+    3. \"global entity indices %d\" ( MeshFunction<uint>)
 
     After partitioning, the function number_entities() may be called to
     create global indices for all entities of a given topological
     dimension. These are stored as mesh data ( MeshFunction<uint>) named
 
-    "global entity indices 1" "global entity indices 2" etc
+    \"global entity indices 1\" \"global entity indices 2\" etc
 
-    4. "num global entities" (std::vector<uint>)
+    4. \"num global entities\" (std::vector<uint>)
 
     The function number_entities also records the number of global
     entities for the dimension of the numbered entities in the array named
-    "num global entities". This array has size D + 1, where D is the
+    \"num global entities\". This array has size D + 1, where D is the
     topological dimension of the mesh. This array is initially created by
     the mesh and then contains only the number entities of dimension 0
     (vertices) and dimension D (cells).
@@ -2126,8 +2126,8 @@ __init__(self) -> MeshPartitioning
     Triangular mesh of the 2D unit square (0,1) x (0,1). Given the number
     of cells (nx, ny) in each direction, the total number of triangles
     will be 2*nx*ny and the total number of vertices will be (nx + 1)*(ny
-    + 1). std::string diagonal ("left", "right", "right/left" or
-    "crossed") indicates the direction of the diagonals.
+    + 1). std::string diagonal (\"left\", \"right\", \"right/left\" or
+    \"crossed\") indicates the direction of the diagonals.
 
     C++ includes: UnitSquare.h 
     
@@ -2135,7 +2135,7 @@ __init__(self) -> MeshPartitioning
 
 %feature("docstring")  dolfin::UnitSquare::UnitSquare "
 
-        __init__(self, uint nx, uint ny, string diagonal = "right") -> UnitSquare
+        __init__(self, uint nx, uint ny, string diagonal = \"right\") -> UnitSquare
         __init__(self, uint nx, uint ny) -> UnitSquare
         
 ";
@@ -2251,8 +2251,8 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 
-        __init__(self, string solver_type = "lu", string pc_type = "default") -> NewtonSolver
-        __init__(self, string solver_type = "lu") -> NewtonSolver
+        __init__(self, string solver_type = \"lu\", string pc_type = \"default\") -> NewtonSolver
+        __init__(self, string solver_type = \"lu\") -> NewtonSolver
         __init__(self) -> NewtonSolver
         __init__(self, GenericLinearSolver solver, LinearAlgebraFactory factory) -> NewtonSolver
 
@@ -2568,7 +2568,7 @@ mesh(self) -> Mesh
 
 %feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
 
-        reset_kernel(self, string kernel_type = "SimpleCartesian")
+        reset_kernel(self, string kernel_type = \"SimpleCartesian\")
         reset_kernel(self)
 
         Rebuilds the underlying search structure from scratch and uses the
@@ -2578,9 +2578,9 @@ mesh(self) -> Mesh
 
 %feature("docstring")  dolfin::IntersectionOperator::IntersectionOperator "
 
-        __init__(self, Mesh _mesh, string kernel_type = "SimpleCartesian") -> IntersectionOperator
+        __init__(self, Mesh _mesh, string kernel_type = \"SimpleCartesian\") -> IntersectionOperator
         __init__(self, Mesh _mesh) -> IntersectionOperator
-        __init__(self, __dummy_37__ _mesh, string kernel_type = "SimpleCartesian") -> IntersectionOperator
+        __init__(self, __dummy_37__ _mesh, string kernel_type = \"SimpleCartesian\") -> IntersectionOperator
         __init__(self, __dummy_37__ _mesh) -> IntersectionOperator
         
 ";
@@ -2658,9 +2658,9 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::LUSolver::LUSolver "
 
-        __init__(self, string type = "lu") -> LUSolver
+        __init__(self, string type = \"lu\") -> LUSolver
         __init__(self) -> LUSolver
-        __init__(self, GenericMatrix A, string type = "lu") -> LUSolver
+        __init__(self, GenericMatrix A, string type = \"lu\") -> LUSolver
         __init__(self, GenericMatrix A) -> LUSolver
 
         Constructor. 
@@ -2990,8 +2990,8 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::LinearSolver::LinearSolver "
 
-        __init__(self, string solver_type = "lu", string pc_type = "ilu") -> LinearSolver
-        __init__(self, string solver_type = "lu") -> LinearSolver
+        __init__(self, string solver_type = \"lu\", string pc_type = \"ilu\") -> LinearSolver
+        __init__(self, string solver_type = \"lu\") -> LinearSolver
         __init__(self) -> LinearSolver
 
         Create linear solver. 
@@ -3058,7 +3058,7 @@ __init__(self, uint row, uint col, BlockMatrix bm) -> SubMatrix
 
     A timer can be used for timing tasks. The basic usage is
 
-    Timer timer("Assembling over cells");
+    Timer timer(\"Assembling over cells\");
 
     The timer is started at construction and timing ends when the timer is
     destroyed (goes out of scope). It is also possible to start and stop a
@@ -3108,12 +3108,12 @@ __init__(self, uint row, uint col, BlockMatrix bm) -> SubMatrix
 
 %feature("docstring")  dolfin::UnitCircle "
 
-    std:string transformation ("maxn", "sumn" or "rotsumn")
+    std:string transformation (\"maxn\", \"sumn\" or \"rotsumn\")
 
     Triangular mesh of the 2D unit circle. Given the number of cells (nx,
     ny) in each direction, the total number of triangles will be 2*nx*ny
     and the total number of vertices will be (nx + 1)*(ny + 1).
-    std::string diagonal ("left", "right" or "crossed") indicates
+    std::string diagonal (\"left\", \"right\" or \"crossed\") indicates
     the direction of the diagonals.
 
     C++ includes: UnitCircle.h 
@@ -3122,8 +3122,8 @@ __init__(self, uint row, uint col, BlockMatrix bm) -> SubMatrix
 
 %feature("docstring")  dolfin::UnitCircle::UnitCircle "
 
-        __init__(self, uint nx, string diagonal = "crossed", string transformation = "rotsumn") -> UnitCircle
-        __init__(self, uint nx, string diagonal = "crossed") -> UnitCircle
+        __init__(self, uint nx, string diagonal = \"crossed\", string transformation = \"rotsumn\") -> UnitCircle
+        __init__(self, uint nx, string diagonal = \"crossed\") -> UnitCircle
         __init__(self, uint nx) -> UnitCircle
         
 ";
@@ -3399,8 +3399,8 @@ No constructor defined - class is abstract
 
     Parameters:
 
-    "linear solvers": "direct" or "iterative" (default: "direct")
-    "symmetric": true or false (default: false)
+    \"linear solvers\": \"direct\" or \"iterative\" (default: \"direct\")
+    \"symmetric\": true or false (default: false)
 
     C++ includes: VariationalProblem.h 
     
@@ -3569,7 +3569,7 @@ set(self, PETScKrylovSolver solver)
 
 %feature("docstring")  dolfin::PETScPreconditioner::PETScPreconditioner "
 
-        __init__(self, string type = "default") -> PETScPreconditioner
+        __init__(self, string type = \"default\") -> PETScPreconditioner
         __init__(self) -> PETScPreconditioner
         
 ";
@@ -4110,8 +4110,8 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::SingularSolver::SingularSolver "
 
-        __init__(self, string solver_type = "lu", string pc_type = "ilu") -> SingularSolver
-        __init__(self, string solver_type = "lu") -> SingularSolver
+        __init__(self, string solver_type = \"lu\", string pc_type = \"ilu\") -> SingularSolver
+        __init__(self, string solver_type = \"lu\") -> SingularSolver
         __init__(self) -> SingularSolver
 
         Create linear solver. 
@@ -4321,8 +4321,8 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 
-        __init__(self, string solver_type = "default", string pc_type = "default") -> uBLASKrylovSolver
-        __init__(self, string solver_type = "default") -> uBLASKrylovSolver
+        __init__(self, string solver_type = \"default\", string pc_type = \"default\") -> uBLASKrylovSolver
+        __init__(self, string solver_type = \"default\") -> uBLASKrylovSolver
         __init__(self) -> uBLASKrylovSolver
         __init__(self, uBLASPreconditioner pc) -> uBLASKrylovSolver
         __init__(self, string solver_type, uBLASPreconditioner preconditioner) -> uBLASKrylovSolver
@@ -4354,7 +4354,7 @@ default_parameters() -> Parameters
         collapse(self, std::map<(dolfin::uint,dolfin::uint)> collapsed_map, 
             Mesh dolfin_mesh) -> GenericDofMap
 
-        "Collapse" a sub dofmap 
+        \"Collapse\" a sub dofmap 
         
 ";
 
@@ -4637,8 +4637,8 @@ No constructor defined - class is abstract
     triangles will be 2*nx*ny and the total number of vertices will be (nx
     + 1)*(ny + 1).
 
-    std::string diagonal ("left", "right", "right/left" or
-    "crossed") indicates the direction of the diagonals.
+    std::string diagonal (\"left\", \"right\", \"right/left\" or
+    \"crossed\") indicates the direction of the diagonals.
 
     C++ includes: Rectangle.h 
     
@@ -4647,7 +4647,7 @@ No constructor defined - class is abstract
 %feature("docstring")  dolfin::Rectangle::Rectangle "
 
         __init__(self, double x0, double y0, double x1, double y1, uint nx, 
-            uint ny, string diagonal = "right") -> Rectangle
+            uint ny, string diagonal = \"right\") -> Rectangle
         __init__(self, double x0, double y0, double x1, double y1, uint nx, 
             uint ny) -> Rectangle
         
@@ -5833,7 +5833,7 @@ assign(self, GenericMatrix x) -> GenericMatrix
 
     u(0) = u0,
 
-    by setting the option "implicit" to true and defining the function
+    by setting the option \"implicit\" to true and defining the function
     M().
 
     Two different solve() functions are provided, one to solve the ODE on
@@ -7211,8 +7211,8 @@ No constructor defined
     to the cell). A remedy for this is to use the geometric approach. To
     apply pointwise boundary conditions e.g. pointloads, one will have to
     use the pointwise approach which in turn is the slowest of the three
-    possible methods. The three possibilties are "topological",
-    "geometric" and "pointwise".
+    possible methods. The three possibilties are \"topological\",
+    \"geometric\" and \"pointwise\".
 
     C++ includes: DirichletBC.h 
     
@@ -7289,19 +7289,19 @@ default_parameters() -> Parameters
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 
         __init__(self, __dummy_19__ V, __dummy_23__ g, __dummy_59__ sub_domain, 
-            string method = "topological") -> DirichletBC
+            string method = \"topological\") -> DirichletBC
         __init__(self, __dummy_19__ V, __dummy_23__ g, __dummy_59__ sub_domain) -> DirichletBC
         __init__(self, __dummy_19__ V, __dummy_23__ g, MeshFunctionUInt sub_domains, 
-            uint sub_domain, string method = "topological") -> DirichletBC
+            uint sub_domain, string method = \"topological\") -> DirichletBC
         __init__(self, __dummy_19__ V, __dummy_23__ g, MeshFunctionUInt sub_domains, 
             uint sub_domain) -> DirichletBC
-        __init__(self, __dummy_19__ V, __dummy_23__ g, uint sub_domain, string method = "topological") -> DirichletBC
+        __init__(self, __dummy_19__ V, __dummy_23__ g, uint sub_domain, string method = \"topological\") -> DirichletBC
         __init__(self, __dummy_19__ V, __dummy_23__ g, uint sub_domain) -> DirichletBC
         __init__(self, FunctionSpace V, GenericFunction g, std::vector<(std::pair<(dolfin::uint,dolfin::uint)>)> markers, 
-            string method = "topological") -> DirichletBC
+            string method = \"topological\") -> DirichletBC
         __init__(self, FunctionSpace V, GenericFunction g, std::vector<(std::pair<(dolfin::uint,dolfin::uint)>)> markers) -> DirichletBC
         __init__(self, __dummy_19__ V, __dummy_23__ g, std::vector<(std::pair<(dolfin::uint,dolfin::uint)>)> markers, 
-            string method = "topological") -> DirichletBC
+            string method = \"topological\") -> DirichletBC
         __init__(self, __dummy_19__ V, __dummy_23__ g, std::vector<(std::pair<(dolfin::uint,dolfin::uint)>)> markers) -> DirichletBC
         __init__(self, DirichletBC bc) -> DirichletBC
 
@@ -7468,7 +7468,7 @@ num_sub_elements(self) -> uint
         collapse(self, std::map<(dolfin::uint,dolfin::uint)> collapsed_map, 
             Mesh dolfin_mesh) -> DofMap
 
-        "Collapse" a sub dofmap 
+        \"Collapse\" a sub dofmap 
         
 ";
 
@@ -8044,8 +8044,8 @@ ksp(self) -> boost::shared_ptr<(KSP)>
 
 %feature("docstring")  dolfin::PETScKrylovSolver::PETScKrylovSolver "
 
-        __init__(self, string method = "default", string pc_type = "default") -> PETScKrylovSolver
-        __init__(self, string method = "default") -> PETScKrylovSolver
+        __init__(self, string method = \"default\", string pc_type = \"default\") -> PETScKrylovSolver
+        __init__(self, string method = \"default\") -> PETScKrylovSolver
         __init__(self) -> PETScKrylovSolver
         __init__(self, string method, PETScPreconditioner preconditioner) -> PETScKrylovSolver
         __init__(self, string method, PETScUserPreconditioner preconditioner) -> PETScKrylovSolver
@@ -8459,8 +8459,8 @@ default_parameters() -> Parameters
 
 %feature("docstring")  dolfin::ITLKrylovSolver::ITLKrylovSolver "
 
-        __init__(self, string method = "default", string pc_type = "default") -> ITLKrylovSolver
-        __init__(self, string method = "default") -> ITLKrylovSolver
+        __init__(self, string method = \"default\", string pc_type = \"default\") -> ITLKrylovSolver
+        __init__(self, string method = \"default\") -> ITLKrylovSolver
         __init__(self) -> ITLKrylovSolver
         
 ";
@@ -8794,9 +8794,9 @@ exists(string filename) -> bool
 
 %feature("docstring")  dolfin::File::File "
 
-        __init__(self, string filename, string encoding = "ascii") -> File
+        __init__(self, string filename, string encoding = \"ascii\") -> File
         __init__(self, string filename) -> File
-        __init__(self, string filename, Type type, string encoding = "ascii") -> File
+        __init__(self, string filename, Type type, string encoding = \"ascii\") -> File
         __init__(self, string filename, Type type) -> File
         __init__(self, std::ostream outstream) -> File
 
@@ -8809,12 +8809,12 @@ exists(string filename) -> bool
     This class provides storage and pretty-printing for tables. Example
     usage:
 
-    Table table("Timings");
+    Table table(\"Timings\");
 
-    table("uBLAS", "Assemble") = 0.010; table("uBLAS", "Solve") =
-    0.020; table("PETSc", "Assemble") = 0.011; table("PETSc",
-    "Solve") = 0.019; table("Epetra", "Assemble") = 0.012;
-    table("Epetra", "Solve") = 0.018;
+    table(\"uBLAS\", \"Assemble\") = 0.010; table(\"uBLAS\", \"Solve\") =
+    0.020; table(\"PETSc\", \"Assemble\") = 0.011; table(\"PETSc\",
+    \"Solve\") = 0.019; table(\"Epetra\", \"Assemble\") = 0.012;
+    table(\"Epetra\", \"Solve\") = 0.018;
 
     info(table);
 
@@ -8858,7 +8858,7 @@ exists(string filename) -> bool
 
 %feature("docstring")  dolfin::Table::Table "
 
-        __init__(self, string title = "") -> Table
+        __init__(self, string title = \"\") -> Table
         __init__(self) -> Table
 
         Create empty table. 
@@ -8876,34 +8876,34 @@ exists(string filename) -> bool
 
     Boundary indicators
 
-    "boundary facet cells" - Array<uint> of size num_facets "boundary
-    facet numbers" - Array<uint> of size num_facets "boundary
-    indicators" - Array<uint> of size num_facets "material indicators"
+    \"boundary facet cells\" - Array<uint> of size num_facets \"boundary
+    facet numbers\" - Array<uint> of size num_facets \"boundary
+    indicators\" - Array<uint> of size num_facets \"material indicators\"
     - MeshFunction<uint> of dimension D
 
     Boundary indicators (alternative)
 
-    "exterior facet domains" - MeshFunction<uint> of dimension D - 1
+    \"exterior facet domains\" - MeshFunction<uint> of dimension D - 1
 
     Facet orientation (used for assembly over interior facets)
 
-    "facet orientation" - MeshFunction<uint> of dimension D - 1
+    \"facet orientation\" - MeshFunction<uint> of dimension D - 1
 
     Boundary extraction
 
-    "vertex map" - MeshFunction<uint> of dimension 0 "cell map" -
+    \"vertex map\" - MeshFunction<uint> of dimension 0 \"cell map\" -
     MeshFunction<uint> of dimension D
 
     Mesh partitioning
 
-    "global entity indices %d" - MeshFunction<uint> of dimension 0, 1,
-    ..., D "exterior facets" - MeshFunction<uint> of dimension D - 1
-    "num global entities" - Array<uint> of size D + 1 "overlap" -
+    \"global entity indices %d\" - MeshFunction<uint> of dimension 0, 1,
+    ..., D \"exterior facets\" - MeshFunction<uint> of dimension D - 1
+    \"num global entities\" - Array<uint> of size D + 1 \"overlap\" -
     vector mapping
 
     Sub meshes
 
-    "global vertex indices" - MeshFunction<uint> of dimension 0
+    \"global vertex indices\" - MeshFunction<uint> of dimension 0
 
     C++ includes: MeshData.h 
     
@@ -9819,7 +9819,7 @@ MPI_barrier()
 
 %feature("docstring")  dolfin::normalize "
 
-    normalize(GenericVector x, string normalization_type = "average") -> double
+    normalize(GenericVector x, string normalization_type = \"average\") -> double
     normalize(GenericVector x) -> double
 
     Normalize vector according to given normalization type. 
@@ -10004,9 +10004,9 @@ Missing docstring
 %feature("docstring")  dolfin::solve "
 
     solve(GenericMatrix A, GenericVector x, GenericVector b, 
-        string solver_type = "lu", string pc_type = "default")
+        string solver_type = \"lu\", string pc_type = \"default\")
     solve(GenericMatrix A, GenericVector x, GenericVector b, 
-        string solver_type = "lu")
+        string solver_type = \"lu\")
     solve(GenericMatrix A, GenericVector x, GenericVector b)
 
     Solve linear system Ax = b. 
