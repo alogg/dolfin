@@ -35,10 +35,6 @@ Return geometric dimension of cell
 Check if we are on a facet
 ";
 
-%feature("docstring")  dolfin::Data::x "
-The coordinates
-";
-
 %feature("docstring")  dolfin::Data::set "
 **Overloaded versions**
 
@@ -590,14 +586,6 @@ of interpolated vertex values.
 Return vertex values
 ";
 
-%feature("docstring")  dolfin::FunctionPlotData::mesh "
-The mesh
-";
-
-%feature("docstring")  dolfin::FunctionPlotData::rank "
-The value rank
-";
-
 // Documentation extracted from: (module=nls, header=NonlinearProblem.h)
 %feature("docstring")  dolfin::NonlinearProblem "
 This is a base class for nonlinear problems which can return the
@@ -667,30 +655,6 @@ Default parameter values
 
 %feature("docstring")  dolfin::NewtonSolver::converged "
 Convergence test
-";
-
-%feature("docstring")  dolfin::NewtonSolver::newton_iteration "
-Current number of Newton iterations
-";
-
-%feature("docstring")  dolfin::NewtonSolver::residual0 "
-Most recent residual and intitial residual
-";
-
-%feature("docstring")  dolfin::NewtonSolver::solver "
-Solver
-";
-
-%feature("docstring")  dolfin::NewtonSolver::A "
-Jacobian matrix
-";
-
-%feature("docstring")  dolfin::NewtonSolver::dx "
-Solution vector
-";
-
-%feature("docstring")  dolfin::NewtonSolver::b "
-Resdiual vector
 ";
 
 // Documentation extracted from: (module=fem, header=GenericDofMap.h)
@@ -864,10 +828,6 @@ Return the set of dof indices
 Return informal string representation (pretty-print)
 ";
 
-%feature("docstring")  dolfin::DofMap::DofMapBuilder "
-Friends
-";
-
 %feature("docstring")  dolfin::DofMap::init_ufc_dofmap "
 Initialize the UFC dofmap
 ";
@@ -925,18 +885,6 @@ Evaluate all order n derivatives at given point
 
 %feature("docstring")  dolfin::BasisFunction::evaluate "
 Evaluate function at given point in cell
-";
-
-%feature("docstring")  dolfin::BasisFunction::index "
-The index
-";
-
-%feature("docstring")  dolfin::BasisFunction::element "
-The finite element
-";
-
-%feature("docstring")  dolfin::BasisFunction::cell "
-The (UFC) cell
 ";
 
 // Documentation extracted from: (module=fem, header=BoundaryCondition.h)
@@ -1390,10 +1338,6 @@ Return UFC form
 Check function spaces and coefficients
 ";
 
-%feature("docstring")  dolfin::Form::LinearPDE "
-Friends
-";
-
 // Documentation extracted from: (module=fem, header=Assembler.h)
 %feature("docstring")  dolfin::Assembler "
 This class provides automated assembly of linear systems, or
@@ -1632,18 +1576,19 @@ Check value and print an informative error message if invalid
 A event is a string message which is displayed
 only a limited number of times.
 
-Example of usage:
+*Example*
+    .. code-block:: c++
 
-  Event event(\"System is stiff, damping is needed.\");
-  while ()
-  {
-    ...
-    if ( ... )
-    {
-      event();
-      ...
-    }
-  }
+        Event event(\"System is stiff, damping is needed.\");
+        while ()
+        {
+          ...
+          if ( ... )
+          {
+            event();
+            ...
+          }
+        }
 ";
 
 %feature("docstring")  dolfin::Event::Event "
@@ -1667,10 +1612,6 @@ Maximum display count
 This class provides functionality similar to standard C++
 streams (std::cout, std::endl) for output but working through
 the DOLFIN log system.
-";
-
-%feature("docstring")  dolfin::LogStream::Type "
-Stream types
 ";
 
 %feature("docstring")  dolfin::LogStream::LogStream "
@@ -1729,35 +1670,34 @@ Create log stream of given type
   Output for real
 ";
 
-%feature("docstring")  dolfin::LogStream::cout "
-dolfin::cout
-";
-
-%feature("docstring")  dolfin::LogStream::endl "
-dolfin::endl;
-";
-
 // Documentation extracted from: (module=log, header=Progress.h)
 %feature("docstring")  dolfin::Progress "
 This class provides a simple way to create and update progress
-bars during a computation. A progress bar may be used either
-in an iteration with a known number of steps:
+bars during a computation.
 
-    Progress p(\"Iterating...\", n);
-    for (int i = 0; i < n; i++)
-    {
-      ...
-      p++;
-    }
+*Example*
+    A progress bar may be used either in an iteration with a known number
+    of steps:
 
-or in an iteration with an unknown number of steps:
+    .. code-block:: c++
 
-    Progress p(\"Iterating...\");
-    while (t < T)
-    {
-      ...
-      p = t / T;
-    }
+        Progress p(\"Iterating...\", n);
+        for (int i = 0; i < n; i++)
+        {
+          ...
+          p++;
+        }
+
+    or in an iteration with an unknown number of steps:
+
+    .. code-block:: c++
+
+        Progress p(\"Iterating...\");
+        while (t < T)
+        {
+          ...
+          p = t / T;
+        }
 ";
 
 %feature("docstring")  dolfin::Progress::Progress "
@@ -1878,10 +1818,6 @@ Cast to entry value
 ";
 
 // Documentation extracted from: (module=la, header=ublas.h)
-%feature("docstring")  dolfin::boost::numeric::ublas "
-Various typedefs for uBLAS data types
-";
-
 // Documentation extracted from: (module=la, header=GenericLinearSolver.h)
 %feature("docstring")  dolfin::GenericLinearSolver "
 This class provides a general solver for linear systems Ax = b.
@@ -1908,10 +1844,6 @@ Solve the operator (matrix) and preconditioner matrix
 ";
 
 // Documentation extracted from: (module=la, header=GenericLUSolver.h)
-%feature("docstring")  dolfin::GenericVector "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::GenericLUSolver "
 This a base class for LU solvers
 ";
@@ -2545,10 +2477,6 @@ Create empty sparsity pattern
 Create LU solver
 ";
 
-%feature("docstring")  dolfin::uBLASFactory::create_krylov_solver "
-Create Krylov solver
-";
-
 // Documentation extracted from: (module=la, header=uBLASMatrix.h)
 %feature("docstring")  dolfin::uBLASMatrix "
 This class provides a simple matrix class based on uBLAS.
@@ -2948,19 +2876,7 @@ Return informal string representation (pretty-print)
 Default parameter values
 ";
 
-%feature("docstring")  dolfin::PETScPreconditioner::type "
-Named preconditioner
-";
-
 // Documentation extracted from: (module=la, header=EpetraLUSolver.h)
-%feature("docstring")  dolfin::Amesos_BaseSolver "
-Forward declaration
-";
-
-%feature("docstring")  dolfin::GenericMatrix "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::EpetraLUSolver "
 This class implements the direct solution (LU factorization) for
 linear systems of the form Ax = b. It is a wrapper for the LU
@@ -3067,10 +2983,6 @@ Return pointer to Aztec00
 ";
 
 // Documentation extracted from: (module=la, header=EpetraMatrix.h)
-%feature("docstring")  dolfin::EpetraSparsityPattern "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::EpetraMatrix "
 This class provides a simple matrix class based on Epetra.
 It is a simple wrapper for an Epetra matrix object (Epetra_FECrsMatrix)
@@ -3385,10 +3297,6 @@ Return Epetra_FEVector pointer
 ";
 
 // Documentation extracted from: (module=la, header=PETScKrylovSolver.h)
-%feature("docstring")  dolfin::GenericMatrix "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::PETScKrylovSolver "
 This class implements Krylov methods for linear systems
 of the form Ax = b. It is a wrapper for the Krylov solvers
@@ -3479,31 +3387,7 @@ Initialize KSP solver
 Report the number of iterations
 ";
 
-%feature("docstring")  dolfin::PETScKrylovSolver::pc_dolfin "
-DOLFIN-defined PETScUserPreconditioner
-";
-
-%feature("docstring")  dolfin::PETScKrylovSolver::_ksp "
-PETSc solver pointer
-";
-
-%feature("docstring")  dolfin::PETScKrylovSolver::preconditioner "
-Preconditioner
-";
-
-%feature("docstring")  dolfin::PETScKrylovSolver::A "
-Operator (the matrix)
-";
-
-%feature("docstring")  dolfin::PETScKrylovSolver::P "
-Matrix used to construct the preconditoner
-";
-
 // Documentation extracted from: (module=la, header=PETScLUSolver.h)
-%feature("docstring")  dolfin::GenericMatrix "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::PETScLUSolver "
 This class implements the direct solution (LU factorization) for
 linear systems of the form Ax = b. It is a wrapper for the LU
@@ -3566,15 +3450,7 @@ Return PETSc KSP pointer
 Default parameter values
 ";
 
-%feature("docstring")  dolfin::PETScLUSolver::_ksp "
-PETSc solver pointer
-";
-
 // Documentation extracted from: (module=la, header=CholmodCholeskySolver.h)
-%feature("docstring")  dolfin::GenericVector "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::CholmodCholeskySolver "
 This class implements the direct solution (Cholesky factorization) of
 linear systems of the form Ax = b. Sparse matrices
@@ -3651,10 +3527,6 @@ Check status flag returned by an CHOLMOD function
 ";
 
 // Documentation extracted from: (module=la, header=UmfpackLUSolver.h)
-%feature("docstring")  dolfin::GenericVector "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::UmfpackLUSolver "
 This class implements the direct solution (LU factorization) of
 linear systems of the form Ax = b using UMFPACK
@@ -3710,10 +3582,6 @@ Check status flag returned by an UMFPACK function
 ";
 
 // Documentation extracted from: (module=la, header=ITLKrylovSolver.h)
-%feature("docstring")  dolfin::GenericMatrix "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::ITLKrylovSolver "
 This class implements Krylov methods for linear systems
 of the form Ax = b. It is a wrapper for the Krylov solvers
@@ -3754,14 +3622,6 @@ Return informal string representation (pretty-print)
 
 %feature("docstring")  dolfin::ITLKrylovSolver::default_parameters "
 Default parameter values
-";
-
-%feature("docstring")  dolfin::ITLKrylovSolver::A "
-Operator (the matrix)
-";
-
-%feature("docstring")  dolfin::ITLKrylovSolver::P "
-Matrix used to construct the preconditoner
 ";
 
 // Documentation extracted from: (module=la, header=MTL4Matrix.h)
@@ -4779,10 +4639,6 @@ Create LU solver
 Create Krylov solver
 ";
 
-%feature("docstring")  dolfin::EpetraFactory::get_serial_comm "
---- EpetraFactory interface
-";
-
 // Documentation extracted from: (module=la, header=MTL4Factory.h)
 %feature("docstring")  dolfin::MTL4Factory::create_matrix "
 Create empty matrix
@@ -4842,17 +4698,13 @@ Private Constructor
 ";
 
 // Documentation extracted from: (module=la, header=SLEPcEigenSolver.h)
-%feature("docstring")  dolfin::PETScMatrix "
-Forward declarations
-";
-
 %feature("docstring")  dolfin::SLEPcEigenSolver "
 This class provides an eigenvalue solver for PETSc matrices.
 It is a wrapper for the SLEPc eigenvalue solver.
 
 The following parameters may be specified to control the solver.
 
-1. \"eigenvalue spectrum\"
+1. \"spectrum\"
 
 This parameter controls which part of the spectrum to compute.
 Possible values are
@@ -4863,9 +4715,16 @@ Possible values are
   \"smallest real\"       (eigenvalues with smallest double part)
   \"largest imaginary\"   (eigenvalues with largest imaginary part)
   \"smallest imaginary\"  (eigenvalues with smallest imaginary part)
-  \"default spectrum\"    (default spectrum)
 
-2. \"eigenvalue solver\"
+For SLEPc versions >= 3.1 , the following values are also possible
+
+  \"target magnitude\"    (eigenvalues closest to target in magnitude)
+  \"target real\"         (eigenvalues closest to target in real part)
+  \"target imaginary\"    (eigenvalues closest to target in imaginary part)
+
+The default is \"largest magnitude\"
+
+2. \"solver\"
 
 This parameter controls which algorithm is used by SLEPc.
 Possible values are
@@ -4875,21 +4734,56 @@ Possible values are
   \"arnoldi\"             (Arnoldi)
   \"lanczos\"             (Lanczos)
   \"krylov-schur\"        (Krylov-Schur)
-  \"lapack\"              (LAPACK, all values, direct, only for small systems)
-  \"default\"             (default algorithm)
+  \"lapack\"              (LAPACK, all values, direct, small systems only)
 
-3. \"eigenvalue tolerance\"
+The default is \"krylov-schur\"
+
+3. \"tolerance\"
 
 This parameter controls the tolerance used by SLEPc.
 Possible values are positive double numbers.
 
-4. \"eigenvalue iterations\"
+The default is 1e-15;
+
+4. \"maximum_iterations\"
 
 This parameter controls the maximum number of iterations used by SLEPc.
 Possible values are positive integers.
 
 Note that both the tolerance and the number of iterations must be
 specified if either one is specified.
+
+5. \"problem_type\"
+
+This parameter can be used to give extra information about the
+type of the eigenvalue problem. Some solver types require this
+extra piece of information. Possible values are:
+
+  \"hermitian\"               (Hermitian)
+  \"non_hermitian\"           (Non-Hermitian)
+  \"gen_hermitian\"           (Generalized Hermitian)
+  \"gen_non_hermitian\"       (Generalized Non-Hermitian)
+
+6. \"spectral_transform\"
+
+This parameter controls the application of a spectral transform. A
+spectral transform can be used to enhance the convergence of the
+eigensolver and in particular to only compute eigenvalues in the
+interior of the spectrum. Possible values are:
+
+  \"shift-and-invert\"      (A shift-and-invert transform)
+
+Note that if a spectral transform is given, then also a non-zero
+spectral shift parameter has to be provided.
+
+The default is no spectral transform.
+
+7. \"spectral_shift\"
+
+This parameter controls the spectral shift used by the spectral
+transform and must be provided if a spectral transform is given. The
+possible values are real numbers.
+
 ";
 
 %feature("docstring")  dolfin::SLEPcEigenSolver::SLEPcEigenSolver "
@@ -4981,10 +4875,6 @@ Default parameter values
 
 %feature("docstring")  dolfin::TrilinosPreconditioner::set_ml "
 Setup the ML precondtioner
-";
-
-%feature("docstring")  dolfin::TrilinosPreconditioner::type "
-Named preconditioner
 ";
 
 // Documentation extracted from: (module=la, header=uBLASSparseMatrix.h)
@@ -5091,22 +4981,6 @@ Select and create named preconditioner
 
 %feature("docstring")  dolfin::uBLASKrylovSolver::read_parameters "
 Read solver parameters
-";
-
-%feature("docstring")  dolfin::uBLASKrylovSolver::solver_type "
-Krylov method
-";
-
-%feature("docstring")  dolfin::uBLASKrylovSolver::pc "
-Preconditioner
-";
-
-%feature("docstring")  dolfin::uBLASKrylovSolver::div_tol "
-Solver parameters
-";
-
-%feature("docstring")  dolfin::uBLASKrylovSolver::parameters_read "
-True if we have read parameters
 ";
 
 // Documentation extracted from: (module=la, header=uBLASILUPreconditioner.h)
@@ -5575,19 +5449,7 @@ Default parameter values
 
 // Documentation extracted from: (module=la, header=LUSolver.h)
 %feature("docstring")  dolfin::LUSolver::LUSolver "
-**Overloaded versions**
-
-* LUSolver\ **(\"lu\")**
-
-  LU solver for the built-in LA backends. The type can be \"lu\" or
-  \"cholesky\". Cholesky is suitable only for symmetric positive-definite
-  matrices. Cholesky is not yet suppprted for all backends (which will
-  default to LU.
-  Constructor
-
-* LUSolver\ **(A, \"lu\")**
-
-  Constructor
+Constructor
 ";
 
 %feature("docstring")  dolfin::LUSolver::set_operator "
@@ -5783,10 +5645,6 @@ Assign Matrix to SubMatrix
 ";
 
 // Documentation extracted from: (module=ale, header=ALEType.h)
-%feature("docstring")  dolfin::ALEType "
-List of available methods for ALE mesh movement
-";
-
 // Documentation extracted from: (module=ale, header=ALE.h)
 %feature("docstring")  dolfin::ALE "
 This class provides functionality useful for implementation of
@@ -5941,10 +5799,6 @@ Each cell type implements mesh functionality that is specific to
 a certain type of cell.
 ";
 
-%feature("docstring")  dolfin::CellType::Type "
-Enum for different cell types
-";
-
 %feature("docstring")  dolfin::CellType::CellType "
 Constructor
 ";
@@ -6046,7 +5900,7 @@ a specific topological dimension of some mesh.
 %feature("docstring")  dolfin::MeshEntity::MeshEntity "
 **Overloaded versions**
 
-* MeshEntity\ **(0)**
+* MeshEntity\ **()**
 
   Default Constructor
 
@@ -6133,25 +5987,32 @@ MeshEntityIterator provides a common iterator for mesh entities
 over meshes, boundaries and incidence relations. The basic use
 is illustrated below.
 
-The following example shows how to iterate over all mesh entities
-of a mesh of topological dimension dim:
+*Example*
 
-    for (MeshEntityIterator e(mesh, dim); !e.end(); ++e)
-    {
-      e->foo();
-    }
+    The following example shows how to iterate over all mesh entities
+    of a mesh of topological dimension dim:
 
-The following example shows how to iterate over mesh entities of
-topological dimension dim connected (incident) to some mesh entity f:
+    .. code-block:: c++
 
-    for (MeshEntityIterator e(f, dim); !e.end(); ++e)
-    {
-      e->foo();
-    }
+        for (MeshEntityIterator e(mesh, dim); !e.end(); ++e)
+        {
+          e->foo();
+        }
+
+    The following example shows how to iterate over mesh entities of
+    topological dimension dim connected (incident) to some mesh entity f:
+
+    .. code-block:: c++
+
+        for (MeshEntityIterator e(f, dim); !e.end(); ++e)
+        {
+          e->foo();
+        }
 
 In addition to the general iterator, a set of specific named iterators
-are provided for entities of type Vertex, Edge, Face, Facet and Cell.
-These iterators are defined along with their respective classes.
+are provided for entities of type :py:class:`Vertex`, :py:class:`Edge`, :py:class:`Face`, :py:class:`Facet`
+and :py:class:`Cell`. These iterators are defined along with their respective
+classes.
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator "
@@ -6172,18 +6033,6 @@ These iterators are defined along with their respective classes.
 * MeshEntityIterator\ **(it)**
 
   Copy Constructor
-
-* MeshEntityIterator\ **(entity)**
-
-  Copy constructor is private to disallow usage. If it were public (or not
-  declared and thus a default version available) it would allow code like
-  
-  for (CellIterator c0(mesh); !c0.end(); ++c0)
-    for (CellIterator c1(c0); !c1.end(); ++c1)
-       ...
-  
-  c1 looks to be an iterator over the entities around c0 when it is in
-  fact a copy of c0.
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::operator++ "
@@ -6198,22 +6047,12 @@ Step to the previous mesh entity (prefix decrease)
 Return current position
 ";
 
-%feature("docstring")  dolfin::MeshEntityIterator::operator-> "
-**Overloaded versions**
-
-* operator->\ **(it)**
-
-  Comparison operator.
-  @internal
-  Uncommenting following  results into the warning message:
-
-* operator->\ **()**
-
-  Member access operator
-";
-
 %feature("docstring")  dolfin::MeshEntityIterator::operator* "
 Dereference operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator-> "
+Member access operator
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::operator[] "
@@ -6229,10 +6068,6 @@ Provide a safeguard iterator pointing beyond the end of an iteration
 process, either iterating over the mesh /or incident entities. Added to
 be bit more like STL iteratoren, since many algorithms rely on a kind of
 beyond iterator.
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::str "
-Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::set_end "
@@ -6638,12 +6473,6 @@ Return informal string representation (pretty-print)
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshGeometry.h)
-%feature("docstring")  dolfin::Mesh "
-MeshGeometry stores the geometry imposed on a mesh. Currently,
-the geometry is represented by the set of coordinates for the
-vertices of a mesh, but other representations are possible.
-";
-
 %feature("docstring")  dolfin::MeshGeometry::MeshGeometry "
 **Overloaded versions**
 
@@ -6882,18 +6711,6 @@ Factory function to create the dimension dependent intersectionoperator
 implementation.
 ";
 
-%feature("docstring")  dolfin::IntersectionOperator::_pImpl "
-Pointer to implementation. Mutable to enable lazy initialization.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::_mesh "
-Pointer to mesh.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::_kernel_type "
-String description of the used geometry kernel.
-";
-
 // Documentation extracted from: (module=mesh, header=PrimitiveIntersector.h)
 %feature("docstring")  dolfin::PrimitiveIntersector "
 This class implements an intersection detection, detecting
@@ -7042,10 +6859,6 @@ Erase vector mapping with given name
 
 %feature("docstring")  dolfin::MeshData::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::MeshData::XMLFile "
-Friends
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshConnectivity.h)
@@ -7442,22 +7255,6 @@ Set all values to given value
 
 %feature("docstring")  dolfin::MeshFunction::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::MeshFunction::_values "
-Values at the set of mesh entities
-";
-
-%feature("docstring")  dolfin::MeshFunction::_mesh "
-The mesh
-";
-
-%feature("docstring")  dolfin::MeshFunction::_dim "
-Topological dimension
-";
-
-%feature("docstring")  dolfin::MeshFunction::_size "
-Number of mesh entities
 ";
 
 // Documentation extracted from: (module=mesh, header=Mesh.h)
@@ -8126,10 +7923,6 @@ Informal string representation.
     '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
-%feature("docstring")  dolfin::Mesh::XMLHandler "
-Define XMLHandler for use in new XML reader/writer
-";
-
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
 %feature("docstring")  dolfin::MeshPartitioning "
 This class partitions and distributes a mesh based on
@@ -8189,43 +7982,8 @@ Create global entity indices for entities of dimension d
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshPrimitive.h)
-%feature("docstring")  dolfin::bbox "
-*Not* required by the CGAL primitive concept, but added for efficieny
-Otherwise the bbox function of the Datum object (see below) would have
-";
-
-%feature("docstring")  dolfin::reference_point "
-Provides a reference point required by the Primitive concept of CGAL
-";
-
 // Documentation extracted from: (module=mesh, header=PrimitiveTraits.h)
-%feature("docstring")  dolfin::PrimitiveTraits "
-Forward declaration for a general Traits class. This traits class is
-supposed to provide a datum function, which returns a geometric primitive
-object, which type corresponds to the primitive type (Point, PointCell,
-Tetrahedron(Cell) etc.) and the passed geometric CGAL kernel.
-";
-
 // Documentation extracted from: (module=mesh, header=LocalMeshData.h)
-%feature("docstring")  dolfin::LocalMeshData "
-This class stores mesh data on a local processor corresponding
-to a portion of a (larger) global mesh.
-
-Note that the data stored in this class does typically not
-correspond to a topologically connected mesh; it merely stores a
-list of vertex coordinates, a list of cell-vertex mappings and a
-list of global vertex numbers for the locally stored vertices.
-
-It is typically used for parsing meshes in parallel from mesh
-XML files. After local mesh data has been parsed on each
-processor, a subsequent repartitioning takes place: first a
-geometric partitioning of the vertices followed by a
-redistribution of vertex and cell data, and then a topological
-partitioning again followed by redistribution of vertex and cell
-data, at that point corresponding to topologically connected
-meshes instead of local mesh data.
-";
-
 %feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
 **Overloaded versions**
 
@@ -8242,10 +8000,6 @@ meshes instead of local mesh data.
 Return informal string representation (pretty-print)
 ";
 
-%feature("docstring")  dolfin::LocalMeshData::XMLHandler "
-Define XMLHandler for use in new XML reader/writer
-";
-
 %feature("docstring")  dolfin::LocalMeshData::clear "
 Clear all data
 ";
@@ -8260,38 +8014,6 @@ Broadcast mesh data from main process
 
 %feature("docstring")  dolfin::LocalMeshData::receive_mesh_data "
 Receive mesh data from main process
-";
-
-%feature("docstring")  dolfin::LocalMeshData::vertex_coordinates "
-Coordinates for all vertices stored on local processor
-";
-
-%feature("docstring")  dolfin::LocalMeshData::vertex_indices "
-Global vertex indices for all vertices stored on local processor
-";
-
-%feature("docstring")  dolfin::LocalMeshData::cell_vertices "
-Global vertex indices for all cells stored on local processor
-";
-
-%feature("docstring")  dolfin::LocalMeshData::global_cell_indices "
-Global cell numbers for all cells stored on local processor
-";
-
-%feature("docstring")  dolfin::LocalMeshData::num_global_vertices "
-Global number of vertices
-";
-
-%feature("docstring")  dolfin::LocalMeshData::num_global_cells "
-Global number of cells
-";
-
-%feature("docstring")  dolfin::LocalMeshData::gdim "
-Geometrical dimension
-";
-
-%feature("docstring")  dolfin::LocalMeshData::tdim "
-Topological dimension
 ";
 
 // Documentation extracted from: (module=mesh, header=SubDomain.h)
@@ -8767,10 +8489,6 @@ A list of objects that can be read/written to file can be found in
 GenericFile.h
 ";
 
-%feature("docstring")  dolfin::File::Type "
-File formats
-";
-
 %feature("docstring")  dolfin::File::File "
 **Overloaded versions**
 
@@ -9190,14 +8908,6 @@ Return range string
 Return short string description
 ";
 
-%feature("docstring")  dolfin::IntParameter::_value "
-Parameter value
-";
-
-%feature("docstring")  dolfin::IntParameter::_max "
-Parameter range
-";
-
 %feature("docstring")  dolfin::RealParameter "
 Parameter with value type double
 ";
@@ -9248,14 +8958,6 @@ Return range string
 
 %feature("docstring")  dolfin::RealParameter::str "
 Return short string description
-";
-
-%feature("docstring")  dolfin::RealParameter::_value "
-Parameter value
-";
-
-%feature("docstring")  dolfin::RealParameter::_max "
-Parameter range
 ";
 
 %feature("docstring")  dolfin::StringParameter "
@@ -9314,14 +9016,6 @@ Return range string
 Return short string description
 ";
 
-%feature("docstring")  dolfin::StringParameter::_value "
-Parameter value
-";
-
-%feature("docstring")  dolfin::StringParameter::_range "
-Parameter range
-";
-
 %feature("docstring")  dolfin::BoolParameter "
 Parameter with value type bool
 ";
@@ -9360,10 +9054,6 @@ Return range string
 
 %feature("docstring")  dolfin::BoolParameter::str "
 Return short string description
-";
-
-%feature("docstring")  dolfin::BoolParameter::_value "
-Parameter value
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameters.h)
@@ -9543,10 +9233,6 @@ Return a vector of parameter set keys
 Return informal string representation (pretty-print)
 ";
 
-%feature("docstring")  dolfin::Parameters::XMLHandler "
-Define XMLHandler for use in new XML reader/writer
-";
-
 %feature("docstring")  dolfin::Parameters::parse_dolfin "
 Parse filtered options (everything except PETSc options)
 ";
@@ -9570,10 +9256,6 @@ Parse parameters from command-line
 
 %feature("docstring")  dolfin::GlobalParameters::default_parameters "
 Default parameter values
-";
-
-%feature("docstring")  dolfin::GlobalParameters::parameters "
-The global parameter database
 ";
 
 // Documentation extracted from: (module=ode, header=Sample.h)
@@ -9796,10 +9478,6 @@ Get state for ODE (only available during interval stepping)
 
 %feature("docstring")  dolfin::ODE::default_parameters "
 Default parameter values
-";
-
-%feature("docstring")  dolfin::ODE::Dual "
-Friends
 ";
 
 // Documentation extracted from: (module=ode, header=ODECollection.h)
@@ -10143,21 +9821,6 @@ Return informal string representation (pretty-print)
 ";
 
 // Documentation extracted from: (module=ode, header=ODESolution.h)
-%feature("docstring")  dolfin::Lagrange "
-ODESolution stores the solution from the ODE solver, primarily to
-be able to solve the dual problem. A number of interpolated values
-is cached, since the ODE solver repeatedly requests evaluation of
-the same t.
-
-The samples are stored in memory if possible, otherwise stored
-in a temporary file and fetched from disk in blocks when needed.
-
-Since GMP at the moment doesn't support saving binary operands
-on disk this class uses ascii files for storage.
-Fortunately storing operands on disk in binary is planned in
-the next major release of GMP.
-";
-
 %feature("docstring")  dolfin::ODESolution::ODESolution "
 Create solution data for given ODE
 ";
@@ -10179,13 +9842,6 @@ Get pointer to weights
 ";
 
 // Documentation extracted from: (module=ode, header=StabilityAnalysis.h)
-%feature("docstring")  dolfin::ODESolution "
-This class computes the stabilityfactors as a function of time
-S(t). As the stabilityfactors are defined it should solve the dual
-for each timestep. However, we can take advantage of the dual
-being linear.
-";
-
 %feature("docstring")  dolfin::StabilityAnalysis::StabilityAnalysis "
 Constructor
 ";
