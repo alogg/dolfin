@@ -2417,7 +2417,7 @@ Finalize sparsity pattern
 
 // Documentation extracted from: (module=la, header=PETScObject.h)
 %feature("docstring")  dolfin::PETScObject "
-This class calls SubSystemsManger to initialise PETSc.
+This class calls SubSystemsManager to initialise PETSc.
 
 All PETSc objects must be derived from this class.
 ";
@@ -8725,6 +8725,35 @@ reduction op)
 
 %feature("docstring")  dolfin::MPI::index_owner "
 Return which process owns index (inverse of local_range)
+";
+
+// Documentation extracted from: (module=main, header=SubSystemsManager.h)
+%feature("docstring")  dolfin::SubSystemsManager "
+This is a singleton class which manages the initialisation and
+finalisation of various sub systems, such as MPI and PETSc.
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::init_mpi "
+Initialise MPI
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::init_petsc "
+**Overloaded versions**
+
+* init_petsc\ **()**
+
+  Initialize PETSc without command-line arguments
+
+* init_petsc\ **(argc, argv[])**
+
+  Initialize PETSc with command-line arguments. Note that PETSc
+  command-line arguments may also be filtered and sent to PETSc
+  by parameters.parse(argc, argv).
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::finalize "
+Finalize subsytems. This will be called be by the destructor, but it
+special cases it may be necessary to call finalize() explicitly.
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
