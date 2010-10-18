@@ -8752,7 +8752,7 @@ Initialise MPI
 ";
 
 %feature("docstring")  dolfin::SubSystemsManager::finalize "
-Finalize subsytems. This will be called be by the destructor, but it
+Finalize subsytems. This will be called by the destructor, but in
 special cases it may be necessary to call finalize() explicitly.
 ";
 
