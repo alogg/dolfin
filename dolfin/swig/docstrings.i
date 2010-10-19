@@ -1577,18 +1577,13 @@ A event is a string message which is displayed
 only a limited number of times.
 
 *Example*
-    .. code-block:: c++
-
-        Event event(\"System is stiff, damping is needed.\");
-        while ()
-        {
-          ...
-          if ( ... )
-          {
-            event();
-            ...
-          }
-        }
+    .. code-block:: python
+    
+        >>> event = dolfin.Event(\"System is stiff, damping is needed.\", 3)
+        >>> for i in range(10):
+        ...     if i > 7:
+        ...         print i
+        ...         event()
 ";
 
 %feature("docstring")  dolfin::Event::Event "
@@ -1678,26 +1673,24 @@ bars during a computation.
 *Example*
     A progress bar may be used either in an iteration with a known number
     of steps:
-
-    .. code-block:: c++
-
-        Progress p(\"Iterating...\", n);
-        for (int i = 0; i < n; i++)
-        {
-          ...
-          p++;
-        }
-
+    
+    .. code-block:: python
+    
+        >>> n = 1000000
+        >>> p = dolfin.Progress(\"Iterating...\", n)
+        >>> for i in range(n):
+        ...     p += 1
+    
     or in an iteration with an unknown number of steps:
-
-    .. code-block:: c++
-
-        Progress p(\"Iterating...\");
-        while (t < T)
-        {
-          ...
-          p = t / T;
-        }
+    
+    .. code-block:: python
+    
+        >>> pr = dolfin.Progress(\"Iterating\")
+        >>> t = 0.0
+        >>> n = 1000000.0
+        >>> while t < n:
+        ...     t += 1.0
+        ...     p += t/n
 ";
 
 %feature("docstring")  dolfin::Progress::Progress "
@@ -5988,31 +5981,22 @@ over meshes, boundaries and incidence relations. The basic use
 is illustrated below.
 
 *Example*
-
     The following example shows how to iterate over all mesh entities
     of a mesh of topological dimension dim:
-
-    .. code-block:: c++
-
-        for (MeshEntityIterator e(mesh, dim); !e.end(); ++e)
-        {
-          e->foo();
-        }
-
+    
+    .. code-block:: python
+    
+        >>> for e in dolfin.cpp.entities(mesh, 1):
+        ...     print e.index()
+    
     The following example shows how to iterate over mesh entities of
     topological dimension dim connected (incident) to some mesh entity f:
-
-    .. code-block:: c++
-
-        for (MeshEntityIterator e(f, dim); !e.end(); ++e)
-        {
-          e->foo();
-        }
-
-In addition to the general iterator, a set of specific named iterators
-are provided for entities of type :py:class:`Vertex`, :py:class:`Edge`, :py:class:`Face`, :py:class:`Facet`
-and :py:class:`Cell`. These iterators are defined along with their respective
-classes.
+    
+    .. code-block:: python
+    
+        >>> f = dolfin.cpp.MeshEntity(mesh, 0, 0)
+        >>> for e in dolfin.cpp.entities(f, 1):
+        ...     print e.index()
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator "
@@ -7334,13 +7318,11 @@ Get number of vertices in mesh.
         Number of vertices.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.num_vertices()
-    9
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.num_vertices()
+        9
 ";
 
 %feature("docstring")  dolfin::Mesh::num_edges "
@@ -7351,17 +7333,15 @@ Get number of edges in mesh.
         Number of edges.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.num_edges()
-    0
-    >>> mesh.init(1)
-    16
-    >>> mesh.num_edges()
-    16
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.num_edges()
+        0
+        >>> mesh.init(1)
+        16
+        >>> mesh.num_edges()
+        16
 ";
 
 %feature("docstring")  dolfin::Mesh::num_faces "
@@ -7372,13 +7352,11 @@ Get number of faces in mesh.
         Number of faces.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.num_faces()
-    8
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.num_faces()
+        8
 ";
 
 %feature("docstring")  dolfin::Mesh::num_facets "
@@ -7389,16 +7367,14 @@ Get number of facets in mesh.
         Number of facets.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.num_facets()
-    0
-    >>> mesh.init(0,1)
-    >>> mesh.num_facets()
-    16
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.num_facets()
+        0
+        >>> mesh.init(0,1)
+        >>> mesh.num_facets()
+        16
 ";
 
 %feature("docstring")  dolfin::Mesh::num_cells "
@@ -7409,13 +7385,11 @@ Get number of cells in mesh.
         Number of cells.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.num_cells()
-    8
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.num_cells()
+        8
 ";
 
 %feature("docstring")  dolfin::Mesh::num_entities "
@@ -7430,18 +7404,16 @@ Get number of entities of given topological dimension.
         Number of entities of topological dimension d.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.init(0,1)
-    >>> mesh.num_entities(0)
-    9
-    >>> mesh.num_entities(1)
-    16
-    >>> mesh.num_entities(2)
-    8
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.init(0,1)
+        >>> mesh.num_entities(0)
+        9
+        >>> mesh.num_entities(1)
+        16
+        >>> mesh.num_entities(2)
+        8
 ";
 
 %feature("docstring")  dolfin::Mesh::coordinates "
@@ -7456,16 +7428,14 @@ Get number of entities of given topological dimension.
           Coordinates of all vertices.
   
   *Example*
-      .. warning::
-  
-          Not C++ syntax.
-  
-      >>> mesh = dolfin.UnitSquare(1,1)
-      >>> mesh.coordinates()
-      array([[ 0.,  0.],
-             [ 1.,  0.],
-             [ 0.,  1.],
-             [ 1.,  1.]])
+      .. code-block:: python
+      
+          >>> mesh = dolfin.UnitSquare(1,1)
+          >>> mesh.coordinates()
+          array([[ 0.,  0.],
+                 [ 1.,  0.],
+                 [ 0.,  1.],
+                 [ 1.,  1.]])
 
 * coordinates\ **()**
 
@@ -7480,14 +7450,12 @@ Get cell connectivity.
         Connectivity for all cells.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(1,1)
-    >>> mesh.cells()
-    array([[0, 1, 3],
-           [0, 2, 3]])
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(1,1)
+        >>> mesh.cells()
+        array([[0, 1, 3],
+              [0, 2, 3]])
 ";
 
 %feature("docstring")  dolfin::Mesh::size "
@@ -7502,18 +7470,16 @@ Get number of entities of given topological dimension.
         Number of entities of topological dimension d.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.init(0,1)
-    >>> mesh.num_entities(0)
-    9
-    >>> mesh.num_entities(1)
-    16
-    >>> mesh.num_entities(2)
-    8
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.init(0,1)
+        >>> mesh.size(0)
+        9
+        >>> mesh.size(1)
+        16
+        >>> mesh.size(2)
+        8
 ";
 
 %feature("docstring")  dolfin::Mesh::topology "
@@ -7839,14 +7805,11 @@ point query.
         The index of the cell in the mesh which is closest to point.
 
 *Example*
-    .. code-block:: c++
-
-        UnitSquare mesh(1, 1);
-        Point point(0.0, 2.0);
-        info(\"%d\", mesh.closest_cell(point));
-
-    output::
-
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(1, 1)
+        >>> point = dolfin.Point(0.0, 2.0)
+        >>> mesh.closest_cell(point)
         1
 ";
 
@@ -7874,13 +7837,11 @@ Compute minimum cell diameter.
         (http://mathworld.wolfram.com).
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.hmin()
-    0.70710678118654757
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.hmin()
+        0.70710678118654757
 ";
 
 %feature("docstring")  dolfin::Mesh::hmax "
@@ -7893,13 +7854,11 @@ Compute maximum cell diameter.
         (http://mathworld.wolfram.com).
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.hmax()
-    0.70710678118654757
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.hmax()
+        0.70710678118654757
 ";
 
 %feature("docstring")  dolfin::Mesh::str "
@@ -7914,13 +7873,11 @@ Informal string representation.
         An informal representation of the mesh.
 
 *Example*
-    .. warning::
-
-        Not C++ syntax.
-
-    >>> mesh = dolfin.UnitSquare(2,2)
-    >>> mesh.str(False)
-    '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
+    .. code-block:: python
+    
+        >>> mesh = dolfin.UnitSquare(2,2)
+        >>> mesh.str(False)
+        '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
