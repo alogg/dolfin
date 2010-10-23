@@ -2806,6 +2806,10 @@ Return linear algebra backend factory
 Return norm of matrix
 ";
 
+%feature("docstring")  dolfin::PETScMatrix::binary_dump "
+Dump matrix to PETSc binary format
+";
+
 // Documentation extracted from: (module=la, header=PETScKrylovMatrix.h)
 %feature("docstring")  dolfin::PETScKrylovMatrix "
 This class represents a matrix-free matrix of dimension m x m.
@@ -5997,6 +6001,10 @@ is illustrated below.
         >>> f = dolfin.cpp.MeshEntity(mesh, 0, 0)
         >>> for e in dolfin.cpp.entities(f, 1):
         ...     print e.index()
+In addition to the general iterator, a set of specific named iterators
+are provided for entities of type :py:class:`Vertex`, :py:class:`Edge`, :py:class:`Face`, :py:class:`Facet`
+and :py:class:`Cell`. These iterators are defined along with their respective
+classes.
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator "
@@ -7290,31 +7298,31 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   Copy constructor.
   
   *Arguments*
-      mesh
-          A :py:class:`Mesh` object.
+      mesh (:py:class:`Mesh`)
+          Object to be copied.
 
 * Mesh\ **(filename)**
 
   Create mesh from data file.
   
   *Arguments*
-      filename
-          A string, name of file to load.
+      filename (str)
+          Name of file to load.
 ";
 
 %feature("docstring")  dolfin::Mesh::operator= "
 Assignment operator
 
 *Arguments*
-    mesh
-        A :py:class:`Mesh` object.
+    mesh (:py:class:`Mesh`)
+        Another :py:class:`Mesh` object.
 ";
 
 %feature("docstring")  dolfin::Mesh::num_vertices "
 Get number of vertices in mesh.
 
 *Returns*
-    integer
+    int
         Number of vertices.
 
 *Example*
@@ -7329,7 +7337,7 @@ Get number of vertices in mesh.
 Get number of edges in mesh.
 
 *Returns*
-    integer
+    int
         Number of edges.
 
 *Example*
@@ -7348,7 +7356,7 @@ Get number of edges in mesh.
 Get number of faces in mesh.
 
 *Returns*
-    integer
+    int
         Number of faces.
 
 *Example*
@@ -7363,7 +7371,7 @@ Get number of faces in mesh.
 Get number of facets in mesh.
 
 *Returns*
-    integer
+    int
         Number of facets.
 
 *Example*
@@ -7381,7 +7389,7 @@ Get number of facets in mesh.
 Get number of cells in mesh.
 
 *Returns*
-    integer
+    int
         Number of cells.
 
 *Example*
@@ -7396,11 +7404,11 @@ Get number of cells in mesh.
 Get number of entities of given topological dimension.
 
 *Arguments*
-    d
-        An integer, topological dimension.
+    d (int)
+        Topological dimension.
 
 *Returns*
-    integer
+    int
         Number of entities of topological dimension d.
 
 *Example*
@@ -7424,7 +7432,7 @@ Get number of entities of given topological dimension.
   Get vertex coordinates.
   
   *Returns*
-      An array of doubles
+      numpy.array(float)
           Coordinates of all vertices.
   
   *Example*
@@ -7446,7 +7454,7 @@ Get number of entities of given topological dimension.
 Get cell connectivity.
 
 *Returns*
-    An array of integers
+    numpy.array(int)
         Connectivity for all cells.
 
 *Example*
@@ -7462,11 +7470,11 @@ Get cell connectivity.
 Get number of entities of given topological dimension.
 
 *Arguments*
-    dim
-        An integer, topological dimension.
+    dim (int)
+        Topological dimension.
 
 *Returns*
-    integer
+    int
         Number of entities of topological dimension d.
 
 *Example*
@@ -7570,11 +7578,11 @@ Get number of entities of given topological dimension.
   Compute entities of given topological dimension.
   
     *Arguments*
-        dim
-            An integer, topological dimension.
+        dim (int)
+            Topological dimension.
   
     *Returns*
-        integer
+        int
             Number of created entities.
 
 * init\ **(d0, d1)**
@@ -7582,11 +7590,11 @@ Get number of entities of given topological dimension.
   Compute connectivity between given pair of dimensions.
   
     *Arguments*
-        d0
-            An integer, topological dimension.
+        d0 (int)
+            Topological dimension.
   
-        d1
-            An integer, topological dimension.
+        d1 (int)
+            Topological dimension.
 
 * init\ **()**
 
@@ -7622,11 +7630,10 @@ Check if mesh is ordered.
   Move coordinates of mesh according to new boundary coordinates.
   
   *Arguments*
-      boundary
-          A :py:class:`BoundaryMesh` object.
+      boundary (:py:class:`BoundaryMesh`)
+          A mesh containing just the boundary cells.
   
-      method
-          A ALEType (enum).
+      method (int)
           Method which defines how the coordinates should be
           moved, default is *hermite*.
 
@@ -7636,11 +7643,10 @@ Check if mesh is ordered.
   vertices.
   
   *Arguments*
-      mesh
+      mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
   
-      method
-          A ALEType (enum).
+      method (int)
           Method which defines how the coordinates should be
           moved, default is *hermite*.
 
@@ -7649,7 +7655,7 @@ Check if mesh is ordered.
   Move coordinates of mesh according to displacement function.
   
   *Arguments*
-      function
+      displacement (:py:class:`Function`)
           A :py:class:`Function` object.
 ";
 
@@ -7657,8 +7663,8 @@ Check if mesh is ordered.
 Smooth internal vertices of mesh by local averaging.
 
 *Arguments*
-    num_iterations
-        An integer, number of iterations to perform smoothing,
+    num_iterations (int)
+        Number of iterations to perform smoothing,
         default value is 1.
 ";
 
@@ -7666,12 +7672,12 @@ Smooth internal vertices of mesh by local averaging.
 Smooth boundary vertices of mesh by local averaging.
 
 *Arguments*
-    num_iterations
-        An integer, number of iterations to perform smoothing,
+    num_iterations (int)
+        Number of iterations to perform smoothing,
         default value is 1.
 
-    harmonic_smoothing
-        A bool, flag to turn on harmonics smoothing, default
+    harmonic_smoothing (bool)
+        Flag to turn on harmonics smoothing, default
         value is true.
 ";
 
@@ -7679,11 +7685,11 @@ Smooth boundary vertices of mesh by local averaging.
 Snap boundary vertices of mesh to match given sub domain.
 
 *Arguments*
-    sub_domain
+    sub_domain (:py:class:`SubDomain`)
         A :py:class:`SubDomain` object.
 
-    harmonic_smoothing
-        A bool, flag to turn on harmonics smoothing, default
+    harmonic_smoothing (bool)
+        Flag to turn on harmonics smoothing, default
         value is true.
 ";
 
@@ -7696,11 +7702,10 @@ Snap boundary vertices of mesh to match given sub domain.
   given point.
   
   *Arguments*
-      point
+      point (:py:class:`Point`)
           A :py:class:`Point` object.
   
-      ids_result
-          A set of integers.
+      ids_result (set of int)
           The cell ids which are intersected are stored in a set for
           efficiency reasons, to avoid to sort out duplicates later on.
 
@@ -7710,11 +7715,10 @@ Snap boundary vertices of mesh to match given sub domain.
   point in points.
   
   *Arguments*
-      points
+      points (list of :py:class:`Point`)
           A vector of :py:class:`Point` objects.
   
-      ids_result
-          A set of integers.
+      ids_result (set of int)
           The cell ids which are intersected are stored in a set
           for efficiency reasons, to avoid to sort out
           duplicates later on.
@@ -7725,11 +7729,10 @@ Snap boundary vertices of mesh to match given sub domain.
   entity.
   
   *Arguments*
-      entity
+      entity (:py:class:`MeshEntity`)
           A :py:class:`MeshEntity` object.
   
-      ids_result
-          A list of integers.
+      ids_result (numpy.array(int))
           The ids of the intersected cells are saved in a list.
           This is more efficent than using a set and allows a
           map between the (external) cell and the intersected
@@ -7741,11 +7744,10 @@ Snap boundary vertices of mesh to match given sub domain.
   vector entities.
   
   *Arguments*
-      entities
+      entities (list of :py:class:`MeshEntity`)
           A vector of :py:class:`MeshEntity` objects.
   
-      ids_result
-          A set of integers.
+      ids_result (set of int)
           The cell ids which are intersected are stored in a set for
           efficiency reasons, to avoid to sort out duplicates later on.
 
@@ -7755,11 +7757,10 @@ Snap boundary vertices of mesh to match given sub domain.
   another_mesh.
   
   *Arguments*
-      another_mesh
+      another_mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
   
-      ids_result
-          A set of integers.
+      ids_result (set of int)
           The cell ids which are intersected are stored in a set for
           efficiency reasons, to avoid to sort out duplicates later on.
 ";
@@ -7769,11 +7770,11 @@ Computes only the first id of the entity, which contains the
 point.
 
 *Arguments*
-    point
+    point (:py:class:`Point`)
         A :py:class:`Point` object.
 
 *Returns*
-    integer
+    int
         The first id of the cell, which contains the point,
         returns -1 if no cell is intersected.
 ";
@@ -7783,7 +7784,7 @@ Computes the point inside the mesh and the corresponding cell
 index which are closest to the point query.
 
 *Arguments*
-    point
+    point (:py:class:`Point`)
         A :py:class:`Point` object.
 
 *Returns*
@@ -7797,11 +7798,11 @@ Computes the index of the cell in the mesh which is closest to the
 point query.
 
 *Arguments*
-    point
+    point (:py:class:`Point`)
         A :py:class:`Point` object.
 
 *Returns*
-    integer
+    int
         The index of the cell in the mesh which is closest to point.
 
 *Example*
@@ -7818,11 +7819,11 @@ Computes the point inside the mesh and the corresponding cell
 index which are closest to the point query.
 
 *Arguments*
-    point
+    point (:py:class:`Point`)
         A :py:class:`Point` object.
 
 *Returns*
-    pair <:py:class:`Point`, integer>
+    Swig Object< std::pair<:py:class:`Point`, int> >
         The point inside the mesh and the corresponding cell
         index which is closest to the point query.
 ";
@@ -7831,7 +7832,7 @@ index which are closest to the point query.
 Compute minimum cell diameter.
 
 *Returns*
-    double
+    float
         The minimum cell diameter, the diameter is computed as
         two times the circumradius
         (http://mathworld.wolfram.com).
@@ -7848,7 +7849,7 @@ Compute minimum cell diameter.
 Compute maximum cell diameter.
 
 *Returns*
-    double
+    float
         The maximum cell diameter, the diameter is computed as
         two times the circumradius
         (http://mathworld.wolfram.com).
@@ -7865,11 +7866,11 @@ Compute maximum cell diameter.
 Informal string representation.
 
 *Arguments*
-    verbose
-        A bool, flag to turn on additional output.
+    verbose (bool)
+        Flag to turn on additional output.
 
 *Returns*
-    string
+    str
         An informal representation of the mesh.
 
 *Example*
@@ -8069,6 +8070,22 @@ Initialize exterior boundary of given mesh
 Initialize interior boundary of given mesh
 ";
 
+// Documentation extracted from: (module=mesh, header=UnitTetrahedron.h)
+%feature("docstring")  dolfin::UnitTetrahedron "
+A mesh consisting of a single tetrahedron with vertices at
+
+  (0, 0, 0)
+  (1, 0, 0)
+  (0, 1, 0)
+  (0, 0, 1)
+
+This class is useful for testing.
+";
+
+%feature("docstring")  dolfin::UnitTetrahedron::UnitTetrahedron "
+Create mesh of unit tetrahedron
+";
+
 // Documentation extracted from: (module=mesh, header=UnitCube.h)
 %feature("docstring")  dolfin::UnitCube "
 Tetrahedral mesh of the 3D unit cube (0,1) x (0,1) x (0,1).
@@ -8079,10 +8096,13 @@ total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
 
 // Documentation extracted from: (module=mesh, header=UnitInterval.h)
 %feature("docstring")  dolfin::UnitInterval "
-Interval mesh of the 1D unit line (0,1).
-Given the number of cells (nx) in the axial direction,
-the total number of intervals will be nx and the
-total number of vertices will be (nx + 1).
+A mesh of the unit interval (0, 1) with a given number of cells
+(nx) in the axial direction. The total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+";
+
+%feature("docstring")  dolfin::UnitInterval::UnitInterval "
+Create mesh of unit interval
 ";
 
 // Documentation extracted from: (module=mesh, header=Interval.h)
@@ -8091,6 +8111,21 @@ Interval mesh of the 1D line (a,b).
 Given the number of cells (nx) in the axial direction,
 the total number of intervals will be nx and the
 total number of vertices will be (nx + 1).
+";
+
+// Documentation extracted from: (module=mesh, header=UnitTriangle.h)
+%feature("docstring")  dolfin::UnitTriangle "
+A mesh consisting of a single triangle with vertices at
+
+  (0, 0)
+  (1, 0)
+  (0, 1)
+
+This class is useful for testing.
+";
+
+%feature("docstring")  dolfin::UnitTriangle::UnitTriangle "
+Create mesh of unit triangle
 ";
 
 // Documentation extracted from: (module=mesh, header=UnitSquare.h)
