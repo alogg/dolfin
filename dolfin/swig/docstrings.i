@@ -5672,18 +5672,6 @@ Constructor
 Compute cell colors
 ";
 
-%feature("docstring")  dolfin::CellColoring::num_global_cells "
-Number of global cells (graph vertices)
-";
-
-%feature("docstring")  dolfin::CellColoring::num_local_cells "
-Number of local cells (graph vertices)
-";
-
-%feature("docstring")  dolfin::CellColoring::num_neighbors "
-Number of neighboring cells
-";
-
 // Documentation extracted from: (module=ale, header=ALEType.h)
 // Documentation extracted from: (module=ale, header=ALE.h)
 %feature("docstring")  dolfin::ALE "
