@@ -734,16 +734,6 @@ Return informal string representation (pretty-print)
 ";
 
 // Documentation extracted from: (module=fem, header=DofMap.h)
-%feature("docstring")  dolfin::DofMap "
-This class handles the mapping of degrees of freedom. It builds
-a dof map based on a ufc::dof_map on a specific mesh. It will
-reorder the dofs when running in parallel.
-
-If ufc_offset != 0, then the dof map provides a view into a
-larger dof map. A dof map which is a view, can be 'collapsed'
-such that the dof indices are contiguous.
-";
-
 %feature("docstring")  dolfin::DofMap::DofMap "
 **Overloaded versions**
 
@@ -1356,15 +1346,24 @@ entire set of cells or facets.
 
 * assemble\ **(A, a, reset_sparsity=true, add_values=false)**
 
-  Assemble tensor
+  Assemble tensor from given form
 
 * assemble\ **(A, a, sub_domain, reset_sparsity=true, add_values=false)**
 
-  Assemble tensor on sub domain
+  Assemble tensor from given form on sub domain
 
 * assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
 
-  Assemble tensor on sub domains
+  Assemble tensor from given form on sub domains
+";
+
+// Documentation extracted from: (module=fem, header=SparsityPatternBuilder.h)
+%feature("docstring")  dolfin::SparsityPatternBuilder "
+This class provides functions to compute the sparsity pattern.
+";
+
+%feature("docstring")  dolfin::SparsityPatternBuilder::build "
+Build sparsity pattern for assembly of given form
 ";
 
 // Documentation extracted from: (module=fem, header=SystemAssembler.h)
@@ -1394,6 +1393,18 @@ boundary conditions at the time of assembly.
 * assemble\ **(A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)**
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
+";
+
+// Documentation extracted from: (module=fem, header=MulticoreAssembler.h)
+%feature("docstring")  dolfin::MulticoreAssembler "
+This class implements shared-memory parallel assembly based on
+threads. It may be used directly, but it will be automatically
+invoked by the normal DOLFIN assembler whenever the global
+parameter \"num_threads\" is set to a value larger than 1.
+";
+
+%feature("docstring")  dolfin::MulticoreAssembler::assemble "
+Assemble tensor from given form on sub domains
 ";
 
 // Documentation extracted from: (module=fem, header=VariationalProblem.h)
@@ -1666,33 +1677,6 @@ Create log stream of given type
 ";
 
 // Documentation extracted from: (module=log, header=Progress.h)
-%feature("docstring")  dolfin::Progress "
-This class provides a simple way to create and update progress
-bars during a computation.
-
-*Example*
-    A progress bar may be used either in an iteration with a known number
-    of steps:
-    
-    .. code-block:: python
-    
-        >>> n = 1000000
-        >>> p = dolfin.Progress(\"Iterating...\", n)
-        >>> for i in range(n):
-        ...     p += 1
-    
-    or in an iteration with an unknown number of steps:
-    
-    .. code-block:: python
-    
-        >>> pr = dolfin.Progress(\"Iterating\")
-        >>> t = 0.0
-        >>> n = 1000000.0
-        >>> while t < n:
-        ...     t += 1.0
-        ...     p += t/n
-";
-
 %feature("docstring")  dolfin::Progress::Progress "
 **Overloaded versions**
 
@@ -1759,6 +1743,10 @@ Return table entry
 ";
 
 %feature("docstring")  dolfin::Table::get "
+Get value of table entry
+";
+
+%feature("docstring")  dolfin::Table::get_value "
 Get value of table entry
 ";
 
@@ -3741,9 +3729,14 @@ Return mtl4_sparse_matrix reference
 
 // Documentation extracted from: (module=la, header=STLMatrix.h)
 %feature("docstring")  dolfin::STLMatrix "
-Simple implementation of a GenericMatrix for experimenting
-with new assembly. Not sure this will be used later but it
-might be useful.
+Simple STL-based implementation of the GenericMatrix interface.
+The sparse matrix is stored as a pair of std::vector of
+std::vector, one for the columns and one for the values.
+
+Historically, this class has undergone a number of different
+incarnations, based on various combinations of std::vector,
+std::set and std::map. The current implementation has proven to
+be the fastest.
 ";
 
 %feature("docstring")  dolfin::STLMatrix::STLMatrix "
@@ -5641,6 +5634,56 @@ Matrix-vector product, y = Ax
 Assign Matrix to SubMatrix
 ";
 
+// Documentation extracted from: (module=graph, header=MatrixRenumbering.h)
+%feature("docstring")  dolfin::MatrixRenumbering "
+This class computes re-ordering based on a SparsityPattern graph
+representation of a sparse matrix. It uses Zoltan, which is part of
+Trilinos.
+";
+
+%feature("docstring")  dolfin::MatrixRenumbering::num_global_objects "
+Number of global graph vertices
+";
+
+%feature("docstring")  dolfin::MatrixRenumbering::num_local_objects "
+Number of local graph vertices
+";
+
+%feature("docstring")  dolfin::MatrixRenumbering::num_edges_per_vertex "
+Number of edges per vertex
+";
+
+%feature("docstring")  dolfin::MatrixRenumbering::edges "
+Vertex edges
+";
+
+// Documentation extracted from: (module=graph, header=CellColoring.h)
+%feature("docstring")  dolfin::CellColoring "
+This class computes cell colorings for a local mesh. It supports vertex,
+facet and edge-based colorings.  Zoltan (part of Trilinos) is used to
+the colorings.
+";
+
+%feature("docstring")  dolfin::CellColoring::CellColoring "
+Constructor
+";
+
+%feature("docstring")  dolfin::CellColoring::compute_local_cell_coloring "
+Compute cell colors
+";
+
+%feature("docstring")  dolfin::CellColoring::num_global_cells "
+Number of global cells (graph vertices)
+";
+
+%feature("docstring")  dolfin::CellColoring::num_local_cells "
+Number of local cells (graph vertices)
+";
+
+%feature("docstring")  dolfin::CellColoring::num_neighbors "
+Number of neighboring cells
+";
+
 // Documentation extracted from: (module=ale, header=ALEType.h)
 // Documentation extracted from: (module=ale, header=ALE.h)
 %feature("docstring")  dolfin::ALE "
@@ -6058,7 +6101,7 @@ Check if iterator has reached the end
 %feature("docstring")  dolfin::MeshEntityIterator::end_iterator "
 Provide a safeguard iterator pointing beyond the end of an iteration
 process, either iterating over the mesh /or incident entities. Added to
-be bit more like STL iteratoren, since many algorithms rely on a kind of
+be bit more like STL iterators, since many algorithms rely on a kind of
 beyond iterator.
 ";
 
@@ -8713,6 +8756,11 @@ reduction op)
 
   Return local range for given process, splitting [0, N - 1] into
   num_processes() portions of almost equal size
+
+* local_range\ **(process, N, num_processes)**
+
+  Return local range for given process, splitting [0, N - 1] into
+  num_processes portions of almost equal size
 ";
 
 %feature("docstring")  dolfin::MPI::index_owner "
