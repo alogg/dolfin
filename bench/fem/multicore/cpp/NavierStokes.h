@@ -52,6 +52,1352 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
+    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::tetrahedron;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 1;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 0;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    return 1;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    
+    // Compute Jacobian of affine map from reference cell
+    
+    // Compute sub determinants
+    
+    // Compute determinant of Jacobian
+    
+    // Compute inverse of Jacobian
+    
+    // Compute constants
+    
+    // Get coordinates and map to the reference (FIAT) element
+    
+    
+    // Reset values.
+    *values = 0.000000000000000;
+    
+    // Array of basisvalues.
+    double basisvalues[1] = {0.000000000000000};
+    
+    // Declare helper variables.
+    
+    // Compute basisvalues.
+    basisvalues[0] = 1.000000000000000;
+    
+    // Table(s) of coefficients.
+    static const double coefficients0[1] = \
+    {1.000000000000000};
+    
+    // Compute value(s).
+    for (unsigned int r = 0; r < 1; r++)
+    {
+      *values += coefficients0[r]*basisvalues[r];
+    }// end loop over 'r'
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    // Element is constant, calling evaluate_basis.
+    evaluate_basis(0, values, coordinates, c);
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_02 = x[3][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    const double J_12 = x[3][1] - x[0][1];
+    const double J_20 = x[1][2] - x[0][2];
+    const double J_21 = x[2][2] - x[0][2];
+    const double J_22 = x[3][2] - x[0][2];
+    
+    // Compute sub determinants
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_01 = J_12*J_20 - J_10*J_22;
+    const double d_02 = J_10*J_21 - J_11*J_20;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_11 = J_00*J_22 - J_02*J_20;
+    const double d_12 = J_01*J_20 - J_00*J_21;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    const double d_21 = J_02*J_10 - J_00*J_12;
+    const double d_22 = J_00*J_11 - J_01*J_10;
+    
+    // Compute determinant of Jacobian
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    
+    // Compute inverse of Jacobian
+    const double K_00 = d_00 / detJ;
+    const double K_01 = d_10 / detJ;
+    const double K_02 = d_20 / detJ;
+    const double K_10 = d_01 / detJ;
+    const double K_11 = d_11 / detJ;
+    const double K_12 = d_21 / detJ;
+    const double K_20 = d_02 / detJ;
+    const double K_21 = d_12 / detJ;
+    const double K_22 = d_22 / detJ;
+    
+    // Compute constants
+    
+    // Get coordinates and map to the reference (FIAT) element
+    
+    
+    // Compute number of derivatives.
+    unsigned int num_derivatives = 1;
+    for (unsigned int r = 0; r < n; r++)
+    {
+      num_derivatives *= 3;
+    }// end loop over 'r'
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      combinations[row] = new unsigned int [n];
+      for (unsigned int col = 0; col < n; col++)
+        combinations[row][col] = 0;
+    }
+    
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 2)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+    
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values. Assuming that values is always an array.
+    for (unsigned int r = 0; r < num_derivatives; r++)
+    {
+      values[r] = 0.000000000000000;
+    }// end loop over 'r'
+    
+    
+    // Array of basisvalues.
+    double basisvalues[1] = {0.000000000000000};
+    
+    // Declare helper variables.
+    
+    // Compute basisvalues.
+    basisvalues[0] = 1.000000000000000;
+    
+    // Table(s) of coefficients.
+    static const double coefficients0[1] = \
+    {1.000000000000000};
+    
+    // Tables of derivatives of the polynomial base (transpose).
+    static const double dmats0[1][1] = \
+    {{0.000000000000000}};
+    
+    static const double dmats1[1][1] = \
+    {{0.000000000000000}};
+    
+    static const double dmats2[1][1] = \
+    {{0.000000000000000}};
+    
+    // Compute reference derivatives.
+    // Declare pointer to array of derivatives on FIAT element.
+    double *derivatives = new double[num_derivatives];
+    for (unsigned int r = 0; r < num_derivatives; r++)
+    {
+      derivatives[r] = 0.000000000000000;
+    }// end loop over 'r'
+    
+    // Declare derivative matrix (of polynomial basis).
+    double dmats[1][1] = \
+    {{1.000000000000000}};
+    
+    // Declare (auxiliary) derivative matrix (of polynomial basis).
+    double dmats_old[1][1] = \
+    {{1.000000000000000}};
+    
+    // Loop possible derivatives.
+    for (unsigned int r = 0; r < num_derivatives; r++)
+    {
+      // Resetting dmats values to compute next derivative.
+      for (unsigned int t = 0; t < 1; t++)
+      {
+        for (unsigned int u = 0; u < 1; u++)
+        {
+          dmats[t][u] = 0.000000000000000;
+          if (t == u)
+          {
+          dmats[t][u] = 1.000000000000000;
+          }
+          
+        }// end loop over 'u'
+      }// end loop over 't'
+      
+      // Looping derivative order to generate dmats.
+      for (unsigned int s = 0; s < n; s++)
+      {
+        // Updating dmats_old with new values and resetting dmats.
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            dmats_old[t][u] = dmats[t][u];
+            dmats[t][u] = 0.000000000000000;
+          }// end loop over 'u'
+        }// end loop over 't'
+        
+        // Update dmats using an inner product.
+        if (combinations[r][s] == 0)
+        {
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            for (unsigned int tu = 0; tu < 1; tu++)
+            {
+              dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
+            }// end loop over 'tu'
+          }// end loop over 'u'
+        }// end loop over 't'
+        }
+        
+        if (combinations[r][s] == 1)
+        {
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            for (unsigned int tu = 0; tu < 1; tu++)
+            {
+              dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
+            }// end loop over 'tu'
+          }// end loop over 'u'
+        }// end loop over 't'
+        }
+        
+        if (combinations[r][s] == 2)
+        {
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            for (unsigned int tu = 0; tu < 1; tu++)
+            {
+              dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
+            }// end loop over 'tu'
+          }// end loop over 'u'
+        }// end loop over 't'
+        }
+        
+      }// end loop over 's'
+      for (unsigned int s = 0; s < 1; s++)
+      {
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
+        }// end loop over 't'
+      }// end loop over 's'
+    }// end loop over 'r'
+    
+    // Transform derivatives back to physical element
+    for (unsigned int r = 0; r < num_derivatives; r++)
+    {
+      for (unsigned int s = 0; s < num_derivatives; s++)
+      {
+        values[r] += transform[r][s]*derivatives[s];
+      }// end loop over 's'
+    }// end loop over 'r'
+    
+    // Delete pointer to array of derivatives on FIAT element
+    delete [] derivatives;
+    
+    // Delete pointer to array of combinations of derivatives and transform
+    for (unsigned int r = 0; r < num_derivatives; r++)
+    {
+      delete [] combinations[r];
+    }// end loop over 'r'
+    delete [] combinations;
+    for (unsigned int r = 0; r < num_derivatives; r++)
+    {
+      delete [] transform[r];
+    }// end loop over 'r'
+    delete [] transform;
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    // Element is constant, calling evaluate_basis_derivatives.
+    evaluate_basis_derivatives(0, n, values, coordinates, c);
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // Declare variables for result of evaluation.
+    double vals[1];
+    
+    // Declare variable for physical coordinates.
+    double y[3];
+    const double * const * x = c.coordinates;
+    switch (i)
+    {
+    case 0:
+      {
+        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+      f.evaluate(vals, y, c);
+      return vals[0];
+        break;
+      }
+    }
+    
+    return 0.000000000000000;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    // Declare variables for result of evaluation.
+    double vals[1];
+    
+    // Declare variable for physical coordinates.
+    double y[3];
+    const double * const * x = c.coordinates;
+    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    f.evaluate(vals, y, c);
+    values[0] = vals[0];
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate function and change variables
+    vertex_values[0] = dof_values[0];
+    vertex_values[1] = dof_values[0];
+    vertex_values[2] = dof_values[0];
+    vertex_values[3] = dof_values[0];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 0;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class navierstokes_finite_element_1: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  navierstokes_finite_element_1() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~navierstokes_finite_element_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
+    return "VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3)";
+  }
+
+  /// Return the cell shape
+  virtual ufc::shape cell_shape() const
+  {
+    return ufc::tetrahedron;
+  }
+
+  /// Return the dimension of the finite element function space
+  virtual unsigned int space_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the rank of the value space
+  virtual unsigned int value_rank() const
+  {
+    return 1;
+  }
+
+  /// Return the dimension of the value space for axis i
+  virtual unsigned int value_dimension(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return 3;
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Evaluate basis function i at given point in cell
+  virtual void evaluate_basis(unsigned int i,
+                              double* values,
+                              const double* coordinates,
+                              const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    
+    // Compute Jacobian of affine map from reference cell
+    
+    // Compute sub determinants
+    
+    // Compute determinant of Jacobian
+    
+    // Compute inverse of Jacobian
+    
+    // Compute constants
+    
+    // Get coordinates and map to the reference (FIAT) element
+    
+    
+    // Reset values.
+    values[0] = 0.000000000000000;
+    values[1] = 0.000000000000000;
+    values[2] = 0.000000000000000;
+    switch (i)
+    {
+    case 0:
+      {
+        
+      // Array of basisvalues.
+      double basisvalues[1] = {0.000000000000000};
+      
+      // Declare helper variables.
+      
+      // Compute basisvalues.
+      basisvalues[0] = 1.000000000000000;
+      
+      // Table(s) of coefficients.
+      static const double coefficients0[1] = \
+      {1.000000000000000};
+      
+      // Compute value(s).
+      for (unsigned int r = 0; r < 1; r++)
+      {
+        values[0] += coefficients0[r]*basisvalues[r];
+      }// end loop over 'r'
+        break;
+      }
+    case 1:
+      {
+        
+      // Array of basisvalues.
+      double basisvalues[1] = {0.000000000000000};
+      
+      // Declare helper variables.
+      
+      // Compute basisvalues.
+      basisvalues[0] = 1.000000000000000;
+      
+      // Table(s) of coefficients.
+      static const double coefficients0[1] = \
+      {1.000000000000000};
+      
+      // Compute value(s).
+      for (unsigned int r = 0; r < 1; r++)
+      {
+        values[1] += coefficients0[r]*basisvalues[r];
+      }// end loop over 'r'
+        break;
+      }
+    case 2:
+      {
+        
+      // Array of basisvalues.
+      double basisvalues[1] = {0.000000000000000};
+      
+      // Declare helper variables.
+      
+      // Compute basisvalues.
+      basisvalues[0] = 1.000000000000000;
+      
+      // Table(s) of coefficients.
+      static const double coefficients0[1] = \
+      {1.000000000000000};
+      
+      // Compute value(s).
+      for (unsigned int r = 0; r < 1; r++)
+      {
+        values[2] += coefficients0[r]*basisvalues[r];
+      }// end loop over 'r'
+        break;
+      }
+    }
+    
+  }
+
+  /// Evaluate all basis functions at given point in cell
+  virtual void evaluate_basis_all(double* values,
+                                  const double* coordinates,
+                                  const ufc::cell& c) const
+  {
+    // Helper variable to hold values of a single dof.
+    double dof_values[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+    
+    // Loop dofs and call evaluate_basis.
+    for (unsigned int r = 0; r < 3; r++)
+    {
+      evaluate_basis(r, dof_values, coordinates, c);
+      for (unsigned int s = 0; s < 3; s++)
+      {
+        values[r*3 + s] = dof_values[s];
+      }// end loop over 's'
+    }// end loop over 'r'
+  }
+
+  /// Evaluate order n derivatives of basis function i at given point in cell
+  virtual void evaluate_basis_derivatives(unsigned int i,
+                                          unsigned int n,
+                                          double* values,
+                                          const double* coordinates,
+                                          const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_02 = x[3][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    const double J_12 = x[3][1] - x[0][1];
+    const double J_20 = x[1][2] - x[0][2];
+    const double J_21 = x[2][2] - x[0][2];
+    const double J_22 = x[3][2] - x[0][2];
+    
+    // Compute sub determinants
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_01 = J_12*J_20 - J_10*J_22;
+    const double d_02 = J_10*J_21 - J_11*J_20;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_11 = J_00*J_22 - J_02*J_20;
+    const double d_12 = J_01*J_20 - J_00*J_21;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    const double d_21 = J_02*J_10 - J_00*J_12;
+    const double d_22 = J_00*J_11 - J_01*J_10;
+    
+    // Compute determinant of Jacobian
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    
+    // Compute inverse of Jacobian
+    const double K_00 = d_00 / detJ;
+    const double K_01 = d_10 / detJ;
+    const double K_02 = d_20 / detJ;
+    const double K_10 = d_01 / detJ;
+    const double K_11 = d_11 / detJ;
+    const double K_12 = d_21 / detJ;
+    const double K_20 = d_02 / detJ;
+    const double K_21 = d_12 / detJ;
+    const double K_22 = d_22 / detJ;
+    
+    // Compute constants
+    
+    // Get coordinates and map to the reference (FIAT) element
+    
+    
+    // Compute number of derivatives.
+    unsigned int num_derivatives = 1;
+    for (unsigned int r = 0; r < n; r++)
+    {
+      num_derivatives *= 3;
+    }// end loop over 'r'
+    
+    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
+    unsigned int **combinations = new unsigned int *[num_derivatives];
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      combinations[row] = new unsigned int [n];
+      for (unsigned int col = 0; col < n; col++)
+        combinations[row][col] = 0;
+    }
+    
+    // Generate combinations of derivatives
+    for (unsigned int row = 1; row < num_derivatives; row++)
+    {
+      for (unsigned int num = 0; num < row; num++)
+      {
+        for (unsigned int col = n-1; col+1 > 0; col--)
+        {
+          if (combinations[row][col] + 1 > 2)
+            combinations[row][col] = 0;
+          else
+          {
+            combinations[row][col] += 1;
+            break;
+          }
+        }
+      }
+    }
+    
+    // Compute inverse of Jacobian
+    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    
+    // Declare transformation matrix
+    // Declare pointer to two dimensional array and initialise
+    double **transform = new double *[num_derivatives];
+    
+    for (unsigned int j = 0; j < num_derivatives; j++)
+    {
+      transform[j] = new double [num_derivatives];
+      for (unsigned int k = 0; k < num_derivatives; k++)
+        transform[j][k] = 1;
+    }
+    
+    // Construct transformation matrix
+    for (unsigned int row = 0; row < num_derivatives; row++)
+    {
+      for (unsigned int col = 0; col < num_derivatives; col++)
+      {
+        for (unsigned int k = 0; k < n; k++)
+          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
+      }
+    }
+    
+    // Reset values. Assuming that values is always an array.
+    for (unsigned int r = 0; r < 3*num_derivatives; r++)
+    {
+      values[r] = 0.000000000000000;
+    }// end loop over 'r'
+    
+    switch (i)
+    {
+    case 0:
+      {
+        
+      // Array of basisvalues.
+      double basisvalues[1] = {0.000000000000000};
+      
+      // Declare helper variables.
+      
+      // Compute basisvalues.
+      basisvalues[0] = 1.000000000000000;
+      
+      // Table(s) of coefficients.
+      static const double coefficients0[1] = \
+      {1.000000000000000};
+      
+      // Tables of derivatives of the polynomial base (transpose).
+      static const double dmats0[1][1] = \
+      {{0.000000000000000}};
+      
+      static const double dmats1[1][1] = \
+      {{0.000000000000000}};
+      
+      static const double dmats2[1][1] = \
+      {{0.000000000000000}};
+      
+      // Compute reference derivatives.
+      // Declare pointer to array of derivatives on FIAT element.
+      double *derivatives = new double[num_derivatives];
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        derivatives[r] = 0.000000000000000;
+      }// end loop over 'r'
+      
+      // Declare derivative matrix (of polynomial basis).
+      double dmats[1][1] = \
+      {{1.000000000000000}};
+      
+      // Declare (auxiliary) derivative matrix (of polynomial basis).
+      double dmats_old[1][1] = \
+      {{1.000000000000000}};
+      
+      // Loop possible derivatives.
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        // Resetting dmats values to compute next derivative.
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            dmats[t][u] = 0.000000000000000;
+            if (t == u)
+            {
+            dmats[t][u] = 1.000000000000000;
+            }
+            
+          }// end loop over 'u'
+        }// end loop over 't'
+        
+        // Looping derivative order to generate dmats.
+        for (unsigned int s = 0; s < n; s++)
+        {
+          // Updating dmats_old with new values and resetting dmats.
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              dmats_old[t][u] = dmats[t][u];
+              dmats[t][u] = 0.000000000000000;
+            }// end loop over 'u'
+          }// end loop over 't'
+          
+          // Update dmats using an inner product.
+          if (combinations[r][s] == 0)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+          if (combinations[r][s] == 1)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+          if (combinations[r][s] == 2)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+        }// end loop over 's'
+        for (unsigned int s = 0; s < 1; s++)
+        {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
+          }// end loop over 't'
+        }// end loop over 's'
+      }// end loop over 'r'
+      
+      // Transform derivatives back to physical element
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        for (unsigned int s = 0; s < num_derivatives; s++)
+        {
+          values[r] += transform[r][s]*derivatives[s];
+        }// end loop over 's'
+      }// end loop over 'r'
+      
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+      
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        delete [] combinations[r];
+      }// end loop over 'r'
+      delete [] combinations;
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        delete [] transform[r];
+      }// end loop over 'r'
+      delete [] transform;
+        break;
+      }
+    case 1:
+      {
+        
+      // Array of basisvalues.
+      double basisvalues[1] = {0.000000000000000};
+      
+      // Declare helper variables.
+      
+      // Compute basisvalues.
+      basisvalues[0] = 1.000000000000000;
+      
+      // Table(s) of coefficients.
+      static const double coefficients0[1] = \
+      {1.000000000000000};
+      
+      // Tables of derivatives of the polynomial base (transpose).
+      static const double dmats0[1][1] = \
+      {{0.000000000000000}};
+      
+      static const double dmats1[1][1] = \
+      {{0.000000000000000}};
+      
+      static const double dmats2[1][1] = \
+      {{0.000000000000000}};
+      
+      // Compute reference derivatives.
+      // Declare pointer to array of derivatives on FIAT element.
+      double *derivatives = new double[num_derivatives];
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        derivatives[r] = 0.000000000000000;
+      }// end loop over 'r'
+      
+      // Declare derivative matrix (of polynomial basis).
+      double dmats[1][1] = \
+      {{1.000000000000000}};
+      
+      // Declare (auxiliary) derivative matrix (of polynomial basis).
+      double dmats_old[1][1] = \
+      {{1.000000000000000}};
+      
+      // Loop possible derivatives.
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        // Resetting dmats values to compute next derivative.
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            dmats[t][u] = 0.000000000000000;
+            if (t == u)
+            {
+            dmats[t][u] = 1.000000000000000;
+            }
+            
+          }// end loop over 'u'
+        }// end loop over 't'
+        
+        // Looping derivative order to generate dmats.
+        for (unsigned int s = 0; s < n; s++)
+        {
+          // Updating dmats_old with new values and resetting dmats.
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              dmats_old[t][u] = dmats[t][u];
+              dmats[t][u] = 0.000000000000000;
+            }// end loop over 'u'
+          }// end loop over 't'
+          
+          // Update dmats using an inner product.
+          if (combinations[r][s] == 0)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+          if (combinations[r][s] == 1)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+          if (combinations[r][s] == 2)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+        }// end loop over 's'
+        for (unsigned int s = 0; s < 1; s++)
+        {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
+          }// end loop over 't'
+        }// end loop over 's'
+      }// end loop over 'r'
+      
+      // Transform derivatives back to physical element
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        for (unsigned int s = 0; s < num_derivatives; s++)
+        {
+          values[num_derivatives + r] += transform[r][s]*derivatives[s];
+        }// end loop over 's'
+      }// end loop over 'r'
+      
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+      
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        delete [] combinations[r];
+      }// end loop over 'r'
+      delete [] combinations;
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        delete [] transform[r];
+      }// end loop over 'r'
+      delete [] transform;
+        break;
+      }
+    case 2:
+      {
+        
+      // Array of basisvalues.
+      double basisvalues[1] = {0.000000000000000};
+      
+      // Declare helper variables.
+      
+      // Compute basisvalues.
+      basisvalues[0] = 1.000000000000000;
+      
+      // Table(s) of coefficients.
+      static const double coefficients0[1] = \
+      {1.000000000000000};
+      
+      // Tables of derivatives of the polynomial base (transpose).
+      static const double dmats0[1][1] = \
+      {{0.000000000000000}};
+      
+      static const double dmats1[1][1] = \
+      {{0.000000000000000}};
+      
+      static const double dmats2[1][1] = \
+      {{0.000000000000000}};
+      
+      // Compute reference derivatives.
+      // Declare pointer to array of derivatives on FIAT element.
+      double *derivatives = new double[num_derivatives];
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        derivatives[r] = 0.000000000000000;
+      }// end loop over 'r'
+      
+      // Declare derivative matrix (of polynomial basis).
+      double dmats[1][1] = \
+      {{1.000000000000000}};
+      
+      // Declare (auxiliary) derivative matrix (of polynomial basis).
+      double dmats_old[1][1] = \
+      {{1.000000000000000}};
+      
+      // Loop possible derivatives.
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        // Resetting dmats values to compute next derivative.
+        for (unsigned int t = 0; t < 1; t++)
+        {
+          for (unsigned int u = 0; u < 1; u++)
+          {
+            dmats[t][u] = 0.000000000000000;
+            if (t == u)
+            {
+            dmats[t][u] = 1.000000000000000;
+            }
+            
+          }// end loop over 'u'
+        }// end loop over 't'
+        
+        // Looping derivative order to generate dmats.
+        for (unsigned int s = 0; s < n; s++)
+        {
+          // Updating dmats_old with new values and resetting dmats.
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              dmats_old[t][u] = dmats[t][u];
+              dmats[t][u] = 0.000000000000000;
+            }// end loop over 'u'
+          }// end loop over 't'
+          
+          // Update dmats using an inner product.
+          if (combinations[r][s] == 0)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+          if (combinations[r][s] == 1)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+          if (combinations[r][s] == 2)
+          {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            for (unsigned int u = 0; u < 1; u++)
+            {
+              for (unsigned int tu = 0; tu < 1; tu++)
+              {
+                dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
+              }// end loop over 'tu'
+            }// end loop over 'u'
+          }// end loop over 't'
+          }
+          
+        }// end loop over 's'
+        for (unsigned int s = 0; s < 1; s++)
+        {
+          for (unsigned int t = 0; t < 1; t++)
+          {
+            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
+          }// end loop over 't'
+        }// end loop over 's'
+      }// end loop over 'r'
+      
+      // Transform derivatives back to physical element
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        for (unsigned int s = 0; s < num_derivatives; s++)
+        {
+          values[2*num_derivatives + r] += transform[r][s]*derivatives[s];
+        }// end loop over 's'
+      }// end loop over 'r'
+      
+      // Delete pointer to array of derivatives on FIAT element
+      delete [] derivatives;
+      
+      // Delete pointer to array of combinations of derivatives and transform
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        delete [] combinations[r];
+      }// end loop over 'r'
+      delete [] combinations;
+      for (unsigned int r = 0; r < num_derivatives; r++)
+      {
+        delete [] transform[r];
+      }// end loop over 'r'
+      delete [] transform;
+        break;
+      }
+    }
+    
+  }
+
+  /// Evaluate order n derivatives of all basis functions at given point in cell
+  virtual void evaluate_basis_derivatives_all(unsigned int n,
+                                              double* values,
+                                              const double* coordinates,
+                                              const ufc::cell& c) const
+  {
+    // Compute number of derivatives.
+    unsigned int num_derivatives = 1;
+    for (unsigned int r = 0; r < n; r++)
+    {
+      num_derivatives *= 3;
+    }// end loop over 'r'
+    
+    // Helper variable to hold values of a single dof.
+    double *dof_values = new double[3*num_derivatives];
+    for (unsigned int r = 0; r < 3*num_derivatives; r++)
+    {
+      dof_values[r] = 0.000000000000000;
+    }// end loop over 'r'
+    
+    // Loop dofs and call evaluate_basis_derivatives.
+    for (unsigned int r = 0; r < 3; r++)
+    {
+      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      for (unsigned int s = 0; s < 3*num_derivatives; s++)
+      {
+        values[r*3*num_derivatives + s] = dof_values[s];
+      }// end loop over 's'
+    }// end loop over 'r'
+    
+    // Delete pointer.
+    delete [] dof_values;
+  }
+
+  /// Evaluate linear functional for dof i on the function f
+  virtual double evaluate_dof(unsigned int i,
+                              const ufc::function& f,
+                              const ufc::cell& c) const
+  {
+    // Declare variables for result of evaluation.
+    double vals[3];
+    
+    // Declare variable for physical coordinates.
+    double y[3];
+    const double * const * x = c.coordinates;
+    switch (i)
+    {
+    case 0:
+      {
+        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+      f.evaluate(vals, y, c);
+      return vals[0];
+        break;
+      }
+    case 1:
+      {
+        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+      f.evaluate(vals, y, c);
+      return vals[1];
+        break;
+      }
+    case 2:
+      {
+        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+      f.evaluate(vals, y, c);
+      return vals[2];
+        break;
+      }
+    }
+    
+    return 0.000000000000000;
+  }
+
+  /// Evaluate linear functionals for all dofs on the function f
+  virtual void evaluate_dofs(double* values,
+                             const ufc::function& f,
+                             const ufc::cell& c) const
+  {
+    // Declare variables for result of evaluation.
+    double vals[3];
+    
+    // Declare variable for physical coordinates.
+    double y[3];
+    const double * const * x = c.coordinates;
+    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    f.evaluate(vals, y, c);
+    values[0] = vals[0];
+    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    f.evaluate(vals, y, c);
+    values[1] = vals[1];
+    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    f.evaluate(vals, y, c);
+    values[2] = vals[2];
+  }
+
+  /// Interpolate vertex values from dof values
+  virtual void interpolate_vertex_values(double* vertex_values,
+                                         const double* dof_values,
+                                         const ufc::cell& c) const
+  {
+    // Evaluate function and change variables
+    vertex_values[0] = dof_values[0];
+    vertex_values[3] = dof_values[0];
+    vertex_values[6] = dof_values[0];
+    vertex_values[9] = dof_values[0];
+    // Evaluate function and change variables
+    vertex_values[1] = dof_values[1];
+    vertex_values[4] = dof_values[1];
+    vertex_values[7] = dof_values[1];
+    vertex_values[10] = dof_values[1];
+    // Evaluate function and change variables
+    vertex_values[2] = dof_values[2];
+    vertex_values[5] = dof_values[2];
+    vertex_values[8] = dof_values[2];
+    vertex_values[11] = dof_values[2];
+  }
+
+  /// Return the number of sub elements (for a mixed element)
+  virtual unsigned int num_sub_elements() const
+  {
+    return 3;
+  }
+
+  /// Create a new finite element for sub element i (for a mixed element)
+  virtual ufc::finite_element* create_sub_element(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new navierstokes_finite_element_0();
+        break;
+      }
+    case 1:
+      {
+        return new navierstokes_finite_element_0();
+        break;
+      }
+    case 2:
+      {
+        return new navierstokes_finite_element_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a finite element.
+
+class navierstokes_finite_element_2: public ufc::finite_element
+{
+public:
+
+  /// Constructor
+  navierstokes_finite_element_2() : ufc::finite_element()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~navierstokes_finite_element_2()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the finite element
+  virtual const char* signature() const
+  {
     return "FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
@@ -1410,18 +2756,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_1: public ufc::finite_element
+class navierstokes_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_1() : ufc::finite_element()
+  navierstokes_finite_element_3() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_1()
+  virtual ~navierstokes_finite_element_3()
   {
     // Do nothing
   }
@@ -4888,17 +6234,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_0();
+        return new navierstokes_finite_element_2();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_0();
+        return new navierstokes_finite_element_2();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_0();
+        return new navierstokes_finite_element_2();
         break;
       }
     }
@@ -4926,6 +6272,521 @@ public:
 
   /// Destructor
   virtual ~navierstokes_dof_map_0()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch (d)
+    {
+    case 0:
+      {
+        return false;
+        break;
+      }
+    case 1:
+      {
+        return false;
+        break;
+      }
+    case 2:
+      {
+        return false;
+        break;
+      }
+    case 3:
+      {
+        return true;
+        break;
+      }
+    }
+    
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    _global_dimension = m.num_entities[3];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return _global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 1;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
+  {
+    return 1;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    switch (d)
+    {
+    case 0:
+      {
+        return 0;
+        break;
+      }
+    case 1:
+      {
+        return 0;
+        break;
+      }
+    case 2:
+      {
+        return 0;
+        break;
+      }
+    case 3:
+      {
+        return 1;
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    dofs[0] = c.entity_indices[3][0];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch (facet)
+    {
+    case 0:
+      {
+        
+        break;
+      }
+    case 1:
+      {
+        
+        break;
+      }
+    case 2:
+      {
+        
+        break;
+      }
+    case 3:
+      {
+        
+        break;
+      }
+    }
+    
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    if (d > 3)
+    {
+    throw std::runtime_error("d is larger than dimension (3)");
+    }
+    
+    switch (d)
+    {
+    case 0:
+      {
+        
+        break;
+      }
+    case 1:
+      {
+        
+        break;
+      }
+    case 2:
+      {
+        
+        break;
+      }
+    case 3:
+      {
+        if (i > 0)
+      {
+      throw std::runtime_error("i is larger than number of entities (0)");
+      }
+      
+      dofs[0] = 0;
+        break;
+      }
+    }
+    
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    
+    coordinates[0][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    coordinates[0][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 0;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class navierstokes_dof_map_1: public ufc::dof_map
+{
+private:
+
+  unsigned int _global_dimension;
+public:
+
+  /// Constructor
+  navierstokes_dof_map_1() : ufc::dof_map()
+  {
+    _global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~navierstokes_dof_map_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the dof map
+  virtual const char* signature() const
+  {
+    return "FFC dofmap for VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3)";
+  }
+
+  /// Return true iff mesh entities of topological dimension d are needed
+  virtual bool needs_mesh_entities(unsigned int d) const
+  {
+    switch (d)
+    {
+    case 0:
+      {
+        return false;
+        break;
+      }
+    case 1:
+      {
+        return false;
+        break;
+      }
+    case 2:
+      {
+        return false;
+        break;
+      }
+    case 3:
+      {
+        return true;
+        break;
+      }
+    }
+    
+    return false;
+  }
+
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  virtual bool init_mesh(const ufc::mesh& m)
+  {
+    _global_dimension = 3.000000000000000*m.num_entities[3];
+    return false;
+  }
+
+  /// Initialize dof map for given cell
+  virtual void init_cell(const ufc::mesh& m,
+                         const ufc::cell& c)
+  {
+    // Do nothing
+  }
+
+  /// Finish initialization of dof map for cells
+  virtual void init_cell_finalize()
+  {
+    // Do nothing
+  }
+
+  /// Return the dimension of the global finite element function space
+  virtual unsigned int global_dimension() const
+  {
+    return _global_dimension;
+  }
+
+  /// Return the dimension of the local finite element function space for a cell
+  virtual unsigned int local_dimension(const ufc::cell& c) const
+  {
+    return 3;
+  }
+
+  /// Return the maximum dimension of the local finite element function space
+  virtual unsigned int max_local_dimension() const
+  {
+    return 3;
+  }
+
+  // Return the geometric dimension of the coordinates this dof map provides
+  virtual unsigned int geometric_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the number of dofs on each cell facet
+  virtual unsigned int num_facet_dofs() const
+  {
+    return 0;
+  }
+
+  /// Return the number of dofs associated with each cell entity of dimension d
+  virtual unsigned int num_entity_dofs(unsigned int d) const
+  {
+    switch (d)
+    {
+    case 0:
+      {
+        return 0;
+        break;
+      }
+    case 1:
+      {
+        return 0;
+        break;
+      }
+    case 2:
+      {
+        return 0;
+        break;
+      }
+    case 3:
+      {
+        return 3;
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Tabulate the local-to-global mapping of dofs on a cell
+  virtual void tabulate_dofs(unsigned int* dofs,
+                             const ufc::mesh& m,
+                             const ufc::cell& c) const
+  {
+    unsigned int offset = 0;
+    dofs[0] = offset + c.entity_indices[3][0];
+    offset += m.num_entities[3];
+    dofs[1] = offset + c.entity_indices[3][0];
+    offset += m.num_entities[3];
+    dofs[2] = offset + c.entity_indices[3][0];
+    offset += m.num_entities[3];
+  }
+
+  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
+  virtual void tabulate_facet_dofs(unsigned int* dofs,
+                                   unsigned int facet) const
+  {
+    switch (facet)
+    {
+    case 0:
+      {
+        
+        break;
+      }
+    case 1:
+      {
+        
+        break;
+      }
+    case 2:
+      {
+        
+        break;
+      }
+    case 3:
+      {
+        
+        break;
+      }
+    }
+    
+  }
+
+  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
+  virtual void tabulate_entity_dofs(unsigned int* dofs,
+                                    unsigned int d, unsigned int i) const
+  {
+    if (d > 3)
+    {
+    throw std::runtime_error("d is larger than dimension (3)");
+    }
+    
+    switch (d)
+    {
+    case 0:
+      {
+        
+        break;
+      }
+    case 1:
+      {
+        
+        break;
+      }
+    case 2:
+      {
+        
+        break;
+      }
+    case 3:
+      {
+        if (i > 0)
+      {
+      throw std::runtime_error("i is larger than number of entities (0)");
+      }
+      
+      dofs[0] = 0;
+      dofs[1] = 1;
+      dofs[2] = 2;
+        break;
+      }
+    }
+    
+  }
+
+  /// Tabulate the coordinates of all dofs on a cell
+  virtual void tabulate_coordinates(double** coordinates,
+                                    const ufc::cell& c) const
+  {
+    const double * const * x = c.coordinates;
+    
+    coordinates[0][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    coordinates[0][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    coordinates[1][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    coordinates[1][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    coordinates[1][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    coordinates[2][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
+    coordinates[2][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
+    coordinates[2][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+  }
+
+  /// Return the number of sub dof maps (for a mixed element)
+  virtual unsigned int num_sub_dof_maps() const
+  {
+    return 3;
+  }
+
+  /// Create a new dof_map for sub dof map i (for a mixed element)
+  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new navierstokes_dof_map_0();
+        break;
+      }
+    case 1:
+      {
+        return new navierstokes_dof_map_0();
+        break;
+      }
+    case 2:
+      {
+        return new navierstokes_dof_map_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for a local-to-global mapping of
+/// degrees of freedom (dofs).
+
+class navierstokes_dof_map_2: public ufc::dof_map
+{
+private:
+
+  unsigned int _global_dimension;
+public:
+
+  /// Constructor
+  navierstokes_dof_map_2() : ufc::dof_map()
+  {
+    _global_dimension = 0;
+  }
+
+  /// Destructor
+  virtual ~navierstokes_dof_map_2()
   {
     // Do nothing
   }
@@ -5195,7 +7056,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_1: public ufc::dof_map
+class navierstokes_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -5203,13 +7064,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_1() : ufc::dof_map()
+  navierstokes_dof_map_3() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_1()
+  virtual ~navierstokes_dof_map_3()
   {
     // Do nothing
   }
@@ -5543,17 +7404,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_0();
+        return new navierstokes_dof_map_2();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_0();
+        return new navierstokes_dof_map_2();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_0();
+        return new navierstokes_dof_map_2();
         break;
       }
     }
@@ -5588,11 +7449,6 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      32
-    // Number of operations (multiply-add pairs) for geometry tensor:    54
-    // Number of operations (multiply-add pairs) for tensor contraction: 840
-    // Total number of operations (multiply-add pairs):                  926
-    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
     
@@ -5635,189 +7491,226 @@ public:
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Compute geometry tensor
-    const double G0_0_0_0 = det*w[0][0]*K_00*(1.0);
-    const double G0_0_0_1 = det*w[0][0]*K_10*(1.0);
-    const double G0_0_0_2 = det*w[0][0]*K_20*(1.0);
-    const double G0_1_0_0 = det*w[0][1]*K_00*(1.0);
-    const double G0_1_0_1 = det*w[0][1]*K_10*(1.0);
-    const double G0_1_0_2 = det*w[0][1]*K_20*(1.0);
-    const double G0_2_0_0 = det*w[0][2]*K_00*(1.0);
-    const double G0_2_0_1 = det*w[0][2]*K_10*(1.0);
-    const double G0_2_0_2 = det*w[0][2]*K_20*(1.0);
-    const double G0_3_0_0 = det*w[0][3]*K_00*(1.0);
-    const double G0_3_0_1 = det*w[0][3]*K_10*(1.0);
-    const double G0_3_0_2 = det*w[0][3]*K_20*(1.0);
-    const double G0_4_1_0 = det*w[0][4]*K_01*(1.0);
-    const double G0_4_1_1 = det*w[0][4]*K_11*(1.0);
-    const double G0_4_1_2 = det*w[0][4]*K_21*(1.0);
-    const double G0_5_1_0 = det*w[0][5]*K_01*(1.0);
-    const double G0_5_1_1 = det*w[0][5]*K_11*(1.0);
-    const double G0_5_1_2 = det*w[0][5]*K_21*(1.0);
-    const double G0_6_1_0 = det*w[0][6]*K_01*(1.0);
-    const double G0_6_1_1 = det*w[0][6]*K_11*(1.0);
-    const double G0_6_1_2 = det*w[0][6]*K_21*(1.0);
-    const double G0_7_1_0 = det*w[0][7]*K_01*(1.0);
-    const double G0_7_1_1 = det*w[0][7]*K_11*(1.0);
-    const double G0_7_1_2 = det*w[0][7]*K_21*(1.0);
-    const double G0_8_2_0 = det*w[0][8]*K_02*(1.0);
-    const double G0_8_2_1 = det*w[0][8]*K_12*(1.0);
-    const double G0_8_2_2 = det*w[0][8]*K_22*(1.0);
-    const double G0_9_2_0 = det*w[0][9]*K_02*(1.0);
-    const double G0_9_2_1 = det*w[0][9]*K_12*(1.0);
-    const double G0_9_2_2 = det*w[0][9]*K_22*(1.0);
-    const double G0_10_2_0 = det*w[0][10]*K_02*(1.0);
-    const double G0_10_2_1 = det*w[0][10]*K_12*(1.0);
-    const double G0_10_2_2 = det*w[0][10]*K_22*(1.0);
-    const double G0_11_2_0 = det*w[0][11]*K_02*(1.0);
-    const double G0_11_2_1 = det*w[0][11]*K_12*(1.0);
-    const double G0_11_2_2 = det*w[0][11]*K_22*(1.0);
+    // Cell Volume.
     
-    // Compute element tensor
-    A[0] = -0.016666666666667*G0_0_0_0 - 0.016666666666667*G0_0_0_1 - 0.016666666666667*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.016666666666667*G0_4_1_0 - 0.016666666666667*G0_4_1_1 - 0.016666666666667*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.016666666666667*G0_8_2_0 - 0.016666666666667*G0_8_2_1 - 0.016666666666667*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[1] = 0.016666666666667*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.016666666666667*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.016666666666667*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[2] = 0.016666666666667*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.016666666666667*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.016666666666667*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[3] = 0.016666666666667*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.016666666666667*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.016666666666667*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[4] = 0.000000000000000;
-    A[5] = 0.000000000000000;
-    A[6] = 0.000000000000000;
-    A[7] = 0.000000000000000;
-    A[8] = 0.000000000000000;
-    A[9] = 0.000000000000000;
-    A[10] = 0.000000000000000;
-    A[11] = 0.000000000000000;
-    A[12] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.016666666666667*G0_1_0_0 - 0.016666666666667*G0_1_0_1 - 0.016666666666667*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.016666666666667*G0_5_1_0 - 0.016666666666667*G0_5_1_1 - 0.016666666666667*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.016666666666667*G0_9_2_0 - 0.016666666666667*G0_9_2_1 - 0.016666666666667*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[13] = 0.008333333333333*G0_0_0_0 + 0.016666666666667*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.016666666666667*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.016666666666667*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[14] = 0.008333333333333*G0_0_0_1 + 0.016666666666667*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.016666666666667*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.016666666666667*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[15] = 0.008333333333333*G0_0_0_2 + 0.016666666666667*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.016666666666667*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.016666666666667*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[16] = 0.000000000000000;
-    A[17] = 0.000000000000000;
-    A[18] = 0.000000000000000;
-    A[19] = 0.000000000000000;
-    A[20] = 0.000000000000000;
-    A[21] = 0.000000000000000;
-    A[22] = 0.000000000000000;
-    A[23] = 0.000000000000000;
-    A[24] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.016666666666667*G0_2_0_0 - 0.016666666666667*G0_2_0_1 - 0.016666666666667*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.016666666666667*G0_6_1_0 - 0.016666666666667*G0_6_1_1 - 0.016666666666667*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.016666666666667*G0_10_2_0 - 0.016666666666667*G0_10_2_1 - 0.016666666666667*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[25] = 0.008333333333333*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.016666666666667*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.016666666666667*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.016666666666667*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[26] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.016666666666667*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.016666666666667*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.016666666666667*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[27] = 0.008333333333333*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.016666666666667*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.016666666666667*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.016666666666667*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[28] = 0.000000000000000;
-    A[29] = 0.000000000000000;
-    A[30] = 0.000000000000000;
-    A[31] = 0.000000000000000;
-    A[32] = 0.000000000000000;
-    A[33] = 0.000000000000000;
-    A[34] = 0.000000000000000;
-    A[35] = 0.000000000000000;
-    A[36] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.016666666666667*G0_3_0_0 - 0.016666666666667*G0_3_0_1 - 0.016666666666667*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.016666666666667*G0_7_1_0 - 0.016666666666667*G0_7_1_1 - 0.016666666666667*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.016666666666667*G0_11_2_0 - 0.016666666666667*G0_11_2_1 - 0.016666666666667*G0_11_2_2;
-    A[37] = 0.008333333333333*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.016666666666667*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.016666666666667*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.016666666666667*G0_11_2_0;
-    A[38] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.016666666666667*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.016666666666667*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.016666666666667*G0_11_2_1;
-    A[39] = 0.008333333333333*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.016666666666667*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.016666666666667*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.016666666666667*G0_11_2_2;
-    A[40] = 0.000000000000000;
-    A[41] = 0.000000000000000;
-    A[42] = 0.000000000000000;
-    A[43] = 0.000000000000000;
-    A[44] = 0.000000000000000;
-    A[45] = 0.000000000000000;
-    A[46] = 0.000000000000000;
-    A[47] = 0.000000000000000;
-    A[48] = 0.000000000000000;
-    A[49] = 0.000000000000000;
-    A[50] = 0.000000000000000;
-    A[51] = 0.000000000000000;
-    A[52] = -0.016666666666667*G0_0_0_0 - 0.016666666666667*G0_0_0_1 - 0.016666666666667*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.016666666666667*G0_4_1_0 - 0.016666666666667*G0_4_1_1 - 0.016666666666667*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.016666666666667*G0_8_2_0 - 0.016666666666667*G0_8_2_1 - 0.016666666666667*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[53] = 0.016666666666667*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.016666666666667*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.016666666666667*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[54] = 0.016666666666667*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.016666666666667*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.016666666666667*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[55] = 0.016666666666667*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.016666666666667*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.016666666666667*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[56] = 0.000000000000000;
-    A[57] = 0.000000000000000;
-    A[58] = 0.000000000000000;
-    A[59] = 0.000000000000000;
-    A[60] = 0.000000000000000;
-    A[61] = 0.000000000000000;
-    A[62] = 0.000000000000000;
-    A[63] = 0.000000000000000;
-    A[64] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.016666666666667*G0_1_0_0 - 0.016666666666667*G0_1_0_1 - 0.016666666666667*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.016666666666667*G0_5_1_0 - 0.016666666666667*G0_5_1_1 - 0.016666666666667*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.016666666666667*G0_9_2_0 - 0.016666666666667*G0_9_2_1 - 0.016666666666667*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[65] = 0.008333333333333*G0_0_0_0 + 0.016666666666667*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.016666666666667*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.016666666666667*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[66] = 0.008333333333333*G0_0_0_1 + 0.016666666666667*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.016666666666667*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.016666666666667*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[67] = 0.008333333333333*G0_0_0_2 + 0.016666666666667*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.016666666666667*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.016666666666667*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[68] = 0.000000000000000;
-    A[69] = 0.000000000000000;
-    A[70] = 0.000000000000000;
-    A[71] = 0.000000000000000;
-    A[72] = 0.000000000000000;
-    A[73] = 0.000000000000000;
-    A[74] = 0.000000000000000;
-    A[75] = 0.000000000000000;
-    A[76] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.016666666666667*G0_2_0_0 - 0.016666666666667*G0_2_0_1 - 0.016666666666667*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.016666666666667*G0_6_1_0 - 0.016666666666667*G0_6_1_1 - 0.016666666666667*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.016666666666667*G0_10_2_0 - 0.016666666666667*G0_10_2_1 - 0.016666666666667*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[77] = 0.008333333333333*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.016666666666667*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.016666666666667*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.016666666666667*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[78] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.016666666666667*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.016666666666667*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.016666666666667*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[79] = 0.008333333333333*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.016666666666667*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.016666666666667*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.016666666666667*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[80] = 0.000000000000000;
-    A[81] = 0.000000000000000;
-    A[82] = 0.000000000000000;
-    A[83] = 0.000000000000000;
-    A[84] = 0.000000000000000;
-    A[85] = 0.000000000000000;
-    A[86] = 0.000000000000000;
-    A[87] = 0.000000000000000;
-    A[88] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.016666666666667*G0_3_0_0 - 0.016666666666667*G0_3_0_1 - 0.016666666666667*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.016666666666667*G0_7_1_0 - 0.016666666666667*G0_7_1_1 - 0.016666666666667*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.016666666666667*G0_11_2_0 - 0.016666666666667*G0_11_2_1 - 0.016666666666667*G0_11_2_2;
-    A[89] = 0.008333333333333*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.016666666666667*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.016666666666667*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.016666666666667*G0_11_2_0;
-    A[90] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.016666666666667*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.016666666666667*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.016666666666667*G0_11_2_1;
-    A[91] = 0.008333333333333*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.016666666666667*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.016666666666667*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.016666666666667*G0_11_2_2;
-    A[92] = 0.000000000000000;
-    A[93] = 0.000000000000000;
-    A[94] = 0.000000000000000;
-    A[95] = 0.000000000000000;
-    A[96] = 0.000000000000000;
-    A[97] = 0.000000000000000;
-    A[98] = 0.000000000000000;
-    A[99] = 0.000000000000000;
-    A[100] = 0.000000000000000;
-    A[101] = 0.000000000000000;
-    A[102] = 0.000000000000000;
-    A[103] = 0.000000000000000;
-    A[104] = -0.016666666666667*G0_0_0_0 - 0.016666666666667*G0_0_0_1 - 0.016666666666667*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.016666666666667*G0_4_1_0 - 0.016666666666667*G0_4_1_1 - 0.016666666666667*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.016666666666667*G0_8_2_0 - 0.016666666666667*G0_8_2_1 - 0.016666666666667*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[105] = 0.016666666666667*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.016666666666667*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.016666666666667*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[106] = 0.016666666666667*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.016666666666667*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.016666666666667*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[107] = 0.016666666666667*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.016666666666667*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.016666666666667*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[108] = 0.000000000000000;
-    A[109] = 0.000000000000000;
-    A[110] = 0.000000000000000;
-    A[111] = 0.000000000000000;
-    A[112] = 0.000000000000000;
-    A[113] = 0.000000000000000;
-    A[114] = 0.000000000000000;
-    A[115] = 0.000000000000000;
-    A[116] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.016666666666667*G0_1_0_0 - 0.016666666666667*G0_1_0_1 - 0.016666666666667*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.016666666666667*G0_5_1_0 - 0.016666666666667*G0_5_1_1 - 0.016666666666667*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.016666666666667*G0_9_2_0 - 0.016666666666667*G0_9_2_1 - 0.016666666666667*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[117] = 0.008333333333333*G0_0_0_0 + 0.016666666666667*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.016666666666667*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.016666666666667*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[118] = 0.008333333333333*G0_0_0_1 + 0.016666666666667*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.016666666666667*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.016666666666667*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[119] = 0.008333333333333*G0_0_0_2 + 0.016666666666667*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.016666666666667*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.016666666666667*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[120] = 0.000000000000000;
-    A[121] = 0.000000000000000;
-    A[122] = 0.000000000000000;
-    A[123] = 0.000000000000000;
-    A[124] = 0.000000000000000;
-    A[125] = 0.000000000000000;
-    A[126] = 0.000000000000000;
-    A[127] = 0.000000000000000;
-    A[128] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.016666666666667*G0_2_0_0 - 0.016666666666667*G0_2_0_1 - 0.016666666666667*G0_2_0_2 - 0.008333333333333*G0_3_0_0 - 0.008333333333333*G0_3_0_1 - 0.008333333333333*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.016666666666667*G0_6_1_0 - 0.016666666666667*G0_6_1_1 - 0.016666666666667*G0_6_1_2 - 0.008333333333333*G0_7_1_0 - 0.008333333333333*G0_7_1_1 - 0.008333333333333*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.016666666666667*G0_10_2_0 - 0.016666666666667*G0_10_2_1 - 0.016666666666667*G0_10_2_2 - 0.008333333333333*G0_11_2_0 - 0.008333333333333*G0_11_2_1 - 0.008333333333333*G0_11_2_2;
-    A[129] = 0.008333333333333*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.016666666666667*G0_2_0_0 + 0.008333333333333*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.016666666666667*G0_6_1_0 + 0.008333333333333*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.016666666666667*G0_10_2_0 + 0.008333333333333*G0_11_2_0;
-    A[130] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.016666666666667*G0_2_0_1 + 0.008333333333333*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.016666666666667*G0_6_1_1 + 0.008333333333333*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.016666666666667*G0_10_2_1 + 0.008333333333333*G0_11_2_1;
-    A[131] = 0.008333333333333*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.016666666666667*G0_2_0_2 + 0.008333333333333*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.016666666666667*G0_6_1_2 + 0.008333333333333*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.016666666666667*G0_10_2_2 + 0.008333333333333*G0_11_2_2;
-    A[132] = 0.000000000000000;
-    A[133] = 0.000000000000000;
-    A[134] = 0.000000000000000;
-    A[135] = 0.000000000000000;
-    A[136] = 0.000000000000000;
-    A[137] = 0.000000000000000;
-    A[138] = 0.000000000000000;
-    A[139] = 0.000000000000000;
-    A[140] = -0.008333333333333*G0_0_0_0 - 0.008333333333333*G0_0_0_1 - 0.008333333333333*G0_0_0_2 - 0.008333333333333*G0_1_0_0 - 0.008333333333333*G0_1_0_1 - 0.008333333333333*G0_1_0_2 - 0.008333333333333*G0_2_0_0 - 0.008333333333333*G0_2_0_1 - 0.008333333333333*G0_2_0_2 - 0.016666666666667*G0_3_0_0 - 0.016666666666667*G0_3_0_1 - 0.016666666666667*G0_3_0_2 - 0.008333333333333*G0_4_1_0 - 0.008333333333333*G0_4_1_1 - 0.008333333333333*G0_4_1_2 - 0.008333333333333*G0_5_1_0 - 0.008333333333333*G0_5_1_1 - 0.008333333333333*G0_5_1_2 - 0.008333333333333*G0_6_1_0 - 0.008333333333333*G0_6_1_1 - 0.008333333333333*G0_6_1_2 - 0.016666666666667*G0_7_1_0 - 0.016666666666667*G0_7_1_1 - 0.016666666666667*G0_7_1_2 - 0.008333333333333*G0_8_2_0 - 0.008333333333333*G0_8_2_1 - 0.008333333333333*G0_8_2_2 - 0.008333333333333*G0_9_2_0 - 0.008333333333333*G0_9_2_1 - 0.008333333333333*G0_9_2_2 - 0.008333333333333*G0_10_2_0 - 0.008333333333333*G0_10_2_1 - 0.008333333333333*G0_10_2_2 - 0.016666666666667*G0_11_2_0 - 0.016666666666667*G0_11_2_1 - 0.016666666666667*G0_11_2_2;
-    A[141] = 0.008333333333333*G0_0_0_0 + 0.008333333333333*G0_1_0_0 + 0.008333333333333*G0_2_0_0 + 0.016666666666667*G0_3_0_0 + 0.008333333333333*G0_4_1_0 + 0.008333333333333*G0_5_1_0 + 0.008333333333333*G0_6_1_0 + 0.016666666666667*G0_7_1_0 + 0.008333333333333*G0_8_2_0 + 0.008333333333333*G0_9_2_0 + 0.008333333333333*G0_10_2_0 + 0.016666666666667*G0_11_2_0;
-    A[142] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 + 0.008333333333333*G0_2_0_1 + 0.016666666666667*G0_3_0_1 + 0.008333333333333*G0_4_1_1 + 0.008333333333333*G0_5_1_1 + 0.008333333333333*G0_6_1_1 + 0.016666666666667*G0_7_1_1 + 0.008333333333333*G0_8_2_1 + 0.008333333333333*G0_9_2_1 + 0.008333333333333*G0_10_2_1 + 0.016666666666667*G0_11_2_1;
-    A[143] = 0.008333333333333*G0_0_0_2 + 0.008333333333333*G0_1_0_2 + 0.008333333333333*G0_2_0_2 + 0.016666666666667*G0_3_0_2 + 0.008333333333333*G0_4_1_2 + 0.008333333333333*G0_5_1_2 + 0.008333333333333*G0_6_1_2 + 0.016666666666667*G0_7_1_2 + 0.008333333333333*G0_8_2_2 + 0.008333333333333*G0_9_2_2 + 0.008333333333333*G0_10_2_2 + 0.016666666666667*G0_11_2_2;
+    // Compute circumradius.
+    
+    
+    // Array of quadrature weights.
+    static const double W8[8] = {0.036979856358853, 0.016027040598477, 0.021157006454524, 0.009169429921480, 0.036979856358853, 0.016027040598477, 0.021157006454524, 0.009169429921480};
+    // Quadrature points on the UFC reference element: (0.156682637336818, 0.136054976802846, 0.122514822655441), (0.081395667014670, 0.070679724159397, 0.544151844011225), (0.065838687060044, 0.565933165072801, 0.122514822655441), (0.034202793236766, 0.293998800631623, 0.544151844011225), (0.584747563204894, 0.136054976802846, 0.122514822655441), (0.303772764814708, 0.070679724159397, 0.544151844011225), (0.245713325211713, 0.565933165072801, 0.122514822655441), (0.127646562120385, 0.293998800631623, 0.544151844011225)
+    
+    // Value of basis functions at quadrature points.
+    static const double FE0[8][1] = \
+    {{1.000000000000000},
+    {1.000000000000000},
+    {1.000000000000000},
+    {1.000000000000000},
+    {1.000000000000000},
+    {1.000000000000000},
+    {1.000000000000000},
+    {1.000000000000000}};
+    
+    static const double FE1_C0[8][3] = \
+    {{1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {1.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE1_C1[8][3] = \
+    {{0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 1.000000000000000, 0.000000000000000}};
+    
+    static const double FE1_C2[8][3] = \
+    {{0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+    
+    static const double FE2_C0[8][12] = \
+    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C0_D001[8][12] = \
+    {{-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C0_D010[8][12] = \
+    {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C0_D100[8][12] = \
+    {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C1[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C1_D001[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C1_D010[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C1_D100[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C2[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
+    
+    static const double FE2_C2_D001[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+    
+    static const double FE2_C2_D010[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000}};
+    
+    static const double FE2_C2_D100[8][12] = \
+    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
+    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000}};
+    
+    // Reset values in the element tensor.
+    for (unsigned int r = 0; r < 144; r++)
+    {
+      A[r] = 0.000000000000000;
+    }// end loop over 'r'
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
+    
+    // Loop quadrature points for integral.
+    // Number of operations to compute element tensor for following IP loop = 409168
+    for (unsigned int ip = 0; ip < 8; ip++)
+    {
+      
+      // Coefficient declarations.
+      double F0 = 0.000000000000000;
+      double F1 = 0.000000000000000;
+      double F2 = 0.000000000000000;
+      double F3 = 0.000000000000000;
+      double F4 = 0.000000000000000;
+      double F5 = 0.000000000000000;
+      double F6 = 0.000000000000000;
+      
+      // Total number of operations to compute function values = 8
+      for (unsigned int r = 0; r < 1; r++)
+      {
+        F0 += FE0[ip][r]*w[3][r];
+        F1 += FE0[ip][r]*w[2][r];
+        F5 += FE0[ip][r]*w[1][r];
+        F6 += FE0[ip][r]*w[4][r];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 18
+      for (unsigned int r = 0; r < 3; r++)
+      {
+        F2 += FE1_C0[ip][r]*w[0][r];
+        F3 += FE1_C1[ip][r]*w[0][r];
+        F4 += FE1_C2[ip][r]*w[0][r];
+      }// end loop over 'r'
+      
+      // Number of operations for primary indices: 51120
+      for (unsigned int j = 0; j < 12; j++)
+      {
+        for (unsigned int k = 0; k < 12; k++)
+        {
+          // Number of operations to compute entry: 355
+          A[j*12 + k] += ((((((((K_00*FE2_C1_D100[ip][j] + K_10*FE2_C1_D010[ip][j] + K_20*FE2_C1_D001[ip][j]))*F2 + ((K_02*FE2_C1_D100[ip][j] + K_12*FE2_C1_D010[ip][j] + K_22*FE2_C1_D001[ip][j]))*F4 + ((K_01*FE2_C1_D100[ip][j] + K_11*FE2_C1_D010[ip][j] + K_21*FE2_C1_D001[ip][j]))*F3))*((((K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k]))*F3 + ((K_00*FE2_C1_D100[ip][k] + K_10*FE2_C1_D010[ip][k] + K_20*FE2_C1_D001[ip][k]))*F2 + ((K_02*FE2_C1_D100[ip][k] + K_12*FE2_C1_D010[ip][k] + K_22*FE2_C1_D001[ip][k]))*F4)) + ((((K_01*FE2_C2_D100[ip][j] + K_11*FE2_C2_D010[ip][j] + K_21*FE2_C2_D001[ip][j]))*F3 + ((K_00*FE2_C2_D100[ip][j] + K_10*FE2_C2_D010[ip][j] + K_20*FE2_C2_D001[ip][j]))*F2 + ((K_02*FE2_C2_D100[ip][j] + K_12*FE2_C2_D010[ip][j] + K_22*FE2_C2_D001[ip][j]))*F4))*((((K_00*FE2_C2_D100[ip][k] + K_10*FE2_C2_D010[ip][k] + K_20*FE2_C2_D001[ip][k]))*F2 + ((K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k]))*F4 + ((K_01*FE2_C2_D100[ip][k] + K_11*FE2_C2_D010[ip][k] + K_21*FE2_C2_D001[ip][k]))*F3)) + ((((K_00*FE2_C0_D100[ip][j] + K_10*FE2_C0_D010[ip][j] + K_20*FE2_C0_D001[ip][j]))*F2 + ((K_02*FE2_C0_D100[ip][j] + K_12*FE2_C0_D010[ip][j] + K_22*FE2_C0_D001[ip][j]))*F4 + ((K_01*FE2_C0_D100[ip][j] + K_11*FE2_C0_D010[ip][j] + K_21*FE2_C0_D001[ip][j]))*F3))*((((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k]))*F2 + ((K_02*FE2_C0_D100[ip][k] + K_12*FE2_C0_D010[ip][k] + K_22*FE2_C0_D001[ip][k]))*F4 + ((K_01*FE2_C0_D100[ip][k] + K_11*FE2_C0_D010[ip][k] + K_21*FE2_C0_D001[ip][k]))*F3))))*F0*0.500000000000000*F5 + (((FE2_C0[ip][j]*((((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k]))*F2 + ((K_02*FE2_C0_D100[ip][k] + K_12*FE2_C0_D010[ip][k] + K_22*FE2_C0_D001[ip][k]))*F4 + ((K_01*FE2_C0_D100[ip][k] + K_11*FE2_C0_D010[ip][k] + K_21*FE2_C0_D001[ip][k]))*F3)) + FE2_C2[ip][j]*((((K_00*FE2_C2_D100[ip][k] + K_10*FE2_C2_D010[ip][k] + K_20*FE2_C2_D001[ip][k]))*F2 + ((K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k]))*F4 + ((K_01*FE2_C2_D100[ip][k] + K_11*FE2_C2_D010[ip][k] + K_21*FE2_C2_D001[ip][k]))*F3)) + FE2_C1[ip][j]*((((K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k]))*F3 + ((K_00*FE2_C1_D100[ip][k] + K_10*FE2_C1_D010[ip][k] + K_20*FE2_C1_D001[ip][k]))*F2 + ((K_02*FE2_C1_D100[ip][k] + K_12*FE2_C1_D010[ip][k] + K_22*FE2_C1_D001[ip][k]))*F4))))*0.500000000000000*F0 + ((((((K_01*FE2_C0_D100[ip][j] + K_11*FE2_C0_D010[ip][j] + K_21*FE2_C0_D001[ip][j]))*((K_01*FE2_C0_D100[ip][k] + K_11*FE2_C0_D010[ip][k] + K_21*FE2_C0_D001[ip][k])) + ((K_01*FE2_C2_D100[ip][j] + K_11*FE2_C2_D010[ip][j] + K_21*FE2_C2_D001[ip][j]))*((K_01*FE2_C2_D100[ip][k] + K_11*FE2_C2_D010[ip][k] + K_21*FE2_C2_D001[ip][k])) + ((K_01*FE2_C1_D100[ip][j] + K_11*FE2_C1_D010[ip][j] + K_21*FE2_C1_D001[ip][j]))*((K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k]))) + (((K_02*FE2_C0_D100[ip][j] + K_12*FE2_C0_D010[ip][j] + K_22*FE2_C0_D001[ip][j]))*((K_02*FE2_C0_D100[ip][k] + K_12*FE2_C0_D010[ip][k] + K_22*FE2_C0_D001[ip][k])) + ((K_02*FE2_C2_D100[ip][j] + K_12*FE2_C2_D010[ip][j] + K_22*FE2_C2_D001[ip][j]))*((K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k])) + ((K_02*FE2_C1_D100[ip][j] + K_12*FE2_C1_D010[ip][j] + K_22*FE2_C1_D001[ip][j]))*((K_02*FE2_C1_D100[ip][k] + K_12*FE2_C1_D010[ip][k] + K_22*FE2_C1_D001[ip][k]))) + (((K_00*FE2_C2_D100[ip][j] + K_10*FE2_C2_D010[ip][j] + K_20*FE2_C2_D001[ip][j]))*((K_00*FE2_C2_D100[ip][k] + K_10*FE2_C2_D010[ip][k] + K_20*FE2_C2_D001[ip][k])) + ((K_00*FE2_C1_D100[ip][j] + K_10*FE2_C1_D010[ip][j] + K_20*FE2_C1_D001[ip][j]))*((K_00*FE2_C1_D100[ip][k] + K_10*FE2_C1_D010[ip][k] + K_20*FE2_C1_D001[ip][k])) + ((K_00*FE2_C0_D100[ip][j] + K_10*FE2_C0_D010[ip][j] + K_20*FE2_C0_D001[ip][j]))*((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k])))))*F6*0.500000000000000*F0 + (FE2_C1[ip][j]*FE2_C1[ip][k] + FE2_C2[ip][j]*FE2_C2[ip][k] + FE2_C0[ip][j]*FE2_C0[ip][k])))) + (((K_00*FE2_C0_D100[ip][j] + K_10*FE2_C0_D010[ip][j] + K_20*FE2_C0_D001[ip][j]) + (K_01*FE2_C1_D100[ip][j] + K_11*FE2_C1_D010[ip][j] + K_21*FE2_C1_D001[ip][j]) + (K_02*FE2_C2_D100[ip][j] + K_12*FE2_C2_D010[ip][j] + K_22*FE2_C2_D001[ip][j])))*((((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k]) + (K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k]) + (K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k])))*F0*0.500000000000000*F1))*W8[ip]*det;
+        }// end loop over 'k'
+      }// end loop over 'j'
+    }// end loop over 'ip'
   }
 
 };
@@ -5856,7 +7749,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(3), Index(2)), {Index(2): 3, Index(3): 3})), MultiIndex((Index(4), Index(1)), {Index(4): 3, Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(4),), {Index(4): 3})), MultiIndex((Index(0),), {Index(0): 3}))), MultiIndex((Index(0),), {Index(0): 3})), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Product(IndexSum(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), Product(IndexSum(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(1),), {Index(1): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 2))))), Sum(Product(IndexSum(Product(Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3), 0), MultiIndex((Index(2),), {Index(2): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), MultiIndex((Index(4), Index(3)), {Index(4): 3, Index(3): 3})), MultiIndex((Index(5), Index(2)), {Index(5): 3, Index(2): 3}))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(6),), {Index(6): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3), 0), MultiIndex((Index(7),), {Index(7): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(8),), {Index(8): 3})), MultiIndex((Index(9),), {Index(9): 3})), MultiIndex((Index(9), Index(8)), {Index(8): 3, Index(9): 3})), MultiIndex((Index(10), Index(7)), {Index(7): 3, Index(10): 3}))), MultiIndex((Index(7),), {Index(7): 3})), MultiIndex((Index(10),), {Index(10): 3})), MultiIndex((Index(6),), {Index(6): 3}))), MultiIndex((Index(6),), {Index(6): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 1)))), Sum(Product(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(11),), {Index(11): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3), 0), MultiIndex((Index(12),), {Index(12): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(13),), {Index(13): 3})), MultiIndex((Index(14),), {Index(14): 3})), MultiIndex((Index(14), Index(13)), {Index(14): 3, Index(13): 3})), MultiIndex((Index(15), Index(12)), {Index(15): 3, Index(12): 3}))), MultiIndex((Index(12),), {Index(12): 3})), MultiIndex((Index(15),), {Index(15): 3})), MultiIndex((Index(11),), {Index(11): 3}))), MultiIndex((Index(11),), {Index(11): 3})), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3))), Sum(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(16),), {Index(16): 3})), Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(16),), {Index(16): 3}))), MultiIndex((Index(16),), {Index(16): 3})), Product(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(17),), {Index(17): 3})), MultiIndex((Index(18),), {Index(18): 3})), MultiIndex((Index(18), Index(17)), {Index(17): 3, Index(18): 3})), MultiIndex((Index(19), Index(20)), {Index(19): 3, Index(20): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(21),), {Index(21): 3})), MultiIndex((Index(22),), {Index(22): 3})), MultiIndex((Index(22), Index(21)), {Index(22): 3, Index(21): 3})), MultiIndex((Index(19), Index(20)), {Index(19): 3, Index(20): 3}))), MultiIndex((Index(19),), {Index(19): 3})), MultiIndex((Index(20),), {Index(20): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 4), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3)))))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5868,7 +7761,7 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 1;
+    return 5;
   }
 
   /// Return the number of cell integrals
@@ -5896,17 +7789,37 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_1();
+        return new navierstokes_finite_element_3();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_1();
+        return new navierstokes_finite_element_3();
         break;
       }
     case 2:
       {
         return new navierstokes_finite_element_1();
+        break;
+      }
+    case 3:
+      {
+        return new navierstokes_finite_element_0();
+        break;
+      }
+    case 4:
+      {
+        return new navierstokes_finite_element_0();
+        break;
+      }
+    case 5:
+      {
+        return new navierstokes_finite_element_0();
+        break;
+      }
+    case 6:
+      {
+        return new navierstokes_finite_element_0();
         break;
       }
     }
@@ -5921,17 +7834,37 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_1();
+        return new navierstokes_dof_map_3();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_1();
+        return new navierstokes_dof_map_3();
         break;
       }
     case 2:
       {
         return new navierstokes_dof_map_1();
+        break;
+      }
+    case 3:
+      {
+        return new navierstokes_dof_map_0();
+        break;
+      }
+    case 4:
+      {
+        return new navierstokes_dof_map_0();
+        break;
+      }
+    case 5:
+      {
+        return new navierstokes_dof_map_0();
+        break;
+      }
+    case 6:
+      {
+        return new navierstokes_dof_map_0();
         break;
       }
     }
@@ -5985,6 +7918,174 @@ public:
 namespace NavierStokes
 {
 
+class CoefficientSpace_d1: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_d1(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_d1(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_d1(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_d1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~CoefficientSpace_d1()
+  {
+  }
+
+};
+
+class CoefficientSpace_d2: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_d2(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_d2(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_d2(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_d2(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~CoefficientSpace_d2()
+  {
+  }
+
+};
+
+class CoefficientSpace_k: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_k(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_k(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_k(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_k(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~CoefficientSpace_k()
+  {
+  }
+
+};
+
+class CoefficientSpace_nu: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_nu(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_nu(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_nu(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_nu(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~CoefficientSpace_nu()
+  {
+  }
+
+};
+
 class CoefficientSpace_w: public dolfin::FunctionSpace
 {
 public:
@@ -6033,32 +8134,32 @@ public:
 
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -6075,32 +8176,32 @@ public:
 
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -6113,13 +8214,21 @@ public:
 
 typedef CoefficientSpace_w Form_0_FunctionSpace_2;
 
+typedef CoefficientSpace_d1 Form_0_FunctionSpace_3;
+
+typedef CoefficientSpace_d2 Form_0_FunctionSpace_4;
+
+typedef CoefficientSpace_k Form_0_FunctionSpace_5;
+
+typedef CoefficientSpace_nu Form_0_FunctionSpace_6;
+
 class Form_0: public dolfin::Form
 {
 public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1):
-    dolfin::Form(2, 1), w(*this, 0)
+    dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
@@ -6128,32 +8237,40 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::GenericFunction& w):
-    dolfin::Form(2, 1), w(*this, 0)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, const dolfin::GenericFunction& w, const dolfin::GenericFunction& d1, const dolfin::GenericFunction& d2, const dolfin::GenericFunction& k, const dolfin::GenericFunction& nu):
+    dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     this->w = w;
+    this->d1 = d1;
+    this->d2 = d2;
+    this->k = k;
+    this->nu = nu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::GenericFunction> w):
-    dolfin::Form(2, 1), w(*this, 0)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::FunctionSpace& V1, boost::shared_ptr<const dolfin::GenericFunction> w, boost::shared_ptr<const dolfin::GenericFunction> d1, boost::shared_ptr<const dolfin::GenericFunction> d2, boost::shared_ptr<const dolfin::GenericFunction> k, boost::shared_ptr<const dolfin::GenericFunction> nu):
+    dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     this->w = *w;
+    this->d1 = *d1;
+    this->d2 = *d2;
+    this->k = *k;
+    this->nu = *nu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
   }
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1):
-    dolfin::Form(2, 1), w(*this, 0)
+    dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
@@ -6162,25 +8279,33 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::GenericFunction& w):
-    dolfin::Form(2, 1), w(*this, 0)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, const dolfin::GenericFunction& w, const dolfin::GenericFunction& d1, const dolfin::GenericFunction& d2, const dolfin::GenericFunction& k, const dolfin::GenericFunction& nu):
+    dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
     this->w = w;
+    this->d1 = d1;
+    this->d2 = d2;
+    this->k = k;
+    this->nu = nu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::GenericFunction> w):
-    dolfin::Form(2, 1), w(*this, 0)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::GenericFunction> w, boost::shared_ptr<const dolfin::GenericFunction> d1, boost::shared_ptr<const dolfin::GenericFunction> d2, boost::shared_ptr<const dolfin::GenericFunction> k, boost::shared_ptr<const dolfin::GenericFunction> nu):
+    dolfin::Form(2, 5), w(*this, 0), d1(*this, 1), d2(*this, 2), k(*this, 3), nu(*this, 4)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
     this->w = *w;
+    this->d1 = *d1;
+    this->d2 = *d2;
+    this->k = *k;
+    this->nu = *nu;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
   }
@@ -6194,6 +8319,14 @@ public:
   {
     if (name == "w")
       return 0;
+    else if (name == "d1")
+      return 1;
+    else if (name == "d2")
+      return 2;
+    else if (name == "k")
+      return 3;
+    else if (name == "nu")
+      return 4;
 
     dolfin::error("Invalid coefficient.");
     return 0;
@@ -6206,6 +8339,14 @@ public:
     {
     case 0:
       return "w";
+    case 1:
+      return "d1";
+    case 2:
+      return "d2";
+    case 3:
+      return "k";
+    case 4:
+      return "nu";
     }
 
     dolfin::error("Invalid coefficient.");
@@ -6216,9 +8357,17 @@ public:
   typedef Form_0_FunctionSpace_0 TestSpace;
   typedef Form_0_FunctionSpace_1 TrialSpace;
   typedef Form_0_FunctionSpace_2 CoefficientSpace_w;
+  typedef Form_0_FunctionSpace_3 CoefficientSpace_d1;
+  typedef Form_0_FunctionSpace_4 CoefficientSpace_d2;
+  typedef Form_0_FunctionSpace_5 CoefficientSpace_k;
+  typedef Form_0_FunctionSpace_6 CoefficientSpace_nu;
 
   // Coefficients
   dolfin::CoefficientAssigner w;
+  dolfin::CoefficientAssigner d1;
+  dolfin::CoefficientAssigner d2;
+  dolfin::CoefficientAssigner k;
+  dolfin::CoefficientAssigner nu;
 };
 
 // Class typedefs
