@@ -5657,21 +5657,6 @@ Number of edges per vertex
 Vertex edges
 ";
 
-// Documentation extracted from: (module=graph, header=CellColoring.h)
-%feature("docstring")  dolfin::CellColoring "
-This class computes cell colorings for a local mesh. It supports vertex,
-facet and edge-based colorings.  Zoltan (part of Trilinos) is used to
-the colorings.
-";
-
-%feature("docstring")  dolfin::CellColoring::CellColoring "
-Constructor
-";
-
-%feature("docstring")  dolfin::CellColoring::compute_local_cell_coloring "
-Compute cell colors
-";
-
 // Documentation extracted from: (module=ale, header=ALEType.h)
 // Documentation extracted from: (module=ale, header=ALE.h)
 %feature("docstring")  dolfin::ALE "
@@ -6810,6 +6795,10 @@ Mesh partitioning
 Sub meshes
 
    \"global vertex indices\" - MeshFunction<uint> of dimension 0
+
+Mesh coloring
+
+   \"cell colors\" - MeshFunction<uint> of dimension D
 ";
 
 %feature("docstring")  dolfin::MeshData::MeshData "
@@ -7608,24 +7597,24 @@ Get number of entities of given topological dimension.
 
   Compute entities of given topological dimension.
   
-    *Arguments*
-        dim (int)
-            Topological dimension.
+  *Arguments*
+      dim (int)
+          Topological dimension.
   
-    *Returns*
-        int
-            Number of created entities.
+  *Returns*
+      int
+          Number of created entities.
 
 * init\ **(d0, d1)**
 
   Compute connectivity between given pair of dimensions.
   
-    *Arguments*
-        d0 (int)
-            Topological dimension.
+  *Arguments*
+      d0 (int)
+          Topological dimension.
   
-        d1 (int)
-            Topological dimension.
+      d1 (int)
+          Topological dimension.
 
 * init\ **()**
 
@@ -7722,6 +7711,37 @@ Snap boundary vertices of mesh to match given sub domain.
     harmonic_smoothing (bool)
         Flag to turn on harmonics smoothing, default
         value is true.
+";
+
+%feature("docstring")  dolfin::Mesh::color "
+**Overloaded versions**
+
+* color\ **(coloring_type)**
+
+  Color the cells of the mesh such that no two neighboring cells
+  share the same color. A colored mesh keeps a
+  CellFunction<uint> named \"cell colors\" as mesh data which
+  holds the colors of the mesh.
+  
+  *Arguments*
+      coloring_type (str)
+          Coloring type, specifying what relation makes two
+          cells neighbors, can be one of \"vertex\", \"edge\" or
+          \"facet\".
+
+* color\ **(dim)**
+
+  Color the cells of the mesh such that no two neighboring cells
+  share the same color. A colored mesh keeps a
+  CellFunction<uint> named \"cell colors\" as mesh data which
+  holds the colors of the mesh.
+  
+  *Arguments*
+      dim (int)
+          Coloring type given as topological dimension,
+          specifying what relation makes two cells neighbors.
+          Two cells are neighbors if they are both adjacent to a
+          mesh entity of the given dimension.
 ";
 
 %feature("docstring")  dolfin::Mesh::all_intersected_entities "
@@ -7968,6 +7988,27 @@ entities of dimension 0 (vertices) and dimension D (cells).
 
 %feature("docstring")  dolfin::MeshPartitioning::number_entities "
 Create global entity indices for entities of dimension d
+";
+
+// Documentation extracted from: (module=mesh, header=MeshColoring.h)
+%feature("docstring")  dolfin::MeshColoring "
+This class computes colorings for a local mesh. It supports
+vertex, edge, and facet-based colorings. Zoltan (part of
+Trilinos) is used to compute the colorings.
+";
+
+%feature("docstring")  dolfin::MeshColoring::compute_cell_colors "
+**Overloaded versions**
+
+* compute_cell_colors\ **(colors, coloring_type)**
+
+  Compute cell colors for given coloring type, which can be one
+  of \"vertex\", \"edge\" or \"facet\".
+
+* compute_cell_colors\ **(colors, dim)**
+
+  Compute cell colors for given coloring type specified by
+  topological dimension, which can be one of 0, 1 or D - 1.
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshPrimitive.h)
