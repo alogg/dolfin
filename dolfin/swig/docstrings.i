@@ -1494,6 +1494,31 @@ Return Newton solver (only useful when solving a nonlinear problem)
 Default parameter values
 ";
 
+// Documentation extracted from: (module=fem, header=OpenMpAssembler.h)
+%feature("docstring")  dolfin::OpenMpAssembler "
+This class provides automated assembly of linear systems, or
+more generally, assembly of a sparse tensor from a given
+variational form.
+
+The MeshFunction arguments can be used to specify assembly over
+subdomains of the mesh cells, exterior facets or interior
+facets. Either a null pointer or an empty MeshFunction may be
+used to specify that the tensor should be assembled over the
+entire set of cells or facets.
+";
+
+%feature("docstring")  dolfin::OpenMpAssembler::assemble "
+**Overloaded versions**
+
+* assemble\ **(A, a, reset_sparsity=true, add_values=false)**
+
+  Assemble tensor from given form
+
+* assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
+
+  Assemble tensor from given form on sub domains
+";
+
 // Documentation extracted from: (module=log, header=log.h)
 %feature("docstring")  dolfin::info "
 **Overloaded versions**
@@ -6040,7 +6065,7 @@ classes.
 
 * MeshEntityIterator\ **(it)**
 
-  Copy Constructor
+  Copy constructor
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::operator++ "
@@ -6053,6 +6078,14 @@ Step to the previous mesh entity (prefix decrease)
 
 %feature("docstring")  dolfin::MeshEntityIterator::pos "
 Return current position
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator== "
+Comparison operator.
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator!= "
+Comparison operator
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::operator* "
@@ -6080,6 +6113,34 @@ beyond iterator.
 
 %feature("docstring")  dolfin::MeshEntityIterator::set_end "
 Set pos to end position. To create a kind of mesh.end() iterator.
+";
+
+// Documentation extracted from: (module=mesh, header=SubsetIterator.h)
+%feature("docstring")  dolfin::SubsetIterator "
+A :py:class:`SubsetIterator` is similar to a :py:class:`MeshEntityIterator` but
+iterates over a specified subset of the range of entities as
+specified by a :py:class:`MeshFunction` that labels the entites.
+";
+
+%feature("docstring")  dolfin::SubsetIterator::SubsetIterator "
+Create iterator for given mesh function. The iterator visits
+all entities that match the given label.
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator++ "
+Step to next mesh entity (prefix increment)
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator* "
+Dereference operator
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator-> "
+Member access operator
+";
+
+%feature("docstring")  dolfin::SubsetIterator::end "
+Check if iterator has reached the end
 ";
 
 // Documentation extracted from: (module=mesh, header=Point.h)
@@ -7728,6 +7789,10 @@ Snap boundary vertices of mesh to match given sub domain.
           Coloring type, specifying what relation makes two
           cells neighbors, can be one of \"vertex\", \"edge\" or
           \"facet\".
+  
+  *Returns*
+      MeshFunction<uint>
+          The colors as a mesh function over the cells of the mesh.
 
 * color\ **(dim)**
 
@@ -7742,6 +7807,10 @@ Snap boundary vertices of mesh to match given sub domain.
           specifying what relation makes two cells neighbors.
           Two cells are neighbors if they are both adjacent to a
           mesh entity of the given dimension.
+  
+  *Returns*
+      MeshFunction<uint>
+          The colors as a mesh function over the cells of the mesh.
 ";
 
 %feature("docstring")  dolfin::Mesh::all_intersected_entities "
