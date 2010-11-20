@@ -15,7 +15,7 @@
 //   format:                         'dolfin'
 //   log_level:                      20
 //   log_prefix:                     ''
-//   optimize:                       False
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -488,909 +488,6 @@ public:
 
   /// Destructor
   virtual ~navierstokes_finite_element_1()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the finite element
-  virtual const char* signature() const
-  {
-    return "VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3)";
-  }
-
-  /// Return the cell shape
-  virtual ufc::shape cell_shape() const
-  {
-    return ufc::tetrahedron;
-  }
-
-  /// Return the dimension of the finite element function space
-  virtual unsigned int space_dimension() const
-  {
-    return 3;
-  }
-
-  /// Return the rank of the value space
-  virtual unsigned int value_rank() const
-  {
-    return 1;
-  }
-
-  /// Return the dimension of the value space for axis i
-  virtual unsigned int value_dimension(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return 3;
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Evaluate basis function i at given point in cell
-  virtual void evaluate_basis(unsigned int i,
-                              double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    
-    // Compute Jacobian of affine map from reference cell
-    
-    // Compute sub determinants
-    
-    // Compute determinant of Jacobian
-    
-    // Compute inverse of Jacobian
-    
-    // Compute constants
-    
-    // Get coordinates and map to the reference (FIAT) element
-    
-    
-    // Reset values.
-    values[0] = 0.000000000000000;
-    values[1] = 0.000000000000000;
-    values[2] = 0.000000000000000;
-    switch (i)
-    {
-    case 0:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Compute value(s).
-      for (unsigned int r = 0; r < 1; r++)
-      {
-        values[0] += coefficients0[r]*basisvalues[r];
-      }// end loop over 'r'
-        break;
-      }
-    case 1:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Compute value(s).
-      for (unsigned int r = 0; r < 1; r++)
-      {
-        values[1] += coefficients0[r]*basisvalues[r];
-      }// end loop over 'r'
-        break;
-      }
-    case 2:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Compute value(s).
-      for (unsigned int r = 0; r < 1; r++)
-      {
-        values[2] += coefficients0[r]*basisvalues[r];
-      }// end loop over 'r'
-        break;
-      }
-    }
-    
-  }
-
-  /// Evaluate all basis functions at given point in cell
-  virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
-  {
-    // Helper variable to hold values of a single dof.
-    double dof_values[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
-    
-    // Loop dofs and call evaluate_basis.
-    for (unsigned int r = 0; r < 3; r++)
-    {
-      evaluate_basis(r, dof_values, coordinates, c);
-      for (unsigned int s = 0; s < 3; s++)
-      {
-        values[r*3 + s] = dof_values[s];
-      }// end loop over 's'
-    }// end loop over 'r'
-  }
-
-  /// Evaluate order n derivatives of basis function i at given point in cell
-  virtual void evaluate_basis_derivatives(unsigned int i,
-                                          unsigned int n,
-                                          double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-    
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
-    
-    // Compute constants
-    
-    // Get coordinates and map to the reference (FIAT) element
-    
-    
-    // Compute number of derivatives.
-    unsigned int num_derivatives = 1;
-    for (unsigned int r = 0; r < n; r++)
-    {
-      num_derivatives *= 3;
-    }// end loop over 'r'
-    
-    // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
-    unsigned int **combinations = new unsigned int *[num_derivatives];
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      combinations[row] = new unsigned int [n];
-      for (unsigned int col = 0; col < n; col++)
-        combinations[row][col] = 0;
-    }
-    
-    // Generate combinations of derivatives
-    for (unsigned int row = 1; row < num_derivatives; row++)
-    {
-      for (unsigned int num = 0; num < row; num++)
-      {
-        for (unsigned int col = n-1; col+1 > 0; col--)
-        {
-          if (combinations[row][col] + 1 > 2)
-            combinations[row][col] = 0;
-          else
-          {
-            combinations[row][col] += 1;
-            break;
-          }
-        }
-      }
-    }
-    
-    // Compute inverse of Jacobian
-    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
-    
-    // Declare transformation matrix
-    // Declare pointer to two dimensional array and initialise
-    double **transform = new double *[num_derivatives];
-    
-    for (unsigned int j = 0; j < num_derivatives; j++)
-    {
-      transform[j] = new double [num_derivatives];
-      for (unsigned int k = 0; k < num_derivatives; k++)
-        transform[j][k] = 1;
-    }
-    
-    // Construct transformation matrix
-    for (unsigned int row = 0; row < num_derivatives; row++)
-    {
-      for (unsigned int col = 0; col < num_derivatives; col++)
-      {
-        for (unsigned int k = 0; k < n; k++)
-          transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
-      }
-    }
-    
-    // Reset values. Assuming that values is always an array.
-    for (unsigned int r = 0; r < 3*num_derivatives; r++)
-    {
-      values[r] = 0.000000000000000;
-    }// end loop over 'r'
-    
-    switch (i)
-    {
-    case 0:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Tables of derivatives of the polynomial base (transpose).
-      static const double dmats0[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats1[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats2[1][1] = \
-      {{0.000000000000000}};
-      
-      // Compute reference derivatives.
-      // Declare pointer to array of derivatives on FIAT element.
-      double *derivatives = new double[num_derivatives];
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        derivatives[r] = 0.000000000000000;
-      }// end loop over 'r'
-      
-      // Declare derivative matrix (of polynomial basis).
-      double dmats[1][1] = \
-      {{1.000000000000000}};
-      
-      // Declare (auxiliary) derivative matrix (of polynomial basis).
-      double dmats_old[1][1] = \
-      {{1.000000000000000}};
-      
-      // Loop possible derivatives.
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        // Resetting dmats values to compute next derivative.
-        for (unsigned int t = 0; t < 1; t++)
-        {
-          for (unsigned int u = 0; u < 1; u++)
-          {
-            dmats[t][u] = 0.000000000000000;
-            if (t == u)
-            {
-            dmats[t][u] = 1.000000000000000;
-            }
-            
-          }// end loop over 'u'
-        }// end loop over 't'
-        
-        // Looping derivative order to generate dmats.
-        for (unsigned int s = 0; s < n; s++)
-        {
-          // Updating dmats_old with new values and resetting dmats.
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
-            }// end loop over 'u'
-          }// end loop over 't'
-          
-          // Update dmats using an inner product.
-          if (combinations[r][s] == 0)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 1)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 2)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-        }// end loop over 's'
-        for (unsigned int s = 0; s < 1; s++)
-        {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
-          }// end loop over 't'
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Transform derivatives back to physical element
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        for (unsigned int s = 0; s < num_derivatives; s++)
-        {
-          values[r] += transform[r][s]*derivatives[s];
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-      
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] combinations[r];
-      }// end loop over 'r'
-      delete [] combinations;
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] transform[r];
-      }// end loop over 'r'
-      delete [] transform;
-        break;
-      }
-    case 1:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Tables of derivatives of the polynomial base (transpose).
-      static const double dmats0[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats1[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats2[1][1] = \
-      {{0.000000000000000}};
-      
-      // Compute reference derivatives.
-      // Declare pointer to array of derivatives on FIAT element.
-      double *derivatives = new double[num_derivatives];
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        derivatives[r] = 0.000000000000000;
-      }// end loop over 'r'
-      
-      // Declare derivative matrix (of polynomial basis).
-      double dmats[1][1] = \
-      {{1.000000000000000}};
-      
-      // Declare (auxiliary) derivative matrix (of polynomial basis).
-      double dmats_old[1][1] = \
-      {{1.000000000000000}};
-      
-      // Loop possible derivatives.
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        // Resetting dmats values to compute next derivative.
-        for (unsigned int t = 0; t < 1; t++)
-        {
-          for (unsigned int u = 0; u < 1; u++)
-          {
-            dmats[t][u] = 0.000000000000000;
-            if (t == u)
-            {
-            dmats[t][u] = 1.000000000000000;
-            }
-            
-          }// end loop over 'u'
-        }// end loop over 't'
-        
-        // Looping derivative order to generate dmats.
-        for (unsigned int s = 0; s < n; s++)
-        {
-          // Updating dmats_old with new values and resetting dmats.
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
-            }// end loop over 'u'
-          }// end loop over 't'
-          
-          // Update dmats using an inner product.
-          if (combinations[r][s] == 0)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 1)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 2)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-        }// end loop over 's'
-        for (unsigned int s = 0; s < 1; s++)
-        {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
-          }// end loop over 't'
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Transform derivatives back to physical element
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        for (unsigned int s = 0; s < num_derivatives; s++)
-        {
-          values[num_derivatives + r] += transform[r][s]*derivatives[s];
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-      
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] combinations[r];
-      }// end loop over 'r'
-      delete [] combinations;
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] transform[r];
-      }// end loop over 'r'
-      delete [] transform;
-        break;
-      }
-    case 2:
-      {
-        
-      // Array of basisvalues.
-      double basisvalues[1] = {0.000000000000000};
-      
-      // Declare helper variables.
-      
-      // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
-      
-      // Table(s) of coefficients.
-      static const double coefficients0[1] = \
-      {1.000000000000000};
-      
-      // Tables of derivatives of the polynomial base (transpose).
-      static const double dmats0[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats1[1][1] = \
-      {{0.000000000000000}};
-      
-      static const double dmats2[1][1] = \
-      {{0.000000000000000}};
-      
-      // Compute reference derivatives.
-      // Declare pointer to array of derivatives on FIAT element.
-      double *derivatives = new double[num_derivatives];
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        derivatives[r] = 0.000000000000000;
-      }// end loop over 'r'
-      
-      // Declare derivative matrix (of polynomial basis).
-      double dmats[1][1] = \
-      {{1.000000000000000}};
-      
-      // Declare (auxiliary) derivative matrix (of polynomial basis).
-      double dmats_old[1][1] = \
-      {{1.000000000000000}};
-      
-      // Loop possible derivatives.
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        // Resetting dmats values to compute next derivative.
-        for (unsigned int t = 0; t < 1; t++)
-        {
-          for (unsigned int u = 0; u < 1; u++)
-          {
-            dmats[t][u] = 0.000000000000000;
-            if (t == u)
-            {
-            dmats[t][u] = 1.000000000000000;
-            }
-            
-          }// end loop over 'u'
-        }// end loop over 't'
-        
-        // Looping derivative order to generate dmats.
-        for (unsigned int s = 0; s < n; s++)
-        {
-          // Updating dmats_old with new values and resetting dmats.
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
-            }// end loop over 'u'
-          }// end loop over 't'
-          
-          // Update dmats using an inner product.
-          if (combinations[r][s] == 0)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats0[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 1)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats1[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-          if (combinations[r][s] == 2)
-          {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            for (unsigned int u = 0; u < 1; u++)
-            {
-              for (unsigned int tu = 0; tu < 1; tu++)
-              {
-                dmats[t][u] += dmats2[t][tu]*dmats_old[tu][u];
-              }// end loop over 'tu'
-            }// end loop over 'u'
-          }// end loop over 't'
-          }
-          
-        }// end loop over 's'
-        for (unsigned int s = 0; s < 1; s++)
-        {
-          for (unsigned int t = 0; t < 1; t++)
-          {
-            derivatives[r] += coefficients0[s]*dmats[s][t]*basisvalues[t];
-          }// end loop over 't'
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Transform derivatives back to physical element
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        for (unsigned int s = 0; s < num_derivatives; s++)
-        {
-          values[2*num_derivatives + r] += transform[r][s]*derivatives[s];
-        }// end loop over 's'
-      }// end loop over 'r'
-      
-      // Delete pointer to array of derivatives on FIAT element
-      delete [] derivatives;
-      
-      // Delete pointer to array of combinations of derivatives and transform
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] combinations[r];
-      }// end loop over 'r'
-      delete [] combinations;
-      for (unsigned int r = 0; r < num_derivatives; r++)
-      {
-        delete [] transform[r];
-      }// end loop over 'r'
-      delete [] transform;
-        break;
-      }
-    }
-    
-  }
-
-  /// Evaluate order n derivatives of all basis functions at given point in cell
-  virtual void evaluate_basis_derivatives_all(unsigned int n,
-                                              double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
-  {
-    // Compute number of derivatives.
-    unsigned int num_derivatives = 1;
-    for (unsigned int r = 0; r < n; r++)
-    {
-      num_derivatives *= 3;
-    }// end loop over 'r'
-    
-    // Helper variable to hold values of a single dof.
-    double *dof_values = new double[3*num_derivatives];
-    for (unsigned int r = 0; r < 3*num_derivatives; r++)
-    {
-      dof_values[r] = 0.000000000000000;
-    }// end loop over 'r'
-    
-    // Loop dofs and call evaluate_basis_derivatives.
-    for (unsigned int r = 0; r < 3; r++)
-    {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
-      for (unsigned int s = 0; s < 3*num_derivatives; s++)
-      {
-        values[r*3*num_derivatives + s] = dof_values[s];
-      }// end loop over 's'
-    }// end loop over 'r'
-    
-    // Delete pointer.
-    delete [] dof_values;
-  }
-
-  /// Evaluate linear functional for dof i on the function f
-  virtual double evaluate_dof(unsigned int i,
-                              const ufc::function& f,
-                              const ufc::cell& c) const
-  {
-    // Declare variables for result of evaluation.
-    double vals[3];
-    
-    // Declare variable for physical coordinates.
-    double y[3];
-    const double * const * x = c.coordinates;
-    switch (i)
-    {
-    case 0:
-      {
-        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-      f.evaluate(vals, y, c);
-      return vals[0];
-        break;
-      }
-    case 1:
-      {
-        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-      f.evaluate(vals, y, c);
-      return vals[1];
-        break;
-      }
-    case 2:
-      {
-        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-      f.evaluate(vals, y, c);
-      return vals[2];
-        break;
-      }
-    }
-    
-    return 0.000000000000000;
-  }
-
-  /// Evaluate linear functionals for all dofs on the function f
-  virtual void evaluate_dofs(double* values,
-                             const ufc::function& f,
-                             const ufc::cell& c) const
-  {
-    // Declare variables for result of evaluation.
-    double vals[3];
-    
-    // Declare variable for physical coordinates.
-    double y[3];
-    const double * const * x = c.coordinates;
-    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-    f.evaluate(vals, y, c);
-    values[0] = vals[0];
-    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-    f.evaluate(vals, y, c);
-    values[1] = vals[1];
-    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-    f.evaluate(vals, y, c);
-    values[2] = vals[2];
-  }
-
-  /// Interpolate vertex values from dof values
-  virtual void interpolate_vertex_values(double* vertex_values,
-                                         const double* dof_values,
-                                         const ufc::cell& c) const
-  {
-    // Evaluate function and change variables
-    vertex_values[0] = dof_values[0];
-    vertex_values[3] = dof_values[0];
-    vertex_values[6] = dof_values[0];
-    vertex_values[9] = dof_values[0];
-    // Evaluate function and change variables
-    vertex_values[1] = dof_values[1];
-    vertex_values[4] = dof_values[1];
-    vertex_values[7] = dof_values[1];
-    vertex_values[10] = dof_values[1];
-    // Evaluate function and change variables
-    vertex_values[2] = dof_values[2];
-    vertex_values[5] = dof_values[2];
-    vertex_values[8] = dof_values[2];
-    vertex_values[11] = dof_values[2];
-  }
-
-  /// Return the number of sub elements (for a mixed element)
-  virtual unsigned int num_sub_elements() const
-  {
-    return 3;
-  }
-
-  /// Create a new finite element for sub element i (for a mixed element)
-  virtual ufc::finite_element* create_sub_element(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new navierstokes_finite_element_0();
-        break;
-      }
-    case 1:
-      {
-        return new navierstokes_finite_element_0();
-        break;
-      }
-    case 2:
-      {
-        return new navierstokes_finite_element_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a finite element.
-
-class navierstokes_finite_element_2: public ufc::finite_element
-{
-public:
-
-  /// Constructor
-  navierstokes_finite_element_2() : ufc::finite_element()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~navierstokes_finite_element_2()
   {
     // Do nothing
   }
@@ -2756,18 +1853,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_3: public ufc::finite_element
+class navierstokes_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_3() : ufc::finite_element()
+  navierstokes_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_3()
+  virtual ~navierstokes_finite_element_2()
   {
     // Do nothing
   }
@@ -6234,17 +5331,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_2();
+        return new navierstokes_finite_element_1();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_2();
+        return new navierstokes_finite_element_1();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_2();
+        return new navierstokes_finite_element_1();
         break;
       }
     }
@@ -6520,280 +5617,6 @@ public:
   /// Return a string identifying the dof map
   virtual const char* signature() const
   {
-    return "FFC dofmap for VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3)";
-  }
-
-  /// Return true iff mesh entities of topological dimension d are needed
-  virtual bool needs_mesh_entities(unsigned int d) const
-  {
-    switch (d)
-    {
-    case 0:
-      {
-        return false;
-        break;
-      }
-    case 1:
-      {
-        return false;
-        break;
-      }
-    case 2:
-      {
-        return false;
-        break;
-      }
-    case 3:
-      {
-        return true;
-        break;
-      }
-    }
-    
-    return false;
-  }
-
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = 3.000000000000000*m.num_entities[3];
-    return false;
-  }
-
-  /// Initialize dof map for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dof map for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
-  /// Return the dimension of the global finite element function space
-  virtual unsigned int global_dimension() const
-  {
-    return _global_dimension;
-  }
-
-  /// Return the dimension of the local finite element function space for a cell
-  virtual unsigned int local_dimension(const ufc::cell& c) const
-  {
-    return 3;
-  }
-
-  /// Return the maximum dimension of the local finite element function space
-  virtual unsigned int max_local_dimension() const
-  {
-    return 3;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 3;
-  }
-
-  /// Return the number of dofs on each cell facet
-  virtual unsigned int num_facet_dofs() const
-  {
-    return 0;
-  }
-
-  /// Return the number of dofs associated with each cell entity of dimension d
-  virtual unsigned int num_entity_dofs(unsigned int d) const
-  {
-    switch (d)
-    {
-    case 0:
-      {
-        return 0;
-        break;
-      }
-    case 1:
-      {
-        return 0;
-        break;
-      }
-    case 2:
-      {
-        return 0;
-        break;
-      }
-    case 3:
-      {
-        return 3;
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-  /// Tabulate the local-to-global mapping of dofs on a cell
-  virtual void tabulate_dofs(unsigned int* dofs,
-                             const ufc::mesh& m,
-                             const ufc::cell& c) const
-  {
-    unsigned int offset = 0;
-    dofs[0] = offset + c.entity_indices[3][0];
-    offset += m.num_entities[3];
-    dofs[1] = offset + c.entity_indices[3][0];
-    offset += m.num_entities[3];
-    dofs[2] = offset + c.entity_indices[3][0];
-    offset += m.num_entities[3];
-  }
-
-  /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-  virtual void tabulate_facet_dofs(unsigned int* dofs,
-                                   unsigned int facet) const
-  {
-    switch (facet)
-    {
-    case 0:
-      {
-        
-        break;
-      }
-    case 1:
-      {
-        
-        break;
-      }
-    case 2:
-      {
-        
-        break;
-      }
-    case 3:
-      {
-        
-        break;
-      }
-    }
-    
-  }
-
-  /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-  virtual void tabulate_entity_dofs(unsigned int* dofs,
-                                    unsigned int d, unsigned int i) const
-  {
-    if (d > 3)
-    {
-    throw std::runtime_error("d is larger than dimension (3)");
-    }
-    
-    switch (d)
-    {
-    case 0:
-      {
-        
-        break;
-      }
-    case 1:
-      {
-        
-        break;
-      }
-    case 2:
-      {
-        
-        break;
-      }
-    case 3:
-      {
-        if (i > 0)
-      {
-      throw std::runtime_error("i is larger than number of entities (0)");
-      }
-      
-      dofs[0] = 0;
-      dofs[1] = 1;
-      dofs[2] = 2;
-        break;
-      }
-    }
-    
-  }
-
-  /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
-  {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    coordinates[0][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-    coordinates[1][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    coordinates[1][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    coordinates[1][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-    coordinates[2][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    coordinates[2][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    coordinates[2][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
-  }
-
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
-  {
-    return 3;
-  }
-
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
-  {
-    switch (i)
-    {
-    case 0:
-      {
-        return new navierstokes_dof_map_0();
-        break;
-      }
-    case 1:
-      {
-        return new navierstokes_dof_map_0();
-        break;
-      }
-    case 2:
-      {
-        return new navierstokes_dof_map_0();
-        break;
-      }
-    }
-    
-    return 0;
-  }
-
-};
-
-/// This class defines the interface for a local-to-global mapping of
-/// degrees of freedom (dofs).
-
-class navierstokes_dof_map_2: public ufc::dof_map
-{
-private:
-
-  unsigned int _global_dimension;
-public:
-
-  /// Constructor
-  navierstokes_dof_map_2() : ufc::dof_map()
-  {
-    _global_dimension = 0;
-  }
-
-  /// Destructor
-  virtual ~navierstokes_dof_map_2()
-  {
-    // Do nothing
-  }
-
-  /// Return a string identifying the dof map
-  virtual const char* signature() const
-  {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
   }
 
@@ -7056,7 +5879,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_3: public ufc::dof_map
+class navierstokes_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -7064,13 +5887,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_3() : ufc::dof_map()
+  navierstokes_dof_map_2() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_3()
+  virtual ~navierstokes_dof_map_2()
   {
     // Do nothing
   }
@@ -7404,17 +6227,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_2();
+        return new navierstokes_dof_map_1();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_2();
+        return new navierstokes_dof_map_1();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_2();
+        return new navierstokes_dof_map_1();
         break;
       }
     }
@@ -7501,177 +6324,165 @@ public:
     // Quadrature points on the UFC reference element: (0.156682637336818, 0.136054976802846, 0.122514822655441), (0.081395667014670, 0.070679724159397, 0.544151844011225), (0.065838687060044, 0.565933165072801, 0.122514822655441), (0.034202793236766, 0.293998800631623, 0.544151844011225), (0.584747563204894, 0.136054976802846, 0.122514822655441), (0.303772764814708, 0.070679724159397, 0.544151844011225), (0.245713325211713, 0.565933165072801, 0.122514822655441), (0.127646562120385, 0.293998800631623, 0.544151844011225)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[8][1] = \
-    {{1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000},
-    {1.000000000000000}};
+    static const double FE1_C0[8][4] = \
+    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
+    {0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225},
+    {0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441},
+    {0.127646562120385, 0.034202793236767, 0.293998800631623, 0.544151844011225},
+    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
+    {0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225},
+    {0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441},
+    {0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
     
-    static const double FE1_C0[8][3] = \
-    {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {1.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[4] = {0, 1, 2, 3};
     
-    static const double FE1_C1[8][3] = \
-    {{0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 1.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[4] = {4, 5, 6, 7};
     
-    static const double FE1_C2[8][3] = \
-    {{0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc8[4] = {8, 9, 10, 11};
     
-    static const double FE2_C0[8][12] = \
-    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    static const double FE1_C0_D001[8][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
     
-    static const double FE2_C0_D001[8][12] = \
-    {{-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 3};
     
-    static const double FE2_C0_D010[8][12] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
     
-    static const double FE2_C0_D100[8][12] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc9[2] = {8, 11};
     
-    static const double FE2_C1[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 2};
     
-    static const double FE2_C1_D001[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc6[2] = {4, 6};
     
-    static const double FE2_C1_D010[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc7[2] = {4, 5};
     
-    static const double FE2_C1_D100[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc11[2] = {8, 9};
     
-    static const double FE2_C2[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
+    // Array of non-zero columns
+    static const unsigned int nzc10[2] = {8, 10};
     
-    static const double FE2_C2_D001[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
-    
-    static const double FE2_C2_D010[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000}};
-    
-    static const double FE2_C2_D100[8][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {4, 7};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 144; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 563.
+    double G[90];
+    G[0] = 0.500000000000000*K_12*det*w[3][0];
+    G[1] = 0.500000000000000*K_11*det*w[3][0];
+    G[2] = 0.500000000000000*K_10*det*w[3][0];
+    G[3] = 0.500000000000000*K_22*det*w[3][0];
+    G[4] = 0.500000000000000*K_21*det*w[3][0];
+    G[5] = 0.500000000000000*K_20*det*w[3][0];
+    G[6] = 0.500000000000000*K_02*det*w[3][0];
+    G[7] = 0.500000000000000*K_01*det*w[3][0];
+    G[8] = 0.500000000000000*K_00*det*w[3][0];
+    G[9] = 0.500000000000000*K_00*K_01*det*w[2][0]*w[3][0];
+    G[10] = 0.500000000000000*K_00*K_11*det*w[2][0]*w[3][0];
+    G[11] = 0.500000000000000*K_11*K_22*det*w[2][0]*w[3][0];
+    G[12] = 0.500000000000000*K_10*K_20*det*w[1][0]*w[3][0];
+    G[13] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_10*K_22 + K_12*K_20);
+    G[14] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_10*K_21 + K_11*K_20);
+    G[15] = 0.500000000000000*K_12*K_22*det*w[1][0]*w[3][0];
+    G[16] = 0.500000000000000*K_11*K_21*det*w[1][0]*w[3][0];
+    G[17] = 0.500000000000000*det*w[3][0]*(K_12*K_22*w[2][0] + w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22));
+    G[18] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_11*K_22 + K_12*K_21);
+    G[19] = 0.500000000000000*K_02*K_10*det*w[2][0]*w[3][0];
+    G[20] = 0.500000000000000*K_20*K_22*det*w[2][0]*w[3][0];
+    G[21] = 0.500000000000000*K_00*K_10*det*w[1][0]*w[3][0];
+    G[22] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_00*K_12 + K_02*K_10);
+    G[23] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_00*K_11 + K_01*K_10);
+    G[24] = 0.500000000000000*K_02*K_12*det*w[1][0]*w[3][0];
+    G[25] = 0.500000000000000*K_01*K_11*det*w[1][0]*w[3][0];
+    G[26] = 0.500000000000000*det*w[3][0]*(K_00*K_10*(w[2][0] + w[4][0]) + w[4][0]*(K_01*K_11 + K_02*K_12));
+    G[27] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_01*K_12 + K_02*K_11);
+    G[28] = 0.500000000000000*K_00*K_12*det*w[2][0]*w[3][0];
+    G[29] = 0.500000000000000*K_00*K_20*det*w[1][0]*w[3][0];
+    G[30] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_00*K_22 + K_02*K_20);
+    G[31] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_00*K_21 + K_01*K_20);
+    G[32] = 0.500000000000000*K_02*K_22*det*w[1][0]*w[3][0];
+    G[33] = 0.500000000000000*K_01*K_21*det*w[1][0]*w[3][0];
+    G[34] = 0.500000000000000*det*w[3][0]*(K_02*K_22*w[2][0] + w[4][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22));
+    G[35] = 0.500000000000000*det*w[1][0]*w[3][0]*(K_01*K_22 + K_02*K_21);
+    G[36] = 0.500000000000000*K_01*K_02*det*w[2][0]*w[3][0];
+    G[37] = 0.500000000000000*det*w[3][0]*(K_01*K_21*(w[2][0] + w[4][0]) + w[4][0]*(K_00*K_20 + K_02*K_22));
+    G[38] = 0.500000000000000*K_12*K_21*det*w[2][0]*w[3][0];
+    G[39] = 0.500000000000000*K_01*K_22*det*w[2][0]*w[3][0];
+    G[40] = 0.500000000000000*det*w[3][0]*(K_11*K_21*w[2][0] + w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22));
+    G[41] = 0.500000000000000*K_00*K_00*det*w[1][0]*w[3][0];
+    G[42] = K_00*K_02*det*w[1][0]*w[3][0];
+    G[43] = K_00*K_01*det*w[1][0]*w[3][0];
+    G[44] = 0.500000000000000*K_02*K_02*det*w[1][0]*w[3][0];
+    G[45] = 0.500000000000000*K_01*K_01*det*w[1][0]*w[3][0];
+    G[46] = 0.500000000000000*det*w[3][0]*(K_00*K_00*w[2][0] + w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02));
+    G[47] = K_01*K_02*det*w[1][0]*w[3][0];
+    G[48] = 0.500000000000000*K_12*K_20*det*w[2][0]*w[3][0];
+    G[49] = 0.500000000000000*K_02*K_21*det*w[2][0]*w[3][0];
+    G[50] = 0.500000000000000*K_10*K_12*det*w[2][0]*w[3][0];
+    G[51] = 0.500000000000000*K_10*K_21*det*w[2][0]*w[3][0];
+    G[52] = 0.500000000000000*K_20*K_20*det*w[1][0]*w[3][0];
+    G[53] = K_20*K_22*det*w[1][0]*w[3][0];
+    G[54] = K_20*K_21*det*w[1][0]*w[3][0];
+    G[55] = 0.500000000000000*K_22*K_22*det*w[1][0]*w[3][0];
+    G[56] = 0.500000000000000*K_21*K_21*det*w[1][0]*w[3][0];
+    G[57] = 0.500000000000000*det*w[3][0]*(K_22*K_22*w[2][0] + w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22));
+    G[58] = K_21*K_22*det*w[1][0]*w[3][0];
+    G[59] = 0.500000000000000*K_01*K_10*det*w[2][0]*w[3][0];
+    G[60] = 0.500000000000000*K_02*K_20*det*w[2][0]*w[3][0];
+    G[61] = 0.500000000000000*det*w[3][0]*(K_00*K_20*w[2][0] + w[4][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22));
+    G[62] = 0.500000000000000*K_00*K_22*det*w[2][0]*w[3][0];
+    G[63] = 0.500000000000000*K_10*K_10*det*w[1][0]*w[3][0];
+    G[64] = K_10*K_12*det*w[1][0]*w[3][0];
+    G[65] = K_10*K_11*det*w[1][0]*w[3][0];
+    G[66] = 0.500000000000000*K_12*K_12*det*w[1][0]*w[3][0];
+    G[67] = 0.500000000000000*K_11*K_11*det*w[1][0]*w[3][0];
+    G[68] = 0.500000000000000*det*w[3][0]*(K_12*K_12*w[2][0] + w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12));
+    G[69] = K_11*K_12*det*w[1][0]*w[3][0];
+    G[70] = 0.500000000000000*K_00*K_21*det*w[2][0]*w[3][0];
+    G[71] = 0.500000000000000*det*w[3][0]*(K_02*K_12*(w[2][0] + w[4][0]) + w[4][0]*(K_00*K_10 + K_01*K_11));
+    G[72] = 0.500000000000000*K_00*K_02*det*w[2][0]*w[3][0];
+    G[73] = 0.500000000000000*det*w[3][0]*(K_01*K_01*w[2][0] + w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02));
+    G[74] = 0.500000000000000*K_10*K_11*det*w[2][0]*w[3][0];
+    G[75] = 0.500000000000000*det*w[3][0]*(K_02*K_02*w[2][0] + w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02));
+    G[76] = 0.500000000000000*det*w[3][0]*(K_10*K_20*w[2][0] + w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22));
+    G[77] = 0.500000000000000*det*w[3][0]*(K_20*K_20*w[2][0] + w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22));
+    G[78] = 0.500000000000000*K_10*K_22*det*w[2][0]*w[3][0];
+    G[79] = 0.500000000000000*K_11*K_12*det*w[2][0]*w[3][0];
+    G[80] = 0.500000000000000*K_02*K_11*det*w[2][0]*w[3][0];
+    G[81] = 0.500000000000000*K_20*K_21*det*w[2][0]*w[3][0];
+    G[82] = 0.500000000000000*det*w[3][0]*(K_11*K_11*w[2][0] + w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12));
+    G[83] = 0.500000000000000*K_01*K_12*det*w[2][0]*w[3][0];
+    G[84] = 0.500000000000000*det*w[3][0]*(K_01*K_11*(w[2][0] + w[4][0]) + w[4][0]*(K_00*K_10 + K_02*K_12));
+    G[85] = 0.500000000000000*K_01*K_20*det*w[2][0]*w[3][0];
+    G[86] = 0.500000000000000*K_21*K_22*det*w[2][0]*w[3][0];
+    G[87] = 0.500000000000000*det*w[3][0]*(K_21*K_21*w[2][0] + w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22));
+    G[88] = 0.500000000000000*det*w[3][0]*(K_10*K_10*w[2][0] + w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12));
+    G[89] = 0.500000000000000*K_11*K_20*det*w[2][0]*w[3][0];
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 409168
+    // Number of operations to compute element tensor for following IP loop = 13520
     for (unsigned int ip = 0; ip < 8; ip++)
     {
       
@@ -7679,35 +6490,372 @@ public:
       double F0 = 0.000000000000000;
       double F1 = 0.000000000000000;
       double F2 = 0.000000000000000;
-      double F3 = 0.000000000000000;
-      double F4 = 0.000000000000000;
-      double F5 = 0.000000000000000;
-      double F6 = 0.000000000000000;
       
-      // Total number of operations to compute function values = 8
-      for (unsigned int r = 0; r < 1; r++)
+      // Total number of operations to compute function values = 24
+      for (unsigned int r = 0; r < 4; r++)
       {
-        F0 += FE0[ip][r]*w[3][r];
-        F1 += FE0[ip][r]*w[2][r];
-        F5 += FE0[ip][r]*w[1][r];
-        F6 += FE0[ip][r]*w[4][r];
+        F0 += FE1_C0[ip][r]*w[0][nzc0[r]];
+        F1 += FE1_C0[ip][r]*w[0][nzc4[r]];
+        F2 += FE1_C0[ip][r]*w[0][nzc8[r]];
       }// end loop over 'r'
       
-      // Total number of operations to compute function values = 18
-      for (unsigned int r = 0; r < 3; r++)
-      {
-        F2 += FE1_C0[ip][r]*w[0][r];
-        F3 += FE1_C1[ip][r]*w[0][r];
-        F4 += FE1_C2[ip][r]*w[0][r];
-      }// end loop over 'r'
+      // Number of operations to compute ip constants: 334
+      double I[49];
+      // Number of operations: 6
+      I[0] = W8[ip]*(F0*G[2] + F1*G[1] + F2*G[0]);
       
-      // Number of operations for primary indices: 51120
-      for (unsigned int j = 0; j < 12; j++)
+      // Number of operations: 6
+      I[1] = W8[ip]*(F0*G[5] + F1*G[4] + F2*G[3]);
+      
+      // Number of operations: 6
+      I[2] = W8[ip]*(F0*G[8] + F1*G[7] + F2*G[6]);
+      
+      // Number of operations: 1
+      I[3] = G[9]*W8[ip];
+      
+      // Number of operations: 1
+      I[4] = G[10]*W8[ip];
+      
+      // Number of operations: 1
+      I[5] = G[11]*W8[ip];
+      
+      // Number of operations: 16
+      I[6] = W8[ip]*(G[17] + F0*(F0*G[12] + F2*G[13]) + F1*(F0*G[14] + F1*G[16] + F2*G[18]) + F2*F2*G[15]);
+      
+      // Number of operations: 1
+      I[7] = G[19]*W8[ip];
+      
+      // Number of operations: 1
+      I[8] = G[20]*W8[ip];
+      
+      // Number of operations: 16
+      I[9] = W8[ip]*(G[26] + F0*(F0*G[21] + F2*G[22]) + F1*(F0*G[23] + F1*G[25] + F2*G[27]) + F2*F2*G[24]);
+      
+      // Number of operations: 1
+      I[10] = G[28]*W8[ip];
+      
+      // Number of operations: 16
+      I[11] = W8[ip]*(G[34] + F0*(F0*G[29] + F2*G[30]) + F1*(F0*G[31] + F1*G[33] + F2*G[35]) + F2*F2*G[32]);
+      
+      // Number of operations: 1
+      I[12] = G[36]*W8[ip];
+      
+      // Number of operations: 16
+      I[13] = W8[ip]*(G[37] + F0*(F0*G[29] + F2*G[30]) + F1*(F0*G[31] + F1*G[33] + F2*G[35]) + F2*F2*G[32]);
+      
+      // Number of operations: 1
+      I[14] = G[38]*W8[ip];
+      
+      // Number of operations: 1
+      I[15] = G[39]*W8[ip];
+      
+      // Number of operations: 16
+      I[16] = W8[ip]*(G[40] + F0*(F0*G[12] + F2*G[13]) + F1*(F0*G[14] + F1*G[16] + F2*G[18]) + F2*F2*G[15]);
+      
+      // Number of operations: 16
+      I[17] = W8[ip]*(G[46] + F0*(F0*G[41] + F2*G[42]) + F1*(F0*G[43] + F1*G[45] + F2*G[47]) + F2*F2*G[44]);
+      
+      // Number of operations: 1
+      I[18] = G[48]*W8[ip];
+      
+      // Number of operations: 1
+      I[19] = G[49]*W8[ip];
+      
+      // Number of operations: 1
+      I[20] = G[50]*W8[ip];
+      
+      // Number of operations: 1
+      I[21] = G[51]*W8[ip];
+      
+      // Number of operations: 16
+      I[22] = W8[ip]*(G[57] + F0*(F0*G[52] + F2*G[53]) + F1*(F0*G[54] + F1*G[56] + F2*G[58]) + F2*F2*G[55]);
+      
+      // Number of operations: 1
+      I[23] = G[59]*W8[ip];
+      
+      // Number of operations: 1
+      I[24] = G[60]*W8[ip];
+      
+      // Number of operations: 16
+      I[25] = W8[ip]*(G[61] + F0*(F0*G[29] + F2*G[30]) + F1*(F0*G[31] + F1*G[33] + F2*G[35]) + F2*F2*G[32]);
+      
+      // Number of operations: 1
+      I[26] = G[62]*W8[ip];
+      
+      // Number of operations: 16
+      I[27] = W8[ip]*(G[68] + F0*(F0*G[63] + F2*G[64]) + F1*(F0*G[65] + F1*G[67] + F2*G[69]) + F2*F2*G[66]);
+      
+      // Number of operations: 1
+      I[28] = G[70]*W8[ip];
+      
+      // Number of operations: 16
+      I[29] = W8[ip]*(G[71] + F0*(F0*G[21] + F2*G[22]) + F1*(F0*G[23] + F1*G[25] + F2*G[27]) + F2*F2*G[24]);
+      
+      // Number of operations: 1
+      I[30] = G[72]*W8[ip];
+      
+      // Number of operations: 16
+      I[31] = W8[ip]*(G[73] + F0*(F0*G[41] + F2*G[42]) + F1*(F0*G[43] + F1*G[45] + F2*G[47]) + F2*F2*G[44]);
+      
+      // Number of operations: 1
+      I[32] = G[74]*W8[ip];
+      
+      // Number of operations: 16
+      I[33] = W8[ip]*(G[75] + F0*(F0*G[41] + F2*G[42]) + F1*(F0*G[43] + F1*G[45] + F2*G[47]) + F2*F2*G[44]);
+      
+      // Number of operations: 16
+      I[34] = W8[ip]*(G[76] + F0*(F0*G[12] + F2*G[13]) + F1*(F0*G[14] + F1*G[16] + F2*G[18]) + F2*F2*G[15]);
+      
+      // Number of operations: 16
+      I[35] = W8[ip]*(G[77] + F0*(F0*G[52] + F2*G[53]) + F1*(F0*G[54] + F1*G[56] + F2*G[58]) + F2*F2*G[55]);
+      
+      // Number of operations: 1
+      I[36] = G[78]*W8[ip];
+      
+      // Number of operations: 1
+      I[37] = G[79]*W8[ip];
+      
+      // Number of operations: 1
+      I[38] = G[80]*W8[ip];
+      
+      // Number of operations: 1
+      I[39] = G[81]*W8[ip];
+      
+      // Number of operations: 16
+      I[40] = W8[ip]*(G[82] + F0*(F0*G[63] + F2*G[64]) + F1*(F0*G[65] + F1*G[67] + F2*G[69]) + F2*F2*G[66]);
+      
+      // Number of operations: 1
+      I[41] = G[83]*W8[ip];
+      
+      // Number of operations: 16
+      I[42] = W8[ip]*(G[84] + F0*(F0*G[21] + F2*G[22]) + F1*(F0*G[23] + F1*G[25] + F2*G[27]) + F2*F2*G[24]);
+      
+      // Number of operations: 1
+      I[43] = G[85]*W8[ip];
+      
+      // Number of operations: 1
+      I[44] = G[86]*W8[ip];
+      
+      // Number of operations: 16
+      I[45] = W8[ip]*(G[87] + F0*(F0*G[52] + F2*G[53]) + F1*(F0*G[54] + F1*G[56] + F2*G[58]) + F2*F2*G[55]);
+      
+      // Number of operations: 16
+      I[46] = W8[ip]*(G[88] + F0*(F0*G[63] + F2*G[64]) + F1*(F0*G[65] + F1*G[67] + F2*G[69]) + F2*F2*G[66]);
+      
+      // Number of operations: 1
+      I[47] = G[89]*W8[ip];
+      
+      // Number of operations: 1
+      I[48] = W8[ip]*det;
+      
+      
+      // Number of operations for primary indices: 216
+      for (unsigned int j = 0; j < 4; j++)
       {
-        for (unsigned int k = 0; k < 12; k++)
+        for (unsigned int k = 0; k < 2; k++)
         {
-          // Number of operations to compute entry: 355
-          A[j*12 + k] += ((((((((K_00*FE2_C1_D100[ip][j] + K_10*FE2_C1_D010[ip][j] + K_20*FE2_C1_D001[ip][j]))*F2 + ((K_02*FE2_C1_D100[ip][j] + K_12*FE2_C1_D010[ip][j] + K_22*FE2_C1_D001[ip][j]))*F4 + ((K_01*FE2_C1_D100[ip][j] + K_11*FE2_C1_D010[ip][j] + K_21*FE2_C1_D001[ip][j]))*F3))*((((K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k]))*F3 + ((K_00*FE2_C1_D100[ip][k] + K_10*FE2_C1_D010[ip][k] + K_20*FE2_C1_D001[ip][k]))*F2 + ((K_02*FE2_C1_D100[ip][k] + K_12*FE2_C1_D010[ip][k] + K_22*FE2_C1_D001[ip][k]))*F4)) + ((((K_01*FE2_C2_D100[ip][j] + K_11*FE2_C2_D010[ip][j] + K_21*FE2_C2_D001[ip][j]))*F3 + ((K_00*FE2_C2_D100[ip][j] + K_10*FE2_C2_D010[ip][j] + K_20*FE2_C2_D001[ip][j]))*F2 + ((K_02*FE2_C2_D100[ip][j] + K_12*FE2_C2_D010[ip][j] + K_22*FE2_C2_D001[ip][j]))*F4))*((((K_00*FE2_C2_D100[ip][k] + K_10*FE2_C2_D010[ip][k] + K_20*FE2_C2_D001[ip][k]))*F2 + ((K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k]))*F4 + ((K_01*FE2_C2_D100[ip][k] + K_11*FE2_C2_D010[ip][k] + K_21*FE2_C2_D001[ip][k]))*F3)) + ((((K_00*FE2_C0_D100[ip][j] + K_10*FE2_C0_D010[ip][j] + K_20*FE2_C0_D001[ip][j]))*F2 + ((K_02*FE2_C0_D100[ip][j] + K_12*FE2_C0_D010[ip][j] + K_22*FE2_C0_D001[ip][j]))*F4 + ((K_01*FE2_C0_D100[ip][j] + K_11*FE2_C0_D010[ip][j] + K_21*FE2_C0_D001[ip][j]))*F3))*((((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k]))*F2 + ((K_02*FE2_C0_D100[ip][k] + K_12*FE2_C0_D010[ip][k] + K_22*FE2_C0_D001[ip][k]))*F4 + ((K_01*FE2_C0_D100[ip][k] + K_11*FE2_C0_D010[ip][k] + K_21*FE2_C0_D001[ip][k]))*F3))))*F0*0.500000000000000*F5 + (((FE2_C0[ip][j]*((((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k]))*F2 + ((K_02*FE2_C0_D100[ip][k] + K_12*FE2_C0_D010[ip][k] + K_22*FE2_C0_D001[ip][k]))*F4 + ((K_01*FE2_C0_D100[ip][k] + K_11*FE2_C0_D010[ip][k] + K_21*FE2_C0_D001[ip][k]))*F3)) + FE2_C2[ip][j]*((((K_00*FE2_C2_D100[ip][k] + K_10*FE2_C2_D010[ip][k] + K_20*FE2_C2_D001[ip][k]))*F2 + ((K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k]))*F4 + ((K_01*FE2_C2_D100[ip][k] + K_11*FE2_C2_D010[ip][k] + K_21*FE2_C2_D001[ip][k]))*F3)) + FE2_C1[ip][j]*((((K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k]))*F3 + ((K_00*FE2_C1_D100[ip][k] + K_10*FE2_C1_D010[ip][k] + K_20*FE2_C1_D001[ip][k]))*F2 + ((K_02*FE2_C1_D100[ip][k] + K_12*FE2_C1_D010[ip][k] + K_22*FE2_C1_D001[ip][k]))*F4))))*0.500000000000000*F0 + ((((((K_01*FE2_C0_D100[ip][j] + K_11*FE2_C0_D010[ip][j] + K_21*FE2_C0_D001[ip][j]))*((K_01*FE2_C0_D100[ip][k] + K_11*FE2_C0_D010[ip][k] + K_21*FE2_C0_D001[ip][k])) + ((K_01*FE2_C2_D100[ip][j] + K_11*FE2_C2_D010[ip][j] + K_21*FE2_C2_D001[ip][j]))*((K_01*FE2_C2_D100[ip][k] + K_11*FE2_C2_D010[ip][k] + K_21*FE2_C2_D001[ip][k])) + ((K_01*FE2_C1_D100[ip][j] + K_11*FE2_C1_D010[ip][j] + K_21*FE2_C1_D001[ip][j]))*((K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k]))) + (((K_02*FE2_C0_D100[ip][j] + K_12*FE2_C0_D010[ip][j] + K_22*FE2_C0_D001[ip][j]))*((K_02*FE2_C0_D100[ip][k] + K_12*FE2_C0_D010[ip][k] + K_22*FE2_C0_D001[ip][k])) + ((K_02*FE2_C2_D100[ip][j] + K_12*FE2_C2_D010[ip][j] + K_22*FE2_C2_D001[ip][j]))*((K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k])) + ((K_02*FE2_C1_D100[ip][j] + K_12*FE2_C1_D010[ip][j] + K_22*FE2_C1_D001[ip][j]))*((K_02*FE2_C1_D100[ip][k] + K_12*FE2_C1_D010[ip][k] + K_22*FE2_C1_D001[ip][k]))) + (((K_00*FE2_C2_D100[ip][j] + K_10*FE2_C2_D010[ip][j] + K_20*FE2_C2_D001[ip][j]))*((K_00*FE2_C2_D100[ip][k] + K_10*FE2_C2_D010[ip][k] + K_20*FE2_C2_D001[ip][k])) + ((K_00*FE2_C1_D100[ip][j] + K_10*FE2_C1_D010[ip][j] + K_20*FE2_C1_D001[ip][j]))*((K_00*FE2_C1_D100[ip][k] + K_10*FE2_C1_D010[ip][k] + K_20*FE2_C1_D001[ip][k])) + ((K_00*FE2_C0_D100[ip][j] + K_10*FE2_C0_D010[ip][j] + K_20*FE2_C0_D001[ip][j]))*((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k])))))*F6*0.500000000000000*F0 + (FE2_C1[ip][j]*FE2_C1[ip][k] + FE2_C2[ip][j]*FE2_C2[ip][k] + FE2_C0[ip][j]*FE2_C0[ip][k])))) + (((K_00*FE2_C0_D100[ip][j] + K_10*FE2_C0_D010[ip][j] + K_20*FE2_C0_D001[ip][j]) + (K_01*FE2_C1_D100[ip][j] + K_11*FE2_C1_D010[ip][j] + K_21*FE2_C1_D001[ip][j]) + (K_02*FE2_C2_D100[ip][j] + K_12*FE2_C2_D010[ip][j] + K_22*FE2_C2_D001[ip][j])))*((((K_00*FE2_C0_D100[ip][k] + K_10*FE2_C0_D010[ip][k] + K_20*FE2_C0_D001[ip][k]) + (K_02*FE2_C2_D100[ip][k] + K_12*FE2_C2_D010[ip][k] + K_22*FE2_C2_D001[ip][k]) + (K_01*FE2_C1_D100[ip][k] + K_11*FE2_C1_D010[ip][k] + K_21*FE2_C1_D001[ip][k])))*F0*0.500000000000000*F1))*W8[ip]*det;
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*12 + nzc6[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[0];
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*12 + nzc1[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[1];
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*12 + nzc5[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[1];
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*12 + nzc2[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[0];
+          // Number of operations to compute entry: 3
+          A[nzc8[j]*12 + nzc11[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[2];
+          // Number of operations to compute entry: 3
+          A[nzc8[j]*12 + nzc10[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[0];
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*12 + nzc3[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[2];
+          // Number of operations to compute entry: 3
+          A[nzc8[j]*12 + nzc9[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[1];
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*12 + nzc7[k]] += FE1_C0[ip][j]*FE1_C0_D001[ip][k]*I[2];
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 972
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        for (unsigned int k = 0; k < 2; k++)
+        {
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[3];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[4];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[5];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[6];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[7];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[8];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[9];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[10];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[11];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[12];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[13];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[14];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[15];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[16];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[17];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[13];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[6];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[8];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[18];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[19];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[11];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[15];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[20];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[21];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[22];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[23];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[24];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[25];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[23];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[26];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[27];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[7];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[28];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[29];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[16];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[30];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[31];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[20];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[4];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[32];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[33];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[32];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[34];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[29];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[35];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[21];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[36];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[37];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[38];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[24];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[34];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[36];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[19];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[39];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[40];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[3];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[41];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[25];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[10];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[14];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[42];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[43];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc11[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[38];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[9];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[44];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[39];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[44];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[41];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc10[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[37];
+          // Number of operations to compute entry: 3
+          A[nzc5[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[45];
+          // Number of operations to compute entry: 3
+          A[nzc2[j]*12 + nzc2[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[46];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[12];
+          // Number of operations to compute entry: 3
+          A[nzc1[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[47];
+          // Number of operations to compute entry: 3
+          A[nzc10[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[18];
+          // Number of operations to compute entry: 3
+          A[nzc11[j]*12 + nzc3[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[30];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc9[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[26];
+          // Number of operations to compute entry: 3
+          A[nzc9[j]*12 + nzc6[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[5];
+          // Number of operations to compute entry: 3
+          A[nzc7[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[43];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc7[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[42];
+          // Number of operations to compute entry: 3
+          A[nzc3[j]*12 + nzc5[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[28];
+          // Number of operations to compute entry: 3
+          A[nzc6[j]*12 + nzc1[k]] += FE1_C0_D001[ip][j]*FE1_C0_D001[ip][k]*I[47];
+        }// end loop over 'k'
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 144
+      for (unsigned int j = 0; j < 4; j++)
+      {
+        for (unsigned int k = 0; k < 4; k++)
+        {
+          // Number of operations to compute entry: 3
+          A[nzc8[j]*12 + nzc8[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*I[48];
+          // Number of operations to compute entry: 3
+          A[nzc0[j]*12 + nzc0[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*I[48];
+          // Number of operations to compute entry: 3
+          A[nzc4[j]*12 + nzc4[k]] += FE1_C0[ip][j]*FE1_C0[ip][k]*I[48];
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
@@ -7749,7 +6897,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(Product(IndexSum(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), Product(IndexSum(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(1),), {Index(1): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 2))))), Sum(Product(IndexSum(Product(Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3), 0), MultiIndex((Index(2),), {Index(2): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), MultiIndex((Index(4), Index(3)), {Index(4): 3, Index(3): 3})), MultiIndex((Index(5), Index(2)), {Index(5): 3, Index(2): 3}))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(6),), {Index(6): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3), 0), MultiIndex((Index(7),), {Index(7): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(8),), {Index(8): 3})), MultiIndex((Index(9),), {Index(9): 3})), MultiIndex((Index(9), Index(8)), {Index(8): 3, Index(9): 3})), MultiIndex((Index(10), Index(7)), {Index(7): 3, Index(10): 3}))), MultiIndex((Index(7),), {Index(7): 3})), MultiIndex((Index(10),), {Index(10): 3})), MultiIndex((Index(6),), {Index(6): 3}))), MultiIndex((Index(6),), {Index(6): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 1)))), Sum(Product(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(11),), {Index(11): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3), 0), MultiIndex((Index(12),), {Index(12): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(13),), {Index(13): 3})), MultiIndex((Index(14),), {Index(14): 3})), MultiIndex((Index(14), Index(13)), {Index(14): 3, Index(13): 3})), MultiIndex((Index(15), Index(12)), {Index(15): 3, Index(12): 3}))), MultiIndex((Index(12),), {Index(12): 3})), MultiIndex((Index(15),), {Index(15): 3})), MultiIndex((Index(11),), {Index(11): 3}))), MultiIndex((Index(11),), {Index(11): 3})), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3))), Sum(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(16),), {Index(16): 3})), Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(16),), {Index(16): 3}))), MultiIndex((Index(16),), {Index(16): 3})), Product(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(17),), {Index(17): 3})), MultiIndex((Index(18),), {Index(18): 3})), MultiIndex((Index(18), Index(17)), {Index(17): 3, Index(18): 3})), MultiIndex((Index(19), Index(20)), {Index(19): 3, Index(20): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(21),), {Index(21): 3})), MultiIndex((Index(22),), {Index(22): 3})), MultiIndex((Index(22), Index(21)), {Index(22): 3, Index(21): 3})), MultiIndex((Index(19), Index(20)), {Index(19): 3, Index(20): 3}))), MultiIndex((Index(19),), {Index(19): 3})), MultiIndex((Index(20),), {Index(20): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 4), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3)))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Product(IndexSum(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), Product(IndexSum(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(1),), {Index(1): 3})), MultiIndex((Index(1),), {Index(1): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 2))))), Sum(Product(IndexSum(Product(Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(2),), {Index(2): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), MultiIndex((Index(4), Index(3)), {Index(4): 3, Index(3): 3})), MultiIndex((Index(5), Index(2)), {Index(5): 3, Index(2): 3}))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(6),), {Index(6): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(7),), {Index(7): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(8),), {Index(8): 3})), MultiIndex((Index(9),), {Index(9): 3})), MultiIndex((Index(9), Index(8)), {Index(8): 3, Index(9): 3})), MultiIndex((Index(10), Index(7)), {Index(7): 3, Index(10): 3}))), MultiIndex((Index(7),), {Index(7): 3})), MultiIndex((Index(10),), {Index(10): 3})), MultiIndex((Index(6),), {Index(6): 3}))), MultiIndex((Index(6),), {Index(6): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 1)))), Sum(Product(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(11),), {Index(11): 3})), Indexed(ComponentTensor(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(12),), {Index(12): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(13),), {Index(13): 3})), MultiIndex((Index(14),), {Index(14): 3})), MultiIndex((Index(14), Index(13)), {Index(14): 3, Index(13): 3})), MultiIndex((Index(15), Index(12)), {Index(15): 3, Index(12): 3}))), MultiIndex((Index(12),), {Index(12): 3})), MultiIndex((Index(15),), {Index(15): 3})), MultiIndex((Index(11),), {Index(11): 3}))), MultiIndex((Index(11),), {Index(11): 3})), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3))), Sum(IndexSum(Product(Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(16),), {Index(16): 3})), Indexed(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(16),), {Index(16): 3}))), MultiIndex((Index(16),), {Index(16): 3})), Product(IndexSum(IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 0), MultiIndex((Index(17),), {Index(17): 3})), MultiIndex((Index(18),), {Index(18): 3})), MultiIndex((Index(18), Index(17)), {Index(17): 3, Index(18): 3})), MultiIndex((Index(19), Index(20)), {Index(19): 3, Index(20): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3), 1), MultiIndex((Index(21),), {Index(21): 3})), MultiIndex((Index(22),), {Index(22): 3})), MultiIndex((Index(22), Index(21)), {Index(22): 3, Index(21): 3})), MultiIndex((Index(19), Index(20)), {Index(19): 3, Index(20): 3}))), MultiIndex((Index(19),), {Index(19): 3})), MultiIndex((Index(20),), {Index(20): 3})), Product(Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 4), Product(FloatValue(0.5, (), (), {}), Coefficient(FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0), 3)))))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7789,17 +6937,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_3();
+        return new navierstokes_finite_element_2();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_3();
+        return new navierstokes_finite_element_2();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_1();
+        return new navierstokes_finite_element_2();
         break;
       }
     case 3:
@@ -7834,17 +6982,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_3();
+        return new navierstokes_dof_map_2();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_3();
+        return new navierstokes_dof_map_2();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_1();
+        return new navierstokes_dof_map_2();
         break;
       }
     case 3:
@@ -8092,32 +7240,32 @@ public:
 
   CoefficientSpace_w(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_w(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_w(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_w(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -8134,32 +7282,32 @@ public:
 
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
@@ -8176,32 +7324,32 @@ public:
 
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_2()), *mesh)))
   {
       // Do nothing
   }

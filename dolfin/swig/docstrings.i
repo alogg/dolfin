@@ -6855,11 +6855,13 @@ Mesh partitioning
 
 Sub meshes
 
-   \"global vertex indices\" - MeshFunction<uint> of dimension 0
+  \"global vertex indices\" - MeshFunction<uint> of dimension 0
 
 Mesh coloring
 
-   \"cell colors\" - MeshFunction<uint> of dimension D
+  \"cell colors\"       - MeshFunction<uint> of dimension D with cell colors
+  \"num colored cells\" - Array<uint> listing the number of cells of each color
+  \"colored cells %d\"  - Array<uint> of cell indices with colors 0, 1, 2, ...
 ";
 
 %feature("docstring")  dolfin::MeshData::MeshData "
@@ -6887,7 +6889,15 @@ Clear all data
 ";
 
 %feature("docstring")  dolfin::MeshData::create_array "
-Create array (vector) with given name and size
+**Overloaded versions**
+
+* create_array\ **(name)**
+
+  Create empty array (vector) with given name
+
+* create_array\ **(name, size)**
+
+  Create array (vector) with given name and size
 ";
 
 %feature("docstring")  dolfin::MeshData::create_mapping "
@@ -6903,7 +6913,15 @@ Return MeshFunction with given name (returning zero if data is not available)
 ";
 
 %feature("docstring")  dolfin::MeshData::array "
-Return array with given name (returning zero if data is not available)
+**Overloaded versions**
+
+* array\ **(name)**
+
+  Return array with given name (returning zero if data is not available)
+
+* array\ **(name, number)**
+
+  Return array with given name postfixed by \" %d\" (returning zero if data is not available)
 ";
 
 %feature("docstring")  dolfin::MeshData::mapping "
@@ -8066,6 +8084,20 @@ vertex, edge, and facet-based colorings. Zoltan (part of
 Trilinos) is used to compute the colorings.
 ";
 
+%feature("docstring")  dolfin::MeshColoring::color_cells "
+**Overloaded versions**
+
+* color_cells\ **(mesh, coloring_type)**
+
+  Color the cells of a mesh for given coloring type, which can
+  be one of \"vertex\", \"edge\" or \"facet\".
+
+* color_cells\ **(mesh, dim)**
+
+  Color the cells of a mesh for given coloring type specified by
+  topological dimension, which can be one of 0, 1 or D - 1.
+";
+
 %feature("docstring")  dolfin::MeshColoring::compute_cell_colors "
 **Overloaded versions**
 
@@ -8078,6 +8110,10 @@ Trilinos) is used to compute the colorings.
 
   Compute cell colors for given coloring type specified by
   topological dimension, which can be one of 0, 1 or D - 1.
+";
+
+%feature("docstring")  dolfin::MeshColoring::type_to_dim "
+Convert coloring type to topological dimension
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshPrimitive.h)
