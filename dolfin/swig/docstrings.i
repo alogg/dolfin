@@ -687,6 +687,10 @@ Return the maximum dimension of the local finite element function space
 Return number of facet dofs
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::cell_dofs "
+Local-to-global mapping of dofs on a cell
+";
+
 %feature("docstring")  dolfin::GenericDofMap::tabulate_dofs "
 **Overloaded versions**
 
@@ -772,6 +776,10 @@ Return the maximum dimension of the local finite element function space
 
 %feature("docstring")  dolfin::DofMap::num_facet_dofs "
 Return number of facet dofs
+";
+
+%feature("docstring")  dolfin::DofMap::cell_dofs "
+Local-to-global mapping of dofs on a cell
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_dofs "
@@ -1823,6 +1831,7 @@ Create table entry
 Cast to entry value
 ";
 
+// Documentation extracted from: (module=log, header=LogLevel.h)
 // Documentation extracted from: (module=la, header=ublas.h)
 // Documentation extracted from: (module=la, header=GenericLinearSolver.h)
 %feature("docstring")  dolfin::GenericLinearSolver "
@@ -1904,7 +1913,15 @@ Set block of values
 ";
 
 %feature("docstring")  dolfin::GenericTensor::add "
-Add block of values
+**Overloaded versions**
+
+* add\ **(block, rows)**
+
+  Add block of values
+
+* add\ **(block, num_rows, rows)**
+
+  Add block of values
 ";
 
 %feature("docstring")  dolfin::GenericTensor::zero "
@@ -2016,6 +2033,10 @@ Return size of given dimension
 **Overloaded versions**
 
 * add\ **(block, num_rows, rows)**
+
+  Add block of values
+
+* add\ **(block, rows)**
 
   Add block of values
 
@@ -2230,6 +2251,10 @@ Return tensor rank (number of dimensions)
 **Overloaded versions**
 
 * add\ **(block, num_rows, rows)**
+
+  Add block of values
+
+* add\ **(block, rows)**
 
   Add block of values
 
@@ -3938,16 +3963,24 @@ Return local ownership range of a vector
 Get block of values
 ";
 
+%feature("docstring")  dolfin::uBLASVector::get_local "
+**Overloaded versions**
+
+* get_local\ **(block, m, rows)**
+
+  Get block of values
+
+* get_local\ **(values)**
+
+  Get all values on local process
+";
+
 %feature("docstring")  dolfin::uBLASVector::set "
 Set block of values
 ";
 
 %feature("docstring")  dolfin::uBLASVector::add "
 Add block of values
-";
-
-%feature("docstring")  dolfin::uBLASVector::get_local "
-Get all values on local process
 ";
 
 %feature("docstring")  dolfin::uBLASVector::set_local "
@@ -4293,16 +4326,24 @@ Return local ownership range of a vector
 Get block of values
 ";
 
+%feature("docstring")  dolfin::MTL4Vector::get_local "
+**Overloaded versions**
+
+* get_local\ **(block, m, rows)**
+
+  Get block of values
+
+* get_local\ **(values)**
+
+  Get all values on local process
+";
+
 %feature("docstring")  dolfin::MTL4Vector::set "
 Set block of values
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::add "
 Add block of values
-";
-
-%feature("docstring")  dolfin::MTL4Vector::get_local "
-Get all values on local process
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::set_local "
@@ -4408,8 +4449,7 @@ Subtract given vector
 // Documentation extracted from: (module=la, header=SparsityPattern.h)
 %feature("docstring")  dolfin::SparsityPattern "
 This class implements the GenericSparsityPattern interface.
-It is used by most linear algebra backends, except for Epetra
-which uses a special/native implementation.
+It is used by most linear algebra backends.
 ";
 
 %feature("docstring")  dolfin::SparsityPattern::SparsityPattern "
@@ -4459,11 +4499,13 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::SparsityPattern::diagonal_pattern "
-Return underlying sparsity pattern (diagonal)
+Return underlying sparsity pattern (diagonal). Options are
+'sorted' and 'unsorted'.
 ";
 
 %feature("docstring")  dolfin::SparsityPattern::off_diagonal_pattern "
-Return underlying sparsity pattern (off-diagional)
+Return underlying sparsity pattern (off-diagional). Options are
+'sorted' and 'unsorted'.
 ";
 
 // Documentation extracted from: (module=la, header=EpetraSparsityPattern.h)
@@ -5364,7 +5406,15 @@ Set block of values
 ";
 
 %feature("docstring")  dolfin::Scalar::add "
-Add block of values
+**Overloaded versions**
+
+* add\ **(block, num_rows, rows)**
+
+  Add block of values
+
+* add\ **(block, rows)**
+
+  Add block of values
 ";
 
 %feature("docstring")  dolfin::Scalar::zero "
@@ -6510,7 +6560,15 @@ Return number of entities for given dimension
 ";
 
 %feature("docstring")  dolfin::MeshTopology::clear "
-Clear all data
+**Overloaded versions**
+
+* clear\ **()**
+
+  Clear all data
+
+* clear\ **(d0, d1)**
+
+  Clear data for given pair of topological dimensions
 ";
 
 %feature("docstring")  dolfin::MeshTopology::init "
@@ -7704,6 +7762,12 @@ Get number of entities of given topological dimension.
 Clear all mesh data.
 ";
 
+%feature("docstring")  dolfin::Mesh::clean "
+Clean out all auxiliary topology data. This clears all
+topological data, except the connectivity between cells and
+vertices.
+";
+
 %feature("docstring")  dolfin::Mesh::order "
 Order all mesh entities.
 
@@ -8116,6 +8180,11 @@ Trilinos) is used to compute the colorings.
 Convert coloring type to topological dimension
 ";
 
+// Documentation extracted from: (module=mesh, header=MeshRenumbering.h)
+%feature("docstring")  dolfin::MeshRenumbering "
+This class implements renumbering algorithms for meshes.
+";
+
 // Documentation extracted from: (module=mesh, header=MeshPrimitive.h)
 // Documentation extracted from: (module=mesh, header=PrimitiveTraits.h)
 // Documentation extracted from: (module=mesh, header=LocalMeshData.h)
@@ -8441,7 +8510,15 @@ C++ and Python.
 ";
 
 %feature("docstring")  dolfin::Array::operator= "
-Assignment operator
+**Overloaded versions**
+
+* operator=\ **(x)**
+
+  Assignment operator
+
+* operator=\ **(x)**
+
+  Assign value to all entries
 ";
 
 %feature("docstring")  dolfin::Array::update "
