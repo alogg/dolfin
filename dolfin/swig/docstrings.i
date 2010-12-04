@@ -77,6 +77,10 @@ Return value rank
 Return value dimension for given axis
 ";
 
+%feature("docstring")  dolfin::GenericFunction::eval_tmp "
+Evaluate function for given data
+";
+
 %feature("docstring")  dolfin::GenericFunction::eval "
 Evaluate function for given data
 ";
@@ -306,6 +310,10 @@ Return value rank
 
 %feature("docstring")  dolfin::Function::value_dimension "
 Return value dimension for given axis
+";
+
+%feature("docstring")  dolfin::Function::eval_tmp "
+Evaluate function for given data
 ";
 
 %feature("docstring")  dolfin::Function::restrict "
