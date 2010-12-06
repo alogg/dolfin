@@ -31,15 +31,7 @@ Evaluate function for given data
 ";
 
 %feature("docstring")  dolfin::GenericFunction::restrict "
-**Overloaded versions**
-
-* restrict\ **(w, element, dolfin_cell, ufc_cell, local_facet)**
-
-  Restrict function to local cell (compute expansion coefficients w)
-
-* restrict\ **(w, element, dolfin_cell, ufc_cell)**
-
-  Convenience function for restriction when facet is unknown
+Restrict function to local cell (compute expansion coefficients w)
 ";
 
 %feature("docstring")  dolfin::GenericFunction::compute_vertex_values "
@@ -5974,6 +5966,10 @@ Return number of incident mesh entities of given topological dimension
 Return array of indices for incident mesh entitites of given topological dimension
 ";
 
+%feature("docstring")  dolfin::MeshEntity::mesh_id "
+Return unique mesh ID
+";
+
 %feature("docstring")  dolfin::MeshEntity::incident "
 Check if given entity is indicent
 ";
@@ -7622,6 +7618,14 @@ Get number of entities of given topological dimension.
 * geometry\ **()**
 
   Get mesh geometry (const version).
+";
+
+%feature("docstring")  dolfin::Mesh::id "
+Get unique mesh identifier.
+
+*Returns*
+    _uint_
+        The unique integer identifier associated with the mesh.
 ";
 
 %feature("docstring")  dolfin::Mesh::intersection_operator "
