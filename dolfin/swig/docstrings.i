@@ -1340,18 +1340,6 @@ boundary conditions at the time of assembly.
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
 
-// Documentation extracted from: (module=fem, header=MulticoreAssembler.h)
-%feature("docstring")  dolfin::MulticoreAssembler "
-This class implements shared-memory parallel assembly based on
-threads. It may be used directly, but it will be automatically
-invoked by the normal DOLFIN assembler whenever the global
-parameter \"num_threads\" is set to a value larger than 1.
-";
-
-%feature("docstring")  dolfin::MulticoreAssembler::assemble "
-Assemble tensor from given form on sub domains
-";
-
 // Documentation extracted from: (module=fem, header=VariationalProblem.h)
 %feature("docstring")  dolfin::VariationalProblem "
 This class represents a (system of) partial differential
@@ -1856,6 +1844,10 @@ Set block of values
 
   Add block of values
 
+* add\ **(block, rows)**
+
+  Add block of values
+
 * add\ **(block, num_rows, rows)**
 
   Add block of values
@@ -1970,6 +1962,10 @@ Return size of given dimension
 **Overloaded versions**
 
 * add\ **(block, num_rows, rows)**
+
+  Add block of values
+
+* add\ **(block, rows)**
 
   Add block of values
 
@@ -2188,6 +2184,10 @@ Return tensor rank (number of dimensions)
 **Overloaded versions**
 
 * add\ **(block, num_rows, rows)**
+
+  Add block of values
+
+* add\ **(block, rows)**
 
   Add block of values
 
@@ -5346,6 +5346,10 @@ Set block of values
 **Overloaded versions**
 
 * add\ **(block, num_rows, rows)**
+
+  Add block of values
+
+* add\ **(block, rows)**
 
   Add block of values
 
