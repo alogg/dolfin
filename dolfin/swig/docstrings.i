@@ -612,6 +612,10 @@ Return the dimension of the global finite element function space
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::local_dimension "
+Return the dimension of the local (process) finite element function space
+";
+
+%feature("docstring")  dolfin::GenericDofMap::dimension "
 Return the dimension of the local finite element function space on a
 cell
 ";
@@ -624,22 +628,20 @@ Return the maximum dimension of the local finite element function space
 Return number of facet dofs
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::ownership_range "
+Return the ownership range (dofs in this range are owned by this process)
+";
+
+%feature("docstring")  dolfin::GenericDofMap::off_process_owner "
+Return map from nonlocal-dofs that appear in local dof map to owning process
+";
+
 %feature("docstring")  dolfin::GenericDofMap::cell_dofs "
 Local-to-global mapping of dofs on a cell
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::tabulate_dofs "
-**Overloaded versions**
-
-* tabulate_dofs\ **(dofs, ufc_cell, cell_index)**
-
-  Tabulate the local-to-global mapping of dofs on a cell
-  (UFC cell version)
-
-* tabulate_dofs\ **(dofs, cell)**
-
-  Tabulate the local-to-global mapping of dofs on a cell
-  (DOLFIN cell version)
+Tabulate the local-to-global mapping of dofs on a cell
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::tabulate_facet_dofs "
@@ -675,6 +677,16 @@ Return informal string representation (pretty-print)
 ";
 
 // Documentation extracted from: (module=fem, header=DofMap.h)
+%feature("docstring")  dolfin::DofMap "
+This class handles the mapping of degrees of freedom. It builds
+a dof map based on a ufc::dof_map on a specific mesh. It will
+reorder the dofs when running in parallel.
+
+If ufc_offset != 0, then the dof map provides a view into a
+larger dof map. A dof map which is a view, can be 'collapsed'
+such that the dof indices are contiguous.
+";
+
 %feature("docstring")  dolfin::DofMap::DofMap "
 **Overloaded versions**
 
@@ -704,6 +716,10 @@ Return the dimension of the global finite element function space
 ";
 
 %feature("docstring")  dolfin::DofMap::local_dimension "
+Return the dimension of the local (process) finite element function space
+";
+
+%feature("docstring")  dolfin::DofMap::dimension "
 Return the dimension of the local finite element function space on a cell
 ";
 
@@ -715,20 +731,20 @@ Return the maximum dimension of the local finite element function space
 Return number of facet dofs
 ";
 
+%feature("docstring")  dolfin::DofMap::ownership_range "
+Return the ownership range (dofs in this range are owned by this process)
+";
+
+%feature("docstring")  dolfin::DofMap::off_process_owner "
+Return map from nonlocal-dofs that appear in local dof map to owning process
+";
+
 %feature("docstring")  dolfin::DofMap::cell_dofs "
 Local-to-global mapping of dofs on a cell
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_dofs "
-**Overloaded versions**
-
-* tabulate_dofs\ **(dofs, ufc_cell, cell_index)**
-
-  Tabulate the local-to-global mapping of dofs on a cell (UFC cell version)
-
-* tabulate_dofs\ **(dofs, cell)**
-
-  Tabulate the local-to-global mapping of dofs on a cell (DOLFIN cell version)
+Tabulate the local-to-global mapping of dofs on a cell
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
@@ -944,6 +960,16 @@ This class specifies the interface for setting (strong)
 
   Create boundary condition for boundary data included in the mesh
 
+* DirichletBC\ **(V, g, std::vector<std::pair<uint, markers, method=\"topological\")**
+
+  Create boundary condition for subdomain by boundary markers
+  (cells, local facet numbers)
+
+* DirichletBC\ **(V, g, std::vector<std::pair<uint, markers, method=\"topological\")**
+
+  Create boundary condition for subdomain by boundary markers
+  (cells, local facet numbers)
+
 * DirichletBC\ **(bc)**
 
   Copy constructor
@@ -977,12 +1003,18 @@ Assignment operator
   Apply boundary condition to a linear system for a nonlinear problem
 ";
 
+%feature("docstring")  dolfin::DirichletBC::get_boundary_values "
+Get Dirichlet dofs and values
+";
+
 %feature("docstring")  dolfin::DirichletBC::zero "
-Make row associated with boundary conditions zero, useful for non-diagonal matrices in a block matrix.
+Make row associated with boundary conditions zero, useful for
+non-diagonal matrices in a block matrix.
 ";
 
 %feature("docstring")  dolfin::DirichletBC::markers "
-Return boundary markers (facets stored as pairs of cells and local facet numbers)
+Return boundary markers (facets stored as pairs of cells and local
+facet numbers)
 ";
 
 %feature("docstring")  dolfin::DirichletBC::value "
@@ -994,12 +1026,9 @@ Return shared pointer to boundary value g
 Testing multiline comment
 ";
 
-%feature("docstring")  dolfin::DirichletBC::get_bc "
-Get Dirichlet values and indicators
-";
-
 %feature("docstring")  dolfin::DirichletBC::is_compatible "
-Check if given function is compatible with boundary condition (checking only vertex values)
+Check if given function is compatible with boundary condition
+(checking only vertex values)
 ";
 
 %feature("docstring")  dolfin::DirichletBC::set_value "
@@ -1012,6 +1041,11 @@ Check if given function is compatible with boundary condition (checking only ver
 * set_value\ **(g)**
 
   Set value g for boundary condition, domain remains unchanged
+";
+
+%feature("docstring")  dolfin::DirichletBC::method "
+Return method used for computing Dirichet dofs (\"topological\",
+\"geometric\" or \"pointwise\")
 ";
 
 %feature("docstring")  dolfin::DirichletBC::default_parameters "
@@ -1147,11 +1181,11 @@ all compoments will be set equal.
 
   Assemble system (A, b)
 
-* assemble_system\ **(A, b, a, L, bc, reset_sparsitys=true, add_values=false)**
+* assemble_system\ **(A, b, a, L, bc, reset_sparsities=true, add_values=false)**
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ **(A, b, a, L, bcs, reset_sparsitys=true, add_values=false)**
+* assemble_system\ **(A, b, a, L, bcs, reset_sparsities=true, add_values=false)**
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
@@ -1347,22 +1381,6 @@ equation(s) in variational form: Find u in V such that
 
     F_u(v) = 0  for all v in V'.
 
-The variational problem is defined in terms of a bilinear
-form a(v, u) and a linear for L(v).
-
-For a linear variational problem, F_u(v) = a(v, u) - L(v),
-the forms should correspond to the canonical formulation
-
-    a(v, u) = L(v)  for all v in V'.
-
-For a nonlinear variational problem, the forms should
-be given by
-
-    a(v, u) = F_u'(v) u = F_u'(v, u),
-    L(v)    = F(v),
-
-that is, a(v, u) should be the Frechet derivative of F_u
-with respect to u, and L = F.
 
 Parameters:
 
@@ -1373,19 +1391,19 @@ Parameters:
 %feature("docstring")  dolfin::VariationalProblem::VariationalProblem "
 **Overloaded versions**
 
-* VariationalProblem\ **(a, L, nonlinear=false)**
+* VariationalProblem\ **(a, L)**
 
   Define variational problem with natural boundary conditions
 
-* VariationalProblem\ **(a, L, bc, nonlinear=false)**
+* VariationalProblem\ **(a, L, bc)**
 
   Define variational problem with a single Dirichlet boundary conditions
 
-* VariationalProblem\ **(a, L, bcs, nonlinear=false)**
+* VariationalProblem\ **(a, L, bcs)**
 
   Define variational problem with a list of Dirichlet boundary conditions
 
-* VariationalProblem\ **(a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, nonlinear=false)**
+* VariationalProblem\ **(a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains)**
 
   Define variational problem with a list of Dirichlet boundary conditions
   and subdomains
@@ -1809,10 +1827,6 @@ Set operator (matrix)
 This class defines a common interface for arbitrary rank tensors.
 ";
 
-%feature("docstring")  dolfin::GenericTensor::resize "
-Resize tensor with given dimensions
-";
-
 %feature("docstring")  dolfin::GenericTensor::init "
 Initialize zero tensor using sparsity pattern
 ";
@@ -1827,6 +1841,10 @@ Return tensor rank (number of dimensions)
 
 %feature("docstring")  dolfin::GenericTensor::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::GenericTensor::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::GenericTensor::get "
@@ -1907,15 +1925,7 @@ This class defines a common interface for matrices.
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::resize "
-**Overloaded versions**
-
-* resize\ **(rank, dims)**
-
-  Resize tensor with given dimensions
-
-* resize\ **(M, N)**
-
-  Resize matrix to  M x N
+Resize tensor with given dimensions
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
@@ -1932,6 +1942,10 @@ Return tensor rank (number of dimensions)
 
 %feature("docstring")  dolfin::GenericMatrix::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::GenericMatrix::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::get "
@@ -2104,11 +2118,21 @@ Return total number of nonzeros in local_range for dimension 0
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
-Fill array with number of nonzeros for diagonal block in local_range for dimension 0
+Fill vector with number of nonzeros for diagonal block in local_range for dimension 0
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_off_diagonal "
-Fill array with number of nonzeros for off-diagonal block in local_range for dimension 0
+Fill vector with number of nonzeros for off-diagonal block in local_range for dimension 0
+";
+
+%feature("docstring")  dolfin::GenericSparsityPattern::diagonal_pattern "
+Return underlying sparsity pattern (diagonal). Options are
+'sorted' and 'unsorted'.
+";
+
+%feature("docstring")  dolfin::GenericSparsityPattern::off_diagonal_pattern "
+Return underlying sparsity pattern (off-diagional). Options are
+'sorted' and 'unsorted'.
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::apply "
@@ -2129,7 +2153,15 @@ This class defines a common interface for vectors.
 
 * resize\ **(N)**
 
-  Resize vector to size N
+  Resize vector to global size N
+
+* resize\ **(std::pair<uint, range)**
+
+  Resize vector with given ownership range
+
+* resize\ **(std::pair<uint, range, ghost_indices)**
+
+  Resize vector with given ownership range and with ghost values
 ";
 
 %feature("docstring")  dolfin::GenericVector::init "
@@ -2154,6 +2186,18 @@ Return tensor rank (number of dimensions)
 * size\ **()**
 
   Return global size of vector
+";
+
+%feature("docstring")  dolfin::GenericVector::local_range "
+**Overloaded versions**
+
+* local_range\ **(dim)**
+
+  Return local ownership range
+
+* local_range\ **()**
+
+  Return local ownership range of a vector
 ";
 
 %feature("docstring")  dolfin::GenericVector::get "
@@ -2216,8 +2260,8 @@ Return informal string representation (pretty-print)
 Return local size of vector
 ";
 
-%feature("docstring")  dolfin::GenericVector::local_range "
-Return local ownership range of a vector
+%feature("docstring")  dolfin::GenericVector::owns_index "
+Determine whether global vector index is owned by this process
 ";
 
 %feature("docstring")  dolfin::GenericVector::get_local "
@@ -2241,7 +2285,15 @@ Add values to each entry on local process
 ";
 
 %feature("docstring")  dolfin::GenericVector::gather "
-Gather entries into local vector x
+**Overloaded versions**
+
+* gather\ **(x, indices)**
+
+  Gather entries into local vector x
+
+* gather\ **(x, indices)**
+
+  Gather entries into Array x
 ";
 
 %feature("docstring")  dolfin::GenericVector::axpy "
@@ -2324,6 +2376,10 @@ Subtract given vector
   Return pointer to underlying data
 ";
 
+%feature("docstring")  dolfin::GenericVector::update_ghost_values "
+Update ghost values
+";
+
 %feature("docstring")  dolfin::GenericVector::operator[] "
 Get value of given entry
 ";
@@ -2372,11 +2428,21 @@ Return total number of nonzeros in local_range for dimension 0
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
-Fill array with number of nonzeros for diagonal block in local_range for dimension 0
+Fill vector with number of nonzeros for diagonal block in local_range for dimension 0
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_off_diagonal "
-Fill array with number of nonzeros for off-diagonal block in local_range for dimension 0
+Fill vector with number of nonzeros for off-diagonal block in local_range for dimension 0
+";
+
+%feature("docstring")  dolfin::GenericSparsityPattern::diagonal_pattern "
+Return underlying sparsity pattern (diagonal). Options are
+'sorted' and 'unsorted'.
+";
+
+%feature("docstring")  dolfin::GenericSparsityPattern::off_diagonal_pattern "
+Return underlying sparsity pattern (off-diagional). Options are
+'sorted' and 'unsorted'.
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::apply "
@@ -2414,6 +2480,10 @@ Resize virtual matrin
 
 %feature("docstring")  dolfin::PETScBaseMatrix::size "
 Return number of rows (dim = 0) or columns (dim = 1) along dimension dim
+";
+
+%feature("docstring")  dolfin::PETScBaseMatrix::local_range "
+Return local rang along dimension dim
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::mat "
@@ -2490,6 +2560,10 @@ Return copy of tensor
 
 %feature("docstring")  dolfin::uBLASMatrix::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::uBLASMatrix::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::uBLASMatrix::zero "
@@ -2676,10 +2750,6 @@ use the standard PETSc interface.
 
   Create empty matrix
 
-* PETScMatrix\ **(M, N)**
-
-  Create M x N matrix
-
 * PETScMatrix\ **(A)**
 
   Copy constructor
@@ -2699,6 +2769,10 @@ Return copy of tensor
 
 %feature("docstring")  dolfin::PETScMatrix::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::PETScMatrix::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::zero "
@@ -2972,10 +3046,6 @@ use the standard Epetra interface.
 
   Create empty matrix
 
-* EpetraMatrix\ **(M, N)**
-
-  Create M x N matrix
-
 * EpetraMatrix\ **(A)**
 
   Copy constuctor
@@ -3009,6 +3079,10 @@ Return copy of tensor
 Return size of given dimension
 ";
 
+%feature("docstring")  dolfin::EpetraMatrix::local_range "
+Return local ownership range
+";
+
 %feature("docstring")  dolfin::EpetraMatrix::zero "
 **Overloaded versions**
 
@@ -3027,10 +3101,6 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::EpetraMatrix::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::EpetraMatrix::resize "
-Resize matrix to M x N
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::get "
@@ -3145,19 +3215,35 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::EpetraVector::resize "
-Resize vector to size N
+**Overloaded versions**
+
+* resize\ **(N)**
+
+  Resize vector to size N
+
+* resize\ **(std::pair<uint, range)**
+
+  Resize vector with given ownership range
+
+* resize\ **(std::pair<uint, range, ghost_indices)**
+
+  Resize vector with given ownership range and with ghost values
 ";
 
 %feature("docstring")  dolfin::EpetraVector::size "
 Return size of vector
 ";
 
+%feature("docstring")  dolfin::EpetraVector::local_size "
+Return size of local vector
+";
+
 %feature("docstring")  dolfin::EpetraVector::local_range "
 Return local ownership range of a vector
 ";
 
-%feature("docstring")  dolfin::EpetraVector::get "
-Get block of values
+%feature("docstring")  dolfin::EpetraVector::owns_index "
+Determine whether global vector index is owned by this process
 ";
 
 %feature("docstring")  dolfin::EpetraVector::set "
@@ -3181,7 +3267,15 @@ Add all values to each entry on local process
 ";
 
 %feature("docstring")  dolfin::EpetraVector::gather "
-Gather entries into local vector x
+**Overloaded versions**
+
+* gather\ **(x, indices)**
+
+  Gather entries into local vector x
+
+* gather\ **(x, indices)**
+
+  Gather entries into Array x
 ";
 
 %feature("docstring")  dolfin::EpetraVector::axpy "
@@ -3604,10 +3698,6 @@ Default parameter values
 
   Create empty matrix
 
-* MTL4Matrix\ **(M, N)**
-
-  Create M x N matrix
-
 * MTL4Matrix\ **(A)**
 
   Copy constuctor
@@ -3627,6 +3717,10 @@ Return copy of tensor
 
 %feature("docstring")  dolfin::MTL4Matrix::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::MTL4Matrix::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::MTL4Matrix::zero "
@@ -3753,6 +3847,10 @@ Return copy of tensor
 
 %feature("docstring")  dolfin::STLMatrix::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::STLMatrix::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::STLMatrix::zero "
@@ -3885,19 +3983,35 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::uBLASVector::resize "
-Resize vector to size N
+**Overloaded versions**
+
+* resize\ **(N)**
+
+  Resize vector to size N
+
+* resize\ **(std::pair<uint, range)**
+
+  Resize vector with given ownership range
+
+* resize\ **(std::pair<uint, range, ghost_indices)**
+
+  Resize vector with given ownership range and with ghost values
 ";
 
 %feature("docstring")  dolfin::uBLASVector::size "
 Return size of vector
 ";
 
+%feature("docstring")  dolfin::uBLASVector::local_size "
+Return local size of vector
+";
+
 %feature("docstring")  dolfin::uBLASVector::local_range "
 Return local ownership range of a vector
 ";
 
-%feature("docstring")  dolfin::uBLASVector::get "
-Get block of values
+%feature("docstring")  dolfin::uBLASVector::owns_index "
+Determine whether global vector index is owned by this process
 ";
 
 %feature("docstring")  dolfin::uBLASVector::get_local "
@@ -3929,7 +4043,15 @@ Add values to each entry on local process
 ";
 
 %feature("docstring")  dolfin::uBLASVector::gather "
-Gather entries into local vector x
+**Overloaded versions**
+
+* gather\ **(x, indices)**
+
+  Gather entries into local vector x
+
+* gather\ **(x, indices)**
+
+  Gather entries into Array x
 ";
 
 %feature("docstring")  dolfin::uBLASVector::axpy "
@@ -4058,6 +4180,10 @@ use the standard PETSc interface.
 
   Create vector of size N
 
+* PETScVector\ **(sparsity_pattern)**
+
+  Create vector
+
 * PETScVector\ **(x)**
 
   Copy constructor
@@ -4084,19 +4210,35 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::PETScVector::resize "
-Resize vector ro size N
+**Overloaded versions**
+
+* resize\ **(N)**
+
+  Resize vector to global size N
+
+* resize\ **(std::pair<uint, range)**
+
+  Resize vector with given ownership range
+
+* resize\ **(std::pair<uint, range, ghost_indices)**
+
+  Resize vector with given ownership range and with ghost values
 ";
 
 %feature("docstring")  dolfin::PETScVector::size "
 Return size of vector
 ";
 
+%feature("docstring")  dolfin::PETScVector::local_size "
+Return local size of vector
+";
+
 %feature("docstring")  dolfin::PETScVector::local_range "
 Return ownership range of a vector
 ";
 
-%feature("docstring")  dolfin::PETScVector::get "
-Get block of values (values may live on any process)
+%feature("docstring")  dolfin::PETScVector::owns_index "
+Determine whether global vector index is owned by this process
 ";
 
 %feature("docstring")  dolfin::PETScVector::get_local "
@@ -4208,10 +4350,15 @@ Return shared_ptr to PETSc Vec object
 ";
 
 %feature("docstring")  dolfin::PETScVector::gather "
-Gather vector entries into a local vector. If local_indices is
-0, then a local index array is created such that the order of
-the values in the return array is the same as the order in
-global_indices.
+**Overloaded versions**
+
+* gather\ **(y, indices)**
+
+  Gather vector entries into a local vector
+
+* gather\ **(x, indices)**
+
+  Gather entries into Array x
 ";
 
 // Documentation extracted from: (module=la, header=MTL4Vector.h)
@@ -4248,19 +4395,35 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::resize "
-Resize vector to size N
+**Overloaded versions**
+
+* resize\ **(N)**
+
+  Resize vector to size N
+
+* resize\ **(std::pair<uint, range)**
+
+  Resize vector with given ownership range
+
+* resize\ **(std::pair<uint, range, ghost_indices)**
+
+  Resize vector with given ownership range and with ghost values
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::size "
 Return size of vector
 ";
 
+%feature("docstring")  dolfin::MTL4Vector::local_size "
+Return local size of vector
+";
+
 %feature("docstring")  dolfin::MTL4Vector::local_range "
 Return local ownership range of a vector
 ";
 
-%feature("docstring")  dolfin::MTL4Vector::get "
-Get block of values
+%feature("docstring")  dolfin::MTL4Vector::owns_index "
+Determine whether global vector index is owned by this process
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::get_local "
@@ -4490,6 +4653,16 @@ For matrices, fill array with number of nonzeros per local row for diagonal bloc
 %feature("docstring")  dolfin::EpetraSparsityPattern::num_nonzeros_off_diagonal "
 Fill array with number of nonzeros for off-diagonal block in local_range for dimension 0
 For matrices, fill array with number of nonzeros per local row for off-diagonal block
+";
+
+%feature("docstring")  dolfin::EpetraSparsityPattern::diagonal_pattern "
+Return underlying sparsity pattern (diagonal). Options are
+'sorted' and 'unsorted'.
+";
+
+%feature("docstring")  dolfin::EpetraSparsityPattern::off_diagonal_pattern "
+Return underlying sparsity pattern (off-diagional). Options are
+'sorted' and 'unsorted'.
 ";
 
 %feature("docstring")  dolfin::EpetraSparsityPattern::apply "
@@ -5034,19 +5207,35 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::Vector::resize "
-Resize vector to size N
+**Overloaded versions**
+
+* resize\ **(N)**
+
+  Resize vector to size N
+
+* resize\ **(std::pair<uint, range)**
+
+  Resize vector with given ownership range
+
+* resize\ **(std::pair<uint, range, ghost_indices)**
+
+  Resize vector with given ownership range and with ghost values
 ";
 
 %feature("docstring")  dolfin::Vector::size "
 Return size of vector
 ";
 
+%feature("docstring")  dolfin::Vector::local_size "
+Return local size of vector
+";
+
 %feature("docstring")  dolfin::Vector::local_range "
 Return local ownership range of a vector
 ";
 
-%feature("docstring")  dolfin::Vector::get "
-Get block of values
+%feature("docstring")  dolfin::Vector::owns_index "
+Determine whether global vector index is owned by this process
 ";
 
 %feature("docstring")  dolfin::Vector::get_local "
@@ -5078,7 +5267,15 @@ Add values to each entry on local process
 ";
 
 %feature("docstring")  dolfin::Vector::gather "
-Gather entries into local vector x
+**Overloaded versions**
+
+* gather\ **(x, indices)**
+
+  Gather entries into local vector x
+
+* gather\ **(x, indices)**
+
+  Gather entries into Array x
 ";
 
 %feature("docstring")  dolfin::Vector::axpy "
@@ -5186,10 +5383,6 @@ based on the default DOLFIN linear algebra backend.
 
   Create empty matrix
 
-* Matrix\ **(M, N)**
-
-  Create M x N matrix
-
 * Matrix\ **(A)**
 
   Copy constructor
@@ -5205,6 +5398,10 @@ Return copy of tensor
 
 %feature("docstring")  dolfin::Matrix::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::Matrix::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::Matrix::zero "
@@ -5225,10 +5422,6 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::Matrix::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::Matrix::resize "
-Resize matrix to M x N
 ";
 
 %feature("docstring")  dolfin::Matrix::get "
@@ -5332,6 +5525,10 @@ Return tensor rank (number of dimensions)
 
 %feature("docstring")  dolfin::Scalar::size "
 Return size of given dimension
+";
+
+%feature("docstring")  dolfin::Scalar::local_range "
+Return local ownership range
 ";
 
 %feature("docstring")  dolfin::Scalar::get "
