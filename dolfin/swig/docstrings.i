@@ -1381,22 +1381,6 @@ equation(s) in variational form: Find u in V such that
 
     F_u(v) = 0  for all v in V'.
 
-The variational problem is defined in terms of a bilinear
-form a(v, u) and a linear for L(v).
-
-For a linear variational problem, F_u(v) = a(v, u) - L(v),
-the forms should correspond to the canonical formulation
-
-    a(v, u) = L(v)  for all v in V'.
-
-For a nonlinear variational problem, the forms should
-be given by
-
-    a(v, u) = F_u'(v) u = F_u'(v, u),
-    L(v)    = F(v),
-
-that is, a(v, u) should be the Frechet derivative of F_u
-with respect to u, and L = F.
 
 Parameters:
 
@@ -1407,22 +1391,26 @@ Parameters:
 %feature("docstring")  dolfin::VariationalProblem::VariationalProblem "
 **Overloaded versions**
 
-* VariationalProblem\ **(F, jacobian)**
+* VariationalProblem\ **(a, L)**
 
   Define variational problem with natural boundary conditions
 
-* VariationalProblem\ **(F, jacobian, bc)**
+* VariationalProblem\ **(a, L, bc)**
 
   Define variational problem with a single Dirichlet boundary conditions
 
-* VariationalProblem\ **(F, jacobian, bcs)**
+* VariationalProblem\ **(a, L, bcs)**
 
   Define variational problem with a list of Dirichlet boundary conditions
 
-* VariationalProblem\ **(F, jacobian, bcs, cell_domains, exterior_facet_domains, interior_facet_domains)**
+* VariationalProblem\ **(a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains)**
 
   Define variational problem with a list of Dirichlet boundary conditions
   and subdomains
+";
+
+%feature("docstring")  dolfin::VariationalProblem::is_nonlinear "
+Return true if problem is non-linear
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::solve "
@@ -8756,11 +8744,6 @@ Return maximum value of array
 ";
 
 // Documentation extracted from: (module=common, header=Set.h)
-%feature("docstring")  dolfin::Set "
-This is a std::set like data structure. It is not ordered and it is based
-a std::vector. It can be faster than a std::set for some cases.
-";
-
 %feature("docstring")  dolfin::Set::Set "
 **Overloaded versions**
 
@@ -8790,7 +8773,15 @@ a std::vector. It can be faster than a std::set for some cases.
 ";
 
 %feature("docstring")  dolfin::Set::insert "
-Insert entry
+**Overloaded versions**
+
+* insert\ **(x)**
+
+  Insert entry
+
+* insert\ **(first, last)**
+
+  Insert entries
 ";
 
 %feature("docstring")  dolfin::Set::size "
@@ -8807,10 +8798,6 @@ Sort set
 
 %feature("docstring")  dolfin::Set::clear "
 Clear set
-";
-
-%feature("docstring")  dolfin::Set::resize "
-Resize set
 ";
 
 %feature("docstring")  dolfin::Set::operator[] "
