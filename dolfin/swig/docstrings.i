@@ -1409,12 +1409,25 @@ Parameters:
   and subdomains
 ";
 
+%feature("docstring")  dolfin::VariationalProblem::is_nonlinear "
+Return true if problem is non-linear
+";
+
 %feature("docstring")  dolfin::VariationalProblem::solve "
 **Overloaded versions**
 
 * solve\ **(u)**
 
   Solve variational problem
+
+* solve\ **(u, tol, M)**
+
+  Solve variational problem adaptively to given tolerance
+
+* solve\ **(u, tol, M, ec)**
+
+  Solve variational problem adaptively to given tolerance with
+  given error controller
 
 * solve\ **(u0, u1)**
 
@@ -8731,11 +8744,6 @@ Return maximum value of array
 ";
 
 // Documentation extracted from: (module=common, header=Set.h)
-%feature("docstring")  dolfin::Set "
-This is a std::set like data structure. It is not ordered and it is based
-a std::vector. It can be faster than a std::set for some cases.
-";
-
 %feature("docstring")  dolfin::Set::Set "
 **Overloaded versions**
 
@@ -8765,7 +8773,15 @@ a std::vector. It can be faster than a std::set for some cases.
 ";
 
 %feature("docstring")  dolfin::Set::insert "
-Insert entry
+**Overloaded versions**
+
+* insert\ **(x)**
+
+  Insert entry
+
+* insert\ **(first, last)**
+
+  Insert entries
 ";
 
 %feature("docstring")  dolfin::Set::size "
@@ -8782,10 +8798,6 @@ Sort set
 
 %feature("docstring")  dolfin::Set::clear "
 Clear set
-";
-
-%feature("docstring")  dolfin::Set::resize "
-Resize set
 ";
 
 %feature("docstring")  dolfin::Set::operator[] "
@@ -8923,6 +8935,110 @@ Read from file
 
 %feature("docstring")  dolfin::File::exists "
 Check if file exists
+";
+
+// Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
+%feature("docstring")  dolfin::ErrorControl "
+(Goal-oriented) Error Control class
+";
+
+%feature("docstring")  dolfin::ErrorControl::ErrorControl "
+Create error control
+";
+
+%feature("docstring")  dolfin::ErrorControl::estimate_error "
+Estimate the error relative to the goal M of the discrete
+approximation 'u' relative to the variational formulation by
+evaluating the weak residual at an approximation to the dual
+solution.
+
+*Arguments*
+    u (:py:class:`Function`)
+       the primal approximation
+
+    bcs (std::vector<const :py:class:`BoundaryCondition`*>)
+        the primal boundary conditions
+
+*Returns*
+    float
+        error estimate
+";
+
+%feature("docstring")  dolfin::ErrorControl::compute_indicators "
+Compute error indicators
+
+*Arguments*
+    indicators (:py:class:`Vector`)
+        the error indicators (to be computed)
+
+    u (:py:class:`Function`)
+        the primal approximation
+";
+
+%feature("docstring")  dolfin::ErrorControl::residual_representation "
+Compute strong representation (strong cell and facet
+residuals) of the weak residual.
+
+*Arguments*
+    R_T (:py:class:`Function`)
+        the strong cell residual (to be computed)
+
+    R_dT (_SpecialFacetFunction_)
+        the strong facet residual (to be computed)
+
+    u (:py:class:`Function`)
+        the primal approximation
+";
+
+%feature("docstring")  dolfin::ErrorControl::compute_cell_residual "
+Compute representation for the strong cell residual
+from the weak residual
+
+*Arguments*
+    R_T (:py:class:`Function`)
+        the strong cell residual (to be computed)
+
+    u (:py:class:`Function`)
+        the primal approximation
+";
+
+%feature("docstring")  dolfin::ErrorControl::compute_facet_residual "
+Compute representation for the strong facet residual from the
+weak residual and the strong cell residual
+
+*Arguments*
+    R_dT (_SpecialFacetFunction_)
+        the strong facet residual (to be computed)
+
+    u (:py:class:`Function`)
+        the primal approximation
+
+    R_T (:py:class:`Function`)
+        the strong cell residual
+";
+
+%feature("docstring")  dolfin::ErrorControl::compute_dual "
+Compute dual approximation defined by dual variational
+problem and dual boundary conditions given by homogenized primal
+boundary conditions.
+
+*Arguments*
+    z (:py:class:`Function`)
+        the dual approximation (to be computed)
+
+    bcs (std::vector<const :py:class:`BoundaryCondition`*>)
+        the primal boundary conditions
+";
+
+%feature("docstring")  dolfin::ErrorControl::compute_extrapolation "
+Compute extrapolation with boundary conditions
+
+*Arguments*
+    z (:py:class:`Function`)
+        the extrapolated function (to be computed)
+
+    bcs (std::vector<const :py:class:`BoundaryCondition`*>)
+        the dual boundary conditions
 ";
 
 // Documentation extracted from: (module=adaptivity, header=TimeSeries.h)
