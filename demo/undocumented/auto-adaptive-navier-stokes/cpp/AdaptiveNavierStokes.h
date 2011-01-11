@@ -23,8 +23,8 @@
 //   representation:                 'auto'
 //   split:                          False
 
-#ifndef __NAVIERSTOKES_H
-#define __NAVIERSTOKES_H
+#ifndef __ADAPTIVENAVIERSTOKES_H
+#define __ADAPTIVENAVIERSTOKES_H
 
 #include <cmath>
 #include <stdexcept>
@@ -33,18 +33,18 @@
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_0: public ufc::finite_element
+class adaptivenavierstokes_finite_element_0: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_0() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_0() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_0()
+  virtual ~adaptivenavierstokes_finite_element_0()
   {
     // Do nothing
   }
@@ -3246,18 +3246,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_1: public ufc::finite_element
+class adaptivenavierstokes_finite_element_1: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_1() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_1() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_1()
+  virtual ~adaptivenavierstokes_finite_element_1()
   {
     // Do nothing
   }
@@ -9393,12 +9393,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_0();
+        return new adaptivenavierstokes_finite_element_0();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_0();
+        return new adaptivenavierstokes_finite_element_0();
         break;
       }
     }
@@ -9410,18 +9410,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_2: public ufc::finite_element
+class adaptivenavierstokes_finite_element_2: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_2() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_2() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_2()
+  virtual ~adaptivenavierstokes_finite_element_2()
   {
     // Do nothing
   }
@@ -11359,18 +11359,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_3: public ufc::finite_element
+class adaptivenavierstokes_finite_element_3: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_3() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_3() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_3()
+  virtual ~adaptivenavierstokes_finite_element_3()
   {
     // Do nothing
   }
@@ -19167,12 +19167,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_1();
+        return new adaptivenavierstokes_finite_element_1();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_2();
+        return new adaptivenavierstokes_finite_element_2();
         break;
       }
     }
@@ -19184,18 +19184,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_4: public ufc::finite_element
+class adaptivenavierstokes_finite_element_4: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_4() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_4() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_4()
+  virtual ~adaptivenavierstokes_finite_element_4()
   {
     // Do nothing
   }
@@ -19722,18 +19722,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_5: public ufc::finite_element
+class adaptivenavierstokes_finite_element_5: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_5() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_5() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_5()
+  virtual ~adaptivenavierstokes_finite_element_5()
   {
     // Do nothing
   }
@@ -21671,18 +21671,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_6: public ufc::finite_element
+class adaptivenavierstokes_finite_element_6: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_6() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_6() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_6()
+  virtual ~adaptivenavierstokes_finite_element_6()
   {
     // Do nothing
   }
@@ -25290,12 +25290,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_5();
+        return new adaptivenavierstokes_finite_element_5();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_5();
+        return new adaptivenavierstokes_finite_element_5();
         break;
       }
     }
@@ -25307,18 +25307,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_7: public ufc::finite_element
+class adaptivenavierstokes_finite_element_7: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_7() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_7() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_7()
+  virtual ~adaptivenavierstokes_finite_element_7()
   {
     // Do nothing
   }
@@ -26230,18 +26230,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_8: public ufc::finite_element
+class adaptivenavierstokes_finite_element_8: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_8() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_8() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_8()
+  virtual ~adaptivenavierstokes_finite_element_8()
   {
     // Do nothing
   }
@@ -30484,12 +30484,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_6();
+        return new adaptivenavierstokes_finite_element_6();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_7();
+        return new adaptivenavierstokes_finite_element_7();
         break;
       }
     }
@@ -30501,18 +30501,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_9: public ufc::finite_element
+class adaptivenavierstokes_finite_element_9: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_9() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_9() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_9()
+  virtual ~adaptivenavierstokes_finite_element_9()
   {
     // Do nothing
   }
@@ -30899,18 +30899,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_10: public ufc::finite_element
+class adaptivenavierstokes_finite_element_10: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_10() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_10() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_10()
+  virtual ~adaptivenavierstokes_finite_element_10()
   {
     // Do nothing
   }
@@ -34518,12 +34518,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_2();
+        return new adaptivenavierstokes_finite_element_2();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_2();
+        return new adaptivenavierstokes_finite_element_2();
         break;
       }
     }
@@ -34535,18 +34535,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_11: public ufc::finite_element
+class adaptivenavierstokes_finite_element_11: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_11() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_11() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_11()
+  virtual ~adaptivenavierstokes_finite_element_11()
   {
     // Do nothing
   }
@@ -35458,18 +35458,18 @@ public:
 
 /// This class defines the interface for a finite element.
 
-class navierstokes_finite_element_12: public ufc::finite_element
+class adaptivenavierstokes_finite_element_12: public ufc::finite_element
 {
 public:
 
   /// Constructor
-  navierstokes_finite_element_12() : ufc::finite_element()
+  adaptivenavierstokes_finite_element_12() : ufc::finite_element()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_finite_element_12()
+  virtual ~adaptivenavierstokes_finite_element_12()
   {
     // Do nothing
   }
@@ -39712,12 +39712,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_10();
+        return new adaptivenavierstokes_finite_element_10();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_11();
+        return new adaptivenavierstokes_finite_element_11();
         break;
       }
     }
@@ -39730,7 +39730,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_0: public ufc::dof_map
+class adaptivenavierstokes_dof_map_0: public ufc::dof_map
 {
 private:
 
@@ -39738,13 +39738,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_0() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_0() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_0()
+  virtual ~adaptivenavierstokes_dof_map_0()
   {
     // Do nothing
   }
@@ -40039,7 +40039,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_1: public ufc::dof_map
+class adaptivenavierstokes_dof_map_1: public ufc::dof_map
 {
 private:
 
@@ -40047,13 +40047,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_1() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_1() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_1()
+  virtual ~adaptivenavierstokes_dof_map_1()
   {
     // Do nothing
   }
@@ -40399,12 +40399,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_0();
+        return new adaptivenavierstokes_dof_map_0();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_0();
+        return new adaptivenavierstokes_dof_map_0();
         break;
       }
     }
@@ -40417,7 +40417,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_2: public ufc::dof_map
+class adaptivenavierstokes_dof_map_2: public ufc::dof_map
 {
 private:
 
@@ -40425,13 +40425,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_2() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_2() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_2()
+  virtual ~adaptivenavierstokes_dof_map_2()
   {
     // Do nothing
   }
@@ -40702,7 +40702,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_3: public ufc::dof_map
+class adaptivenavierstokes_dof_map_3: public ufc::dof_map
 {
 private:
 
@@ -40710,13 +40710,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_3() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_3() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_3()
+  virtual ~adaptivenavierstokes_dof_map_3()
   {
     // Do nothing
   }
@@ -41097,12 +41097,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_1();
+        return new adaptivenavierstokes_dof_map_1();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_2();
+        return new adaptivenavierstokes_dof_map_2();
         break;
       }
     }
@@ -41115,7 +41115,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_4: public ufc::dof_map
+class adaptivenavierstokes_dof_map_4: public ufc::dof_map
 {
 private:
 
@@ -41123,13 +41123,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_4() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_4() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_4()
+  virtual ~adaptivenavierstokes_dof_map_4()
   {
     // Do nothing
   }
@@ -41335,7 +41335,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_5: public ufc::dof_map
+class adaptivenavierstokes_dof_map_5: public ufc::dof_map
 {
 private:
 
@@ -41343,13 +41343,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_5() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_5() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_5()
+  virtual ~adaptivenavierstokes_dof_map_5()
   {
     // Do nothing
   }
@@ -41575,7 +41575,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_6: public ufc::dof_map
+class adaptivenavierstokes_dof_map_6: public ufc::dof_map
 {
 private:
 
@@ -41583,13 +41583,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_6() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_6() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_6()
+  virtual ~adaptivenavierstokes_dof_map_6()
   {
     // Do nothing
   }
@@ -41838,12 +41838,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_5();
+        return new adaptivenavierstokes_dof_map_5();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_5();
+        return new adaptivenavierstokes_dof_map_5();
         break;
       }
     }
@@ -41856,7 +41856,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_7: public ufc::dof_map
+class adaptivenavierstokes_dof_map_7: public ufc::dof_map
 {
 private:
 
@@ -41864,13 +41864,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_7() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_7() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_7()
+  virtual ~adaptivenavierstokes_dof_map_7()
   {
     // Do nothing
   }
@@ -42084,7 +42084,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_8: public ufc::dof_map
+class adaptivenavierstokes_dof_map_8: public ufc::dof_map
 {
 private:
 
@@ -42092,13 +42092,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_8() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_8() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_8()
+  virtual ~adaptivenavierstokes_dof_map_8()
   {
     // Do nothing
   }
@@ -42360,12 +42360,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_6();
+        return new adaptivenavierstokes_dof_map_6();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_7();
+        return new adaptivenavierstokes_dof_map_7();
         break;
       }
     }
@@ -42378,7 +42378,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_9: public ufc::dof_map
+class adaptivenavierstokes_dof_map_9: public ufc::dof_map
 {
 private:
 
@@ -42386,13 +42386,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_9() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_9() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_9()
+  virtual ~adaptivenavierstokes_dof_map_9()
   {
     // Do nothing
   }
@@ -42598,7 +42598,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_10: public ufc::dof_map
+class adaptivenavierstokes_dof_map_10: public ufc::dof_map
 {
 private:
 
@@ -42606,13 +42606,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_10() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_10() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_10()
+  virtual ~adaptivenavierstokes_dof_map_10()
   {
     // Do nothing
   }
@@ -42914,12 +42914,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_2();
+        return new adaptivenavierstokes_dof_map_2();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_2();
+        return new adaptivenavierstokes_dof_map_2();
         break;
       }
     }
@@ -42932,7 +42932,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_11: public ufc::dof_map
+class adaptivenavierstokes_dof_map_11: public ufc::dof_map
 {
 private:
 
@@ -42940,13 +42940,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_11() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_11() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_11()
+  virtual ~adaptivenavierstokes_dof_map_11()
   {
     // Do nothing
   }
@@ -43179,7 +43179,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class navierstokes_dof_map_12: public ufc::dof_map
+class adaptivenavierstokes_dof_map_12: public ufc::dof_map
 {
 private:
 
@@ -43187,13 +43187,13 @@ private:
 public:
 
   /// Constructor
-  navierstokes_dof_map_12() : ufc::dof_map()
+  adaptivenavierstokes_dof_map_12() : ufc::dof_map()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~navierstokes_dof_map_12()
+  virtual ~adaptivenavierstokes_dof_map_12()
   {
     // Do nothing
   }
@@ -43514,12 +43514,12 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_10();
+        return new adaptivenavierstokes_dof_map_10();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_11();
+        return new adaptivenavierstokes_dof_map_11();
         break;
       }
     }
@@ -43533,18 +43533,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_0_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_0_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_0_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_0_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_0_0()
+  virtual ~adaptivenavierstokes_cell_integral_0_0()
   {
     // Do nothing
   }
@@ -43928,18 +43928,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_1_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_1_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_1_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_1_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_1_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_1_0()
   {
     // Do nothing
   }
@@ -44047,18 +44047,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_2_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_2_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_2_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_2_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_2_0()
+  virtual ~adaptivenavierstokes_cell_integral_2_0()
   {
     // Do nothing
   }
@@ -44327,18 +44327,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_3_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_3_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_3_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_3_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_3_0()
+  virtual ~adaptivenavierstokes_cell_integral_3_0()
   {
     // Do nothing
   }
@@ -44710,18 +44710,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_3_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_3_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_3_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_3_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_3_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_3_0()
   {
     // Do nothing
   }
@@ -44947,18 +44947,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_4_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_4_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_4_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_4_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_4_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_4_0()
   {
     // Do nothing
   }
@@ -45701,18 +45701,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class navierstokes_interior_facet_integral_4_0: public ufc::interior_facet_integral
+class adaptivenavierstokes_interior_facet_integral_4_0: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_interior_facet_integral_4_0() : ufc::interior_facet_integral()
+  adaptivenavierstokes_interior_facet_integral_4_0() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_interior_facet_integral_4_0()
+  virtual ~adaptivenavierstokes_interior_facet_integral_4_0()
   {
     // Do nothing
   }
@@ -53942,18 +53942,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_5_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_5_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_5_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_5_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_5_0()
+  virtual ~adaptivenavierstokes_cell_integral_5_0()
   {
     // Do nothing
   }
@@ -54241,18 +54241,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_5_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_5_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_5_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_5_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_5_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_5_0()
   {
     // Do nothing
   }
@@ -54478,18 +54478,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_6_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_6_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_6_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_6_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_6_0()
+  virtual ~adaptivenavierstokes_cell_integral_6_0()
   {
     // Do nothing
   }
@@ -54845,18 +54845,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_6_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_6_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_6_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_6_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_6_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_6_0()
   {
     // Do nothing
   }
@@ -55061,18 +55061,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_7_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_7_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_7_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_7_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_7_0()
+  virtual ~adaptivenavierstokes_cell_integral_7_0()
   {
     // Do nothing
   }
@@ -55311,18 +55311,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_7_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_7_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_7_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_7_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_7_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_7_0()
   {
     // Do nothing
   }
@@ -55507,18 +55507,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class navierstokes_interior_facet_integral_7_0: public ufc::interior_facet_integral
+class adaptivenavierstokes_interior_facet_integral_7_0: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_interior_facet_integral_7_0() : ufc::interior_facet_integral()
+  adaptivenavierstokes_interior_facet_integral_7_0() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_interior_facet_integral_7_0()
+  virtual ~adaptivenavierstokes_interior_facet_integral_7_0()
   {
     // Do nothing
   }
@@ -56134,18 +56134,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_8_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_8_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_8_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_8_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_8_0()
+  virtual ~adaptivenavierstokes_cell_integral_8_0()
   {
     // Do nothing
   }
@@ -56529,18 +56529,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class navierstokes_cell_integral_9_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_9_0: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  navierstokes_cell_integral_9_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_9_0() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_cell_integral_9_0()
+  virtual ~adaptivenavierstokes_cell_integral_9_0()
   {
     // Do nothing
   }
@@ -56708,18 +56708,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_9_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_9_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_9_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_9_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_9_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_9_0()
   {
     // Do nothing
   }
@@ -56900,18 +56900,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class navierstokes_exterior_facet_integral_10_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_10_0: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  navierstokes_exterior_facet_integral_10_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_10_0() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_exterior_facet_integral_10_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_10_0()
   {
     // Do nothing
   }
@@ -56993,18 +56993,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_0: public ufc::form
+class adaptivenavierstokes_form_0: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_0() : ufc::form()
+  adaptivenavierstokes_form_0() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_0()
+  virtual ~adaptivenavierstokes_form_0()
   {
     // Do nothing
   }
@@ -57052,22 +57052,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     }
@@ -57082,22 +57082,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     }
@@ -57112,7 +57112,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_0_0();
+        return new adaptivenavierstokes_cell_integral_0_0();
         break;
       }
     }
@@ -57149,18 +57149,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_1: public ufc::form
+class adaptivenavierstokes_form_1: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_1() : ufc::form()
+  adaptivenavierstokes_form_1() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_1()
+  virtual ~adaptivenavierstokes_form_1()
   {
     // Do nothing
   }
@@ -57208,7 +57208,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     }
@@ -57223,7 +57223,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     }
@@ -57244,7 +57244,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_1_0();
+        return new adaptivenavierstokes_exterior_facet_integral_1_0();
         break;
       }
     }
@@ -57275,18 +57275,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_2: public ufc::form
+class adaptivenavierstokes_form_2: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_2() : ufc::form()
+  adaptivenavierstokes_form_2() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_2()
+  virtual ~adaptivenavierstokes_form_2()
   {
     // Do nothing
   }
@@ -57334,17 +57334,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_4();
+        return new adaptivenavierstokes_finite_element_4();
         break;
       }
     }
@@ -57359,17 +57359,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_4();
+        return new adaptivenavierstokes_dof_map_4();
         break;
       }
     }
@@ -57384,7 +57384,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_2_0();
+        return new adaptivenavierstokes_cell_integral_2_0();
         break;
       }
     }
@@ -57421,18 +57421,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_3: public ufc::form
+class adaptivenavierstokes_form_3: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_3() : ufc::form()
+  adaptivenavierstokes_form_3() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_3()
+  virtual ~adaptivenavierstokes_form_3()
   {
     // Do nothing
   }
@@ -57480,27 +57480,27 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_11();
+        return new adaptivenavierstokes_finite_element_11();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     case 4:
       {
-        return new navierstokes_finite_element_4();
+        return new adaptivenavierstokes_finite_element_4();
         break;
       }
     }
@@ -57515,27 +57515,27 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_11();
+        return new adaptivenavierstokes_dof_map_11();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     case 4:
       {
-        return new navierstokes_dof_map_4();
+        return new adaptivenavierstokes_dof_map_4();
         break;
       }
     }
@@ -57550,7 +57550,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_3_0();
+        return new adaptivenavierstokes_cell_integral_3_0();
         break;
       }
     }
@@ -57565,7 +57565,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_3_0();
+        return new adaptivenavierstokes_exterior_facet_integral_3_0();
         break;
       }
     }
@@ -57596,18 +57596,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_4: public ufc::form
+class adaptivenavierstokes_form_4: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_4() : ufc::form()
+  adaptivenavierstokes_form_4() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_4()
+  virtual ~adaptivenavierstokes_form_4()
   {
     // Do nothing
   }
@@ -57655,17 +57655,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_5();
+        return new adaptivenavierstokes_finite_element_5();
         break;
       }
     }
@@ -57680,17 +57680,17 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_5();
+        return new adaptivenavierstokes_dof_map_5();
         break;
       }
     }
@@ -57711,7 +57711,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_4_0();
+        return new adaptivenavierstokes_exterior_facet_integral_4_0();
         break;
       }
     }
@@ -57726,7 +57726,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_interior_facet_integral_4_0();
+        return new adaptivenavierstokes_interior_facet_integral_4_0();
         break;
       }
     }
@@ -57751,18 +57751,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_5: public ufc::form
+class adaptivenavierstokes_form_5: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_5() : ufc::form()
+  adaptivenavierstokes_form_5() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_5()
+  virtual ~adaptivenavierstokes_form_5()
   {
     // Do nothing
   }
@@ -57810,32 +57810,32 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_11();
+        return new adaptivenavierstokes_finite_element_11();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     case 4:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 5:
       {
-        return new navierstokes_finite_element_5();
+        return new adaptivenavierstokes_finite_element_5();
         break;
       }
     }
@@ -57850,32 +57850,32 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_11();
+        return new adaptivenavierstokes_dof_map_11();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     case 4:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 5:
       {
-        return new navierstokes_dof_map_5();
+        return new adaptivenavierstokes_dof_map_5();
         break;
       }
     }
@@ -57890,7 +57890,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_5_0();
+        return new adaptivenavierstokes_cell_integral_5_0();
         break;
       }
     }
@@ -57905,7 +57905,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_5_0();
+        return new adaptivenavierstokes_exterior_facet_integral_5_0();
         break;
       }
     }
@@ -57936,18 +57936,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_6: public ufc::form
+class adaptivenavierstokes_form_6: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_6() : ufc::form()
+  adaptivenavierstokes_form_6() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_6()
+  virtual ~adaptivenavierstokes_form_6()
   {
     // Do nothing
   }
@@ -57995,22 +57995,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_11();
+        return new adaptivenavierstokes_finite_element_11();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_3();
+        return new adaptivenavierstokes_finite_element_3();
         break;
       }
     }
@@ -58025,22 +58025,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_11();
+        return new adaptivenavierstokes_dof_map_11();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_3();
+        return new adaptivenavierstokes_dof_map_3();
         break;
       }
     }
@@ -58055,7 +58055,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_6_0();
+        return new adaptivenavierstokes_cell_integral_6_0();
         break;
       }
     }
@@ -58070,7 +58070,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_6_0();
+        return new adaptivenavierstokes_exterior_facet_integral_6_0();
         break;
       }
     }
@@ -58101,18 +58101,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_7: public ufc::form
+class adaptivenavierstokes_form_7: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_7() : ufc::form()
+  adaptivenavierstokes_form_7() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_7()
+  virtual ~adaptivenavierstokes_form_7()
   {
     // Do nothing
   }
@@ -58160,27 +58160,27 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_3();
+        return new adaptivenavierstokes_finite_element_3();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_8();
+        return new adaptivenavierstokes_finite_element_8();
         break;
       }
     case 4:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     }
@@ -58195,27 +58195,27 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_3();
+        return new adaptivenavierstokes_dof_map_3();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_8();
+        return new adaptivenavierstokes_dof_map_8();
         break;
       }
     case 4:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     }
@@ -58230,7 +58230,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_7_0();
+        return new adaptivenavierstokes_cell_integral_7_0();
         break;
       }
     }
@@ -58245,7 +58245,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_7_0();
+        return new adaptivenavierstokes_exterior_facet_integral_7_0();
         break;
       }
     }
@@ -58260,7 +58260,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_interior_facet_integral_7_0();
+        return new adaptivenavierstokes_interior_facet_integral_7_0();
         break;
       }
     }
@@ -58285,18 +58285,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_8: public ufc::form
+class adaptivenavierstokes_form_8: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_8() : ufc::form()
+  adaptivenavierstokes_form_8() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_8()
+  virtual ~adaptivenavierstokes_form_8()
   {
     // Do nothing
   }
@@ -58344,22 +58344,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     }
@@ -58374,22 +58374,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     }
@@ -58404,7 +58404,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_8_0();
+        return new adaptivenavierstokes_cell_integral_8_0();
         break;
       }
     }
@@ -58441,18 +58441,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_9: public ufc::form
+class adaptivenavierstokes_form_9: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_9() : ufc::form()
+  adaptivenavierstokes_form_9() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_9()
+  virtual ~adaptivenavierstokes_form_9()
   {
     // Do nothing
   }
@@ -58500,22 +58500,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_finite_element_11();
+        return new adaptivenavierstokes_finite_element_11();
         break;
       }
     case 3:
       {
-        return new navierstokes_finite_element_9();
+        return new adaptivenavierstokes_finite_element_9();
         break;
       }
     }
@@ -58530,22 +58530,22 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 1:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     case 2:
       {
-        return new navierstokes_dof_map_11();
+        return new adaptivenavierstokes_dof_map_11();
         break;
       }
     case 3:
       {
-        return new navierstokes_dof_map_9();
+        return new adaptivenavierstokes_dof_map_9();
         break;
       }
     }
@@ -58560,7 +58560,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_cell_integral_9_0();
+        return new adaptivenavierstokes_cell_integral_9_0();
         break;
       }
     }
@@ -58575,7 +58575,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_9_0();
+        return new adaptivenavierstokes_exterior_facet_integral_9_0();
         break;
       }
     }
@@ -58606,18 +58606,18 @@ public:
 /// sequence of basis functions of Vj and w1, w2, ..., wn are given
 /// fixed functions (coefficients).
 
-class navierstokes_form_10: public ufc::form
+class adaptivenavierstokes_form_10: public ufc::form
 {
 public:
 
   /// Constructor
-  navierstokes_form_10() : ufc::form()
+  adaptivenavierstokes_form_10() : ufc::form()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~navierstokes_form_10()
+  virtual ~adaptivenavierstokes_form_10()
   {
     // Do nothing
   }
@@ -58665,7 +58665,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_finite_element_12();
+        return new adaptivenavierstokes_finite_element_12();
         break;
       }
     }
@@ -58680,7 +58680,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_dof_map_12();
+        return new adaptivenavierstokes_dof_map_12();
         break;
       }
     }
@@ -58701,7 +58701,7 @@ public:
     {
     case 0:
       {
-        return new navierstokes_exterior_facet_integral_10_0();
+        return new adaptivenavierstokes_exterior_facet_integral_10_0();
         break;
       }
     }
@@ -58733,7 +58733,7 @@ public:
 #include <dolfin/adaptivity/ErrorControl.h>
 #include <dolfin/adaptivity/GoalFunctional.h>
 
-namespace NavierStokes
+namespace AdaptiveNavierStokes
 {
 
 class CoefficientSpace___cell_bubble: public dolfin::FunctionSpace
@@ -58742,32 +58742,32 @@ public:
 
   CoefficientSpace___cell_bubble(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_4()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_4()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_4()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_4()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___cell_bubble(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_4()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_4()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_4()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_4()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___cell_bubble(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_4()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_4()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_4()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_4()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace___cell_bubble(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_4()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_4()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_4()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_4()), *mesh)))
   {
       // Do nothing
   }
@@ -58784,32 +58784,32 @@ public:
 
   CoefficientSpace___cell_cone(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_5()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_5()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___cell_cone(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_5()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_5()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___cell_cone(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_5()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_5()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace___cell_cone(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_5()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_5()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_5()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_5()), *mesh)))
   {
       // Do nothing
   }
@@ -58826,32 +58826,32 @@ public:
 
   CoefficientSpace___cell_residual(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___cell_residual(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___cell_residual(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace___cell_residual(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -58868,32 +58868,32 @@ public:
 
   CoefficientSpace___discrete_dual_solution(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___discrete_dual_solution(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___discrete_dual_solution(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace___discrete_dual_solution(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -58910,32 +58910,32 @@ public:
 
   CoefficientSpace___facet_residual(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___facet_residual(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___facet_residual(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace___facet_residual(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -58952,32 +58952,32 @@ public:
 
   CoefficientSpace___improved_dual(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___improved_dual(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_3()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace___improved_dual(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace___improved_dual(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_3()), *mesh)))
   {
       // Do nothing
   }
@@ -58994,32 +58994,32 @@ public:
 
   CoefficientSpace_nu(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_nu(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_nu(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_nu(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), *mesh)))
   {
       // Do nothing
   }
@@ -59036,32 +59036,32 @@ public:
 
   CoefficientSpace_p0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_11()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_11()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_11()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_11()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_p0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_11()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_11()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_11()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_11()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_p0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_11()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_11()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_11()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_11()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_p0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_11()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_11()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_11()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_11()), *mesh)))
   {
       // Do nothing
   }
@@ -59078,32 +59078,32 @@ public:
 
   CoefficientSpace_w(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_w(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_w(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_w(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -59120,32 +59120,32 @@ public:
 
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -59162,32 +59162,32 @@ public:
 
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -59213,7 +59213,7 @@ public:
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_0());
   }
 
   // Constructor
@@ -59226,7 +59226,7 @@ public:
     this->w = w;
     this->nu = nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_0());
   }
 
   // Constructor
@@ -59239,7 +59239,7 @@ public:
     this->w = *w;
     this->nu = *nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_0());
   }
 
   // Constructor
@@ -59249,7 +59249,7 @@ public:
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_0());
   }
 
   // Constructor
@@ -59262,7 +59262,7 @@ public:
     this->w = w;
     this->nu = nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_0());
   }
 
   // Constructor
@@ -59275,7 +59275,7 @@ public:
     this->w = *w;
     this->nu = *nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_0());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_0());
   }
 
   // Destructor
@@ -59326,32 +59326,32 @@ public:
 
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -59372,7 +59372,7 @@ public:
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_1());
   }
 
   // Constructor
@@ -59381,7 +59381,7 @@ public:
   {
     _function_spaces[0] = V0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_1());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_1());
   }
 
   // Destructor
@@ -59416,32 +59416,32 @@ public:
 
   Form_2_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   Form_2_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -59458,32 +59458,32 @@ public:
 
   Form_2_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   Form_2_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -59507,7 +59507,7 @@ public:
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_2());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_2());
   }
 
   // Constructor
@@ -59519,7 +59519,7 @@ public:
 
     this->__cell_bubble = __cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_2());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_2());
   }
 
   // Constructor
@@ -59531,7 +59531,7 @@ public:
 
     this->__cell_bubble = *__cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_2());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_2());
   }
 
   // Constructor
@@ -59541,7 +59541,7 @@ public:
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_2());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_2());
   }
 
   // Constructor
@@ -59553,7 +59553,7 @@ public:
 
     this->__cell_bubble = __cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_2());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_2());
   }
 
   // Constructor
@@ -59565,7 +59565,7 @@ public:
 
     this->__cell_bubble = *__cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_2());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_2());
   }
 
   // Destructor
@@ -59610,32 +59610,32 @@ public:
 
   Form_3_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_3_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_3_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   Form_3_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -59664,7 +59664,7 @@ public:
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_3());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_3());
   }
 
   // Constructor
@@ -59678,7 +59678,7 @@ public:
     this->nu = nu;
     this->__cell_bubble = __cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_3());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_3());
   }
 
   // Constructor
@@ -59692,7 +59692,7 @@ public:
     this->nu = *nu;
     this->__cell_bubble = *__cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_3());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_3());
   }
 
   // Constructor
@@ -59701,7 +59701,7 @@ public:
   {
     _function_spaces[0] = V0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_3());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_3());
   }
 
   // Constructor
@@ -59715,7 +59715,7 @@ public:
     this->nu = nu;
     this->__cell_bubble = __cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_3());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_3());
   }
 
   // Constructor
@@ -59729,7 +59729,7 @@ public:
     this->nu = *nu;
     this->__cell_bubble = *__cell_bubble;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_3());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_3());
   }
 
   // Destructor
@@ -59791,32 +59791,32 @@ public:
 
   Form_4_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_4_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_4_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   Form_4_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -59833,32 +59833,32 @@ public:
 
   Form_4_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_4_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_4_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   Form_4_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -59882,7 +59882,7 @@ public:
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_4());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_4());
   }
 
   // Constructor
@@ -59894,7 +59894,7 @@ public:
 
     this->__cell_cone = __cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_4());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_4());
   }
 
   // Constructor
@@ -59906,7 +59906,7 @@ public:
 
     this->__cell_cone = *__cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_4());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_4());
   }
 
   // Constructor
@@ -59916,7 +59916,7 @@ public:
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_4());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_4());
   }
 
   // Constructor
@@ -59928,7 +59928,7 @@ public:
 
     this->__cell_cone = __cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_4());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_4());
   }
 
   // Constructor
@@ -59940,7 +59940,7 @@ public:
 
     this->__cell_cone = *__cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_4());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_4());
   }
 
   // Destructor
@@ -59985,32 +59985,32 @@ public:
 
   Form_5_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_5_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), mesh)))
   {
     // Do nothing
   }
 
   Form_5_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
 
   Form_5_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_8()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_8()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_8()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_8()), *mesh)))
   {
       // Do nothing
   }
@@ -60041,7 +60041,7 @@ public:
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_5());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_5());
   }
 
   // Constructor
@@ -60056,7 +60056,7 @@ public:
     this->__cell_residual = __cell_residual;
     this->__cell_cone = __cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_5());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_5());
   }
 
   // Constructor
@@ -60071,7 +60071,7 @@ public:
     this->__cell_residual = *__cell_residual;
     this->__cell_cone = *__cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_5());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_5());
   }
 
   // Constructor
@@ -60080,7 +60080,7 @@ public:
   {
     _function_spaces[0] = V0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_5());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_5());
   }
 
   // Constructor
@@ -60095,7 +60095,7 @@ public:
     this->__cell_residual = __cell_residual;
     this->__cell_cone = __cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_5());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_5());
   }
 
   // Constructor
@@ -60110,7 +60110,7 @@ public:
     this->__cell_residual = *__cell_residual;
     this->__cell_cone = *__cell_cone;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_5());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_5());
   }
 
   // Destructor
@@ -60189,7 +60189,7 @@ public:
     dolfin::Form(0, 4), w(*this, 0), p0(*this, 1), nu(*this, 2), __improved_dual(*this, 3)
   {
     _mesh = reference_to_no_delete_pointer(mesh);
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_6());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_6());
   }
 
   // Constructor
@@ -60202,7 +60202,7 @@ public:
     this->nu = nu;
     this->__improved_dual = __improved_dual;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_6());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_6());
   }
 
   // Constructor
@@ -60215,7 +60215,7 @@ public:
     this->nu = *nu;
     this->__improved_dual = *__improved_dual;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_6());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_6());
   }
 
   // Constructor
@@ -60223,7 +60223,7 @@ public:
     dolfin::Form(0, 4), w(*this, 0), p0(*this, 1), nu(*this, 2), __improved_dual(*this, 3)
   {
     _mesh = mesh;
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_6());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_6());
   }
 
   // Constructor
@@ -60236,7 +60236,7 @@ public:
     this->nu = nu;
     this->__improved_dual = __improved_dual;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_6());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_6());
   }
 
   // Constructor
@@ -60249,7 +60249,7 @@ public:
     this->nu = *nu;
     this->__improved_dual = *__improved_dual;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_6());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_6());
   }
 
   // Destructor
@@ -60310,32 +60310,32 @@ public:
 
   Form_7_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), mesh)))
   {
     // Do nothing
   }
 
   Form_7_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), mesh)))
   {
     // Do nothing
   }
 
   Form_7_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), *mesh)))
   {
       // Do nothing
   }
 
   Form_7_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_9()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_9()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_9()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_9()), *mesh)))
   {
       // Do nothing
   }
@@ -60364,7 +60364,7 @@ public:
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_7());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_7());
   }
 
   // Constructor
@@ -60378,7 +60378,7 @@ public:
     this->__facet_residual = __facet_residual;
     this->__discrete_dual_solution = __discrete_dual_solution;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_7());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_7());
   }
 
   // Constructor
@@ -60392,7 +60392,7 @@ public:
     this->__facet_residual = *__facet_residual;
     this->__discrete_dual_solution = *__discrete_dual_solution;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_7());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_7());
   }
 
   // Constructor
@@ -60401,7 +60401,7 @@ public:
   {
     _function_spaces[0] = V0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_7());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_7());
   }
 
   // Constructor
@@ -60415,7 +60415,7 @@ public:
     this->__facet_residual = __facet_residual;
     this->__discrete_dual_solution = __discrete_dual_solution;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_7());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_7());
   }
 
   // Constructor
@@ -60429,7 +60429,7 @@ public:
     this->__facet_residual = *__facet_residual;
     this->__discrete_dual_solution = *__discrete_dual_solution;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_7());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_7());
   }
 
   // Destructor
@@ -60491,32 +60491,32 @@ public:
 
   Form_8_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_8_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_8_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   Form_8_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -60533,32 +60533,32 @@ public:
 
   Form_8_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_8_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_8_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   Form_8_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -60584,7 +60584,7 @@ public:
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_8());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_8());
   }
 
   // Constructor
@@ -60597,7 +60597,7 @@ public:
     this->w = w;
     this->nu = nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_8());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_8());
   }
 
   // Constructor
@@ -60610,7 +60610,7 @@ public:
     this->w = *w;
     this->nu = *nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_8());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_8());
   }
 
   // Constructor
@@ -60620,7 +60620,7 @@ public:
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_8());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_8());
   }
 
   // Constructor
@@ -60633,7 +60633,7 @@ public:
     this->w = w;
     this->nu = nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_8());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_8());
   }
 
   // Constructor
@@ -60646,7 +60646,7 @@ public:
     this->w = *w;
     this->nu = *nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_8());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_8());
   }
 
   // Destructor
@@ -60697,32 +60697,32 @@ public:
 
   Form_9_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_9_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), mesh)))
   {
     // Do nothing
   }
 
   Form_9_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
 
   Form_9_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new navierstokes_finite_element_12()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new navierstokes_dof_map_12()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new adaptivenavierstokes_finite_element_12()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new adaptivenavierstokes_dof_map_12()), *mesh)))
   {
       // Do nothing
   }
@@ -60749,7 +60749,7 @@ public:
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_9());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_9());
   }
 
   // Constructor
@@ -60762,7 +60762,7 @@ public:
     this->p0 = p0;
     this->nu = nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_9());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_9());
   }
 
   // Constructor
@@ -60775,7 +60775,7 @@ public:
     this->p0 = *p0;
     this->nu = *nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_9());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_9());
   }
 
   // Constructor
@@ -60784,7 +60784,7 @@ public:
   {
     _function_spaces[0] = V0;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_9());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_9());
   }
 
   // Constructor
@@ -60797,7 +60797,7 @@ public:
     this->p0 = p0;
     this->nu = nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_9());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_9());
   }
 
   // Constructor
@@ -60810,7 +60810,7 @@ public:
     this->p0 = *p0;
     this->nu = *nu;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_9());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_9());
   }
 
   // Destructor
@@ -60871,7 +60871,7 @@ public:
     dolfin::GoalFunctional(0, 1), w(*this, 0)
   {
     _mesh = reference_to_no_delete_pointer(mesh);
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_10());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_10());
   }
 
   // Constructor
@@ -60881,7 +60881,7 @@ public:
     _mesh = reference_to_no_delete_pointer(mesh);
     this->w = w;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_10());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_10());
   }
 
   // Constructor
@@ -60891,7 +60891,7 @@ public:
     _mesh = reference_to_no_delete_pointer(mesh);
     this->w = *w;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_10());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_10());
   }
 
   // Constructor
@@ -60899,7 +60899,7 @@ public:
     dolfin::GoalFunctional(0, 1), w(*this, 0)
   {
     _mesh = mesh;
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_10());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_10());
   }
 
   // Constructor
@@ -60909,7 +60909,7 @@ public:
     _mesh = mesh;
     this->w = w;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_10());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_10());
   }
 
   // Constructor
@@ -60919,7 +60919,7 @@ public:
     _mesh = mesh;
     this->w = *w;
 
-    _ufc_form = boost::shared_ptr<const ufc::form>(new navierstokes_form_10());
+    _ufc_form = boost::shared_ptr<const ufc::form>(new adaptivenavierstokes_form_10());
   }
 
   // Destructor
