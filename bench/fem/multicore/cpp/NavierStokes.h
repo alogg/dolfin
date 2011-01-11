@@ -13,8 +13,9 @@
 //   epsilon:                        1e-14
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
+//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -6328,7 +6329,7 @@ public:
     {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
     {0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225},
     {0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441},
-    {0.127646562120385, 0.034202793236767, 0.293998800631623, 0.544151844011225},
+    {0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225},
     {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
     {0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225},
     {0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441},
@@ -7062,6 +7063,8 @@ public:
 #include <dolfin/function/FunctionSpace.h>
 #include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
+#include <dolfin/adaptivity/ErrorControl.h>
+#include <dolfin/adaptivity/GoalFunctional.h>
 
 namespace NavierStokes
 {

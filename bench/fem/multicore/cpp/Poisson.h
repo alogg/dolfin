@@ -13,9 +13,10 @@
 //   epsilon:                        1e-14
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   no_ferari:                      True
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -1945,6 +1946,8 @@ public:
 #include <dolfin/function/FunctionSpace.h>
 #include <dolfin/function/GenericFunction.h>
 #include <dolfin/function/CoefficientAssigner.h>
+#include <dolfin/adaptivity/ErrorControl.h>
+#include <dolfin/adaptivity/GoalFunctional.h>
 
 namespace Poisson
 {
