@@ -14128,7 +14128,7 @@ public:
     L_star.reset(new Form_1(V));
 
     // Attach coefficients from a to a_star and from M to L_star
-    uint coefficient_number = 0;
+    dolfin::uint coefficient_number = 0;
     
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
