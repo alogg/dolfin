@@ -715,14 +715,6 @@ Return true iff mesh entities of topological dimension d are needed
 Return the dimension of the global finite element function space
 ";
 
-%feature("docstring")  dolfin::DofMap::local_dimension "
-Return the dimension of the local (process) finite element function space
-";
-
-%feature("docstring")  dolfin::DofMap::dimension "
-Return the dimension of the local finite element function space on a cell
-";
-
 %feature("docstring")  dolfin::DofMap::max_local_dimension "
 Return the maximum dimension of the local finite element function space
 ";
@@ -736,7 +728,8 @@ Return the ownership range (dofs in this range are owned by this process)
 ";
 
 %feature("docstring")  dolfin::DofMap::off_process_owner "
-Return map from nonlocal-dofs that appear in local dof map to owning process
+Return map from nonlocal-dofs that appear in local dof map to owning
+process
 ";
 
 %feature("docstring")  dolfin::DofMap::cell_dofs "
@@ -1376,41 +1369,60 @@ boundary conditions at the time of assembly.
 
 // Documentation extracted from: (module=fem, header=VariationalProblem.h)
 %feature("docstring")  dolfin::VariationalProblem "
-This class represents a (system of) partial differential
-equation(s) in variational form: Find u in V such that
+A :py:class:`VariationalProblem` represents a (system of) partial
+differential equation(s) in variational form:
 
-    F_u(v) = 0  for all v in V'.
+Find u_h in V_h such that
 
+    F(u_h; v) = 0  for all v in V_h',
 
-Parameters:
+where V_h is the trial space and V_h' is the test space.
 
-    \"linear solvers\": \"direct\" or \"iterative\" (default: \"direct\")
-    \"symmetric\":      true or false (default: false)
+The variational problem is specified in terms of a pair of
+_Form_s and, optionally, a set of _BoundaryCondition_s and
+_MeshFunction_s that specify any subdomains involved in the
+definition of the _Form_s.
+
+The pair of forms may either specify a nonlinear problem
+
+   (1) F(u_h; v) = 0
+
+in terms of the residual F and its derivative J = F':
+
+   F, J  (F linear, J bilinear)
+
+or a linear problem
+
+   (2) F(u_h; v) = a(u_h, v) - L(v) = 0
+
+in terms of the bilinear form a and a linear form L:
+
+   a, L  (a bilinear, L linear)
+
+Thus, a pair of forms is interpreted either as a nonlinear
+problem or a linear problem depending on the ranks of the given
+forms.
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::VariationalProblem "
 **Overloaded versions**
 
-* VariationalProblem\ **(a, L)**
+* VariationalProblem\ **(form_0, form_1)**
 
   Define variational problem with natural boundary conditions
 
-* VariationalProblem\ **(a, L, bc)**
+* VariationalProblem\ **(form_0, form_1, bc)**
 
-  Define variational problem with a single Dirichlet boundary conditions
+  Define variational problem with a single Dirichlet boundary condition
 
-* VariationalProblem\ **(a, L, bcs)**
-
-  Define variational problem with a list of Dirichlet boundary conditions
-
-* VariationalProblem\ **(a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains)**
+* VariationalProblem\ **(form_0, form_1, bcs)**
 
   Define variational problem with a list of Dirichlet boundary conditions
-  and subdomains
-";
 
-%feature("docstring")  dolfin::VariationalProblem::is_nonlinear "
-Return true if problem is non-linear
+* VariationalProblem\ **(form_0, form_1, bcs, cell_domains, exterior_facet_domains, interior_facet_domains)**
+
+  Define variational problem with a list of Dirichlet boundary conditions
+  and subdomains for cells, exterior and interior facets of the mesh
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::solve "
@@ -1420,15 +1432,6 @@ Return true if problem is non-linear
 
   Solve variational problem
 
-* solve\ **(u, tol, M)**
-
-  Solve variational problem adaptively to given tolerance
-
-* solve\ **(u, tol, M, ec)**
-
-  Solve variational problem adaptively to given tolerance with
-  given error controller
-
 * solve\ **(u0, u1)**
 
   Solve variational problem and extract sub functions
@@ -1436,22 +1439,50 @@ Return true if problem is non-linear
 * solve\ **(u0, u1, u2)**
 
   Solve variational problem and extract sub functions
+
+* solve\ **(u, tol, M)**
+
+  Solve variational problem adaptively to within given tolerance
+
+* solve\ **(u, tol, M, ec)**
+
+  Solve variational problem adaptively to within given tolerance
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::F "
-Compute F at current point x
+%feature("docstring")  dolfin::VariationalProblem::is_nonlinear "
+Return true if problem is non-linear
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::J "
-Compute J = F' at current point x
+%feature("docstring")  dolfin::VariationalProblem::trial_space "
+Return trial space for variational problem
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::update "
-Optional callback called before calls to F() and J()
+%feature("docstring")  dolfin::VariationalProblem::test_space "
+Return test space for variational problem
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::newton_solver "
-Return Newton solver (only useful when solving a nonlinear problem)
+%feature("docstring")  dolfin::VariationalProblem::bilinear_form "
+Return the bilinear form
+";
+
+%feature("docstring")  dolfin::VariationalProblem::linear_form "
+Return the linear form
+";
+
+%feature("docstring")  dolfin::VariationalProblem::bcs "
+Return the list of boundary conditions
+";
+
+%feature("docstring")  dolfin::VariationalProblem::cell_domains "
+Return the cell domains
+";
+
+%feature("docstring")  dolfin::VariationalProblem::exterior_facet_domains "
+Return the exterior facet domains
+";
+
+%feature("docstring")  dolfin::VariationalProblem::interior_facet_domains "
+Return the interior facet domains
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::default_parameters "
@@ -2311,6 +2342,10 @@ Add values to each entry on local process
 
 %feature("docstring")  dolfin::GenericVector::axpy "
 Add multiple of given vector (AXPY operation)
+";
+
+%feature("docstring")  dolfin::GenericVector::abs "
+Replace all entries in the vector by their absolute values
 ";
 
 %feature("docstring")  dolfin::GenericVector::inner "
@@ -3295,6 +3330,10 @@ Add all values to each entry on local process
 Add multiple of given vector (AXPY operation)
 ";
 
+%feature("docstring")  dolfin::EpetraVector::abs "
+Replace all entries in the vector by their absolute values
+";
+
 %feature("docstring")  dolfin::EpetraVector::inner "
 Return inner product with given vector
 ";
@@ -4071,6 +4110,10 @@ Add values to each entry on local process
 Add multiple of given vector (AXPY operation)
 ";
 
+%feature("docstring")  dolfin::uBLASVector::abs "
+Replace all entries in the vector by their absolute values
+";
+
 %feature("docstring")  dolfin::uBLASVector::inner "
 Return inner product with given vector
 ";
@@ -4286,6 +4329,10 @@ Add values to each entry on local process
 Add multiple of given vector (AXPY operation)
 ";
 
+%feature("docstring")  dolfin::PETScVector::abs "
+Replace all entries in the vector by their absolute values
+";
+
 %feature("docstring")  dolfin::PETScVector::inner "
 Return inner product with given vector
 ";
@@ -4473,6 +4520,10 @@ Gather entries into local vector x
 
 %feature("docstring")  dolfin::MTL4Vector::axpy "
 Add multiple of given vector (AXPY operation)
+";
+
+%feature("docstring")  dolfin::MTL4Vector::abs "
+Replace all entries in the vector by their absolute values
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::inner "
@@ -5295,6 +5346,10 @@ Add values to each entry on local process
 Add multiple of given vector (AXPY operation)
 ";
 
+%feature("docstring")  dolfin::Vector::abs "
+Replace all entries in the vector by their absolute values
+";
+
 %feature("docstring")  dolfin::Vector::inner "
 Return inner product with given vector
 ";
@@ -5751,12 +5806,20 @@ Constructor
 Return copy of tensor
 ";
 
-%feature("docstring")  dolfin::BlockVector::set "
+%feature("docstring")  dolfin::BlockVector::set_block "
 Set function
 ";
 
-%feature("docstring")  dolfin::BlockVector::get "
-Get functions (const and non-const)
+%feature("docstring")  dolfin::BlockVector::get_block "
+**Overloaded versions**
+
+* get_block\ **(i)**
+
+  Get functions (const)
+
+* get_block\ **(uint)**
+
+  Get functions (non-const)
 ";
 
 %feature("docstring")  dolfin::BlockVector::axpy "
@@ -5816,24 +5879,24 @@ Return informal string representation (pretty-print)
 ";
 
 // Documentation extracted from: (module=la, header=BlockMatrix.h)
-%feature("docstring")  dolfin::BlockMatrix::operator "
-Return SubMatrix reference number (i,j)
-";
-
-%feature("docstring")  dolfin::BlockMatrix::set "
+%feature("docstring")  dolfin::BlockMatrix::set_block "
 Set block
 ";
 
-%feature("docstring")  dolfin::BlockMatrix::get "
+%feature("docstring")  dolfin::BlockMatrix::get_block "
 **Overloaded versions**
 
-* get\ **(i, j)**
+* get_block\ **(i, j)**
 
   Get block (const version)
 
-* get\ **(i, j)**
+* get_block\ **(i, j)**
 
   Get block
+";
+
+%feature("docstring")  dolfin::BlockMatrix::operator "
+Return SubMatrix reference number (i,j)
 ";
 
 %feature("docstring")  dolfin::BlockMatrix::size "
@@ -5854,10 +5917,6 @@ Return informal string representation (pretty-print)
 
 %feature("docstring")  dolfin::BlockMatrix::mult "
 Matrix-vector product, y = Ax
-";
-
-%feature("docstring")  dolfin::SubMatrix::operator= "
-Assign Matrix to SubMatrix
 ";
 
 // Documentation extracted from: (module=graph, header=MatrixRenumbering.h)
@@ -6130,553 +6189,6 @@ Check if entities are ordered
 Return description of cell type
 ";
 
-// Documentation extracted from: (module=mesh, header=MeshEntity.h)
-%feature("docstring")  dolfin::MeshEntity "
-A MeshEntity represents a mesh entity associated with
-a specific topological dimension of some mesh.
-";
-
-%feature("docstring")  dolfin::MeshEntity::MeshEntity "
-**Overloaded versions**
-
-* MeshEntity\ **()**
-
-  Default Constructor
-
-* MeshEntity\ **(mesh, dim, index)**
-
-  Constructor
-";
-
-%feature("docstring")  dolfin::MeshEntity::operator== "
-Comparision Operator
-";
-
-%feature("docstring")  dolfin::MeshEntity::mesh "
-Return mesh associated with mesh entity
-";
-
-%feature("docstring")  dolfin::MeshEntity::dim "
-Return topological dimension
-";
-
-%feature("docstring")  dolfin::MeshEntity::index "
-**Overloaded versions**
-
-* index\ **()**
-
-  Return index of mesh entity
-
-* index\ **(entity)**
-
-  Compute local index of given incident entity (error if not found)
-";
-
-%feature("docstring")  dolfin::MeshEntity::num_entities "
-Return number of incident mesh entities of given topological dimension
-";
-
-%feature("docstring")  dolfin::MeshEntity::entities "
-Return array of indices for incident mesh entitites of given topological dimension
-";
-
-%feature("docstring")  dolfin::MeshEntity::mesh_id "
-Return unique mesh ID
-";
-
-%feature("docstring")  dolfin::MeshEntity::incident "
-Check if given entity is indicent
-";
-
-%feature("docstring")  dolfin::MeshEntity::intersects "
-**Overloaded versions**
-
-* intersects\ **(point)**
-
-  Check if given point intersects (using inexact but fast numerics)
-
-* intersects\ **(entity)**
-
-  Check if given entity intersects (using inexact but fast numerics)
-";
-
-%feature("docstring")  dolfin::MeshEntity::intersects_exactly "
-**Overloaded versions**
-
-* intersects_exactly\ **(point)**
-
-  Check if given point intersects (using exact numerics)
-
-* intersects_exactly\ **(entity)**
-
-  Check if given entity intersects (using exact numerics)
-";
-
-%feature("docstring")  dolfin::MeshEntity::midpoint "
-Compute midpoint of cell
-";
-
-%feature("docstring")  dolfin::MeshEntity::bbox "
-Returns a 3D bounding box of the mesh entity. For lower dimension it may be a degenerated box.
-";
-
-%feature("docstring")  dolfin::MeshEntity::str "
-Return informal string representation (pretty-print)
-";
-
-// Documentation extracted from: (module=mesh, header=MeshEntityIterator.h)
-%feature("docstring")  dolfin::MeshEntityIterator "
-MeshEntityIterator provides a common iterator for mesh entities
-over meshes, boundaries and incidence relations. The basic use
-is illustrated below.
-
-*Example*
-    The following example shows how to iterate over all mesh entities
-    of a mesh of topological dimension dim:
-    
-    .. code-block:: python
-    
-        >>> for e in dolfin.cpp.entities(mesh, 1):
-        ...     print e.index()
-    
-    The following example shows how to iterate over mesh entities of
-    topological dimension dim connected (incident) to some mesh entity f:
-    
-    .. code-block:: python
-    
-        >>> f = dolfin.cpp.MeshEntity(mesh, 0, 0)
-        >>> for e in dolfin.cpp.entities(f, 1):
-        ...     print e.index()
-In addition to the general iterator, a set of specific named iterators
-are provided for entities of type :py:class:`Vertex`, :py:class:`Edge`, :py:class:`Face`, :py:class:`Facet`
-and :py:class:`Cell`. These iterators are defined along with their respective
-classes.
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator "
-**Overloaded versions**
-
-* MeshEntityIterator\ **()**
-
-  Default constructor
-
-* MeshEntityIterator\ **(mesh, dim)**
-
-  Create iterator for mesh entities over given topological dimension
-
-* MeshEntityIterator\ **(entity, dim)**
-
-  Create iterator for entities of given dimension connected to given entity
-
-* MeshEntityIterator\ **(it)**
-
-  Copy constructor
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator++ "
-Step to next mesh entity (prefix increment)
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator-- "
-Step to the previous mesh entity (prefix decrease)
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::pos "
-Return current position
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator== "
-Comparison operator.
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator!= "
-Comparison operator
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator* "
-Dereference operator
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator-> "
-Member access operator
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::operator[] "
-Random access operator.
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::end "
-Check if iterator has reached the end
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::end_iterator "
-Provide a safeguard iterator pointing beyond the end of an iteration
-process, either iterating over the mesh /or incident entities. Added to
-be bit more like STL iterators, since many algorithms rely on a kind of
-beyond iterator.
-";
-
-%feature("docstring")  dolfin::MeshEntityIterator::set_end "
-Set pos to end position. To create a kind of mesh.end() iterator.
-";
-
-// Documentation extracted from: (module=mesh, header=SubsetIterator.h)
-%feature("docstring")  dolfin::SubsetIterator "
-A :py:class:`SubsetIterator` is similar to a :py:class:`MeshEntityIterator` but
-iterates over a specified subset of the range of entities as
-specified by a :py:class:`MeshFunction` that labels the entites.
-";
-
-%feature("docstring")  dolfin::SubsetIterator::SubsetIterator "
-Create iterator for given mesh function. The iterator visits
-all entities that match the given label.
-";
-
-%feature("docstring")  dolfin::SubsetIterator::operator++ "
-Step to next mesh entity (prefix increment)
-";
-
-%feature("docstring")  dolfin::SubsetIterator::operator* "
-Dereference operator
-";
-
-%feature("docstring")  dolfin::SubsetIterator::operator-> "
-Member access operator
-";
-
-%feature("docstring")  dolfin::SubsetIterator::end "
-Check if iterator has reached the end
-";
-
-// Documentation extracted from: (module=mesh, header=Point.h)
-%feature("docstring")  dolfin::Point "
-A Point represents a point in R^3 with coordinates x, y, z, or,
-alternatively, a vector in R^3, supporting standard operations
-like the norm, distances, scalar and vector products etc.
-";
-
-%feature("docstring")  dolfin::Point::Point "
-**Overloaded versions**
-
-* Point\ **(0.0, 0.0, =0.0)**
-
-  Create a point at (x, y, z)
-
-* Point\ **(dim, x)**
-
-  Create point from array
-
-* Point\ **(p)**
-
-  Copy constructor
-
-* Point\ **(point)**
-
-  Constructor taking a CGAL::Point_3. Allows conversion from CGAL Point_3 class to Point class.
-";
-
-%feature("docstring")  dolfin::Point::operator[] "
-**Overloaded versions**
-
-* operator[]\ **(i)**
-
-  Return address of coordinate in direction i
-
-* operator[]\ **(i)**
-
-  Return coordinate in direction i
-";
-
-%feature("docstring")  dolfin::Point::x "
-Return x-coordinate
-";
-
-%feature("docstring")  dolfin::Point::y "
-Return y-coordinate
-";
-
-%feature("docstring")  dolfin::Point::z "
-Return z-coordinate
-";
-
-%feature("docstring")  dolfin::Point::coordinates "
-Return coordinate array
-";
-
-%feature("docstring")  dolfin::Point::operator+ "
-Compute sum of two points
-";
-
-%feature("docstring")  dolfin::Point::operator- "
-Compute difference of two points
-";
-
-%feature("docstring")  dolfin::Point::operator+= "
-Add given point
-";
-
-%feature("docstring")  dolfin::Point::operator-= "
-Subtract given point
-";
-
-%feature("docstring")  dolfin::Point::operator* "
-**Overloaded versions**
-
-* operator*\ **(a)**
-
-  Multiplication with scalar
-
-* operator*\ **(a, p)**
-
-  Multiplication with scalar
-";
-
-%feature("docstring")  dolfin::Point::operator*= "
-Incremental multiplication with scalar
-";
-
-%feature("docstring")  dolfin::Point::operator/ "
-Division by scalar
-";
-
-%feature("docstring")  dolfin::Point::operator/= "
-Incremental division by scalar
-";
-
-%feature("docstring")  dolfin::Point::operator= "
-Assignment operator
-";
-
-%feature("docstring")  dolfin::Point::operator CGAL::Point_3<Kernel> "
-Conversion operator to appropriate CGAL Point_3 class.
-";
-
-%feature("docstring")  dolfin::Point::bbox "
-Provides a CGAL bounding box, using conversion operator.
-";
-
-%feature("docstring")  dolfin::Point::distance "
-Compute distance to given point
-";
-
-%feature("docstring")  dolfin::Point::norm "
-Compute norm of point representing a vector from the origin
-";
-
-%feature("docstring")  dolfin::Point::cross "
-Compute cross product with given vector
-";
-
-%feature("docstring")  dolfin::Point::dot "
-Compute dot product with given vector
-";
-
-%feature("docstring")  dolfin::Point::str "
-Return informal string representation (pretty-print)
-";
-
-// Documentation extracted from: (module=mesh, header=Vertex.h)
-%feature("docstring")  dolfin::Vertex "
-A Vertex is a MeshEntity of topological dimension 0.
-";
-
-%feature("docstring")  dolfin::Vertex::Vertex "
-**Overloaded versions**
-
-* Vertex\ **(mesh, index)**
-
-  Create vertex on given mesh
-
-* Vertex\ **(entity)**
-
-  Create vertex from mesh entity
-";
-
-%feature("docstring")  dolfin::Vertex::x "
-**Overloaded versions**
-
-* x\ **(i)**
-
-  Return value of vertex coordinate i
-
-* x\ **()**
-
-  Return array of vertex coordinates (const version)
-";
-
-%feature("docstring")  dolfin::Vertex::point "
-Return vertex coordinates as a 3D point value
-";
-
-%feature("docstring")  dolfin::VertexIterator "
-A VertexIterator is a MeshEntityIterator of topological dimension 0.
-";
-
-%feature("docstring")  dolfin::VertexFunction "
-A VertexFunction is a MeshFunction of topological dimension 0.
-";
-
-// Documentation extracted from: (module=mesh, header=Edge.h)
-%feature("docstring")  dolfin::Edge "
-An Edge is a MeshEntity of topological dimension 1.
-";
-
-%feature("docstring")  dolfin::Edge::Edge "
-**Overloaded versions**
-
-* Edge\ **(mesh, index)**
-
-  Create edge on given mesh
-
-* Edge\ **(entity)**
-
-  Create edge from mesh entity
-";
-
-%feature("docstring")  dolfin::Edge::length "
-Compute Euclidean length of edge
-";
-
-%feature("docstring")  dolfin::EdgeIterator "
-An EdgeIterator is a MeshEntityIterator of topological dimension 1.
-";
-
-%feature("docstring")  dolfin::EdgeFunction "
-An EdgeFunction is a MeshFunction of topological dimension 1.
-";
-
-// Documentation extracted from: (module=mesh, header=Face.h)
-%feature("docstring")  dolfin::Face "
-A Face is a MeshEntity of topological dimension 2.
-";
-
-%feature("docstring")  dolfin::Face::Face "
-Constructor
-";
-
-%feature("docstring")  dolfin::Face::area "
-Calculate the area of the face (triangle)
-";
-
-%feature("docstring")  dolfin::FaceIterator "
-A FaceIterator is a MeshEntityIterator of topological dimension 2.
-";
-
-%feature("docstring")  dolfin::FaceFunction "
-A FaceFunction is a MeshFunction of topological dimension 2.
-";
-
-// Documentation extracted from: (module=mesh, header=Facet.h)
-%feature("docstring")  dolfin::Facet "
-A Facet is a MeshEntity of topological codimension 1.
-";
-
-%feature("docstring")  dolfin::Facet::Facet "
-Constructor
-";
-
-%feature("docstring")  dolfin::Facet::interior "
-Determine whether or not facet is an interior facet. This is 'relative'
-to the given partition of the mesh if the mesh is distributed
-";
-
-%feature("docstring")  dolfin::Facet::adjacent_cells "
-Return adjacent cells. An optional argument that lists for
-each facet the index of the first cell may be given to specify
-the ordering of the two cells. If not specified, the ordering
-will depend on the (arbitrary) ordering of the mesh
-connectivity.
-";
-
-%feature("docstring")  dolfin::FacetIterator "
-A FacetIterator is a MeshEntityIterator of topological codimension 1.
-";
-
-%feature("docstring")  dolfin::FacetFunction "
-A FacetFunction is a MeshFunction of topological codimension 1.
-";
-
-// Documentation extracted from: (module=mesh, header=Cell.h)
-%feature("docstring")  dolfin::Cell "
-A Cell is a MeshEntity of topological codimension 0.
-";
-
-%feature("docstring")  dolfin::Cell::Cell "
-**Overloaded versions**
-
-* Cell\ **()**
-
-  Create empty cell
-
-* Cell\ **(mesh, index)**
-
-  Create cell on given mesh with given index
-";
-
-%feature("docstring")  dolfin::Cell::type "
-Return type of cell
-";
-
-%feature("docstring")  dolfin::Cell::orientation "
-Compute orientation of cell (0 is right, 1 is left)
-";
-
-%feature("docstring")  dolfin::Cell::volume "
-Compute (generalized) volume of cell
-";
-
-%feature("docstring")  dolfin::Cell::diameter "
-Compute diameter of cell
-";
-
-%feature("docstring")  dolfin::Cell::normal "
-**Overloaded versions**
-
-* normal\ **(facet, i)**
-
-  Compute component i of normal of given facet with respect to the cell
-
-* normal\ **(facet)**
-
-  Compute normal of given facet with respect to the cell
-";
-
-%feature("docstring")  dolfin::Cell::facet_area "
-Compute the area/length of given facet with respect to the cell
-";
-
-%feature("docstring")  dolfin::Cell::order "
-Order entities locally
-";
-
-%feature("docstring")  dolfin::Cell::ordered "
-Check if entities are ordered
-";
-
-%feature("docstring")  dolfin::CellIterator "
-A CellIterator is a MeshEntityIterator of topological codimension 0.
-";
-
-%feature("docstring")  dolfin::CellFunction "
-A CellFunction is a MeshFunction of topological codimension 0.
-";
-
-// Documentation extracted from: (module=mesh, header=FacetCell.h)
-%feature("docstring")  dolfin::FacetCell "
-This class represents a cell in a mesh incident to a facet on
-the boundary. It is useful in cases where one needs to iterate
-over a boundary mesh and access the corresponding cells in the
-original mesh.
-";
-
-%feature("docstring")  dolfin::FacetCell::FacetCell "
-Create cell on mesh corresponding to given facet (cell) on boundary
-";
-
-%feature("docstring")  dolfin::FacetCell::facet_index "
-Return local index of facet with respect to the cell
-";
-
 // Documentation extracted from: (module=mesh, header=MeshTopology.h)
 %feature("docstring")  dolfin::MeshTopology "
 MeshTopology stores the topology of a mesh, consisting of mesh entities
@@ -6903,132 +6415,6 @@ Set higher order cell data for cell # N in direction i
 Return informal string representation (pretty-print)
 ";
 
-// Documentation extracted from: (module=mesh, header=IntersectionOperator.h)
-%feature("docstring")  dolfin::IntersectionOperator::IntersectionOperator "
-Create intersection detector for the mesh \em mesh.
-@param kernel_type The CGAL geometric kernel is used to compute predicates,
-intersections and such. Depending on this choice the kernel
-(kernel_type = \"ExcactPredicates\") can compute predicates excactly
-(without roundoff error) or only approximately (default, kernel_type =
-\"SimpleCartesian\").
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::all_intersected_entities "
-**Overloaded versions**
-
-* all_intersected_entities\ **(point, ids_result)**
-
-  Compute all id of all cells which are intersects by a \em point.
-  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-
-* all_intersected_entities\ **(points, ids_result)**
-
-  Compute all id of all cells which are intersects any point in \em points.
-  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-
-* all_intersected_entities\ **(entity, ids_result)**
-
-  Compute all id of all cells which are intersects by a \em entity.
-  \param[out] ids_result The ids of the intersected entities are saved in a vector.
-  This allows is more efficent than using a set and allows a map between
-  the (external) cell and the intersected cell of the mesh. If you
-  are only interested in intersection with a list of cells without caring about which
-  cell what intersected by which one, use
-  void IntersectionOperator::all_intersected_entities(const std::vector<Cell> &, uint_set &) const;
-  @internal
-  @todo This function has to improved: 1) it requires the object the
-  mesh is to be cut with to be another mesh entitiy instead of being just a
-  kind of geometric object. 2) Requires a runtime switch 3) would require a
-  implementation for each geometric  primitive if they have no common base
-  class.
-
-* all_intersected_entities\ **(entities, ids_result)**
-
-  Compute all id of all cells which are intersects by any of the entities in \em entities. This
-  \param[out] ids_result The ids of the intersected set are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-
-* all_intersected_entities\ **(another_mesh, ids_result)**
-
-  Compute all id of all cells which are intersects by the given mesh \em another_mesh;
-  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::any_intersected_entity "
-Computes only the first id of the entity, which contains the point. Returns -1 if no cell is intersected.
-@internal @remark This makes the function evaluation significantly faster.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::closest_point "
-Computes the point inside the mesh which are closest to the point query.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::closest_cell "
-Computes the index of the cell inside the mesh which are closest to the point query.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::closest_point_and_cell "
-Computes the point inside the mesh and the corresponding cell index
-which are closest to the point query.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
-Rebuilds the underlying search structure from scratch and uses the kernel kernel_type
-underlying CGAL Geometry kernel.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::clear "
-Clears search structure. Should be used if the mesh has changed
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::rImpl "
-Helper function to introduce lazy initialization.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::create_intersection_operator "
-Factory function to create the dimension dependent intersectionoperator
-implementation.
-";
-
-// Documentation extracted from: (module=mesh, header=PrimitiveIntersector.h)
-%feature("docstring")  dolfin::PrimitiveIntersector "
-This class implements an intersection detection, detecting
-whether two given (arbitrary) meshentities intersect.
-";
-
-%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect "
-**Overloaded versions**
-
-* do_intersect\ **(entity_1, entity_2)**
-
-  Computes whether two mesh entities intersect using an inexact
-  geometry kernel which is fast but may suffer from floating
-  point precision
-
-* do_intersect\ **(entity_1, point)**
-
-  Computes whether a mesh entity and point intersect using an
-  inexact geometry kernel which is fast but may suffer from
-  floating point precision
-";
-
-%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect_exact "
-**Overloaded versions**
-
-* do_intersect_exact\ **(entity_1, entity_2)**
-
-  Computes whether two mesh entities intersect using an exact
-  geometry kernel which is slow but always correct
-
-* do_intersect_exact\ **(entity_1, point)**
-
-  Computes whether a mesh entity and point intersect using an
-  exact geometry kernel which is slow but always correct
-";
-
 // Documentation extracted from: (module=mesh, header=MeshData.h)
 %feature("docstring")  dolfin::MeshData "
 The class MeshData is a container for auxiliary mesh data,
@@ -7072,7 +6458,7 @@ Sub meshes
 
 Mesh coloring
 
-  \"cell colors\"       - MeshFunction<uint> of dimension D with cell colors
+  \"colors-%D-%d-%1\"   - MeshFunction<uint> of dimension D with colors based on connectivity %d
   \"num colored cells\" - Array<uint> listing the number of cells of each color
   \"colored cells %d\"  - Array<uint> of cell indices with colors 0, 1, 2, ...
 ";
@@ -7165,400 +6551,94 @@ Erase vector mapping with given name
 Return informal string representation (pretty-print)
 ";
 
-// Documentation extracted from: (module=mesh, header=MeshConnectivity.h)
-%feature("docstring")  dolfin::MeshConnectivity "
-Mesh connectivity stores a sparse data structure of connections
-(incidence relations) between mesh entities for a fixed pair of
-topological dimensions.
-
-The connectivity can be specified either by first giving the
-number of entities and the number of connections for each entity,
-which may either be equal for all entities or different, or by
-giving the entire (sparse) connectivity pattern.
+// Documentation extracted from: (module=mesh, header=IntersectionOperator.h)
+%feature("docstring")  dolfin::IntersectionOperator::IntersectionOperator "
+Create intersection detector for the mesh \em mesh.
+@param kernel_type The CGAL geometric kernel is used to compute predicates,
+intersections and such. Depending on this choice the kernel
+(kernel_type = \"ExcactPredicates\") can compute predicates excactly
+(without roundoff error) or only approximately (default, kernel_type =
+\"SimpleCartesian\").
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::MeshConnectivity "
+%feature("docstring")  dolfin::IntersectionOperator::all_intersected_entities "
 **Overloaded versions**
 
-* MeshConnectivity\ **(d0, d1)**
+* all_intersected_entities\ **(point, ids_result)**
 
-  Create empty connectivity between given dimensions (d0 -- d1)
+  Compute all id of all cells which are intersects by a \em point.
+  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
 
-* MeshConnectivity\ **(connectivity)**
+* all_intersected_entities\ **(points, ids_result)**
 
-  Copy constructor
+  Compute all id of all cells which are intersects any point in \em points.
+  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
+
+* all_intersected_entities\ **(entity, ids_result)**
+
+  Compute all id of all cells which are intersects by a \em entity.
+  \param[out] ids_result The ids of the intersected entities are saved in a vector.
+  This allows is more efficent than using a set and allows a map between
+  the (external) cell and the intersected cell of the mesh. If you
+  are only interested in intersection with a list of cells without caring about which
+  cell what intersected by which one, use
+  void IntersectionOperator::all_intersected_entities(const std::vector<Cell> &, uint_set &) const;
+  @internal
+  @todo This function has to improved: 1) it requires the object the
+  mesh is to be cut with to be another mesh entitiy instead of being just a
+  kind of geometric object. 2) Requires a runtime switch 3) would require a
+  implementation for each geometric  primitive if they have no common base
+  class.
+
+* all_intersected_entities\ **(entities, ids_result)**
+
+  Compute all id of all cells which are intersects by any of the entities in \em entities. This
+  \param[out] ids_result The ids of the intersected set are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
+
+* all_intersected_entities\ **(another_mesh, ids_result)**
+
+  Compute all id of all cells which are intersects by the given mesh \em another_mesh;
+  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::operator= "
-Assignment
+%feature("docstring")  dolfin::IntersectionOperator::any_intersected_entity "
+Computes only the first id of the entity, which contains the point. Returns -1 if no cell is intersected.
+@internal @remark This makes the function evaluation significantly faster.
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::size "
-**Overloaded versions**
-
-* size\ **()**
-
-  Return total number of connections
-
-* size\ **(entity)**
-
-  Return number of connections for given entity
+%feature("docstring")  dolfin::IntersectionOperator::closest_point "
+Computes the point inside the mesh which are closest to the point query.
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::operator "
-**Overloaded versions**
-
-* operator\ **(entity)**
-
-  Return array of connections for given entity
-
-* operator\ **()**
-
-  Return contiguous array of connections for all entities
+%feature("docstring")  dolfin::IntersectionOperator::closest_cell "
+Computes the index of the cell inside the mesh which are closest to the point query.
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::clear "
-Clear all data
+%feature("docstring")  dolfin::IntersectionOperator::closest_point_and_cell "
+Computes the point inside the mesh and the corresponding cell index
+which are closest to the point query.
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::init "
-**Overloaded versions**
-
-* init\ **(num_entities, num_connections)**
-
-  Initialize number of entities and number of connections (equal for all)
-
-* init\ **(num_connections)**
-
-  Initialize number of entities and number of connections (individually)
+%feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
+Rebuilds the underlying search structure from scratch and uses the kernel kernel_type
+underlying CGAL Geometry kernel.
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::set "
-**Overloaded versions**
-
-* set\ **(entity, connection, pos)**
-
-  Set given connection for given entity
-
-* set\ **(entity, connections)**
-
-  Set all connections for given entity
-
-* set\ **(entity, connections)**
-
-  Set all connections for given entity
-
-* set\ **(connectivity)**
-
-  Set all connections for all entities
+%feature("docstring")  dolfin::IntersectionOperator::clear "
+Clears search structure. Should be used if the mesh has changed
 ";
 
-%feature("docstring")  dolfin::MeshConnectivity::str "
-Return informal string representation (pretty-print)
+%feature("docstring")  dolfin::IntersectionOperator::rImpl "
+Helper function to introduce lazy initialization.
 ";
 
-// Documentation extracted from: (module=mesh, header=MeshEditor.h)
-%feature("docstring")  dolfin::MeshEditor "
-A simple mesh editor for creating simplicial meshes in 1D, 2D and 3D.
-";
-
-%feature("docstring")  dolfin::MeshEditor::MeshEditor "
-Constructor
-";
-
-%feature("docstring")  dolfin::MeshEditor::open "
-**Overloaded versions**
-
-* open\ **(mesh, tdim, gdim)**
-
-  Open mesh of given topological and geometrical dimension
-
-* open\ **(mesh, type, tdim, gdim)**
-
-  Open mesh of given cell type, topological and geometrical dimension
-
-* open\ **(mesh, type, tdim, gdim)**
-
-  Open mesh of given cell type, topological and geometrical dimension
-";
-
-%feature("docstring")  dolfin::MeshEditor::init_vertices "
-Specify number of vertices
-";
-
-%feature("docstring")  dolfin::MeshEditor::init_higher_order_vertices "
-Specify number of vertices
-";
-
-%feature("docstring")  dolfin::MeshEditor::init_cells "
-Specify number of cells
-";
-
-%feature("docstring")  dolfin::MeshEditor::init_higher_order_cells "
-Specify number of cells
-";
-
-%feature("docstring")  dolfin::MeshEditor::set_affine_cell_indicator "
-Set boolean indicator inside MeshGeometry
-";
-
-%feature("docstring")  dolfin::MeshEditor::add_vertex "
-**Overloaded versions**
-
-* add_vertex\ **(v, p)**
-
-  Add vertex v at given point p
-
-* add_vertex\ **(v, x)**
-
-  Add vertex v at given coordinate x
-
-* add_vertex\ **(v, x, y)**
-
-  Add vertex v at given coordinate (x, y)
-
-* add_vertex\ **(v, x, y, z)**
-
-  Add vertex v at given coordinate (x, y, z)
-";
-
-%feature("docstring")  dolfin::MeshEditor::add_higher_order_vertex "
-**Overloaded versions**
-
-* add_higher_order_vertex\ **(v, p)**
-
-  Add vertex v at given point p
-
-* add_higher_order_vertex\ **(v, x)**
-
-  Add vertex v at given coordinate x
-
-* add_higher_order_vertex\ **(v, x, y)**
-
-  Add vertex v at given coordinate (x, y)
-
-* add_higher_order_vertex\ **(v, x, y, z)**
-
-  Add vertex v at given coordinate (x, y, z)
-";
-
-%feature("docstring")  dolfin::MeshEditor::add_cell "
-**Overloaded versions**
-
-* add_cell\ **(c, v)**
-
-  Add cell with given vertices
-
-* add_cell\ **(c, v0, v1)**
-
-  Add cell (interval) with given vertices
-
-* add_cell\ **(c, v0, v1, v2)**
-
-  Add cell (triangle) with given vertices
-
-* add_cell\ **(c, v0, v1, v2, v3)**
-
-  Add cell (tetrahedron) with given vertices
-";
-
-%feature("docstring")  dolfin::MeshEditor::add_higher_order_cell_data "
-Add higher order cell data (assume P2 triangle for now)
-";
-
-%feature("docstring")  dolfin::MeshEditor::close "
-Close mesh, finish editing, and order entities locally
-";
-
-// Documentation extracted from: (module=mesh, header=DynamicMeshEditor.h)
-%feature("docstring")  dolfin::DynamicMeshEditor "
-This class provides an interface for dynamic editing of meshes,
-that is, when the number of vertices and cells are not known
-a priori. If the number of vertices and cells are known a priori,
-it is more efficient to use the default editor MeshEditor.
-";
-
-%feature("docstring")  dolfin::DynamicMeshEditor::DynamicMeshEditor "
-Constructor
-";
-
-%feature("docstring")  dolfin::DynamicMeshEditor::open "
-**Overloaded versions**
-
-* open\ **(mesh, type, tdim, gdim)**
-
-  Open mesh of given cell type, topological and geometrical dimension
-
-* open\ **(mesh, type, tdim, gdim)**
-
-  Open mesh of given cell type, topological and geometrical dimension
-";
-
-%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
-**Overloaded versions**
-
-* add_vertex\ **(v, p)**
-
-  Add vertex v at given point p
-
-* add_vertex\ **(v, x)**
-
-  Add vertex v at given coordinate x
-
-* add_vertex\ **(v, x, y)**
-
-  Add vertex v at given coordinate (x, y)
-
-* add_vertex\ **(v, x, y, z)**
-
-  Add vertex v at given coordinate (x, y, z)
-";
-
-%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
-**Overloaded versions**
-
-* add_cell\ **(c, v)**
-
-  Add cell with given vertices
-
-* add_cell\ **(c, v0, v1)**
-
-  Add cell (interval) with given vertices
-
-* add_cell\ **(c, v0, v1, v2)**
-
-  Add cell (triangle) with given vertices
-
-* add_cell\ **(c, v0, v1, v2, v3)**
-
-  Add cell (tetrahedron) with given vertices
-";
-
-%feature("docstring")  dolfin::DynamicMeshEditor::close "
-Close mesh, finish editing, and order entities locally
-";
-
-// Documentation extracted from: (module=mesh, header=MeshFunction.h)
-%feature("docstring")  dolfin::MeshFunction "
-A MeshFunction is a function that can be evaluated at a set of
-mesh entities. A MeshFunction is discrete and is only defined
-at the set of mesh entities of a fixed topological dimension.
-A MeshFunction may for example be used to store a global
-numbering scheme for the entities of a (parallel) mesh, marking
-sub domains or boolean markers for mesh refinement.
-";
-
-%feature("docstring")  dolfin::MeshFunction::MeshFunction "
-**Overloaded versions**
-
-* MeshFunction\ **()**
-
-  Create empty mesh function
-
-* MeshFunction\ **(mesh)**
-
-  Create empty mesh function on given mesh
-
-* MeshFunction\ **(mesh, dim)**
-
-  Create mesh function on given mesh of given dimension
-
-* MeshFunction\ **(mesh, dim, value)**
-
-  Create mesh function on given mesh of given dimension and initialise
-  to a value
-
-* MeshFunction\ **(mesh, filename)**
-
-  Create function from data file
-
-* MeshFunction\ **(f)**
-
-  Copy constructor
-";
-
-%feature("docstring")  dolfin::MeshFunction::mesh "
-Return mesh associated with mesh function
-";
-
-%feature("docstring")  dolfin::MeshFunction::dim "
-Return topological dimension
-";
-
-%feature("docstring")  dolfin::MeshFunction::size "
-Return size (number of entities)
-";
-
-%feature("docstring")  dolfin::MeshFunction::values "
-**Overloaded versions**
-
-* values\ **()**
-
-  Return array of values
-
-* values\ **()**
-
-  Return array of values
-";
-
-%feature("docstring")  dolfin::MeshFunction::operator[] "
-**Overloaded versions**
-
-* operator[]\ **(entity)**
-
-  Return value at given entity
-
-* operator[]\ **(entity)**
-
-  Return value at given entity (const version)
-
-* operator[]\ **(index)**
-
-  Return value at given index
-
-* operator[]\ **(index)**
-
-  Return value at given index  (const version)
-";
-
-%feature("docstring")  dolfin::MeshFunction::operator= "
-**Overloaded versions**
-
-* operator=\ **(f)**
-
-  Assign mesh function
-
-* operator=\ **(value)**
-
-  Set all values to given value
-";
-
-%feature("docstring")  dolfin::MeshFunction::init "
-**Overloaded versions**
-
-* init\ **(dim)**
-
-  Initialize mesh function for given topological dimension
-
-* init\ **(dim, size)**
-
-  Initialize mesh function for given topological dimension of given size
-
-* init\ **(mesh, dim)**
-
-  Initialize mesh function for given topological dimension
-
-* init\ **(mesh, dim, size)**
-
-  Initialize mesh function for given topological dimension of given size
-";
-
-%feature("docstring")  dolfin::MeshFunction::set_all "
-Set all values to given value
-";
-
-%feature("docstring")  dolfin::MeshFunction::str "
-Return informal string representation (pretty-print)
+%feature("docstring")  dolfin::IntersectionOperator::create_intersection_operator "
+Factory function to create the dimension dependent intersectionoperator
+implementation.
 ";
 
 // Documentation extracted from: (module=mesh, header=Mesh.h)
@@ -8246,6 +7326,985 @@ Informal string representation.
         '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
+// Documentation extracted from: (module=mesh, header=MeshEntity.h)
+%feature("docstring")  dolfin::MeshEntity "
+A MeshEntity represents a mesh entity associated with
+a specific topological dimension of some mesh.
+";
+
+%feature("docstring")  dolfin::MeshEntity::MeshEntity "
+**Overloaded versions**
+
+* MeshEntity\ **()**
+
+  Default Constructor
+
+* MeshEntity\ **(mesh, dim, index)**
+
+  Constructor
+";
+
+%feature("docstring")  dolfin::MeshEntity::operator== "
+Comparision Operator
+";
+
+%feature("docstring")  dolfin::MeshEntity::mesh "
+Return mesh associated with mesh entity
+";
+
+%feature("docstring")  dolfin::MeshEntity::dim "
+Return topological dimension
+";
+
+%feature("docstring")  dolfin::MeshEntity::index "
+**Overloaded versions**
+
+* index\ **()**
+
+  Return index of mesh entity
+
+* index\ **(entity)**
+
+  Compute local index of given incident entity (error if not found)
+";
+
+%feature("docstring")  dolfin::MeshEntity::num_entities "
+Return number of incident mesh entities of given topological dimension
+";
+
+%feature("docstring")  dolfin::MeshEntity::entities "
+Return array of indices for incident mesh entitites of given topological dimension
+";
+
+%feature("docstring")  dolfin::MeshEntity::mesh_id "
+Return unique mesh ID
+";
+
+%feature("docstring")  dolfin::MeshEntity::incident "
+Check if given entity is indicent
+";
+
+%feature("docstring")  dolfin::MeshEntity::intersects "
+**Overloaded versions**
+
+* intersects\ **(point)**
+
+  Check if given point intersects (using inexact but fast numerics)
+
+* intersects\ **(entity)**
+
+  Check if given entity intersects (using inexact but fast numerics)
+";
+
+%feature("docstring")  dolfin::MeshEntity::intersects_exactly "
+**Overloaded versions**
+
+* intersects_exactly\ **(point)**
+
+  Check if given point intersects (using exact numerics)
+
+* intersects_exactly\ **(entity)**
+
+  Check if given entity intersects (using exact numerics)
+";
+
+%feature("docstring")  dolfin::MeshEntity::midpoint "
+Compute midpoint of cell
+";
+
+%feature("docstring")  dolfin::MeshEntity::bbox "
+Returns a 3D bounding box of the mesh entity. For lower dimension it may be a degenerated box.
+";
+
+%feature("docstring")  dolfin::MeshEntity::str "
+Return informal string representation (pretty-print)
+";
+
+// Documentation extracted from: (module=mesh, header=MeshEntityIterator.h)
+%feature("docstring")  dolfin::MeshEntityIterator "
+MeshEntityIterator provides a common iterator for mesh entities
+over meshes, boundaries and incidence relations. The basic use
+is illustrated below.
+
+*Example*
+    The following example shows how to iterate over all mesh entities
+    of a mesh of topological dimension dim:
+    
+    .. code-block:: python
+    
+        >>> for e in dolfin.cpp.entities(mesh, 1):
+        ...     print e.index()
+    
+    The following example shows how to iterate over mesh entities of
+    topological dimension dim connected (incident) to some mesh entity f:
+    
+    .. code-block:: python
+    
+        >>> f = dolfin.cpp.MeshEntity(mesh, 0, 0)
+        >>> for e in dolfin.cpp.entities(f, 1):
+        ...     print e.index()
+In addition to the general iterator, a set of specific named iterators
+are provided for entities of type :py:class:`Vertex`, :py:class:`Edge`, :py:class:`Face`, :py:class:`Facet`
+and :py:class:`Cell`. These iterators are defined along with their respective
+classes.
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator "
+**Overloaded versions**
+
+* MeshEntityIterator\ **()**
+
+  Default constructor
+
+* MeshEntityIterator\ **(mesh, dim)**
+
+  Create iterator for mesh entities over given topological dimension
+
+* MeshEntityIterator\ **(entity, dim)**
+
+  Create iterator for entities of given dimension connected to given entity
+
+* MeshEntityIterator\ **(it)**
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator++ "
+Step to next mesh entity (prefix increment)
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator-- "
+Step to the previous mesh entity (prefix decrease)
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::pos "
+Return current position
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator== "
+Comparison operator.
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator!= "
+Comparison operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator* "
+Dereference operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator-> "
+Member access operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::operator[] "
+Random access operator.
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::end "
+Check if iterator has reached the end
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::end_iterator "
+Provide a safeguard iterator pointing beyond the end of an iteration
+process, either iterating over the mesh /or incident entities. Added to
+be bit more like STL iterators, since many algorithms rely on a kind of
+beyond iterator.
+";
+
+%feature("docstring")  dolfin::MeshEntityIterator::set_end "
+Set pos to end position. To create a kind of mesh.end() iterator.
+";
+
+// Documentation extracted from: (module=mesh, header=SubsetIterator.h)
+%feature("docstring")  dolfin::SubsetIterator "
+A :py:class:`SubsetIterator` is similar to a :py:class:`MeshEntityIterator` but
+iterates over a specified subset of the range of entities as
+specified by a :py:class:`MeshFunction` that labels the entites.
+";
+
+%feature("docstring")  dolfin::SubsetIterator::SubsetIterator "
+Create iterator for given mesh function. The iterator visits
+all entities that match the given label.
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator++ "
+Step to next mesh entity (prefix increment)
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator* "
+Dereference operator
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator-> "
+Member access operator
+";
+
+%feature("docstring")  dolfin::SubsetIterator::end "
+Check if iterator has reached the end
+";
+
+// Documentation extracted from: (module=mesh, header=Point.h)
+%feature("docstring")  dolfin::Point "
+A Point represents a point in R^3 with coordinates x, y, z, or,
+alternatively, a vector in R^3, supporting standard operations
+like the norm, distances, scalar and vector products etc.
+";
+
+%feature("docstring")  dolfin::Point::Point "
+**Overloaded versions**
+
+* Point\ **(0.0, 0.0, =0.0)**
+
+  Create a point at (x, y, z)
+
+* Point\ **(dim, x)**
+
+  Create point from array
+
+* Point\ **(p)**
+
+  Copy constructor
+
+* Point\ **(point)**
+
+  Constructor taking a CGAL::Point_3. Allows conversion from CGAL Point_3 class to Point class.
+";
+
+%feature("docstring")  dolfin::Point::operator[] "
+**Overloaded versions**
+
+* operator[]\ **(i)**
+
+  Return address of coordinate in direction i
+
+* operator[]\ **(i)**
+
+  Return coordinate in direction i
+";
+
+%feature("docstring")  dolfin::Point::x "
+Return x-coordinate
+";
+
+%feature("docstring")  dolfin::Point::y "
+Return y-coordinate
+";
+
+%feature("docstring")  dolfin::Point::z "
+Return z-coordinate
+";
+
+%feature("docstring")  dolfin::Point::coordinates "
+Return coordinate array
+";
+
+%feature("docstring")  dolfin::Point::operator+ "
+Compute sum of two points
+";
+
+%feature("docstring")  dolfin::Point::operator- "
+Compute difference of two points
+";
+
+%feature("docstring")  dolfin::Point::operator+= "
+Add given point
+";
+
+%feature("docstring")  dolfin::Point::operator-= "
+Subtract given point
+";
+
+%feature("docstring")  dolfin::Point::operator* "
+**Overloaded versions**
+
+* operator*\ **(a)**
+
+  Multiplication with scalar
+
+* operator*\ **(a, p)**
+
+  Multiplication with scalar
+";
+
+%feature("docstring")  dolfin::Point::operator*= "
+Incremental multiplication with scalar
+";
+
+%feature("docstring")  dolfin::Point::operator/ "
+Division by scalar
+";
+
+%feature("docstring")  dolfin::Point::operator/= "
+Incremental division by scalar
+";
+
+%feature("docstring")  dolfin::Point::operator= "
+Assignment operator
+";
+
+%feature("docstring")  dolfin::Point::operator CGAL::Point_3<Kernel> "
+Conversion operator to appropriate CGAL Point_3 class.
+";
+
+%feature("docstring")  dolfin::Point::bbox "
+Provides a CGAL bounding box, using conversion operator.
+";
+
+%feature("docstring")  dolfin::Point::distance "
+Compute distance to given point
+";
+
+%feature("docstring")  dolfin::Point::norm "
+Compute norm of point representing a vector from the origin
+";
+
+%feature("docstring")  dolfin::Point::cross "
+Compute cross product with given vector
+";
+
+%feature("docstring")  dolfin::Point::dot "
+Compute dot product with given vector
+";
+
+%feature("docstring")  dolfin::Point::str "
+Return informal string representation (pretty-print)
+";
+
+// Documentation extracted from: (module=mesh, header=Vertex.h)
+%feature("docstring")  dolfin::Vertex "
+A Vertex is a MeshEntity of topological dimension 0.
+";
+
+%feature("docstring")  dolfin::Vertex::Vertex "
+**Overloaded versions**
+
+* Vertex\ **(mesh, index)**
+
+  Create vertex on given mesh
+
+* Vertex\ **(entity)**
+
+  Create vertex from mesh entity
+";
+
+%feature("docstring")  dolfin::Vertex::x "
+**Overloaded versions**
+
+* x\ **(i)**
+
+  Return value of vertex coordinate i
+
+* x\ **()**
+
+  Return array of vertex coordinates (const version)
+";
+
+%feature("docstring")  dolfin::Vertex::point "
+Return vertex coordinates as a 3D point value
+";
+
+%feature("docstring")  dolfin::VertexIterator "
+A VertexIterator is a MeshEntityIterator of topological dimension 0.
+";
+
+%feature("docstring")  dolfin::VertexFunction "
+A VertexFunction is a MeshFunction of topological dimension 0.
+";
+
+// Documentation extracted from: (module=mesh, header=Edge.h)
+%feature("docstring")  dolfin::Edge "
+An Edge is a MeshEntity of topological dimension 1.
+";
+
+%feature("docstring")  dolfin::Edge::Edge "
+**Overloaded versions**
+
+* Edge\ **(mesh, index)**
+
+  Create edge on given mesh
+
+* Edge\ **(entity)**
+
+  Create edge from mesh entity
+";
+
+%feature("docstring")  dolfin::Edge::length "
+Compute Euclidean length of edge
+";
+
+%feature("docstring")  dolfin::EdgeIterator "
+An EdgeIterator is a MeshEntityIterator of topological dimension 1.
+";
+
+%feature("docstring")  dolfin::EdgeFunction "
+An EdgeFunction is a MeshFunction of topological dimension 1.
+";
+
+// Documentation extracted from: (module=mesh, header=Face.h)
+%feature("docstring")  dolfin::Face "
+A Face is a MeshEntity of topological dimension 2.
+";
+
+%feature("docstring")  dolfin::Face::Face "
+Constructor
+";
+
+%feature("docstring")  dolfin::Face::area "
+Calculate the area of the face (triangle)
+";
+
+%feature("docstring")  dolfin::FaceIterator "
+A FaceIterator is a MeshEntityIterator of topological dimension 2.
+";
+
+%feature("docstring")  dolfin::FaceFunction "
+A FaceFunction is a MeshFunction of topological dimension 2.
+";
+
+// Documentation extracted from: (module=mesh, header=Facet.h)
+%feature("docstring")  dolfin::Facet "
+A Facet is a MeshEntity of topological codimension 1.
+";
+
+%feature("docstring")  dolfin::Facet::Facet "
+Constructor
+";
+
+%feature("docstring")  dolfin::Facet::interior "
+Determine whether or not facet is an interior facet. This is 'relative'
+to the given partition of the mesh if the mesh is distributed
+";
+
+%feature("docstring")  dolfin::Facet::adjacent_cells "
+Return adjacent cells. An optional argument that lists for
+each facet the index of the first cell may be given to specify
+the ordering of the two cells. If not specified, the ordering
+will depend on the (arbitrary) ordering of the mesh
+connectivity.
+";
+
+%feature("docstring")  dolfin::FacetIterator "
+A FacetIterator is a MeshEntityIterator of topological codimension 1.
+";
+
+%feature("docstring")  dolfin::FacetFunction "
+A FacetFunction is a MeshFunction of topological codimension 1.
+";
+
+// Documentation extracted from: (module=mesh, header=Cell.h)
+%feature("docstring")  dolfin::Cell "
+A Cell is a MeshEntity of topological codimension 0.
+";
+
+%feature("docstring")  dolfin::Cell::Cell "
+**Overloaded versions**
+
+* Cell\ **()**
+
+  Create empty cell
+
+* Cell\ **(mesh, index)**
+
+  Create cell on given mesh with given index
+";
+
+%feature("docstring")  dolfin::Cell::type "
+Return type of cell
+";
+
+%feature("docstring")  dolfin::Cell::orientation "
+Compute orientation of cell (0 is right, 1 is left)
+";
+
+%feature("docstring")  dolfin::Cell::volume "
+Compute (generalized) volume of cell
+";
+
+%feature("docstring")  dolfin::Cell::diameter "
+Compute diameter of cell
+";
+
+%feature("docstring")  dolfin::Cell::normal "
+**Overloaded versions**
+
+* normal\ **(facet, i)**
+
+  Compute component i of normal of given facet with respect to the cell
+
+* normal\ **(facet)**
+
+  Compute normal of given facet with respect to the cell
+";
+
+%feature("docstring")  dolfin::Cell::facet_area "
+Compute the area/length of given facet with respect to the cell
+";
+
+%feature("docstring")  dolfin::Cell::order "
+Order entities locally
+";
+
+%feature("docstring")  dolfin::Cell::ordered "
+Check if entities are ordered
+";
+
+%feature("docstring")  dolfin::CellIterator "
+A CellIterator is a MeshEntityIterator of topological codimension 0.
+";
+
+%feature("docstring")  dolfin::CellFunction "
+A CellFunction is a MeshFunction of topological codimension 0.
+";
+
+// Documentation extracted from: (module=mesh, header=FacetCell.h)
+%feature("docstring")  dolfin::FacetCell "
+This class represents a cell in a mesh incident to a facet on
+the boundary. It is useful in cases where one needs to iterate
+over a boundary mesh and access the corresponding cells in the
+original mesh.
+";
+
+%feature("docstring")  dolfin::FacetCell::FacetCell "
+Create cell on mesh corresponding to given facet (cell) on boundary
+";
+
+%feature("docstring")  dolfin::FacetCell::facet_index "
+Return local index of facet with respect to the cell
+";
+
+// Documentation extracted from: (module=mesh, header=PrimitiveIntersector.h)
+%feature("docstring")  dolfin::PrimitiveIntersector "
+This class implements an intersection detection, detecting
+whether two given (arbitrary) meshentities intersect.
+";
+
+%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect "
+**Overloaded versions**
+
+* do_intersect\ **(entity_1, entity_2)**
+
+  Computes whether two mesh entities intersect using an inexact
+  geometry kernel which is fast but may suffer from floating
+  point precision
+
+* do_intersect\ **(entity_1, point)**
+
+  Computes whether a mesh entity and point intersect using an
+  inexact geometry kernel which is fast but may suffer from
+  floating point precision
+";
+
+%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect_exact "
+**Overloaded versions**
+
+* do_intersect_exact\ **(entity_1, entity_2)**
+
+  Computes whether two mesh entities intersect using an exact
+  geometry kernel which is slow but always correct
+
+* do_intersect_exact\ **(entity_1, point)**
+
+  Computes whether a mesh entity and point intersect using an
+  exact geometry kernel which is slow but always correct
+";
+
+// Documentation extracted from: (module=mesh, header=MeshConnectivity.h)
+%feature("docstring")  dolfin::MeshConnectivity "
+Mesh connectivity stores a sparse data structure of connections
+(incidence relations) between mesh entities for a fixed pair of
+topological dimensions.
+
+The connectivity can be specified either by first giving the
+number of entities and the number of connections for each entity,
+which may either be equal for all entities or different, or by
+giving the entire (sparse) connectivity pattern.
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::MeshConnectivity "
+**Overloaded versions**
+
+* MeshConnectivity\ **(d0, d1)**
+
+  Create empty connectivity between given dimensions (d0 -- d1)
+
+* MeshConnectivity\ **(connectivity)**
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::operator= "
+Assignment
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::size "
+**Overloaded versions**
+
+* size\ **()**
+
+  Return total number of connections
+
+* size\ **(entity)**
+
+  Return number of connections for given entity
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::operator "
+**Overloaded versions**
+
+* operator\ **(entity)**
+
+  Return array of connections for given entity
+
+* operator\ **()**
+
+  Return contiguous array of connections for all entities
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::clear "
+Clear all data
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::init "
+**Overloaded versions**
+
+* init\ **(num_entities, num_connections)**
+
+  Initialize number of entities and number of connections (equal for all)
+
+* init\ **(num_connections)**
+
+  Initialize number of entities and number of connections (individually)
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::set "
+**Overloaded versions**
+
+* set\ **(entity, connection, pos)**
+
+  Set given connection for given entity
+
+* set\ **(entity, connections)**
+
+  Set all connections for given entity
+
+* set\ **(entity, connections)**
+
+  Set all connections for given entity
+
+* set\ **(connectivity)**
+
+  Set all connections for all entities
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::str "
+Return informal string representation (pretty-print)
+";
+
+// Documentation extracted from: (module=mesh, header=MeshEditor.h)
+%feature("docstring")  dolfin::MeshEditor "
+A simple mesh editor for creating simplicial meshes in 1D, 2D and 3D.
+";
+
+%feature("docstring")  dolfin::MeshEditor::MeshEditor "
+Constructor
+";
+
+%feature("docstring")  dolfin::MeshEditor::open "
+**Overloaded versions**
+
+* open\ **(mesh, tdim, gdim)**
+
+  Open mesh of given topological and geometrical dimension
+
+* open\ **(mesh, type, tdim, gdim)**
+
+  Open mesh of given cell type, topological and geometrical dimension
+
+* open\ **(mesh, type, tdim, gdim)**
+
+  Open mesh of given cell type, topological and geometrical dimension
+";
+
+%feature("docstring")  dolfin::MeshEditor::init_vertices "
+Specify number of vertices
+";
+
+%feature("docstring")  dolfin::MeshEditor::init_higher_order_vertices "
+Specify number of vertices
+";
+
+%feature("docstring")  dolfin::MeshEditor::init_cells "
+Specify number of cells
+";
+
+%feature("docstring")  dolfin::MeshEditor::init_higher_order_cells "
+Specify number of cells
+";
+
+%feature("docstring")  dolfin::MeshEditor::set_affine_cell_indicator "
+Set boolean indicator inside MeshGeometry
+";
+
+%feature("docstring")  dolfin::MeshEditor::add_vertex "
+**Overloaded versions**
+
+* add_vertex\ **(v, p)**
+
+  Add vertex v at given point p
+
+* add_vertex\ **(v, x)**
+
+  Add vertex v at given coordinate x
+
+* add_vertex\ **(v, x, y)**
+
+  Add vertex v at given coordinate (x, y)
+
+* add_vertex\ **(v, x, y, z)**
+
+  Add vertex v at given coordinate (x, y, z)
+";
+
+%feature("docstring")  dolfin::MeshEditor::add_higher_order_vertex "
+**Overloaded versions**
+
+* add_higher_order_vertex\ **(v, p)**
+
+  Add vertex v at given point p
+
+* add_higher_order_vertex\ **(v, x)**
+
+  Add vertex v at given coordinate x
+
+* add_higher_order_vertex\ **(v, x, y)**
+
+  Add vertex v at given coordinate (x, y)
+
+* add_higher_order_vertex\ **(v, x, y, z)**
+
+  Add vertex v at given coordinate (x, y, z)
+";
+
+%feature("docstring")  dolfin::MeshEditor::add_cell "
+**Overloaded versions**
+
+* add_cell\ **(c, v)**
+
+  Add cell with given vertices
+
+* add_cell\ **(c, v0, v1)**
+
+  Add cell (interval) with given vertices
+
+* add_cell\ **(c, v0, v1, v2)**
+
+  Add cell (triangle) with given vertices
+
+* add_cell\ **(c, v0, v1, v2, v3)**
+
+  Add cell (tetrahedron) with given vertices
+";
+
+%feature("docstring")  dolfin::MeshEditor::add_higher_order_cell_data "
+Add higher order cell data (assume P2 triangle for now)
+";
+
+%feature("docstring")  dolfin::MeshEditor::close "
+Close mesh, finish editing, and order entities locally
+";
+
+// Documentation extracted from: (module=mesh, header=DynamicMeshEditor.h)
+%feature("docstring")  dolfin::DynamicMeshEditor "
+This class provides an interface for dynamic editing of meshes,
+that is, when the number of vertices and cells are not known
+a priori. If the number of vertices and cells are known a priori,
+it is more efficient to use the default editor MeshEditor.
+";
+
+%feature("docstring")  dolfin::DynamicMeshEditor::DynamicMeshEditor "
+Constructor
+";
+
+%feature("docstring")  dolfin::DynamicMeshEditor::open "
+**Overloaded versions**
+
+* open\ **(mesh, type, tdim, gdim)**
+
+  Open mesh of given cell type, topological and geometrical dimension
+
+* open\ **(mesh, type, tdim, gdim)**
+
+  Open mesh of given cell type, topological and geometrical dimension
+";
+
+%feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
+**Overloaded versions**
+
+* add_vertex\ **(v, p)**
+
+  Add vertex v at given point p
+
+* add_vertex\ **(v, x)**
+
+  Add vertex v at given coordinate x
+
+* add_vertex\ **(v, x, y)**
+
+  Add vertex v at given coordinate (x, y)
+
+* add_vertex\ **(v, x, y, z)**
+
+  Add vertex v at given coordinate (x, y, z)
+";
+
+%feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
+**Overloaded versions**
+
+* add_cell\ **(c, v)**
+
+  Add cell with given vertices
+
+* add_cell\ **(c, v0, v1)**
+
+  Add cell (interval) with given vertices
+
+* add_cell\ **(c, v0, v1, v2)**
+
+  Add cell (triangle) with given vertices
+
+* add_cell\ **(c, v0, v1, v2, v3)**
+
+  Add cell (tetrahedron) with given vertices
+";
+
+%feature("docstring")  dolfin::DynamicMeshEditor::close "
+Close mesh, finish editing, and order entities locally
+";
+
+// Documentation extracted from: (module=mesh, header=MeshFunction.h)
+%feature("docstring")  dolfin::MeshFunction "
+A MeshFunction is a function that can be evaluated at a set of
+mesh entities. A MeshFunction is discrete and is only defined
+at the set of mesh entities of a fixed topological dimension.
+A MeshFunction may for example be used to store a global
+numbering scheme for the entities of a (parallel) mesh, marking
+sub domains or boolean markers for mesh refinement.
+";
+
+%feature("docstring")  dolfin::MeshFunction::MeshFunction "
+**Overloaded versions**
+
+* MeshFunction\ **()**
+
+  Create empty mesh function
+
+* MeshFunction\ **(mesh)**
+
+  Create empty mesh function on given mesh
+
+* MeshFunction\ **(mesh, dim)**
+
+  Create mesh function on given mesh of given dimension
+
+* MeshFunction\ **(mesh, dim, value)**
+
+  Create mesh function on given mesh of given dimension and initialise
+  to a value
+
+* MeshFunction\ **(mesh, filename)**
+
+  Create function from data file
+
+* MeshFunction\ **(f)**
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::MeshFunction::mesh "
+Return mesh associated with mesh function
+";
+
+%feature("docstring")  dolfin::MeshFunction::dim "
+Return topological dimension
+";
+
+%feature("docstring")  dolfin::MeshFunction::size "
+Return size (number of entities)
+";
+
+%feature("docstring")  dolfin::MeshFunction::values "
+**Overloaded versions**
+
+* values\ **()**
+
+  Return array of values
+
+* values\ **()**
+
+  Return array of values
+";
+
+%feature("docstring")  dolfin::MeshFunction::operator[] "
+**Overloaded versions**
+
+* operator[]\ **(entity)**
+
+  Return value at given entity
+
+* operator[]\ **(entity)**
+
+  Return value at given entity (const version)
+
+* operator[]\ **(index)**
+
+  Return value at given index
+
+* operator[]\ **(index)**
+
+  Return value at given index  (const version)
+";
+
+%feature("docstring")  dolfin::MeshFunction::operator= "
+**Overloaded versions**
+
+* operator=\ **(f)**
+
+  Assign mesh function
+
+* operator=\ **(value)**
+
+  Set all values to given value
+";
+
+%feature("docstring")  dolfin::MeshFunction::init "
+**Overloaded versions**
+
+* init\ **(dim)**
+
+  Initialize mesh function for given topological dimension
+
+* init\ **(dim, size)**
+
+  Initialize mesh function for given topological dimension of given size
+
+* init\ **(mesh, dim)**
+
+  Initialize mesh function for given topological dimension
+
+* init\ **(mesh, dim, size)**
+
+  Initialize mesh function for given topological dimension of given size
+";
+
+%feature("docstring")  dolfin::MeshFunction::set_all "
+Set all values to given value
+";
+
+%feature("docstring")  dolfin::MeshFunction::str "
+Return informal string representation (pretty-print)
+";
+
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
 %feature("docstring")  dolfin::MeshPartitioning "
 This class partitions and distributes a mesh based on
@@ -8307,36 +8366,22 @@ Create global entity indices for entities of dimension d
 // Documentation extracted from: (module=mesh, header=MeshColoring.h)
 %feature("docstring")  dolfin::MeshColoring "
 This class computes colorings for a local mesh. It supports
-vertex, edge, and facet-based colorings. Zoltan (part of
-Trilinos) is used to compute the colorings.
+vertex, edge, and facet-based colorings.
 ";
 
 %feature("docstring")  dolfin::MeshColoring::color_cells "
-**Overloaded versions**
-
-* color_cells\ **(mesh, coloring_type)**
-
-  Color the cells of a mesh for given coloring type, which can
-  be one of \"vertex\", \"edge\" or \"facet\".
-
-* color_cells\ **(mesh, dim)**
-
-  Color the cells of a mesh for given coloring type specified by
-  topological dimension, which can be one of 0, 1 or D - 1.
+Color the cells of a mesh for given coloring type, which can
+be one of \"vertex\", \"edge\" or \"facet\".
 ";
 
-%feature("docstring")  dolfin::MeshColoring::compute_cell_colors "
-**Overloaded versions**
+%feature("docstring")  dolfin::MeshColoring::color "
+Color the cells of a mesh for given coloring type specified by
+topological dimension, which can be one of 0, 1 or D - 1.
+";
 
-* compute_cell_colors\ **(colors, coloring_type)**
-
-  Compute cell colors for given coloring type, which can be one
-  of \"vertex\", \"edge\" or \"facet\".
-
-* compute_cell_colors\ **(colors, dim)**
-
-  Compute cell colors for given coloring type specified by
-  topological dimension, which can be one of 0, 1 or D - 1.
+%feature("docstring")  dolfin::MeshColoring::compute_colors "
+Compute cell colors for given coloring type specified by
+topological dimension, which can be one of 0, 1 or D - 1.
 ";
 
 %feature("docstring")  dolfin::MeshColoring::type_to_dim "
@@ -8939,7 +8984,10 @@ Check if file exists
 
 // Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
 %feature("docstring")  dolfin::ErrorControl "
-(Goal-oriented) Error Control class
+(Goal-oriented) Error Control class.
+The notation used here follows the notation in \"Automated
+goal-oriented error control I: stationary variational problems\",
+ME Rognes and A Logg, 2010-2011.
 ";
 
 %feature("docstring")  dolfin::ErrorControl::ErrorControl "
