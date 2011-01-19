@@ -27,7 +27,15 @@ Return value dimension for given axis
 ";
 
 %feature("docstring")  dolfin::GenericFunction::eval "
-Evaluate function for given data
+**Overloaded versions**
+
+* eval\ **(values, x, cell)**
+
+  Evaluate at given point in given cell
+
+* eval\ **(values, x)**
+
+  Evaluate at given point
 ";
 
 %feature("docstring")  dolfin::GenericFunction::restrict "
@@ -42,7 +50,44 @@ Compute values at all mesh vertices
 Collect off-process coefficients to prepare for interpolation
 ";
 
+%feature("docstring")  dolfin::GenericFunction::operator "
+**Overloaded versions**
+
+* operator\ **(x)**
+
+  Evaluation at given point (scalar function)
+
+* operator\ **(x, y)**
+
+  Evaluation at given point (scalar function)
+
+* operator\ **(x, y, z)**
+
+  Evaluation at given point (scalar function)
+
+* operator\ **(p)**
+
+  Evaluation at given point (scalar function)
+
+* operator\ **(value, x)**
+
+  Evaluation at given point (vector-valued function)
+
+* operator\ **(value, x, y)**
+
+  Evaluation at given point (vector-valued function)
+
+* operator\ **(value, x, y, z)**
+
+  Evaluation at given point (vector-valued function)
+
+* operator\ **(value, p)**
+
+  Evaluation at given point (vector-valued function)
+";
+
 %feature("docstring")  dolfin::GenericFunction::value_size "
+Evaluation at given point
 Return value size (product of value dimensions)
 ";
 
@@ -97,18 +142,6 @@ Return value rank
 
 %feature("docstring")  dolfin::Expression::value_dimension "
 Return value dimension for given axis
-";
-
-%feature("docstring")  dolfin::Expression::eval "
-**Overloaded versions**
-
-* eval\ **(values, x, cell)**
-
-  Evaluate function for given cell
-
-* eval\ **(values, x)**
-
-  Evaluate expression, must be overloaded by user (simple version)
 ";
 
 %feature("docstring")  dolfin::Expression::restrict "
@@ -6954,6 +6987,22 @@ Get unique mesh identifier.
   Get mesh data (const version).
 ";
 
+%feature("docstring")  dolfin::Mesh::parallel_data "
+**Overloaded versions**
+
+* parallel_data\ **()**
+
+  Get parallel mesh data.
+  
+  *Returns*
+      _ParallelData_
+          The parallel data object associated with the mesh.
+
+* parallel_data\ **()**
+
+  Get parallel mesh data (const version).
+";
+
 %feature("docstring")  dolfin::Mesh::type "
 **Overloaded versions**
 
@@ -7119,7 +7168,7 @@ Snap boundary vertices of mesh to match given sub domain.
       MeshFunction<uint>
           The colors as a mesh function over the cells of the mesh.
 
-* color\ **(dim)**
+* color\ **(boost::tuple<uint, uint, coloring_type)**
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
