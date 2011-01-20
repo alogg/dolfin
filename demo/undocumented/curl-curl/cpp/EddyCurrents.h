@@ -11,6 +11,7 @@
 //   cpp_optimize:                   False
 //   cpp_optimize_flags:             '-O2'
 //   epsilon:                        1e-14
+//   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
 //   log_level:                      10
@@ -8162,7 +8163,7 @@ public:
     static const unsigned int nzc1[3] = {1, 3, 5};
     
     static const double FE0_C1_D100[1][3] = \
-    {{1.000000000000001, -1.000000000000001, 1.000000000000001}};
+    {{1.000000000000001, -1.000000000000001, 1.000000000000000}};
     
     // Array of non-zero columns
     static const unsigned int nzc7[3] = {0, 3, 4};

@@ -11,6 +11,7 @@
 //   cpp_optimize:                   False
 //   cpp_optimize_flags:             '-O2'
 //   epsilon:                        1e-14
+//   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
 //   log_level:                      10
