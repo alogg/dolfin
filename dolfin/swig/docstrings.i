@@ -69,19 +69,19 @@ Collect off-process coefficients to prepare for interpolation
 
   Evaluation at given point (scalar function)
 
-* operator\ **(value, x)**
+* operator\ **(values, x)**
 
   Evaluation at given point (vector-valued function)
 
-* operator\ **(value, x, y)**
+* operator\ **(values, x, y)**
 
   Evaluation at given point (vector-valued function)
 
-* operator\ **(value, x, y, z)**
+* operator\ **(values, x, y, z)**
 
   Evaluation at given point (vector-valued function)
 
-* operator\ **(value, p)**
+* operator\ **(values, p)**
 
   Evaluation at given point (vector-valued function)
 ";
@@ -9718,11 +9718,11 @@ Parameters may be added as follows:
 
 Parameters may be changed as follows:
 
-  p(\"gmres_restart\") = 50;
+  p[\"gmres_restart\"] = 50;
 
 Parameter values may be retrieved as follows:
 
-  int gmres_restart = p(\"gmres_restart\");
+  int gmres_restart = p[\"gmres_restart\"];
 
 Parameter sets may be nested as follows:
 
@@ -9731,7 +9731,7 @@ Parameter sets may be nested as follows:
 
 Nested parameters may then be accessed by
 
-  p[\"nested_parameters\"](\"...\")
+  p(\"nested_parameters\")[\"...\"]
 
 Parameters may be nested at arbitrary depths.
 
