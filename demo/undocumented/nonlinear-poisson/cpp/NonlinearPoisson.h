@@ -1448,8 +1448,8 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 12.
     double G[3];
-    G[0] = det*(K_00*K_10 + K_01*K_11);
-    G[1] = det*(K_00*K_00 + K_01*K_01);
+    G[0] = det*(K_00*K_00 + K_01*K_01);
+    G[1] = det*(K_00*K_10 + K_01*K_11);
     G[2] = det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
@@ -1486,10 +1486,10 @@ public:
       I[0] =  - F3*W4[ip]*det;
       
       // Number of operations: 10
-      I[1] = W4[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[0]*(1.000000000000000 + F2*F2));
+      I[1] = W4[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[1]*(1.000000000000000 + F2*F2));
       
       // Number of operations: 10
-      I[2] = W4[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
+      I[2] = W4[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
       
       
       // Number of operations for primary indices: 6

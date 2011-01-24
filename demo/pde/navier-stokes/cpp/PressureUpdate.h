@@ -8189,10 +8189,10 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 8.
     double G[4];
-    G[0] =  - K_11*det/w[0][0];
-    G[1] =  - K_01*det/w[0][0];
-    G[2] =  - K_10*det/w[0][0];
-    G[3] =  - K_00*det/w[0][0];
+    G[0] =  - K_00*det/w[0][0];
+    G[1] =  - K_10*det/w[0][0];
+    G[2] =  - K_01*det/w[0][0];
+    G[3] =  - K_11*det/w[0][0];
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -8220,7 +8220,7 @@ public:
       // Number of operations to compute ip constants: 8
       double I[1];
       // Number of operations: 8
-      I[0] = W4[ip]*(F0*G[3] + F1*G[2] + F2*G[1] + F3*G[0]);
+      I[0] = W4[ip]*(F0*G[0] + F1*G[1] + F2*G[2] + F3*G[3]);
       
       
       // Number of operations for primary indices: 6
