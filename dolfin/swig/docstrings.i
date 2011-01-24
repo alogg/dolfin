@@ -136,6 +136,19 @@ constructor.
   Copy constructor
 ";
 
+%feature("docstring")  dolfin::Expression::eval "
+**Overloaded versions**
+
+* eval\ **(values, x, cell)**
+
+  Note: The reimplementation of eval is needed for the Python interface
+  Evaluate at given point in given cell
+
+* eval\ **(values, x)**
+
+  Evaluate at given point
+";
+
 %feature("docstring")  dolfin::Expression::value_rank "
 Return value rank
 ";
@@ -1203,7 +1216,7 @@ all compoments will be set equal.
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ **(A, b, a, L, reset_sparsitys=true, add_values=false)**
+* assemble_system\ **(A, b, a, L, reset_sparsities=true, add_values=false)**
 
   Assemble system (A, b)
 
@@ -1215,7 +1228,7 @@ all compoments will be set equal.
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ **(A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsitys=true, add_values=false)**
+* assemble_system\ **(A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsities=true, add_values=false)**
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
@@ -1613,6 +1626,10 @@ Turn logging on or off
 
 %feature("docstring")  dolfin::set_log_level "
 Set log level
+";
+
+%feature("docstring")  dolfin::set_output_stream "
+Set output stream
 ";
 
 %feature("docstring")  dolfin::get_log_level "
@@ -5848,11 +5865,11 @@ Set function
 
 * get_block\ **(i)**
 
-  Get functions (const)
+  Get sub-vector (const)
 
 * get_block\ **(uint)**
 
-  Get functions (non-const)
+  Get sub-vector (non-const)
 ";
 
 %feature("docstring")  dolfin::BlockVector::axpy "
@@ -5926,10 +5943,6 @@ Set block
 * get_block\ **(i, j)**
 
   Get block
-";
-
-%feature("docstring")  dolfin::BlockMatrix::operator "
-Return SubMatrix reference number (i,j)
 ";
 
 %feature("docstring")  dolfin::BlockMatrix::size "
@@ -9202,172 +9215,6 @@ Return filename for times
 
 %feature("docstring")  dolfin::TimeSeries::str "
 Return informal string representation (pretty-print)
-";
-
-// Documentation extracted from: (module=main, header=init.h)
-%feature("docstring")  dolfin::dolfin_init "
-Initialize DOLFIN (and PETSc) with command-line arguments. This
-should not be needed in most cases since the initialization is
-otherwise handled automatically.
-";
-
-// Documentation extracted from: (module=main, header=MPI.h)
-%feature("docstring")  dolfin::MPICommunicator::MPICommunicator "
-Create communicator (copy of MPI_COMM_WORLD)
-";
-
-%feature("docstring")  dolfin::MPICommunicator::operator* "
-Dereference operator
-";
-
-%feature("docstring")  dolfin::MPI "
-This class provides utility functions for easy communcation with MPI.
-";
-
-%feature("docstring")  dolfin::MPI::process_number "
-Return proccess number
-";
-
-%feature("docstring")  dolfin::MPI::num_processes "
-Return number of processes
-";
-
-%feature("docstring")  dolfin::MPI::is_broadcaster "
-Determine whether we should broadcast (based on current parallel policy)
-";
-
-%feature("docstring")  dolfin::MPI::is_receiver "
-Determine whether we should receive (based on current parallel policy)
-";
-
-%feature("docstring")  dolfin::MPI::barrier "
-Set a barrier (synchronization point)
-";
-
-%feature("docstring")  dolfin::MPI::distribute "
-**Overloaded versions**
-
-* distribute\ **(values, partition)**
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ **(values, partition)**
-
-  Distribute local arrays on all processors according to given partition
-";
-
-%feature("docstring")  dolfin::MPI::scatter "
-**Overloaded versions**
-
-* scatter\ **(values, sending_process=0)**
-
-  Scatter values, one to each process
-
-* scatter\ **(values, sending_process=0)**
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ **(values, sending_process=0)**
-
-  Scatter values (wrapper for MPI_Scatterv)
-";
-
-%feature("docstring")  dolfin::MPI::gather "
-**Overloaded versions**
-
-* gather\ **(value)**
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-
-* gather\ **(values)**
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-
-* gather\ **(values)**
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-";
-
-%feature("docstring")  dolfin::MPI::gather_all "
-Gather values, one from each process (wrapper for boost::mpi::all_gather)
-";
-
-%feature("docstring")  dolfin::MPI::global_maximum "
-Find global max value (wrapper for MPI_Allredue with MPI_MAX as
-reduction op)
-";
-
-%feature("docstring")  dolfin::MPI::sum "
-Sum values and return sum
-";
-
-%feature("docstring")  dolfin::MPI::global_offset "
-Find global offset (index) (wrapper for MPI_(Ex)Scan with MPI_SUM as
-reduction op)
-";
-
-%feature("docstring")  dolfin::MPI::send_recv "
-**Overloaded versions**
-
-* send_recv\ **(send_buffer, send_size, dest, recv_buffer, recv_size, source)**
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ **(send_buffer, send_size, dest, recv_buffer, recv_size, source)**
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-";
-
-%feature("docstring")  dolfin::MPI::local_range "
-**Overloaded versions**
-
-* local_range\ **(N)**
-
-  Return local range for local process, splitting [0, N - 1] into
-   num_processes() portions of almost equal size
-
-* local_range\ **(process, N)**
-
-  Return local range for given process, splitting [0, N - 1] into
-  num_processes() portions of almost equal size
-
-* local_range\ **(process, N, num_processes)**
-
-  Return local range for given process, splitting [0, N - 1] into
-  num_processes portions of almost equal size
-";
-
-%feature("docstring")  dolfin::MPI::index_owner "
-Return which process owns index (inverse of local_range)
-";
-
-// Documentation extracted from: (module=main, header=SubSystemsManager.h)
-%feature("docstring")  dolfin::SubSystemsManager "
-This is a singleton class which manages the initialisation and
-finalisation of various sub systems, such as MPI and PETSc.
-";
-
-%feature("docstring")  dolfin::SubSystemsManager::init_mpi "
-Initialise MPI
-";
-
-%feature("docstring")  dolfin::SubSystemsManager::init_petsc "
-**Overloaded versions**
-
-* init_petsc\ **()**
-
-  Initialize PETSc without command-line arguments
-
-* init_petsc\ **(argc, argv[])**
-
-  Initialize PETSc with command-line arguments. Note that PETSc
-  command-line arguments may also be filtered and sent to PETSc
-  by parameters.parse(argc, argv).
-";
-
-%feature("docstring")  dolfin::SubSystemsManager::finalize "
-Finalize subsytems. This will be called by the destructor, but in
-special cases it may be necessary to call finalize() explicitly.
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
