@@ -8204,9 +8204,9 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 5.
     double G[3];
-    G[0] = 0.500000000000000*det*n0;
-    G[1] = 0.500000000000000*det*n1;
-    G[2] = 0.500000000000000*det;
+    G[0] = 0.500000000000000*det;
+    G[1] = 0.500000000000000*det*n0;
+    G[2] = 0.500000000000000*det*n1;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -8235,7 +8235,7 @@ public:
         // Number of operations to compute ip constants: 10
         double I[1];
         // Number of operations: 10
-        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[2] + F0*G[0] + F1*G[1]);
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
         
         
         // Number of operations for primary indices: 12
@@ -8273,7 +8273,7 @@ public:
         // Number of operations to compute ip constants: 10
         double I[1];
         // Number of operations: 10
-        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[2] + F0*G[0] + F1*G[1]);
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
         
         
         // Number of operations for primary indices: 12
@@ -8311,7 +8311,7 @@ public:
         // Number of operations to compute ip constants: 10
         double I[1];
         // Number of operations: 10
-        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[2] + F0*G[0] + F1*G[1]);
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
         
         
         // Number of operations for primary indices: 12

@@ -44598,15 +44598,15 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 23.
     double G[11];
-    G[0] =  - K_01*det;
-    G[1] =  - K_00*det;
-    G[2] =  - K_10*det;
+    G[0] =  - K_00*det;
+    G[1] =  - K_10*det;
+    G[2] =  - K_01*det;
     G[3] =  - K_11*det;
     G[4] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11);
-    G[5] = K_11*det;
-    G[6] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11);
-    G[7] = K_00*det;
-    G[8] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
+    G[5] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11);
+    G[6] = K_11*det;
+    G[7] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
+    G[8] = K_00*det;
     G[9] = K_10*det;
     G[10] = K_01*det;
     
@@ -44663,25 +44663,25 @@ public:
       // Number of operations to compute ip constants: 87
       double I[7];
       // Number of operations: 9
-      I[0] = F4*W25[ip]*(F0*G[1] + F1*G[2] + F5*G[0] + F6*G[3]);
+      I[0] = F4*W25[ip]*(F0*G[0] + F1*G[1] + F5*G[2] + F6*G[3]);
       
       // Number of operations: 7
-      I[1] = F4*W25[ip]*(F5*G[4] + F6*G[6] + F9*G[5]);
+      I[1] = F4*W25[ip]*(F5*G[4] + F6*G[5] + F9*G[6]);
       
       // Number of operations: 7
-      I[2] = F4*W25[ip]*(F0*G[8] + F1*G[4] + F9*G[7]);
+      I[2] = F4*W25[ip]*(F0*G[7] + F1*G[4] + F9*G[8]);
       
       // Number of operations: 7
-      I[3] = F4*W25[ip]*(F0*G[4] + F1*G[6] + F9*G[9]);
+      I[3] = F4*W25[ip]*(F0*G[4] + F1*G[5] + F9*G[9]);
       
       // Number of operations: 7
-      I[4] = F4*W25[ip]*(F5*G[8] + F6*G[4] + F9*G[10]);
+      I[4] = F4*W25[ip]*(F5*G[7] + F6*G[4] + F9*G[10]);
       
       // Number of operations: 25
-      I[5] = W25[ip]*(F0*(F4*(F2*G[1] + F3*G[0]) + F7*G[8] + F8*G[4]) + F1*(F4*(F2*G[2] + F3*G[3]) + F7*G[4] + F8*G[6]) + F9*(F7*G[7] + F8*G[9]));
+      I[5] = W25[ip]*(F0*(F4*(F2*G[0] + F3*G[2]) + F7*G[7] + F8*G[4]) + F1*(F4*(F2*G[1] + F3*G[3]) + F7*G[4] + F8*G[5]) + F9*(F7*G[8] + F8*G[9]));
       
       // Number of operations: 25
-      I[6] = W25[ip]*(F5*(F4*(F2*G[1] + F3*G[0]) + F7*G[8] + F8*G[4]) + F6*(F4*(F2*G[2] + F3*G[3]) + F7*G[4] + F8*G[6]) + F9*(F7*G[10] + F8*G[5]));
+      I[6] = W25[ip]*(F5*(F4*(F2*G[0] + F3*G[2]) + F7*G[7] + F8*G[4]) + F6*(F4*(F2*G[1] + F3*G[3]) + F7*G[4] + F8*G[5]) + F9*(F7*G[10] + F8*G[6]));
       
       
       // Number of operations for primary indices: 6
@@ -54012,11 +54012,11 @@ public:
     // Number of operations to compute geometry constants: 23.
     double G[11];
     G[0] =  - K_00*det;
-    G[1] =  - K_11*det;
+    G[1] =  - K_10*det;
     G[2] =  - K_01*det;
-    G[3] =  - K_10*det;
-    G[4] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
-    G[5] = K_00*det;
+    G[3] =  - K_11*det;
+    G[4] = K_00*det;
+    G[5] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
     G[6] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11);
     G[7] = K_01*det;
     G[8] = K_10*det;
@@ -54077,13 +54077,13 @@ public:
       // Number of operations to compute ip constants: 93
       double I[7];
       // Number of operations: 11
-      I[0] = F1*W16[ip]*(F4*G[0] + F5*G[3] + F8*G[2] + F9*G[1] - F3*det);
+      I[0] = F1*W16[ip]*(F4*G[0] + F5*G[1] + F8*G[2] + F9*G[3] - F3*det);
       
       // Number of operations: 7
-      I[1] = F1*W16[ip]*(F12*G[5] + F4*G[4] + F5*G[6]);
+      I[1] = F1*W16[ip]*(F12*G[4] + F4*G[5] + F5*G[6]);
       
       // Number of operations: 7
-      I[2] = F1*W16[ip]*(F12*G[7] + F8*G[4] + F9*G[6]);
+      I[2] = F1*W16[ip]*(F12*G[7] + F8*G[5] + F9*G[6]);
       
       // Number of operations: 7
       I[3] = F1*W16[ip]*(F12*G[8] + F4*G[6] + F5*G[9]);
@@ -54092,10 +54092,10 @@ public:
       I[4] = F1*W16[ip]*(F12*G[10] + F8*G[6] + F9*G[9]);
       
       // Number of operations: 27
-      I[5] = W16[ip]*(F1*(F8*(F6*G[0] + F7*G[2]) + F9*(F6*G[3] + F7*G[1]) - F2*det) + F10*(F12*G[7] + F8*G[4] + F9*G[6]) + F11*(F12*G[10] + F8*G[6] + F9*G[9]));
+      I[5] = W16[ip]*(F1*(F8*(F6*G[0] + F7*G[2]) + F9*(F6*G[1] + F7*G[3]) - F2*det) + F10*(F12*G[7] + F8*G[5] + F9*G[6]) + F11*(F12*G[10] + F8*G[6] + F9*G[9]));
       
       // Number of operations: 27
-      I[6] = W16[ip]*(F1*(F4*(F6*G[0] + F7*G[2]) + F5*(F6*G[3] + F7*G[1]) - F0*det) + F10*(F12*G[5] + F4*G[4] + F5*G[6]) + F11*(F12*G[8] + F4*G[6] + F5*G[9]));
+      I[6] = W16[ip]*(F1*(F4*(F6*G[0] + F7*G[2]) + F5*(F6*G[1] + F7*G[3]) - F0*det) + F10*(F12*G[4] + F4*G[5] + F5*G[6]) + F11*(F12*G[8] + F4*G[6] + F5*G[9]));
       
       
       // Number of operations for primary indices: 6
@@ -54620,16 +54620,16 @@ public:
     // Number of operations to compute geometry constants: 23.
     double G[11];
     G[0] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11);
-    G[1] =  - K_01*det;
-    G[2] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11);
-    G[3] =  - K_11*det;
-    G[4] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
+    G[1] =  - K_00*det;
+    G[2] =  - K_01*det;
+    G[3] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
+    G[4] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11);
     G[5] =  - K_10*det;
-    G[6] = K_01*det;
-    G[7] =  - K_00*det;
-    G[8] = K_00*det;
-    G[9] = K_10*det;
-    G[10] = K_11*det;
+    G[6] =  - K_11*det;
+    G[7] = K_10*det;
+    G[8] = K_01*det;
+    G[9] = K_11*det;
+    G[10] = K_00*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -54697,7 +54697,7 @@ public:
       // Number of operations to compute ip constants: 57
       double I[1];
       // Number of operations: 57
-      I[0] = W16[ip]*(F0*(F10*G[0] + F4*(F2*G[7] + F3*G[1]) + F8*G[7] + F9*G[4]) + F1*(F10*G[2] + F3*F4*G[3] + F9*G[0] + G[5]*(F8 + F2*F4)) + F13*(F10*G[9] + F11*G[6] + F12*G[10] + F9*G[8]) + F5*(F11*G[4] + F12*G[0] + F7*(F2*G[7] + F3*G[1]) + F8*G[1]) + F6*(F11*G[0] + F12*G[2] + F2*F7*G[5] + G[3]*(F8 + F3*F7)));
+      I[0] = W16[ip]*(F0*(F10*G[0] + F4*(F2*G[1] + F3*G[2]) + F8*G[1] + F9*G[3]) + F1*(F10*G[4] + F3*F4*G[6] + F9*G[0] + G[5]*(F8 + F2*F4)) + F13*(F10*G[7] + F11*G[8] + F12*G[9] + F9*G[10]) + F5*(F11*G[3] + F12*G[0] + F7*(F2*G[1] + F3*G[2]) + F8*G[2]) + F6*(F11*G[0] + F12*G[4] + F2*F7*G[5] + G[6]*(F8 + F3*F7)));
       
       
       // Number of operations for primary indices: 1
@@ -54808,8 +54808,8 @@ public:
     A[0] = 0.000000000000000;
     // Number of operations to compute geometry constants: 2.
     double G[2];
-    G[0] =  - det*n1;
-    G[1] =  - det*n0;
+    G[0] =  - det*n0;
+    G[1] =  - det*n1;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -54845,7 +54845,7 @@ public:
         // Number of operations to compute ip constants: 5
         double I[1];
         // Number of operations: 5
-        I[0] = F0*W3[ip]*(F1*G[1] + F2*G[0]);
+        I[0] = F0*W3[ip]*(F1*G[0] + F2*G[1]);
         
         
         // Number of operations for primary indices: 1
@@ -54884,7 +54884,7 @@ public:
         // Number of operations to compute ip constants: 5
         double I[1];
         // Number of operations: 5
-        I[0] = F0*W3[ip]*(F1*G[1] + F2*G[0]);
+        I[0] = F0*W3[ip]*(F1*G[0] + F2*G[1]);
         
         
         // Number of operations for primary indices: 1
@@ -54923,7 +54923,7 @@ public:
         // Number of operations to compute ip constants: 5
         double I[1];
         // Number of operations: 5
-        I[0] = F0*W3[ip]*(F1*G[1] + F2*G[0]);
+        I[0] = F0*W3[ip]*(F1*G[0] + F2*G[1]);
         
         
         // Number of operations for primary indices: 1
@@ -56538,9 +56538,9 @@ public:
     G[1] = K_10*det;
     G[2] = K_01*det;
     G[3] = K_11*det;
-    G[4] =  - K_11*det;
-    G[5] = det*w[2][0]*(K_00*K_10 + K_01*K_11);
-    G[6] = det*w[2][0]*(K_10*K_10 + K_11*K_11);
+    G[4] = det*w[2][0]*(K_00*K_10 + K_01*K_11);
+    G[5] = det*w[2][0]*(K_10*K_10 + K_11*K_11);
+    G[6] =  - K_11*det;
     G[7] = det*w[2][0]*(K_00*K_00 + K_01*K_01);
     G[8] =  - K_00*det;
     G[9] =  - K_10*det;
@@ -56591,16 +56591,16 @@ public:
       I[0] = W9[ip]*(F0*G[0] + F1*G[1] + F4*G[2] + F5*G[3]);
       
       // Number of operations: 6
-      I[1] = W9[ip]*(F4*G[5] + F5*G[6] + F6*G[4]);
+      I[1] = W9[ip]*(F4*G[4] + F5*G[5] + F6*G[6]);
       
       // Number of operations: 6
-      I[2] = W9[ip]*(F0*G[7] + F1*G[5] + F6*G[8]);
+      I[2] = W9[ip]*(F0*G[7] + F1*G[4] + F6*G[8]);
       
       // Number of operations: 6
-      I[3] = W9[ip]*(F0*G[5] + F1*G[6] + F6*G[9]);
+      I[3] = W9[ip]*(F0*G[4] + F1*G[5] + F6*G[9]);
       
       // Number of operations: 6
-      I[4] = W9[ip]*(F4*G[7] + F5*G[5] + F6*G[10]);
+      I[4] = W9[ip]*(F4*G[7] + F5*G[4] + F6*G[10]);
       
       // Number of operations: 10
       I[5] = W9[ip]*(F0*(F2*G[0] + F3*G[2]) + F1*(F2*G[1] + F3*G[3]));

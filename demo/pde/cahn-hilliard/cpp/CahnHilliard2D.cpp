@@ -3721,9 +3721,9 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 36.
     double G[9];
-    G[0] = -1.200000000000000e+03*det;
-    G[1] = 1.200000000000000e+03*det;
-    G[2] = -2.000000000000000e+02*det;
+    G[0] = -2.000000000000000e+02*det;
+    G[1] = -1.200000000000000e+03*det;
+    G[2] = 1.200000000000000e+03*det;
     G[3] = det*w[2][0]*w[3][0]*(K_10*K_10 + K_11*K_11);
     G[4] =  - det*w[1][0]*(K_10*K_10 + K_11*K_11);
     G[5] =  - det*w[1][0]*(K_00*K_10 + K_01*K_11);
@@ -3754,7 +3754,7 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
       I[0] = W9[ip]*det;
       
       // Number of operations: 5
-      I[1] = W9[ip]*(G[2] + F0*(G[1] + F0*G[0]));
+      I[1] = W9[ip]*(G[0] + F0*(G[2] + F0*G[1]));
       
       // Number of operations: 1
       I[2] = G[3]*W9[ip];
@@ -3910,18 +3910,18 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 65.
     double G[12];
-    G[0] = 6.000000000000000e+02*det;
-    G[1] = -4.000000000000000e+02*det;
+    G[0] = -4.000000000000000e+02*det;
+    G[1] = 6.000000000000000e+02*det;
     G[2] = -2.000000000000000e+02*det;
-    G[3] = det*w[3][0]*(K_00*K_00 + K_01*K_01 - w[4][0]*(K_00*K_00 + K_01*K_01));
-    G[4] = det*w[3][0]*(K_00*K_10*(1.000000000000000 - w[4][0]) + K_01*K_11*(1.000000000000000 - w[4][0]));
-    G[5] = det*w[3][0]*w[4][0]*(K_00*K_00 + K_01*K_01);
-    G[6] = det*w[3][0]*w[4][0]*(K_00*K_10 + K_01*K_11);
+    G[3] = det*w[3][0]*w[4][0]*(K_00*K_00 + K_01*K_01);
+    G[4] = det*w[3][0]*w[4][0]*(K_00*K_10 + K_01*K_11);
+    G[5] = det*w[3][0]*(K_00*K_00 + K_01*K_01 - w[4][0]*(K_00*K_00 + K_01*K_01));
+    G[6] = det*w[3][0]*(K_00*K_10*(1.000000000000000 - w[4][0]) + K_01*K_11*(1.000000000000000 - w[4][0]));
     G[7] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
     G[8] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11);
     G[9] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11);
-    G[10] = det*w[3][0]*(K_10*K_10 + K_11*K_11 - w[4][0]*(K_10*K_10 + K_11*K_11));
-    G[11] = det*w[3][0]*w[4][0]*(K_10*K_10 + K_11*K_11);
+    G[10] = det*w[3][0]*w[4][0]*(K_10*K_10 + K_11*K_11);
+    G[11] = det*w[3][0]*(K_10*K_10 + K_11*K_11 - w[4][0]*(K_10*K_10 + K_11*K_11));
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -3964,13 +3964,13 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
       // Number of operations to compute ip constants: 35
       double I[6];
       // Number of operations: 8
-      I[0] = W9[ip]*(F4*(G[2] + F4*(G[0] + F4*G[1])) + F8*det);
+      I[0] = W9[ip]*(F4*(G[2] + F4*(G[1] + F4*G[0])) + F8*det);
       
       // Number of operations: 3
       I[1] = W9[ip]*det*(F4 - F5);
       
       // Number of operations: 8
-      I[2] = W9[ip]*(F0*G[5] + F1*G[6] + F2*G[3] + F3*G[4]);
+      I[2] = W9[ip]*(F0*G[3] + F1*G[4] + F2*G[5] + F3*G[6]);
       
       // Number of operations: 4
       I[3] = W9[ip]*(F6*G[7] + F7*G[8]);
@@ -3979,7 +3979,7 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
       I[4] = W9[ip]*(F6*G[8] + F7*G[9]);
       
       // Number of operations: 8
-      I[5] = W9[ip]*(F0*G[6] + F1*G[11] + F2*G[4] + F3*G[10]);
+      I[5] = W9[ip]*(F0*G[4] + F1*G[10] + F2*G[6] + F3*G[11]);
       
       
       // Number of operations for primary indices: 12
