@@ -8714,6 +8714,13 @@ total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
   Create locally refined mesh
 ";
 
+// Documentation extracted from: (module=common, header=init.h)
+%feature("docstring")  dolfin::init "
+Initialize DOLFIN (and PETSc) with command-line arguments. This
+should not be needed in most cases since the initialization is
+otherwise handled automatically.
+";
+
 // Documentation extracted from: (module=common, header=types.h)
 // Documentation extracted from: (module=common, header=real.h)
 %feature("docstring")  dolfin::real_sqrt "
@@ -8993,6 +9000,165 @@ Return informal string representation (pretty-print)
 
 %feature("docstring")  dolfin::Variable::disp "
 Deprecated, to be removed
+";
+
+// Documentation extracted from: (module=common, header=MPI.h)
+%feature("docstring")  dolfin::MPICommunicator::MPICommunicator "
+Create communicator (copy of MPI_COMM_WORLD)
+";
+
+%feature("docstring")  dolfin::MPICommunicator::operator* "
+Dereference operator
+";
+
+%feature("docstring")  dolfin::MPI "
+This class provides utility functions for easy communcation with MPI.
+";
+
+%feature("docstring")  dolfin::MPI::process_number "
+Return proccess number
+";
+
+%feature("docstring")  dolfin::MPI::num_processes "
+Return number of processes
+";
+
+%feature("docstring")  dolfin::MPI::is_broadcaster "
+Determine whether we should broadcast (based on current parallel policy)
+";
+
+%feature("docstring")  dolfin::MPI::is_receiver "
+Determine whether we should receive (based on current parallel policy)
+";
+
+%feature("docstring")  dolfin::MPI::barrier "
+Set a barrier (synchronization point)
+";
+
+%feature("docstring")  dolfin::MPI::distribute "
+**Overloaded versions**
+
+* distribute\ **(values, partition)**
+
+  Distribute local arrays on all processors according to given partition
+
+* distribute\ **(values, partition)**
+
+  Distribute local arrays on all processors according to given partition
+";
+
+%feature("docstring")  dolfin::MPI::scatter "
+**Overloaded versions**
+
+* scatter\ **(values, sending_process=0)**
+
+  Scatter values, one to each process
+
+* scatter\ **(values, sending_process=0)**
+
+  Scatter values (wrapper for MPI_Scatterv)
+
+* scatter\ **(values, sending_process=0)**
+
+  Scatter values (wrapper for MPI_Scatterv)
+";
+
+%feature("docstring")  dolfin::MPI::gather "
+**Overloaded versions**
+
+* gather\ **(value)**
+
+  Gather values, one from each process (wrapper for MPI_Allgather)
+
+* gather\ **(values)**
+
+  Gather values, one from each process (wrapper for MPI_Allgather)
+
+* gather\ **(values)**
+
+  Gather values, one from each process (wrapper for MPI_Allgather)
+";
+
+%feature("docstring")  dolfin::MPI::gather_all "
+Gather values, one from each process (wrapper for boost::mpi::all_gather)
+";
+
+%feature("docstring")  dolfin::MPI::global_maximum "
+Find global max value (wrapper for MPI_Allredue with MPI_MAX as
+reduction op)
+";
+
+%feature("docstring")  dolfin::MPI::sum "
+Sum values and return sum
+";
+
+%feature("docstring")  dolfin::MPI::global_offset "
+Find global offset (index) (wrapper for MPI_(Ex)Scan with MPI_SUM as
+reduction op)
+";
+
+%feature("docstring")  dolfin::MPI::send_recv "
+**Overloaded versions**
+
+* send_recv\ **(send_buffer, send_size, dest, recv_buffer, recv_size, source)**
+
+  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
+
+* send_recv\ **(send_buffer, send_size, dest, recv_buffer, recv_size, source)**
+
+  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
+";
+
+%feature("docstring")  dolfin::MPI::local_range "
+**Overloaded versions**
+
+* local_range\ **(N)**
+
+  Return local range for local process, splitting [0, N - 1] into
+   num_processes() portions of almost equal size
+
+* local_range\ **(process, N)**
+
+  Return local range for given process, splitting [0, N - 1] into
+  num_processes() portions of almost equal size
+
+* local_range\ **(process, N, num_processes)**
+
+  Return local range for given process, splitting [0, N - 1] into
+  num_processes portions of almost equal size
+";
+
+%feature("docstring")  dolfin::MPI::index_owner "
+Return which process owns index (inverse of local_range)
+";
+
+// Documentation extracted from: (module=common, header=SubSystemsManager.h)
+%feature("docstring")  dolfin::SubSystemsManager "
+This is a singleton class which manages the initialisation and
+finalisation of various sub systems, such as MPI and PETSc.
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::init_mpi "
+Initialise MPI
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::init_petsc "
+**Overloaded versions**
+
+* init_petsc\ **()**
+
+  Initialize PETSc without command-line arguments
+
+* init_petsc\ **(argc, argv[])**
+
+  Initialize PETSc with command-line arguments. Note that PETSc
+  command-line arguments may also be filtered and sent to PETSc
+  by parameters.parse(argc, argv).
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::finalize "
+Finalize subsytems. This will be called by the destructor, but in
+special cases it may be necessary to call finalize() explicitly.
 ";
 
 // Documentation extracted from: (module=io, header=File.h)
