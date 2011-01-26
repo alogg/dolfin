@@ -60979,9 +60979,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to a_star" << std::endl;
       a_star->set_coefficient(name, a.coefficient(i));
     }
     
@@ -61000,9 +60997,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_star" << std::endl;
       L_star->set_coefficient(name, (*this).coefficient(i));
     }
     
@@ -61026,9 +61020,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to residual" << std::endl;
       residual->set_coefficient(name, a.coefficient(i));
     }
     
@@ -61047,9 +61038,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to residual" << std::endl;
       residual->set_coefficient(name, L.coefficient(i));
     }
     
@@ -61057,7 +61045,6 @@ public:
     // Initialize extrapolation space and (fake) extrapolation
     V_Ez_h.reset(new CoefficientSpace___improved_dual(mesh));
     Ez_h.reset(new dolfin::Function(V_Ez_h));
-    std::cout << "Attaching (fake) __improved dual" << std::endl;
     residual->set_coefficient("__improved_dual", Ez_h);
 
     // Create bilinear and linear form for computing cell residual R_T
@@ -61086,9 +61073,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_T" << std::endl;
       L_R_T->set_coefficient(name, a.coefficient(i));
     }
     
@@ -61107,15 +61091,11 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_T" << std::endl;
       L_R_T->set_coefficient(name, L.coefficient(i));
     }
     
 
     // Attach bubble function to _a_R_T and _L_R_T
-    std::cout << "Attaching __cell_bubble" << std::endl;
     a_R_T->set_coefficient("__cell_bubble", b_T);
     L_R_T->set_coefficient("__cell_bubble", b_T);
 
@@ -61140,9 +61120,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_dT" << std::endl;
       L_R_dT->set_coefficient(name, a.coefficient(i));
     }
     
@@ -61161,9 +61138,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_dT" << std::endl;
       L_R_dT->set_coefficient(name, L.coefficient(i));
     }
     
@@ -61171,7 +61145,6 @@ public:
     // Initialize (fake) cone and attach to a_R_dT and L_R_dT
     V_b_e.reset(new CoefficientSpace___cell_cone(mesh));
     b_e.reset(new dolfin::Function(V_b_e));
-    std::cout << "Attaching __cell_cone" << std::endl;
     a_R_dT->set_coefficient("__cell_cone", b_e);
     L_R_dT->set_coefficient("__cell_cone", b_e);
 
@@ -61189,11 +61162,6 @@ public:
 };
 
 
-typedef Form_8 BilinearForm;
-typedef Form_9 LinearForm;
-typedef Form_10 GoalFunctional;
-typedef Form_8::TestSpace TestSpace;
-typedef Form_8::TrialSpace TrialSpace;
 }
 
 #endif
