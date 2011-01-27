@@ -8470,9 +8470,9 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 12.
     double G[3];
-    G[0] =  - det*(K_00*K_10 + K_01*K_11);
-    G[1] =  - det*(K_10*K_10 + K_11*K_11);
-    G[2] =  - det*(K_00*K_00 + K_01*K_01);
+    G[0] =  - det*(K_00*K_00 + K_01*K_01);
+    G[1] =  - det*(K_00*K_10 + K_01*K_11);
+    G[2] =  - det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -8514,13 +8514,13 @@ public:
       // Number of operations to compute ip constants: 23
       double I[3];
       // Number of operations: 13
-      I[0] = W9[ip]*(F0*F1*det + F2*(F4*G[2] + F5*G[0]) + F3*(F4*G[0] + F5*G[1]));
+      I[0] = W9[ip]*(F0*F1*det + F2*(F4*G[0] + F5*G[1]) + F3*(F4*G[1] + F5*G[2]));
       
       // Number of operations: 5
-      I[1] = F1*W9[ip]*(F2*G[2] + F3*G[0]);
+      I[1] = F1*W9[ip]*(F2*G[0] + F3*G[1]);
       
       // Number of operations: 5
-      I[2] = F1*W9[ip]*(F2*G[0] + F3*G[1]);
+      I[2] = F1*W9[ip]*(F2*G[1] + F3*G[2]);
       
       
       // Number of operations for primary indices: 6
@@ -9320,15 +9320,15 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 12.
     double G[3];
-    G[0] =  - det*(K_00*K_10 + K_01*K_11);
-    G[1] =  - det*(K_10*K_10 + K_11*K_11);
-    G[2] =  - det*(K_00*K_00 + K_01*K_01);
+    G[0] =  - det*(K_00*K_00 + K_01*K_01);
+    G[1] =  - det*(K_00*K_10 + K_01*K_11);
+    G[2] =  - det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 819
+    // Number of operations to compute element tensor for following IP loop = 810
     for (unsigned int ip = 0; ip < 9; ip++)
     {
       
@@ -9368,16 +9368,16 @@ public:
         F1 += FE2[ip][r]*w[4][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 25
+      // Number of operations to compute ip constants: 24
       double I[3];
-      // Number of operations: 15
-      I[0] = W9[ip]*(F1*det*(F2 - F0) + F3*F5*G[2] + F4*F6*G[1] + G[0]*(F3*F6 + F4*F5));
+      // Number of operations: 14
+      I[0] = W9[ip]*(F1*det*(F2 - F0) + F5*(F3*G[0] + F4*G[1]) + F6*(F3*G[1] + F4*G[2]));
       
       // Number of operations: 5
-      I[1] = F1*W9[ip]*(F3*G[2] + F4*G[0]);
+      I[1] = F1*W9[ip]*(F3*G[0] + F4*G[1]);
       
       // Number of operations: 5
-      I[2] = F1*W9[ip]*(F3*G[0] + F4*G[1]);
+      I[2] = F1*W9[ip]*(F3*G[1] + F4*G[2]);
       
       
       // Number of operations for primary indices: 6
@@ -9599,9 +9599,9 @@ public:
     A[0] = 0.000000000000000;
     // Number of operations to compute geometry constants: 12.
     double G[3];
-    G[0] =  - det*(K_10*K_10 + K_11*K_11);
+    G[0] =  - det*(K_00*K_00 + K_01*K_01);
     G[1] =  - det*(K_00*K_10 + K_01*K_11);
-    G[2] =  - det*(K_00*K_00 + K_01*K_01);
+    G[2] =  - det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -9648,7 +9648,7 @@ public:
       // Number of operations to compute ip constants: 13
       double I[1];
       // Number of operations: 13
-      I[0] = W4[ip]*(F0*F1*det + F2*(F4*G[2] + F5*G[1]) + F3*(F4*G[1] + F5*G[0]));
+      I[0] = W4[ip]*(F0*F1*det + F2*(F4*G[0] + F5*G[1]) + F3*(F4*G[1] + F5*G[2]));
       
       
       // Number of operations for primary indices: 1
@@ -14236,9 +14236,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to a_star" << std::endl;
       a_star->set_coefficient(name, a.coefficient(i));
     }
     
@@ -14257,9 +14254,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_star" << std::endl;
       L_star->set_coefficient(name, (*this).coefficient(i));
     }
     
@@ -14283,9 +14277,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to residual" << std::endl;
       residual->set_coefficient(name, a.coefficient(i));
     }
     
@@ -14304,9 +14295,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to residual" << std::endl;
       residual->set_coefficient(name, L.coefficient(i));
     }
     
@@ -14314,7 +14302,6 @@ public:
     // Initialize extrapolation space and (fake) extrapolation
     V_Ez_h.reset(new CoefficientSpace___improved_dual(mesh));
     Ez_h.reset(new dolfin::Function(V_Ez_h));
-    std::cout << "Attaching (fake) __improved dual" << std::endl;
     residual->set_coefficient("__improved_dual", Ez_h);
 
     // Create bilinear and linear form for computing cell residual R_T
@@ -14343,9 +14330,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_T" << std::endl;
       L_R_T->set_coefficient(name, a.coefficient(i));
     }
     
@@ -14364,15 +14348,11 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_T" << std::endl;
       L_R_T->set_coefficient(name, L.coefficient(i));
     }
     
 
     // Attach bubble function to _a_R_T and _L_R_T
-    std::cout << "Attaching __cell_bubble" << std::endl;
     a_R_T->set_coefficient("__cell_bubble", b_T);
     L_R_T->set_coefficient("__cell_bubble", b_T);
 
@@ -14397,9 +14377,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_dT" << std::endl;
       L_R_dT->set_coefficient(name, a.coefficient(i));
     }
     
@@ -14418,9 +14395,6 @@ public:
         std::cout << " failed! But this might be expected." << std::endl;
         continue;
       }
-
-      std::cout << "Attaching coefficient named: " << name;
-      std::cout << " to L_R_dT" << std::endl;
       L_R_dT->set_coefficient(name, L.coefficient(i));
     }
     
@@ -14428,7 +14402,6 @@ public:
     // Initialize (fake) cone and attach to a_R_dT and L_R_dT
     V_b_e.reset(new CoefficientSpace___cell_cone(mesh));
     b_e.reset(new dolfin::Function(V_b_e));
-    std::cout << "Attaching __cell_cone" << std::endl;
     a_R_dT->set_coefficient("__cell_cone", b_e);
     L_R_dT->set_coefficient("__cell_cone", b_e);
 
@@ -14446,11 +14419,6 @@ public:
 };
 
 
-typedef Form_8 BilinearForm;
-typedef Form_9 LinearForm;
-typedef Form_10 GoalFunctional;
-typedef Form_8::TestSpace TestSpace;
-typedef Form_8::TrialSpace TrialSpace;
 }
 
 #endif

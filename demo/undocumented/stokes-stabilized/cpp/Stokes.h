@@ -5871,10 +5871,10 @@ public:
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 16.
     double G[4];
-    G[0] = 0.800000000000000*K_11*circumradius*circumradius*det;
-    G[1] = 0.800000000000000*K_10*circumradius*circumradius*det;
-    G[2] = 0.800000000000000*K_01*circumradius*circumradius*det;
-    G[3] = 0.800000000000000*K_00*circumradius*circumradius*det;
+    G[0] = 0.800000000000000*K_10*circumradius*circumradius*det;
+    G[1] = 0.800000000000000*K_11*circumradius*circumradius*det;
+    G[2] = 0.800000000000000*K_00*circumradius*circumradius*det;
+    G[3] = 0.800000000000000*K_01*circumradius*circumradius*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -5904,10 +5904,10 @@ public:
       I[1] = F1*W4[ip]*det;
       
       // Number of operations: 4
-      I[2] = W4[ip]*(F0*G[1] + F1*G[0]);
+      I[2] = W4[ip]*(F0*G[0] + F1*G[1]);
       
       // Number of operations: 4
-      I[3] = W4[ip]*(F0*G[3] + F1*G[2]);
+      I[3] = W4[ip]*(F0*G[2] + F1*G[3]);
       
       
       // Number of operations for primary indices: 12
