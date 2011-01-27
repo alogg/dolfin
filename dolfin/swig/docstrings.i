@@ -8515,11 +8515,31 @@ Snap coordinate to boundary of sub domain
 ";
 
 %feature("docstring")  dolfin::SubDomain::mark "
-Set sub domain markers for given subdomain
+**Overloaded versions**
+
+* mark\ **(sub_domains, sub_domain)**
+
+  Set sub domain markers (uint) for given subdomain
+
+* mark\ **(sub_domains, sub_domain)**
+
+  Set sub domain markers (int) for given subdomain
+
+* mark\ **(sub_domains, sub_domain)**
+
+  Set sub domain markers (double) for given subdomain
+
+* mark\ **(sub_domains, sub_domain)**
+
+  Set sub domain markers (bool) for given subdomain
 ";
 
 %feature("docstring")  dolfin::SubDomain::geometric_dimension "
 Return geometric dimension
+";
+
+%feature("docstring")  dolfin::SubDomain::mark_meshfunction "
+Set sub domain markers for given subdomain
 ";
 
 // Documentation extracted from: (module=mesh, header=SubMesh.h)
@@ -8691,27 +8711,6 @@ Triangular mesh of the 3D unit sphere.
 Given the number of cells (nx, ny, nz) in each direction,
 the total number of tetrahedra will be 6*nx*ny*nz and the
 total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
-";
-
-// Documentation extracted from: (module=mesh, header=refine.h)
-%feature("docstring")  dolfin::refine "
-**Overloaded versions**
-
-* refine\ **(mesh)**
-
-  Create uniformly refined mesh
-
-* refine\ **(refined_mesh, mesh)**
-
-  Create uniformly refined mesh
-
-* refine\ **(mesh, cell_markers)**
-
-  Create locally refined mesh
-
-* refine\ **(refined_mesh, mesh, cell_markers)**
-
-  Create locally refined mesh
 ";
 
 // Documentation extracted from: (module=common, header=init.h)
@@ -9381,6 +9380,27 @@ Return filename for times
 
 %feature("docstring")  dolfin::TimeSeries::str "
 Return informal string representation (pretty-print)
+";
+
+// Documentation extracted from: (module=adaptivity, header=refine.h)
+%feature("docstring")  dolfin::refine "
+**Overloaded versions**
+
+* refine\ **(mesh)**
+
+  Create uniformly refined mesh
+
+* refine\ **(refined_mesh, mesh)**
+
+  Create uniformly refined mesh
+
+* refine\ **(mesh, cell_markers)**
+
+  Create locally refined mesh
+
+* refine\ **(refined_mesh, mesh, cell_markers)**
+
+  Create locally refined mesh
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
