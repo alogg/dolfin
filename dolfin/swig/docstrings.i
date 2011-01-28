@@ -327,10 +327,15 @@ degrees of freedom (dofmap).
 
 * FunctionSpace\ **(mesh)**
 
-  Create an empty function space for later intialisation. This
-  constructor is intended for use by any sub-classes which need to
-  construct objects before the initialisation of the base class. Data can
-  be attached to the base class using FunctionSpace::attach(...)
+  Create empty function space for later initialization. This
+  constructor is intended for use by any sub-classes which need
+  to construct objects before the initialisation of the base
+  class. Data can be attached to the base class using
+  FunctionSpace::attach(...).
+
+* FunctionSpace\ **(mesh)**
+
+  Create empty function space for later initialization (const version)
 
 * FunctionSpace\ **(V)**
 
@@ -818,6 +823,10 @@ Return the set of dof indices
 Return informal string representation (pretty-print)
 ";
 
+%feature("docstring")  dolfin::DofMap::ufc_dofmap "
+Return ufc::dof_map
+";
+
 %feature("docstring")  dolfin::DofMap::init_ufc_dofmap "
 Initialize the UFC dofmap
 ";
@@ -839,12 +848,12 @@ Return simple hash of the signature string
 Create sub element
 ";
 
-%feature("docstring")  dolfin::FiniteElement::ufc_element "
-Return ufc::finite_element
-";
-
 %feature("docstring")  dolfin::FiniteElement::extract_sub_element "
 Extract sub finite element for component
+";
+
+%feature("docstring")  dolfin::FiniteElement::ufc_element "
+Return ufc::finite_element
 ";
 
 // Documentation extracted from: (module=fem, header=BasisFunction.h)
@@ -8670,7 +8679,7 @@ Triangular mesh of the 2D unit square (0,1) x (0,1).
 Given the number of cells (nx, ny) in each direction,
 the total number of triangles will be 2*nx*ny and the
 total number of vertices will be (nx + 1)*(ny + 1).
-std::string diagonal (\"left\", \"right\", \"right/left\" or \"crossed\")
+std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\", or \"crossed\")
 indicates the direction of the diagonals.
 ";
 
@@ -8700,7 +8709,7 @@ Given the number of cells (nx, ny) in each direction,
 the total number of triangles will be 2*nx*ny and the
 total number of vertices will be (nx + 1)*(ny + 1).
 
-std::string diagonal (\"left\", \"right\", \"right/left\" or \"crossed\")
+std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\", or \"crossed\")
 indicates the direction of the diagonals.
 ";
 
@@ -9401,6 +9410,18 @@ Return informal string representation (pretty-print)
 * refine\ **(refined_mesh, mesh, cell_markers)**
 
   Create locally refined mesh
+
+* refine\ **(V)**
+
+  Create uniformly refined function space
+
+* refine\ **(V, cell_markers)**
+
+  Create locally refined function space
+
+* refine\ **(V, refined_mesh)**
+
+  Create refined function space for refined mesh
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
