@@ -1060,6 +1060,12 @@ Make row associated with boundary conditions zero, useful for
 non-diagonal matrices in a block matrix.
 ";
 
+%feature("docstring")  dolfin::DirichletBC::zero_columns "
+Make columns associated with boundary conditions zero, and
+update the RHS to reflect the changes. Useful for non-diagonals.
+The diag_val parameter would normally be -1, 0 or 1.
+";
+
 %feature("docstring")  dolfin::DirichletBC::markers "
 Return boundary markers (facets stored as pairs of cells and local
 facet numbers)
@@ -1349,6 +1355,10 @@ Return the name of the coefficient with this number
 
 %feature("docstring")  dolfin::Form::ufc_form "
 Return UFC form
+";
+
+%feature("docstring")  dolfin::Form::ufc_form_shared_ptr "
+Return UFC form shared pointer
 ";
 
 %feature("docstring")  dolfin::Form::check "
@@ -5974,6 +5984,11 @@ Return informal string representation (pretty-print)
 Matrix-vector product, y = Ax
 ";
 
+%feature("docstring")  dolfin::BlockMatrix::schur_approximation "
+Create a crude explicit Schur approximation of S = D - C A^-1 B of (A B; C D)
+If symmetry != 0, then the caller promises that B = symmetry * transpose(C).
+";
+
 // Documentation extracted from: (module=graph, header=MatrixRenumbering.h)
 %feature("docstring")  dolfin::MatrixRenumbering "
 This class computes re-ordering based on a SparsityPattern graph
@@ -7091,12 +7106,11 @@ Order all mesh entities.
 ";
 
 %feature("docstring")  dolfin::Mesh::ordered "
-Check if mesh is ordered.
+Check if mesh is ordered according to the UFC numbering convention.
 
 *Returns*
     bool
-        Return true iff topology is ordered according to the UFC
-        numbering.
+        The return values is true iff the mesh is ordered.
 ";
 
 %feature("docstring")  dolfin::Mesh::move "
@@ -7190,7 +7204,7 @@ Snap boundary vertices of mesh to match given sub domain.
       MeshFunction<uint>
           The colors as a mesh function over the cells of the mesh.
 
-* color\ **(boost::tuple<uint, uint, coloring_type)**
+* color\ **(coloring_type)**
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
@@ -7198,15 +7212,13 @@ Snap boundary vertices of mesh to match given sub domain.
   holds the colors of the mesh.
   
   *Arguments*
-      dim (int)
-          Coloring type given as topological dimension,
-          specifying what relation makes two cells neighbors.
-          Two cells are neighbors if they are both adjacent to a
-          mesh entity of the given dimension.
+      coloring_type (numpy.array(int))
+          Coloring type given as list of topological dimensions,
+          specifying what relation makes two mesh entinties neighbors.
   
   *Returns*
       MeshFunction<uint>
-          The colors as a mesh function over the cells of the mesh.
+          The colors as a mesh function over entities of the mesh.
 ";
 
 %feature("docstring")  dolfin::Mesh::all_intersected_entities "
@@ -9010,6 +9022,109 @@ Return informal string representation (pretty-print)
 Deprecated, to be removed
 ";
 
+// Documentation extracted from: (module=common, header=Hierarchical.h)
+%feature("docstring")  dolfin::Hierarchical "
+This class provides storage and data access for hierarchical
+classes; that is, classes where an object may have a child
+and a parent.
+";
+
+%feature("docstring")  dolfin::Hierarchical::has_parent "
+Check if the object has a parent.
+
+*Returns*
+    bool
+        The return value is true iff the object has a parent.
+";
+
+%feature("docstring")  dolfin::Hierarchical::has_child "
+Check if the object has a child.
+
+*Returns*
+    bool
+        The return value is true iff the object has a child.
+";
+
+%feature("docstring")  dolfin::Hierarchical::parent "
+Return parent in hierarchy. An error is thrown if the object
+has no parent.
+
+*Returns*
+    _Object_
+        The parent object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::parent_shared_ptr "
+Return shared pointer to parent. A zero pointer is returned if
+the object has no parent.
+
+*Returns*
+    shared_ptr<T>
+        The parent object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::child "
+Return child in hierarchy. An error is thrown if the object
+has no child.
+
+*Returns*
+    _T_
+        The child object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::child_shared_ptr "
+Return shared pointer to child. A zero pointer is returned if
+the object has no child.
+
+*Returns*
+    shared_ptr<T>
+        The child object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::coarse "
+Return coarsest object in hierarchy.
+
+*Returns*
+    _T_
+        The coarse object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::coarse_shared_ptr "
+Return shared pointer to coarsest object in hierarchy.
+
+*Returns*
+    _T_
+        The coarse object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::fine "
+Return finest object in hierarchy.
+
+*Returns*
+    _T_
+        The fine object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::fine_shared_ptr "
+Return shared pointer to finest object in hierarchy.
+
+*Returns*
+    _T_
+        The fine object.
+";
+
+%feature("docstring")  dolfin::Hierarchical::set_parent "
+Set parent
+";
+
+%feature("docstring")  dolfin::Hierarchical::set_child "
+Set child
+";
+
+%feature("docstring")  dolfin::Hierarchical::operator= "
+Assignment operator
+";
+
 // Documentation extracted from: (module=common, header=MPI.h)
 %feature("docstring")  dolfin::MPICommunicator::MPICommunicator "
 Create communicator (copy of MPI_COMM_WORLD)
@@ -9397,31 +9512,27 @@ Return informal string representation (pretty-print)
 
 * refine\ **(mesh)**
 
-  Create uniformly refined mesh
-
-* refine\ **(refined_mesh, mesh)**
-
-  Create uniformly refined mesh
+  Refine mesh uniformly
 
 * refine\ **(mesh, cell_markers)**
 
-  Create locally refined mesh
+  Refine mesh based on cell markers
 
-* refine\ **(refined_mesh, mesh, cell_markers)**
+* refine\ **(space)**
 
-  Create locally refined mesh
+  Refine function space uniformly
 
-* refine\ **(V)**
+* refine\ **(space, cell_markers)**
 
-  Create uniformly refined function space
+  Refine function space based on cell markers
 
-* refine\ **(V, cell_markers)**
+* refine\ **(space, refined_mesh)**
 
-  Create locally refined function space
+  Refine function space based on refined mesh
 
-* refine\ **(V, refined_mesh)**
+* refine\ **(form, refined_mesh)**
 
-  Create refined function space for refined mesh
+  Refine form based on refined mesh
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
@@ -10566,6 +10677,14 @@ Return a random number, uniformly distributed between [0.0, 1.0)
 
 %feature("docstring")  dolfin::seed "
 Seed random number generator
+";
+
+%feature("docstring")  dolfin::near "
+Return true if x is within DOLFIN_EPS of x0
+";
+
+%feature("docstring")  dolfin::between "
+Return true if x is between x0 and x1 (inclusive)
 ";
 
 // Documentation extracted from: (module=math, header=Lagrange.h)
