@@ -3244,6 +3244,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_0();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -9408,6 +9414,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_1();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -11355,6 +11367,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_2();
   }
 
 };
@@ -19182,6 +19200,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_3();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -19718,6 +19742,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_4();
   }
 
 };
@@ -21667,6 +21697,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_5();
   }
 
 };
@@ -25305,6 +25341,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_6();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -26226,6 +26268,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_7();
   }
 
 };
@@ -30499,6 +30547,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_8();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -30895,6 +30949,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_9();
   }
 
 };
@@ -34533,6 +34593,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_10();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -35454,6 +35520,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_11();
   }
 
 };
@@ -39727,6 +39799,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new adaptivenavierstokes_finite_element_12();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -40034,6 +40112,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_0();
   }
 
 };
@@ -40414,6 +40498,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_1();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -40697,6 +40787,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_2();
   }
 
 };
@@ -41112,6 +41208,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_3();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -41330,6 +41432,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_4();
   }
 
 };
@@ -41570,6 +41678,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_5();
   }
 
 };
@@ -41853,6 +41967,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_6();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -42079,6 +42199,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_7();
   }
 
 };
@@ -42375,6 +42501,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_8();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -42593,6 +42725,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_9();
   }
 
 };
@@ -42929,6 +43067,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_10();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
@@ -43174,6 +43318,12 @@ public:
   virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_11();
   }
 
 };
@@ -43527,6 +43677,12 @@ public:
     }
     
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dof_map* create() const
+  {
+    return new adaptivenavierstokes_dof_map_12();
   }
 
 };
