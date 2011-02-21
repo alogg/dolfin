@@ -63,6 +63,18 @@ public:
     return ufc::triangle;
   }
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
@@ -990,6 +1002,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -2750,6 +2774,18 @@ public:
     return ufc::triangle;
   }
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
@@ -3152,6 +3188,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -5140,6 +5188,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -5156,12 +5216,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 3;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -5393,6 +5447,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -5409,12 +5475,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 6;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -5658,6 +5718,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -5674,12 +5746,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -5884,6 +5950,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -5900,12 +5978,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 7;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -6230,6 +6302,18 @@ public:
     A[48] = 0.000000000000000;
   }
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -6292,6 +6376,18 @@ public:
     A[4] = 0.000000000000000;
     A[5] = 0.000000000000000;
     A[6] = -0.166666666666666*G0_0 - 0.166666666666666*G0_1 - 0.166666666666666*G0_2;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };

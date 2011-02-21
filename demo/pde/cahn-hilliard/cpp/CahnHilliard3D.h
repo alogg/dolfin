@@ -51,6 +51,12 @@ public:
   /// Return the cell shape
   virtual ufc::shape cell_shape() const;
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const;
 
@@ -128,6 +134,12 @@ public:
   /// Return the cell shape
   virtual ufc::shape cell_shape() const;
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const;
 
@@ -204,6 +216,12 @@ public:
 
   /// Return the cell shape
   virtual ufc::shape cell_shape() const;
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const;
 
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const;
@@ -296,6 +314,12 @@ public:
   /// Finish initialization of dof map for cells
   virtual void init_cell_finalize();
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
@@ -304,9 +328,6 @@ public:
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const;
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const;
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const;
@@ -374,6 +395,12 @@ public:
   /// Finish initialization of dof map for cells
   virtual void init_cell_finalize();
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
@@ -382,9 +409,6 @@ public:
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const;
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const;
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const;
@@ -452,6 +476,12 @@ public:
   /// Finish initialization of dof map for cells
   virtual void init_cell_finalize();
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
@@ -460,9 +490,6 @@ public:
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const;
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const;
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const;
@@ -517,6 +544,15 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const;
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const;
+
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -537,6 +573,15 @@ public:
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
                                const ufc::cell& c) const;
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const;
 
 };
 

@@ -63,6 +63,18 @@ public:
     return ufc::triangle;
   }
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
@@ -465,6 +477,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -1113,7 +1137,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1310,7 +1334,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1507,7 +1531,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1704,7 +1728,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1901,7 +1925,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -2098,7 +2122,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -2420,6 +2444,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -3483,7 +3519,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -3680,7 +3716,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -3877,7 +3913,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4074,7 +4110,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4271,7 +4307,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4468,7 +4504,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4665,7 +4701,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4862,7 +4898,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5059,7 +5095,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5256,7 +5292,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5453,7 +5489,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5650,7 +5686,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -6062,6 +6098,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -7036,6 +7084,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -7052,12 +7112,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -7262,6 +7316,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -7278,12 +7344,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 6;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -7553,6 +7613,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -7569,12 +7641,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 12;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -7893,6 +7959,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -7909,12 +7987,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 3;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -8147,6 +8219,18 @@ public:
     A[8] = 0.499999999999999*G0_1_0_1 + 0.008333333333333*G1_1_0_0 + 0.008333333333333*G1_1_1_0 - 0.016666666666667*G1_1_2_0 - 0.066666666666667*G1_1_3_0 - 0.066666666666667*G1_1_4_0 - 0.033333333333333*G1_1_5_0 + 0.008333333333333*G1_1_6_1 + 0.008333333333333*G1_1_7_1 - 0.016666666666667*G1_1_8_1 - 0.066666666666667*G1_1_9_1 - 0.066666666666667*G1_1_10_1 - 0.033333333333333*G1_1_11_1;
   }
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
 };
 
 /// This class defines the interface for the tabulation of the
@@ -8376,6 +8460,18 @@ public:
       }
     }
     
+  }
+
+  /// Tabulate the tensor for the contribution from a local exterior facet
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
   }
 
 };
@@ -9597,6 +9693,18 @@ public:
     
   }
 
+  /// Tabulate the tensor for the contribution from a local interior facet
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+  }
+
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -9655,6 +9763,18 @@ public:
     A[0] = 0.083333333333333*G0_0 + 0.041666666666667*G0_1 + 0.041666666666667*G0_2;
     A[1] = 0.041666666666667*G0_0 + 0.083333333333333*G0_1 + 0.041666666666667*G0_2;
     A[2] = 0.041666666666667*G0_0 + 0.041666666666667*G0_1 + 0.083333333333333*G0_2;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };

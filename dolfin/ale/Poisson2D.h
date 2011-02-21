@@ -14,8 +14,9 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
+//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -1259,8 +1260,8 @@ public:
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      11
     // Number of operations (multiply-add pairs) for geometry tensor:    8
-    // Number of operations (multiply-add pairs) for tensor contraction: 8
-    // Total number of operations (multiply-add pairs):                  27
+    // Number of operations (multiply-add pairs) for tensor contraction: 11
+    // Total number of operations (multiply-add pairs):                  30
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -1290,15 +1291,15 @@ public:
     const double G0_1_1 = det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor
+    A[0] = 0.500000000000000*G0_0_0 + 0.500000000000000*G0_0_1 + 0.500000000000000*G0_1_0 + 0.500000000000000*G0_1_1;
     A[1] = -0.500000000000000*G0_0_0 - 0.500000000000000*G0_1_0;
-    A[5] = 0.500000000000000*G0_0_1;
-    A[0] = -A[1] + 0.500000000000000*G0_0_1 + 0.500000000000000*G0_1_1;
-    A[7] = 0.500000000000000*G0_1_0;
-    A[6] = -A[7] - 0.500000000000000*G0_1_1;
-    A[8] = 0.500000000000000*G0_1_1;
-    A[2] = -A[8] - 0.500000000000000*G0_0_1;
+    A[2] = -0.500000000000000*G0_0_1 - 0.500000000000000*G0_1_1;
+    A[3] = -0.500000000000000*G0_0_0 - 0.500000000000000*G0_0_1;
     A[4] = 0.500000000000000*G0_0_0;
-    A[3] = -A[4] - 0.500000000000000*G0_0_1;
+    A[5] = 0.500000000000000*G0_0_1;
+    A[6] = -0.500000000000000*G0_1_0 - 0.500000000000000*G0_1_1;
+    A[7] = 0.500000000000000*G0_1_0;
+    A[8] = 0.500000000000000*G0_1_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell

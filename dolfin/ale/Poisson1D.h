@@ -14,8 +14,9 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
+//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -917,10 +918,10 @@ public:
     const double G0_0_0 = det*K_00*K_00;
     
     // Compute element tensor
+    A[0] = G0_0_0;
     A[1] = -G0_0_0;
-    A[2] = A[1];
-    A[0] = -A[1];
-    A[3] = -A[1];
+    A[2] = -G0_0_0;
+    A[3] = G0_0_0;
   }
 
   /// Tabulate the tensor for the contribution from a local cell

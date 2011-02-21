@@ -51,6 +51,18 @@ ufc::shape cahnhilliard3d_finite_element_0::cell_shape() const
     return ufc::tetrahedron;
 }
 
+/// Return the topological dimension of the cell shape
+unsigned int topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the cell shape
+unsigned int geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the finite element function space
 unsigned int cahnhilliard3d_finite_element_0::space_dimension() const
 {
@@ -491,6 +503,18 @@ const char* cahnhilliard3d_finite_element_1::signature() const
 ufc::shape cahnhilliard3d_finite_element_1::cell_shape() const
 {
     return ufc::tetrahedron;
+}
+
+/// Return the topological dimension of the cell shape
+unsigned int topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the cell shape
+unsigned int geometric_dimension() const
+{
+    return 3;
 }
 
 /// Return the dimension of the finite element function space
@@ -1867,6 +1891,18 @@ const char* cahnhilliard3d_finite_element_2::signature() const
 ufc::shape cahnhilliard3d_finite_element_2::cell_shape() const
 {
     return ufc::tetrahedron;
+}
+
+/// Return the topological dimension of the cell shape
+unsigned int topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the cell shape
+unsigned int geometric_dimension() const
+{
+    return 3;
 }
 
 /// Return the dimension of the finite element function space
@@ -4360,6 +4396,18 @@ void cahnhilliard3d_dofmap_0::init_cell_finalize()
     // Do nothing
 }
 
+/// Return the topological dimension of the associated cell shape
+unsigned int topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the associated cell shape
+unsigned int geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the global finite element function space
 unsigned int cahnhilliard3d_dofmap_0::global_dimension() const
 {
@@ -4376,12 +4424,6 @@ unsigned int cahnhilliard3d_dofmap_0::local_dimension(const ufc::cell& c) const
 unsigned int cahnhilliard3d_dofmap_0::max_local_dimension() const
 {
     return 1;
-}
-
-// Return the geometric dimension of the coordinates this dof map provides
-unsigned int cahnhilliard3d_dofmap_0::geometric_dimension() const
-{
-    return 3;
 }
 
 /// Return the number of dofs on each cell facet
@@ -4595,6 +4637,18 @@ void cahnhilliard3d_dofmap_1::init_cell_finalize()
     // Do nothing
 }
 
+/// Return the topological dimension of the associated cell shape
+unsigned int topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the associated cell shape
+unsigned int geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the global finite element function space
 unsigned int cahnhilliard3d_dofmap_1::global_dimension() const
 {
@@ -4611,12 +4665,6 @@ unsigned int cahnhilliard3d_dofmap_1::local_dimension(const ufc::cell& c) const
 unsigned int cahnhilliard3d_dofmap_1::max_local_dimension() const
 {
     return 4;
-}
-
-// Return the geometric dimension of the coordinates this dof map provides
-unsigned int cahnhilliard3d_dofmap_1::geometric_dimension() const
-{
-    return 3;
 }
 
 /// Return the number of dofs on each cell facet
@@ -4873,6 +4921,18 @@ void cahnhilliard3d_dofmap_2::init_cell_finalize()
     // Do nothing
 }
 
+/// Return the topological dimension of the associated cell shape
+unsigned int topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the associated cell shape
+unsigned int geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the global finite element function space
 unsigned int cahnhilliard3d_dofmap_2::global_dimension() const
 {
@@ -4889,12 +4949,6 @@ unsigned int cahnhilliard3d_dofmap_2::local_dimension(const ufc::cell& c) const
 unsigned int cahnhilliard3d_dofmap_2::max_local_dimension() const
 {
     return 8;
-}
-
-// Return the geometric dimension of the coordinates this dof map provides
-unsigned int cahnhilliard3d_dofmap_2::geometric_dimension() const
-{
-    return 3;
 }
 
 /// Return the number of dofs on each cell facet
@@ -5216,7 +5270,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.134432268912383, 0.134432268912383, 0.026133252286735, 0.705002209888498},
     {0.273713872823130, 0.273713872823130, 0.379578230280591, 0.072994024073150},
     {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
-    {0.087102984988800, 0.087102984988800, 0.120791820133903, 0.705002209888498},
+    {0.087102984988800, 0.087102984988800, 0.120791820133902, 0.705002209888498},
     {0.098420473939609, 0.098420473939609, 0.730165028047632, 0.072994024073150},
     {0.069328785893778, 0.069328785893778, 0.514338662174092, 0.347003766038352},
     {0.031319994765818, 0.031319994765819, 0.232357800579865, 0.705002209888498},
@@ -5225,7 +5279,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.030301481174276, 0.238563056650491, 0.026133252286735, 0.705002209888498},
     {0.061696018609146, 0.485731727037113, 0.379578230280591, 0.072994024073150},
     {0.043459555653802, 0.342156357895961, 0.267380320411884, 0.347003766038352},
-    {0.019633302935485, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.019633302935484, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.022184302640820, 0.174656645238399, 0.730165028047632, 0.072994024073150},
     {0.015626939257902, 0.123030632529655, 0.514338662174092, 0.347003766038352},
     {0.007059631139555, 0.055580358392082, 0.232357800579865, 0.705002209888498}};
@@ -5428,6 +5482,18 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     }// end loop over 'ip'
 }
 
+/// Tabulate the tensor for the contribution from a local cell
+/// using the specified reference cell quadrature points/weights
+void tabulate_tensor(double* A,
+                     const double * const * w,
+                     const ufc::cell& c,
+                     unsigned int num_quadrature_points,
+                     const double * const * quadrature_points,
+                     const double* quadrature_weights) const
+{
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Constructor
 cahnhilliard3d_cell_integral_1_0::cahnhilliard3d_cell_integral_1_0() : ufc::cell_integral()
 {
@@ -5512,7 +5578,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.134432268912383, 0.134432268912383, 0.026133252286735, 0.705002209888498},
     {0.273713872823130, 0.273713872823130, 0.379578230280591, 0.072994024073150},
     {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
-    {0.087102984988800, 0.087102984988800, 0.120791820133903, 0.705002209888498},
+    {0.087102984988800, 0.087102984988800, 0.120791820133902, 0.705002209888498},
     {0.098420473939609, 0.098420473939609, 0.730165028047632, 0.072994024073150},
     {0.069328785893778, 0.069328785893778, 0.514338662174092, 0.347003766038352},
     {0.031319994765818, 0.031319994765819, 0.232357800579865, 0.705002209888498},
@@ -5521,7 +5587,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.030301481174276, 0.238563056650491, 0.026133252286735, 0.705002209888498},
     {0.061696018609146, 0.485731727037113, 0.379578230280591, 0.072994024073150},
     {0.043459555653802, 0.342156357895961, 0.267380320411884, 0.347003766038352},
-    {0.019633302935485, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.019633302935484, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.022184302640820, 0.174656645238399, 0.730165028047632, 0.072994024073150},
     {0.015626939257902, 0.123030632529655, 0.514338662174092, 0.347003766038352},
     {0.007059631139555, 0.055580358392082, 0.232357800579865, 0.705002209888498}};
@@ -5705,6 +5771,18 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
         A[nzc4[j]] += FE1_C0[ip][j]*I[7];
       }// end loop over 'j'
     }// end loop over 'ip'
+}
+
+/// Tabulate the tensor for the contribution from a local cell
+/// using the specified reference cell quadrature points/weights
+void tabulate_tensor(double* A,
+                     const double * const * w,
+                     const ufc::cell& c,
+                     unsigned int num_quadrature_points,
+                     const double * const * quadrature_points,
+                     const double* quadrature_weights) const
+{
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
 }
 
 /// Constructor
