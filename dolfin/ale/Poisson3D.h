@@ -14,9 +14,8 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
-//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -61,6 +60,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::tetrahedron;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 3;
   }
 
   /// Return the dimension of the finite element function space
@@ -1494,6 +1505,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 3;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 3;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -1510,12 +1533,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 4;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 3;
   }
 
   /// Return the number of dofs on each cell facet
@@ -1733,8 +1750,8 @@ public:
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      32
     // Number of operations (multiply-add pairs) for geometry tensor:    27
-    // Number of operations (multiply-add pairs) for tensor contraction: 28
-    // Total number of operations (multiply-add pairs):                  87
+    // Number of operations (multiply-add pairs) for tensor contraction: 23
+    // Total number of operations (multiply-add pairs):                  82
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -1790,22 +1807,34 @@ public:
     const double G0_2_2 = det*(K_20*K_20 + K_21*K_21 + K_22*K_22);
     
     // Compute element tensor
-    A[0] = 0.166666666666666*G0_0_0 + 0.166666666666666*G0_0_1 + 0.166666666666666*G0_0_2 + 0.166666666666666*G0_1_0 + 0.166666666666667*G0_1_1 + 0.166666666666666*G0_1_2 + 0.166666666666666*G0_2_0 + 0.166666666666666*G0_2_1 + 0.166666666666666*G0_2_2;
     A[1] = -0.166666666666666*G0_0_0 - 0.166666666666666*G0_1_0 - 0.166666666666666*G0_2_0;
-    A[2] = -0.166666666666666*G0_0_1 - 0.166666666666667*G0_1_1 - 0.166666666666666*G0_2_1;
-    A[3] = -0.166666666666666*G0_0_2 - 0.166666666666666*G0_1_2 - 0.166666666666666*G0_2_2;
-    A[4] = -0.166666666666666*G0_0_0 - 0.166666666666666*G0_0_1 - 0.166666666666666*G0_0_2;
-    A[5] = 0.166666666666666*G0_0_0;
     A[6] = 0.166666666666666*G0_0_1;
-    A[7] = 0.166666666666666*G0_0_2;
-    A[8] = -0.166666666666666*G0_1_0 - 0.166666666666667*G0_1_1 - 0.166666666666666*G0_1_2;
-    A[9] = 0.166666666666666*G0_1_0;
-    A[10] = 0.166666666666667*G0_1_1;
-    A[11] = 0.166666666666666*G0_1_2;
-    A[12] = -0.166666666666666*G0_2_0 - 0.166666666666666*G0_2_1 - 0.166666666666666*G0_2_2;
-    A[13] = 0.166666666666666*G0_2_0;
     A[14] = 0.166666666666666*G0_2_1;
+    A[0] = -A[1] + 0.166666666666666*G0_0_1 + 0.166666666666666*G0_0_2 + 0.166666666666667*G0_1_1 + 0.166666666666666*G0_1_2 + 0.166666666666666*G0_2_1 + 0.166666666666666*G0_2_2;
     A[15] = 0.166666666666666*G0_2_2;
+    A[13] = 0.166666666666666*G0_2_0;
+    A[12] = -A[13] - 0.166666666666666*G0_2_1 - 0.166666666666666*G0_2_2;
+    A[9] = 0.166666666666666*G0_1_0;
+    A[5] = 0.166666666666666*G0_0_0;
+    A[8] = -A[9] - 0.166666666666667*G0_1_1 - 0.166666666666666*G0_1_2;
+    A[7] = 0.166666666666666*G0_0_2;
+    A[11] = 0.166666666666666*G0_1_2;
+    A[10] = 0.166666666666667*G0_1_1;
+    A[4] = -A[6] - 0.166666666666666*G0_0_0 - 0.166666666666666*G0_0_2;
+    A[3] = -A[15] - 0.166666666666666*G0_0_2 - 0.166666666666666*G0_1_2;
+    A[2] = -A[6] - 0.166666666666667*G0_1_1 - 0.166666666666666*G0_2_1;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };
