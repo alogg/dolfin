@@ -1980,6 +1980,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new velocity_finite_element_0();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -5616,12 +5622,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new velocity_finite_element_1();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class velocity_dof_map_0: public ufc::dof_map
+class velocity_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -5629,13 +5641,13 @@ private:
 public:
 
   /// Constructor
-  velocity_dof_map_0() : ufc::dof_map()
+  velocity_dofmap_0() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~velocity_dof_map_0()
+  virtual ~velocity_dofmap_0()
   {
     // Do nothing
   }
@@ -5890,15 +5902,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new velocity_dofmap_0();
   }
 
 };
@@ -5906,7 +5924,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class velocity_dof_map_1: public ufc::dof_map
+class velocity_dofmap_1: public ufc::dofmap
 {
 private:
 
@@ -5914,13 +5932,13 @@ private:
 public:
 
   /// Constructor
-  velocity_dof_map_1() : ufc::dof_map()
+  velocity_dofmap_1() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~velocity_dof_map_1()
+  virtual ~velocity_dofmap_1()
   {
     // Do nothing
   }
@@ -6210,29 +6228,35 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 2;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new velocity_dof_map_0();
+        return new velocity_dofmap_0();
         break;
       }
     case 1:
       {
-        return new velocity_dof_map_0();
+        return new velocity_dofmap_0();
         break;
       }
     }
     
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new velocity_dofmap_1();
   }
 
 };
@@ -6263,7 +6287,7 @@ public:
   FunctionSpace(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new velocity_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new velocity_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new velocity_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6271,7 +6295,7 @@ public:
   FunctionSpace(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new velocity_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new velocity_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new velocity_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6279,7 +6303,7 @@ public:
   FunctionSpace(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new velocity_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new velocity_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new velocity_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6287,7 +6311,7 @@ public:
   FunctionSpace(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new velocity_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new velocity_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new velocity_dofmap_1()), *mesh)))
   {
       // Do nothing
   }

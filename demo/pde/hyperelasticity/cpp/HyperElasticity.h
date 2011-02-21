@@ -474,6 +474,12 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new hyperelasticity_finite_element_0();
+  }
+
 };
 
 /// This class defines the interface for a finite element.
@@ -1849,6 +1855,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new hyperelasticity_finite_element_1();
   }
 
 };
@@ -5351,12 +5363,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new hyperelasticity_finite_element_2();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class hyperelasticity_dof_map_0: public ufc::dof_map
+class hyperelasticity_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -5364,13 +5382,13 @@ private:
 public:
 
   /// Constructor
-  hyperelasticity_dof_map_0() : ufc::dof_map()
+  hyperelasticity_dofmap_0() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~hyperelasticity_dof_map_0()
+  virtual ~hyperelasticity_dofmap_0()
   {
     // Do nothing
   }
@@ -5581,15 +5599,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new hyperelasticity_dofmap_0();
   }
 
 };
@@ -5597,7 +5621,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class hyperelasticity_dof_map_1: public ufc::dof_map
+class hyperelasticity_dofmap_1: public ufc::dofmap
 {
 private:
 
@@ -5605,13 +5629,13 @@ private:
 public:
 
   /// Constructor
-  hyperelasticity_dof_map_1() : ufc::dof_map()
+  hyperelasticity_dofmap_1() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~hyperelasticity_dof_map_1()
+  virtual ~hyperelasticity_dofmap_1()
   {
     // Do nothing
   }
@@ -5865,15 +5889,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new hyperelasticity_dofmap_1();
   }
 
 };
@@ -5881,7 +5911,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class hyperelasticity_dof_map_2: public ufc::dof_map
+class hyperelasticity_dofmap_2: public ufc::dofmap
 {
 private:
 
@@ -5889,13 +5919,13 @@ private:
 public:
 
   /// Constructor
-  hyperelasticity_dof_map_2() : ufc::dof_map()
+  hyperelasticity_dofmap_2() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~hyperelasticity_dof_map_2()
+  virtual ~hyperelasticity_dofmap_2()
   {
     // Do nothing
   }
@@ -6217,34 +6247,40 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 3;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new hyperelasticity_dof_map_1();
+        return new hyperelasticity_dofmap_1();
         break;
       }
     case 1:
       {
-        return new hyperelasticity_dof_map_1();
+        return new hyperelasticity_dofmap_1();
         break;
       }
     case 2:
       {
-        return new hyperelasticity_dof_map_1();
+        return new hyperelasticity_dofmap_1();
         break;
       }
     }
     
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new hyperelasticity_dofmap_2();
   }
 
 };
@@ -6850,20 +6886,20 @@ public:
     return 3;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -6903,34 +6939,34 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 1:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 2:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 3:
       {
-        return new hyperelasticity_dof_map_0();
+        return new hyperelasticity_dofmap_0();
         break;
       }
     case 4:
       {
-        return new hyperelasticity_dof_map_0();
+        return new hyperelasticity_dofmap_0();
         break;
       }
     }
@@ -7016,20 +7052,20 @@ public:
     return 5;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 1;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -7074,39 +7110,39 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 1:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 2:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 3:
       {
-        return new hyperelasticity_dof_map_2();
+        return new hyperelasticity_dofmap_2();
         break;
       }
     case 4:
       {
-        return new hyperelasticity_dof_map_0();
+        return new hyperelasticity_dofmap_0();
         break;
       }
     case 5:
       {
-        return new hyperelasticity_dof_map_0();
+        return new hyperelasticity_dofmap_0();
         break;
       }
     }
@@ -7178,7 +7214,7 @@ public:
   CoefficientSpace_B(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7186,7 +7222,7 @@ public:
   CoefficientSpace_B(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7194,7 +7230,7 @@ public:
   CoefficientSpace_B(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7202,7 +7238,7 @@ public:
   CoefficientSpace_B(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7220,7 +7256,7 @@ public:
   CoefficientSpace_T(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7228,7 +7264,7 @@ public:
   CoefficientSpace_T(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7236,7 +7272,7 @@ public:
   CoefficientSpace_T(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7244,7 +7280,7 @@ public:
   CoefficientSpace_T(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7262,7 +7298,7 @@ public:
   CoefficientSpace_lmbda(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -7270,7 +7306,7 @@ public:
   CoefficientSpace_lmbda(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -7278,7 +7314,7 @@ public:
   CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7286,7 +7322,7 @@ public:
   CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7304,7 +7340,7 @@ public:
   CoefficientSpace_mu(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -7312,7 +7348,7 @@ public:
   CoefficientSpace_mu(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -7320,7 +7356,7 @@ public:
   CoefficientSpace_mu(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7328,7 +7364,7 @@ public:
   CoefficientSpace_mu(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7346,7 +7382,7 @@ public:
   CoefficientSpace_u(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7354,7 +7390,7 @@ public:
   CoefficientSpace_u(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7362,7 +7398,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7370,7 +7406,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7388,7 +7424,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7396,7 +7432,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7404,7 +7440,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7412,7 +7448,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7430,7 +7466,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7438,7 +7474,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7446,7 +7482,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7454,7 +7490,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7606,7 +7642,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7614,7 +7650,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7622,7 +7658,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7630,7 +7666,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new hyperelasticity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new hyperelasticity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new hyperelasticity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }

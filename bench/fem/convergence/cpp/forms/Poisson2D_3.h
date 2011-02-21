@@ -3244,12 +3244,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new poisson2d_3_finite_element_0();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class poisson2d_3_dof_map_0: public ufc::dof_map
+class poisson2d_3_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -3257,13 +3263,13 @@ private:
 public:
 
   /// Constructor
-  poisson2d_3_dof_map_0() : ufc::dof_map()
+  poisson2d_3_dofmap_0() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~poisson2d_3_dof_map_0()
+  virtual ~poisson2d_3_dofmap_0()
   {
     // Do nothing
   }
@@ -3542,15 +3548,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new poisson2d_3_dofmap_0();
   }
 
 };
@@ -3618,7 +3630,7 @@ public:
     A[2] = -0.087500000000000*G0_0_1 - 0.087500000000000*G0_1_1;
     A[3] = -0.037500000000000*G0_0_0 - 0.037500000000000*G0_0_1 - 0.037500000000000*G0_1_0 - 0.037500000000000*G0_1_1;
     A[4] = -0.037500000000000*G0_0_0 - 0.037500000000000*G0_0_1 - 0.037500000000000*G0_1_0 - 0.037500000000000*G0_1_1;
-    A[5] = 0.037500000000000*G0_0_0 - 0.675000000000000*G0_0_1 + 0.037500000000000*G0_1_0 - 0.674999999999999*G0_1_1;
+    A[5] = 0.037500000000000*G0_0_0 - 0.674999999999999*G0_0_1 + 0.037500000000000*G0_1_0 - 0.674999999999999*G0_1_1;
     A[6] = 0.037500000000000*G0_0_0 + 0.337500000000000*G0_0_1 + 0.037500000000000*G0_1_0 + 0.337500000000000*G0_1_1;
     A[7] = -0.675000000000000*G0_0_0 + 0.037500000000000*G0_0_1 - 0.675000000000000*G0_1_0 + 0.037500000000000*G0_1_1;
     A[8] = 0.337500000000000*G0_0_0 + 0.037500000000000*G0_0_1 + 0.337500000000000*G0_1_0 + 0.037500000000000*G0_1_1;
@@ -3657,13 +3669,13 @@ public:
     A[41] = 0.037500000000000*G0_0_0 - 0.300000000000000*G0_1_0;
     A[42] = 0.712499999999999*G0_0_1 + 0.037500000000000*G0_1_1;
     A[43] = -0.337500000000000*G0_0_0 - 0.168750000000000*G0_0_1 + 0.843749999999999*G0_1_0 - 0.337500000000000*G0_1_1;
-    A[44] = 1.687499999999998*G0_0_0 + 0.843750000000000*G0_0_1 + 0.843749999999999*G0_1_0 + 1.687499999999999*G0_1_1;
-    A[45] = 0.337499999999999*G0_0_0 + 0.168749999999999*G0_0_1 + 0.168750000000000*G0_1_0;
-    A[46] = -1.687499999999998*G0_0_0 - 0.843749999999999*G0_0_1 - 0.843750000000000*G0_1_0;
+    A[44] = 1.687499999999999*G0_0_0 + 0.843750000000000*G0_0_1 + 0.843750000000000*G0_1_0 + 1.687499999999999*G0_1_1;
+    A[45] = 0.337499999999999*G0_0_0 + 0.168750000000000*G0_0_1 + 0.168750000000000*G0_1_0;
+    A[46] = -1.687499999999998*G0_0_0 - 0.843749999999999*G0_0_1 - 0.843749999999999*G0_1_0;
     A[47] = 0.168750000000000*G0_0_1 + 0.168750000000000*G0_1_0 + 0.337500000000000*G0_1_1;
     A[48] = 0.168750000000000*G0_0_1 + 0.168750000000000*G0_1_0 + 0.337500000000000*G0_1_1;
-    A[49] = -1.012500000000000*G0_0_1 - 1.012499999999999*G0_1_0 - 2.024999999999999*G0_1_1;
-    A[50] = 0.037500000000000*G0_0_0 + 0.037500000000000*G0_0_1 - 0.675000000000000*G0_1_0 - 0.674999999999999*G0_1_1;
+    A[49] = -1.012500000000000*G0_0_1 - 1.012500000000000*G0_1_0 - 2.024999999999999*G0_1_1;
+    A[50] = 0.037500000000000*G0_0_0 + 0.037500000000000*G0_0_1 - 0.674999999999999*G0_1_0 - 0.674999999999999*G0_1_1;
     A[51] = -0.037500000000000*G0_0_0;
     A[52] = 0.300000000000000*G0_0_1 + 0.337500000000000*G0_1_1;
     A[53] = 0.337500000000000*G0_0_0 + 0.168750000000000*G0_0_1 + 0.168750000000000*G0_1_0;
@@ -3678,8 +3690,8 @@ public:
     A[62] = -0.712499999999999*G0_0_1 - 0.674999999999999*G0_1_1;
     A[63] = 0.337500000000000*G0_0_0 + 0.168750000000000*G0_0_1 + 0.168750000000000*G0_1_0;
     A[64] = -1.687499999999998*G0_0_0 - 0.843750000000000*G0_0_1 - 0.843749999999999*G0_1_0;
-    A[65] = -0.337499999999999*G0_0_0 - 0.168750000000000*G0_0_1 - 1.181249999999999*G0_1_0 - 1.349999999999999*G0_1_1;
-    A[66] = 1.687499999999998*G0_0_0 + 0.843749999999998*G0_0_1 + 0.843749999999999*G0_1_0 + 1.687499999999999*G0_1_1;
+    A[65] = -0.337500000000000*G0_0_0 - 0.168750000000000*G0_0_1 - 1.181249999999999*G0_1_0 - 1.349999999999999*G0_1_1;
+    A[66] = 1.687499999999998*G0_0_0 + 0.843749999999999*G0_0_1 + 0.843749999999999*G0_1_0 + 1.687499999999999*G0_1_1;
     A[67] = -0.168750000000000*G0_0_1 - 0.168750000000000*G0_1_0;
     A[68] = -0.168750000000000*G0_0_1 - 0.168749999999999*G0_1_0;
     A[69] = 1.012500000000000*G0_0_1 + 1.012499999999999*G0_1_0;
@@ -3690,7 +3702,7 @@ public:
     A[74] = 0.168750000000000*G0_0_1 + 0.168750000000000*G0_1_0 + 0.337500000000000*G0_1_1;
     A[75] = 0.843750000000000*G0_0_1 + 0.843750000000000*G0_1_0;
     A[76] = -0.168750000000000*G0_0_1 - 0.168750000000000*G0_1_0;
-    A[77] = 1.687499999999999*G0_0_0 + 0.843750000000000*G0_0_1 + 0.843750000000000*G0_1_0 + 1.687499999999999*G0_1_1;
+    A[77] = 1.687500000000000*G0_0_0 + 0.843750000000000*G0_0_1 + 0.843750000000000*G0_1_0 + 1.687499999999999*G0_1_1;
     A[78] = -1.350000000000000*G0_0_0 - 0.168750000000000*G0_0_1 - 1.181250000000000*G0_1_0 - 0.337500000000000*G0_1_1;
     A[79] = -1.012500000000000*G0_0_1 - 1.012500000000000*G0_1_0 - 2.024999999999999*G0_1_1;
     A[80] = 0.337500000000000*G0_0_0 + 0.337500000000000*G0_0_1 + 0.037500000000000*G0_1_0 + 0.037500000000000*G0_1_1;
@@ -3707,7 +3719,7 @@ public:
     A[91] = 0.000000000000000;
     A[92] = 0.000000000000000;
     A[93] = -2.024999999999999*G0_0_0 - 1.012499999999999*G0_0_1 - 1.012499999999999*G0_1_0;
-    A[94] = -1.012499999999999*G0_0_1 - 1.012500000000000*G0_1_0 - 2.024999999999999*G0_1_1;
+    A[94] = -1.012500000000000*G0_0_1 - 1.012500000000000*G0_1_0 - 2.024999999999999*G0_1_1;
     A[95] = -2.024999999999999*G0_0_0 - 1.012499999999999*G0_0_1 - 1.012500000000000*G0_1_0;
     A[96] = 1.012499999999999*G0_0_1 + 1.012500000000000*G0_1_0;
     A[97] = -1.012500000000000*G0_0_1 - 1.012500000000000*G0_1_0 - 2.024999999999999*G0_1_1;
@@ -3840,20 +3852,20 @@ public:
     return 0;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -3878,19 +3890,19 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new poisson2d_3_dof_map_0();
+        return new poisson2d_3_dofmap_0();
         break;
       }
     case 1:
       {
-        return new poisson2d_3_dof_map_0();
+        return new poisson2d_3_dofmap_0();
         break;
       }
     }
@@ -3976,20 +3988,20 @@ public:
     return 1;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -4014,19 +4026,19 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new poisson2d_3_dof_map_0();
+        return new poisson2d_3_dofmap_0();
         break;
       }
     case 1:
       {
-        return new poisson2d_3_dof_map_0();
+        return new poisson2d_3_dofmap_0();
         break;
       }
     }
@@ -4089,7 +4101,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4097,7 +4109,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4105,7 +4117,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4113,7 +4125,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4131,7 +4143,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4139,7 +4151,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4147,7 +4159,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4155,7 +4167,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4173,7 +4185,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4181,7 +4193,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4189,7 +4201,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4197,7 +4209,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4266,7 +4278,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4274,7 +4286,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -4282,7 +4294,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -4290,7 +4302,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson2d_3_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new poisson2d_3_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson2d_3_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
