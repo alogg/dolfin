@@ -417,6 +417,22 @@ void cahnhilliard2d_finite_element_0::interpolate_vertex_values(double* vertex_v
     vertex_values[2] = dof_values[0];
 }
 
+/// Map coordinate xhat from reference cell to coordinate x in cell
+void cahnhilliard2d_finite_element_0::map_from_reference_cell(double* x,
+                                            const double* xhat,
+                                            const ufc::cell& c)
+{
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Map from coordinate x in cell to coordinate xhat in reference cell
+void cahnhilliard2d_finite_element_0::map_to_reference_cell(double* xhat,
+                                          const double* x,
+                                          const ufc::cell& c)
+{
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Return the number of sub elements (for a mixed element)
 unsigned int cahnhilliard2d_finite_element_0::num_sub_elements() const
 {
@@ -1349,6 +1365,22 @@ void cahnhilliard2d_finite_element_1::interpolate_vertex_values(double* vertex_v
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[1];
     vertex_values[2] = dof_values[2];
+}
+
+/// Map coordinate xhat from reference cell to coordinate x in cell
+void cahnhilliard2d_finite_element_1::map_from_reference_cell(double* x,
+                                            const double* xhat,
+                                            const ufc::cell& c)
+{
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Map from coordinate x in cell to coordinate xhat in reference cell
+void cahnhilliard2d_finite_element_1::map_to_reference_cell(double* xhat,
+                                          const double* x,
+                                          const ufc::cell& c)
+{
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
 
 /// Return the number of sub elements (for a mixed element)
@@ -2932,6 +2964,22 @@ void cahnhilliard2d_finite_element_2::interpolate_vertex_values(double* vertex_v
     vertex_values[5] = dof_values[5];
 }
 
+/// Map coordinate xhat from reference cell to coordinate x in cell
+void cahnhilliard2d_finite_element_2::map_from_reference_cell(double* x,
+                                            const double* xhat,
+                                            const ufc::cell& c)
+{
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Map from coordinate x in cell to coordinate xhat in reference cell
+void cahnhilliard2d_finite_element_2::map_to_reference_cell(double* xhat,
+                                          const double* x,
+                                          const ufc::cell& c)
+{
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Return the number of sub elements (for a mixed element)
 unsigned int cahnhilliard2d_finite_element_2::num_sub_elements() const
 {
@@ -4205,7 +4253,7 @@ ufc::finite_element* cahnhilliard2d_form_0::create_finite_element(unsigned int i
     return 0;
 }
 
-/// Create a new dof map for argument function i
+/// Create a new dofmap for argument function i
 ufc::dofmap* cahnhilliard2d_form_0::create_dofmap(unsigned int i) const
 {
     switch (i)
@@ -4360,7 +4408,7 @@ ufc::finite_element* cahnhilliard2d_form_1::create_finite_element(unsigned int i
     return 0;
 }
 
-/// Create a new dof map for argument function i
+/// Create a new dofmap for argument function i
 ufc::dofmap* cahnhilliard2d_form_1::create_dofmap(unsigned int i) const
 {
     switch (i)

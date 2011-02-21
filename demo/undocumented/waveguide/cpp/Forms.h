@@ -5376,6 +5376,22 @@ public:
     vertex_values[5] = dof_values[0]*(K_01*(-1.0)) + dof_values[1]*K_01*3.0 + dof_values[2]*(K_01*(-3.0)) + dof_values[3]*(K_01 + K_11) + dof_values[4]*(K_01*(-3.0) + K_11*(-3.0)) + dof_values[5]*(K_01*3.0 + K_11*3.0) + dof_values[9]*(K_01*(-1.33226762955e-14)) + dof_values[10]*(K_01*(-1.63028389337e-14)) + dof_values[11]*(K_01*(1.95399252334e-14)) + dof_values[14]*(K_01*(1.48449348971e-14));
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {

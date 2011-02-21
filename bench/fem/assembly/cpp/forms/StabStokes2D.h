@@ -954,6 +954,22 @@ public:
     vertex_values[2] = dof_values[2];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -2542,6 +2558,22 @@ public:
     vertex_values[5] = dof_values[5];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -2970,6 +3002,22 @@ public:
     vertex_values[0] = dof_values[0];
     vertex_values[1] = dof_values[0];
     vertex_values[2] = dof_values[0];
+  }
+
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4729,6 +4777,22 @@ public:
     vertex_values[2] = dof_values[6];
     vertex_values[5] = dof_values[6];
     vertex_values[8] = dof_values[6];
+  }
+
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
 
   /// Return the number of sub elements (for a mixed element)

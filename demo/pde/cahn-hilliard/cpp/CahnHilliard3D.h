@@ -105,6 +105,16 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const;
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c);
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c);
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
 
@@ -188,6 +198,16 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const;
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c);
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c);
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
 
@@ -270,6 +290,16 @@ public:
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
                                          const ufc::cell& c) const;
+
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c);
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c);
 
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
@@ -631,7 +661,7 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const;
 
-  /// Create a new dof map for argument function i
+  /// Create a new dofmap for argument function i
   virtual ufc::dofmap* create_dofmap(unsigned int i) const;
 
   /// Create a new cell integral on sub domain i
@@ -691,7 +721,7 @@ public:
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const;
 
-  /// Create a new dof map for argument function i
+  /// Create a new dofmap for argument function i
   virtual ufc::dofmap* create_dofmap(unsigned int i) const;
 
   /// Create a new cell integral on sub domain i

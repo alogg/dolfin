@@ -1408,6 +1408,22 @@ public:
     vertex_values[3] = dof_values[3];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
