@@ -52,13 +52,13 @@ ufc::shape cahnhilliard3d_finite_element_0::cell_shape() const
 }
 
 /// Return the topological dimension of the cell shape
-unsigned int topological_dimension() const
+unsigned int cahnhilliard3d_finite_element_0::topological_dimension() const
 {
     return 3;
 }
 
 /// Return the geometric dimension of the cell shape
-unsigned int geometric_dimension() const
+unsigned int cahnhilliard3d_finite_element_0::geometric_dimension() const
 {
     return 3;
 }
@@ -506,13 +506,13 @@ ufc::shape cahnhilliard3d_finite_element_1::cell_shape() const
 }
 
 /// Return the topological dimension of the cell shape
-unsigned int topological_dimension() const
+unsigned int cahnhilliard3d_finite_element_1::topological_dimension() const
 {
     return 3;
 }
 
 /// Return the geometric dimension of the cell shape
-unsigned int geometric_dimension() const
+unsigned int cahnhilliard3d_finite_element_1::geometric_dimension() const
 {
     return 3;
 }
@@ -1894,13 +1894,13 @@ ufc::shape cahnhilliard3d_finite_element_2::cell_shape() const
 }
 
 /// Return the topological dimension of the cell shape
-unsigned int topological_dimension() const
+unsigned int cahnhilliard3d_finite_element_2::topological_dimension() const
 {
     return 3;
 }
 
 /// Return the geometric dimension of the cell shape
-unsigned int geometric_dimension() const
+unsigned int cahnhilliard3d_finite_element_2::geometric_dimension() const
 {
     return 3;
 }
@@ -4397,13 +4397,13 @@ void cahnhilliard3d_dofmap_0::init_cell_finalize()
 }
 
 /// Return the topological dimension of the associated cell shape
-unsigned int topological_dimension() const
+unsigned int cahnhilliard3d_dofmap_0::topological_dimension() const
 {
     return 3;
 }
 
 /// Return the geometric dimension of the associated cell shape
-unsigned int geometric_dimension() const
+unsigned int cahnhilliard3d_dofmap_0::geometric_dimension() const
 {
     return 3;
 }
@@ -4638,13 +4638,13 @@ void cahnhilliard3d_dofmap_1::init_cell_finalize()
 }
 
 /// Return the topological dimension of the associated cell shape
-unsigned int topological_dimension() const
+unsigned int cahnhilliard3d_dofmap_1::topological_dimension() const
 {
     return 3;
 }
 
 /// Return the geometric dimension of the associated cell shape
-unsigned int geometric_dimension() const
+unsigned int cahnhilliard3d_dofmap_1::geometric_dimension() const
 {
     return 3;
 }
@@ -4922,13 +4922,13 @@ void cahnhilliard3d_dofmap_2::init_cell_finalize()
 }
 
 /// Return the topological dimension of the associated cell shape
-unsigned int topological_dimension() const
+unsigned int cahnhilliard3d_dofmap_2::topological_dimension() const
 {
     return 3;
 }
 
 /// Return the geometric dimension of the associated cell shape
-unsigned int geometric_dimension() const
+unsigned int cahnhilliard3d_dofmap_2::geometric_dimension() const
 {
     return 3;
 }
@@ -5484,7 +5484,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
 
 /// Tabulate the tensor for the contribution from a local cell
 /// using the specified reference cell quadrature points/weights
-void tabulate_tensor(double* A,
+void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
                      const double * const * w,
                      const ufc::cell& c,
                      unsigned int num_quadrature_points,
@@ -5775,7 +5775,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
 
 /// Tabulate the tensor for the contribution from a local cell
 /// using the specified reference cell quadrature points/weights
-void tabulate_tensor(double* A,
+void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
                      const double * const * w,
                      const ufc::cell& c,
                      unsigned int num_quadrature_points,
