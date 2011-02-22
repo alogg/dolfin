@@ -63,6 +63,18 @@ public:
     return ufc::triangle;
   }
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
@@ -417,6 +429,22 @@ public:
     vertex_values[2] = dof_values[0];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -427,6 +455,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new biharmonic_finite_element_0();
   }
 
 };
@@ -459,6 +493,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -1107,7 +1153,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1304,7 +1350,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1501,7 +1547,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1698,7 +1744,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1895,7 +1941,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -2092,7 +2138,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -2366,6 +2412,22 @@ public:
     vertex_values[2] = dof_values[2];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -2378,12 +2440,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new biharmonic_finite_element_1();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class biharmonic_dof_map_0: public ufc::dof_map
+class biharmonic_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -2391,13 +2459,13 @@ private:
 public:
 
   /// Constructor
-  biharmonic_dof_map_0() : ufc::dof_map()
+  biharmonic_dofmap_0() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~biharmonic_dof_map_0()
+  virtual ~biharmonic_dofmap_0()
   {
     // Do nothing
   }
@@ -2453,6 +2521,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -2469,12 +2549,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -2587,15 +2661,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new biharmonic_dofmap_0();
   }
 
 };
@@ -2603,7 +2683,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class biharmonic_dof_map_1: public ufc::dof_map
+class biharmonic_dofmap_1: public ufc::dofmap
 {
 private:
 
@@ -2611,13 +2691,13 @@ private:
 public:
 
   /// Constructor
-  biharmonic_dof_map_1() : ufc::dof_map()
+  biharmonic_dofmap_1() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~biharmonic_dof_map_1()
+  virtual ~biharmonic_dofmap_1()
   {
     // Do nothing
   }
@@ -2673,6 +2753,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -2689,12 +2781,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 6;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -2872,15 +2958,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new biharmonic_dofmap_1();
   }
 
 };
@@ -2942,7 +3034,7 @@ public:
     
     // Value of basis functions at quadrature points.
     static const double FE0_D02[1][3] = \
-    {{4.000000000000001, 4.000000000000000, -8.000000000000002}};
+    {{4.000000000000002, 4.000000000000002, -8.000000000000004}};
     
     // Array of non-zero columns
     static const unsigned int nzc1[3] = {0, 2, 4};
@@ -2951,7 +3043,7 @@ public:
     static const unsigned int nzc4[3] = {0, 1, 5};
     
     static const double FE0_D11[1][4] = \
-    {{4.000000000000001, 4.000000000000000, -4.000000000000001, -4.000000000000001}};
+    {{4.000000000000002, 4.000000000000001, -4.000000000000002, -4.000000000000001}};
     
     // Array of non-zero columns
     static const unsigned int nzc3[4] = {0, 3, 4, 5};
@@ -3026,6 +3118,18 @@ public:
         A[nzc4[j]*6 + nzc3[k]] += FE0_D02[0][j]*FE0_D11[0][k]*G[4];
       }// end loop over 'k'
     }// end loop over 'j'
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
   }
 
 };
@@ -3133,14 +3237,14 @@ public:
     // Value of basis functions at quadrature points.
     static const double FE0_f0_D01[2][5] = \
     {{1.000000000000001, -0.154700538379251, 3.154700538379251, -0.845299461620749, -3.154700538379251},
-    {1.000000000000000, 2.154700538379251, 0.845299461620747, -3.154700538379251, -0.845299461620748}};
+    {1.000000000000000, 2.154700538379252, 0.845299461620747, -3.154700538379251, -0.845299461620748}};
     
     // Array of non-zero columns
     static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
     
     static const double FE0_f0_D02[2][3] = \
-    {{4.000000000000002, 4.000000000000000, -8.000000000000004},
-    {3.999999999999999, 3.999999999999999, -7.999999999999996}};
+    {{4.000000000000003, 3.999999999999999, -8.000000000000004},
+    {4.000000000000000, 4.000000000000000, -8.000000000000000}};
     
     // Array of non-zero columns
     static const unsigned int nzc5[3] = {0, 1, 5};
@@ -3149,22 +3253,22 @@ public:
     static const unsigned int nzc2[3] = {0, 2, 4};
     
     static const double FE0_f0_D10[2][5] = \
-    {{1.000000000000000, 2.154700538379251, 0.845299461620748, -0.845299461620749, -3.154700538379251},
+    {{1.000000000000000, 2.154700538379251, 0.845299461620748, -0.845299461620748, -3.154700538379251},
     {1.000000000000000, -0.154700538379252, 3.154700538379250, -3.154700538379251, -0.845299461620748}};
     
     // Array of non-zero columns
     static const unsigned int nzc3[5] = {0, 1, 3, 4, 5};
     
     static const double FE0_f0_D11[2][4] = \
-    {{4.000000000000002, 4.000000000000000, -4.000000000000001, -4.000000000000003},
-    {4.000000000000000, 3.999999999999993, -3.999999999999995, -3.999999999999996}};
+    {{4.000000000000001, 3.999999999999999, -4.000000000000001, -4.000000000000002},
+    {4.000000000000000, 3.999999999999994, -3.999999999999996, -3.999999999999997}};
     
     // Array of non-zero columns
     static const unsigned int nzc4[4] = {0, 3, 4, 5};
     
     static const double FE0_f1_D01[2][3] = \
     {{-2.154700538379251, -0.154700538379251, 2.309401076758502},
-    {0.154700538379251, 2.154700538379251, -2.309401076758502}};
+    {0.154700538379251, 2.154700538379252, -2.309401076758502}};
     
     // Array of non-zero columns
     static const unsigned int nzc11[3] = {0, 1, 5};
@@ -3180,8 +3284,8 @@ public:
     static const unsigned int nzc8[5] = {0, 1, 3, 4, 5};
     
     static const double FE0_f2_D01[2][5] = \
-    {{-2.154700538379251, -1.000000000000000, 0.845299461620748, 3.154700538379251, -0.845299461620748},
-    {0.154700538379252, -1.000000000000000, 3.154700538379250, 0.845299461620750, -3.154700538379251}};
+    {{-2.154700538379251, -1.000000000000000, 0.845299461620748, 3.154700538379252, -0.845299461620748},
+    {0.154700538379251, -1.000000000000000, 3.154700538379250, 0.845299461620750, -3.154700538379252}};
     
     // Array of non-zero columns
     static const unsigned int nzc10[5] = {0, 2, 3, 4, 5};
@@ -6008,6 +6112,18 @@ public:
     
   }
 
+  /// Tabulate the tensor for the contribution from a local interior facet
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+  }
+
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -6074,6 +6190,18 @@ public:
     A[5] = -0.011111111111111*G0_2 + 0.044444444444444*G0_3 + 0.044444444444444*G0_4 + 0.088888888888889*G0_5;
   }
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
 };
 
 /// This class defines the interface for the assembly of the global
@@ -6125,20 +6253,20 @@ public:
     return 1;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 1;
   }
@@ -6168,24 +6296,24 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new biharmonic_dof_map_1();
+        return new biharmonic_dofmap_1();
         break;
       }
     case 1:
       {
-        return new biharmonic_dof_map_1();
+        return new biharmonic_dofmap_1();
         break;
       }
     case 2:
       {
-        return new biharmonic_dof_map_0();
+        return new biharmonic_dofmap_0();
         break;
       }
     }
@@ -6280,20 +6408,20 @@ public:
     return 1;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -6318,19 +6446,19 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new biharmonic_dof_map_1();
+        return new biharmonic_dofmap_1();
         break;
       }
     case 1:
       {
-        return new biharmonic_dof_map_1();
+        return new biharmonic_dofmap_1();
         break;
       }
     }
@@ -6393,7 +6521,7 @@ public:
   CoefficientSpace_alpha(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -6401,7 +6529,7 @@ public:
   CoefficientSpace_alpha(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -6409,7 +6537,7 @@ public:
   CoefficientSpace_alpha(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -6417,7 +6545,7 @@ public:
   CoefficientSpace_alpha(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -6435,7 +6563,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6443,7 +6571,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6451,7 +6579,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6459,7 +6587,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6477,7 +6605,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6485,7 +6613,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6493,7 +6621,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6501,7 +6629,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6519,7 +6647,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6527,7 +6655,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6535,7 +6663,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6543,7 +6671,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6671,7 +6799,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6679,7 +6807,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -6687,7 +6815,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -6695,7 +6823,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new biharmonic_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new biharmonic_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new biharmonic_dofmap_1()), *mesh)))
   {
       // Do nothing
   }

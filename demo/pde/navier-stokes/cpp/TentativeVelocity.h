@@ -63,6 +63,18 @@ public:
     return ufc::triangle;
   }
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const
   {
@@ -417,6 +429,22 @@ public:
     vertex_values[2] = dof_values[0];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -427,6 +455,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new tentativevelocity_finite_element_0();
   }
 
 };
@@ -459,6 +493,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -1107,7 +1153,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1304,7 +1350,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1501,7 +1547,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1698,7 +1744,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -1895,7 +1941,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -2092,7 +2138,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -2366,6 +2412,22 @@ public:
     vertex_values[2] = dof_values[2];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -2376,6 +2438,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new tentativevelocity_finite_element_1();
   }
 
 };
@@ -2408,6 +2476,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -3471,7 +3551,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -3668,7 +3748,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -3865,7 +3945,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4062,7 +4142,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4259,7 +4339,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4456,7 +4536,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4653,7 +4733,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -4850,7 +4930,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5047,7 +5127,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5244,7 +5324,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5441,7 +5521,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5638,7 +5718,7 @@ public:
       {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {2.581988897471611, 4.743416490252570, -0.912870929175278, 0.000000000000000, 0.000000000000000, 0.000000000000000},
       {1.999999999999999, 6.123724356957944, 3.535533905932737, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {-2.309401076758501, 0.000000000000000, 8.164965809277261, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
@@ -5988,6 +6068,22 @@ public:
     vertex_values[5] = dof_values[8];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -6014,12 +6110,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new tentativevelocity_finite_element_2();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class tentativevelocity_dof_map_0: public ufc::dof_map
+class tentativevelocity_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -6027,13 +6129,13 @@ private:
 public:
 
   /// Constructor
-  tentativevelocity_dof_map_0() : ufc::dof_map()
+  tentativevelocity_dofmap_0() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~tentativevelocity_dof_map_0()
+  virtual ~tentativevelocity_dofmap_0()
   {
     // Do nothing
   }
@@ -6089,6 +6191,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -6105,12 +6219,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 1;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -6223,15 +6331,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new tentativevelocity_dofmap_0();
   }
 
 };
@@ -6239,7 +6353,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class tentativevelocity_dof_map_1: public ufc::dof_map
+class tentativevelocity_dofmap_1: public ufc::dofmap
 {
 private:
 
@@ -6247,13 +6361,13 @@ private:
 public:
 
   /// Constructor
-  tentativevelocity_dof_map_1() : ufc::dof_map()
+  tentativevelocity_dofmap_1() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~tentativevelocity_dof_map_1()
+  virtual ~tentativevelocity_dofmap_1()
   {
     // Do nothing
   }
@@ -6309,6 +6423,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -6325,12 +6451,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 6;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -6508,15 +6628,21 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new tentativevelocity_dofmap_1();
   }
 
 };
@@ -6524,7 +6650,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class tentativevelocity_dof_map_2: public ufc::dof_map
+class tentativevelocity_dofmap_2: public ufc::dofmap
 {
 private:
 
@@ -6532,13 +6658,13 @@ private:
 public:
 
   /// Constructor
-  tentativevelocity_dof_map_2() : ufc::dof_map()
+  tentativevelocity_dofmap_2() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~tentativevelocity_dof_map_2()
+  virtual ~tentativevelocity_dofmap_2()
   {
     // Do nothing
   }
@@ -6594,6 +6720,18 @@ public:
     // Do nothing
   }
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
+  }
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const
   {
@@ -6610,12 +6748,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 12;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -6828,29 +6960,35 @@ public:
   }
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 2;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new tentativevelocity_dof_map_1();
+        return new tentativevelocity_dofmap_1();
         break;
       }
     case 1:
       {
-        return new tentativevelocity_dof_map_1();
+        return new tentativevelocity_dofmap_1();
         break;
       }
     }
     
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new tentativevelocity_dofmap_2();
   }
 
 };
@@ -6931,13 +7069,13 @@ public:
     static const double FE1_C0_D01[9][5] = \
     {{-2.234777542710679, -0.645648161949184, 0.410870619238505, 2.880425704659863, -0.410870619238505},
     {-1.095916270880403, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356658},
-    {0.246362376191710, 2.150637847043388, 0.095724529148321, -2.397000223235098, -0.095724529148322},
+    {0.246362376191710, 2.150637847043389, 0.095724529148321, -2.397000223235098, -0.095724529148322},
     {-0.822824080974592, -0.645648161949184, 1.822824080974592, 1.468472242923776, -1.822824080974592},
     {-0.181066271118530, 0.637867457762939, 1.181066271118531, -0.456801186644409, -1.181066271118531},
-    {0.575318923521694, 2.150637847043388, 0.424681076478305, -2.725956770565081, -0.424681076478306},
+    {0.575318923521694, 2.150637847043389, 0.424681076478304, -2.725956770565082, -0.424681076478306},
     {0.589129380761495, -0.645648161949184, 3.234777542710678, 0.056518781187689, -3.234777542710679},
-    {0.733783728643342, 0.637867457762939, 2.095916270880403, -1.371651186406281, -2.095916270880403},
-    {0.904275470851677, 2.150637847043388, 0.753637623808288, -3.054913317895065, -0.753637623808289}};
+    {0.733783728643342, 0.637867457762939, 2.095916270880402, -1.371651186406281, -2.095916270880403},
+    {0.904275470851677, 2.150637847043388, 0.753637623808288, -3.054913317895066, -0.753637623808289}};
     
     // Array of non-zero columns
     static const unsigned int nzc4[5] = {6, 8, 9, 10, 11};
@@ -6946,12 +7084,12 @@ public:
     static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
     
     static const double FE1_C0_D10[9][5] = \
-    {{-2.234777542710679, -0.589129380761495, 0.354351838050815, -0.354351838050816, 2.823906923472175},
+    {{-2.234777542710679, -0.589129380761495, 0.354351838050815, -0.354351838050815, 2.823906923472175},
     {-1.095916270880403, -0.733783728643342, 1.637867457762939, -1.637867457762940, 1.829699999523745},
-    {0.246362376191711, -0.904275470851678, 3.150637847043387, -3.150637847043388, 0.657913094659968},
+    {0.246362376191710, -0.904275470851678, 3.150637847043387, -3.150637847043388, 0.657913094659968},
     {-0.822824080974592, 0.822824080974592, 0.354351838050816, -0.354351838050816, 0.000000000000000},
     {-0.181066271118530, 0.181066271118531, 1.637867457762939, -1.637867457762940, 0.000000000000000},
-    {0.575318923521694, -0.575318923521695, 3.150637847043387, -3.150637847043388, 0.000000000000000},
+    {0.575318923521694, -0.575318923521694, 3.150637847043387, -3.150637847043388, 0.000000000000000},
     {0.589129380761495, 2.234777542710679, 0.354351838050815, -0.354351838050816, -2.823906923472174},
     {0.733783728643342, 1.095916270880403, 1.637867457762939, -1.637867457762940, -1.829699999523746},
     {0.904275470851678, -0.246362376191711, 3.150637847043387, -3.150637847043388, -0.657913094659966}};
@@ -7035,6 +7173,18 @@ public:
     }// end loop over 'ip'
   }
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+  }
+
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -7113,13 +7263,13 @@ public:
     static const double FE1_C0_D01[9][5] = \
     {{-2.234777542710679, -0.645648161949184, 0.410870619238505, 2.880425704659863, -0.410870619238505},
     {-1.095916270880403, 0.637867457762939, 0.266216271356658, 0.458048813117464, -0.266216271356658},
-    {0.246362376191710, 2.150637847043388, 0.095724529148321, -2.397000223235098, -0.095724529148322},
+    {0.246362376191710, 2.150637847043389, 0.095724529148321, -2.397000223235098, -0.095724529148322},
     {-0.822824080974592, -0.645648161949184, 1.822824080974592, 1.468472242923776, -1.822824080974592},
     {-0.181066271118530, 0.637867457762939, 1.181066271118531, -0.456801186644409, -1.181066271118531},
-    {0.575318923521694, 2.150637847043388, 0.424681076478305, -2.725956770565081, -0.424681076478306},
+    {0.575318923521694, 2.150637847043389, 0.424681076478304, -2.725956770565082, -0.424681076478306},
     {0.589129380761495, -0.645648161949184, 3.234777542710678, 0.056518781187689, -3.234777542710679},
-    {0.733783728643342, 0.637867457762939, 2.095916270880403, -1.371651186406281, -2.095916270880403},
-    {0.904275470851677, 2.150637847043388, 0.753637623808288, -3.054913317895065, -0.753637623808289}};
+    {0.733783728643342, 0.637867457762939, 2.095916270880402, -1.371651186406281, -2.095916270880403},
+    {0.904275470851677, 2.150637847043388, 0.753637623808288, -3.054913317895066, -0.753637623808289}};
     
     // Array of non-zero columns
     static const unsigned int nzc4[5] = {6, 8, 9, 10, 11};
@@ -7128,12 +7278,12 @@ public:
     static const unsigned int nzc1[5] = {0, 2, 3, 4, 5};
     
     static const double FE1_C0_D10[9][5] = \
-    {{-2.234777542710679, -0.589129380761495, 0.354351838050815, -0.354351838050816, 2.823906923472175},
+    {{-2.234777542710679, -0.589129380761495, 0.354351838050815, -0.354351838050815, 2.823906923472175},
     {-1.095916270880403, -0.733783728643342, 1.637867457762939, -1.637867457762940, 1.829699999523745},
-    {0.246362376191711, -0.904275470851678, 3.150637847043387, -3.150637847043388, 0.657913094659968},
+    {0.246362376191710, -0.904275470851678, 3.150637847043387, -3.150637847043388, 0.657913094659968},
     {-0.822824080974592, 0.822824080974592, 0.354351838050816, -0.354351838050816, 0.000000000000000},
     {-0.181066271118530, 0.181066271118531, 1.637867457762939, -1.637867457762940, 0.000000000000000},
-    {0.575318923521694, -0.575318923521695, 3.150637847043387, -3.150637847043388, 0.000000000000000},
+    {0.575318923521694, -0.575318923521694, 3.150637847043387, -3.150637847043388, 0.000000000000000},
     {0.589129380761495, 2.234777542710679, 0.354351838050815, -0.354351838050816, -2.823906923472174},
     {0.733783728643342, 1.095916270880403, 1.637867457762939, -1.637867457762940, -1.829699999523746},
     {0.904275470851678, -0.246362376191711, 3.150637847043387, -3.150637847043388, -0.657913094659966}};
@@ -7213,6 +7363,18 @@ public:
     }// end loop over 'ip'
   }
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+  }
+
 };
 
 /// This class defines the interface for the assembly of the global
@@ -7264,20 +7426,20 @@ public:
     return 1;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -7307,24 +7469,24 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new tentativevelocity_dof_map_2();
+        return new tentativevelocity_dofmap_2();
         break;
       }
     case 1:
       {
-        return new tentativevelocity_dof_map_2();
+        return new tentativevelocity_dofmap_2();
         break;
       }
     case 2:
       {
-        return new tentativevelocity_dof_map_0();
+        return new tentativevelocity_dofmap_0();
         break;
       }
     }
@@ -7410,20 +7572,20 @@ public:
     return 3;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 0;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 0;
   }
@@ -7458,29 +7620,29 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new tentativevelocity_dof_map_2();
+        return new tentativevelocity_dofmap_2();
         break;
       }
     case 1:
       {
-        return new tentativevelocity_dof_map_0();
+        return new tentativevelocity_dofmap_0();
         break;
       }
     case 2:
       {
-        return new tentativevelocity_dof_map_2();
+        return new tentativevelocity_dofmap_2();
         break;
       }
     case 3:
       {
-        return new tentativevelocity_dof_map_2();
+        return new tentativevelocity_dofmap_2();
         break;
       }
     }
@@ -7543,7 +7705,7 @@ public:
   CoefficientSpace_f(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7551,7 +7713,7 @@ public:
   CoefficientSpace_f(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7559,7 +7721,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7567,7 +7729,7 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7585,7 +7747,7 @@ public:
   CoefficientSpace_k(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -7593,7 +7755,7 @@ public:
   CoefficientSpace_k(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -7601,7 +7763,7 @@ public:
   CoefficientSpace_k(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7609,7 +7771,7 @@ public:
   CoefficientSpace_k(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -7627,7 +7789,7 @@ public:
   CoefficientSpace_u0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7635,7 +7797,7 @@ public:
   CoefficientSpace_u0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7643,7 +7805,7 @@ public:
   CoefficientSpace_u0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7651,7 +7813,7 @@ public:
   CoefficientSpace_u0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7669,7 +7831,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7677,7 +7839,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7685,7 +7847,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7693,7 +7855,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7711,7 +7873,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7719,7 +7881,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7727,7 +7889,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7735,7 +7897,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7863,7 +8025,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7871,7 +8033,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -7879,7 +8041,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -7887,7 +8049,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new tentativevelocity_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new tentativevelocity_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new tentativevelocity_dofmap_2()), *mesh)))
   {
       // Do nothing
   }

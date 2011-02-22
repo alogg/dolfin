@@ -51,6 +51,18 @@ ufc::shape cahnhilliard3d_finite_element_0::cell_shape() const
     return ufc::tetrahedron;
 }
 
+/// Return the topological dimension of the cell shape
+unsigned int cahnhilliard3d_finite_element_0::topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the cell shape
+unsigned int cahnhilliard3d_finite_element_0::geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the finite element function space
 unsigned int cahnhilliard3d_finite_element_0::space_dimension() const
 {
@@ -450,6 +462,22 @@ void cahnhilliard3d_finite_element_0::interpolate_vertex_values(double* vertex_v
     vertex_values[3] = dof_values[0];
 }
 
+/// Map coordinate xhat from reference cell to coordinate x in cell
+void cahnhilliard3d_finite_element_0::map_from_reference_cell(double* x,
+                                            const double* xhat,
+                                            const ufc::cell& c)
+{
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Map from coordinate x in cell to coordinate xhat in reference cell
+void cahnhilliard3d_finite_element_0::map_to_reference_cell(double* xhat,
+                                          const double* x,
+                                          const ufc::cell& c)
+{
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Return the number of sub elements (for a mixed element)
 unsigned int cahnhilliard3d_finite_element_0::num_sub_elements() const
 {
@@ -460,6 +488,12 @@ unsigned int cahnhilliard3d_finite_element_0::num_sub_elements() const
 ufc::finite_element* cahnhilliard3d_finite_element_0::create_sub_element(unsigned int i) const
 {
     return 0;
+}
+
+/// Create a new class instance
+ufc::finite_element* cahnhilliard3d_finite_element_0::create() const
+{
+    return new cahnhilliard3d_finite_element_0();
 }
 
 
@@ -485,6 +519,18 @@ const char* cahnhilliard3d_finite_element_1::signature() const
 ufc::shape cahnhilliard3d_finite_element_1::cell_shape() const
 {
     return ufc::tetrahedron;
+}
+
+/// Return the topological dimension of the cell shape
+unsigned int cahnhilliard3d_finite_element_1::topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the cell shape
+unsigned int cahnhilliard3d_finite_element_1::geometric_dimension() const
+{
+    return 3;
 }
 
 /// Return the dimension of the finite element function space
@@ -1820,6 +1866,22 @@ void cahnhilliard3d_finite_element_1::interpolate_vertex_values(double* vertex_v
     vertex_values[3] = dof_values[3];
 }
 
+/// Map coordinate xhat from reference cell to coordinate x in cell
+void cahnhilliard3d_finite_element_1::map_from_reference_cell(double* x,
+                                            const double* xhat,
+                                            const ufc::cell& c)
+{
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Map from coordinate x in cell to coordinate xhat in reference cell
+void cahnhilliard3d_finite_element_1::map_to_reference_cell(double* xhat,
+                                          const double* x,
+                                          const ufc::cell& c)
+{
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Return the number of sub elements (for a mixed element)
 unsigned int cahnhilliard3d_finite_element_1::num_sub_elements() const
 {
@@ -1830,6 +1892,12 @@ unsigned int cahnhilliard3d_finite_element_1::num_sub_elements() const
 ufc::finite_element* cahnhilliard3d_finite_element_1::create_sub_element(unsigned int i) const
 {
     return 0;
+}
+
+/// Create a new class instance
+ufc::finite_element* cahnhilliard3d_finite_element_1::create() const
+{
+    return new cahnhilliard3d_finite_element_1();
 }
 
 
@@ -1855,6 +1923,18 @@ const char* cahnhilliard3d_finite_element_2::signature() const
 ufc::shape cahnhilliard3d_finite_element_2::cell_shape() const
 {
     return ufc::tetrahedron;
+}
+
+/// Return the topological dimension of the cell shape
+unsigned int cahnhilliard3d_finite_element_2::topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the cell shape
+unsigned int cahnhilliard3d_finite_element_2::geometric_dimension() const
+{
+    return 3;
 }
 
 /// Return the dimension of the finite element function space
@@ -4248,6 +4328,22 @@ void cahnhilliard3d_finite_element_2::interpolate_vertex_values(double* vertex_v
     vertex_values[7] = dof_values[7];
 }
 
+/// Map coordinate xhat from reference cell to coordinate x in cell
+void cahnhilliard3d_finite_element_2::map_from_reference_cell(double* x,
+                                            const double* xhat,
+                                            const ufc::cell& c)
+{
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Map from coordinate x in cell to coordinate xhat in reference cell
+void cahnhilliard3d_finite_element_2::map_to_reference_cell(double* xhat,
+                                          const double* x,
+                                          const ufc::cell& c)
+{
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Return the number of sub elements (for a mixed element)
 unsigned int cahnhilliard3d_finite_element_2::num_sub_elements() const
 {
@@ -4274,26 +4370,32 @@ ufc::finite_element* cahnhilliard3d_finite_element_2::create_sub_element(unsigne
     return 0;
 }
 
+/// Create a new class instance
+ufc::finite_element* cahnhilliard3d_finite_element_2::create() const
+{
+    return new cahnhilliard3d_finite_element_2();
+}
+
 /// Constructor
-cahnhilliard3d_dof_map_0::cahnhilliard3d_dof_map_0() : ufc::dof_map()
+cahnhilliard3d_dofmap_0::cahnhilliard3d_dofmap_0() : ufc::dofmap()
 {
     _global_dimension = 0;
 }
 
 /// Destructor
-cahnhilliard3d_dof_map_0::~cahnhilliard3d_dof_map_0()
+cahnhilliard3d_dofmap_0::~cahnhilliard3d_dofmap_0()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* cahnhilliard3d_dof_map_0::signature() const
+const char* cahnhilliard3d_dofmap_0::signature() const
 {
     return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool cahnhilliard3d_dof_map_0::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard3d_dofmap_0::needs_mesh_entities(unsigned int d) const
 {
     switch (d)
     {
@@ -4323,57 +4425,63 @@ bool cahnhilliard3d_dof_map_0::needs_mesh_entities(unsigned int d) const
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool cahnhilliard3d_dof_map_0::init_mesh(const ufc::mesh& m)
+bool cahnhilliard3d_dofmap_0::init_mesh(const ufc::mesh& m)
 {
     _global_dimension = m.num_entities[3];
     return false;
 }
 
 /// Initialize dof map for given cell
-void cahnhilliard3d_dof_map_0::init_cell(const ufc::mesh& m,
+void cahnhilliard3d_dofmap_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void cahnhilliard3d_dof_map_0::init_cell_finalize()
+void cahnhilliard3d_dofmap_0::init_cell_finalize()
 {
     // Do nothing
 }
 
+/// Return the topological dimension of the associated cell shape
+unsigned int cahnhilliard3d_dofmap_0::topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the associated cell shape
+unsigned int cahnhilliard3d_dofmap_0::geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the global finite element function space
-unsigned int cahnhilliard3d_dof_map_0::global_dimension() const
+unsigned int cahnhilliard3d_dofmap_0::global_dimension() const
 {
     return _global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int cahnhilliard3d_dof_map_0::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard3d_dofmap_0::local_dimension(const ufc::cell& c) const
 {
     return 1;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int cahnhilliard3d_dof_map_0::max_local_dimension() const
+unsigned int cahnhilliard3d_dofmap_0::max_local_dimension() const
 {
     return 1;
 }
 
-// Return the geometric dimension of the coordinates this dof map provides
-unsigned int cahnhilliard3d_dof_map_0::geometric_dimension() const
-{
-    return 3;
-}
-
 /// Return the number of dofs on each cell facet
-unsigned int cahnhilliard3d_dof_map_0::num_facet_dofs() const
+unsigned int cahnhilliard3d_dofmap_0::num_facet_dofs() const
 {
     return 0;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int cahnhilliard3d_dof_map_0::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard3d_dofmap_0::num_entity_dofs(unsigned int d) const
 {
     switch (d)
     {
@@ -4403,7 +4511,7 @@ unsigned int cahnhilliard3d_dof_map_0::num_entity_dofs(unsigned int d) const
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void cahnhilliard3d_dof_map_0::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_0::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -4411,7 +4519,7 @@ void cahnhilliard3d_dof_map_0::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void cahnhilliard3d_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_0::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
     switch (facet)
@@ -4441,7 +4549,7 @@ void cahnhilliard3d_dof_map_0::tabulate_facet_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void cahnhilliard3d_dof_map_0::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_0::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     if (d > 3)
@@ -4481,7 +4589,7 @@ void cahnhilliard3d_dof_map_0::tabulate_entity_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void cahnhilliard3d_dof_map_0::tabulate_coordinates(double** coordinates,
+void cahnhilliard3d_dofmap_0::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -4492,38 +4600,43 @@ void cahnhilliard3d_dof_map_0::tabulate_coordinates(double** coordinates,
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int cahnhilliard3d_dof_map_0::num_sub_dof_maps() const
+unsigned int cahnhilliard3d_dofmap_0::num_sub_dofmaps() const
 {
     return 0;
 }
 
-/// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* cahnhilliard3d_dof_map_0::create_sub_dof_map(unsigned int i) const
+/// Create a new dofmap for sub dof map i (for a mixed element)
+ufc::dofmap* cahnhilliard3d_dofmap_0::create_sub_dofmap(unsigned int i) const
 {
     return 0;
 }
 
+/// Create a new class instance
+ufc::dofmap* cahnhilliard3d_dofmap_0::create() const
+{
+    return new cahnhilliard3d_dofmap_0();
+}
 
 /// Constructor
-cahnhilliard3d_dof_map_1::cahnhilliard3d_dof_map_1() : ufc::dof_map()
+cahnhilliard3d_dofmap_1::cahnhilliard3d_dofmap_1() : ufc::dofmap()
 {
     _global_dimension = 0;
 }
 
 /// Destructor
-cahnhilliard3d_dof_map_1::~cahnhilliard3d_dof_map_1()
+cahnhilliard3d_dofmap_1::~cahnhilliard3d_dofmap_1()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* cahnhilliard3d_dof_map_1::signature() const
+const char* cahnhilliard3d_dofmap_1::signature() const
 {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool cahnhilliard3d_dof_map_1::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard3d_dofmap_1::needs_mesh_entities(unsigned int d) const
 {
     switch (d)
     {
@@ -4553,57 +4666,63 @@ bool cahnhilliard3d_dof_map_1::needs_mesh_entities(unsigned int d) const
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool cahnhilliard3d_dof_map_1::init_mesh(const ufc::mesh& m)
+bool cahnhilliard3d_dofmap_1::init_mesh(const ufc::mesh& m)
 {
     _global_dimension = m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void cahnhilliard3d_dof_map_1::init_cell(const ufc::mesh& m,
+void cahnhilliard3d_dofmap_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void cahnhilliard3d_dof_map_1::init_cell_finalize()
+void cahnhilliard3d_dofmap_1::init_cell_finalize()
 {
     // Do nothing
 }
 
+/// Return the topological dimension of the associated cell shape
+unsigned int cahnhilliard3d_dofmap_1::topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the associated cell shape
+unsigned int cahnhilliard3d_dofmap_1::geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the global finite element function space
-unsigned int cahnhilliard3d_dof_map_1::global_dimension() const
+unsigned int cahnhilliard3d_dofmap_1::global_dimension() const
 {
     return _global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int cahnhilliard3d_dof_map_1::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard3d_dofmap_1::local_dimension(const ufc::cell& c) const
 {
     return 4;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int cahnhilliard3d_dof_map_1::max_local_dimension() const
+unsigned int cahnhilliard3d_dofmap_1::max_local_dimension() const
 {
     return 4;
 }
 
-// Return the geometric dimension of the coordinates this dof map provides
-unsigned int cahnhilliard3d_dof_map_1::geometric_dimension() const
-{
-    return 3;
-}
-
 /// Return the number of dofs on each cell facet
-unsigned int cahnhilliard3d_dof_map_1::num_facet_dofs() const
+unsigned int cahnhilliard3d_dofmap_1::num_facet_dofs() const
 {
     return 3;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int cahnhilliard3d_dof_map_1::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard3d_dofmap_1::num_entity_dofs(unsigned int d) const
 {
     switch (d)
     {
@@ -4633,7 +4752,7 @@ unsigned int cahnhilliard3d_dof_map_1::num_entity_dofs(unsigned int d) const
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void cahnhilliard3d_dof_map_1::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_1::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -4644,7 +4763,7 @@ void cahnhilliard3d_dof_map_1::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void cahnhilliard3d_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_1::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
     switch (facet)
@@ -4682,7 +4801,7 @@ void cahnhilliard3d_dof_map_1::tabulate_facet_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void cahnhilliard3d_dof_map_1::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_1::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     if (d > 3)
@@ -4745,7 +4864,7 @@ void cahnhilliard3d_dof_map_1::tabulate_entity_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void cahnhilliard3d_dof_map_1::tabulate_coordinates(double** coordinates,
+void cahnhilliard3d_dofmap_1::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -4765,38 +4884,43 @@ void cahnhilliard3d_dof_map_1::tabulate_coordinates(double** coordinates,
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int cahnhilliard3d_dof_map_1::num_sub_dof_maps() const
+unsigned int cahnhilliard3d_dofmap_1::num_sub_dofmaps() const
 {
     return 0;
 }
 
-/// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* cahnhilliard3d_dof_map_1::create_sub_dof_map(unsigned int i) const
+/// Create a new dofmap for sub dof map i (for a mixed element)
+ufc::dofmap* cahnhilliard3d_dofmap_1::create_sub_dofmap(unsigned int i) const
 {
     return 0;
 }
 
+/// Create a new class instance
+ufc::dofmap* cahnhilliard3d_dofmap_1::create() const
+{
+    return new cahnhilliard3d_dofmap_1();
+}
 
 /// Constructor
-cahnhilliard3d_dof_map_2::cahnhilliard3d_dof_map_2() : ufc::dof_map()
+cahnhilliard3d_dofmap_2::cahnhilliard3d_dofmap_2() : ufc::dofmap()
 {
     _global_dimension = 0;
 }
 
 /// Destructor
-cahnhilliard3d_dof_map_2::~cahnhilliard3d_dof_map_2()
+cahnhilliard3d_dofmap_2::~cahnhilliard3d_dofmap_2()
 {
     // Do nothing
 }
 
 /// Return a string identifying the dof map
-const char* cahnhilliard3d_dof_map_2::signature() const
+const char* cahnhilliard3d_dofmap_2::signature() const
 {
     return "FFC dofmap for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
-bool cahnhilliard3d_dof_map_2::needs_mesh_entities(unsigned int d) const
+bool cahnhilliard3d_dofmap_2::needs_mesh_entities(unsigned int d) const
 {
     switch (d)
     {
@@ -4826,57 +4950,63 @@ bool cahnhilliard3d_dof_map_2::needs_mesh_entities(unsigned int d) const
 }
 
 /// Initialize dof map for mesh (return true iff init_cell() is needed)
-bool cahnhilliard3d_dof_map_2::init_mesh(const ufc::mesh& m)
+bool cahnhilliard3d_dofmap_2::init_mesh(const ufc::mesh& m)
 {
     _global_dimension = 2.000000000000000*m.num_entities[0];
     return false;
 }
 
 /// Initialize dof map for given cell
-void cahnhilliard3d_dof_map_2::init_cell(const ufc::mesh& m,
+void cahnhilliard3d_dofmap_2::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
 /// Finish initialization of dof map for cells
-void cahnhilliard3d_dof_map_2::init_cell_finalize()
+void cahnhilliard3d_dofmap_2::init_cell_finalize()
 {
     // Do nothing
 }
 
+/// Return the topological dimension of the associated cell shape
+unsigned int cahnhilliard3d_dofmap_2::topological_dimension() const
+{
+    return 3;
+}
+
+/// Return the geometric dimension of the associated cell shape
+unsigned int cahnhilliard3d_dofmap_2::geometric_dimension() const
+{
+    return 3;
+}
+
 /// Return the dimension of the global finite element function space
-unsigned int cahnhilliard3d_dof_map_2::global_dimension() const
+unsigned int cahnhilliard3d_dofmap_2::global_dimension() const
 {
     return _global_dimension;
 }
 
 /// Return the dimension of the local finite element function space for a cell
-unsigned int cahnhilliard3d_dof_map_2::local_dimension(const ufc::cell& c) const
+unsigned int cahnhilliard3d_dofmap_2::local_dimension(const ufc::cell& c) const
 {
     return 8;
 }
 
 /// Return the maximum dimension of the local finite element function space
-unsigned int cahnhilliard3d_dof_map_2::max_local_dimension() const
+unsigned int cahnhilliard3d_dofmap_2::max_local_dimension() const
 {
     return 8;
 }
 
-// Return the geometric dimension of the coordinates this dof map provides
-unsigned int cahnhilliard3d_dof_map_2::geometric_dimension() const
-{
-    return 3;
-}
-
 /// Return the number of dofs on each cell facet
-unsigned int cahnhilliard3d_dof_map_2::num_facet_dofs() const
+unsigned int cahnhilliard3d_dofmap_2::num_facet_dofs() const
 {
     return 6;
 }
 
 /// Return the number of dofs associated with each cell entity of dimension d
-unsigned int cahnhilliard3d_dof_map_2::num_entity_dofs(unsigned int d) const
+unsigned int cahnhilliard3d_dofmap_2::num_entity_dofs(unsigned int d) const
 {
     switch (d)
     {
@@ -4906,7 +5036,7 @@ unsigned int cahnhilliard3d_dof_map_2::num_entity_dofs(unsigned int d) const
 }
 
 /// Tabulate the local-to-global mapping of dofs on a cell
-void cahnhilliard3d_dof_map_2::tabulate_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_2::tabulate_dofs(unsigned int* dofs,
                                   const ufc::mesh& m,
                                   const ufc::cell& c) const
 {
@@ -4924,7 +5054,7 @@ void cahnhilliard3d_dof_map_2::tabulate_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
-void cahnhilliard3d_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_2::tabulate_facet_dofs(unsigned int* dofs,
                                         unsigned int facet) const
 {
     switch (facet)
@@ -4974,7 +5104,7 @@ void cahnhilliard3d_dof_map_2::tabulate_facet_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the local-to-local mapping of dofs on entity (d, i)
-void cahnhilliard3d_dof_map_2::tabulate_entity_dofs(unsigned int* dofs,
+void cahnhilliard3d_dofmap_2::tabulate_entity_dofs(unsigned int* dofs,
                                   unsigned int d, unsigned int i) const
 {
     if (d > 3)
@@ -5041,7 +5171,7 @@ void cahnhilliard3d_dof_map_2::tabulate_entity_dofs(unsigned int* dofs,
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void cahnhilliard3d_dof_map_2::tabulate_coordinates(double** coordinates,
+void cahnhilliard3d_dofmap_2::tabulate_coordinates(double** coordinates,
                                          const ufc::cell& c) const
 {
     const double * const * x = c.coordinates;
@@ -5073,24 +5203,24 @@ void cahnhilliard3d_dof_map_2::tabulate_coordinates(double** coordinates,
 }
 
 /// Return the number of sub dof maps (for a mixed element)
-unsigned int cahnhilliard3d_dof_map_2::num_sub_dof_maps() const
+unsigned int cahnhilliard3d_dofmap_2::num_sub_dofmaps() const
 {
     return 2;
 }
 
-/// Create a new dof_map for sub dof map i (for a mixed element)
-ufc::dof_map* cahnhilliard3d_dof_map_2::create_sub_dof_map(unsigned int i) const
+/// Create a new dofmap for sub dof map i (for a mixed element)
+ufc::dofmap* cahnhilliard3d_dofmap_2::create_sub_dofmap(unsigned int i) const
 {
     switch (i)
     {
     case 0:
       {
-        return new cahnhilliard3d_dof_map_1();
+        return new cahnhilliard3d_dofmap_1();
         break;
       }
     case 1:
       {
-        return new cahnhilliard3d_dof_map_1();
+        return new cahnhilliard3d_dofmap_1();
         break;
       }
     }
@@ -5098,6 +5228,11 @@ ufc::dof_map* cahnhilliard3d_dof_map_2::create_sub_dof_map(unsigned int i) const
     return 0;
 }
 
+/// Create a new class instance
+ufc::dofmap* cahnhilliard3d_dofmap_2::create() const
+{
+    return new cahnhilliard3d_dofmap_2();
+}
 
 /// Constructor
 cahnhilliard3d_cell_integral_0_0::cahnhilliard3d_cell_integral_0_0() : ufc::cell_integral()
@@ -5183,7 +5318,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.134432268912383, 0.134432268912383, 0.026133252286735, 0.705002209888498},
     {0.273713872823130, 0.273713872823130, 0.379578230280591, 0.072994024073150},
     {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
-    {0.087102984988800, 0.087102984988800, 0.120791820133903, 0.705002209888498},
+    {0.087102984988800, 0.087102984988800, 0.120791820133902, 0.705002209888498},
     {0.098420473939609, 0.098420473939609, 0.730165028047632, 0.072994024073150},
     {0.069328785893778, 0.069328785893778, 0.514338662174092, 0.347003766038352},
     {0.031319994765818, 0.031319994765819, 0.232357800579865, 0.705002209888498},
@@ -5192,7 +5327,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.030301481174276, 0.238563056650491, 0.026133252286735, 0.705002209888498},
     {0.061696018609146, 0.485731727037113, 0.379578230280591, 0.072994024073150},
     {0.043459555653802, 0.342156357895961, 0.267380320411884, 0.347003766038352},
-    {0.019633302935485, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.019633302935484, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.022184302640820, 0.174656645238399, 0.730165028047632, 0.072994024073150},
     {0.015626939257902, 0.123030632529655, 0.514338662174092, 0.347003766038352},
     {0.007059631139555, 0.055580358392082, 0.232357800579865, 0.705002209888498}};
@@ -5395,6 +5530,18 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     }// end loop over 'ip'
 }
 
+/// Tabulate the tensor for the contribution from a local cell
+/// using the specified reference cell quadrature points/weights
+void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
+                     const double * const * w,
+                     const ufc::cell& c,
+                     unsigned int num_quadrature_points,
+                     const double * const * quadrature_points,
+                     const double* quadrature_weights) const
+{
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Constructor
 cahnhilliard3d_cell_integral_1_0::cahnhilliard3d_cell_integral_1_0() : ufc::cell_integral()
 {
@@ -5479,7 +5626,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.134432268912383, 0.134432268912383, 0.026133252286735, 0.705002209888498},
     {0.273713872823130, 0.273713872823130, 0.379578230280591, 0.072994024073150},
     {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
-    {0.087102984988800, 0.087102984988800, 0.120791820133903, 0.705002209888498},
+    {0.087102984988800, 0.087102984988800, 0.120791820133902, 0.705002209888498},
     {0.098420473939609, 0.098420473939609, 0.730165028047632, 0.072994024073150},
     {0.069328785893778, 0.069328785893778, 0.514338662174092, 0.347003766038352},
     {0.031319994765818, 0.031319994765819, 0.232357800579865, 0.705002209888498},
@@ -5488,7 +5635,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.030301481174276, 0.238563056650491, 0.026133252286735, 0.705002209888498},
     {0.061696018609146, 0.485731727037113, 0.379578230280591, 0.072994024073150},
     {0.043459555653802, 0.342156357895961, 0.267380320411884, 0.347003766038352},
-    {0.019633302935485, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.019633302935484, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.022184302640820, 0.174656645238399, 0.730165028047632, 0.072994024073150},
     {0.015626939257902, 0.123030632529655, 0.514338662174092, 0.347003766038352},
     {0.007059631139555, 0.055580358392082, 0.232357800579865, 0.705002209888498}};
@@ -5674,6 +5821,18 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     }// end loop over 'ip'
 }
 
+/// Tabulate the tensor for the contribution from a local cell
+/// using the specified reference cell quadrature points/weights
+void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
+                     const double * const * w,
+                     const ufc::cell& c,
+                     unsigned int num_quadrature_points,
+                     const double * const * quadrature_points,
+                     const double* quadrature_weights) const
+{
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+}
+
 /// Constructor
 cahnhilliard3d_form_0::cahnhilliard3d_form_0() : ufc::form()
 {
@@ -5704,20 +5863,20 @@ unsigned int cahnhilliard3d_form_0::num_coefficients() const
     return 4;
 }
 
-/// Return the number of cell integrals
-unsigned int cahnhilliard3d_form_0::num_cell_integrals() const
+/// Return the number of cell domains
+unsigned int cahnhilliard3d_form_0::num_cell_domains() const
 {
     return 1;
 }
 
-/// Return the number of exterior facet integrals
-unsigned int cahnhilliard3d_form_0::num_exterior_facet_integrals() const
+/// Return the number of exterior facet domains
+unsigned int cahnhilliard3d_form_0::num_exterior_facet_domains() const
 {
     return 0;
 }
 
-/// Return the number of interior facet integrals
-unsigned int cahnhilliard3d_form_0::num_interior_facet_integrals() const
+/// Return the number of interior facet domains
+unsigned int cahnhilliard3d_form_0::num_interior_facet_domains() const
 {
     return 0;
 }
@@ -5762,39 +5921,39 @@ ufc::finite_element* cahnhilliard3d_form_0::create_finite_element(unsigned int i
     return 0;
 }
 
-/// Create a new dof map for argument function i
-ufc::dof_map* cahnhilliard3d_form_0::create_dof_map(unsigned int i) const
+/// Create a new dofmap for argument function i
+ufc::dofmap* cahnhilliard3d_form_0::create_dofmap(unsigned int i) const
 {
     switch (i)
     {
     case 0:
       {
-        return new cahnhilliard3d_dof_map_2();
+        return new cahnhilliard3d_dofmap_2();
         break;
       }
     case 1:
       {
-        return new cahnhilliard3d_dof_map_2();
+        return new cahnhilliard3d_dofmap_2();
         break;
       }
     case 2:
       {
-        return new cahnhilliard3d_dof_map_2();
+        return new cahnhilliard3d_dofmap_2();
         break;
       }
     case 3:
       {
-        return new cahnhilliard3d_dof_map_0();
+        return new cahnhilliard3d_dofmap_0();
         break;
       }
     case 4:
       {
-        return new cahnhilliard3d_dof_map_0();
+        return new cahnhilliard3d_dofmap_0();
         break;
       }
     case 5:
       {
-        return new cahnhilliard3d_dof_map_0();
+        return new cahnhilliard3d_dofmap_0();
         break;
       }
     }
@@ -5859,20 +6018,20 @@ unsigned int cahnhilliard3d_form_1::num_coefficients() const
     return 5;
 }
 
-/// Return the number of cell integrals
-unsigned int cahnhilliard3d_form_1::num_cell_integrals() const
+/// Return the number of cell domains
+unsigned int cahnhilliard3d_form_1::num_cell_domains() const
 {
     return 1;
 }
 
-/// Return the number of exterior facet integrals
-unsigned int cahnhilliard3d_form_1::num_exterior_facet_integrals() const
+/// Return the number of exterior facet domains
+unsigned int cahnhilliard3d_form_1::num_exterior_facet_domains() const
 {
     return 0;
 }
 
-/// Return the number of interior facet integrals
-unsigned int cahnhilliard3d_form_1::num_interior_facet_integrals() const
+/// Return the number of interior facet domains
+unsigned int cahnhilliard3d_form_1::num_interior_facet_domains() const
 {
     return 0;
 }
@@ -5917,39 +6076,39 @@ ufc::finite_element* cahnhilliard3d_form_1::create_finite_element(unsigned int i
     return 0;
 }
 
-/// Create a new dof map for argument function i
-ufc::dof_map* cahnhilliard3d_form_1::create_dof_map(unsigned int i) const
+/// Create a new dofmap for argument function i
+ufc::dofmap* cahnhilliard3d_form_1::create_dofmap(unsigned int i) const
 {
     switch (i)
     {
     case 0:
       {
-        return new cahnhilliard3d_dof_map_2();
+        return new cahnhilliard3d_dofmap_2();
         break;
       }
     case 1:
       {
-        return new cahnhilliard3d_dof_map_2();
+        return new cahnhilliard3d_dofmap_2();
         break;
       }
     case 2:
       {
-        return new cahnhilliard3d_dof_map_2();
+        return new cahnhilliard3d_dofmap_2();
         break;
       }
     case 3:
       {
-        return new cahnhilliard3d_dof_map_0();
+        return new cahnhilliard3d_dofmap_0();
         break;
       }
     case 4:
       {
-        return new cahnhilliard3d_dof_map_0();
+        return new cahnhilliard3d_dofmap_0();
         break;
       }
     case 5:
       {
-        return new cahnhilliard3d_dof_map_0();
+        return new cahnhilliard3d_dofmap_0();
         break;
       }
     }

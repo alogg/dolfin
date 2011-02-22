@@ -51,6 +51,12 @@ public:
   /// Return the cell shape
   virtual ufc::shape cell_shape() const;
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const;
 
@@ -99,11 +105,24 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const;
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c);
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c);
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
 
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const;
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const;
 
 };
 
@@ -125,6 +144,12 @@ public:
   /// Return the cell shape
   virtual ufc::shape cell_shape() const;
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const;
 
@@ -173,11 +198,24 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const;
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c);
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c);
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
 
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const;
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const;
 
 };
 
@@ -199,6 +237,12 @@ public:
   /// Return the cell shape
   virtual ufc::shape cell_shape() const;
 
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the finite element function space
   virtual unsigned int space_dimension() const;
 
@@ -247,18 +291,31 @@ public:
                                          const double* dof_values,
                                          const ufc::cell& c) const;
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c);
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c);
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
 
   /// Create a new finite element for sub element i (for a mixed element)
   virtual ufc::finite_element* create_sub_element(unsigned int i) const;
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const;
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class cahnhilliard2d_dof_map_0: public ufc::dof_map
+class cahnhilliard2d_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -266,10 +323,10 @@ private:
 public:
 
   /// Constructor
-  cahnhilliard2d_dof_map_0();
+  cahnhilliard2d_dofmap_0();
 
   /// Destructor
-  virtual ~cahnhilliard2d_dof_map_0();
+  virtual ~cahnhilliard2d_dofmap_0();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -287,6 +344,12 @@ public:
   /// Finish initialization of dof map for cells
   virtual void init_cell_finalize();
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
@@ -295,9 +358,6 @@ public:
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const;
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const;
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const;
@@ -323,17 +383,20 @@ public:
                                     const ufc::cell& c) const;
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const;
+  virtual unsigned int num_sub_dofmaps() const;
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const;
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const;
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const;
 
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class cahnhilliard2d_dof_map_1: public ufc::dof_map
+class cahnhilliard2d_dofmap_1: public ufc::dofmap
 {
 private:
 
@@ -341,10 +404,10 @@ private:
 public:
 
   /// Constructor
-  cahnhilliard2d_dof_map_1();
+  cahnhilliard2d_dofmap_1();
 
   /// Destructor
-  virtual ~cahnhilliard2d_dof_map_1();
+  virtual ~cahnhilliard2d_dofmap_1();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -362,6 +425,12 @@ public:
   /// Finish initialization of dof map for cells
   virtual void init_cell_finalize();
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
@@ -370,9 +439,6 @@ public:
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const;
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const;
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const;
@@ -398,17 +464,20 @@ public:
                                     const ufc::cell& c) const;
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const;
+  virtual unsigned int num_sub_dofmaps() const;
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const;
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const;
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const;
 
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class cahnhilliard2d_dof_map_2: public ufc::dof_map
+class cahnhilliard2d_dofmap_2: public ufc::dofmap
 {
 private:
 
@@ -416,10 +485,10 @@ private:
 public:
 
   /// Constructor
-  cahnhilliard2d_dof_map_2();
+  cahnhilliard2d_dofmap_2();
 
   /// Destructor
-  virtual ~cahnhilliard2d_dof_map_2();
+  virtual ~cahnhilliard2d_dofmap_2();
 
   /// Return a string identifying the dof map
   virtual const char* signature() const;
@@ -437,6 +506,12 @@ public:
   /// Finish initialization of dof map for cells
   virtual void init_cell_finalize();
 
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const;
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const;
+
   /// Return the dimension of the global finite element function space
   virtual unsigned int global_dimension() const;
 
@@ -445,9 +520,6 @@ public:
 
   /// Return the maximum dimension of the local finite element function space
   virtual unsigned int max_local_dimension() const;
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const;
 
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const;
@@ -473,10 +545,13 @@ public:
                                     const ufc::cell& c) const;
 
   /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const;
+  virtual unsigned int num_sub_dofmaps() const;
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const;
+  /// Create a new dofmap for sub dof map i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const;
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const;
 
 };
 
@@ -499,6 +574,15 @@ public:
                                const double * const * w,
                                const ufc::cell& c) const;
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const;
+
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -519,6 +603,15 @@ public:
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
                                const ufc::cell& c) const;
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const;
 
 };
 
@@ -556,20 +649,20 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const;
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const;
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const;
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const;
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const;
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const;
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const;
 
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const;
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const;
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const;
 
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const;
@@ -616,20 +709,20 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const;
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const;
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const;
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const;
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const;
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const;
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const;
 
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(unsigned int i) const;
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const;
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const;
 
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(unsigned int i) const;
@@ -668,7 +761,7 @@ public:
   CoefficientSpace_dt(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -676,7 +769,7 @@ public:
   CoefficientSpace_dt(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -684,7 +777,7 @@ public:
   CoefficientSpace_dt(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -692,7 +785,7 @@ public:
   CoefficientSpace_dt(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -710,7 +803,7 @@ public:
   CoefficientSpace_lmbda(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -718,7 +811,7 @@ public:
   CoefficientSpace_lmbda(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -726,7 +819,7 @@ public:
   CoefficientSpace_lmbda(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -734,7 +827,7 @@ public:
   CoefficientSpace_lmbda(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -752,7 +845,7 @@ public:
   CoefficientSpace_theta(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -760,7 +853,7 @@ public:
   CoefficientSpace_theta(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
@@ -768,7 +861,7 @@ public:
   CoefficientSpace_theta(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -776,7 +869,7 @@ public:
   CoefficientSpace_theta(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -794,7 +887,7 @@ public:
   CoefficientSpace_u(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -802,7 +895,7 @@ public:
   CoefficientSpace_u(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -810,7 +903,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -818,7 +911,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -836,7 +929,7 @@ public:
   CoefficientSpace_u0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -844,7 +937,7 @@ public:
   CoefficientSpace_u0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -852,7 +945,7 @@ public:
   CoefficientSpace_u0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -860,7 +953,7 @@ public:
   CoefficientSpace_u0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -878,7 +971,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -886,7 +979,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -894,7 +987,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -902,7 +995,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -920,7 +1013,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -928,7 +1021,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -936,7 +1029,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -944,7 +1037,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -1108,7 +1201,7 @@ public:
   Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -1116,7 +1209,7 @@ public:
   Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -1124,7 +1217,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -1132,7 +1225,7 @@ public:
   Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new cahnhilliard2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new cahnhilliard2d_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new cahnhilliard2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
