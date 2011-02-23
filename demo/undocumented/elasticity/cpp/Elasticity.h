@@ -5477,7 +5477,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dofmap
+  /// Return a string identifying the dof map
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
@@ -5513,21 +5513,21 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = m.num_entities[3];
     return false;
   }
 
-  /// Initialize dofmap for given cell
+  /// Initialize dof map for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dofmap for cells
+  /// Finish initialization of dof map for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -5688,13 +5688,13 @@ public:
     coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
   }
 
-  /// Return the number of sub dofmaps (for a mixed element)
+  /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dofmap for sub dofmap i (for a mixed element)
+  /// Create a new dofmap for sub dof map i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
@@ -5730,7 +5730,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dofmap
+  /// Return a string identifying the dof map
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
@@ -5766,21 +5766,21 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = m.num_entities[0];
     return false;
   }
 
-  /// Initialize dofmap for given cell
+  /// Initialize dof map for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dofmap for cells
+  /// Finish initialization of dof map for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -5984,13 +5984,13 @@ public:
     coordinates[3][2] = x[3][2];
   }
 
-  /// Return the number of sub dofmaps (for a mixed element)
+  /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dofmap for sub dofmap i (for a mixed element)
+  /// Create a new dofmap for sub dof map i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
@@ -6026,7 +6026,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dofmap
+  /// Return a string identifying the dof map
   virtual const char* signature() const
   {
     return "FFC dofmap for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
@@ -6062,21 +6062,21 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
+  /// Initialize dof map for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = 3.000000000000000*m.num_entities[0];
     return false;
   }
 
-  /// Initialize dofmap for given cell
+  /// Initialize dof map for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dofmap for cells
+  /// Finish initialization of dof map for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -6348,13 +6348,13 @@ public:
     coordinates[11][2] = x[3][2];
   }
 
-  /// Return the number of sub dofmaps (for a mixed element)
+  /// Return the number of sub dof maps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 3;
   }
 
-  /// Create a new dofmap for sub dofmap i (for a mixed element)
+  /// Create a new dofmap for sub dof map i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)

@@ -4388,7 +4388,7 @@ cahnhilliard3d_dofmap_0::~cahnhilliard3d_dofmap_0()
     // Do nothing
 }
 
-/// Return a string identifying the dofmap
+/// Return a string identifying the dof map
 const char* cahnhilliard3d_dofmap_0::signature() const
 {
     return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
@@ -4424,21 +4424,21 @@ bool cahnhilliard3d_dofmap_0::needs_mesh_entities(unsigned int d) const
     return false;
 }
 
-/// Initialize dofmap for mesh (return true iff init_cell() is needed)
+/// Initialize dof map for mesh (return true iff init_cell() is needed)
 bool cahnhilliard3d_dofmap_0::init_mesh(const ufc::mesh& m)
 {
     _global_dimension = m.num_entities[3];
     return false;
 }
 
-/// Initialize dofmap for given cell
+/// Initialize dof map for given cell
 void cahnhilliard3d_dofmap_0::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
-/// Finish initialization of dofmap for cells
+/// Finish initialization of dof map for cells
 void cahnhilliard3d_dofmap_0::init_cell_finalize()
 {
     // Do nothing
@@ -4599,13 +4599,13 @@ void cahnhilliard3d_dofmap_0::tabulate_coordinates(double** coordinates,
     coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
 }
 
-/// Return the number of sub dofmaps (for a mixed element)
+/// Return the number of sub dof maps (for a mixed element)
 unsigned int cahnhilliard3d_dofmap_0::num_sub_dofmaps() const
 {
     return 0;
 }
 
-/// Create a new dofmap for sub dofmap i (for a mixed element)
+/// Create a new dofmap for sub dof map i (for a mixed element)
 ufc::dofmap* cahnhilliard3d_dofmap_0::create_sub_dofmap(unsigned int i) const
 {
     return 0;
@@ -4629,7 +4629,7 @@ cahnhilliard3d_dofmap_1::~cahnhilliard3d_dofmap_1()
     // Do nothing
 }
 
-/// Return a string identifying the dofmap
+/// Return a string identifying the dof map
 const char* cahnhilliard3d_dofmap_1::signature() const
 {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
@@ -4665,21 +4665,21 @@ bool cahnhilliard3d_dofmap_1::needs_mesh_entities(unsigned int d) const
     return false;
 }
 
-/// Initialize dofmap for mesh (return true iff init_cell() is needed)
+/// Initialize dof map for mesh (return true iff init_cell() is needed)
 bool cahnhilliard3d_dofmap_1::init_mesh(const ufc::mesh& m)
 {
     _global_dimension = m.num_entities[0];
     return false;
 }
 
-/// Initialize dofmap for given cell
+/// Initialize dof map for given cell
 void cahnhilliard3d_dofmap_1::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
-/// Finish initialization of dofmap for cells
+/// Finish initialization of dof map for cells
 void cahnhilliard3d_dofmap_1::init_cell_finalize()
 {
     // Do nothing
@@ -4883,13 +4883,13 @@ void cahnhilliard3d_dofmap_1::tabulate_coordinates(double** coordinates,
     coordinates[3][2] = x[3][2];
 }
 
-/// Return the number of sub dofmaps (for a mixed element)
+/// Return the number of sub dof maps (for a mixed element)
 unsigned int cahnhilliard3d_dofmap_1::num_sub_dofmaps() const
 {
     return 0;
 }
 
-/// Create a new dofmap for sub dofmap i (for a mixed element)
+/// Create a new dofmap for sub dof map i (for a mixed element)
 ufc::dofmap* cahnhilliard3d_dofmap_1::create_sub_dofmap(unsigned int i) const
 {
     return 0;
@@ -4913,7 +4913,7 @@ cahnhilliard3d_dofmap_2::~cahnhilliard3d_dofmap_2()
     // Do nothing
 }
 
-/// Return a string identifying the dofmap
+/// Return a string identifying the dof map
 const char* cahnhilliard3d_dofmap_2::signature() const
 {
     return "FFC dofmap for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (2,) })";
@@ -4949,21 +4949,21 @@ bool cahnhilliard3d_dofmap_2::needs_mesh_entities(unsigned int d) const
     return false;
 }
 
-/// Initialize dofmap for mesh (return true iff init_cell() is needed)
+/// Initialize dof map for mesh (return true iff init_cell() is needed)
 bool cahnhilliard3d_dofmap_2::init_mesh(const ufc::mesh& m)
 {
     _global_dimension = 2.000000000000000*m.num_entities[0];
     return false;
 }
 
-/// Initialize dofmap for given cell
+/// Initialize dof map for given cell
 void cahnhilliard3d_dofmap_2::init_cell(const ufc::mesh& m,
                               const ufc::cell& c)
 {
     // Do nothing
 }
 
-/// Finish initialization of dofmap for cells
+/// Finish initialization of dof map for cells
 void cahnhilliard3d_dofmap_2::init_cell_finalize()
 {
     // Do nothing
@@ -5202,13 +5202,13 @@ void cahnhilliard3d_dofmap_2::tabulate_coordinates(double** coordinates,
     coordinates[7][2] = x[3][2];
 }
 
-/// Return the number of sub dofmaps (for a mixed element)
+/// Return the number of sub dof maps (for a mixed element)
 unsigned int cahnhilliard3d_dofmap_2::num_sub_dofmaps() const
 {
     return 2;
 }
 
-/// Create a new dofmap for sub dofmap i (for a mixed element)
+/// Create a new dofmap for sub dof map i (for a mixed element)
 ufc::dofmap* cahnhilliard3d_dofmap_2::create_sub_dofmap(unsigned int i) const
 {
     switch (i)
@@ -5318,7 +5318,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.134432268912383, 0.134432268912383, 0.026133252286735, 0.705002209888498},
     {0.273713872823130, 0.273713872823130, 0.379578230280591, 0.072994024073150},
     {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
-    {0.087102984988800, 0.087102984988800, 0.120791820133903, 0.705002209888498},
+    {0.087102984988800, 0.087102984988800, 0.120791820133902, 0.705002209888498},
     {0.098420473939609, 0.098420473939609, 0.730165028047632, 0.072994024073150},
     {0.069328785893778, 0.069328785893778, 0.514338662174092, 0.347003766038352},
     {0.031319994765818, 0.031319994765819, 0.232357800579865, 0.705002209888498},
@@ -5327,7 +5327,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.030301481174276, 0.238563056650491, 0.026133252286735, 0.705002209888498},
     {0.061696018609146, 0.485731727037113, 0.379578230280591, 0.072994024073150},
     {0.043459555653802, 0.342156357895961, 0.267380320411884, 0.347003766038352},
-    {0.019633302935485, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.019633302935484, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.022184302640820, 0.174656645238399, 0.730165028047632, 0.072994024073150},
     {0.015626939257902, 0.123030632529655, 0.514338662174092, 0.347003766038352},
     {0.007059631139555, 0.055580358392082, 0.232357800579865, 0.705002209888498}};
@@ -5626,7 +5626,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.134432268912383, 0.134432268912383, 0.026133252286735, 0.705002209888498},
     {0.273713872823130, 0.273713872823130, 0.379578230280591, 0.072994024073150},
     {0.192807956774882, 0.192807956774882, 0.267380320411884, 0.347003766038352},
-    {0.087102984988800, 0.087102984988800, 0.120791820133903, 0.705002209888498},
+    {0.087102984988800, 0.087102984988800, 0.120791820133902, 0.705002209888498},
     {0.098420473939609, 0.098420473939609, 0.730165028047632, 0.072994024073150},
     {0.069328785893778, 0.069328785893778, 0.514338662174092, 0.347003766038352},
     {0.031319994765818, 0.031319994765819, 0.232357800579865, 0.705002209888498},
@@ -5635,7 +5635,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.030301481174276, 0.238563056650491, 0.026133252286735, 0.705002209888498},
     {0.061696018609146, 0.485731727037113, 0.379578230280591, 0.072994024073150},
     {0.043459555653802, 0.342156357895961, 0.267380320411884, 0.347003766038352},
-    {0.019633302935485, 0.154572667042115, 0.120791820133903, 0.705002209888498},
+    {0.019633302935484, 0.154572667042115, 0.120791820133903, 0.705002209888498},
     {0.022184302640820, 0.174656645238399, 0.730165028047632, 0.072994024073150},
     {0.015626939257902, 0.123030632529655, 0.514338662174092, 0.347003766038352},
     {0.007059631139555, 0.055580358392082, 0.232357800579865, 0.705002209888498}};
