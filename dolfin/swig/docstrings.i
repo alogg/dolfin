@@ -684,7 +684,7 @@ Return the ownership range (dofs in this range are owned by this process)
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::off_process_owner "
-Return map from nonlocal-dofs that appear in local dof map to owning process
+Return map from nonlocal-dofs (that appear in local dof map) to owning process
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::cell_dofs "
@@ -1078,6 +1078,10 @@ Return boundary value g
 %feature("docstring")  dolfin::DirichletBC::value_ptr "
 Return shared pointer to boundary value g
 Testing multiline comment
+";
+
+%feature("docstring")  dolfin::DirichletBC::user_sub_domain_ptr "
+Return shared pointer to sub-domain
 ";
 
 %feature("docstring")  dolfin::DirichletBC::is_compatible "
@@ -1496,6 +1500,11 @@ forms.
 
   Define variational problem with a list of Dirichlet boundary conditions
   and subdomains for cells, exterior and interior facets of the mesh
+
+* VariationalProblem\ **(form_0, form_1, bcs, cell_domains, exterior_facet_domains, interior_facet_domains)**
+
+  Define variational problem with a list of Dirichlet boundary conditions
+  and subdomains for cells, exterior and interior facets of the mesh
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::solve "
@@ -1538,12 +1547,32 @@ Return test space for variational problem
 Return the bilinear form
 ";
 
+%feature("docstring")  dolfin::VariationalProblem::bilinear_form_shared_ptr "
+Return the bilinear form (shared_ptr version)
+";
+
+%feature("docstring")  dolfin::VariationalProblem::form_0_shared_ptr "
+Return form_0 (shared_ptr version)
+";
+
+%feature("docstring")  dolfin::VariationalProblem::form_1_shared_ptr "
+Return form_1 (shared_ptr version)
+";
+
 %feature("docstring")  dolfin::VariationalProblem::linear_form "
 Return the linear form
 ";
 
+%feature("docstring")  dolfin::VariationalProblem::linear_form_shared_ptr "
+Return the linear form (shared_ptr version)
+";
+
 %feature("docstring")  dolfin::VariationalProblem::bcs "
 Return the list of boundary conditions
+";
+
+%feature("docstring")  dolfin::VariationalProblem::bcs_shared_ptr "
+Return the list of boundary conditions (shared_ptr version)
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::cell_domains "
@@ -2046,7 +2075,17 @@ This class defines a common interface for matrices.
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::resize "
-Resize tensor with given dimensions
+**Overloaded versions**
+
+* resize\ **(rank, dims)**
+
+  Resize tensor with given dimensions
+
+* resize\ **(y, dim)**
+
+  Resize vector y such that is it compatible with matrix for
+  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+  case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::init "
@@ -2600,11 +2639,21 @@ PETScKrylovSolver.
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::resize "
-Resize virtual matrin
+**Overloaded versions**
+
+* resize\ **(m, n)**
+
+  Resize virtual matrix
+
+* resize\ **(y, dim)**
+
+  Resize vector y such that is it compatible with matrix for
+  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+  case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::size "
-Return number of rows (dim = 0) or columns (dim = 1) along dimension dim
+Return number of rows (dim = 0) or columns (dim = 1)
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::local_range "
@@ -2712,7 +2761,17 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::uBLASMatrix::resize "
-Resize matrix to M x N
+**Overloaded versions**
+
+* resize\ **(M, N)**
+
+  Resize matrix to M x N
+
+* resize\ **(y, dim)**
+
+  Resize vector y such that is it compatible with matrix for
+  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+  case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::uBLASMatrix::get "
@@ -2921,7 +2980,17 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::resize "
-Resize matrix to M x N
+**Overloaded versions**
+
+* resize\ **(M, N)**
+
+  Resize matrix to M x N
+
+* resize\ **(y, dim)**
+
+  Resize vector y such that is it compatible with matrix for
+  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+  case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::get "
@@ -3226,6 +3295,12 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::EpetraMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::EpetraMatrix::resize "
+Resize vector y such that is it compatible with matrix for
+multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::get "
@@ -3873,7 +3948,17 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::MTL4Matrix::resize "
-Resize matrix to M x N
+**Overloaded versions**
+
+* resize\ **(M, N)**
+
+  Resize matrix to M x N
+
+* resize\ **(y, dim)**
+
+  Resize vector y such that is it compatible with matrix for
+  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+  case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::MTL4Matrix::get "
@@ -4008,6 +4093,12 @@ Return informal string representation (pretty-print)
 * resize\ **(M, N)**
 
   Initialize M x N matrix
+
+* resize\ **(y, dim)**
+
+  Resize vector y such that is it compatible with matrix for
+  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+  case, size and layout are important.
 
 * resize\ **(rank, dims, reset)**
 
@@ -4476,6 +4567,10 @@ Subtract given vector
 * operator=\ **(x)**
 
   Assignment operator
+";
+
+%feature("docstring")  dolfin::PETScVector::reset "
+Reset data and PETSc vector object
 ";
 
 %feature("docstring")  dolfin::PETScVector::factory "
@@ -5095,31 +5190,35 @@ possible values are real numbers.
 ";
 
 %feature("docstring")  dolfin::SLEPcEigenSolver::SLEPcEigenSolver "
-Create eigenvalue solver
+**Overloaded versions**
+
+* SLEPcEigenSolver\ **(A)**
+
+  Create eigenvalue solver for Ax = \lambda x
+
+* SLEPcEigenSolver\ **(A, B)**
+
+  Create eigenvalue solver Ax = \lambda Bx
+
+* SLEPcEigenSolver\ **(A)**
+
+  Create eigenvalue solver for Ax = \lambda x
+
+* SLEPcEigenSolver\ **(A, B)**
+
+  Create eigenvalue solver for Ax = \lambda x
 ";
 
 %feature("docstring")  dolfin::SLEPcEigenSolver::solve "
 **Overloaded versions**
 
-* solve\ **(A)**
+* solve\ **()**
 
   Compute all eigenpairs of the matrix A (solve Ax = \lambda x)
 
-* solve\ **(A, n)**
+* solve\ **(n)**
 
   Compute the n first eigenpairs of the matrix A (solve Ax = \lambda x)
-
-* solve\ **(A, B)**
-
-  Compute all eigenpairs of the generalised problem Ax = \lambda Bx
-
-* solve\ **(A, B, n)**
-
-  Compute the n first eigenpairs of the generalised problem Ax = \lambda Bx
-
-* solve\ **(A, B, n)**
-
-  Compute eigenpairs
 ";
 
 %feature("docstring")  dolfin::SLEPcEigenSolver::get_eigenvalue "
@@ -5567,6 +5666,12 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::Matrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::Matrix::resize "
+Resize vector y such that is it compatible with matrix for
+multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::Matrix::get "
@@ -6740,7 +6845,7 @@ for standard named mesh entities:
 +--------+-----------+-------------+
 | Facet  |           |      1      |
 +--------+-----------+-------------+
-| Cell   |           |        0    |
+| Cell   |           |      0      |
 +--------+-----------+-------------+
 
 When working with mesh iterators, all entities and connectivity
@@ -7824,6 +7929,10 @@ An Edge is a MeshEntity of topological dimension 1.
 Compute Euclidean length of edge
 ";
 
+%feature("docstring")  dolfin::Edge::dot "
+Compute dot product between edge and other edge
+";
+
 %feature("docstring")  dolfin::EdgeIterator "
 An EdgeIterator is a MeshEntityIterator of topological dimension 1.
 ";
@@ -8392,6 +8501,10 @@ Return size (number of entities)
 Set all values to given value
 ";
 
+%feature("docstring")  dolfin::MeshFunction::set "
+Set values
+";
+
 %feature("docstring")  dolfin::MeshFunction::str "
 Return informal string representation (pretty-print)
 ";
@@ -8742,6 +8855,27 @@ the total number of tetrahedra will be 6*nx*ny*nz and the
 total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
 ";
 
+// Documentation extracted from: (module=mesh, header=refine.h)
+%feature("docstring")  dolfin::refine "
+**Overloaded versions**
+
+* refine\ **(mesh)**
+
+  Create uniformly refined mesh
+
+* refine\ **(refined_mesh, mesh)**
+
+  Create uniformly refined mesh
+
+* refine\ **(mesh, cell_markers)**
+
+  Create locally refined mesh
+
+* refine\ **(refined_mesh, mesh, cell_markers)**
+
+  Create locally refined mesh
+";
+
 // Documentation extracted from: (module=common, header=init.h)
 %feature("docstring")  dolfin::init "
 Initialize DOLFIN (and PETSc) with command-line arguments. This
@@ -8883,6 +9017,53 @@ Return maximum value of array
 * data\ **()**
 
   Return pointer to data (non-const version)
+";
+
+// Documentation extracted from: (module=common, header=IndexSet.h)
+%feature("docstring")  dolfin::IndexSet "
+This class provides an efficient data structure for index sets.
+The cost of checking whether a given index is in the set is O(1)
+and very very fast (optimal) at the cost of extra storage.
+";
+
+%feature("docstring")  dolfin::IndexSet::IndexSet "
+Create index set of given size
+";
+
+%feature("docstring")  dolfin::IndexSet::size "
+Return size of set
+";
+
+%feature("docstring")  dolfin::IndexSet::has_index "
+Check whether index is in set
+";
+
+%feature("docstring")  dolfin::IndexSet::find "
+Return position (if any) for given index
+";
+
+%feature("docstring")  dolfin::IndexSet::operator[] "
+**Overloaded versions**
+
+* operator[]\ **(i)**
+
+  Return given index
+
+* operator[]\ **(i)**
+
+  Return given index (const version)
+";
+
+%feature("docstring")  dolfin::IndexSet::insert "
+Insert index into set
+";
+
+%feature("docstring")  dolfin::IndexSet::fill "
+Fill index set with indices 0, 1, 2, ..., size - 1
+";
+
+%feature("docstring")  dolfin::IndexSet::clear "
+Clear set
 ";
 
 // Documentation extracted from: (module=common, header=Set.h)
@@ -9035,6 +9216,25 @@ Deprecated, to be removed
 This class provides storage and data access for hierarchical
 classes; that is, classes where an object may have a child
 and a parent.
+
+Note to developers: each subclass of Hierarchical that
+implements an assignment operator must call the base class
+assignment operator at the *end* of the subclass assignment
+operator. See the Mesh class for an example.
+";
+
+%feature("docstring")  dolfin::Hierarchical::Hierarchical "
+Constructor
+";
+
+%feature("docstring")  dolfin::Hierarchical::depth "
+Return depth of the hierarchy; that is, the total number of
+objects in the hierarchy linked to the current object via
+child-parent relationships, including the object itself.
+
+*Returns*
+    int
+        The depth of the hierarchy.
 ";
 
 %feature("docstring")  dolfin::Hierarchical::has_parent "
@@ -9054,71 +9254,135 @@ Check if the object has a child.
 ";
 
 %feature("docstring")  dolfin::Hierarchical::parent "
-Return parent in hierarchy. An error is thrown if the object
-has no parent.
+**Overloaded versions**
 
-*Returns*
-    _Object_
-        The parent object.
+* parent\ **()**
+
+  Return parent in hierarchy. An error is thrown if the object
+  has no parent.
+  
+  *Returns*
+      _Object_
+          The parent object.
+
+* parent\ **()**
+
+  Return parent in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::parent_shared_ptr "
-Return shared pointer to parent. A zero pointer is returned if
-the object has no parent.
+**Overloaded versions**
 
-*Returns*
-    shared_ptr<T>
-        The parent object.
+* parent_shared_ptr\ **()**
+
+  Return shared pointer to parent. A zero pointer is returned if
+  the object has no parent.
+  
+  *Returns*
+      shared_ptr<T>
+          The parent object.
+
+* parent_shared_ptr\ **()**
+
+  Return shared pointer to parent (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::child "
-Return child in hierarchy. An error is thrown if the object
-has no child.
+**Overloaded versions**
 
-*Returns*
-    _T_
-        The child object.
+* child\ **()**
+
+  Return child in hierarchy. An error is thrown if the object
+  has no child.
+  
+  *Returns*
+      _T_
+          The child object.
+
+* child\ **()**
+
+  Return child in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::child_shared_ptr "
-Return shared pointer to child. A zero pointer is returned if
-the object has no child.
+**Overloaded versions**
 
-*Returns*
-    shared_ptr<T>
-        The child object.
+* child_shared_ptr\ **()**
+
+  Return shared pointer to child. A zero pointer is returned if
+  the object has no child.
+  
+  *Returns*
+      shared_ptr<T>
+          The child object.
+
+* child_shared_ptr\ **()**
+
+  Return shared pointer to child (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::coarse "
-Return coarsest object in hierarchy.
+**Overloaded versions**
 
-*Returns*
-    _T_
-        The coarse object.
+* coarse\ **()**
+
+  Return coarsest object in hierarchy.
+  
+  *Returns*
+      _T_
+          The coarse object.
+
+* coarse\ **()**
+
+  Return coarsest object in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::coarse_shared_ptr "
-Return shared pointer to coarsest object in hierarchy.
+**Overloaded versions**
 
-*Returns*
-    _T_
-        The coarse object.
+* coarse_shared_ptr\ **()**
+
+  Return shared pointer to coarsest object in hierarchy.
+  
+  *Returns*
+      _T_
+          The coarse object.
+
+* coarse_shared_ptr\ **()**
+
+  Return shared pointer to coarsest object in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::fine "
-Return finest object in hierarchy.
+**Overloaded versions**
 
-*Returns*
-    _T_
-        The fine object.
+* fine\ **()**
+
+  Return finest object in hierarchy.
+  
+  *Returns*
+      _T_
+          The fine object.
+
+* fine\ **()**
+
+  Return finest object in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::fine_shared_ptr "
-Return shared pointer to finest object in hierarchy.
+**Overloaded versions**
 
-*Returns*
-    _T_
-        The fine object.
+* fine_shared_ptr\ **()**
+
+  Return shared pointer to finest object in hierarchy.
+  
+  *Returns*
+      _T_
+          The fine object.
+
+* fine_shared_ptr\ **()**
+
+  Return shared pointer to finest object in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::set_parent "
@@ -9131,6 +9395,10 @@ Set child
 
 %feature("docstring")  dolfin::Hierarchical::operator= "
 Assignment operator
+";
+
+%feature("docstring")  dolfin::Hierarchical::_debug "
+Function useful for debugging the hierarchy
 ";
 
 // Documentation extracted from: (module=common, header=MPI.h)
@@ -9514,37 +9782,49 @@ Return filename for times
 Return informal string representation (pretty-print)
 ";
 
-// Documentation extracted from: (module=adaptivity, header=refine.h)
-%feature("docstring")  dolfin::refine "
+// Documentation extracted from: (module=adaptivity, header=adapt.h)
+%feature("docstring")  dolfin::adapt "
 **Overloaded versions**
 
-* refine\ **(mesh)**
+* adapt\ **(mesh)**
 
   Refine mesh uniformly
 
-* refine\ **(mesh, cell_markers)**
+* adapt\ **(mesh, cell_markers)**
 
   Refine mesh based on cell markers
 
-* refine\ **(space)**
+* adapt\ **(space)**
 
   Refine function space uniformly
 
-* refine\ **(space, cell_markers)**
+* adapt\ **(space, cell_markers)**
 
   Refine function space based on cell markers
 
-* refine\ **(space, refined_mesh)**
+* adapt\ **(space, refined_mesh)**
 
   Refine function space based on refined mesh
 
-* refine\ **(function, refined_mesh)**
+* adapt\ **(function, refined_mesh)**
 
   Refine coefficient based on refined mesh
 
-* refine\ **(form, refined_mesh)**
+* adapt\ **(bc, refined_mesh)**
+
+  Refine Dirichlet bc based on refined mesh
+
+* adapt\ **(form, refined_mesh)**
 
   Refine form based on refined mesh
+
+* adapt\ **(problem, refined_mesh)**
+
+  Refine variational problem based on mesh
+
+* adapt\ **(ec, refined_mesh)**
+
+  Refine error control object based on mesh
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)

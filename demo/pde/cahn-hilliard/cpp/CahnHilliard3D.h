@@ -328,20 +328,20 @@ public:
   /// Destructor
   virtual ~cahnhilliard3d_dofmap_0();
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const;
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const;
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m);
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c);
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize();
 
   /// Return the topological dimension of the associated cell shape
@@ -382,10 +382,10 @@ public:
   virtual void tabulate_coordinates(double** coordinates,
                                     const ufc::cell& c) const;
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const;
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const;
 
   /// Create a new class instance
@@ -409,20 +409,20 @@ public:
   /// Destructor
   virtual ~cahnhilliard3d_dofmap_1();
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const;
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const;
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m);
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c);
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize();
 
   /// Return the topological dimension of the associated cell shape
@@ -463,10 +463,10 @@ public:
   virtual void tabulate_coordinates(double** coordinates,
                                     const ufc::cell& c) const;
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const;
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const;
 
   /// Create a new class instance
@@ -490,20 +490,20 @@ public:
   /// Destructor
   virtual ~cahnhilliard3d_dofmap_2();
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const;
 
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(unsigned int d) const;
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m);
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c);
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize();
 
   /// Return the topological dimension of the associated cell shape
@@ -544,10 +544,10 @@ public:
   virtual void tabulate_coordinates(double** coordinates,
                                     const ufc::cell& c) const;
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const;
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const;
 
   /// Create a new class instance
