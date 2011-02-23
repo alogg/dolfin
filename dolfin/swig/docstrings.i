@@ -650,8 +650,8 @@ Convergence test
 This class provides a generic interface for dof maps
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::signature "
-Return a string identifying the dof map
+%feature("docstring")  dolfin::GenericDofMap::is_view "
+True if dof map is a view into another map (is a sub-dofmap)
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::needs_mesh_entities "
@@ -662,16 +662,12 @@ Return true iff mesh entities of topological dimension d are needed
 Return the dimension of the global finite element function space
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::local_dimension "
-Return the dimension of the local (process) finite element function space
-";
-
-%feature("docstring")  dolfin::GenericDofMap::dimension "
+%feature("docstring")  dolfin::GenericDofMap::cell_dimension "
 Return the dimension of the local finite element function space on a
 cell
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::max_local_dimension "
+%feature("docstring")  dolfin::GenericDofMap::max_cell_dimension "
 Return the maximum dimension of the local finite element function space
 ";
 
@@ -716,7 +712,7 @@ Extract sub dofmap component
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::collapse "
-\"Collapse\" a sub dofmap
+Create a \"collapsed\" a dofmap (collapses a sub-dofmap)
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::dofs "
@@ -754,8 +750,8 @@ such that the dof indices are contiguous.
   Create dof map on mesh with a std::vector dof map
 ";
 
-%feature("docstring")  dolfin::DofMap::signature "
-Return a string identifying the dof map
+%feature("docstring")  dolfin::DofMap::is_view "
+True if dof map is a view into another map (is a sub-dofmap)
 ";
 
 %feature("docstring")  dolfin::DofMap::needs_mesh_entities "
@@ -766,7 +762,7 @@ Return true iff mesh entities of topological dimension d are needed
 Return the dimension of the global finite element function space
 ";
 
-%feature("docstring")  dolfin::DofMap::max_local_dimension "
+%feature("docstring")  dolfin::DofMap::max_cell_dimension "
 Return the maximum dimension of the local finite element function space
 ";
 
@@ -812,7 +808,7 @@ Extract sub dofmap component
 ";
 
 %feature("docstring")  dolfin::DofMap::collapse "
-\"Collapse\" a sub dofmap
+Create a \"collapsed\" dofmap (collapses a sub-dofmap)
 ";
 
 %feature("docstring")  dolfin::DofMap::dofs "
