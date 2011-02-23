@@ -1969,7 +1969,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1)";
@@ -2000,21 +2000,21 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = 3.000000000000000*m.num_entities[2];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -2167,13 +2167,13 @@ public:
     coordinates[2][1] = x[2][1];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
@@ -2209,7 +2209,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1)";
@@ -2240,21 +2240,21 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = m.num_entities[0];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -2426,13 +2426,13 @@ public:
     coordinates[2][1] = x[2][1];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;

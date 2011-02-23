@@ -14,9 +14,10 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   no_ferari:                      True
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -60,6 +61,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -1967,6 +1980,22 @@ public:
     vertex_values[2] = dof_values[2];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -1977,6 +2006,12 @@ public:
   virtual ufc::finite_element* create_sub_element(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new advectiondiffusion_finite_element_0();
   }
 
 };
@@ -2009,6 +2044,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -5589,6 +5636,22 @@ public:
     vertex_values[5] = dof_values[8];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -5613,6 +5676,12 @@ public:
     }
     
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new advectiondiffusion_finite_element_1();
   }
 
 };
@@ -5645,6 +5714,18 @@ public:
   virtual ufc::shape cell_shape() const
   {
     return ufc::triangle;
+  }
+
+  /// Return the topological dimension of the cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the finite element function space
@@ -6526,6 +6607,22 @@ public:
     vertex_values[2] = dof_values[2];
   }
 
+  /// Map coordinate xhat from reference cell to coordinate x in cell
+  virtual void map_from_reference_cell(double* x,
+                                       const double* xhat,
+                                       const ufc::cell& c)
+  {
+    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
+  /// Map from coordinate x in cell to coordinate xhat in reference cell
+  virtual void map_to_reference_cell(double* xhat,
+                                     const double* x,
+                                     const ufc::cell& c)
+  {
+    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+  }
+
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const
   {
@@ -6538,12 +6635,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::finite_element* create() const
+  {
+    return new advectiondiffusion_finite_element_2();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class advectiondiffusion_dof_map_0: public ufc::dof_map
+class advectiondiffusion_dofmap_0: public ufc::dofmap
 {
 private:
 
@@ -6551,18 +6654,18 @@ private:
 public:
 
   /// Constructor
-  advectiondiffusion_dof_map_0() : ufc::dof_map()
+  advectiondiffusion_dofmap_0() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~advectiondiffusion_dof_map_0()
+  virtual ~advectiondiffusion_dofmap_0()
   {
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 2)";
@@ -6593,24 +6696,36 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = m.num_entities[0] + m.num_entities[1];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
+  }
+
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the global finite element function space
@@ -6629,12 +6744,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 6;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -6811,16 +6920,22 @@ public:
     coordinates[5][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  /// Return the number of sub dofmaps (for a mixed element)
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new advectiondiffusion_dofmap_0();
   }
 
 };
@@ -6828,7 +6943,7 @@ public:
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class advectiondiffusion_dof_map_1: public ufc::dof_map
+class advectiondiffusion_dofmap_1: public ufc::dofmap
 {
 private:
 
@@ -6836,18 +6951,18 @@ private:
 public:
 
   /// Constructor
-  advectiondiffusion_dof_map_1() : ufc::dof_map()
+  advectiondiffusion_dofmap_1() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~advectiondiffusion_dof_map_1()
+  virtual ~advectiondiffusion_dofmap_1()
   {
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2)";
@@ -6878,24 +6993,36 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = 2.000000000000000*m.num_entities[0] + 2.000000000000000*m.num_entities[1];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
+  }
+
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the global finite element function space
@@ -6914,12 +7041,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 12;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -7131,25 +7252,25 @@ public:
     coordinates[11][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  /// Return the number of sub dofmaps (for a mixed element)
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 2;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new advectiondiffusion_dof_map_0();
+        return new advectiondiffusion_dofmap_0();
         break;
       }
     case 1:
       {
-        return new advectiondiffusion_dof_map_0();
+        return new advectiondiffusion_dofmap_0();
         break;
       }
     }
@@ -7157,12 +7278,18 @@ public:
     return 0;
   }
 
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new advectiondiffusion_dofmap_1();
+  }
+
 };
 
 /// This class defines the interface for a local-to-global mapping of
 /// degrees of freedom (dofs).
 
-class advectiondiffusion_dof_map_2: public ufc::dof_map
+class advectiondiffusion_dofmap_2: public ufc::dofmap
 {
 private:
 
@@ -7170,18 +7297,18 @@ private:
 public:
 
   /// Constructor
-  advectiondiffusion_dof_map_2() : ufc::dof_map()
+  advectiondiffusion_dofmap_2() : ufc::dofmap()
   {
     _global_dimension = 0;
   }
 
   /// Destructor
-  virtual ~advectiondiffusion_dof_map_2()
+  virtual ~advectiondiffusion_dofmap_2()
   {
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('triangle', 1, Space(2)), 1)";
@@ -7212,24 +7339,36 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = 3.000000000000000*m.num_entities[2];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
+  }
+
+  /// Return the topological dimension of the associated cell shape
+  virtual unsigned int topological_dimension() const
+  {
+    return 2;
+  }
+
+  /// Return the geometric dimension of the associated cell shape
+  virtual unsigned int geometric_dimension() const
+  {
+    return 2;
   }
 
   /// Return the dimension of the global finite element function space
@@ -7248,12 +7387,6 @@ public:
   virtual unsigned int max_local_dimension() const
   {
     return 3;
-  }
-
-  // Return the geometric dimension of the coordinates this dof map provides
-  virtual unsigned int geometric_dimension() const
-  {
-    return 2;
   }
 
   /// Return the number of dofs on each cell facet
@@ -7373,16 +7506,22 @@ public:
     coordinates[2][1] = x[2][1];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
-  virtual unsigned int num_sub_dof_maps() const
+  /// Return the number of sub dofmaps (for a mixed element)
+  virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dof_map for sub dof map i (for a mixed element)
-  virtual ufc::dof_map* create_sub_dof_map(unsigned int i) const
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
+  virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
+  }
+
+  /// Create a new class instance
+  virtual ufc::dofmap* create() const
+  {
+    return new advectiondiffusion_dofmap_2();
   }
 
 };
@@ -7476,6 +7615,18 @@ public:
     A[8] = 0.008333333333333*G0_0_0_1 + 0.008333333333333*G0_1_0_1 - 0.016666666666667*G0_2_0_1 - 0.066666666666667*G0_3_0_1 - 0.066666666666667*G0_4_0_1 - 0.033333333333333*G0_5_0_1 + 0.008333333333333*G0_6_1_1 + 0.008333333333333*G0_7_1_1 - 0.016666666666667*G0_8_1_1 - 0.066666666666667*G0_9_1_1 - 0.066666666666667*G0_10_1_1 - 0.033333333333333*G0_11_1_1;
   }
 
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
 };
 
 /// This class defines the interface for the tabulation of the
@@ -7537,67 +7688,64 @@ public:
     // Quadrature points on the UFC reference element: (0.112701665379258), (0.500000000000000), (0.887298334620742)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[3][3] = \
-    {{0.000000000000000, 0.887298334620742, 0.112701665379258},
-    {0.000000000000000, 0.500000000000000, 0.500000000000000},
-    {0.000000000000000, 0.112701665379258, 0.887298334620742}};
+    static const double FE0_f0[3][2] = \
+    {{0.887298334620742, 0.112701665379258},
+    {0.500000000000000, 0.500000000000000},
+    {0.112701665379258, 0.887298334620742}};
     
-    static const double FE0_f1[3][3] = \
-    {{0.887298334620742, 0.000000000000000, 0.112701665379258},
-    {0.500000000000000, 0.000000000000000, 0.500000000000000},
-    {0.112701665379258, 0.000000000000000, 0.887298334620742}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE0_f2[3][3] = \
-    {{0.887298334620742, 0.112701665379258, 0.000000000000000},
-    {0.500000000000000, 0.500000000000000, 0.000000000000000},
-    {0.112701665379258, 0.887298334620742, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
     
-    static const double FE1_f0_C0[3][12] = \
-    {{0.000000000000000, 0.687298334620742, -0.087298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, -0.087298334620742, 0.687298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
-    static const double FE1_f0_C1[3][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.687298334620742, -0.087298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -0.087298334620742, 0.687298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000}};
+    static const double FE1_f0_C0[3][3] = \
+    {{0.687298334620742, -0.087298334620742, 0.400000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {-0.087298334620742, 0.687298334620742, 0.400000000000000}};
     
-    static const double FE1_f1_C0[3][12] = \
-    {{0.687298334620742, 0.000000000000000, -0.087298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-0.087298334620742, 0.000000000000000, 0.687298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc3[3] = {1, 2, 3};
     
-    static const double FE1_f1_C1[3][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.687298334620742, 0.000000000000000, -0.087298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -0.087298334620742, 0.000000000000000, 0.687298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[3] = {7, 8, 9};
     
-    static const double FE1_f2_C0[3][12] = \
-    {{0.687298334620742, -0.087298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-0.087298334620742, 0.687298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc7[3] = {0, 1, 5};
     
-    static const double FE1_f2_C1[3][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.687298334620742, -0.087298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -0.087298334620742, 0.687298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc8[3] = {6, 7, 11};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc6[3] = {6, 8, 10};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc5[3] = {0, 2, 4};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 9; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 5.
+    double G[3];
+    G[0] = 0.500000000000000*det;
+    G[1] = 0.500000000000000*det*n0;
+    G[2] = 0.500000000000000*det*n1;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet)
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 468
+        // Total number of operations to compute element tensor (from this point): 102
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 468
+      // Number of operations to compute element tensor for following IP loop = 102
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
@@ -7605,20 +7753,26 @@ public:
         double F0 = 0.000000000000000;
         double F1 = 0.000000000000000;
         
-        // Total number of operations to compute function values = 48
-        for (unsigned int r = 0; r < 12; r++)
+        // Total number of operations to compute function values = 12
+        for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE1_f0_C0[ip][r]*w[0][r];
-          F1 += FE1_f0_C1[ip][r]*w[0][r];
+          F0 += FE1_f0_C0[ip][r]*w[0][nzc3[r]];
+          F1 += FE1_f0_C0[ip][r]*w[0][nzc4[r]];
         }// end loop over 'r'
         
-        // Number of operations for primary indices: 108
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 10
+        double I[1];
+        // Number of operations: 10
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
+        
+        
+        // Number of operations for primary indices: 12
+        for (unsigned int j = 0; j < 2; j++)
         {
-          for (unsigned int k = 0; k < 3; k++)
+          for (unsigned int k = 0; k < 2; k++)
           {
-            // Number of operations to compute entry: 12
-            A[j*3 + k] += FE0_f0[ip][j]*(FE0_f0[ip][k]*(((F1*n1 + F0*n0) + std::abs((F1*n1 + F0*n0)))/(2.000000000000000)))*W3[ip]*det;
+            // Number of operations to compute entry: 3
+            A[nzc0[j]*3 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -7626,10 +7780,10 @@ public:
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 468
+        // Total number of operations to compute element tensor (from this point): 102
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 468
+      // Number of operations to compute element tensor for following IP loop = 102
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
@@ -7637,20 +7791,26 @@ public:
         double F0 = 0.000000000000000;
         double F1 = 0.000000000000000;
         
-        // Total number of operations to compute function values = 48
-        for (unsigned int r = 0; r < 12; r++)
+        // Total number of operations to compute function values = 12
+        for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE1_f1_C0[ip][r]*w[0][r];
-          F1 += FE1_f1_C1[ip][r]*w[0][r];
+          F0 += FE1_f0_C0[ip][r]*w[0][nzc5[r]];
+          F1 += FE1_f0_C0[ip][r]*w[0][nzc6[r]];
         }// end loop over 'r'
         
-        // Number of operations for primary indices: 108
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 10
+        double I[1];
+        // Number of operations: 10
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
+        
+        
+        // Number of operations for primary indices: 12
+        for (unsigned int j = 0; j < 2; j++)
         {
-          for (unsigned int k = 0; k < 3; k++)
+          for (unsigned int k = 0; k < 2; k++)
           {
-            // Number of operations to compute entry: 12
-            A[j*3 + k] += FE0_f1[ip][j]*(FE0_f1[ip][k]*(((F1*n1 + F0*n0) + std::abs((F1*n1 + F0*n0)))/(2.000000000000000)))*W3[ip]*det;
+            // Number of operations to compute entry: 3
+            A[nzc1[j]*3 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -7658,10 +7818,10 @@ public:
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 468
+        // Total number of operations to compute element tensor (from this point): 102
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 468
+      // Number of operations to compute element tensor for following IP loop = 102
       for (unsigned int ip = 0; ip < 3; ip++)
       {
         
@@ -7669,20 +7829,26 @@ public:
         double F0 = 0.000000000000000;
         double F1 = 0.000000000000000;
         
-        // Total number of operations to compute function values = 48
-        for (unsigned int r = 0; r < 12; r++)
+        // Total number of operations to compute function values = 12
+        for (unsigned int r = 0; r < 3; r++)
         {
-          F0 += FE1_f2_C0[ip][r]*w[0][r];
-          F1 += FE1_f2_C1[ip][r]*w[0][r];
+          F0 += FE1_f0_C0[ip][r]*w[0][nzc7[r]];
+          F1 += FE1_f0_C0[ip][r]*w[0][nzc8[r]];
         }// end loop over 'r'
         
-        // Number of operations for primary indices: 108
-        for (unsigned int j = 0; j < 3; j++)
+        // Number of operations to compute ip constants: 10
+        double I[1];
+        // Number of operations: 10
+        I[0] = W3[ip]*(std::abs((F0*n0 + F1*n1))*G[0] + F0*G[1] + F1*G[2]);
+        
+        
+        // Number of operations for primary indices: 12
+        for (unsigned int j = 0; j < 2; j++)
         {
-          for (unsigned int k = 0; k < 3; k++)
+          for (unsigned int k = 0; k < 2; k++)
           {
-            // Number of operations to compute entry: 12
-            A[j*3 + k] += FE0_f2[ip][j]*(FE0_f2[ip][k]*(((F1*n1 + F0*n0) + std::abs((F1*n1 + F0*n0)))/(2.000000000000000)))*W3[ip]*det;
+            // Number of operations to compute entry: 3
+            A[nzc2[j]*3 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
           }// end loop over 'k'
         }// end loop over 'j'
       }// end loop over 'ip'
@@ -7690,6 +7856,18 @@ public:
       }
     }
     
+  }
+
+  /// Tabulate the tensor for the contribution from a local exterior facet
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
   }
 
 };
@@ -7766,59 +7944,63 @@ public:
     // Quadrature points on the UFC reference element: (0.112701665379258), (0.500000000000000), (0.887298334620742)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[3][3] = \
-    {{0.000000000000000, 0.887298334620742, 0.112701665379258},
-    {0.000000000000000, 0.500000000000000, 0.500000000000000},
-    {0.000000000000000, 0.112701665379258, 0.887298334620742}};
+    static const double FE0_f0[3][2] = \
+    {{0.887298334620742, 0.112701665379258},
+    {0.500000000000000, 0.500000000000000},
+    {0.112701665379258, 0.887298334620742}};
     
-    static const double FE0_f1[3][3] = \
-    {{0.887298334620742, 0.000000000000000, 0.112701665379258},
-    {0.500000000000000, 0.000000000000000, 0.500000000000000},
-    {0.112701665379258, 0.000000000000000, 0.887298334620742}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE0_f2[3][3] = \
-    {{0.887298334620742, 0.112701665379258, 0.000000000000000},
-    {0.500000000000000, 0.500000000000000, 0.000000000000000},
-    {0.112701665379258, 0.887298334620742, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
     
-    static const double FE1_f0_C0[3][12] = \
-    {{0.000000000000000, 0.687298334620742, -0.087298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, -0.087298334620742, 0.687298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
-    static const double FE1_f0_C1[3][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.687298334620742, -0.087298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -0.087298334620742, 0.687298334620742, 0.400000000000000, 0.000000000000000, 0.000000000000000}};
+    static const double FE1_f0_C0[3][3] = \
+    {{0.687298334620742, -0.087298334620742, 0.400000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {-0.087298334620742, 0.687298334620742, 0.400000000000000}};
     
-    static const double FE1_f1_C0[3][12] = \
-    {{0.687298334620742, 0.000000000000000, -0.087298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-0.087298334620742, 0.000000000000000, 0.687298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc3[3] = {1, 2, 3};
     
-    static const double FE1_f1_C1[3][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.687298334620742, 0.000000000000000, -0.087298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -0.087298334620742, 0.000000000000000, 0.687298334620742, 0.000000000000000, 0.400000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc4[3] = {7, 8, 9};
     
-    static const double FE1_f2_C0[3][12] = \
-    {{0.687298334620742, -0.087298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-0.087298334620742, 0.687298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc7[3] = {0, 1, 5};
     
-    static const double FE1_f2_C1[3][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.687298334620742, -0.087298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -0.087298334620742, 0.687298334620742, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.400000000000000}};
+    // Array of non-zero columns
+    static const unsigned int nzc8[3] = {6, 7, 11};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc6[3] = {6, 8, 10};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc5[3] = {0, 2, 4};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 36; r++)
     {
       A[r] = 0.000000000000000;
     }// end loop over 'r'
+    // Number of operations to compute geometry constants: 18.
+    double G[10];
+    G[0] = -0.500000000000000*det;
+    G[1] = -0.500000000000000*det*n10;
+    G[2] = -0.500000000000000*det*n11;
+    G[3] = 0.500000000000000*det;
+    G[4] = 0.500000000000000*det*n00;
+    G[5] = 0.500000000000000*det*n01;
+    G[6] = -0.500000000000000*det*n00;
+    G[7] = -0.500000000000000*det*n01;
+    G[8] = 0.500000000000000*det*n10;
+    G[9] = 0.500000000000000*det*n11;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet0)
     {
     case 0:
@@ -7827,10 +8009,10 @@ public:
       {
       case 0:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -7840,28 +8022,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f0_C0[ip][r]*w[0][r];
-            F1 += FE1_f0_C1[ip][r]*w[0][r];
-            F2 += FE1_f0_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f0_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc3[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc4[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc3[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc4[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f0[ip][j]*(-1.000000000000000))*(FE0_f0[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f0[ip][j]*((FE0_f0[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f0[ip][j]*(FE0_f0[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f0[ip][j]*(-1.000000000000000))*((FE0_f0[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -7869,10 +8066,10 @@ public:
         }
       case 1:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -7882,28 +8079,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f0_C0[ip][r]*w[0][r];
-            F1 += FE1_f0_C1[ip][r]*w[0][r];
-            F2 += FE1_f1_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f1_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc3[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc4[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc5[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc6[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f1[ip][j]*(-1.000000000000000))*(FE0_f0[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f0[ip][j]*((FE0_f1[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f0[ip][j]*(FE0_f0[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f1[ip][j]*(-1.000000000000000))*((FE0_f1[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -7911,10 +8123,10 @@ public:
         }
       case 2:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -7924,28 +8136,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f0_C0[ip][r]*w[0][r];
-            F1 += FE1_f0_C1[ip][r]*w[0][r];
-            F2 += FE1_f2_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f2_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc3[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc4[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc7[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc8[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f2[ip][j]*(-1.000000000000000))*(FE0_f0[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f0[ip][j]*((FE0_f2[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f0[ip][j]*(FE0_f0[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f2[ip][j]*(-1.000000000000000))*((FE0_f2[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc0[j]*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc0[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -7961,10 +8188,10 @@ public:
       {
       case 0:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -7974,28 +8201,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f1_C0[ip][r]*w[0][r];
-            F1 += FE1_f1_C1[ip][r]*w[0][r];
-            F2 += FE1_f0_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f0_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc5[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc6[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc3[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc4[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f0[ip][j]*(-1.000000000000000))*(FE0_f1[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f1[ip][j]*((FE0_f0[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f1[ip][j]*(FE0_f1[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f0[ip][j]*(-1.000000000000000))*((FE0_f0[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8003,10 +8245,10 @@ public:
         }
       case 1:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -8016,28 +8258,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f1_C0[ip][r]*w[0][r];
-            F1 += FE1_f1_C1[ip][r]*w[0][r];
-            F2 += FE1_f1_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f1_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc5[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc6[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc5[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc6[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f1[ip][j]*(-1.000000000000000))*(FE0_f1[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f1[ip][j]*((FE0_f1[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f1[ip][j]*(FE0_f1[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f1[ip][j]*(-1.000000000000000))*((FE0_f1[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8045,10 +8302,10 @@ public:
         }
       case 2:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -8058,28 +8315,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f1_C0[ip][r]*w[0][r];
-            F1 += FE1_f1_C1[ip][r]*w[0][r];
-            F2 += FE1_f2_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f2_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc5[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc6[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc7[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc8[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f2[ip][j]*(-1.000000000000000))*(FE0_f1[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f1[ip][j]*((FE0_f2[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f1[ip][j]*(FE0_f1[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f2[ip][j]*(-1.000000000000000))*((FE0_f2[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc1[j]*6 + nzc1[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8095,10 +8367,10 @@ public:
       {
       case 0:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -8108,28 +8380,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f2_C0[ip][r]*w[0][r];
-            F1 += FE1_f2_C1[ip][r]*w[0][r];
-            F2 += FE1_f0_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f0_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc7[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc8[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc3[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc4[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f0[ip][j]*(-1.000000000000000))*(FE0_f2[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f2[ip][j]*((FE0_f0[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f2[ip][j]*(FE0_f2[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f0[ip][j]*(-1.000000000000000))*((FE0_f0[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc0[j] + 3)*6 + (nzc0[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8137,10 +8424,10 @@ public:
         }
       case 1:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -8150,28 +8437,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f2_C0[ip][r]*w[0][r];
-            F1 += FE1_f2_C1[ip][r]*w[0][r];
-            F2 += FE1_f1_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f1_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc7[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc8[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc5[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc6[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f1[ip][j]*(-1.000000000000000))*(FE0_f2[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f2[ip][j]*((FE0_f1[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f2[ip][j]*(FE0_f2[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f1[ip][j]*(-1.000000000000000))*((FE0_f1[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc1[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[(nzc1[j] + 3)*6 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8179,10 +8481,10 @@ public:
         }
       case 2:
         {
-          // Total number of operations to compute element tensor (from this point): 1692
+          // Total number of operations to compute element tensor (from this point): 336
         
         // Loop quadrature points for integral.
-        // Number of operations to compute element tensor for following IP loop = 1692
+        // Number of operations to compute element tensor for following IP loop = 336
         for (unsigned int ip = 0; ip < 3; ip++)
         {
           
@@ -8192,28 +8494,43 @@ public:
           double F2 = 0.000000000000000;
           double F3 = 0.000000000000000;
           
-          // Total number of operations to compute function values = 96
-          for (unsigned int r = 0; r < 12; r++)
+          // Total number of operations to compute function values = 24
+          for (unsigned int r = 0; r < 3; r++)
           {
-            F0 += FE1_f2_C0[ip][r]*w[0][r];
-            F1 += FE1_f2_C1[ip][r]*w[0][r];
-            F2 += FE1_f2_C0[ip][r]*(w[0][r + 12]);
-            F3 += FE1_f2_C1[ip][r]*(w[0][r + 12]);
+            F0 += FE1_f0_C0[ip][r]*w[0][nzc7[r]];
+            F1 += FE1_f0_C0[ip][r]*w[0][nzc8[r]];
+            F2 += FE1_f0_C0[ip][r]*w[0][nzc7[r] + 12];
+            F3 += FE1_f0_C0[ip][r]*w[0][nzc8[r] + 12];
           }// end loop over 'r'
           
-          // Number of operations for primary indices: 468
-          for (unsigned int j = 0; j < 3; j++)
+          // Number of operations to compute ip constants: 40
+          double I[4];
+          // Number of operations: 10
+          I[0] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[0] + F2*G[1] + F3*G[2]);
+          
+          // Number of operations: 10
+          I[1] = W3[ip]*(std::abs((F2*n10 + F3*n11))*G[3] + F2*G[8] + F3*G[9]);
+          
+          // Number of operations: 10
+          I[2] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[0] + F0*G[6] + F1*G[7]);
+          
+          // Number of operations: 10
+          I[3] = W3[ip]*(std::abs((F0*n00 + F1*n01))*G[3] + F0*G[4] + F1*G[5]);
+          
+          
+          // Number of operations for primary indices: 48
+          for (unsigned int j = 0; j < 2; j++)
           {
-            for (unsigned int k = 0; k < 3; k++)
+            for (unsigned int k = 0; k < 2; k++)
             {
-              // Number of operations to compute entry: 13
-              A[(j + 3)*6 + k] += (FE0_f2[ip][j]*(-1.000000000000000))*(FE0_f2[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 13
-              A[j*6 + (k + 3)] += FE0_f2[ip][j]*((FE0_f2[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
-              // Number of operations to compute entry: 12
-              A[j*6 + k] += FE0_f2[ip][j]*(FE0_f2[ip][k]*(((F1*n01 + F0*n00) + std::abs((F1*n01 + F0*n00)))/(2.000000000000000)))*W3[ip]*det;
-              // Number of operations to compute entry: 14
-              A[(j + 3)*6 + (k + 3)] += (FE0_f2[ip][j]*(-1.000000000000000))*((FE0_f2[ip][k]*((std::abs((F2*n10 + F3*n11)) + (F2*n10 + F3*n11))/(2.000000000000000)))*(-1.000000000000000))*W3[ip]*det;
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[0];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + (nzc2[k] + 3)] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[1];
+              // Number of operations to compute entry: 3
+              A[(nzc2[j] + 3)*6 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[2];
+              // Number of operations to compute entry: 3
+              A[nzc2[j]*6 + nzc2[k]] += FE0_f0[ip][j]*FE0_f0[ip][k]*I[3];
             }// end loop over 'k'
           }// end loop over 'j'
         }// end loop over 'ip'
@@ -8225,6 +8542,18 @@ public:
       }
     }
     
+  }
+
+  /// Tabulate the tensor for the contribution from a local interior facet
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
   }
 
 };
@@ -8278,20 +8607,20 @@ public:
     return 1;
   }
 
-  /// Return the number of cell integrals
-  virtual unsigned int num_cell_integrals() const
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
   {
     return 1;
   }
 
-  /// Return the number of exterior facet integrals
-  virtual unsigned int num_exterior_facet_integrals() const
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
   {
     return 1;
   }
 
-  /// Return the number of interior facet integrals
-  virtual unsigned int num_interior_facet_integrals() const
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
   {
     return 1;
   }
@@ -8321,24 +8650,24 @@ public:
     return 0;
   }
 
-  /// Create a new dof map for argument function i
-  virtual ufc::dof_map* create_dof_map(unsigned int i) const
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
   {
     switch (i)
     {
     case 0:
       {
-        return new advectiondiffusion_dof_map_2();
+        return new advectiondiffusion_dofmap_2();
         break;
       }
     case 1:
       {
-        return new advectiondiffusion_dof_map_2();
+        return new advectiondiffusion_dofmap_2();
         break;
       }
     case 2:
       {
-        return new advectiondiffusion_dof_map_1();
+        return new advectiondiffusion_dofmap_1();
         break;
       }
     }
@@ -8419,7 +8748,7 @@ public:
   CoefficientSpace_u(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -8427,7 +8756,7 @@ public:
   CoefficientSpace_u(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_1()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_1()), mesh)))
   {
     // Do nothing
   }
@@ -8435,7 +8764,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -8443,7 +8772,7 @@ public:
   CoefficientSpace_u(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -8461,7 +8790,7 @@ public:
   Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -8469,7 +8798,7 @@ public:
   Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -8477,7 +8806,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -8485,7 +8814,7 @@ public:
   Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -8503,7 +8832,7 @@ public:
   Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -8511,7 +8840,7 @@ public:
   Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), mesh)))
   {
     // Do nothing
   }
@@ -8519,7 +8848,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -8527,7 +8856,7 @@ public:
   Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dof_map>(new advectiondiffusion_dof_map_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
