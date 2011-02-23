@@ -730,7 +730,7 @@ Return informal string representation (pretty-print)
 // Documentation extracted from: (module=fem, header=DofMap.h)
 %feature("docstring")  dolfin::DofMap "
 This class handles the mapping of degrees of freedom. It builds
-a dof map based on a ufc::dof_map on a specific mesh. It will
+a dof map based on a ufc::dofmap on a specific mesh. It will
 reorder the dofs when running in parallel.
 
 If ufc_offset != 0, then the dof map provides a view into a
@@ -824,7 +824,7 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::DofMap::ufc_dofmap "
-Return ufc::dof_map
+Return ufc::dofmap
 ";
 
 %feature("docstring")  dolfin::DofMap::init_ufc_dofmap "
@@ -1099,6 +1099,10 @@ Check if given function is compatible with boundary condition
 * set_value\ **(g)**
 
   Set value g for boundary condition, domain remains unchanged
+";
+
+%feature("docstring")  dolfin::DirichletBC::homogenize "
+Set value to 0.0
 ";
 
 %feature("docstring")  dolfin::DirichletBC::method "
@@ -7954,6 +7958,18 @@ Constructor
 Calculate the area of the face (triangle)
 ";
 
+%feature("docstring")  dolfin::Face::normal "
+**Overloaded versions**
+
+* normal\ **(i)**
+
+  Compute component i of the normal to the face
+
+* normal\ **()**
+
+  Compute normal to the face
+";
+
 %feature("docstring")  dolfin::FaceIterator "
 A FaceIterator is a MeshEntityIterator of topological dimension 2.
 ";
@@ -7969,6 +7985,18 @@ A Facet is a MeshEntity of topological codimension 1.
 
 %feature("docstring")  dolfin::Facet::Facet "
 Constructor
+";
+
+%feature("docstring")  dolfin::Facet::normal "
+**Overloaded versions**
+
+* normal\ **(i)**
+
+  Compute component i of the normal to the facet
+
+* normal\ **()**
+
+  Compute normal to the facet
 ";
 
 %feature("docstring")  dolfin::Facet::interior "
