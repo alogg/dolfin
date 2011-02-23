@@ -6414,7 +6414,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0)";
@@ -6450,21 +6450,21 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = m.num_entities[3];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -6625,13 +6625,13 @@ public:
     coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
@@ -6667,7 +6667,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for VectorElement('Discontinuous Lagrange', Cell('tetrahedron', 1, Space(3)), 0, 3)";
@@ -6703,21 +6703,21 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = 3.000000000000000*m.num_entities[3];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -6892,13 +6892,13 @@ public:
     coordinates[2][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 3;
   }
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)
@@ -6953,7 +6953,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)";
@@ -6989,21 +6989,21 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = m.num_entities[0];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -7207,13 +7207,13 @@ public:
     coordinates[3][2] = x[3][2];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 0;
   }
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     return 0;
@@ -7249,7 +7249,7 @@ public:
     // Do nothing
   }
 
-  /// Return a string identifying the dof map
+  /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
     return "FFC dofmap for VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1, 3)";
@@ -7285,21 +7285,21 @@ public:
     return false;
   }
 
-  /// Initialize dof map for mesh (return true iff init_cell() is needed)
+  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
     _global_dimension = 3.000000000000000*m.num_entities[0];
     return false;
   }
 
-  /// Initialize dof map for given cell
+  /// Initialize dofmap for given cell
   virtual void init_cell(const ufc::mesh& m,
                          const ufc::cell& c)
   {
     // Do nothing
   }
 
-  /// Finish initialization of dof map for cells
+  /// Finish initialization of dofmap for cells
   virtual void init_cell_finalize()
   {
     // Do nothing
@@ -7571,13 +7571,13 @@ public:
     coordinates[11][2] = x[3][2];
   }
 
-  /// Return the number of sub dof maps (for a mixed element)
+  /// Return the number of sub dofmaps (for a mixed element)
   virtual unsigned int num_sub_dofmaps() const
   {
     return 3;
   }
 
-  /// Create a new dofmap for sub dof map i (for a mixed element)
+  /// Create a new dofmap for sub dofmap i (for a mixed element)
   virtual ufc::dofmap* create_sub_dofmap(unsigned int i) const
   {
     switch (i)
@@ -7691,7 +7691,7 @@ public:
     {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
     {0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225},
     {0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441},
-    {0.127646562120385, 0.034202793236767, 0.293998800631623, 0.544151844011225},
+    {0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225},
     {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
     {0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225},
     {0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441},
