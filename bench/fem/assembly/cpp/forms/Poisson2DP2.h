@@ -24,8 +24,6 @@
 //   quadrature_rule:                'auto'
 //   representation:                 'auto'
 //   split:                          False
-//   swig_binary:                    'swig'
-//   swig_path:                      ''
 
 #ifndef __POISSON2DP2_H
 #define __POISSON2DP2_H
@@ -1985,7 +1983,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const
+                                       const ufc::cell& c)
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -1993,7 +1991,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const
+                                     const ufc::cell& c)
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }

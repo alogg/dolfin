@@ -24,8 +24,6 @@
 //   quadrature_rule:                'auto'
 //   representation:                 'auto'
 //   split:                          True
-//   swig_binary:                    'swig'
-//   swig_path:                      ''
 
 #ifndef __CAHNHILLIARD3D_H
 #define __CAHNHILLIARD3D_H
@@ -110,12 +108,12 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const;
+                                       const ufc::cell& c);
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const;
+                                     const ufc::cell& c);
 
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
@@ -203,12 +201,12 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const;
+                                       const ufc::cell& c);
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const;
+                                     const ufc::cell& c);
 
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;
@@ -296,12 +294,12 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const;
+                                       const ufc::cell& c);
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const;
+                                     const ufc::cell& c);
 
   /// Return the number of sub elements (for a mixed element)
   virtual unsigned int num_sub_elements() const;

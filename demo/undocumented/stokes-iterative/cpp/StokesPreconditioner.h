@@ -24,8 +24,6 @@
 //   quadrature_rule:                'auto'
 //   representation:                 'auto'
 //   split:                          False
-//   swig_binary:                    'swig'
-//   swig_path:                      ''
 
 #ifndef __STOKESPRECONDITIONER_H
 #define __STOKESPRECONDITIONER_H
@@ -4153,7 +4151,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const
+                                       const ufc::cell& c)
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -4161,7 +4159,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const
+                                     const ufc::cell& c)
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -15888,7 +15886,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const
+                                       const ufc::cell& c)
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -15896,7 +15894,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const
+                                     const ufc::cell& c)
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -17318,7 +17316,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const
+                                       const ufc::cell& c)
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -17326,7 +17324,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const
+                                     const ufc::cell& c)
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -30099,7 +30097,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c) const
+                                       const ufc::cell& c)
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -30107,7 +30105,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c) const
+                                     const ufc::cell& c)
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -33260,6 +33258,146 @@ public:
 
 };
 
+/// This class defines the interface for the tabulation of the cell
+/// tensor corresponding to the local contribution to a form from
+/// the integral over a cell.
+
+class stokespreconditioner_cell_integral_1_0: public ufc::cell_integral
+{
+public:
+
+  /// Constructor
+  stokespreconditioner_cell_integral_1_0() : ufc::cell_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~stokespreconditioner_cell_integral_1_0()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c) const
+  {
+    // Number of operations (multiply-add pairs) for Jacobian data:      18
+    // Number of operations (multiply-add pairs) for geometry tensor:    30
+    // Number of operations (multiply-add pairs) for tensor contraction: 285
+    // Total number of operations (multiply-add pairs):                  333
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_02 = x[3][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    const double J_12 = x[3][1] - x[0][1];
+    const double J_20 = x[1][2] - x[0][2];
+    const double J_21 = x[2][2] - x[0][2];
+    const double J_22 = x[3][2] - x[0][2];
+    
+    // Compute sub determinants
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    
+    // Compute determinant of Jacobian
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    
+    // Compute inverse of Jacobian
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Compute geometry tensor
+    const double G0_20 = det*w[0][20]*(1.0);
+    const double G0_21 = det*w[0][21]*(1.0);
+    const double G0_22 = det*w[0][22]*(1.0);
+    const double G0_23 = det*w[0][23]*(1.0);
+    const double G0_24 = det*w[0][24]*(1.0);
+    const double G0_25 = det*w[0][25]*(1.0);
+    const double G0_26 = det*w[0][26]*(1.0);
+    const double G0_27 = det*w[0][27]*(1.0);
+    const double G0_28 = det*w[0][28]*(1.0);
+    const double G0_29 = det*w[0][29]*(1.0);
+    const double G1_0 = det*w[0][0]*(1.0);
+    const double G1_1 = det*w[0][1]*(1.0);
+    const double G1_2 = det*w[0][2]*(1.0);
+    const double G1_3 = det*w[0][3]*(1.0);
+    const double G1_4 = det*w[0][4]*(1.0);
+    const double G1_5 = det*w[0][5]*(1.0);
+    const double G1_6 = det*w[0][6]*(1.0);
+    const double G1_7 = det*w[0][7]*(1.0);
+    const double G1_8 = det*w[0][8]*(1.0);
+    const double G1_9 = det*w[0][9]*(1.0);
+    const double G2_10 = det*w[0][10]*(1.0);
+    const double G2_11 = det*w[0][11]*(1.0);
+    const double G2_12 = det*w[0][12]*(1.0);
+    const double G2_13 = det*w[0][13]*(1.0);
+    const double G2_14 = det*w[0][14]*(1.0);
+    const double G2_15 = det*w[0][15]*(1.0);
+    const double G2_16 = det*w[0][16]*(1.0);
+    const double G2_17 = det*w[0][17]*(1.0);
+    const double G2_18 = det*w[0][18]*(1.0);
+    const double G2_19 = det*w[0][19]*(1.0);
+    
+    // Compute element tensor
+    A[0] = 0.002380952380952*G1_0 + 0.000396825396825*G1_1 + 0.000396825396825*G1_2 + 0.000396825396825*G1_3 - 0.002380952380952*G1_4 - 0.002380952380952*G1_5 - 0.002380952380952*G1_6 - 0.001587301587302*G1_7 - 0.001587301587302*G1_8 - 0.001587301587302*G1_9;
+    A[1] = 0.000396825396825*G1_0 + 0.002380952380952*G1_1 + 0.000396825396825*G1_2 + 0.000396825396825*G1_3 - 0.002380952380952*G1_4 - 0.001587301587302*G1_5 - 0.001587301587302*G1_6 - 0.002380952380952*G1_7 - 0.002380952380952*G1_8 - 0.001587301587302*G1_9;
+    A[2] = 0.000396825396825*G1_0 + 0.000396825396825*G1_1 + 0.002380952380952*G1_2 + 0.000396825396825*G1_3 - 0.001587301587302*G1_4 - 0.002380952380952*G1_5 - 0.001587301587302*G1_6 - 0.002380952380952*G1_7 - 0.001587301587302*G1_8 - 0.002380952380952*G1_9;
+    A[3] = 0.000396825396825*G1_0 + 0.000396825396825*G1_1 + 0.000396825396825*G1_2 + 0.002380952380952*G1_3 - 0.001587301587302*G1_4 - 0.001587301587302*G1_5 - 0.002380952380952*G1_6 - 0.001587301587302*G1_7 - 0.002380952380952*G1_8 - 0.002380952380952*G1_9;
+    A[4] = -0.002380952380952*G1_0 - 0.002380952380952*G1_1 - 0.001587301587302*G1_2 - 0.001587301587302*G1_3 + 0.012698412698413*G1_4 + 0.006349206349206*G1_5 + 0.006349206349206*G1_6 + 0.006349206349206*G1_7 + 0.006349206349206*G1_8 + 0.003174603174603*G1_9;
+    A[5] = -0.002380952380952*G1_0 - 0.001587301587302*G1_1 - 0.002380952380952*G1_2 - 0.001587301587302*G1_3 + 0.006349206349206*G1_4 + 0.012698412698413*G1_5 + 0.006349206349206*G1_6 + 0.006349206349206*G1_7 + 0.003174603174603*G1_8 + 0.006349206349206*G1_9;
+    A[6] = -0.002380952380952*G1_0 - 0.001587301587302*G1_1 - 0.001587301587302*G1_2 - 0.002380952380952*G1_3 + 0.006349206349206*G1_4 + 0.006349206349206*G1_5 + 0.012698412698413*G1_6 + 0.003174603174603*G1_7 + 0.006349206349206*G1_8 + 0.006349206349206*G1_9;
+    A[7] = -0.001587301587302*G1_0 - 0.002380952380952*G1_1 - 0.002380952380952*G1_2 - 0.001587301587302*G1_3 + 0.006349206349206*G1_4 + 0.006349206349206*G1_5 + 0.003174603174603*G1_6 + 0.012698412698413*G1_7 + 0.006349206349206*G1_8 + 0.006349206349206*G1_9;
+    A[8] = -0.001587301587302*G1_0 - 0.002380952380952*G1_1 - 0.001587301587302*G1_2 - 0.002380952380952*G1_3 + 0.006349206349206*G1_4 + 0.003174603174603*G1_5 + 0.006349206349206*G1_6 + 0.006349206349206*G1_7 + 0.012698412698413*G1_8 + 0.006349206349206*G1_9;
+    A[9] = -0.001587301587302*G1_0 - 0.001587301587302*G1_1 - 0.002380952380952*G1_2 - 0.002380952380952*G1_3 + 0.003174603174603*G1_4 + 0.006349206349206*G1_5 + 0.006349206349206*G1_6 + 0.006349206349206*G1_7 + 0.006349206349206*G1_8 + 0.012698412698413*G1_9;
+    A[10] = 0.002380952380952*G2_10 + 0.000396825396825*G2_11 + 0.000396825396825*G2_12 + 0.000396825396825*G2_13 - 0.002380952380952*G2_14 - 0.002380952380952*G2_15 - 0.002380952380952*G2_16 - 0.001587301587302*G2_17 - 0.001587301587302*G2_18 - 0.001587301587302*G2_19;
+    A[11] = 0.000396825396825*G2_10 + 0.002380952380952*G2_11 + 0.000396825396825*G2_12 + 0.000396825396825*G2_13 - 0.002380952380952*G2_14 - 0.001587301587302*G2_15 - 0.001587301587302*G2_16 - 0.002380952380952*G2_17 - 0.002380952380952*G2_18 - 0.001587301587302*G2_19;
+    A[12] = 0.000396825396825*G2_10 + 0.000396825396825*G2_11 + 0.002380952380952*G2_12 + 0.000396825396825*G2_13 - 0.001587301587302*G2_14 - 0.002380952380952*G2_15 - 0.001587301587302*G2_16 - 0.002380952380952*G2_17 - 0.001587301587302*G2_18 - 0.002380952380952*G2_19;
+    A[13] = 0.000396825396825*G2_10 + 0.000396825396825*G2_11 + 0.000396825396825*G2_12 + 0.002380952380952*G2_13 - 0.001587301587302*G2_14 - 0.001587301587302*G2_15 - 0.002380952380952*G2_16 - 0.001587301587302*G2_17 - 0.002380952380952*G2_18 - 0.002380952380952*G2_19;
+    A[14] = -0.002380952380952*G2_10 - 0.002380952380952*G2_11 - 0.001587301587302*G2_12 - 0.001587301587302*G2_13 + 0.012698412698413*G2_14 + 0.006349206349206*G2_15 + 0.006349206349206*G2_16 + 0.006349206349206*G2_17 + 0.006349206349206*G2_18 + 0.003174603174603*G2_19;
+    A[15] = -0.002380952380952*G2_10 - 0.001587301587302*G2_11 - 0.002380952380952*G2_12 - 0.001587301587302*G2_13 + 0.006349206349206*G2_14 + 0.012698412698413*G2_15 + 0.006349206349206*G2_16 + 0.006349206349206*G2_17 + 0.003174603174603*G2_18 + 0.006349206349206*G2_19;
+    A[16] = -0.002380952380952*G2_10 - 0.001587301587302*G2_11 - 0.001587301587302*G2_12 - 0.002380952380952*G2_13 + 0.006349206349206*G2_14 + 0.006349206349206*G2_15 + 0.012698412698413*G2_16 + 0.003174603174603*G2_17 + 0.006349206349206*G2_18 + 0.006349206349206*G2_19;
+    A[17] = -0.001587301587302*G2_10 - 0.002380952380952*G2_11 - 0.002380952380952*G2_12 - 0.001587301587302*G2_13 + 0.006349206349206*G2_14 + 0.006349206349206*G2_15 + 0.003174603174603*G2_16 + 0.012698412698413*G2_17 + 0.006349206349206*G2_18 + 0.006349206349206*G2_19;
+    A[18] = -0.001587301587302*G2_10 - 0.002380952380952*G2_11 - 0.001587301587302*G2_12 - 0.002380952380952*G2_13 + 0.006349206349206*G2_14 + 0.003174603174603*G2_15 + 0.006349206349206*G2_16 + 0.006349206349206*G2_17 + 0.012698412698413*G2_18 + 0.006349206349206*G2_19;
+    A[19] = -0.001587301587302*G2_10 - 0.001587301587302*G2_11 - 0.002380952380952*G2_12 - 0.002380952380952*G2_13 + 0.003174603174603*G2_14 + 0.006349206349206*G2_15 + 0.006349206349206*G2_16 + 0.006349206349206*G2_17 + 0.006349206349206*G2_18 + 0.012698412698413*G2_19;
+    A[20] = 0.002380952380952*G0_20 + 0.000396825396825*G0_21 + 0.000396825396825*G0_22 + 0.000396825396825*G0_23 - 0.002380952380952*G0_24 - 0.002380952380952*G0_25 - 0.002380952380952*G0_26 - 0.001587301587302*G0_27 - 0.001587301587302*G0_28 - 0.001587301587302*G0_29;
+    A[21] = 0.000396825396825*G0_20 + 0.002380952380952*G0_21 + 0.000396825396825*G0_22 + 0.000396825396825*G0_23 - 0.002380952380952*G0_24 - 0.001587301587302*G0_25 - 0.001587301587302*G0_26 - 0.002380952380952*G0_27 - 0.002380952380952*G0_28 - 0.001587301587302*G0_29;
+    A[22] = 0.000396825396825*G0_20 + 0.000396825396825*G0_21 + 0.002380952380952*G0_22 + 0.000396825396825*G0_23 - 0.001587301587302*G0_24 - 0.002380952380952*G0_25 - 0.001587301587302*G0_26 - 0.002380952380952*G0_27 - 0.001587301587302*G0_28 - 0.002380952380952*G0_29;
+    A[23] = 0.000396825396825*G0_20 + 0.000396825396825*G0_21 + 0.000396825396825*G0_22 + 0.002380952380952*G0_23 - 0.001587301587302*G0_24 - 0.001587301587302*G0_25 - 0.002380952380952*G0_26 - 0.001587301587302*G0_27 - 0.002380952380952*G0_28 - 0.002380952380952*G0_29;
+    A[24] = -0.002380952380952*G0_20 - 0.002380952380952*G0_21 - 0.001587301587302*G0_22 - 0.001587301587302*G0_23 + 0.012698412698413*G0_24 + 0.006349206349206*G0_25 + 0.006349206349206*G0_26 + 0.006349206349206*G0_27 + 0.006349206349206*G0_28 + 0.003174603174603*G0_29;
+    A[25] = -0.002380952380952*G0_20 - 0.001587301587302*G0_21 - 0.002380952380952*G0_22 - 0.001587301587302*G0_23 + 0.006349206349206*G0_24 + 0.012698412698413*G0_25 + 0.006349206349206*G0_26 + 0.006349206349206*G0_27 + 0.003174603174603*G0_28 + 0.006349206349206*G0_29;
+    A[26] = -0.002380952380952*G0_20 - 0.001587301587302*G0_21 - 0.001587301587302*G0_22 - 0.002380952380952*G0_23 + 0.006349206349206*G0_24 + 0.006349206349206*G0_25 + 0.012698412698413*G0_26 + 0.003174603174603*G0_27 + 0.006349206349206*G0_28 + 0.006349206349206*G0_29;
+    A[27] = -0.001587301587302*G0_20 - 0.002380952380952*G0_21 - 0.002380952380952*G0_22 - 0.001587301587302*G0_23 + 0.006349206349206*G0_24 + 0.006349206349206*G0_25 + 0.003174603174603*G0_26 + 0.012698412698413*G0_27 + 0.006349206349206*G0_28 + 0.006349206349206*G0_29;
+    A[28] = -0.001587301587302*G0_20 - 0.002380952380952*G0_21 - 0.001587301587302*G0_22 - 0.002380952380952*G0_23 + 0.006349206349206*G0_24 + 0.003174603174603*G0_25 + 0.006349206349206*G0_26 + 0.006349206349206*G0_27 + 0.012698412698413*G0_28 + 0.006349206349206*G0_29;
+    A[29] = -0.001587301587302*G0_20 - 0.001587301587302*G0_21 - 0.002380952380952*G0_22 - 0.002380952380952*G0_23 + 0.003174603174603*G0_24 + 0.006349206349206*G0_25 + 0.006349206349206*G0_26 + 0.006349206349206*G0_27 + 0.006349206349206*G0_28 + 0.012698412698413*G0_29;
+    A[30] = 0.000000000000000;
+    A[31] = 0.000000000000000;
+    A[32] = 0.000000000000000;
+    A[33] = 0.000000000000000;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
+};
+
 /// This class defines the interface for the assembly of the global
 /// tensor corresponding to a form with r + n arguments, that is, a
 /// mapping
@@ -33396,6 +33534,142 @@ public:
 
 };
 
+/// This class defines the interface for the assembly of the global
+/// tensor corresponding to a form with r + n arguments, that is, a
+/// mapping
+///
+///     a : V1 x V2 x ... Vr x W1 x W2 x ... x Wn -> R
+///
+/// with arguments v1, v2, ..., vr, w1, w2, ..., wn. The rank r
+/// global tensor A is defined by
+///
+///     A = a(V1, V2, ..., Vr, w1, w2, ..., wn),
+///
+/// where each argument Vj represents the application to the
+/// sequence of basis functions of Vj and w1, w2, ..., wn are given
+/// fixed functions (coefficients).
+
+class stokespreconditioner_form_1: public ufc::form
+{
+public:
+
+  /// Constructor
+  stokespreconditioner_form_1() : ufc::form()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~stokespreconditioner_form_1()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the form
+  virtual const char* signature() const
+  {
+    return "Form([Integral(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2, 3), 0), MultiIndex((Index(0),), {Index(0): 3})), Indexed(ListTensor(Indexed(Argument(MixedElement(*[VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2, 3), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (4,) }), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 4})), Indexed(Argument(MixedElement(*[VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2, 3), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (4,) }), 0), MultiIndex((FixedIndex(1),), {FixedIndex(1): 4})), Indexed(Argument(MixedElement(*[VectorElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 2, 3), FiniteElement('Lagrange', Cell('tetrahedron', 1, Space(3)), 1)], **{'value_shape': (4,) }), 0), MultiIndex((FixedIndex(2),), {FixedIndex(2): 4}))), MultiIndex((Index(0),), {Index(0): 3}))), MultiIndex((Index(0),), {Index(0): 3})), Measure('cell', 0, None))])";
+  }
+
+  /// Return the rank of the global tensor (r)
+  virtual unsigned int rank() const
+  {
+    return 1;
+  }
+
+  /// Return the number of coefficients (n)
+  virtual unsigned int num_coefficients() const
+  {
+    return 1;
+  }
+
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
+  {
+    return 1;
+  }
+
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Create a new finite element for argument function i
+  virtual ufc::finite_element* create_finite_element(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new stokespreconditioner_finite_element_3();
+        break;
+      }
+    case 1:
+      {
+        return new stokespreconditioner_finite_element_1();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new stokespreconditioner_dofmap_3();
+        break;
+      }
+    case 1:
+      {
+        return new stokespreconditioner_dofmap_1();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new cell integral on sub domain i
+  virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new stokespreconditioner_cell_integral_1_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on sub domain i
+  virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on sub domain i
+  virtual ufc::interior_facet_integral* create_interior_facet_integral(unsigned int i) const
+  {
+    return 0;
+  }
+
+};
+
 // DOLFIN wrappers
 
 // Standard library includes
@@ -33414,6 +33688,48 @@ public:
 
 namespace StokesPreconditioner
 {
+
+class CoefficientSpace_f: public dolfin::FunctionSpace
+{
+public:
+
+  CoefficientSpace_f(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_f(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_1()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_1()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~CoefficientSpace_f()
+  {
+  }
+
+};
 
 class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
 {
@@ -33550,8 +33866,154 @@ public:
   // Coefficients
 };
 
+class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_3()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_3()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new stokespreconditioner_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new stokespreconditioner_dofmap_3()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~Form_1_FunctionSpace_0()
+  {
+  }
+
+};
+
+typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+
+class Form_1: public dolfin::Form
+{
+public:
+
+  // Constructor
+  Form_1(const dolfin::FunctionSpace& V0):
+    dolfin::Form(1, 1), f(*this, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokespreconditioner_form_1());
+  }
+
+  // Constructor
+  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f):
+    dolfin::Form(1, 1), f(*this, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+
+    this->f = f;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokespreconditioner_form_1());
+  }
+
+  // Constructor
+  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f):
+    dolfin::Form(1, 1), f(*this, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+
+    this->f = *f;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokespreconditioner_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(1, 1), f(*this, 0)
+  {
+    _function_spaces[0] = V0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokespreconditioner_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f):
+    dolfin::Form(1, 1), f(*this, 0)
+  {
+    _function_spaces[0] = V0;
+
+    this->f = f;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokespreconditioner_form_1());
+  }
+
+  // Constructor
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f):
+    dolfin::Form(1, 1), f(*this, 0)
+  {
+    _function_spaces[0] = V0;
+
+    this->f = *f;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new stokespreconditioner_form_1());
+  }
+
+  // Destructor
+  ~Form_1()
+  {}
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string& name) const
+  {
+    if (name == "f")
+      return 0;
+
+    dolfin::error("Invalid coefficient.");
+    return 0;
+  }
+
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch (i)
+    {
+    case 0:
+      return "f";
+    }
+
+    dolfin::error("Invalid coefficient.");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
+
+  // Coefficients
+  dolfin::CoefficientAssigner f;
+};
+
 // Class typedefs
 typedef Form_0 BilinearForm;
+typedef Form_1 LinearForm;
 typedef Form_0::TestSpace FunctionSpace;
 
 }
