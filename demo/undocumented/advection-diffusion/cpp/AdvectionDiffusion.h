@@ -24,6 +24,8 @@
 //   quadrature_rule:                'auto'
 //   representation:                 'auto'
 //   split:                          False
+//   swig_binary:                    'swig'
+//   swig_path:                      ''
 
 #ifndef __ADVECTIONDIFFUSION_H
 #define __ADVECTIONDIFFUSION_H
@@ -1983,7 +1985,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -1991,7 +1993,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -5639,7 +5641,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -5647,7 +5649,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -6610,7 +6612,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -6618,7 +6620,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -7822,7 +7824,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), Product(FloatValue(0.025000000000000001, (), (), {}), Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2}))), Product(FloatValue(0.0050000000000000001, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1)), Product(FloatValue(0.025000000000000001, (), (), {}), Sum(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 0), MultiIndex((Index(0),), {Index(0): 2})), Indexed(ComponentTensor(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Product(FloatValue(0.0050000000000000001, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 1), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7968,7 +7970,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(Product(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 2), Product(FloatValue(0.050000000000000003, (), (), {}), Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0))), Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Product(IntValue(-1, (), (), {}), Product(FloatValue(0.025000000000000001, (), (), {}), Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(0),), {Index(0): 2})), Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2}))), Product(FloatValue(0.0050000000000000001, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Product(FloatValue(0.050000000000000003, (), (), {}), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 2))), Sum(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0)), Product(IntValue(-1, (), (), {}), Product(FloatValue(0.025000000000000001, (), (), {}), Sum(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', 1, Space(2)), 2, 2), 1), MultiIndex((Index(0),), {Index(0): 2})), Indexed(ComponentTensor(Product(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(0),), {Index(0): 2}))), MultiIndex((Index(0),), {Index(0): 2})), Product(FloatValue(0.0050000000000000001, (), (), {}), IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(4),), {Index(4): 2})), Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', 1, Space(2)), 1), 0), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(5),), {Index(5): 2})), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})))))))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
