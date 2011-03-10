@@ -24,6 +24,8 @@
 //   quadrature_rule:                'auto'
 //   representation:                 'auto'
 //   split:                          False
+//   swig_binary:                    'swig'
+//   swig_path:                      ''
 
 #ifndef __MIXEDPOISSON_H
 #define __MIXEDPOISSON_H
@@ -957,7 +959,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -965,7 +967,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -2743,7 +2745,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -2751,7 +2753,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -3175,7 +3177,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -3183,7 +3185,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -5132,7 +5134,7 @@ public:
   /// Map coordinate xhat from reference cell to coordinate x in cell
   virtual void map_from_reference_cell(double* x,
                                        const double* xhat,
-                                       const ufc::cell& c)
+                                       const ufc::cell& c) const
   {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
   }
@@ -5140,7 +5142,7 @@ public:
   /// Map from coordinate x in cell to coordinate xhat in reference cell
   virtual void map_to_reference_cell(double* xhat,
                                      const double* x,
-                                     const ufc::cell& c)
+                                     const ufc::cell& c) const
   {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
   }

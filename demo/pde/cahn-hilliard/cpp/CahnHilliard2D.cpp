@@ -24,6 +24,8 @@
 //   quadrature_rule:                'auto'
 //   representation:                 'auto'
 //   split:                          True
+//   swig_binary:                    'swig'
+//   swig_path:                      ''
 
 #include "CahnHilliard2D.h"
 
@@ -420,7 +422,7 @@ void cahnhilliard2d_finite_element_0::interpolate_vertex_values(double* vertex_v
 /// Map coordinate xhat from reference cell to coordinate x in cell
 void cahnhilliard2d_finite_element_0::map_from_reference_cell(double* x,
                                             const double* xhat,
-                                            const ufc::cell& c)
+                                            const ufc::cell& c) const
 {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
@@ -428,7 +430,7 @@ void cahnhilliard2d_finite_element_0::map_from_reference_cell(double* x,
 /// Map from coordinate x in cell to coordinate xhat in reference cell
 void cahnhilliard2d_finite_element_0::map_to_reference_cell(double* xhat,
                                           const double* x,
-                                          const ufc::cell& c)
+                                          const ufc::cell& c) const
 {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
@@ -1370,7 +1372,7 @@ void cahnhilliard2d_finite_element_1::interpolate_vertex_values(double* vertex_v
 /// Map coordinate xhat from reference cell to coordinate x in cell
 void cahnhilliard2d_finite_element_1::map_from_reference_cell(double* x,
                                             const double* xhat,
-                                            const ufc::cell& c)
+                                            const ufc::cell& c) const
 {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
@@ -1378,7 +1380,7 @@ void cahnhilliard2d_finite_element_1::map_from_reference_cell(double* x,
 /// Map from coordinate x in cell to coordinate xhat in reference cell
 void cahnhilliard2d_finite_element_1::map_to_reference_cell(double* xhat,
                                           const double* x,
-                                          const ufc::cell& c)
+                                          const ufc::cell& c) const
 {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
@@ -2967,7 +2969,7 @@ void cahnhilliard2d_finite_element_2::interpolate_vertex_values(double* vertex_v
 /// Map coordinate xhat from reference cell to coordinate x in cell
 void cahnhilliard2d_finite_element_2::map_from_reference_cell(double* x,
                                             const double* xhat,
-                                            const ufc::cell& c)
+                                            const ufc::cell& c) const
 {
     throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
@@ -2975,7 +2977,7 @@ void cahnhilliard2d_finite_element_2::map_from_reference_cell(double* x,
 /// Map from coordinate x in cell to coordinate xhat in reference cell
 void cahnhilliard2d_finite_element_2::map_to_reference_cell(double* xhat,
                                           const double* x,
-                                          const ufc::cell& c)
+                                          const ufc::cell& c) const
 {
     throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
 }
