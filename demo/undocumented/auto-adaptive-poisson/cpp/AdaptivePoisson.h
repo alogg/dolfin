@@ -14713,9 +14713,9 @@ public:
     a_star.reset(new Form_0(V, Vhat));
     L_star.reset(new Form_1(V));
 
-    // Attach coefficients from a to a_star and from M to L_star
     dolfin::uint coefficient_number = 0;
     
+    // Attach coefficients from a to a_star
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
@@ -14733,7 +14733,13 @@ public:
       a_star->set_coefficient(name, a.coefficient(i));
     }
     
+    // Attach subdomains from a to a_star
+    a_star->cell_domains = a.cell_domains_shared_ptr();
+    a_star->interior_facet_domains = a.interior_facet_domains_shared_ptr();
+    a_star->exterior_facet_domains = a.exterior_facet_domains_shared_ptr();
+
     
+    // Attach coefficients from (*this) to L_star
     for (dolfin::uint i = 0; i < (*this).num_coefficients(); i++)
     {
       name = (*this).coefficient_name(i);
@@ -14751,12 +14757,16 @@ public:
       L_star->set_coefficient(name, (*this).coefficient(i));
     }
     
+    // Attach subdomains from (*this) to L_star
+    L_star->cell_domains = (*this).cell_domains_shared_ptr();
+    L_star->interior_facet_domains = (*this).interior_facet_domains_shared_ptr();
+    L_star->exterior_facet_domains = (*this).exterior_facet_domains_shared_ptr();
+
 
     // Initialize residual
     residual.reset(new Form_6(mesh));
-
-    // Attach coefficients (from a and L) in residual
     
+    // Attach coefficients from a to residual
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
@@ -14775,6 +14785,7 @@ public:
     }
     
 
+    // Attach coefficients from L to residual
     for (dolfin::uint i = 0; i < L.num_coefficients(); i++)
     {
       name = L.coefficient_name(i);
@@ -14792,6 +14803,11 @@ public:
       residual->set_coefficient(name, L.coefficient(i));
     }
     
+    // Attach subdomains from L to residual
+    residual->cell_domains = L.cell_domains_shared_ptr();
+    residual->interior_facet_domains = L.interior_facet_domains_shared_ptr();
+    residual->exterior_facet_domains = L.exterior_facet_domains_shared_ptr();
+
 
     // Initialize extrapolation space and (fake) extrapolation
     V_Ez_h.reset(new CoefficientSpace___improved_dual(mesh));
@@ -14807,9 +14823,8 @@ public:
     V_b_T.reset(new CoefficientSpace___cell_bubble(mesh));
     b_T.reset(new dolfin::Function(V_b_T));
     b_T->vector() = 1.0;
-
-    // Attach coefficients (from a and L) to L_R_T
     
+    // Attach coefficients from a to L_R_T
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
@@ -14828,6 +14843,7 @@ public:
     }
     
 
+    // Attach coefficients from L to L_R_T
     for (dolfin::uint i = 0; i < L.num_coefficients(); i++)
     {
       name = L.coefficient_name(i);
@@ -14845,6 +14861,11 @@ public:
       L_R_T->set_coefficient(name, L.coefficient(i));
     }
     
+    // Attach subdomains from L to L_R_T
+    L_R_T->cell_domains = L.cell_domains_shared_ptr();
+    L_R_T->interior_facet_domains = L.interior_facet_domains_shared_ptr();
+    L_R_T->exterior_facet_domains = L.exterior_facet_domains_shared_ptr();
+
 
     // Attach bubble function to _a_R_T and _L_R_T
     a_R_T->set_coefficient("__cell_bubble", b_T);
@@ -14854,9 +14875,8 @@ public:
     V_R_dT.reset(new Form_5::TestSpace(mesh));
     a_R_dT.reset(new Form_4(V_R_dT, V_R_dT));
     L_R_dT.reset(new Form_5(V_R_dT));
-
-    // Attach coefficients (from a and L) to L_R_dT
     
+    // Attach coefficients from a to L_R_dT
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
@@ -14875,6 +14895,7 @@ public:
     }
     
 
+    // Attach coefficients from L to L_R_dT
     for (dolfin::uint i = 0; i < L.num_coefficients(); i++)
     {
       name = L.coefficient_name(i);
@@ -14892,6 +14913,11 @@ public:
       L_R_dT->set_coefficient(name, L.coefficient(i));
     }
     
+    // Attach subdomains from L to L_R_dT
+    L_R_dT->cell_domains = L.cell_domains_shared_ptr();
+    L_R_dT->interior_facet_domains = L.interior_facet_domains_shared_ptr();
+    L_R_dT->exterior_facet_domains = L.exterior_facet_domains_shared_ptr();
+
 
     // Initialize (fake) cone and attach to a_R_dT and L_R_dT
     V_b_e.reset(new CoefficientSpace___cell_cone(mesh));
