@@ -295,6 +295,10 @@ Return value rank
 Return value dimension for given axis
 ";
 
+%feature("docstring")  dolfin::Function::non_matching_eval "
+Evaluate function for given data
+";
+
 %feature("docstring")  dolfin::Function::restrict "
 Restrict function to local cell (compute expansion coefficients w)
 ";
@@ -1721,12 +1725,8 @@ entire set of cells or facets.
   
   Only messages with a debug level higher than or equal to the current
   log level are printed (the default being zero). Logging may also be
-  turned off by calling log(false).
+  turned off by calling logging(false).
   Print message
-
-* info\ **(debug_level, msg, ...)**
-
-  Print message at given debug level
 
 * info\ **(parameters, verbose=false)**
 
@@ -1751,6 +1751,10 @@ Print warning
 
 %feature("docstring")  dolfin::error "
 Print error message and throw an exception
+";
+
+%feature("docstring")  dolfin::log "
+Print message at given debug level
 ";
 
 %feature("docstring")  dolfin::begin "
@@ -6905,7 +6909,7 @@ Computes only the first id of the entity, which contains the point. Returns -1 i
 ";
 
 %feature("docstring")  dolfin::IntersectionOperator::closest_point "
-Computes the point inside the mesh which are closest to the point query.
+Computes the point inside the mesh which is closest to the point query.
 ";
 
 %feature("docstring")  dolfin::IntersectionOperator::closest_cell "
@@ -6914,25 +6918,16 @@ Computes the index of the cell inside the mesh which are closest to the point qu
 
 %feature("docstring")  dolfin::IntersectionOperator::closest_point_and_cell "
 Computes the point inside the mesh and the corresponding cell index
-which are closest to the point query.
+that are closest to the point query.
 ";
 
 %feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
-Rebuilds the underlying search structure from scratch and uses the kernel kernel_type
-underlying CGAL Geometry kernel.
+Rebuilds the underlying search structure from scratch and uses
+the kernel kernel_type underlying CGAL Geometry kernel.
 ";
 
 %feature("docstring")  dolfin::IntersectionOperator::clear "
 Clears search structure. Should be used if the mesh has changed
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::rImpl "
-Helper function to introduce lazy initialization.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::create_intersection_operator "
-Factory function to create the dimension dependent intersectionoperator
-implementation.
 ";
 
 // Documentation extracted from: (module=mesh, header=Mesh.h)
@@ -7415,7 +7410,7 @@ Snap boundary vertices of mesh to match given sub domain.
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
-  CellFunction<uint> named \"cell colors\" as mesh data which
+  CellFunction<unsigned int> named \"cell colors\" as mesh data which
   holds the colors of the mesh.
   
   *Arguments*
@@ -7425,14 +7420,14 @@ Snap boundary vertices of mesh to match given sub domain.
           \"facet\".
   
   *Returns*
-      MeshFunction<uint>
+      MeshFunction<unsigned int>
           The colors as a mesh function over the cells of the mesh.
 
 * color\ **(coloring_type)**
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
-  CellFunction<uint> named \"cell colors\" as mesh data which
+  CellFunction<unsigned int> named \"cell colors\" as mesh data which
   holds the colors of the mesh.
   
   *Arguments*
@@ -7441,7 +7436,7 @@ Snap boundary vertices of mesh to match given sub domain.
           specifying what relation makes two mesh entinties neighbors.
   
   *Returns*
-      MeshFunction<uint>
+      MeshFunction<unsigned int>
           The colors as a mesh function over entities of the mesh.
 ";
 
@@ -9945,7 +9940,7 @@ Return informal string representation (pretty-print)
 
   Refine mesh function<uint> based on mesh
 
-* adapt\ **(bc, refined_mesh)**
+* adapt\ **(bc, refined_mesh, S)**
 
   Refine Dirichlet bc based on refined mesh
 
@@ -9960,6 +9955,10 @@ Return informal string representation (pretty-print)
 * adapt\ **(ec, refined_mesh)**
 
   Refine error control object based on mesh
+";
+
+%feature("docstring")  dolfin::adapt_markers "
+Helper function for refinement of boundary conditions
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
