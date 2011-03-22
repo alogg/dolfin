@@ -3492,7 +3492,7 @@ and use the standard Epetra interface.
 
 * EpetraVector\ **(map)**
 
-  Create vector from given Epetra_Map
+  Create vector from given Epetra_BlockMap
 ";
 
 %feature("docstring")  dolfin::EpetraVector::copy "
