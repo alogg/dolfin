@@ -14938,6 +14938,10 @@ public:
 
 };
 
+// Class typedefs
+typedef Form_8 BilinearForm;
+typedef Form_9 LinearForm;
+typedef Form_10 GoalFunctional;
 
 }
 
