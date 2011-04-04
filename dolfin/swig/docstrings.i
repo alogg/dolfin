@@ -325,10 +325,6 @@ degrees of freedom (dofmap).
 
   Create function space for given mesh, element and dofmap (shared data)
 
-* FunctionSpace\ **(mesh, element, dofmap)**
-
-  Create function space for given mesh, element and dofmap (shared data)
-
 * FunctionSpace\ **(mesh)**
 
   Create empty function space for later initialization. This
@@ -336,10 +332,6 @@ degrees of freedom (dofmap).
   to construct objects before the initialisation of the base
   class. Data can be attached to the base class using
   FunctionSpace::attach(...).
-
-* FunctionSpace\ **(mesh)**
-
-  Create empty function space for later initialization (const version)
 
 * FunctionSpace\ **(V)**
 
@@ -383,8 +375,9 @@ Extract sub space for component
 Extract sub space for component
 ";
 
-%feature("docstring")  dolfin::FunctionSpace::collapse_sub_space "
-Return function space with a new dof map
+%feature("docstring")  dolfin::FunctionSpace::collapse "
+Collapse a subspace and return a new function space and a map from new
+to old dofs
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::has_cell "
@@ -6303,6 +6296,27 @@ the new coordinates for the interior vertices accordingly.
   Move coordinates of mesh according to displacement function
 ";
 
+// Documentation extracted from: (module=refinement, header=refine.h)
+%feature("docstring")  dolfin::refine "
+**Overloaded versions**
+
+* refine\ **(mesh)**
+
+  Create uniformly refined mesh
+
+* refine\ **(refined_mesh, mesh)**
+
+  Create uniformly refined mesh
+
+* refine\ **(mesh, cell_markers)**
+
+  Create locally refined mesh
+
+* refine\ **(refined_mesh, mesh, cell_markers)**
+
+  Create locally refined mesh
+";
+
 // Documentation extracted from: (module=quadrature, header=Quadrature.h)
 %feature("docstring")  dolfin::Quadrature::Quadrature "
 Constructor
@@ -9025,27 +9039,6 @@ the total number of tetrahedra will be 6*nx*ny*nz and the
 total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
 ";
 
-// Documentation extracted from: (module=mesh, header=refine.h)
-%feature("docstring")  dolfin::refine "
-**Overloaded versions**
-
-* refine\ **(mesh)**
-
-  Create uniformly refined mesh
-
-* refine\ **(refined_mesh, mesh)**
-
-  Create uniformly refined mesh
-
-* refine\ **(mesh, cell_markers)**
-
-  Create locally refined mesh
-
-* refine\ **(refined_mesh, mesh, cell_markers)**
-
-  Create locally refined mesh
-";
-
 // Documentation extracted from: (module=common, header=init.h)
 %feature("docstring")  dolfin::init "
 Initialize DOLFIN (and PETSc) with command-line arguments. This
@@ -9948,6 +9941,10 @@ Return filename for times
 Return informal string representation (pretty-print)
 ";
 
+%feature("docstring")  dolfin::TimeSeries::default_parameters "
+Default parameter values
+";
+
 // Documentation extracted from: (module=adaptivity, header=adapt.h)
 %feature("docstring")  dolfin::adapt "
 **Overloaded versions**
@@ -10377,13 +10374,9 @@ usage from command-line).
 %feature("docstring")  dolfin::Parameters::Parameters "
 **Overloaded versions**
 
-* Parameters\ **()**
+* Parameters\ **(\"parameters\")**
 
   Create empty parameter set
-
-* Parameters\ **(key)**
-
-  Create empty parameter set with given name
 
 * Parameters\ **(parameters)**
 
