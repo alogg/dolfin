@@ -1714,7 +1714,7 @@ entire set of cells or facets.
   
   Only messages with a debug level higher than or equal to the current
   log level are printed (the default being zero). Logging may also be
-  turned off by calling logging(false).
+  turned off by calling set_log_active(false).
   Print message
 
 * info\ **(parameters, verbose=false)**
@@ -1762,8 +1762,12 @@ Print message at given debug level
 End task (decrease indentation level)
 ";
 
+%feature("docstring")  dolfin::set_log_active "
+Turn logging on or off (deprecated)
+";
+
 %feature("docstring")  dolfin::logging "
-Turn logging on or off
+Turn logging on or off (deprecated, will be removed)
 ";
 
 %feature("docstring")  dolfin::set_log_level "
@@ -6799,10 +6803,10 @@ Boundary extraction
 
 Mesh partitioning
 
-  \"global entity indices %d\" - MeshFunction<uint> of dimension 0, 1, ..., D
-  \"exterior facets\"          - MeshFunction<uint> of dimension D - 1
-  \"num global entities\"      - Array<uint> of size D + 1
-  \"overlap\"                  - vector mapping
+  (moved to ParallelData) \"global entity indices %d\" - MeshFunction<uint> of dimension 0, 1, ..., D
+  (moved to ParallelData) \"exterior facets\"          - MeshFunction<uint> of dimension D - 1
+  (moved to ParallelData) \"num global entities\"      - Array<uint> of size D + 1
+  (moved to ParallelData) \"overlap\"                  - vector mapping
 
 Sub meshes
 
@@ -8155,9 +8159,10 @@ Constructor
   Compute normal to the facet
 ";
 
-%feature("docstring")  dolfin::Facet::interior "
-Determine whether or not facet is an interior facet. This is 'relative'
-to the given partition of the mesh if the mesh is distributed
+%feature("docstring")  dolfin::Facet::exterior "
+Return true if facet is an exterior facet (relative to global mesh,
+so this function will return false for facets on partition boundaries)
+Facet connectivity must be initialized before calling this function.
 ";
 
 %feature("docstring")  dolfin::Facet::adjacent_cells "
