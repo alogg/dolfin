@@ -1273,6 +1273,29 @@ so in case of mixed systems (vector-valued and mixed elements)
 all compoments will be set equal.
 ";
 
+// Documentation extracted from: (module=fem, header=PointSource.h)
+%feature("docstring")  dolfin::PointSource "
+This class provides an easy mechanism for adding a point source
+(Dirac delta function) to the right-hand side vector in a
+variational problem.
+";
+
+%feature("docstring")  dolfin::PointSource::PointSource "
+**Overloaded versions**
+
+* PointSource\ **(V, p)**
+
+  Create point source at given point
+
+* PointSource\ **(V, p)**
+
+  Create point source at given point
+";
+
+%feature("docstring")  dolfin::PointSource::apply "
+Apply (add) point source to right-hand side vector
+";
+
 // Documentation extracted from: (module=fem, header=assemble.h)
 %feature("docstring")  dolfin::assemble "
 **Overloaded versions**
