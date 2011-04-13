@@ -1277,19 +1277,21 @@ all compoments will be set equal.
 %feature("docstring")  dolfin::PointSource "
 This class provides an easy mechanism for adding a point source
 (Dirac delta function) to the right-hand side vector in a
-variational problem.
+variational problem. The associated function space must be
+scalar in order for the inner product with the (scalar) Dirac
+delta function to be well defined.
 ";
 
 %feature("docstring")  dolfin::PointSource::PointSource "
 **Overloaded versions**
 
-* PointSource\ **(V, p)**
+* PointSource\ **(V, p, magnitude=1.0)**
 
-  Create point source at given point
+  Create point source at given point of given magnitude
 
-* PointSource\ **(V, p)**
+* PointSource\ **(V, p, magnitude=1.0)**
 
-  Create point source at given point
+  Create point source at given point of given magnitude
 ";
 
 %feature("docstring")  dolfin::PointSource::apply "
