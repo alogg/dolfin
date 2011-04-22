@@ -6462,7 +6462,7 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W1 = 0.166666666666666;
+    static const double W1 = 0.166666666666667;
     // Quadrature points on the UFC reference element: (0.250000000000000, 0.250000000000000, 0.250000000000000)
     
     // Value of basis functions at quadrature points.

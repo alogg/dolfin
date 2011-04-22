@@ -6462,19 +6462,15 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W8[8] = {0.036979856358853, 0.016027040598477, 0.021157006454524, 0.009169429921480, 0.036979856358853, 0.016027040598477, 0.021157006454524, 0.009169429921480};
-    // Quadrature points on the UFC reference element: (0.156682637336818, 0.136054976802846, 0.122514822655441), (0.081395667014670, 0.070679724159397, 0.544151844011225), (0.065838687060044, 0.565933165072801, 0.122514822655441), (0.034202793236766, 0.293998800631623, 0.544151844011225), (0.584747563204894, 0.136054976802846, 0.122514822655441), (0.303772764814708, 0.070679724159397, 0.544151844011225), (0.245713325211713, 0.565933165072801, 0.122514822655441), (0.127646562120385, 0.293998800631623, 0.544151844011225)
+    static const double W4[4] = {0.041666666666667, 0.041666666666667, 0.041666666666667, 0.041666666666667};
+    // Quadrature points on the UFC reference element: (0.585410196624969, 0.138196601125011, 0.138196601125011), (0.138196601125011, 0.585410196624969, 0.138196601125011), (0.138196601125011, 0.138196601125011, 0.585410196624969), (0.138196601125011, 0.138196601125011, 0.138196601125011)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_C0[8][4] = \
-    {{0.584747563204894, 0.156682637336818, 0.136054976802846, 0.122514822655441},
-    {0.303772764814707, 0.081395667014670, 0.070679724159397, 0.544151844011225},
-    {0.245713325211713, 0.065838687060044, 0.565933165072801, 0.122514822655441},
-    {0.127646562120385, 0.034202793236766, 0.293998800631623, 0.544151844011225},
-    {0.156682637336818, 0.584747563204894, 0.136054976802846, 0.122514822655441},
-    {0.081395667014670, 0.303772764814708, 0.070679724159397, 0.544151844011225},
-    {0.065838687060044, 0.245713325211713, 0.565933165072801, 0.122514822655441},
-    {0.034202793236766, 0.127646562120385, 0.293998800631623, 0.544151844011225}};
+    static const double FE1_C0[4][4] = \
+    {{0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011},
+    {0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011},
+    {0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969},
+    {0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011}};
     
     // Array of non-zero columns
     static const unsigned int nzc0[4] = {0, 1, 2, 3};
@@ -6485,12 +6481,8 @@ public:
     // Array of non-zero columns
     static const unsigned int nzc8[4] = {8, 9, 10, 11};
     
-    static const double FE1_C0_D001[8][2] = \
+    static const double FE1_C0_D001[4][2] = \
     {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000}};
@@ -6624,8 +6616,8 @@ public:
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 13520
-    for (unsigned int ip = 0; ip < 8; ip++)
+    // Number of operations to compute element tensor for following IP loop = 6760
+    for (unsigned int ip = 0; ip < 4; ip++)
     {
       
       // Coefficient declarations.
@@ -6644,151 +6636,151 @@ public:
       // Number of operations to compute ip constants: 334
       double I[49];
       // Number of operations: 6
-      I[0] = W8[ip]*(F0*G[0] + F1*G[1] + F2*G[2]);
+      I[0] = W4[ip]*(F0*G[0] + F1*G[1] + F2*G[2]);
       
       // Number of operations: 6
-      I[1] = W8[ip]*(F0*G[3] + F1*G[4] + F2*G[5]);
+      I[1] = W4[ip]*(F0*G[3] + F1*G[4] + F2*G[5]);
       
       // Number of operations: 6
-      I[2] = W8[ip]*(F0*G[6] + F1*G[7] + F2*G[8]);
+      I[2] = W4[ip]*(F0*G[6] + F1*G[7] + F2*G[8]);
       
       // Number of operations: 1
-      I[3] = G[9]*W8[ip];
+      I[3] = G[9]*W4[ip];
       
       // Number of operations: 1
-      I[4] = G[10]*W8[ip];
+      I[4] = G[10]*W4[ip];
       
       // Number of operations: 1
-      I[5] = G[11]*W8[ip];
+      I[5] = G[11]*W4[ip];
       
       // Number of operations: 16
-      I[6] = W8[ip]*(G[12] + F0*(F0*G[13] + F2*G[15]) + F1*(F0*G[14] + F1*G[16] + F2*G[17]) + F2*F2*G[18]);
+      I[6] = W4[ip]*(G[12] + F0*(F0*G[13] + F2*G[15]) + F1*(F0*G[14] + F1*G[16] + F2*G[17]) + F2*F2*G[18]);
       
       // Number of operations: 1
-      I[7] = G[19]*W8[ip];
+      I[7] = G[19]*W4[ip];
       
       // Number of operations: 1
-      I[8] = G[20]*W8[ip];
+      I[8] = G[20]*W4[ip];
       
       // Number of operations: 16
-      I[9] = W8[ip]*(G[21] + F0*(F0*G[22] + F2*G[24]) + F1*(F0*G[23] + F1*G[25] + F2*G[26]) + F2*F2*G[27]);
+      I[9] = W4[ip]*(G[21] + F0*(F0*G[22] + F2*G[24]) + F1*(F0*G[23] + F1*G[25] + F2*G[26]) + F2*F2*G[27]);
       
       // Number of operations: 1
-      I[10] = G[28]*W8[ip];
+      I[10] = G[28]*W4[ip];
       
       // Number of operations: 16
-      I[11] = W8[ip]*(G[29] + F0*(F0*G[30] + F2*G[32]) + F1*(F0*G[31] + F1*G[33] + F2*G[34]) + F2*F2*G[35]);
+      I[11] = W4[ip]*(G[29] + F0*(F0*G[30] + F2*G[32]) + F1*(F0*G[31] + F1*G[33] + F2*G[34]) + F2*F2*G[35]);
       
       // Number of operations: 1
-      I[12] = G[36]*W8[ip];
+      I[12] = G[36]*W4[ip];
       
       // Number of operations: 16
-      I[13] = W8[ip]*(G[37] + F0*(F0*G[30] + F2*G[32]) + F1*(F0*G[31] + F1*G[33] + F2*G[34]) + F2*F2*G[35]);
+      I[13] = W4[ip]*(G[37] + F0*(F0*G[30] + F2*G[32]) + F1*(F0*G[31] + F1*G[33] + F2*G[34]) + F2*F2*G[35]);
       
       // Number of operations: 1
-      I[14] = G[38]*W8[ip];
+      I[14] = G[38]*W4[ip];
       
       // Number of operations: 1
-      I[15] = G[39]*W8[ip];
+      I[15] = G[39]*W4[ip];
       
       // Number of operations: 16
-      I[16] = W8[ip]*(G[40] + F0*(F0*G[13] + F2*G[15]) + F1*(F0*G[14] + F1*G[16] + F2*G[17]) + F2*F2*G[18]);
+      I[16] = W4[ip]*(G[40] + F0*(F0*G[13] + F2*G[15]) + F1*(F0*G[14] + F1*G[16] + F2*G[17]) + F2*F2*G[18]);
       
       // Number of operations: 16
-      I[17] = W8[ip]*(G[41] + F0*(F0*G[42] + F2*G[44]) + F1*(F0*G[43] + F1*G[45] + F2*G[46]) + F2*F2*G[47]);
+      I[17] = W4[ip]*(G[41] + F0*(F0*G[42] + F2*G[44]) + F1*(F0*G[43] + F1*G[45] + F2*G[46]) + F2*F2*G[47]);
       
       // Number of operations: 1
-      I[18] = G[48]*W8[ip];
+      I[18] = G[48]*W4[ip];
       
       // Number of operations: 1
-      I[19] = G[49]*W8[ip];
+      I[19] = G[49]*W4[ip];
       
       // Number of operations: 1
-      I[20] = G[50]*W8[ip];
+      I[20] = G[50]*W4[ip];
       
       // Number of operations: 1
-      I[21] = G[51]*W8[ip];
+      I[21] = G[51]*W4[ip];
       
       // Number of operations: 16
-      I[22] = W8[ip]*(G[52] + F0*(F0*G[53] + F2*G[55]) + F1*(F0*G[54] + F1*G[56] + F2*G[57]) + F2*F2*G[58]);
+      I[22] = W4[ip]*(G[52] + F0*(F0*G[53] + F2*G[55]) + F1*(F0*G[54] + F1*G[56] + F2*G[57]) + F2*F2*G[58]);
       
       // Number of operations: 1
-      I[23] = G[59]*W8[ip];
+      I[23] = G[59]*W4[ip];
       
       // Number of operations: 1
-      I[24] = G[60]*W8[ip];
+      I[24] = G[60]*W4[ip];
       
       // Number of operations: 16
-      I[25] = W8[ip]*(G[61] + F0*(F0*G[30] + F2*G[32]) + F1*(F0*G[31] + F1*G[33] + F2*G[34]) + F2*F2*G[35]);
+      I[25] = W4[ip]*(G[61] + F0*(F0*G[30] + F2*G[32]) + F1*(F0*G[31] + F1*G[33] + F2*G[34]) + F2*F2*G[35]);
       
       // Number of operations: 1
-      I[26] = G[62]*W8[ip];
+      I[26] = G[62]*W4[ip];
       
       // Number of operations: 16
-      I[27] = W8[ip]*(G[63] + F0*(F0*G[64] + F2*G[66]) + F1*(F0*G[65] + F1*G[67] + F2*G[68]) + F2*F2*G[69]);
+      I[27] = W4[ip]*(G[63] + F0*(F0*G[64] + F2*G[66]) + F1*(F0*G[65] + F1*G[67] + F2*G[68]) + F2*F2*G[69]);
       
       // Number of operations: 1
-      I[28] = G[70]*W8[ip];
+      I[28] = G[70]*W4[ip];
       
       // Number of operations: 16
-      I[29] = W8[ip]*(G[71] + F0*(F0*G[22] + F2*G[24]) + F1*(F0*G[23] + F1*G[25] + F2*G[26]) + F2*F2*G[27]);
+      I[29] = W4[ip]*(G[71] + F0*(F0*G[22] + F2*G[24]) + F1*(F0*G[23] + F1*G[25] + F2*G[26]) + F2*F2*G[27]);
       
       // Number of operations: 1
-      I[30] = G[72]*W8[ip];
+      I[30] = G[72]*W4[ip];
       
       // Number of operations: 16
-      I[31] = W8[ip]*(G[73] + F0*(F0*G[42] + F2*G[44]) + F1*(F0*G[43] + F1*G[45] + F2*G[46]) + F2*F2*G[47]);
+      I[31] = W4[ip]*(G[73] + F0*(F0*G[42] + F2*G[44]) + F1*(F0*G[43] + F1*G[45] + F2*G[46]) + F2*F2*G[47]);
       
       // Number of operations: 1
-      I[32] = G[74]*W8[ip];
+      I[32] = G[74]*W4[ip];
       
       // Number of operations: 16
-      I[33] = W8[ip]*(G[75] + F0*(F0*G[42] + F2*G[44]) + F1*(F0*G[43] + F1*G[45] + F2*G[46]) + F2*F2*G[47]);
+      I[33] = W4[ip]*(G[75] + F0*(F0*G[42] + F2*G[44]) + F1*(F0*G[43] + F1*G[45] + F2*G[46]) + F2*F2*G[47]);
       
       // Number of operations: 16
-      I[34] = W8[ip]*(G[76] + F0*(F0*G[13] + F2*G[15]) + F1*(F0*G[14] + F1*G[16] + F2*G[17]) + F2*F2*G[18]);
+      I[34] = W4[ip]*(G[76] + F0*(F0*G[13] + F2*G[15]) + F1*(F0*G[14] + F1*G[16] + F2*G[17]) + F2*F2*G[18]);
       
       // Number of operations: 16
-      I[35] = W8[ip]*(G[77] + F0*(F0*G[53] + F2*G[55]) + F1*(F0*G[54] + F1*G[56] + F2*G[57]) + F2*F2*G[58]);
+      I[35] = W4[ip]*(G[77] + F0*(F0*G[53] + F2*G[55]) + F1*(F0*G[54] + F1*G[56] + F2*G[57]) + F2*F2*G[58]);
       
       // Number of operations: 1
-      I[36] = G[78]*W8[ip];
+      I[36] = G[78]*W4[ip];
       
       // Number of operations: 1
-      I[37] = G[79]*W8[ip];
+      I[37] = G[79]*W4[ip];
       
       // Number of operations: 1
-      I[38] = G[80]*W8[ip];
+      I[38] = G[80]*W4[ip];
       
       // Number of operations: 1
-      I[39] = G[81]*W8[ip];
+      I[39] = G[81]*W4[ip];
       
       // Number of operations: 16
-      I[40] = W8[ip]*(G[82] + F0*(F0*G[64] + F2*G[66]) + F1*(F0*G[65] + F1*G[67] + F2*G[68]) + F2*F2*G[69]);
+      I[40] = W4[ip]*(G[82] + F0*(F0*G[64] + F2*G[66]) + F1*(F0*G[65] + F1*G[67] + F2*G[68]) + F2*F2*G[69]);
       
       // Number of operations: 1
-      I[41] = G[83]*W8[ip];
+      I[41] = G[83]*W4[ip];
       
       // Number of operations: 16
-      I[42] = W8[ip]*(G[84] + F0*(F0*G[22] + F2*G[24]) + F1*(F0*G[23] + F1*G[25] + F2*G[26]) + F2*F2*G[27]);
+      I[42] = W4[ip]*(G[84] + F0*(F0*G[22] + F2*G[24]) + F1*(F0*G[23] + F1*G[25] + F2*G[26]) + F2*F2*G[27]);
       
       // Number of operations: 1
-      I[43] = G[85]*W8[ip];
+      I[43] = G[85]*W4[ip];
       
       // Number of operations: 1
-      I[44] = G[86]*W8[ip];
+      I[44] = G[86]*W4[ip];
       
       // Number of operations: 16
-      I[45] = W8[ip]*(G[87] + F0*(F0*G[53] + F2*G[55]) + F1*(F0*G[54] + F1*G[56] + F2*G[57]) + F2*F2*G[58]);
+      I[45] = W4[ip]*(G[87] + F0*(F0*G[53] + F2*G[55]) + F1*(F0*G[54] + F1*G[56] + F2*G[57]) + F2*F2*G[58]);
       
       // Number of operations: 16
-      I[46] = W8[ip]*(G[88] + F0*(F0*G[64] + F2*G[66]) + F1*(F0*G[65] + F1*G[67] + F2*G[68]) + F2*F2*G[69]);
+      I[46] = W4[ip]*(G[88] + F0*(F0*G[64] + F2*G[66]) + F1*(F0*G[65] + F1*G[67] + F2*G[68]) + F2*F2*G[69]);
       
       // Number of operations: 1
-      I[47] = G[89]*W8[ip];
+      I[47] = G[89]*W4[ip];
       
       // Number of operations: 1
-      I[48] = W8[ip]*det;
+      I[48] = W4[ip]*det;
       
       
       // Number of operations for primary indices: 216
