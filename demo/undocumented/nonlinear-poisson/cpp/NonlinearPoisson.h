@@ -1303,19 +1303,17 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W4[4] = {0.159020690871988, 0.090979309128011, 0.159020690871988, 0.090979309128011};
-    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.075031110222608, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
+    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
+    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[4][3] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.075031110222608, 0.644948974278318},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0.075031110222608, 0.280019915499074, 0.644948974278318}};
+    static const double FE0[3][3] = \
+    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
+    {0.166666666666667, 0.166666666666667, 0.666666666666667},
+    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
     
-    static const double FE0_D01[4][2] = \
+    static const double FE0_D01[3][2] = \
     {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000}};
     
@@ -1343,8 +1341,8 @@ public:
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 480
-    for (unsigned int ip = 0; ip < 4; ip++)
+    // Number of operations to compute element tensor for following IP loop = 360
+    for (unsigned int ip = 0; ip < 3; ip++)
     {
       
       // Coefficient declarations.
@@ -1368,19 +1366,19 @@ public:
       // Number of operations to compute ip constants: 22
       double I[5];
       // Number of operations: 4
-      I[0] = G[0]*W4[ip]*(1.000000000000000 + F0*F0);
+      I[0] = G[0]*W3[ip]*(1.000000000000000 + F0*F0);
       
       // Number of operations: 4
-      I[1] = G[1]*W4[ip]*(1.000000000000000 + F0*F0);
+      I[1] = G[1]*W3[ip]*(1.000000000000000 + F0*F0);
       
       // Number of operations: 4
-      I[2] = G[2]*W4[ip]*(1.000000000000000 + F0*F0);
+      I[2] = G[2]*W3[ip]*(1.000000000000000 + F0*F0);
       
       // Number of operations: 5
-      I[3] = F0*W4[ip]*(F1*G[3] + F2*G[4]);
+      I[3] = F0*W3[ip]*(F1*G[3] + F2*G[4]);
       
       // Number of operations: 5
-      I[4] = F0*W4[ip]*(F1*G[5] + F2*G[3]);
+      I[4] = F0*W3[ip]*(F1*G[5] + F2*G[3]);
       
       
       // Number of operations for primary indices: 48
@@ -1479,19 +1477,17 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W4[4] = {0.159020690871988, 0.090979309128011, 0.159020690871988, 0.090979309128011};
-    // Quadrature points on the UFC reference element: (0.178558728263616, 0.155051025721682), (0.075031110222608, 0.644948974278318), (0.666390246014701, 0.155051025721682), (0.280019915499074, 0.644948974278318)
+    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
+    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[4][3] = \
-    {{0.666390246014701, 0.178558728263616, 0.155051025721682},
-    {0.280019915499074, 0.075031110222608, 0.644948974278318},
-    {0.178558728263616, 0.666390246014701, 0.155051025721682},
-    {0.075031110222608, 0.280019915499074, 0.644948974278318}};
+    static const double FE0[3][3] = \
+    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
+    {0.166666666666667, 0.166666666666667, 0.666666666666667},
+    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
     
-    static const double FE0_D01[4][2] = \
+    static const double FE0_D01[3][2] = \
     {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000}};
     
@@ -1516,8 +1512,8 @@ public:
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 224
-    for (unsigned int ip = 0; ip < 4; ip++)
+    // Number of operations to compute element tensor for following IP loop = 168
+    for (unsigned int ip = 0; ip < 3; ip++)
     {
       
       // Coefficient declarations.
@@ -1543,13 +1539,13 @@ public:
       // Number of operations to compute ip constants: 22
       double I[3];
       // Number of operations: 2
-      I[0] =  - F3*W4[ip]*det;
+      I[0] =  - F3*W3[ip]*det;
       
       // Number of operations: 10
-      I[1] = W4[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[1]*(1.000000000000000 + F2*F2));
+      I[1] = W3[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[1]*(1.000000000000000 + F2*F2));
       
       // Number of operations: 10
-      I[2] = W4[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
+      I[2] = W3[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
       
       
       // Number of operations for primary indices: 6

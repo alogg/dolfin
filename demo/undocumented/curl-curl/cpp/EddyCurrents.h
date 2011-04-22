@@ -5364,7 +5364,7 @@ public:
       {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
       
       static const double coefficients2[4] = \
-      {0.577350269189626, -0.182574185835055, -0.105409255338946, 0.149071198499986};
+      {0.577350269189626, -0.182574185835056, -0.105409255338946, 0.149071198499986};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -6350,7 +6350,7 @@ public:
       {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
       
       static const double coefficients2[4] = \
-      {0.577350269189626, -0.182574185835055, -0.105409255338946, 0.149071198499986};
+      {0.577350269189626, -0.182574185835056, -0.105409255338946, 0.149071198499986};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
@@ -8286,12 +8286,12 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W1 = 0.166666666666666;
+    static const double W1 = 0.166666666666667;
     // Quadrature points on the UFC reference element: (0.250000000000000, 0.250000000000000, 0.250000000000000)
     
     // Value of basis functions at quadrature points.
     static const double FE0_C0_D001[1][3] = \
-    {{-1.000000000000000, 0.999999999999999, -1.000000000000000}};
+    {{-0.999999999999999, 0.999999999999999, -1.000000000000000}};
     
     // Array of non-zero columns
     static const unsigned int nzc4[3] = {0, 3, 4};

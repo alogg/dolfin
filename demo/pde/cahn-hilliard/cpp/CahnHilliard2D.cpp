@@ -3807,20 +3807,17 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
     
     
     // Array of quadrature weights.
-    static const double W9[9] = {0.055814420483044, 0.063678085099885, 0.019396383305959, 0.089303072772871, 0.101884936159816, 0.031034213289535, 0.055814420483044, 0.063678085099885, 0.019396383305959};
-    // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.066554067839165, 0.409466864440735), (0.023931132287081, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.808694385677670, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
+    static const double W6[6] = {0.054975871827661, 0.054975871827661, 0.054975871827661, 0.111690794839005, 0.111690794839005, 0.111690794839005};
+    // Quadrature points on the UFC reference element: (0.816847572980459, 0.091576213509771), (0.091576213509771, 0.816847572980459), (0.091576213509771, 0.091576213509771), (0.108103018168070, 0.445948490915965), (0.445948490915965, 0.108103018168070), (0.445948490915965, 0.445948490915965)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_C0[9][3] = \
-    {{0.808694385677670, 0.102717654809626, 0.088587959512704},
-    {0.523979067720101, 0.066554067839165, 0.409466864440735},
-    {0.188409405952072, 0.023931132287081, 0.787659461760847},
-    {0.455706020243648, 0.455706020243648, 0.088587959512704},
-    {0.295266567779633, 0.295266567779633, 0.409466864440735},
-    {0.106170269119576, 0.106170269119577, 0.787659461760847},
-    {0.102717654809626, 0.808694385677670, 0.088587959512704},
-    {0.066554067839164, 0.523979067720101, 0.409466864440735},
-    {0.023931132287081, 0.188409405952072, 0.787659461760847}};
+    static const double FE1_C0[6][3] = \
+    {{0.091576213509770, 0.816847572980459, 0.091576213509771},
+    {0.091576213509770, 0.091576213509771, 0.816847572980459},
+    {0.816847572980458, 0.091576213509771, 0.091576213509771},
+    {0.445948490915965, 0.108103018168070, 0.445948490915965},
+    {0.445948490915965, 0.445948490915965, 0.108103018168070},
+    {0.108103018168070, 0.445948490915965, 0.445948490915965}};
     
     // Array of non-zero columns
     static const unsigned int nzc0[3] = {0, 1, 2};
@@ -3828,11 +3825,8 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
     // Array of non-zero columns
     static const unsigned int nzc3[3] = {3, 4, 5};
     
-    static const double FE1_C0_D01[9][2] = \
+    static const double FE1_C0_D01[6][2] = \
     {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
@@ -3872,8 +3866,8 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 1755
-    for (unsigned int ip = 0; ip < 9; ip++)
+    // Number of operations to compute element tensor for following IP loop = 1170
+    for (unsigned int ip = 0; ip < 6; ip++)
     {
       
       // Coefficient declarations.
@@ -3888,28 +3882,28 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
       // Number of operations to compute ip constants: 12
       double I[8];
       // Number of operations: 1
-      I[0] = W9[ip]*det;
+      I[0] = W6[ip]*det;
       
       // Number of operations: 5
-      I[1] = W9[ip]*(G[0] + F0*(G[2] + F0*G[1]));
+      I[1] = W6[ip]*(G[0] + F0*(G[2] + F0*G[1]));
       
       // Number of operations: 1
-      I[2] = G[3]*W9[ip];
+      I[2] = G[3]*W6[ip];
       
       // Number of operations: 1
-      I[3] = G[4]*W9[ip];
+      I[3] = G[4]*W6[ip];
       
       // Number of operations: 1
-      I[4] = G[5]*W9[ip];
+      I[4] = G[5]*W6[ip];
       
       // Number of operations: 1
-      I[5] = G[6]*W9[ip];
+      I[5] = G[6]*W6[ip];
       
       // Number of operations: 1
-      I[6] = G[7]*W9[ip];
+      I[6] = G[7]*W6[ip];
       
       // Number of operations: 1
-      I[7] = G[8]*W9[ip];
+      I[7] = G[8]*W6[ip];
       
       
       // Number of operations for primary indices: 81
@@ -4008,20 +4002,17 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
     
     
     // Array of quadrature weights.
-    static const double W9[9] = {0.055814420483044, 0.063678085099885, 0.019396383305959, 0.089303072772871, 0.101884936159816, 0.031034213289535, 0.055814420483044, 0.063678085099885, 0.019396383305959};
-    // Quadrature points on the UFC reference element: (0.102717654809626, 0.088587959512704), (0.066554067839165, 0.409466864440735), (0.023931132287081, 0.787659461760847), (0.455706020243648, 0.088587959512704), (0.295266567779633, 0.409466864440735), (0.106170269119576, 0.787659461760847), (0.808694385677670, 0.088587959512704), (0.523979067720101, 0.409466864440735), (0.188409405952072, 0.787659461760847)
+    static const double W6[6] = {0.054975871827661, 0.054975871827661, 0.054975871827661, 0.111690794839005, 0.111690794839005, 0.111690794839005};
+    // Quadrature points on the UFC reference element: (0.816847572980459, 0.091576213509771), (0.091576213509771, 0.816847572980459), (0.091576213509771, 0.091576213509771), (0.108103018168070, 0.445948490915965), (0.445948490915965, 0.108103018168070), (0.445948490915965, 0.445948490915965)
     
     // Value of basis functions at quadrature points.
-    static const double FE1_C0[9][3] = \
-    {{0.808694385677670, 0.102717654809626, 0.088587959512704},
-    {0.523979067720101, 0.066554067839165, 0.409466864440735},
-    {0.188409405952072, 0.023931132287081, 0.787659461760847},
-    {0.455706020243648, 0.455706020243648, 0.088587959512704},
-    {0.295266567779633, 0.295266567779633, 0.409466864440735},
-    {0.106170269119576, 0.106170269119577, 0.787659461760847},
-    {0.102717654809626, 0.808694385677670, 0.088587959512704},
-    {0.066554067839164, 0.523979067720101, 0.409466864440735},
-    {0.023931132287081, 0.188409405952072, 0.787659461760847}};
+    static const double FE1_C0[6][3] = \
+    {{0.091576213509770, 0.816847572980459, 0.091576213509771},
+    {0.091576213509770, 0.091576213509771, 0.816847572980459},
+    {0.816847572980458, 0.091576213509771, 0.091576213509771},
+    {0.445948490915965, 0.108103018168070, 0.445948490915965},
+    {0.445948490915965, 0.445948490915965, 0.108103018168070},
+    {0.108103018168070, 0.445948490915965, 0.445948490915965}};
     
     // Array of non-zero columns
     static const unsigned int nzc0[3] = {0, 1, 2};
@@ -4029,11 +4020,8 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
     // Array of non-zero columns
     static const unsigned int nzc3[3] = {3, 4, 5};
     
-    static const double FE1_C0_D01[9][2] = \
+    static const double FE1_C0_D01[6][2] = \
     {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
     {-1.000000000000000, 1.000000000000000},
@@ -4076,8 +4064,8 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 945
-    for (unsigned int ip = 0; ip < 9; ip++)
+    // Number of operations to compute element tensor for following IP loop = 630
+    for (unsigned int ip = 0; ip < 6; ip++)
     {
       
       // Coefficient declarations.
@@ -4113,22 +4101,22 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
       // Number of operations to compute ip constants: 35
       double I[6];
       // Number of operations: 8
-      I[0] = W9[ip]*(F4*(G[2] + F4*(G[1] + F4*G[0])) + F8*det);
+      I[0] = W6[ip]*(F4*(G[2] + F4*(G[1] + F4*G[0])) + F8*det);
       
       // Number of operations: 3
-      I[1] = W9[ip]*det*(F4 - F5);
+      I[1] = W6[ip]*det*(F4 - F5);
       
       // Number of operations: 8
-      I[2] = W9[ip]*(F0*G[3] + F1*G[4] + F2*G[5] + F3*G[6]);
+      I[2] = W6[ip]*(F0*G[3] + F1*G[4] + F2*G[5] + F3*G[6]);
       
       // Number of operations: 4
-      I[3] = W9[ip]*(F6*G[7] + F7*G[8]);
+      I[3] = W6[ip]*(F6*G[7] + F7*G[8]);
       
       // Number of operations: 4
-      I[4] = W9[ip]*(F6*G[8] + F7*G[9]);
+      I[4] = W6[ip]*(F6*G[8] + F7*G[9]);
       
       // Number of operations: 8
-      I[5] = W9[ip]*(F0*G[4] + F1*G[10] + F2*G[6] + F3*G[11]);
+      I[5] = W6[ip]*(F0*G[4] + F1*G[10] + F2*G[6] + F3*G[11]);
       
       
       // Number of operations for primary indices: 12

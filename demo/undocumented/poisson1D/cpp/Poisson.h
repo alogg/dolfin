@@ -933,7 +933,7 @@ public:
     const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_0_0 = det*K_00*K_00;
+    const double G0_0_0 = det*K_00*K_00*(1.0);
     
     // Compute element tensor
     A[0] = G0_0_0;
@@ -1005,8 +1005,8 @@ public:
     const double G0_1 = det*w[0][1]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
-    A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
+    A[0] = 0.333333333333333*G0_0 + 0.166666666666666*G0_1;
+    A[1] = 0.166666666666666*G0_0 + 0.333333333333333*G0_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -1136,7 +1136,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), MultiIndex((Index(0),), {Index(0): 1})), MultiIndex((Index(0),), {Index(0): 1})), MultiIndex((Index(1),), {Index(1): 1})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 1), MultiIndex((Index(2),), {Index(2): 1})), MultiIndex((Index(2),), {Index(2): 1})), MultiIndex((Index(1),), {Index(1): 1}))), MultiIndex((Index(1),), {Index(1): 1})), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 0), MultiIndex((FixedIndex(0),), {FixedIndex(0): 1})), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', 1, Space(1)), 1), 1), MultiIndex((FixedIndex(0),), {FixedIndex(0): 1}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
