@@ -871,7 +871,15 @@ Return the dimension of the value space for axis i
 ";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis_all "
-Evaluate all basis functions at given point in cell
+**Overloaded versions**
+
+* evaluate_basis_all\ **(values, coordinates, c)**
+
+  Evaluate all basis functions at given point in cell
+
+* evaluate_basis_all\ **(values, coordinates, cell)**
+
+  Evaluate all basis functions at given point in cell
 ";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis_derivatives "
@@ -1079,11 +1087,6 @@ This class specifies the interface for setting (strong)
   Create boundary condition for subdomain by boundary markers
   (cells, local facet numbers)
 
-* DirichletBC\ **(V, g, std::vector<std::pair<uint, markers, method=\"topological\")**
-
-  Create boundary condition for subdomain by boundary markers
-  (cells, local facet numbers)
-
 * DirichletBC\ **(bc)**
 
   Copy constructor
@@ -1141,12 +1144,7 @@ facet numbers)
 Return boundary value g
 ";
 
-%feature("docstring")  dolfin::DirichletBC::value_ptr "
-Return shared pointer to boundary value g
-Testing multiline comment
-";
-
-%feature("docstring")  dolfin::DirichletBC::user_sub_domain_ptr "
+%feature("docstring")  dolfin::DirichletBC::user_sub_domain "
 Return shared pointer to sub-domain
 ";
 
@@ -1391,6 +1389,11 @@ functional = 0, etc)
 
 %feature("docstring")  dolfin::Form::num_coefficients "
 Return number of coefficients
+";
+
+%feature("docstring")  dolfin::Form::coloring "
+Return coloring type for colored (multi-threaded) assembly of form
+over a mesh entity of a given dimension
 ";
 
 %feature("docstring")  dolfin::Form::set_mesh "
@@ -1670,31 +1673,19 @@ Return test space for variational problem
 Return the bilinear form
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::bilinear_form_shared_ptr "
-Return the bilinear form (shared_ptr version)
+%feature("docstring")  dolfin::VariationalProblem::form_0 "
+Return form_0
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::form_0_shared_ptr "
-Return form_0 (shared_ptr version)
-";
-
-%feature("docstring")  dolfin::VariationalProblem::form_1_shared_ptr "
-Return form_1 (shared_ptr version)
+%feature("docstring")  dolfin::VariationalProblem::form_1 "
+Return form_1
 ";
 
 %feature("docstring")  dolfin::VariationalProblem::linear_form "
 Return the linear form
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::linear_form_shared_ptr "
-Return the linear form (shared_ptr version)
-";
-
 %feature("docstring")  dolfin::VariationalProblem::bcs "
-Return the list of boundary conditions
-";
-
-%feature("docstring")  dolfin::VariationalProblem::bcs_shared_ptr "
 Return the list of boundary conditions (shared_ptr version)
 ";
 
