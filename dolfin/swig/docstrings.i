@@ -376,8 +376,16 @@ Extract sub space for component
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::collapse "
-Collapse a subspace and return a new function space and a map from new
-to old dofs
+**Overloaded versions**
+
+* collapse\ **()**
+
+  Collapse a subspace and return a new function space
+
+* collapse\ **(boost::unordered_map<uint, collapsed_dofs)**
+
+  Collapse a subspace and return a new function space and a map from new
+  to old dofs
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::has_cell "
@@ -6291,7 +6299,6 @@ Number of edges per vertex
 Vertex edges
 ";
 
-// Documentation extracted from: (module=ale, header=ALEType.h)
 // Documentation extracted from: (module=ale, header=ALE.h)
 %feature("docstring")  dolfin::ALE "
 This class provides functionality useful for implementation of
@@ -6303,11 +6310,11 @@ the new coordinates for the interior vertices accordingly.
 %feature("docstring")  dolfin::ALE::move "
 **Overloaded versions**
 
-* move\ **(mesh, new_boundary, method=lagrange)**
+* move\ **(mesh, new_boundary)**
 
   Move coordinates of mesh according to new boundary coordinates
 
-* move\ **(mesh0, mesh1, method=lagrange)**
+* move\ **(mesh0, mesh1)**
 
   Move coordinates of mesh0 according to mesh1 with common global vertices
 
@@ -7409,19 +7416,15 @@ Check if mesh is ordered according to the UFC numbering convention.
 %feature("docstring")  dolfin::Mesh::move "
 **Overloaded versions**
 
-* move\ **(boundary, method=hermite)**
+* move\ **(boundary)**
 
   Move coordinates of mesh according to new boundary coordinates.
   
   *Arguments*
       boundary (:py:class:`BoundaryMesh`)
           A mesh containing just the boundary cells.
-  
-      method (int)
-          Method which defines how the coordinates should be
-          moved, default is *hermite*.
 
-* move\ **(mesh, method=hermite)**
+* move\ **(mesh)**
 
   Move coordinates of mesh according to adjacent mesh with common global
   vertices.
@@ -7429,10 +7432,6 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
-  
-      method (int)
-          Method which defines how the coordinates should be
-          moved, default is *hermite*.
 
 * move\ **(displacement)**
 
@@ -7972,7 +7971,15 @@ Return z-coordinate
 ";
 
 %feature("docstring")  dolfin::Point::coordinates "
-Return coordinate array
+**Overloaded versions**
+
+* coordinates\ **()**
+
+  Return coordinate array
+
+* coordinates\ **()**
+
+  Return coordinate array
 ";
 
 %feature("docstring")  dolfin::Point::operator+ "
@@ -9111,6 +9118,10 @@ C++ and Python.
 %feature("docstring")  dolfin::Array::Array "
 **Overloaded versions**
 
+* Array\ **()**
+
+  Create empty array
+
 * Array\ **(N)**
 
   Create array of size N
@@ -9811,7 +9822,7 @@ solution.
     u (:py:class:`Function`)
        the primal approximation
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`*>)
+    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
         the primal boundary conditions
 
 *Returns*
@@ -9881,7 +9892,7 @@ boundary conditions.
     z (:py:class:`Function`)
         the dual approximation (to be computed)
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`*>)
+    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
         the primal boundary conditions
 ";
 
@@ -9892,7 +9903,7 @@ Compute extrapolation with boundary conditions
     z (:py:class:`Function`)
         the extrapolated function (to be computed)
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`*>)
+    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
         the dual boundary conditions
 ";
 
