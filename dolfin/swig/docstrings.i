@@ -703,11 +703,11 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
 **Overloaded versions**
 
-* tabulate_coordinates\ **(coordinates, ufc_cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, ufc_cell)**
 
   Tabulate the coordinates of all dofs on a cell (UFC cell version)
 
-* tabulate_coordinates\ **(coordinates, cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, cell)**
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
 ";
@@ -808,11 +808,11 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
 **Overloaded versions**
 
-* tabulate_coordinates\ **(coordinates, ufc_cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, ufc_cell)**
 
   Tabulate the coordinates of all dofs on a cell (UFC cell version)
 
-* tabulate_coordinates\ **(coordinates, cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, cell)**
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
 ";
@@ -11161,10 +11161,6 @@ Compute z(0) (the endpoint of the dual) as function of (primal) endtime T
 ";
 
 // Documentation extracted from: (module=math, header=basic.h)
-%feature("docstring")  dolfin::sqr "
-Return the square of x
-";
-
 %feature("docstring")  dolfin::ipow "
 Return a to the power n
 ";
@@ -11175,14 +11171,6 @@ Return a random number, uniformly distributed between [0.0, 1.0)
 
 %feature("docstring")  dolfin::seed "
 Seed random number generator
-";
-
-%feature("docstring")  dolfin::near "
-Return true if x is within DOLFIN_EPS of x0
-";
-
-%feature("docstring")  dolfin::between "
-Return true if x is between x0 and x1 (inclusive)
 ";
 
 // Documentation extracted from: (module=math, header=Lagrange.h)
