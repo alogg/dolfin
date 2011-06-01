@@ -703,11 +703,11 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
 **Overloaded versions**
 
-* tabulate_coordinates\ **(coordinates, ufc_cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, ufc_cell)**
 
   Tabulate the coordinates of all dofs on a cell (UFC cell version)
 
-* tabulate_coordinates\ **(coordinates, cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, cell)**
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
 ";
@@ -808,11 +808,11 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
 **Overloaded versions**
 
-* tabulate_coordinates\ **(coordinates, ufc_cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, ufc_cell)**
 
   Tabulate the coordinates of all dofs on a cell (UFC cell version)
 
-* tabulate_coordinates\ **(coordinates, cell)**
+* tabulate_coordinates\ **(boost::multi_array<double, coordinates, cell)**
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
 ";
