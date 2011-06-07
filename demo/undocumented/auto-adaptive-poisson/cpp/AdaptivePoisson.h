@@ -14719,9 +14719,9 @@ public:
     }
     
     // Attach subdomains from a to a_star
-    a_star->cell_domains = a.cell_domains_shared_ptr();
-    a_star->interior_facet_domains = a.interior_facet_domains_shared_ptr();
-    a_star->exterior_facet_domains = a.exterior_facet_domains_shared_ptr();
+    a_star->dx = a.cell_domains_shared_ptr();
+    a_star->ds = a.exterior_facet_domains_shared_ptr();
+    a_star->dS = a.interior_facet_domains_shared_ptr();
 
     
     // Attach coefficients from (*this) to L_star
@@ -14743,9 +14743,9 @@ public:
     }
     
     // Attach subdomains from (*this) to L_star
-    L_star->cell_domains = (*this).cell_domains_shared_ptr();
-    L_star->interior_facet_domains = (*this).interior_facet_domains_shared_ptr();
-    L_star->exterior_facet_domains = (*this).exterior_facet_domains_shared_ptr();
+    L_star->dx = (*this).cell_domains_shared_ptr();
+    L_star->ds = (*this).exterior_facet_domains_shared_ptr();
+    L_star->dS = (*this).interior_facet_domains_shared_ptr();
 
 
     // Initialize residual
@@ -14789,9 +14789,9 @@ public:
     }
     
     // Attach subdomains from L to residual
-    residual->cell_domains = L.cell_domains_shared_ptr();
-    residual->interior_facet_domains = L.interior_facet_domains_shared_ptr();
-    residual->exterior_facet_domains = L.exterior_facet_domains_shared_ptr();
+    residual->dx = L.cell_domains_shared_ptr();
+    residual->ds = L.exterior_facet_domains_shared_ptr();
+    residual->dS = L.interior_facet_domains_shared_ptr();
 
 
     // Initialize extrapolation space and (fake) extrapolation
@@ -14847,9 +14847,9 @@ public:
     }
     
     // Attach subdomains from L to L_R_T
-    L_R_T->cell_domains = L.cell_domains_shared_ptr();
-    L_R_T->interior_facet_domains = L.interior_facet_domains_shared_ptr();
-    L_R_T->exterior_facet_domains = L.exterior_facet_domains_shared_ptr();
+    L_R_T->dx = L.cell_domains_shared_ptr();
+    L_R_T->ds = L.exterior_facet_domains_shared_ptr();
+    L_R_T->dS = L.interior_facet_domains_shared_ptr();
 
 
     // Attach bubble function to _a_R_T and _L_R_T
@@ -14899,9 +14899,9 @@ public:
     }
     
     // Attach subdomains from L to L_R_dT
-    L_R_dT->cell_domains = L.cell_domains_shared_ptr();
-    L_R_dT->interior_facet_domains = L.interior_facet_domains_shared_ptr();
-    L_R_dT->exterior_facet_domains = L.exterior_facet_domains_shared_ptr();
+    L_R_dT->dx = L.cell_domains_shared_ptr();
+    L_R_dT->ds = L.exterior_facet_domains_shared_ptr();
+    L_R_dT->dS = L.interior_facet_domains_shared_ptr();
 
 
     // Initialize (fake) cone and attach to a_R_dT and L_R_dT
