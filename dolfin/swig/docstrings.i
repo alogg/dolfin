@@ -9078,23 +9078,6 @@ otherwise handled automatically.
 ";
 
 // Documentation extracted from: (module=common, header=types.h)
-// Documentation extracted from: (module=common, header=real.h)
-%feature("docstring")  dolfin::real_sqrt "
-Square root
-";
-
-%feature("docstring")  dolfin::real_pi "
-Compute pi
-";
-
-%feature("docstring")  dolfin::real_exp "
-Exponential function (note: not full precision!)
-";
-
-%feature("docstring")  dolfin::real_log "
-Logarithmic function (note: not full precision!)
-";
-
 // Documentation extracted from: (module=common, header=constants.h)
 // Documentation extracted from: (module=common, header=timing.h)
 %feature("docstring")  dolfin::tic "
