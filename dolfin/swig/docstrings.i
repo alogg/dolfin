@@ -1913,10 +1913,6 @@ Create log stream of given type
 * operator<<\ **(point)**
 
   Output for point (not subclass of Variable for efficiency)
-
-* operator<<\ **(a)**
-
-  Output for real
 ";
 
 // Documentation extracted from: (module=log, header=Progress.h)
@@ -5983,11 +5979,11 @@ Return informal string representation (pretty-print)
 ";
 
 %feature("docstring")  dolfin::Scalar::operator double "
-Cast to real
+Cast to double
 ";
 
 %feature("docstring")  dolfin::Scalar::operator= "
-Assignment from real
+Assignment from double
 ";
 
 %feature("docstring")  dolfin::Scalar::factory "
@@ -10090,10 +10086,6 @@ Return change count (number of times parameter has been changed)
 
 * operator=\ **(value)**
 
-  Assignment from GMP type
-
-* operator=\ **(value)**
-
   Assignment from string
 
 * operator=\ **(value)**
@@ -10123,10 +10115,6 @@ Cast parameter to string
 
 %feature("docstring")  dolfin::Parameter::operator bool "
 Cast parameter to bool
-";
-
-%feature("docstring")  dolfin::Parameter::get_real "
-Get real value of parameter with (possibly) extended precision
 ";
 
 %feature("docstring")  dolfin::Parameter::type_str "
@@ -10197,55 +10185,51 @@ Return range string
 Return short string description
 ";
 
-%feature("docstring")  dolfin::RealParameter "
+%feature("docstring")  dolfin::DoubleParameter "
 Parameter with value type double
 ";
 
-%feature("docstring")  dolfin::RealParameter::RealParameter "
+%feature("docstring")  dolfin::DoubleParameter::DoubleParameter "
 **Overloaded versions**
 
-* RealParameter\ **(key)**
+* DoubleParameter\ **(key)**
 
   Create unset double-valued parameter
 
-* RealParameter\ **(key, value)**
+* DoubleParameter\ **(key, value)**
 
   Create double-valued parameter
 ";
 
-%feature("docstring")  dolfin::RealParameter::set_range "
+%feature("docstring")  dolfin::DoubleParameter::set_range "
 Set range
 ";
 
-%feature("docstring")  dolfin::RealParameter::get_range "
+%feature("docstring")  dolfin::DoubleParameter::get_range "
 Get range
 ";
 
-%feature("docstring")  dolfin::RealParameter::operator= "
+%feature("docstring")  dolfin::DoubleParameter::operator= "
 Assignment
 ";
 
-%feature("docstring")  dolfin::RealParameter::operator double "
+%feature("docstring")  dolfin::DoubleParameter::operator double "
 Cast parameter to double
 ";
 
-%feature("docstring")  dolfin::RealParameter::get_real "
-Get real value (possibly with extended precision)
-";
-
-%feature("docstring")  dolfin::RealParameter::type_str "
+%feature("docstring")  dolfin::DoubleParameter::type_str "
 Return value type string
 ";
 
-%feature("docstring")  dolfin::RealParameter::value_str "
+%feature("docstring")  dolfin::DoubleParameter::value_str "
 Return value string
 ";
 
-%feature("docstring")  dolfin::RealParameter::range_str "
+%feature("docstring")  dolfin::DoubleParameter::range_str "
 Return range string
 ";
 
-%feature("docstring")  dolfin::RealParameter::str "
+%feature("docstring")  dolfin::DoubleParameter::str "
 Return short string description
 ";
 
@@ -10428,14 +10412,6 @@ Clear parameter set
 * add\ **(key, value, min_value, max_value)**
 
   Add int-valued parameter with given range
-
-* add\ **(key, value)**
-
-  Add double-valued parameter
-
-* add\ **(key, value, min_value, max_value)**
-
-  Add double-valued parameter with given range
 
 * add\ **(key, value)**
 
