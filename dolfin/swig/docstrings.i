@@ -1255,30 +1255,6 @@ by calling the rebuild() function.
 Rebuild mapping between dofs
 ";
 
-// Documentation extracted from: (module=fem, header=EqualityBC.h)
-%feature("docstring")  dolfin::EqualityBC "
-This class specifies the interface for setting equality boundary
-conditions for partial differential equations,
-
-   u(x) = u(y),    for all x and y on G,
-
-where G is subdomain of the mesh.
-
-The sub domain G may be specified in two different ways. Both of
-them produce a set of unknowns (dofs) with should be equal.
-
-The simplest approach is to specify a SubDomain object, using
-the inside() function to specify on which facets the boundary
-condition should be applied.
-
-Alternatively, the boundary may be specified by the boundary
-indicators included in the mesh.
-
-Current implementation assume that the problem is scalar,
-so in case of mixed systems (vector-valued and mixed elements)
-all compoments will be set equal.
-";
-
 // Documentation extracted from: (module=fem, header=PointSource.h)
 %feature("docstring")  dolfin::PointSource "
 This class provides an easy mechanism for adding a point source
@@ -2191,20 +2167,6 @@ Assignment (must be overloaded by subclass)
 This class defines a common interface for matrices.
 ";
 
-%feature("docstring")  dolfin::GenericMatrix::resize "
-**Overloaded versions**
-
-* resize\ **(rank, dims)**
-
-  Resize tensor with given dimensions
-
-* resize\ **(y, dim)**
-
-  Resize vector y such that is it compatible with matrix for
-  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
-  case, size and layout are important.
-";
-
 %feature("docstring")  dolfin::GenericMatrix::init "
 Initialize zero tensor using sparsity pattern
 ";
@@ -2287,6 +2249,12 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::GenericMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::GenericMatrix::resize "
+Resize vector y such that is it compatible with matrix for
+multuplication Ax = b (dim = 0 -> b, dim = 1 -> x). In parallel
+case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::axpy "
@@ -2774,7 +2742,7 @@ Return number of rows (dim = 0) or columns (dim = 1)
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::local_range "
-Return local rang along dimension dim
+Return local range along dimension dim
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::mat "
