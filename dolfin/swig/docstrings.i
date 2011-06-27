@@ -872,6 +872,10 @@ Return form for left-hand side
 Return form for right-hand side
 ";
 
+%feature("docstring")  dolfin::Equation::rhs_int "
+Return value for right-hand side
+";
+
 // Documentation extracted from: (module=fem, header=FiniteElement.h)
 %feature("docstring")  dolfin::FiniteElement "
 This is a wrapper for a UFC finite element (ufc::finite_element).
@@ -1388,6 +1392,23 @@ Apply (add) point source to right-hand side vector
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
 
+// Documentation extracted from: (module=fem, header=solve.h)
+%feature("docstring")  dolfin::solve "
+**Overloaded versions**
+
+* solve\ **(equation, u)**
+
+  Solve variational problem a == L or F == 0 without boundary conditions
+
+* solve\ **(equation, u, bc)**
+
+  Solve variational problem a == L or F == 0 with a single boundary condition
+
+* solve\ **(equation, u, bcs)**
+
+  Solve variational problem a == L or F == 0 with a list of boundary conditions
+";
+
 // Documentation extracted from: (module=fem, header=Form.h)
 %feature("docstring")  dolfin::Form "
 A note on the order of trial and test spaces: FEniCS numbers
@@ -1650,13 +1671,23 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::LinearVariationalProblem::LinearVariationalProblem "
 **Overloaded versions**
 
+* LinearVariationalProblem\ **(a, L, u, bc)**
+
+  Create linear variational problem with a single boundary condition
+
+* LinearVariationalProblem\ **(a, L, u, bc)**
+
+  Create linear variational problem with a single boundary condition
+  (shared pointer version)
+
 * LinearVariationalProblem\ **(a, L, u, bcs)**
 
-  Create linear variational problem
+  Create linear variational problem with a list of boundary conditions
 
 * LinearVariationalProblem\ **(a, L, u, bcs)**
 
-  Create linear variational problem (shared pointer version)
+  Create linear variational problem with a list of boundary conditions
+  (shared pointer version)
 ";
 
 %feature("docstring")  dolfin::LinearVariationalProblem::bilinear_form "
@@ -1730,13 +1761,23 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::NonlinearVariationalProblem::NonlinearVariationalProblem "
 **Overloaded versions**
 
+* NonlinearVariationalProblem\ **(F, rhs, u, bc)**
+
+  Create nonlinear variational problem with a single boundary condition
+
+* NonlinearVariationalProblem\ **(F, rhs, u, bc)**
+
+  Create nonlinear variational problem with a single boundary condition
+  (shared pointer version)
+
 * NonlinearVariationalProblem\ **(F, rhs, u, bcs)**
 
-  Create linear variational problem
+  Create nonlinear variational problem with a list of boundary conditions
 
 * NonlinearVariationalProblem\ **(F, rhs, u, bcs)**
 
-  Create linear variational problem (shared pointer version)
+  Create nonlinear variational problem with a list of boundary conditions
+  (shared pointer version)
 ";
 
 %feature("docstring")  dolfin::NonlinearVariationalProblem::residual_form "
@@ -9944,6 +9985,23 @@ Read from file
 Check if file exists
 ";
 
+// Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::default_parameters "
+Default parameter values
+";
+
+// Documentation extracted from: (module=adaptivity, header=AdaptiveLinearVariationalSolver.h)
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::AdaptiveLinearVariationalSolver "
+Create adaptive variational solver for given linear variaional
+problem
+";
+
+// Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
+Create adaptive variational solver for given linear variaional
+problem
+";
+
 // Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
 %feature("docstring")  dolfin::ErrorControl "
 (Goal-oriented) Error Control class.
@@ -9966,7 +10024,7 @@ solution.
     u (:py:class:`Function`)
        the primal approximation
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
+    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the primal boundary conditions
 
 *Returns*
@@ -10036,7 +10094,7 @@ boundary conditions.
     z (:py:class:`Function`)
         the dual approximation (to be computed)
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
+    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the primal boundary conditions
 ";
 
@@ -10047,7 +10105,7 @@ Compute extrapolation with boundary conditions
     z (:py:class:`Function`)
         the extrapolated function (to be computed)
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
+    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the dual boundary conditions
 ";
 
@@ -10176,6 +10234,38 @@ Default parameter values
 
 %feature("docstring")  dolfin::adapt_markers "
 Helper function for refinement of boundary conditions
+";
+
+// Documentation extracted from: (module=adaptivity, header=marking.h)
+%feature("docstring")  dolfin::mark "
+Mark cells based on indicators and given marking strategy
+
+*Arguments*
+    markers (_MeshFunction<bool>_)
+        the cell markers (to be computed)
+
+    indicators (:py:class:`Vector`)
+        error indicators (one per cell)
+
+    strategy (str)
+        the marking strategy
+
+    fraction (float)
+        the marking fraction
+";
+
+%feature("docstring")  dolfin::dorfler_mark "
+Mark cells using Dorfler marking
+
+*Arguments*
+    markers (_MeshFunction<bool>_)
+        the cell markers (to be computed)
+
+    indicators (:py:class:`Vector`)
+        error indicators (one per cell)
+
+    fraction (float)
+        the marking fraction
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
