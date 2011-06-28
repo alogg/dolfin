@@ -2473,19 +2473,25 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
-    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
+    static const double W6[6] = {0.054975871827661, 0.054975871827661, 0.054975871827661, 0.111690794839005, 0.111690794839005, 0.111690794839005};
+    // Quadrature points on the UFC reference element: (0.816847572980459, 0.091576213509771), (0.091576213509771, 0.816847572980459), (0.091576213509771, 0.091576213509771), (0.108103018168070, 0.445948490915965), (0.445948490915965, 0.108103018168070), (0.445948490915965, 0.445948490915965)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[3][6] = \
-    {{0.222222222222222, -0.111111111111111, -0.111111111111111, 0.111111111111111, 0.444444444444444, 0.444444444444444},
-    {-0.111111111111111, -0.111111111111111, 0.222222222222222, 0.444444444444444, 0.444444444444444, 0.111111111111111},
-    {-0.111111111111111, 0.222222222222222, -0.111111111111111, 0.444444444444444, 0.111111111111111, 0.444444444444444}};
+    static const double FE0[6][6] = \
+    {{-0.074803807748196, 0.517632341987674, -0.074803807748197, 0.299215230992787, 0.033544811523148, 0.299215230992784},
+    {-0.074803807748196, -0.074803807748197, 0.517632341987674, 0.299215230992787, 0.299215230992784, 0.033544811523148},
+    {0.517632341987671, -0.074803807748197, -0.074803807748197, 0.033544811523149, 0.299215230992787, 0.299215230992787},
+    {-0.048208377815512, -0.084730493093978, -0.048208377815512, 0.192833511262048, 0.795480226200906, 0.192833511262048},
+    {-0.048208377815512, -0.048208377815512, -0.084730493093978, 0.192833511262048, 0.192833511262048, 0.795480226200906},
+    {-0.084730493093978, -0.048208377815512, -0.048208377815512, 0.795480226200906, 0.192833511262048, 0.192833511262048}};
     
-    static const double FEA3_f0[3][3] = \
-    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
-    {0.166666666666667, 0.166666666666667, 0.666666666666667},
-    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
+    static const double FEA6_f0[6][3] = \
+    {{0.091576213509770, 0.816847572980459, 0.091576213509771},
+    {0.091576213509770, 0.091576213509771, 0.816847572980459},
+    {0.816847572980458, 0.091576213509771, 0.091576213509771},
+    {0.445948490915965, 0.108103018168070, 0.445948490915965},
+    {0.445948490915965, 0.445948490915965, 0.108103018168070},
+    {0.108103018168070, 0.445948490915965, 0.445948490915965}};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 6; r++)
@@ -2499,34 +2505,34 @@ public:
     // Loop quadrature points for integral.
     
     // Declare array to hold physical coordinate of quadrature point.
-    double X3[2];
-    // Number of operations to compute element tensor for following IP loop = 144
-    for (unsigned int ip = 0; ip < 3; ip++)
+    double X6[2];
+    // Number of operations to compute element tensor for following IP loop = 288
+    for (unsigned int ip = 0; ip < 6; ip++)
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
-      X3[0] = FEA3_f0[ip][0]*x[0][0] + FEA3_f0[ip][1]*x[1][0] + FEA3_f0[ip][2]*x[2][0];
-      X3[1] = FEA3_f0[ip][0]*x[0][1] + FEA3_f0[ip][1]*x[1][1] + FEA3_f0[ip][2]*x[2][1];
+      X6[0] = FEA6_f0[ip][0]*x[0][0] + FEA6_f0[ip][1]*x[1][0] + FEA6_f0[ip][2]*x[2][0];
+      X6[1] = FEA6_f0[ip][0]*x[0][1] + FEA6_f0[ip][1]*x[1][1] + FEA6_f0[ip][2]*x[2][1];
       double C[7];
       // Compute conditional, operations: 1.
-      C[0] = (X3[0] >= 0.550000000000000) ? -1.000000000000000 : 0.000000000000000;
+      C[0] = (X6[0] >= 0.550000000000000) ? -1.000000000000000 : 0.000000000000000;
       // Compute conditional, operations: 1.
-      C[1] = (X3[0] <= 0.950000000000000) ? C[0] : 0.000000000000000;
+      C[1] = (X6[0] <= 0.950000000000000) ? C[0] : 0.000000000000000;
       // Compute conditional, operations: 1.
-      C[2] = (X3[1] >= 0.050000000000000) ? C[1] : 0.000000000000000;
+      C[2] = (X6[1] >= 0.050000000000000) ? C[1] : 0.000000000000000;
       // Compute conditional, operations: 1.
-      C[3] = (X3[1] <= 0.450000000000000) ? C[2] : 0.000000000000000;
+      C[3] = (X6[1] <= 0.450000000000000) ? C[2] : 0.000000000000000;
       // Compute conditional, operations: 3.
-      C[4] = ((0.500000000000000 + X3[1] - X3[0]) >= 0.000000000000000) ? C[3] : 0.000000000000000;
+      C[4] = ((0.500000000000000 + X6[1] - X6[0]) >= 0.000000000000000) ? C[3] : 0.000000000000000;
       // Compute conditional, operations: 8.
-      C[5] = (((X3[0]-0.330000000000000)*(X3[0]-0.330000000000000) + (X3[1]-0.670000000000000)*(X3[1]-0.670000000000000)) <= 0.015000000000000) ? -1.000000000000000 : 5.000000000000000;
+      C[5] = (((X6[0]-0.330000000000000)*(X6[0]-0.330000000000000) + (X6[1]-0.670000000000000)*(X6[1]-0.670000000000000)) <= 0.015000000000000) ? -1.000000000000000 : 5.000000000000000;
       // Compute conditional, operations: 8.
-      C[6] = (((X3[0]-0.330000000000000)*(X3[0]-0.330000000000000) + (X3[1]-0.670000000000000)*(X3[1]-0.670000000000000)) <= 0.025000000000000) ? C[5] : 0.000000000000000;
+      C[6] = (((X6[0]-0.330000000000000)*(X6[0]-0.330000000000000) + (X6[1]-0.670000000000000)*(X6[1]-0.670000000000000)) <= 0.025000000000000) ? C[5] : 0.000000000000000;
       
       // Number of operations to compute ip constants: 3
       double I[1];
       // Number of operations: 3
-      I[0] = W3[ip]*det*(C[4] + C[6]);
+      I[0] = W6[ip]*det*(C[4] + C[6]);
       
       
       // Number of operations for primary indices: 12
@@ -2586,7 +2592,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2722,7 +2728,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Sum(Conditional(GE(Sum(FloatValue(0.550000000000000, (), (), {}), Sum(FloatValue(-0.050000000000000, (), (), {}), Sum(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), Product(IntValue(-1, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})))))), Zero((), (), {})), Conditional(LE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), FloatValue(0.450000000000000, (), (), {})), Conditional(GE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2})), FloatValue(0.050000000000000, (), (), {})), Conditional(LE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), FloatValue(0.950000000000000, (), (), {})), Conditional(GE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), FloatValue(0.550000000000000, (), (), {})), FloatValue(-1.000000000000000, (), (), {}), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.330000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.670000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.025000000000000, (), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.330000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.670000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {}))), FloatValue(0.015000000000000, (), (), {})), FloatValue(-1.000000000000000, (), (), {}), FloatValue(5.000000000000000, (), (), {})), Zero((), (), {})))), Measure('cell', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Sum(Conditional(GE(Sum(FloatValue(0.55, (), (), {}), Sum(FloatValue(-0.05, (), (), {}), Sum(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {})), Product(IntValue(-1, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})))))), Zero((), (), {})), Conditional(LE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {})), FloatValue(0.45, (), (), {})), Conditional(GE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {})), FloatValue(0.05, (), (), {})), Conditional(LE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})), FloatValue(0.95, (), (), {})), Conditional(GE(Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})), FloatValue(0.55, (), (), {})), FloatValue(-1, (), (), {}), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Zero((), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {}))), IntValue(2, (), (), {}))), FloatValue(0.025, (), (), {})), Conditional(LE(Sum(Power(Sum(FloatValue(-0.33, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.67, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {}))), IntValue(2, (), (), {}))), FloatValue(0.015, (), (), {})), FloatValue(-1, (), (), {}), FloatValue(5, (), (), {})), Zero((), (), {})))), Measure('cell', 0, None, None))])";
   }
 
   /// Return the rank of the global tensor (r)
