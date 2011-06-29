@@ -1294,30 +1294,6 @@ by calling the rebuild() function.
 Rebuild mapping between dofs
 ";
 
-// Documentation extracted from: (module=fem, header=EqualityBC.h)
-%feature("docstring")  dolfin::EqualityBC "
-This class specifies the interface for setting equality boundary
-conditions for partial differential equations,
-
-   u(x) = u(y),    for all x and y on G,
-
-where G is subdomain of the mesh.
-
-The sub domain G may be specified in two different ways. Both of
-them produce a set of unknowns (dofs) with should be equal.
-
-The simplest approach is to specify a SubDomain object, using
-the inside() function to specify on which facets the boundary
-condition should be applied.
-
-Alternatively, the boundary may be specified by the boundary
-indicators included in the mesh.
-
-Current implementation assume that the problem is scalar,
-so in case of mixed systems (vector-valued and mixed elements)
-all compoments will be set equal.
-";
-
 // Documentation extracted from: (module=fem, header=PointSource.h)
 %feature("docstring")  dolfin::PointSource "
 This class provides an easy mechanism for adding a point source
@@ -1398,15 +1374,36 @@ Apply (add) point source to right-hand side vector
 
 * solve\ **(equation, u)**
 
-  Solve variational problem a == L or F == 0 without boundary conditions
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 without boundary conditions
 
 * solve\ **(equation, u, bc)**
 
-  Solve variational problem a == L or F == 0 with a single boundary condition
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 with a single boundary condition
 
 * solve\ **(equation, u, bcs)**
 
-  Solve variational problem a == L or F == 0 with a list of boundary conditions
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 with a list of boundary conditions
+
+* solve\ **(equation, u, J)**
+
+  Solve nonlinear variational problem F(u; v) == 0 without boundary
+  conditions. The argument J should provide the Jacobian bilinear
+  form F' = dF/du.
+
+* solve\ **(equation, u, bc, J)**
+
+  Solve nonlinear variational problem F(u; v) == 0 with a single
+  boundary condition. The argument J should provide the Jacobian
+  bilinear form F' = dF/du.
+
+* solve\ **(equation, u, bcs, J)**
+
+  Solve nonlinear variational problem F(u; v) == 0 with a list of
+  boundary conditions.The argument J should provide the Jacobian
+  bilinear form F'.
 ";
 
 // Documentation extracted from: (module=fem, header=Form.h)
@@ -1671,6 +1668,15 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::LinearVariationalProblem::LinearVariationalProblem "
 **Overloaded versions**
 
+* LinearVariationalProblem\ **(a, L, u)**
+
+  Create linear variational problem without boundary conditions
+
+* LinearVariationalProblem\ **(a, L, u)**
+
+  Create linear variational problem without boundary conditions
+  (shared pointer version)
+
 * LinearVariationalProblem\ **(a, L, u, bc)**
 
   Create linear variational problem with a single boundary condition
@@ -1761,6 +1767,15 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::NonlinearVariationalProblem::NonlinearVariationalProblem "
 **Overloaded versions**
 
+* NonlinearVariationalProblem\ **(F, rhs, u)**
+
+  Create nonlinear variational problem without boundary conditions
+
+* NonlinearVariationalProblem\ **(F, rhs, u)**
+
+  Create nonlinear variational problem without boundary conditions
+  (shared pointer version)
+
 * NonlinearVariationalProblem\ **(F, rhs, u, bc)**
 
   Create nonlinear variational problem with a single boundary condition
@@ -1817,11 +1832,11 @@ Return test space
 
 * set_jacobian\ **(J)**
 
-  Set Jacobian
+  Set Jacobian form
 
 * set_jacobian\ **(J)**
 
-  Set Jacobian (shared pointer version)
+  Set Jacobian form (shared pointer version)
 ";
 
 %feature("docstring")  dolfin::NonlinearVariationalProblem::has_jacobian "
@@ -2394,20 +2409,6 @@ Assignment (must be overloaded by subclass)
 This class defines a common interface for matrices.
 ";
 
-%feature("docstring")  dolfin::GenericMatrix::resize "
-**Overloaded versions**
-
-* resize\ **(rank, dims)**
-
-  Resize tensor with given dimensions
-
-* resize\ **(y, dim)**
-
-  Resize vector y such that is it compatible with matrix for
-  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
-  case, size and layout are important.
-";
-
 %feature("docstring")  dolfin::GenericMatrix::init "
 Initialize zero tensor using sparsity pattern
 ";
@@ -2490,6 +2491,12 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::GenericMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::GenericMatrix::resize "
+Resize vector y such that is it compatible with matrix for
+multuplication Ax = b (dim = 0 -> b, dim = 1 -> x). In parallel
+case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::axpy "
@@ -2977,7 +2984,7 @@ Return number of rows (dim = 0) or columns (dim = 1)
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::local_range "
-Return local rang along dimension dim
+Return local range along dimension dim
 ";
 
 %feature("docstring")  dolfin::PETScBaseMatrix::mat "
@@ -9996,10 +10003,50 @@ Create adaptive variational solver for given linear variaional
 problem
 ";
 
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve "
+Solve using ErrorControl extracted from GoalFunctional
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve_primal "
+Solve the primal problem
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::extract_bcs "
+Extract primal boundary conditions
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::evaluate_goal "
+Evaluate goal functional
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::adapt_problem "
+Adapt primal problem
+";
+
 // Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
 Create adaptive variational solver for given linear variaional
 problem
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve "
+Solve using ErrorControl extracted from GoalFunctional
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve_primal "
+Solve the primal problem
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::extract_bcs "
+Extract primal boundary conditions
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::evaluate_goal "
+Evaluate goal functional
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::adapt_problem "
+Adapt primal problem
 ";
 
 // Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
