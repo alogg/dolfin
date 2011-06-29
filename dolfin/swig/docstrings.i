@@ -9993,60 +9993,321 @@ Check if file exists
 ";
 
 // Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver "
+An abstract class for goal-oriented adaptive solution of
+variational problems.
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve "
+**Overloaded versions**
+
+* solve\ **(tol, goal, control)**
+
+  Solve such that the error measured in the functional 'goal' is
+  less than the given tolerance using the ErrorControl object
+  'control'
+  
+  *Arguments*
+  
+      tol (float)
+          The error tolerance
+  
+      goal (:py:class:`Form`)
+          The goal functional
+  
+      control (:py:class:`ErrorControl`)
+          The error controller
+  
+
+* solve\ **(tol, M)**
+
+  Solve such that the error measured in the goal functional 'M'
+  is less than the given tolerance using the GoalFunctional's
+  ErrorControl object. Must be overloaded in subclass.
+  
+  *Arguments*
+  
+      tol (float)
+          The error tolerance
+  
+      goal (_GoalFunctional_)
+          The goal functional
+  
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve_primal "
+Solve the primal problem. Must be overloaded in subclass.
+
+*Returns*
+
+    boost::shared_ptr<const :py:class:`Function`>
+        The solution to the primal problem
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::extract_bcs "
+Extract the boundary conditions for the primal problem. Must
+be overloaded in subclass.
+
+*Returns*
+
+    std::vector<boost::shared_ptr<const BoundaryCondition> >
+        The primal boundary conditions
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::evaluate_goal "
+Evaluate the goal functional. Must be overloaded in subclass.
+
+*Arguments*
+
+   M (:py:class:`Form`)
+       The functional to be evaluated
+
+   u (:py:class:`Function`)
+       The function of which to evaluate the functional
+
+*Returns*
+
+    float
+        The value of M evaluated at u
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::adapt_problem "
+Adapt the problem to other mesh. Must be overloaded in subclass.
+
+*Arguments*
+
+   mesh (:py:class:`Mesh`)
+       The other mesh
+
+";
+
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::default_parameters "
-Default parameter values
+Default parameter values:
+
+    \"max_iterations\" (int)
+    \"max_dimension\"  (int)
+    \"plot_mesh\"  (bool)
+    \"reference\"  (double)
+    \"marking_strategy\"  (string)
+    \"marking_fraction\"  (double)
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::stop "
+Check if stopping criterion is satisfied
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
+**Overloaded versions**
+
+* summary\ **(data, parameters)**
+
+  Present summary of all adaptive data
+
+* summary\ **(data)**
+
+  Present summary of single adaptive datum
 ";
 
 // Documentation extracted from: (module=adaptivity, header=AdaptiveLinearVariationalSolver.h)
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver "
+A class for goal-oriented adaptive solution of linear
+variational problems.
+
+For a linear variational problem of the form: find u in V
+satisfying
+
+    a(u, v) = L(v) for all v in :math:`\hat V`
+
+and a corresponding conforming discrete problem: find u_h in V_h
+satisfying
+
+    a(u_h, v) = L(v) for all v in :math:`\hat V_h`
+
+and a given goal functional M and tolerance tol, the aim is to
+find a V_H and a u_H in V_H satisfying the discrete problem such
+that
+
+    \|M(u) - M(u_H)\| < tol
+
+This strategy is based on dual-weighted residual error
+estimators designed and automatically generated for the primal
+problem and subsequent h-adaptivity.
+";
+
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::AdaptiveLinearVariationalSolver "
-Create adaptive variational solver for given linear variaional
-problem
+Create AdaptiveLinearVariationalSolver
+
+*Arguments*
+
+    problem (:py:class:`LinearVariationalProblem`)
+        The primal problem
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve "
-Solve using ErrorControl extracted from GoalFunctional
+Solve problem such that the error measured in the goal
+functional 'M' is less than the given tolerance using the
+GoalFunctional's ErrorControl object.
+
+*Arguments*
+
+    tol (float)
+        The error tolerance
+
+    goal (_GoalFunctional_)
+        The goal functional
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve_primal "
-Solve the primal problem
+Solve the primal problem.
+
+*Returns*
+
+    boost::shared_ptr<const :py:class:`Function`>
+        The solution to the primal problem
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::extract_bcs "
-Extract primal boundary conditions
+Extract the boundary conditions for the primal problem.
+
+*Returns*
+
+    std::vector<boost::shared_ptr<const BoundaryCondition> >
+        The primal boundary conditions
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::evaluate_goal "
-Evaluate goal functional
+Evaluate the goal functional.
+
+*Arguments*
+
+   M (:py:class:`Form`)
+       The functional to be evaluated
+
+   u (:py:class:`Function`)
+       The function of which to evaluate the functional
+
+*Returns*
+
+    float
+        The value of M evaluated at u
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::adapt_problem "
-Adapt primal problem
+Adapt the problem to other mesh.
+
+*Arguments*
+
+   mesh (:py:class:`Mesh`)
+       The other mesh
+
 ";
 
 // Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver "
+A class for goal-oriented adaptive solution of nonlinear
+variational problems.
+
+For a nonlinear variational problem of the form: find u in V
+satisfying
+
+    F(u; v) = 0 for all v in :math:`\hat V`
+
+and a corresponding conforming discrete problem: find u_h in V_h
+satisfying (at least approximately)
+
+    F(u_h; v) = 0 for all v in :math:`\hat V_h`
+
+and a given goal functional M and tolerance tol, the aim is to
+find a V_H and a u_H in V_H satisfying the discrete problem such
+that
+
+    \|M(u) - M(u_H)\| < tol
+
+This strategy is based on dual-weighted residual error
+estimators designed and automatically generated for the primal
+problem and subsequent h-adaptivity.
+";
+
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
-Create adaptive variational solver for given linear variaional
-problem
+Create AdaptiveNonlinearVariationalSolver
+
+*Arguments*
+
+    problem (:py:class:`NonlinearVariationalProblem`)
+        The primal problem
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve "
-Solve using ErrorControl extracted from GoalFunctional
+Solve problem such that the error measured in the goal
+functional 'M' is less than the given tolerance using the
+GoalFunctional's ErrorControl object.
+
+*Arguments*
+
+    tol (float)
+        The error tolerance
+
+    goal (_GoalFunctional_)
+        The goal functional
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve_primal "
-Solve the primal problem
+Solve the primal problem.
+
+*Returns*
+
+    boost::shared_ptr<const :py:class:`Function`>
+        The solution to the primal problem
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::extract_bcs "
-Extract primal boundary conditions
+Extract the boundary conditions for the primal problem.
+
+*Returns*
+
+    std::vector<boost::shared_ptr<const BoundaryCondition> >
+        The primal boundary conditions
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::evaluate_goal "
-Evaluate goal functional
+Evaluate the goal functional.
+
+*Arguments*
+
+   M (:py:class:`Form`)
+       The functional to be evaluated
+
+   u (:py:class:`Function`)
+       The function of which to evaluate the functional
+
+*Returns*
+
+    float
+        The value of M evaluated at u
+
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::adapt_problem "
-Adapt primal problem
+Adapt the problem to other mesh.
+
+*Arguments*
+
+   mesh (:py:class:`Mesh`)
+       The other mesh
+
 ";
 
 // Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
