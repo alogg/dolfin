@@ -4002,7 +4002,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None), 0), Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None), 1)), Measure('cell', 0, None, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None), 0), Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None), 1)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4138,7 +4138,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None), 0), Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 1, 2, None), 0), MultiIndex((FixedIndex(0),), {})), MultiIndex((FixedIndex(0),), {}))), Measure('cell', 0, None, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None), 0), Indexed(SpatialDerivative(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 1, 2, None), 0), MultiIndex((FixedIndex(0),), {})), MultiIndex((FixedIndex(0),), {}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

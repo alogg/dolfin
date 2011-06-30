@@ -990,7 +990,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', Space(1)), 1, None), 0), MultiIndex((FixedIndex(0),), {})), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', Space(1)), 1, None), 1), MultiIndex((FixedIndex(0),), {}))), Measure('cell', 0, None, None))])";
+    return "Form([Integral(Product(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', Space(1)), 1, None), 0), MultiIndex((FixedIndex(0),), {})), SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('interval', Space(1)), 1, None), 1), MultiIndex((FixedIndex(0),), {}))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
