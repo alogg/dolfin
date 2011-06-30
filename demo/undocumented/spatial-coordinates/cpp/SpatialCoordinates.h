@@ -2473,19 +2473,37 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
-    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
+    static const double W12[12] = {0.025422453185103, 0.025422453185103, 0.025422453185103, 0.058393137863189, 0.058393137863189, 0.058393137863189, 0.041425537809187, 0.041425537809187, 0.041425537809187, 0.041425537809187, 0.041425537809187, 0.041425537809187};
+    // Quadrature points on the UFC reference element: (0.873821971016996, 0.063089014491502), (0.063089014491502, 0.873821971016996), (0.063089014491502, 0.063089014491502), (0.501426509658179, 0.249286745170910), (0.249286745170910, 0.501426509658179), (0.249286745170910, 0.249286745170910), (0.636502499121399, 0.310352451033785), (0.636502499121399, 0.053145049844816), (0.310352451033785, 0.636502499121399), (0.310352451033785, 0.053145049844816), (0.053145049844816, 0.636502499121399), (0.053145049844816, 0.310352451033785)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[3][6] = \
-    {{0.222222222222222, -0.111111111111111, -0.111111111111111, 0.111111111111111, 0.444444444444444, 0.444444444444444},
-    {-0.111111111111111, -0.111111111111111, 0.222222222222222, 0.444444444444444, 0.444444444444444, 0.111111111111111},
-    {-0.111111111111111, 0.222222222222222, -0.111111111111111, 0.444444444444444, 0.111111111111111, 0.444444444444444}};
+    static const double FE0[12][6] = \
+    {{-0.055128566992484, 0.653307703047060, -0.055128566992484, 0.220514267969936, 0.015920894998036, 0.220514267969936},
+    {-0.055128566992484, -0.055128566992484, 0.653307703047060, 0.220514267969936, 0.220514267969936, 0.015920894998036},
+    {0.653307703047060, -0.055128566992484, -0.055128566992484, 0.015920894998036, 0.220514267969936, 0.220514267969936},
+    {-0.124998982535097, 0.001430579517789, -0.124998982535098, 0.499995930140389, 0.248575525271626, 0.499995930140391},
+    {-0.124998982535097, -0.124998982535098, 0.001430579517789, 0.499995930140389, 0.499995930140391, 0.248575525271626},
+    {0.001430579517790, -0.124998982535098, -0.124998982535098, 0.248575525271625, 0.499995930140390, 0.499995930140390},
+    {-0.047496257198800, 0.173768363654174, -0.117715163308429, 0.790160442765823, 0.065974785918605, 0.135307828168627},
+    {-0.117715163308429, 0.173768363654174, -0.047496257198800, 0.135307828168627, 0.065974785918605, 0.790160442765823},
+    {-0.047496257198800, -0.117715163308429, 0.173768363654174, 0.790160442765823, 0.135307828168627, 0.065974785918605},
+    {0.173768363654174, -0.117715163308429, -0.047496257198800, 0.065974785918605, 0.135307828168627, 0.790160442765823},
+    {-0.117715163308429, -0.047496257198800, 0.173768363654174, 0.135307828168627, 0.790160442765823, 0.065974785918605},
+    {0.173768363654174, -0.047496257198800, -0.117715163308429, 0.065974785918605, 0.790160442765823, 0.135307828168627}};
     
-    static const double FEA3_f0[3][3] = \
-    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
-    {0.166666666666667, 0.166666666666667, 0.666666666666667},
-    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
+    static const double FEA12_f0[12][3] = \
+    {{0.063089014491502, 0.873821971016996, 0.063089014491502},
+    {0.063089014491502, 0.063089014491502, 0.873821971016996},
+    {0.873821971016996, 0.063089014491502, 0.063089014491502},
+    {0.249286745170911, 0.501426509658179, 0.249286745170910},
+    {0.249286745170911, 0.249286745170910, 0.501426509658179},
+    {0.501426509658180, 0.249286745170910, 0.249286745170910},
+    {0.053145049844816, 0.636502499121399, 0.310352451033785},
+    {0.310352451033785, 0.636502499121399, 0.053145049844816},
+    {0.053145049844816, 0.310352451033785, 0.636502499121399},
+    {0.636502499121399, 0.310352451033785, 0.053145049844816},
+    {0.310352451033785, 0.053145049844816, 0.636502499121399},
+    {0.636502499121399, 0.053145049844816, 0.310352451033785}};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 6; r++)
@@ -2502,19 +2520,19 @@ public:
     // Loop quadrature points for integral.
     
     // Declare array to hold physical coordinate of quadrature point.
-    double X3[2];
-    // Number of operations to compute element tensor for following IP loop = 99
-    for (unsigned int ip = 0; ip < 3; ip++)
+    double X12[2];
+    // Number of operations to compute element tensor for following IP loop = 396
+    for (unsigned int ip = 0; ip < 12; ip++)
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
-      X3[0] = FEA3_f0[ip][0]*x[0][0] + FEA3_f0[ip][1]*x[1][0] + FEA3_f0[ip][2]*x[2][0];
-      X3[1] = FEA3_f0[ip][0]*x[0][1] + FEA3_f0[ip][1]*x[1][1] + FEA3_f0[ip][2]*x[2][1];
+      X12[0] = FEA12_f0[ip][0]*x[0][0] + FEA12_f0[ip][1]*x[1][0] + FEA12_f0[ip][2]*x[2][0];
+      X12[1] = FEA12_f0[ip][0]*x[0][1] + FEA12_f0[ip][1]*x[1][1] + FEA12_f0[ip][2]*x[2][1];
       
       // Number of operations to compute ip constants: 11
       double I[1];
       // Number of operations: 11
-      I[0] = std::exp( - ((X3[0]-0.500000000000000)*(X3[0]-0.500000000000000) + (X3[1]-0.500000000000000)*(X3[1]-0.500000000000000))/0.020000000000000)*G[0]*W3[ip];
+      I[0] = std::exp( - ((X12[0]-0.500000000000000)*(X12[0]-0.500000000000000) + (X12[1]-0.500000000000000)*(X12[1]-0.500000000000000))/0.020000000000000)*G[0]*W12[ip];
       
       
       // Number of operations for primary indices: 12
@@ -2592,13 +2610,14 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W2[2] = {0.500000000000000, 0.500000000000000};
-    // Quadrature points on the UFC reference element: (0.211324865405187), (0.788675134594813)
+    static const double W3[3] = {0.277777777777778, 0.444444444444444, 0.277777777777778};
+    // Quadrature points on the UFC reference element: (0.112701665379258), (0.500000000000000), (0.887298334620742)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[2][3] = \
-    {{0.455341801261479, -0.122008467928146, 0.666666666666667},
-    {-0.122008467928146, 0.455341801261480, 0.666666666666667}};
+    static const double FE0_f0[3][3] = \
+    {{0.687298334620742, -0.087298334620742, 0.400000000000000},
+    {0.000000000000000, 0.000000000000000, 1.000000000000000},
+    {-0.087298334620742, 0.687298334620742, 0.400000000000000}};
     
     // Array of non-zero columns
     static const unsigned int nzc0[3] = {1, 2, 3};
@@ -2609,17 +2628,20 @@ public:
     // Array of non-zero columns
     static const unsigned int nzc2[3] = {0, 1, 5};
     
-    static const double FEA2_f0[2][3] = \
-    {{0.000000000000000, 0.788675134594813, 0.211324865405187},
-    {0.000000000000000, 0.211324865405187, 0.788675134594813}};
+    static const double FEA3_f0[3][3] = \
+    {{0.000000000000000, 0.887298334620742, 0.112701665379258},
+    {0.000000000000000, 0.500000000000000, 0.500000000000000},
+    {0.000000000000000, 0.112701665379258, 0.887298334620742}};
     
-    static const double FEA2_f1[2][3] = \
-    {{0.788675134594813, 0.000000000000000, 0.211324865405187},
-    {0.211324865405187, 0.000000000000000, 0.788675134594813}};
+    static const double FEA3_f1[3][3] = \
+    {{0.887298334620742, 0.000000000000000, 0.112701665379258},
+    {0.500000000000000, 0.000000000000000, 0.500000000000000},
+    {0.112701665379258, 0.000000000000000, 0.887298334620742}};
     
-    static const double FEA2_f2[2][3] = \
-    {{0.788675134594813, 0.211324865405187, 0.000000000000000},
-    {0.211324865405187, 0.788675134594813, 0.000000000000000}};
+    static const double FEA3_f2[3][3] = \
+    {{0.887298334620742, 0.112701665379258, 0.000000000000000},
+    {0.500000000000000, 0.500000000000000, 0.000000000000000},
+    {0.112701665379258, 0.887298334620742, 0.000000000000000}};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 6; r++)
@@ -2633,24 +2655,24 @@ public:
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 40
+        // Total number of operations to compute element tensor (from this point): 60
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
-      double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 40
-      for (unsigned int ip = 0; ip < 2; ip++)
+      double X3[2];
+      // Number of operations to compute element tensor for following IP loop = 60
+      for (unsigned int ip = 0; ip < 3; ip++)
       {
         
         // Compute physical coordinate of quadrature point, operations: 10.
-        X2[0] = FEA2_f0[ip][0]*x[0][0] + FEA2_f0[ip][1]*x[1][0] + FEA2_f0[ip][2]*x[2][0];
-        X2[1] = FEA2_f0[ip][0]*x[0][1] + FEA2_f0[ip][1]*x[1][1] + FEA2_f0[ip][2]*x[2][1];
+        X3[0] = FEA3_f0[ip][0]*x[0][0] + FEA3_f0[ip][1]*x[1][0] + FEA3_f0[ip][2]*x[2][0];
+        X3[1] = FEA3_f0[ip][0]*x[0][1] + FEA3_f0[ip][1]*x[1][1] + FEA3_f0[ip][2]*x[2][1];
         
         // Number of operations to compute ip constants: 4
         double I[1];
         // Number of operations: 4
-        I[0] =  - std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+        I[0] =  - std::sin(5.000000000000000*X3[0])*W3[ip]*det;
         
         
         // Number of operations for primary indices: 6
@@ -2664,24 +2686,24 @@ public:
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 40
+        // Total number of operations to compute element tensor (from this point): 60
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
-      double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 40
-      for (unsigned int ip = 0; ip < 2; ip++)
+      double X3[2];
+      // Number of operations to compute element tensor for following IP loop = 60
+      for (unsigned int ip = 0; ip < 3; ip++)
       {
         
         // Compute physical coordinate of quadrature point, operations: 10.
-        X2[0] = FEA2_f1[ip][0]*x[0][0] + FEA2_f1[ip][1]*x[1][0] + FEA2_f1[ip][2]*x[2][0];
-        X2[1] = FEA2_f1[ip][0]*x[0][1] + FEA2_f1[ip][1]*x[1][1] + FEA2_f1[ip][2]*x[2][1];
+        X3[0] = FEA3_f1[ip][0]*x[0][0] + FEA3_f1[ip][1]*x[1][0] + FEA3_f1[ip][2]*x[2][0];
+        X3[1] = FEA3_f1[ip][0]*x[0][1] + FEA3_f1[ip][1]*x[1][1] + FEA3_f1[ip][2]*x[2][1];
         
         // Number of operations to compute ip constants: 4
         double I[1];
         // Number of operations: 4
-        I[0] =  - std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+        I[0] =  - std::sin(5.000000000000000*X3[0])*W3[ip]*det;
         
         
         // Number of operations for primary indices: 6
@@ -2695,24 +2717,24 @@ public:
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 40
+        // Total number of operations to compute element tensor (from this point): 60
       
       // Loop quadrature points for integral.
       
       // Declare array to hold physical coordinate of quadrature point.
-      double X2[2];
-      // Number of operations to compute element tensor for following IP loop = 40
-      for (unsigned int ip = 0; ip < 2; ip++)
+      double X3[2];
+      // Number of operations to compute element tensor for following IP loop = 60
+      for (unsigned int ip = 0; ip < 3; ip++)
       {
         
         // Compute physical coordinate of quadrature point, operations: 10.
-        X2[0] = FEA2_f2[ip][0]*x[0][0] + FEA2_f2[ip][1]*x[1][0] + FEA2_f2[ip][2]*x[2][0];
-        X2[1] = FEA2_f2[ip][0]*x[0][1] + FEA2_f2[ip][1]*x[1][1] + FEA2_f2[ip][2]*x[2][1];
+        X3[0] = FEA3_f2[ip][0]*x[0][0] + FEA3_f2[ip][1]*x[1][0] + FEA3_f2[ip][2]*x[2][0];
+        X3[1] = FEA3_f2[ip][0]*x[0][1] + FEA3_f2[ip][1]*x[1][1] + FEA3_f2[ip][2]*x[2][1];
         
         // Number of operations to compute ip constants: 4
         double I[1];
         // Number of operations: 4
-        I[0] =  - std::sin(5.000000000000000*X2[0])*W2[ip]*det;
+        I[0] =  - std::sin(5.000000000000000*X3[0])*W3[ip]*det;
         
         
         // Number of operations for primary indices: 6
@@ -2776,7 +2798,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2912,7 +2934,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(FloatValue(10.000000000000000, (), (), {}), exp(Division(Product(IntValue(-1, (), (), {}), Sum(Power(Sum(FloatValue(-0.500000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.500000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {FixedIndex(1): 2}))), IntValue(2, (), (), {})))), FloatValue(0.020000000000000, (), (), {}))))), Measure('cell', 0, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(IntValue(-1, (), (), {}), sin(Product(FloatValue(5.000000000000000, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})))))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(FloatValue(10, (), (), {}), exp(Division(Product(IntValue(-1, (), (), {}), Sum(Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {}))), IntValue(2, (), (), {})))), FloatValue(0.02, (), (), {}))))), Measure('cell', 0, None, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(IntValue(-1, (), (), {}), sin(Product(FloatValue(5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})))))), Measure('exterior_facet', 0, None, None))])";
   }
 
   /// Return the rank of the global tensor (r)
