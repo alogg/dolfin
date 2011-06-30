@@ -837,6 +837,45 @@ Return the set of dof indices
 Return informal string representation (pretty-print)
 ";
 
+// Documentation extracted from: (module=fem, header=Equation.h)
+%feature("docstring")  dolfin::Equation "
+This class represents a variational equation lhs == rhs.
+The equation can be either linear or nonlinear:
+
+1. Linear (a == L), in which case a must be a bilinear form
+   and L must be a linear form.
+
+2. Nonlinear (F == 0), in which case F must be a linear form.
+";
+
+%feature("docstring")  dolfin::Equation::Equation "
+**Overloaded versions**
+
+* Equation\ **(a, L)**
+
+  Create equation a == L
+
+* Equation\ **(F, rhs)**
+
+  Create equation F == 0
+";
+
+%feature("docstring")  dolfin::Equation::is_linear "
+Check whether equation is linear
+";
+
+%feature("docstring")  dolfin::Equation::lhs "
+Return form for left-hand side
+";
+
+%feature("docstring")  dolfin::Equation::rhs "
+Return form for right-hand side
+";
+
+%feature("docstring")  dolfin::Equation::rhs_int "
+Return value for right-hand side
+";
+
 // Documentation extracted from: (module=fem, header=FiniteElement.h)
 %feature("docstring")  dolfin::FiniteElement "
 This is a wrapper for a UFC finite element (ufc::finite_element).
@@ -1329,6 +1368,44 @@ Apply (add) point source to right-hand side vector
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
 
+// Documentation extracted from: (module=fem, header=solve.h)
+%feature("docstring")  dolfin::solve "
+**Overloaded versions**
+
+* solve\ **(equation, u)**
+
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 without boundary conditions
+
+* solve\ **(equation, u, bc)**
+
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 with a single boundary condition
+
+* solve\ **(equation, u, bcs)**
+
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 with a list of boundary conditions
+
+* solve\ **(equation, u, J)**
+
+  Solve nonlinear variational problem F(u; v) == 0 without boundary
+  conditions. The argument J should provide the Jacobian bilinear
+  form F' = dF/du.
+
+* solve\ **(equation, u, bc, J)**
+
+  Solve nonlinear variational problem F(u; v) == 0 with a single
+  boundary condition. The argument J should provide the Jacobian
+  bilinear form F' = dF/du.
+
+* solve\ **(equation, u, bcs, J)**
+
+  Solve nonlinear variational problem F(u; v) == 0 with a list of
+  boundary conditions.The argument J should provide the Jacobian
+  bilinear form F'.
+";
+
 // Documentation extracted from: (module=fem, header=Form.h)
 %feature("docstring")  dolfin::Form "
 A note on the order of trial and test spaces: FEniCS numbers
@@ -1445,15 +1522,15 @@ Return the name of the coefficient with this number
 ";
 
 %feature("docstring")  dolfin::Form::cell_domains_shared_ptr "
-Return cell domains (pointer may be zero if no domains have been specified)
+Return cell domains (zero pointer if no domains have been specified)
 ";
 
 %feature("docstring")  dolfin::Form::exterior_facet_domains_shared_ptr "
-Return exterior facet domains (pointer may be zero if no domains have been specified)
+Return exterior facet domains (zero pointer if no domains have been specified)
 ";
 
 %feature("docstring")  dolfin::Form::interior_facet_domains_shared_ptr "
-Return interior facet domains (pointer may be zero if no domains have been specified)
+Return interior facet domains (zero pointer if no domains have been specified)
 ";
 
 %feature("docstring")  dolfin::Form::set_cell_domains "
@@ -1478,6 +1555,18 @@ Return UFC form shared pointer
 
 %feature("docstring")  dolfin::Form::check "
 Check function spaces and coefficients
+";
+
+%feature("docstring")  dolfin::Form::operator== "
+**Overloaded versions**
+
+* operator==\ **(rhs)**
+
+  Comparison operator, returning equation lhs == rhs
+
+* operator==\ **(rhs)**
+
+  Comparison operator, returning equation lhs == 0
 ";
 
 // Documentation extracted from: (module=fem, header=Assembler.h)
@@ -1565,118 +1654,217 @@ boundary conditions at the time of assembly.
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
 
-// Documentation extracted from: (module=fem, header=VariationalProblem.h)
-%feature("docstring")  dolfin::VariationalProblem "
-A :py:class:`VariationalProblem` represents a (system of) partial
-differential equation(s) in variational form:
+// Documentation extracted from: (module=fem, header=LinearVariationalProblem.h)
+%feature("docstring")  dolfin::LinearVariationalProblem "
+This class represents a linear variational problem:
 
-Find u_h in V_h such that
+Find u in V such that
 
-    F(u_h; v) = 0  for all v in V_h',
+    a(u, v) = L(v)  for all v in V^,
 
-where V_h is the trial space and V_h' is the test space.
-
-The variational problem is specified in terms of a pair of
-_Form_s and, optionally, a set of _BoundaryCondition_s.
-
-The pair of forms may either specify a nonlinear problem
-
-   (1) F(u_h; v) = 0
-
-in terms of the residual F and its derivative J = F':
-
-   F, J  (F linear, J bilinear)
-
-or a linear problem
-
-   (2) F(u_h; v) = a(u_h, v) - L(v) = 0
-
-in terms of the bilinear form a and a linear form L:
-
-   a, L  (a bilinear, L linear)
-
-Thus, a pair of forms is interpreted either as a nonlinear
-problem or a linear problem depending on the ranks of the given
-forms.
+where V is the trial space and V^ is the test space.
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::VariationalProblem "
+%feature("docstring")  dolfin::LinearVariationalProblem::LinearVariationalProblem "
 **Overloaded versions**
 
-* VariationalProblem\ **(form_0, form_1)**
+* LinearVariationalProblem\ **(a, L, u)**
 
-  Define variational problem with natural boundary conditions
+  Create linear variational problem without boundary conditions
 
-* VariationalProblem\ **(form_0, form_1, bc)**
+* LinearVariationalProblem\ **(a, L, u)**
 
-  Define variational problem with a single Dirichlet boundary condition
+  Create linear variational problem without boundary conditions
+  (shared pointer version)
 
-* VariationalProblem\ **(form_0, form_1, bcs)**
+* LinearVariationalProblem\ **(a, L, u, bc)**
 
-  Define variational problem with a list of Dirichlet boundary conditions
+  Create linear variational problem with a single boundary condition
 
-* VariationalProblem\ **(form_0, form_1, bcs)**
+* LinearVariationalProblem\ **(a, L, u, bc)**
 
-  Define variational problem with a list of Dirichlet boundary conditions
+  Create linear variational problem with a single boundary condition
+  (shared pointer version)
+
+* LinearVariationalProblem\ **(a, L, u, bcs)**
+
+  Create linear variational problem with a list of boundary conditions
+
+* LinearVariationalProblem\ **(a, L, u, bcs)**
+
+  Create linear variational problem with a list of boundary conditions
+  (shared pointer version)
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::solve "
+%feature("docstring")  dolfin::LinearVariationalProblem::bilinear_form "
+Return bilinear form
+";
+
+%feature("docstring")  dolfin::LinearVariationalProblem::linear_form "
+Return linear form
+";
+
+%feature("docstring")  dolfin::LinearVariationalProblem::solution "
 **Overloaded versions**
 
-* solve\ **(u)**
+* solution\ **()**
 
-  Solve variational problem
+  Return solution variable
 
-* solve\ **(u0, u1)**
+* solution\ **()**
 
-  Solve variational problem and extract sub functions
-
-* solve\ **(u0, u1, u2)**
-
-  Solve variational problem and extract sub functions
-
-* solve\ **(u, tol, M)**
-
-  Solve variational problem adaptively to within given tolerance
-
-* solve\ **(u, tol, M, ec)**
-
-  Solve variational problem adaptively to within given tolerance
+  Return solution variable (const version)
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::is_nonlinear "
-Return true if problem is non-linear
+%feature("docstring")  dolfin::LinearVariationalProblem::bcs "
+Return boundary conditions
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::trial_space "
-Return trial space for variational problem
+%feature("docstring")  dolfin::LinearVariationalProblem::trial_space "
+Return trial space
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::test_space "
-Return test space for variational problem
+%feature("docstring")  dolfin::LinearVariationalProblem::test_space "
+Return test space
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::bilinear_form "
-Return the bilinear form
+// Documentation extracted from: (module=fem, header=LinearVariationalSolver.h)
+%feature("docstring")  dolfin::LinearVariationalSolver "
+This class implements a solver for linear variational problems.
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::form_0 "
-Return form_0
+%feature("docstring")  dolfin::LinearVariationalSolver::LinearVariationalSolver "
+**Overloaded versions**
+
+* LinearVariationalSolver\ **(problem)**
+
+  Create linear variational solver for given problem
+
+* LinearVariationalSolver\ **(problem)**
+
+  Create linear variational solver for given problem (shared pointer version)
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::form_1 "
-Return form_1
+%feature("docstring")  dolfin::LinearVariationalSolver::solve "
+Solve variational problem
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::linear_form "
-Return the linear form
+%feature("docstring")  dolfin::LinearVariationalSolver::default_parameters "
+Default parameter values
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::bcs "
-Return the list of boundary conditions (shared_ptr version)
+// Documentation extracted from: (module=fem, header=NonlinearVariationalProblem.h)
+%feature("docstring")  dolfin::NonlinearVariationalProblem "
+This class represents a nonlinear variational problem:
+
+Find u in V such that
+
+    F(u; v) = 0  for all v in V^,
+
+where V is the trial space and V^ is the test space.
 ";
 
-%feature("docstring")  dolfin::VariationalProblem::default_parameters "
+%feature("docstring")  dolfin::NonlinearVariationalProblem::NonlinearVariationalProblem "
+**Overloaded versions**
+
+* NonlinearVariationalProblem\ **(F, rhs, u)**
+
+  Create nonlinear variational problem without boundary conditions
+
+* NonlinearVariationalProblem\ **(F, rhs, u)**
+
+  Create nonlinear variational problem without boundary conditions
+  (shared pointer version)
+
+* NonlinearVariationalProblem\ **(F, rhs, u, bc)**
+
+  Create nonlinear variational problem with a single boundary condition
+
+* NonlinearVariationalProblem\ **(F, rhs, u, bc)**
+
+  Create nonlinear variational problem with a single boundary condition
+  (shared pointer version)
+
+* NonlinearVariationalProblem\ **(F, rhs, u, bcs)**
+
+  Create nonlinear variational problem with a list of boundary conditions
+
+* NonlinearVariationalProblem\ **(F, rhs, u, bcs)**
+
+  Create nonlinear variational problem with a list of boundary conditions
+  (shared pointer version)
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::residual_form "
+Return residual form
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::jacobian_form "
+Return Jacobian form
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::solution "
+**Overloaded versions**
+
+* solution\ **()**
+
+  Return solution variable
+
+* solution\ **()**
+
+  Return solution variable (const version)
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::bcs "
+Return boundary conditions
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::trial_space "
+Return trial space
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::test_space "
+Return test space
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::set_jacobian "
+**Overloaded versions**
+
+* set_jacobian\ **(J)**
+
+  Set Jacobian form
+
+* set_jacobian\ **(J)**
+
+  Set Jacobian form (shared pointer version)
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalProblem::has_jacobian "
+Check whether Jacobian has been defined
+";
+
+// Documentation extracted from: (module=fem, header=NonlinearVariationalSolver.h)
+%feature("docstring")  dolfin::NonlinearVariationalSolver "
+This class implements a solver for nonlinear variational problems.
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalSolver::NonlinearVariationalSolver "
+**Overloaded versions**
+
+* NonlinearVariationalSolver\ **(problem)**
+
+  Create nonlinear variational solver for given problem
+
+* NonlinearVariationalSolver\ **(problem)**
+
+  Create nonlinear variational solver for given problem (shared pointer version)
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalSolver::solve "
+Solve variational problem
+";
+
+%feature("docstring")  dolfin::NonlinearVariationalSolver::default_parameters "
 Default parameter values
 ";
 
@@ -1703,6 +1891,56 @@ entire set of cells or facets.
 * assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
 
   Assemble tensor from given form on sub domains
+";
+
+// Documentation extracted from: (module=fem, header=VariationalProblem.h)
+%feature("docstring")  dolfin::VariationalProblem "
+This class is deprecated and is only here to give an informative error
+message to users about the new interface.
+";
+
+%feature("docstring")  dolfin::VariationalProblem::VariationalProblem "
+**Overloaded versions**
+
+* VariationalProblem\ **(form_0, form_1)**
+
+  Deprecated
+
+* VariationalProblem\ **(form_0, form_1, bc)**
+
+  Deprecated
+
+* VariationalProblem\ **(form_0, form_1, bcs)**
+
+  Deprecated
+
+* VariationalProblem\ **(form_0, form_1, bcs)**
+
+  Deprecated
+";
+
+%feature("docstring")  dolfin::VariationalProblem::solve "
+**Overloaded versions**
+
+* solve\ **(u)**
+
+  Deprecated
+
+* solve\ **(u0, u1)**
+
+  Deprecated
+
+* solve\ **(u0, u1, u2)**
+
+  Deprecated
+
+* solve\ **(u, tol, M)**
+
+  Deprecated
+
+* solve\ **(u, tol, M, ec)**
+
+  Deprecated
 ";
 
 // Documentation extracted from: (module=log, header=log.h)
@@ -1743,6 +1981,10 @@ Print warning
 
 %feature("docstring")  dolfin::error "
 Print error message and throw an exception
+";
+
+%feature("docstring")  dolfin::dolfin_error "
+Print error message, prefer this to the above generic error message
 ";
 
 %feature("docstring")  dolfin::log "
@@ -9750,6 +9992,324 @@ Read from file
 Check if file exists
 ";
 
+// Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver "
+An abstract class for goal-oriented adaptive solution of
+variational problems.
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve "
+**Overloaded versions**
+
+* solve\ **(tol, goal, control)**
+
+  Solve such that the error measured in the functional 'goal' is
+  less than the given tolerance using the ErrorControl object
+  'control'
+  
+  *Arguments*
+  
+      tol (float)
+          The error tolerance
+  
+      goal (:py:class:`Form`)
+          The goal functional
+  
+      control (:py:class:`ErrorControl`)
+          The error controller
+  
+
+* solve\ **(tol, M)**
+
+  Solve such that the error measured in the goal functional 'M'
+  is less than the given tolerance using the GoalFunctional's
+  ErrorControl object. Must be overloaded in subclass.
+  
+  *Arguments*
+  
+      tol (float)
+          The error tolerance
+  
+      goal (_GoalFunctional_)
+          The goal functional
+  
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve_primal "
+Solve the primal problem. Must be overloaded in subclass.
+
+*Returns*
+
+    boost::shared_ptr<const :py:class:`Function`>
+        The solution to the primal problem
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::extract_bcs "
+Extract the boundary conditions for the primal problem. Must
+be overloaded in subclass.
+
+*Returns*
+
+    std::vector<boost::shared_ptr<const BoundaryCondition> >
+        The primal boundary conditions
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::evaluate_goal "
+Evaluate the goal functional. Must be overloaded in subclass.
+
+*Arguments*
+
+   M (:py:class:`Form`)
+       The functional to be evaluated
+
+   u (:py:class:`Function`)
+       The function of which to evaluate the functional
+
+*Returns*
+
+    float
+        The value of M evaluated at u
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::adapt_problem "
+Adapt the problem to other mesh. Must be overloaded in subclass.
+
+*Arguments*
+
+   mesh (:py:class:`Mesh`)
+       The other mesh
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::default_parameters "
+Default parameter values:
+
+    \"max_iterations\" (int)
+    \"max_dimension\"  (int)
+    \"plot_mesh\"  (bool)
+    \"reference\"  (double)
+    \"marking_strategy\"  (string)
+    \"marking_fraction\"  (double)
+
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::stop "
+Check if stopping criterion is satisfied
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
+**Overloaded versions**
+
+* summary\ **(data, parameters)**
+
+  Present summary of all adaptive data
+
+* summary\ **(data)**
+
+  Present summary of single adaptive datum
+";
+
+// Documentation extracted from: (module=adaptivity, header=AdaptiveLinearVariationalSolver.h)
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver "
+A class for goal-oriented adaptive solution of linear
+variational problems.
+
+For a linear variational problem of the form: find u in V
+satisfying
+
+    a(u, v) = L(v) for all v in :math:`\hat V`
+
+and a corresponding conforming discrete problem: find u_h in V_h
+satisfying
+
+    a(u_h, v) = L(v) for all v in :math:`\hat V_h`
+
+and a given goal functional M and tolerance tol, the aim is to
+find a V_H and a u_H in V_H satisfying the discrete problem such
+that
+
+    \|M(u) - M(u_H)\| < tol
+
+This strategy is based on dual-weighted residual error
+estimators designed and automatically generated for the primal
+problem and subsequent h-adaptivity.
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::AdaptiveLinearVariationalSolver "
+Create AdaptiveLinearVariationalSolver
+
+*Arguments*
+
+    problem (:py:class:`LinearVariationalProblem`)
+        The primal problem
+
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve "
+Solve problem such that the error measured in the goal
+functional 'M' is less than the given tolerance using the
+GoalFunctional's ErrorControl object.
+
+*Arguments*
+
+    tol (float)
+        The error tolerance
+
+    goal (_GoalFunctional_)
+        The goal functional
+
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve_primal "
+Solve the primal problem.
+
+*Returns*
+
+    boost::shared_ptr<const :py:class:`Function`>
+        The solution to the primal problem
+
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::extract_bcs "
+Extract the boundary conditions for the primal problem.
+
+*Returns*
+
+    std::vector<boost::shared_ptr<const BoundaryCondition> >
+        The primal boundary conditions
+
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::evaluate_goal "
+Evaluate the goal functional.
+
+*Arguments*
+
+   M (:py:class:`Form`)
+       The functional to be evaluated
+
+   u (:py:class:`Function`)
+       The function of which to evaluate the functional
+
+*Returns*
+
+    float
+        The value of M evaluated at u
+
+";
+
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::adapt_problem "
+Adapt the problem to other mesh.
+
+*Arguments*
+
+   mesh (:py:class:`Mesh`)
+       The other mesh
+
+";
+
+// Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver "
+A class for goal-oriented adaptive solution of nonlinear
+variational problems.
+
+For a nonlinear variational problem of the form: find u in V
+satisfying
+
+    F(u; v) = 0 for all v in :math:`\hat V`
+
+and a corresponding conforming discrete problem: find u_h in V_h
+satisfying (at least approximately)
+
+    F(u_h; v) = 0 for all v in :math:`\hat V_h`
+
+and a given goal functional M and tolerance tol, the aim is to
+find a V_H and a u_H in V_H satisfying the discrete problem such
+that
+
+    \|M(u) - M(u_H)\| < tol
+
+This strategy is based on dual-weighted residual error
+estimators designed and automatically generated for the primal
+problem and subsequent h-adaptivity.
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
+Create AdaptiveNonlinearVariationalSolver
+
+*Arguments*
+
+    problem (:py:class:`NonlinearVariationalProblem`)
+        The primal problem
+
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve "
+Solve problem such that the error measured in the goal
+functional 'M' is less than the given tolerance using the
+GoalFunctional's ErrorControl object.
+
+*Arguments*
+
+    tol (float)
+        The error tolerance
+
+    goal (_GoalFunctional_)
+        The goal functional
+
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve_primal "
+Solve the primal problem.
+
+*Returns*
+
+    boost::shared_ptr<const :py:class:`Function`>
+        The solution to the primal problem
+
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::extract_bcs "
+Extract the boundary conditions for the primal problem.
+
+*Returns*
+
+    std::vector<boost::shared_ptr<const BoundaryCondition> >
+        The primal boundary conditions
+
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::evaluate_goal "
+Evaluate the goal functional.
+
+*Arguments*
+
+   M (:py:class:`Form`)
+       The functional to be evaluated
+
+   u (:py:class:`Function`)
+       The function of which to evaluate the functional
+
+*Returns*
+
+    float
+        The value of M evaluated at u
+
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::adapt_problem "
+Adapt the problem to other mesh.
+
+*Arguments*
+
+   mesh (:py:class:`Mesh`)
+       The other mesh
+
+";
+
 // Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
 %feature("docstring")  dolfin::ErrorControl "
 (Goal-oriented) Error Control class.
@@ -9772,7 +10332,7 @@ solution.
     u (:py:class:`Function`)
        the primal approximation
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
+    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the primal boundary conditions
 
 *Returns*
@@ -9842,7 +10402,7 @@ boundary conditions.
     z (:py:class:`Function`)
         the dual approximation (to be computed)
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
+    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the primal boundary conditions
 ";
 
@@ -9853,7 +10413,7 @@ Compute extrapolation with boundary conditions
     z (:py:class:`Function`)
         the extrapolated function (to be computed)
 
-    bcs (std::vector<const :py:class:`BoundaryCondition`\*>)
+    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the dual boundary conditions
 ";
 
@@ -9969,7 +10529,11 @@ Default parameter values
 
 * adapt\ **(problem, refined_mesh)**
 
-  Refine variational problem based on mesh
+  Refine linear variational problem based on mesh
+
+* adapt\ **(problem, refined_mesh)**
+
+  Refine nonlinear variational problem based on mesh
 
 * adapt\ **(ec, refined_mesh)**
 
@@ -9978,6 +10542,38 @@ Default parameter values
 
 %feature("docstring")  dolfin::adapt_markers "
 Helper function for refinement of boundary conditions
+";
+
+// Documentation extracted from: (module=adaptivity, header=marking.h)
+%feature("docstring")  dolfin::mark "
+Mark cells based on indicators and given marking strategy
+
+*Arguments*
+    markers (_MeshFunction<bool>_)
+        the cell markers (to be computed)
+
+    indicators (:py:class:`Vector`)
+        error indicators (one per cell)
+
+    strategy (str)
+        the marking strategy
+
+    fraction (float)
+        the marking fraction
+";
+
+%feature("docstring")  dolfin::dorfler_mark "
+Mark cells using Dorfler marking
+
+*Arguments*
+    markers (_MeshFunction<bool>_)
+        the cell markers (to be computed)
+
+    indicators (:py:class:`Vector`)
+        error indicators (one per cell)
+
+    fraction (float)
+        the marking fraction
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)

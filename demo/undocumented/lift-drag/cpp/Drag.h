@@ -1467,7 +1467,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {FixedIndex(0): 2})), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(Product(Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})), Product(IntValue(-1, (), (), {}), Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0))), Measure('exterior_facet', 0, None, None))])";
   }
 
   /// Return the rank of the global tensor (r)
