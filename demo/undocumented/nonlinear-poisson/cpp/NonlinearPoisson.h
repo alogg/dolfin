@@ -14,9 +14,8 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
-//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -1324,6 +1323,161 @@ public:
     static const unsigned int nzc0[2] = {0, 2};
     
     // Reset values in the element tensor.
+    for (unsigned int r = 0; r < 3; r++)
+    {
+      A[r] = 0.000000000000000;
+    }// end loop over 'r'
+    // Number of operations to compute geometry constants: 12.
+    double G[3];
+    G[0] = det*(K_00*K_00 + K_01*K_01);
+    G[1] = det*(K_00*K_10 + K_01*K_11);
+    G[2] = det*(K_10*K_10 + K_11*K_11);
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
+    
+    // Loop quadrature points for integral.
+    // Number of operations to compute element tensor for following IP loop = 168
+    for (unsigned int ip = 0; ip < 3; ip++)
+    {
+      
+      // Coefficient declarations.
+      double F0 = 0.000000000000000;
+      double F1 = 0.000000000000000;
+      double F2 = 0.000000000000000;
+      double F3 = 0.000000000000000;
+      
+      // Total number of operations to compute function values = 8
+      for (unsigned int r = 0; r < 2; r++)
+      {
+        F0 += FE0_D01[ip][r]*w[1][nzc1[r]];
+        F1 += FE0_D01[ip][r]*w[1][nzc0[r]];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 12
+      for (unsigned int r = 0; r < 3; r++)
+      {
+        F2 += FE0[ip][r]*w[1][r];
+        F3 += FE0[ip][r]*w[0][r];
+      }// end loop over 'r'
+      
+      // Number of operations to compute ip constants: 22
+      double I[3];
+      // Number of operations: 2
+      I[0] =  - F3*W3[ip]*det;
+      
+      // Number of operations: 10
+      I[1] = W3[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[1]*(1.000000000000000 + F2*F2));
+      
+      // Number of operations: 10
+      I[2] = W3[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
+      
+      
+      // Number of operations for primary indices: 6
+      for (unsigned int j = 0; j < 3; j++)
+      {
+        // Number of operations to compute entry: 2
+        A[j] += FE0[ip][j]*I[0];
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 8
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry: 2
+        A[nzc1[j]] += FE0_D01[ip][j]*I[1];
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE0_D01[ip][j]*I[2];
+      }// end loop over 'j'
+    }// end loop over 'ip'
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+  }
+
+};
+
+/// This class defines the interface for the tabulation of the cell
+/// tensor corresponding to the local contribution to a form from
+/// the integral over a cell.
+
+class nonlinearpoisson_cell_integral_1_0: public ufc::cell_integral
+{
+public:
+
+  /// Constructor
+  nonlinearpoisson_cell_integral_1_0() : ufc::cell_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~nonlinearpoisson_cell_integral_1_0()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c) const
+  {
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    
+    // Compute determinant of Jacobian
+    double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    const double K_00 =  J_11 / detJ;
+    const double K_01 = -J_01 / detJ;
+    const double K_10 = -J_10 / detJ;
+    const double K_11 =  J_00 / detJ;
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Cell Volume.
+    
+    // Compute circumradius, assuming triangle is embedded in 2D.
+    
+    
+    // Array of quadrature weights.
+    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
+    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
+    
+    // Value of basis functions at quadrature points.
+    static const double FE0[3][3] = \
+    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
+    {0.166666666666667, 0.166666666666667, 0.666666666666667},
+    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
+    
+    static const double FE0_D01[3][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 1};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {0, 2};
+    
+    // Reset values in the element tensor.
     for (unsigned int r = 0; r < 9; r++)
     {
       A[r] = 0.000000000000000;
@@ -1425,161 +1579,6 @@ public:
 
 };
 
-/// This class defines the interface for the tabulation of the cell
-/// tensor corresponding to the local contribution to a form from
-/// the integral over a cell.
-
-class nonlinearpoisson_cell_integral_1_0: public ufc::cell_integral
-{
-public:
-
-  /// Constructor
-  nonlinearpoisson_cell_integral_1_0() : ufc::cell_integral()
-  {
-    // Do nothing
-  }
-
-  /// Destructor
-  virtual ~nonlinearpoisson_cell_integral_1_0()
-  {
-    // Do nothing
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c) const
-  {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    
-    // Compute determinant of Jacobian
-    double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
-    
-    // Set scale factor
-    const double det = std::abs(detJ);
-    
-    // Cell Volume.
-    
-    // Compute circumradius, assuming triangle is embedded in 2D.
-    
-    
-    // Array of quadrature weights.
-    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
-    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
-    
-    // Value of basis functions at quadrature points.
-    static const double FE0[3][3] = \
-    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
-    {0.166666666666667, 0.166666666666667, 0.666666666666667},
-    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
-    
-    static const double FE0_D01[3][2] = \
-    {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 1};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[2] = {0, 2};
-    
-    // Reset values in the element tensor.
-    for (unsigned int r = 0; r < 3; r++)
-    {
-      A[r] = 0.000000000000000;
-    }// end loop over 'r'
-    // Number of operations to compute geometry constants: 12.
-    double G[3];
-    G[0] = det*(K_00*K_00 + K_01*K_01);
-    G[1] = det*(K_00*K_10 + K_01*K_11);
-    G[2] = det*(K_10*K_10 + K_11*K_11);
-    
-    // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
-    
-    // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 168
-    for (unsigned int ip = 0; ip < 3; ip++)
-    {
-      
-      // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      double F1 = 0.000000000000000;
-      double F2 = 0.000000000000000;
-      double F3 = 0.000000000000000;
-      
-      // Total number of operations to compute function values = 8
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F0 += FE0_D01[ip][r]*w[1][nzc1[r]];
-        F1 += FE0_D01[ip][r]*w[1][nzc0[r]];
-      }// end loop over 'r'
-      
-      // Total number of operations to compute function values = 12
-      for (unsigned int r = 0; r < 3; r++)
-      {
-        F2 += FE0[ip][r]*w[1][r];
-        F3 += FE0[ip][r]*w[0][r];
-      }// end loop over 'r'
-      
-      // Number of operations to compute ip constants: 22
-      double I[3];
-      // Number of operations: 2
-      I[0] =  - F3*W3[ip]*det;
-      
-      // Number of operations: 10
-      I[1] = W3[ip]*(F0*G[0]*(1.000000000000000 + F2*F2) + F1*G[1]*(1.000000000000000 + F2*F2));
-      
-      // Number of operations: 10
-      I[2] = W3[ip]*(F0*G[1]*(1.000000000000000 + F2*F2) + F1*G[2]*(1.000000000000000 + F2*F2));
-      
-      
-      // Number of operations for primary indices: 6
-      for (unsigned int j = 0; j < 3; j++)
-      {
-        // Number of operations to compute entry: 2
-        A[j] += FE0[ip][j]*I[0];
-      }// end loop over 'j'
-      
-      // Number of operations for primary indices: 8
-      for (unsigned int j = 0; j < 2; j++)
-      {
-        // Number of operations to compute entry: 2
-        A[nzc1[j]] += FE0_D01[ip][j]*I[1];
-        // Number of operations to compute entry: 2
-        A[nzc0[j]] += FE0_D01[ip][j]*I[2];
-      }// end loop over 'j'
-    }// end loop over 'ip'
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               unsigned int num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
-  }
-
-};
-
 /// This class defines the interface for the assembly of the global
 /// tensor corresponding to a form with r + n arguments, that is, a
 /// mapping
@@ -1614,19 +1613,19 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(IntValue(1, (), (), {}), Power(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), IntValue(2, (), (), {})))), Product(Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Product(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), Product(IntValue(2, (), (), {}), Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1))))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(Product(Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Sum(IntValue(1, (), (), {}), Power(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1), IntValue(2, (), (), {})))), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), Product(IntValue(-1, (), (), {}), Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0)))), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
   virtual unsigned int rank() const
   {
-    return 2;
+    return 1;
   }
 
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the number of cell domains
@@ -1760,19 +1759,19 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Sum(IndexSum(Product(Indexed(ComponentTensor(Product(Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Sum(IntValue(1, (), (), {}), Power(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1), IntValue(2, (), (), {})))), MultiIndex((Index(1),), {Index(1): 2})), MultiIndex((Index(2),), {Index(2): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(2),), {Index(2): 2}))), MultiIndex((Index(2),), {Index(2): 2})), Product(IntValue(-1, (), (), {}), Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0)))), Measure('cell', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(Sum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Sum(IntValue(1, (), (), {}), Power(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), IntValue(2, (), (), {})))), Product(Indexed(ComponentTensor(SpatialDerivative(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2})), Product(Coefficient(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 0), Product(IntValue(2, (), (), {}), Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None), 1))))), MultiIndex((Index(3),), {Index(3): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
   virtual unsigned int rank() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 2;
+    return 1;
   }
 
   /// Return the number of cell domains
@@ -2017,47 +2016,7 @@ public:
 
 };
 
-class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
-{
-public:
-
-  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
-  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
-  ~Form_0_FunctionSpace_1()
-  {
-  }
-
-};
+typedef CoefficientSpace_f Form_0_FunctionSpace_1;
 
 typedef CoefficientSpace_u Form_0_FunctionSpace_2;
 
@@ -2066,68 +2025,66 @@ class Form_0: public dolfin::Form
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
-    dolfin::Form(2, 1), u(*this, 0)
+  Form_0(const dolfin::FunctionSpace& V0):
+    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
-    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& u):
-    dolfin::Form(2, 1), u(*this, 0)
+  Form_0(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f, const dolfin::GenericFunction& u):
+    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
-    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
+    this->f = f;
     this->u = u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> u):
-    dolfin::Form(2, 1), u(*this, 0)
+  Form_0(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f, boost::shared_ptr<const dolfin::GenericFunction> u):
+    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
-    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
+    this->f = *f;
     this->u = *u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(2, 1), u(*this, 0)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
   {
     _function_spaces[0] = V0;
-    _function_spaces[1] = V1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& u):
-    dolfin::Form(2, 1), u(*this, 0)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f, const dolfin::GenericFunction& u):
+    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
   {
     _function_spaces[0] = V0;
-    _function_spaces[1] = V1;
 
+    this->f = f;
     this->u = u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> u):
-    dolfin::Form(2, 1), u(*this, 0)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f, boost::shared_ptr<const dolfin::GenericFunction> u):
+    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
   {
     _function_spaces[0] = V0;
-    _function_spaces[1] = V1;
 
+    this->f = *f;
     this->u = *u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_0());
@@ -2140,8 +2097,10 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if (name == "u")
+    if (name == "f")
       return 0;
+    else if (name == "u")
+      return 1;
 
     dolfin::error("Invalid coefficient.");
     return 0;
@@ -2153,6 +2112,8 @@ public:
     switch (i)
     {
     case 0:
+      return "f";
+    case 1:
       return "u";
     }
 
@@ -2162,10 +2123,11 @@ public:
 
   // Typedefs
   typedef Form_0_FunctionSpace_0 TestSpace;
-  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_0_FunctionSpace_1 CoefficientSpace_f;
   typedef Form_0_FunctionSpace_2 CoefficientSpace_u;
 
   // Coefficients
+  dolfin::CoefficientAssigner f;
   dolfin::CoefficientAssigner u;
 };
 
@@ -2211,7 +2173,47 @@ public:
 
 };
 
-typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+class Form_1_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_1_FunctionSpace_1(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_1(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_1_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_1_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new nonlinearpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new nonlinearpoisson_dofmap_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~Form_1_FunctionSpace_1()
+  {
+  }
+
+};
 
 typedef CoefficientSpace_u Form_1_FunctionSpace_2;
 
@@ -2220,66 +2222,68 @@ class Form_1: public dolfin::Form
 public:
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0):
-    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
+  Form_1(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+    dolfin::Form(2, 1), u(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f, const dolfin::GenericFunction& u):
-    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
+  Form_1(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& u):
+    dolfin::Form(2, 1), u(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    this->f = f;
     this->u = u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f, boost::shared_ptr<const dolfin::GenericFunction> u):
-    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
+  Form_1(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> u):
+    dolfin::Form(2, 1), u(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
-    this->f = *f;
     this->u = *u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(2, 1), u(*this, 0)
   {
     _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f, const dolfin::GenericFunction& u):
-    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& u):
+    dolfin::Form(2, 1), u(*this, 0)
   {
     _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
-    this->f = f;
     this->u = u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f, boost::shared_ptr<const dolfin::GenericFunction> u):
-    dolfin::Form(1, 2), f(*this, 0), u(*this, 1)
+  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> u):
+    dolfin::Form(2, 1), u(*this, 0)
   {
     _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
 
-    this->f = *f;
     this->u = *u;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new nonlinearpoisson_form_1());
@@ -2292,10 +2296,8 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if (name == "f")
+    if (name == "u")
       return 0;
-    else if (name == "u")
-      return 1;
 
     dolfin::error("Invalid coefficient.");
     return 0;
@@ -2307,8 +2309,6 @@ public:
     switch (i)
     {
     case 0:
-      return "f";
-    case 1:
       return "u";
     }
 
@@ -2318,17 +2318,18 @@ public:
 
   // Typedefs
   typedef Form_1_FunctionSpace_0 TestSpace;
-  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
+  typedef Form_1_FunctionSpace_1 TrialSpace;
   typedef Form_1_FunctionSpace_2 CoefficientSpace_u;
 
   // Coefficients
-  dolfin::CoefficientAssigner f;
   dolfin::CoefficientAssigner u;
 };
 
 // Class typedefs
-typedef Form_0 BilinearForm;
-typedef Form_1 LinearForm;
+typedef Form_1 BilinearForm;
+typedef Form_1 JacobianForm;
+typedef Form_0 LinearForm;
+typedef Form_0 ResidualForm;
 typedef Form_0::TestSpace FunctionSpace;
 
 }
