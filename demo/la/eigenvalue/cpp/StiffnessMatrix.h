@@ -1892,7 +1892,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3})), Measure('cell', 0, None, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

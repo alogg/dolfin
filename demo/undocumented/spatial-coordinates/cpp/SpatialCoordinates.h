@@ -2798,7 +2798,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2934,7 +2934,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(FloatValue(10, (), (), {}), exp(Division(Product(IntValue(-1, (), (), {}), Sum(Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {}))), IntValue(2, (), (), {})))), FloatValue(0.02, (), (), {}))))), Measure('cell', 0, None, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(IntValue(-1, (), (), {}), sin(Product(FloatValue(5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})))))), Measure('exterior_facet', 0, None, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(FloatValue(10, (), (), {}), exp(Division(Product(IntValue(-1, (), (), {}), Sum(Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {}))), IntValue(2, (), (), {})), Power(Sum(FloatValue(-0.5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(1),), {}))), IntValue(2, (), (), {})))), FloatValue(0.02, (), (), {}))))), Measure('cell', 0, None)), Integral(Product(Argument(FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None), 0), Product(IntValue(-1, (), (), {}), sin(Product(FloatValue(5, (), (), {}), Indexed(SpatialCoordinate(Cell('triangle', Space(2))), MultiIndex((FixedIndex(0),), {})))))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)

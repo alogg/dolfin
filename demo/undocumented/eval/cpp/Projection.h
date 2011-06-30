@@ -4866,7 +4866,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 0), Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 1)), Measure('cell', 0, None, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 0), Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 1)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5002,7 +5002,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 0), Coefficient(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 0)), Measure('cell', 0, None, None))])";
+    return "Form([Integral(Product(Argument(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 0), Coefficient(FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 2, None), 0)), Measure('cell', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
