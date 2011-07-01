@@ -12828,6 +12828,7 @@ public:
 
 // Class typedefs
 typedef Form_0 BilinearForm;
+typedef Form_0 JacobianForm;
 typedef Form_0::TestSpace FunctionSpace;
 
 }
