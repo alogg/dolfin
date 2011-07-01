@@ -5362,6 +5362,271 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     static const unsigned int nzc5[2] = {4, 7};
     
     // Reset values in the element tensor.
+    for (unsigned int r = 0; r < 8; r++)
+    {
+      A[r] = 0.000000000000000;
+    }// end loop over 'r'
+    // Number of operations to compute geometry constants: 177.
+    double G[21];
+    G[0] = det*w[3][0]*w[4][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22);
+    G[1] = det*w[3][0]*w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22);
+    G[2] = det*w[3][0]*w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22);
+    G[3] = det*w[3][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22 - w[4][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22));
+    G[4] = det*w[3][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22 - w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22));
+    G[5] = det*w[3][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22 - w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22));
+    G[6] =  - det*w[2][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22);
+    G[7] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02);
+    G[8] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12);
+    G[9] = det*w[3][0]*w[4][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12);
+    G[10] = det*w[3][0]*w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12);
+    G[11] = det*w[3][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12 - w[4][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12));
+    G[12] = det*w[3][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12 - w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12));
+    G[13] =  - det*w[2][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22);
+    G[14] =  - det*w[2][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22);
+    G[15] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12);
+    G[16] = det*w[3][0]*w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02);
+    G[17] = det*w[3][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02 - w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02));
+    G[18] = -4.000000000000000e+02*det;
+    G[19] = 6.000000000000000e+02*det;
+    G[20] = -2.000000000000000e+02*det;
+    
+    // Compute element tensor using UFL quadrature representation
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
+    
+    // Loop quadrature points for integral.
+    // Number of operations to compute element tensor for following IP loop = 2310
+    for (unsigned int ip = 0; ip < 14; ip++)
+    {
+      
+      // Coefficient declarations.
+      double F0 = 0.000000000000000;
+      double F1 = 0.000000000000000;
+      double F2 = 0.000000000000000;
+      double F3 = 0.000000000000000;
+      double F4 = 0.000000000000000;
+      double F5 = 0.000000000000000;
+      double F6 = 0.000000000000000;
+      double F7 = 0.000000000000000;
+      double F8 = 0.000000000000000;
+      double F9 = 0.000000000000000;
+      double F10 = 0.000000000000000;
+      double F11 = 0.000000000000000;
+      
+      // Total number of operations to compute function values = 36
+      for (unsigned int r = 0; r < 2; r++)
+      {
+        F0 += FE1_C0_D001[ip][r]*w[0][nzc7[r]];
+        F1 += FE1_C0_D001[ip][r]*w[0][nzc6[r]];
+        F2 += FE1_C0_D001[ip][r]*w[0][nzc5[r]];
+        F3 += FE1_C0_D001[ip][r]*w[1][nzc7[r]];
+        F4 += FE1_C0_D001[ip][r]*w[1][nzc6[r]];
+        F5 += FE1_C0_D001[ip][r]*w[1][nzc5[r]];
+        F8 += FE1_C0_D001[ip][r]*w[0][nzc3[r]];
+        F9 += FE1_C0_D001[ip][r]*w[0][nzc2[r]];
+        F10 += FE1_C0_D001[ip][r]*w[0][nzc1[r]];
+      }// end loop over 'r'
+      
+      // Total number of operations to compute function values = 24
+      for (unsigned int r = 0; r < 4; r++)
+      {
+        F6 += FE1_C0[ip][r]*w[0][nzc0[r]];
+        F7 += FE1_C0[ip][r]*w[1][nzc0[r]];
+        F11 += FE1_C0[ip][r]*w[0][nzc4[r]];
+      }// end loop over 'r'
+      
+      // Number of operations to compute ip constants: 65
+      double I[8];
+      // Number of operations: 12
+      I[0] = W14[ip]*(F0*G[0] + F1*G[1] + F2*G[2] + F3*G[3] + F4*G[4] + F5*G[5]);
+      
+      // Number of operations: 6
+      I[1] = W14[ip]*(F10*G[6] + F8*G[7] + F9*G[8]);
+      
+      // Number of operations: 12
+      I[2] = W14[ip]*(F0*G[9] + F1*G[10] + F2*G[1] + F3*G[11] + F4*G[12] + F5*G[4]);
+      
+      // Number of operations: 6
+      I[3] = W14[ip]*(F10*G[13] + F8*G[6] + F9*G[14]);
+      
+      // Number of operations: 6
+      I[4] = W14[ip]*(F10*G[14] + F8*G[8] + F9*G[15]);
+      
+      // Number of operations: 12
+      I[5] = W14[ip]*(F0*G[16] + F1*G[9] + F2*G[0] + F3*G[17] + F4*G[11] + F5*G[3]);
+      
+      // Number of operations: 3
+      I[6] = W14[ip]*det*(F6 - F7);
+      
+      // Number of operations: 8
+      I[7] = W14[ip]*(F11*det + F6*(G[20] + F6*(G[19] + F6*G[18])));
+      
+      
+      // Number of operations for primary indices: 24
+      for (unsigned int j = 0; j < 2; j++)
+      {
+        // Number of operations to compute entry: 2
+        A[nzc1[j]] += FE1_C0_D001[ip][j]*I[0];
+        // Number of operations to compute entry: 2
+        A[nzc7[j]] += FE1_C0_D001[ip][j]*I[1];
+        // Number of operations to compute entry: 2
+        A[nzc2[j]] += FE1_C0_D001[ip][j]*I[2];
+        // Number of operations to compute entry: 2
+        A[nzc5[j]] += FE1_C0_D001[ip][j]*I[3];
+        // Number of operations to compute entry: 2
+        A[nzc6[j]] += FE1_C0_D001[ip][j]*I[4];
+        // Number of operations to compute entry: 2
+        A[nzc3[j]] += FE1_C0_D001[ip][j]*I[5];
+      }// end loop over 'j'
+      
+      // Number of operations for primary indices: 16
+      for (unsigned int j = 0; j < 4; j++)
+      {
+        // Number of operations to compute entry: 2
+        A[nzc0[j]] += FE1_C0[ip][j]*I[6];
+        // Number of operations to compute entry: 2
+        A[nzc4[j]] += FE1_C0[ip][j]*I[7];
+      }// end loop over 'j'
+    }// end loop over 'ip'
+}
+
+/// Tabulate the tensor for the contribution from a local cell
+/// using the specified reference cell quadrature points/weights
+void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
+                     const double * const * w,
+                     const ufc::cell& c,
+                     unsigned int num_quadrature_points,
+                     const double * const * quadrature_points,
+                     const double* quadrature_weights) const
+{
+    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
+}
+
+/// Constructor
+cahnhilliard3d_cell_integral_1_0::cahnhilliard3d_cell_integral_1_0() : ufc::cell_integral()
+{
+    // Do nothing
+}
+
+/// Destructor
+cahnhilliard3d_cell_integral_1_0::~cahnhilliard3d_cell_integral_1_0()
+{
+    // Do nothing
+}
+
+/// Tabulate the tensor for the contribution from a local cell
+void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
+                                    const double * const * w,
+                                    const ufc::cell& c) const
+{
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_02 = x[3][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    const double J_12 = x[3][1] - x[0][1];
+    const double J_20 = x[1][2] - x[0][2];
+    const double J_21 = x[2][2] - x[0][2];
+    const double J_22 = x[3][2] - x[0][2];
+    
+    // Compute sub determinants
+    const double d_00 = J_11*J_22 - J_12*J_21;
+    const double d_01 = J_12*J_20 - J_10*J_22;
+    const double d_02 = J_10*J_21 - J_11*J_20;
+    const double d_10 = J_02*J_21 - J_01*J_22;
+    const double d_11 = J_00*J_22 - J_02*J_20;
+    const double d_12 = J_01*J_20 - J_00*J_21;
+    const double d_20 = J_01*J_12 - J_02*J_11;
+    const double d_21 = J_02*J_10 - J_00*J_12;
+    const double d_22 = J_00*J_11 - J_01*J_10;
+    
+    // Compute determinant of Jacobian
+    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
+    
+    // Compute inverse of Jacobian
+    const double K_00 = d_00 / detJ;
+    const double K_01 = d_10 / detJ;
+    const double K_02 = d_20 / detJ;
+    const double K_10 = d_01 / detJ;
+    const double K_11 = d_11 / detJ;
+    const double K_12 = d_21 / detJ;
+    const double K_20 = d_02 / detJ;
+    const double K_21 = d_12 / detJ;
+    const double K_22 = d_22 / detJ;
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Cell Volume.
+    
+    // Compute circumradius.
+    
+    
+    // Array of quadrature weights.
+    static const double W14[14] = {0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.022139791114265, 0.022139791114265, 0.022139791114265, 0.022139791114265};
+    // Quadrature points on the UFC reference element: (0.000000000000000, 0.500000000000000, 0.500000000000000), (0.500000000000000, 0.000000000000000, 0.500000000000000), (0.500000000000000, 0.500000000000000, 0.000000000000000), (0.500000000000000, 0.000000000000000, 0.000000000000000), (0.000000000000000, 0.500000000000000, 0.000000000000000), (0.000000000000000, 0.000000000000000, 0.500000000000000), (0.698419704324387, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.698419704324387), (0.100526765225204, 0.698419704324387, 0.100526765225204), (0.056881379520423, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.056881379520423), (0.314372873493192, 0.056881379520423, 0.314372873493192)
+    
+    // Value of basis functions at quadrature points.
+    static const double FE1_C0[14][4] = \
+    {{0.000000000000000, 0.000000000000000, 0.500000000000000, 0.500000000000000},
+    {0.000000000000000, 0.500000000000000, 0.000000000000000, 0.500000000000000},
+    {0.000000000000000, 0.500000000000000, 0.500000000000000, 0.000000000000000},
+    {0.500000000000000, 0.500000000000000, 0.000000000000000, 0.000000000000000},
+    {0.500000000000000, 0.000000000000000, 0.500000000000000, 0.000000000000000},
+    {0.500000000000000, 0.000000000000000, 0.000000000000000, 0.500000000000000},
+    {0.100526765225204, 0.698419704324386, 0.100526765225205, 0.100526765225205},
+    {0.698419704324386, 0.100526765225204, 0.100526765225205, 0.100526765225205},
+    {0.100526765225204, 0.100526765225204, 0.100526765225205, 0.698419704324386},
+    {0.100526765225204, 0.100526765225204, 0.698419704324386, 0.100526765225205},
+    {0.314372873493192, 0.056881379520423, 0.314372873493192, 0.314372873493192},
+    {0.056881379520423, 0.314372873493192, 0.314372873493192, 0.314372873493192},
+    {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.056881379520423},
+    {0.314372873493192, 0.314372873493192, 0.056881379520423, 0.314372873493192}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc0[4] = {0, 1, 2, 3};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc4[4] = {4, 5, 6, 7};
+    
+    static const double FE1_C0_D001[14][2] = \
+    {{-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000},
+    {-1.000000000000000, 1.000000000000000}};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 3};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc3[2] = {0, 1};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 2};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc6[2] = {4, 6};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc7[2] = {4, 5};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc5[2] = {4, 7};
+    
+    // Reset values in the element tensor.
     for (unsigned int r = 0; r < 64; r++)
     {
       A[r] = 0.000000000000000;
@@ -5508,271 +5773,6 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
 
 /// Tabulate the tensor for the contribution from a local cell
 /// using the specified reference cell quadrature points/weights
-void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
-                     const double * const * w,
-                     const ufc::cell& c,
-                     unsigned int num_quadrature_points,
-                     const double * const * quadrature_points,
-                     const double* quadrature_weights) const
-{
-    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
-}
-
-/// Constructor
-cahnhilliard3d_cell_integral_1_0::cahnhilliard3d_cell_integral_1_0() : ufc::cell_integral()
-{
-    // Do nothing
-}
-
-/// Destructor
-cahnhilliard3d_cell_integral_1_0::~cahnhilliard3d_cell_integral_1_0()
-{
-    // Do nothing
-}
-
-/// Tabulate the tensor for the contribution from a local cell
-void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
-                                    const double * const * w,
-                                    const ufc::cell& c) const
-{
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
-    
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-    
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
-    
-    // Set scale factor
-    const double det = std::abs(detJ);
-    
-    // Cell Volume.
-    
-    // Compute circumradius.
-    
-    
-    // Array of quadrature weights.
-    static const double W14[14] = {0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.022139791114265, 0.022139791114265, 0.022139791114265, 0.022139791114265};
-    // Quadrature points on the UFC reference element: (0.000000000000000, 0.500000000000000, 0.500000000000000), (0.500000000000000, 0.000000000000000, 0.500000000000000), (0.500000000000000, 0.500000000000000, 0.000000000000000), (0.500000000000000, 0.000000000000000, 0.000000000000000), (0.000000000000000, 0.500000000000000, 0.000000000000000), (0.000000000000000, 0.000000000000000, 0.500000000000000), (0.698419704324387, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.698419704324387), (0.100526765225204, 0.698419704324387, 0.100526765225204), (0.056881379520423, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.056881379520423), (0.314372873493192, 0.056881379520423, 0.314372873493192)
-    
-    // Value of basis functions at quadrature points.
-    static const double FE1_C0[14][4] = \
-    {{0.000000000000000, 0.000000000000000, 0.500000000000000, 0.500000000000000},
-    {0.000000000000000, 0.500000000000000, 0.000000000000000, 0.500000000000000},
-    {0.000000000000000, 0.500000000000000, 0.500000000000000, 0.000000000000000},
-    {0.500000000000000, 0.500000000000000, 0.000000000000000, 0.000000000000000},
-    {0.500000000000000, 0.000000000000000, 0.500000000000000, 0.000000000000000},
-    {0.500000000000000, 0.000000000000000, 0.000000000000000, 0.500000000000000},
-    {0.100526765225204, 0.698419704324386, 0.100526765225205, 0.100526765225205},
-    {0.698419704324386, 0.100526765225204, 0.100526765225205, 0.100526765225205},
-    {0.100526765225204, 0.100526765225204, 0.100526765225205, 0.698419704324386},
-    {0.100526765225204, 0.100526765225204, 0.698419704324386, 0.100526765225205},
-    {0.314372873493192, 0.056881379520423, 0.314372873493192, 0.314372873493192},
-    {0.056881379520423, 0.314372873493192, 0.314372873493192, 0.314372873493192},
-    {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.056881379520423},
-    {0.314372873493192, 0.314372873493192, 0.056881379520423, 0.314372873493192}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc0[4] = {0, 1, 2, 3};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc4[4] = {4, 5, 6, 7};
-    
-    static const double FE1_C0_D001[14][2] = \
-    {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000}};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc1[2] = {0, 3};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc3[2] = {0, 1};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc2[2] = {0, 2};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc6[2] = {4, 6};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc7[2] = {4, 5};
-    
-    // Array of non-zero columns
-    static const unsigned int nzc5[2] = {4, 7};
-    
-    // Reset values in the element tensor.
-    for (unsigned int r = 0; r < 8; r++)
-    {
-      A[r] = 0.000000000000000;
-    }// end loop over 'r'
-    // Number of operations to compute geometry constants: 177.
-    double G[21];
-    G[0] = det*w[3][0]*w[4][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22);
-    G[1] = det*w[3][0]*w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22);
-    G[2] = det*w[3][0]*w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22);
-    G[3] = det*w[3][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22 - w[4][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22));
-    G[4] = det*w[3][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22 - w[4][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22));
-    G[5] = det*w[3][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22 - w[4][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22));
-    G[6] =  - det*w[2][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22);
-    G[7] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02);
-    G[8] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12);
-    G[9] = det*w[3][0]*w[4][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12);
-    G[10] = det*w[3][0]*w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12);
-    G[11] = det*w[3][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12 - w[4][0]*(K_00*K_10 + K_01*K_11 + K_02*K_12));
-    G[12] = det*w[3][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12 - w[4][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12));
-    G[13] =  - det*w[2][0]*(K_20*K_20 + K_21*K_21 + K_22*K_22);
-    G[14] =  - det*w[2][0]*(K_10*K_20 + K_11*K_21 + K_12*K_22);
-    G[15] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12);
-    G[16] = det*w[3][0]*w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02);
-    G[17] = det*w[3][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02 - w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02));
-    G[18] = -4.000000000000000e+02*det;
-    G[19] = 6.000000000000000e+02*det;
-    G[20] = -2.000000000000000e+02*det;
-    
-    // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
-    
-    // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 2310
-    for (unsigned int ip = 0; ip < 14; ip++)
-    {
-      
-      // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      double F1 = 0.000000000000000;
-      double F2 = 0.000000000000000;
-      double F3 = 0.000000000000000;
-      double F4 = 0.000000000000000;
-      double F5 = 0.000000000000000;
-      double F6 = 0.000000000000000;
-      double F7 = 0.000000000000000;
-      double F8 = 0.000000000000000;
-      double F9 = 0.000000000000000;
-      double F10 = 0.000000000000000;
-      double F11 = 0.000000000000000;
-      
-      // Total number of operations to compute function values = 36
-      for (unsigned int r = 0; r < 2; r++)
-      {
-        F0 += FE1_C0_D001[ip][r]*w[0][nzc7[r]];
-        F1 += FE1_C0_D001[ip][r]*w[0][nzc6[r]];
-        F2 += FE1_C0_D001[ip][r]*w[0][nzc5[r]];
-        F3 += FE1_C0_D001[ip][r]*w[1][nzc7[r]];
-        F4 += FE1_C0_D001[ip][r]*w[1][nzc6[r]];
-        F5 += FE1_C0_D001[ip][r]*w[1][nzc5[r]];
-        F8 += FE1_C0_D001[ip][r]*w[0][nzc3[r]];
-        F9 += FE1_C0_D001[ip][r]*w[0][nzc2[r]];
-        F10 += FE1_C0_D001[ip][r]*w[0][nzc1[r]];
-      }// end loop over 'r'
-      
-      // Total number of operations to compute function values = 24
-      for (unsigned int r = 0; r < 4; r++)
-      {
-        F6 += FE1_C0[ip][r]*w[0][nzc0[r]];
-        F7 += FE1_C0[ip][r]*w[1][nzc0[r]];
-        F11 += FE1_C0[ip][r]*w[0][nzc4[r]];
-      }// end loop over 'r'
-      
-      // Number of operations to compute ip constants: 65
-      double I[8];
-      // Number of operations: 12
-      I[0] = W14[ip]*(F0*G[0] + F1*G[1] + F2*G[2] + F3*G[3] + F4*G[4] + F5*G[5]);
-      
-      // Number of operations: 6
-      I[1] = W14[ip]*(F10*G[6] + F8*G[7] + F9*G[8]);
-      
-      // Number of operations: 12
-      I[2] = W14[ip]*(F0*G[9] + F1*G[10] + F2*G[1] + F3*G[11] + F4*G[12] + F5*G[4]);
-      
-      // Number of operations: 6
-      I[3] = W14[ip]*(F10*G[13] + F8*G[6] + F9*G[14]);
-      
-      // Number of operations: 6
-      I[4] = W14[ip]*(F10*G[14] + F8*G[8] + F9*G[15]);
-      
-      // Number of operations: 12
-      I[5] = W14[ip]*(F0*G[16] + F1*G[9] + F2*G[0] + F3*G[17] + F4*G[11] + F5*G[3]);
-      
-      // Number of operations: 3
-      I[6] = W14[ip]*det*(F6 - F7);
-      
-      // Number of operations: 8
-      I[7] = W14[ip]*(F11*det + F6*(G[20] + F6*(G[19] + F6*G[18])));
-      
-      
-      // Number of operations for primary indices: 24
-      for (unsigned int j = 0; j < 2; j++)
-      {
-        // Number of operations to compute entry: 2
-        A[nzc1[j]] += FE1_C0_D001[ip][j]*I[0];
-        // Number of operations to compute entry: 2
-        A[nzc7[j]] += FE1_C0_D001[ip][j]*I[1];
-        // Number of operations to compute entry: 2
-        A[nzc2[j]] += FE1_C0_D001[ip][j]*I[2];
-        // Number of operations to compute entry: 2
-        A[nzc5[j]] += FE1_C0_D001[ip][j]*I[3];
-        // Number of operations to compute entry: 2
-        A[nzc6[j]] += FE1_C0_D001[ip][j]*I[4];
-        // Number of operations to compute entry: 2
-        A[nzc3[j]] += FE1_C0_D001[ip][j]*I[5];
-      }// end loop over 'j'
-      
-      // Number of operations for primary indices: 16
-      for (unsigned int j = 0; j < 4; j++)
-      {
-        // Number of operations to compute entry: 2
-        A[nzc0[j]] += FE1_C0[ip][j]*I[6];
-        // Number of operations to compute entry: 2
-        A[nzc4[j]] += FE1_C0[ip][j]*I[7];
-      }// end loop over 'j'
-    }// end loop over 'ip'
-}
-
-/// Tabulate the tensor for the contribution from a local cell
-/// using the specified reference cell quadrature points/weights
 void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
                      const double * const * w,
                      const ufc::cell& c,
@@ -5798,19 +5798,19 @@ cahnhilliard3d_form_0::~cahnhilliard3d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_0::signature() const
 {
-    return "Form([Integral(Sum(Sum(Product(Constant(Cell('tetrahedron', Space(3)), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Product(Constant(Cell('tetrahedron', Space(3)), 3), Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3}))), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {})))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('tetrahedron', Space(3)), 1), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(4),), {Index(4): 3}))), MultiIndex((Index(4),), {Index(4): 3})))), Sum(Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {}))), Product(IntValue(-1, (), (), {}), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Sum(Sum(Product(Power(Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), IntValue(2, (), (), {})), Product(IntValue(100, (), (), {}), Product(IntValue(2, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {}))))), Product(Product(IntValue(100, (), (), {}), Product(IntValue(2, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), Product(Product(IntValue(2, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {})))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))))))), Sum(Product(Product(IntValue(100, (), (), {}), Power(Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)), IntValue(2, (), (), {}))), Product(IntValue(-2, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {}))))), Product(Product(IntValue(100, (), (), {}), Product(Product(IntValue(2, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {}))), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), Product(IntValue(-2, (), (), {}), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))))))))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Sum(Product(Constant(Cell('tetrahedron', Space(3)), 3), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Sum(Product(Constant(Cell('tetrahedron', Space(3)), 4), Indexed(SpatialDerivative(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(1),), {}))), Product(Indexed(SpatialDerivative(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(1),), {})), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Constant(Cell('tetrahedron', Space(3)), 4))))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3}))), Sum(Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))), Product(IntValue(-1, (), (), {}), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('tetrahedron', Space(3)), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(4),), {Index(4): 3}))), MultiIndex((Index(4),), {Index(4): 3})))), Sum(Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {}))), Product(IntValue(-1, (), (), {}), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Sum(Product(Power(Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), IntValue(2, (), (), {})), Product(IntValue(100, (), (), {}), Product(IntValue(2, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))))), Product(Product(IntValue(100, (), (), {}), Power(Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)), IntValue(2, (), (), {}))), Product(IntValue(-2, (), (), {}), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
 unsigned int cahnhilliard3d_form_0::rank() const
 {
-    return 2;
+    return 1;
 }
 
 /// Return the number of coefficients (n)
 unsigned int cahnhilliard3d_form_0::num_coefficients() const
 {
-    return 4;
+    return 5;
 }
 
 /// Return the number of cell domains
@@ -5953,19 +5953,19 @@ cahnhilliard3d_form_1::~cahnhilliard3d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_1::signature() const
 {
-    return "Form([Integral(Sum(Sum(Product(Constant(Cell('tetrahedron', Space(3)), 3), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Sum(Product(Constant(Cell('tetrahedron', Space(3)), 4), Indexed(SpatialDerivative(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(1),), {}))), Product(Indexed(SpatialDerivative(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(1),), {})), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Constant(Cell('tetrahedron', Space(3)), 4))))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3}))), Sum(Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))), Product(IntValue(-1, (), (), {}), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('tetrahedron', Space(3)), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(4),), {Index(4): 3}))), MultiIndex((Index(4),), {Index(4): 3})))), Sum(Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {}))), Product(IntValue(-1, (), (), {}), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Sum(Product(Power(Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), IntValue(2, (), (), {})), Product(IntValue(100, (), (), {}), Product(IntValue(2, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))))), Product(Product(IntValue(100, (), (), {}), Power(Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)), IntValue(2, (), (), {}))), Product(IntValue(-2, (), (), {}), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))))))))))), Measure('cell', 0, None))])";
+    return "Form([Integral(Sum(Sum(Product(Constant(Cell('tetrahedron', Space(3)), 2), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(0),), {Index(0): 3})), MultiIndex((Index(1),), {Index(1): 3})), Indexed(ComponentTensor(Product(Constant(Cell('tetrahedron', Space(3)), 3), Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((FixedIndex(1),), {}))), MultiIndex((Index(2),), {Index(2): 3})), MultiIndex((Index(1),), {Index(1): 3}))), MultiIndex((Index(1),), {Index(1): 3}))), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {})))), Sum(Product(IntValue(-1, (), (), {}), Product(Constant(Cell('tetrahedron', Space(3)), 1), IndexSum(Product(Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((FixedIndex(1),), {})), MultiIndex((Index(3),), {Index(3): 3})), MultiIndex((Index(4),), {Index(4): 3})), Indexed(ComponentTensor(Indexed(SpatialDerivative(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((FixedIndex(0),), {})), MultiIndex((Index(5),), {Index(5): 3})), MultiIndex((Index(4),), {Index(4): 3}))), MultiIndex((Index(4),), {Index(4): 3})))), Sum(Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(1),), {}))), Product(IntValue(-1, (), (), {}), Product(Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(1),), {})), Sum(Sum(Product(Power(Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), IntValue(2, (), (), {})), Product(IntValue(100, (), (), {}), Product(IntValue(2, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {}))))), Product(Product(IntValue(100, (), (), {}), Product(IntValue(2, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), Product(Product(IntValue(2, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {})))), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))))))), Sum(Product(Product(IntValue(100, (), (), {}), Power(Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)), IntValue(2, (), (), {}))), Product(IntValue(-2, (), (), {}), Product(IntValue(-1, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {}))))), Product(Product(IntValue(100, (), (), {}), Product(Product(IntValue(2, (), (), {}), Indexed(Argument(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 1), MultiIndex((FixedIndex(0),), {}))), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0)))), Product(IntValue(-2, (), (), {}), Sum(IntValue(1, (), (), {}), Product(IntValue(-1, (), (), {}), Variable(Indexed(Coefficient(MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) }), 0), MultiIndex((FixedIndex(0),), {})), Label(0))))))))))))), Measure('cell', 0, None))])";
 }
 
 /// Return the rank of the global tensor (r)
 unsigned int cahnhilliard3d_form_1::rank() const
 {
-    return 1;
+    return 2;
 }
 
 /// Return the number of coefficients (n)
 unsigned int cahnhilliard3d_form_1::num_coefficients() const
 {
-    return 5;
+    return 4;
 }
 
 /// Return the number of cell domains
