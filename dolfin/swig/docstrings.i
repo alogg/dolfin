@@ -2783,6 +2783,10 @@ Add values to each entry on local process
   Gather entries into Array x
 ";
 
+%feature("docstring")  dolfin::GenericVector::gather_on_zero "
+Gather all entries into Array x on process 0
+";
+
 %feature("docstring")  dolfin::GenericVector::axpy "
 Add multiple of given vector (AXPY operation)
 ";
@@ -3813,6 +3817,10 @@ Add all values to each entry on local process
   Gather entries into Array x
 ";
 
+%feature("docstring")  dolfin::EpetraVector::gather_on_zero "
+Gather all entries into Array x on process 0
+";
+
 %feature("docstring")  dolfin::EpetraVector::axpy "
 Add multiple of given vector (AXPY operation)
 ";
@@ -4625,6 +4633,10 @@ Add values to each entry on local process
   Gather entries into Array x
 ";
 
+%feature("docstring")  dolfin::uBLASVector::gather_on_zero "
+Gather all entries into Array x on process 0
+";
+
 %feature("docstring")  dolfin::uBLASVector::axpy "
 Add multiple of given vector (AXPY operation)
 ";
@@ -4852,6 +4864,22 @@ Set all values on local process
 Add values to each entry on local process
 ";
 
+%feature("docstring")  dolfin::PETScVector::gather "
+**Overloaded versions**
+
+* gather\ **(y, indices)**
+
+  Gather vector entries into a local vector
+
+* gather\ **(x, indices)**
+
+  Gather entries into Array x
+";
+
+%feature("docstring")  dolfin::PETScVector::gather_on_zero "
+Gather all entries into Array x on process 0
+";
+
 %feature("docstring")  dolfin::PETScVector::axpy "
 Add multiple of given vector (AXPY operation)
 ";
@@ -4938,18 +4966,6 @@ Return linear algebra backend factory
 
 %feature("docstring")  dolfin::PETScVector::vec "
 Return shared_ptr to PETSc Vec object
-";
-
-%feature("docstring")  dolfin::PETScVector::gather "
-**Overloaded versions**
-
-* gather\ **(y, indices)**
-
-  Gather vector entries into a local vector
-
-* gather\ **(x, indices)**
-
-  Gather entries into Array x
 ";
 
 // Documentation extracted from: (module=la, header=MTL4Vector.h)
@@ -5047,6 +5063,10 @@ Add all values to each entry on local process
 
 %feature("docstring")  dolfin::MTL4Vector::gather "
 Gather entries into local vector x
+";
+
+%feature("docstring")  dolfin::MTL4Vector::gather_on_zero "
+Gather all entries into Array x on process 0
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::axpy "
@@ -5887,6 +5907,10 @@ Add values to each entry on local process
 * gather\ **(x, indices)**
 
   Gather entries into Array x
+";
+
+%feature("docstring")  dolfin::Vector::gather_on_zero "
+Gather all entries into Array x on process 0
 ";
 
 %feature("docstring")  dolfin::Vector::axpy "
@@ -9829,6 +9853,18 @@ Set a barrier (synchronization point)
   Distribute local arrays on all processors according to given partition
 ";
 
+%feature("docstring")  dolfin::MPI::broadcast "
+**Overloaded versions**
+
+* broadcast\ **(value, broadcaster=0)**
+
+  Broadcast value from broadcaster process to all processes
+
+* broadcast\ **(values, broadcaster=0)**
+
+  Broadcast value from broadcaster process to all processes
+";
+
 %feature("docstring")  dolfin::MPI::scatter "
 **Overloaded versions**
 
@@ -9855,23 +9891,18 @@ Set a barrier (synchronization point)
 * gather\ **(values)**
 
   Gather values, one from each process (wrapper for MPI_Allgather)
-
-* gather\ **(values)**
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
 ";
 
-%feature("docstring")  dolfin::MPI::gather_all "
-Gather values, one from each process (wrapper for boost::mpi::all_gather)
+%feature("docstring")  dolfin::MPI::max "
+Return  maximum value
 ";
 
-%feature("docstring")  dolfin::MPI::global_maximum "
-Find global max value (wrapper for MPI_Allredue with MPI_MAX as
-reduction op)
+%feature("docstring")  dolfin::MPI::min "
+Return minimum value
 ";
 
 %feature("docstring")  dolfin::MPI::sum "
-Sum values and return sum
+Return sum across all processes
 ";
 
 %feature("docstring")  dolfin::MPI::global_offset "
@@ -9897,7 +9928,7 @@ reduction op)
 * local_range\ **(N)**
 
   Return local range for local process, splitting [0, N - 1] into
-   num_processes() portions of almost equal size
+  num_processes() portions of almost equal size
 
 * local_range\ **(process, N)**
 
@@ -9992,6 +10023,53 @@ Read from file
 Check if file exists
 ";
 
+// Documentation extracted from: (module=adaptivity, header=AdaptiveDatum.h)
+%feature("docstring")  dolfin::AdaptiveDatum "
+An :py:class:`AdaptiveDatum` is a storage unit for data created in an
+adaptive process.
+";
+
+%feature("docstring")  dolfin::AdaptiveDatum::AdaptiveDatum "
+Create adaptive datum
+
+*Arguments*
+
+    refinement_level (int)
+        the number of refinements relative to coarset mesh
+
+    num_dofs (int)
+        dimension of discrete solution space
+
+    num_cells (int)
+        number of cells in mesh
+
+    error_estimate (float)
+        error estimate
+
+    tolerance (float)
+        error (or num_dofs) tolerance
+";
+
+%feature("docstring")  dolfin::AdaptiveDatum::store "
+**Overloaded versions**
+
+* store\ **(filename)**
+
+  Store adaptive datum to file
+  
+  *Arguments*
+      filename (str)
+          Name of file to store in
+
+* store\ **(table)**
+
+  Store adaptive datum to :py:class:`Table`.
+  
+  *Arguments*
+      table (:py:class:`Table`)
+          Table to store in
+";
+
 // Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver "
 An abstract class for goal-oriented adaptive solution of
@@ -10030,7 +10108,7 @@ variational problems.
       tol (float)
           The error tolerance
   
-      goal (_GoalFunctional_)
+      goal (:py:class:`GoalFunctional`)
           The goal functional
   
 ";
@@ -10158,7 +10236,7 @@ GoalFunctional's ErrorControl object.
     tol (float)
         The error tolerance
 
-    goal (_GoalFunctional_)
+    goal (:py:class:`GoalFunctional`)
         The goal functional
 
 ";
@@ -10178,7 +10256,7 @@ Extract the boundary conditions for the primal problem.
 
 *Returns*
 
-    std::vector<boost::shared_ptr<const BoundaryCondition> >
+    std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >
         The primal boundary conditions
 
 ";
@@ -10192,7 +10270,7 @@ Evaluate the goal functional.
        The functional to be evaluated
 
    u (:py:class:`Function`)
-       The function of which to evaluate the functional
+       The function at which to evaluate the functional
 
 *Returns*
 
@@ -10257,7 +10335,7 @@ GoalFunctional's ErrorControl object.
     tol (float)
         The error tolerance
 
-    goal (_GoalFunctional_)
+    goal (:py:class:`GoalFunctional`)
         The goal functional
 
 ";
@@ -10277,7 +10355,7 @@ Extract the boundary conditions for the primal problem.
 
 *Returns*
 
-    std::vector<boost::shared_ptr<const BoundaryCondition> >
+    std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >
         The primal boundary conditions
 
 ";
@@ -10291,7 +10369,7 @@ Evaluate the goal functional.
        The functional to be evaluated
 
    u (:py:class:`Function`)
-       The function of which to evaluate the functional
+       The function at which to evaluate the functional
 
 *Returns*
 
@@ -10308,6 +10386,33 @@ Adapt the problem to other mesh.
    mesh (:py:class:`Mesh`)
        The other mesh
 
+";
+
+// Documentation extracted from: (module=adaptivity, header=GoalFunctional.h)
+%feature("docstring")  dolfin::GoalFunctional "
+A :py:class:`GoalFunctional` is a :py:class:`Form` of rank 0 with an associated
+:py:class:`ErrorControl`.
+";
+
+%feature("docstring")  dolfin::GoalFunctional::GoalFunctional "
+Create :py:class:`GoalFunctional`
+
+*Arguments*
+    rank (int)
+        the rank of the functional (should be 0)
+
+    num_coefficients (int)
+        the number of coefficients in functional
+";
+
+%feature("docstring")  dolfin::GoalFunctional::update_ec "
+Update error control instance with given forms
+
+*Arguments*
+    a (:py:class:`Form`)
+        a bilinear form
+    L (:py:class:`Form`)
+        a linear form
 ";
 
 // Documentation extracted from: (module=adaptivity, header=ErrorControl.h)
@@ -10359,7 +10464,7 @@ residuals) of the weak residual.
     R_T (:py:class:`Function`)
         the strong cell residual (to be computed)
 
-    R_dT (_SpecialFacetFunction_)
+    R_dT (:py:class:`SpecialFacetFunction`)
         the strong facet residual (to be computed)
 
     u (:py:class:`Function`)
@@ -10383,7 +10488,7 @@ Compute representation for the strong facet residual from the
 weak residual and the strong cell residual
 
 *Arguments*
-    R_dT (_SpecialFacetFunction_)
+    R_dT (:py:class:`SpecialFacetFunction`)
         the strong facet residual (to be computed)
 
     u (:py:class:`Function`)
@@ -10415,6 +10520,86 @@ Compute extrapolation with boundary conditions
 
     bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
         the dual boundary conditions
+";
+
+// Documentation extracted from: (module=adaptivity, header=Extrapolation.h)
+%feature("docstring")  dolfin::Extrapolation "
+This class implements an algorithm for extrapolating a function
+on a given function space from an approximation of that function
+on a possibly lower-order function space.
+
+This can be used to obtain a higher-order approximation of a
+computed dual solution, which is necessary when the computed
+dual approximation is in the test space of the primal problem,
+thereby being orthogonal to the residual.
+
+It is assumed that the extrapolation is computed on the same
+mesh as the original function.
+";
+
+%feature("docstring")  dolfin::Extrapolation::extrapolate "
+Compute extrapolation w from v
+";
+
+// Documentation extracted from: (module=adaptivity, header=LocalAssembler.h)
+%feature("docstring")  dolfin::LocalAssembler "
+
+";
+
+%feature("docstring")  dolfin::LocalAssembler::assemble "
+
+";
+
+%feature("docstring")  dolfin::LocalAssembler::assemble_cell "
+
+";
+
+%feature("docstring")  dolfin::LocalAssembler::assemble_exterior_facet "
+
+";
+
+%feature("docstring")  dolfin::LocalAssembler::assemble_interior_facet "
+
+";
+
+// Documentation extracted from: (module=adaptivity, header=SpecialFacetFunction.h)
+%feature("docstring")  dolfin::SpecialFacetFunction::SpecialFacetFunction "
+**Overloaded versions**
+
+* SpecialFacetFunction\ **(f_e)**
+
+  Create (scalar-valued) SpecialFacetFunction
+  
+  *Arguments*
+      f_e (list of :py:class:`Function`)
+         Separate _Function_s for each facet
+
+* SpecialFacetFunction\ **(f_e, dim)**
+
+  Create (vector-valued) SpecialFacetFunction
+  
+  *Arguments*
+      f_e (list of :py:class:`Function`)
+         Separate _Function_s for each facet
+  
+      dim (int)
+          The value-dimension of the Functions
+";
+
+%feature("docstring")  dolfin::SpecialFacetFunction::eval "
+Evaluate SpecialFacetFunction (cf :py:class:`Expression`.eval)
+Evaluate function for given cell
+";
+
+%feature("docstring")  dolfin::SpecialFacetFunction::operator[] "
+Extract sub-function i
+
+*Arguments*
+    i (int)
+       component
+
+*Returns*
+    :py:class:`Function`
 ";
 
 // Documentation extracted from: (module=adaptivity, header=TimeSeries.h)
@@ -10574,6 +10759,41 @@ Mark cells using Dorfler marking
 
     fraction (float)
         the marking fraction
+";
+
+// Documentation extracted from: (module=adaptivity, header=adaptivesolve.h)
+%feature("docstring")  dolfin::solve "
+**Overloaded versions**
+
+* solve\ **(equation, u, tol, M)**
+
+  Solve linear variational problem a(u, v) == L(v) without
+  essential boundary conditions
+
+* solve\ **(equation, u, bc, tol, M)**
+
+  Solve linear variational problem a(u, v) == L(v) with single
+  boundary condition
+
+* solve\ **(equation, u, bcs, tol, M)**
+
+  Solve linear variational problem a(u, v) == L(v) with list of
+  boundary conditions
+
+* solve\ **(equation, u, J, tol, M)**
+
+  Solve nonlinear variational problem F(u; v) = 0 without
+  essential boundary conditions
+
+* solve\ **(equation, u, bc, J, tol, M)**
+
+  Solve linear variational problem F(u; v) = 0 with single
+  boundary condition
+
+* solve\ **(equation, u, bcs, J, tol, M)**
+
+  Solve linear variational problem F(u; v) = 0 with list of
+  boundary conditions
 ";
 
 // Documentation extracted from: (module=parameter, header=Parameter.h)
@@ -11098,6 +11318,14 @@ Return a random number, uniformly distributed between [0.0, 1.0)
 
 %feature("docstring")  dolfin::seed "
 Seed random number generator
+";
+
+%feature("docstring")  dolfin::near "
+Check whether x is close to x0 (to within DOLFIN_EPS)
+";
+
+%feature("docstring")  dolfin::between "
+Check whether x is between x0 and x1 (inclusive, to within DOLFIN_EPS)
 ";
 
 // Documentation extracted from: (module=math, header=Lagrange.h)
