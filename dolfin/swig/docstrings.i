@@ -10217,13 +10217,27 @@ problem and subsequent h-adaptivity.
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::AdaptiveLinearVariationalSolver "
-Create AdaptiveLinearVariationalSolver
+**Overloaded versions**
 
-*Arguments*
+* AdaptiveLinearVariationalSolver\ **(problem)**
 
-    problem (:py:class:`LinearVariationalProblem`)
-        The primal problem
+  Create AdaptiveLinearVariationalSolver
+  
+  *Arguments*
+  
+      problem (:py:class:`LinearVariationalProblem`)
+          The primal problem
+  
 
+* AdaptiveLinearVariationalSolver\ **(problem)**
+
+  Create AdaptiveLinearVariationalSolver
+  
+  *Arguments*
+  
+      problem (:py:class:`LinearVariationalProblem`)
+          The primal problem
+  
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve "
@@ -10316,13 +10330,27 @@ problem and subsequent h-adaptivity.
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
-Create AdaptiveNonlinearVariationalSolver
+**Overloaded versions**
 
-*Arguments*
+* AdaptiveNonlinearVariationalSolver\ **(problem)**
 
-    problem (:py:class:`NonlinearVariationalProblem`)
-        The primal problem
+  Create AdaptiveNonlinearVariationalSolver
+  
+  *Arguments*
+  
+      problem (:py:class:`NonlinearVariationalProblem`)
+          The primal problem
+  
 
+* AdaptiveNonlinearVariationalSolver\ **(problem)**
+
+  Create AdaptiveNonlinearVariationalSolver
+  
+  *Arguments*
+  
+      problem (:py:class:`NonlinearVariationalProblem`)
+          The primal problem
+  
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve "
