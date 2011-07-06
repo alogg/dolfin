@@ -61742,18 +61742,18 @@ public:
     a_star.reset(new Form_0(V, Vhat));
     L_star.reset(new Form_1(V));
 
-    dolfin::uint coefficient_number = 0;
     
     // Attach coefficients from a to a_star
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether a_star has coefficient named 'name'
       try {
-        coefficient_number = a_star->coefficient_number(name);
+        const dolfin::uint coefficient_number = a_star->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to a_star";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61772,12 +61772,13 @@ public:
     for (dolfin::uint i = 0; i < (*this).num_coefficients(); i++)
     {
       name = (*this).coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether L_star has coefficient named 'name'
       try {
-        coefficient_number = L_star->coefficient_number(name);
+        const dolfin::uint coefficient_number = L_star->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to L_star";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61799,12 +61800,13 @@ public:
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether residual has coefficient named 'name'
       try {
-        coefficient_number = residual->coefficient_number(name);
+        const dolfin::uint coefficient_number = residual->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to residual";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61818,12 +61820,13 @@ public:
     for (dolfin::uint i = 0; i < L.num_coefficients(); i++)
     {
       name = L.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether residual has coefficient named 'name'
       try {
-        coefficient_number = residual->coefficient_number(name);
+        const dolfin::uint coefficient_number = residual->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to residual";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61857,12 +61860,13 @@ public:
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether L_R_T has coefficient named 'name'
       try {
-        coefficient_number = L_R_T->coefficient_number(name);
+        const dolfin::uint coefficient_number = L_R_T->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to L_R_T";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61876,12 +61880,13 @@ public:
     for (dolfin::uint i = 0; i < L.num_coefficients(); i++)
     {
       name = L.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether L_R_T has coefficient named 'name'
       try {
-        coefficient_number = L_R_T->coefficient_number(name);
+        const dolfin::uint coefficient_number = L_R_T->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to L_R_T";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61909,12 +61914,13 @@ public:
     for (dolfin::uint i = 0; i < a.num_coefficients(); i++)
     {
       name = a.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether L_R_dT has coefficient named 'name'
       try {
-        coefficient_number = L_R_dT->coefficient_number(name);
+        const dolfin::uint coefficient_number = L_R_dT->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to L_R_dT";
         std::cout << " failed! But this might be expected." << std::endl;
@@ -61928,12 +61934,13 @@ public:
     for (dolfin::uint i = 0; i < L.num_coefficients(); i++)
     {
       name = L.coefficient_name(i);
-      // Don't attach discrete primal solution here (not computed.)
+      // Don't attach discrete primal solution here (not computed).
       if (name == "__discrete_primal_solution")
         continue;
 
+      // Test whether L_R_dT has coefficient named 'name'
       try {
-        coefficient_number = L_R_dT->coefficient_number(name);
+        const dolfin::uint coefficient_number = L_R_dT->coefficient_number(name);
       } catch (...) {
         std::cout << "Attaching coefficient named: " << name << " to L_R_dT";
         std::cout << " failed! But this might be expected." << std::endl;
