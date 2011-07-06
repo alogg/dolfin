@@ -2270,10 +2270,6 @@ Set operator (matrix)
 Set operator (matrix) and preconditioner matrix
 ";
 
-%feature("docstring")  dolfin::GenericLinearSolver::get_operator "
-Get operator (matrix)
-";
-
 %feature("docstring")  dolfin::GenericLinearSolver::solve "
 **Overloaded versions**
 
@@ -2382,18 +2378,18 @@ Return linear algebra backend factory
 * down_cast\ **()**
 
   Cast a GenericTensor to its derived class (non-const version)
+
+* down_cast\ **(A)**
+
+  Cast a GenericTensor shared ptr to its derived class. Caller
+  must check for success (returns null if cast fails).
 ";
 
-%feature("docstring")  dolfin::Y> "
-Cast a GenericTensor shared ptr to its derived class. Caller
-must check for success (returns null if cast fails).
-";
-
-%feature("docstring")  dolfin::Y>::has_type "
+%feature("docstring")  dolfin::GenericTensor::has_type "
 Check whether the GenericTensor instance matches a specific type
 ";
 
-%feature("docstring")  dolfin::Y>::instance "
+%feature("docstring")  dolfin::GenericTensor::instance "
 **Overloaded versions**
 
 * instance\ **()**
@@ -2405,7 +2401,7 @@ Check whether the GenericTensor instance matches a specific type
   Return concrete instance / unwrap (non-const version)
 ";
 
-%feature("docstring")  dolfin::Y>::shared_instance "
+%feature("docstring")  dolfin::GenericTensor::shared_instance "
 **Overloaded versions**
 
 * shared_instance\ **()**
@@ -2417,7 +2413,7 @@ Check whether the GenericTensor instance matches a specific type
   Return concrete shared ptr instance / unwrap
 ";
 
-%feature("docstring")  dolfin::Y>::operator= "
+%feature("docstring")  dolfin::GenericTensor::operator= "
 Assignment (must be overloaded by subclass)
 ";
 
@@ -6262,10 +6258,6 @@ Set the operator (matrix)
 Set the operator (matrix) and preconitioner matrix
 ";
 
-%feature("docstring")  dolfin::LinearSolver::get_operator "
-Get the operator (matrix)
-";
-
 %feature("docstring")  dolfin::LinearSolver::solve "
 **Overloaded versions**
 
@@ -6300,10 +6292,6 @@ Set operator (matrix)
 Set operator (matrix) and preconditioner matrix
 ";
 
-%feature("docstring")  dolfin::KrylovSolver::get_operator "
-Get operator (matrix)
-";
-
 %feature("docstring")  dolfin::KrylovSolver::solve "
 **Overloaded versions**
 
@@ -6327,10 +6315,6 @@ Constructor
 
 %feature("docstring")  dolfin::LUSolver::set_operator "
 Set operator (matrix)
-";
-
-%feature("docstring")  dolfin::LUSolver::get_operator "
-Return the operator (matrix)
 ";
 
 %feature("docstring")  dolfin::LUSolver::solve "
@@ -8145,7 +8129,7 @@ Set pos to end position. To create a kind of mesh.end() iterator.
 %feature("docstring")  dolfin::SubsetIterator "
 A :py:class:`SubsetIterator` is similar to a :py:class:`MeshEntityIterator` but
 iterates over a specified subset of the range of entities as
-specified by a :py:class:`MeshFunction` that labels the entites.
+specified by a _MeshFunction_ that labels the entites.
 ";
 
 %feature("docstring")  dolfin::SubsetIterator::SubsetIterator "
@@ -8341,10 +8325,6 @@ Return vertex coordinates as a 3D point value
 A VertexIterator is a MeshEntityIterator of topological dimension 0.
 ";
 
-%feature("docstring")  dolfin::VertexFunction "
-A VertexFunction is a MeshFunction of topological dimension 0.
-";
-
 // Documentation extracted from: (module=mesh, header=Edge.h)
 %feature("docstring")  dolfin::Edge "
 An Edge is a MeshEntity of topological dimension 1.
@@ -8374,10 +8354,6 @@ Compute dot product between edge and other edge
 An EdgeIterator is a MeshEntityIterator of topological dimension 1.
 ";
 
-%feature("docstring")  dolfin::EdgeFunction "
-An EdgeFunction is a MeshFunction of topological dimension 1.
-";
-
 // Documentation extracted from: (module=mesh, header=Face.h)
 %feature("docstring")  dolfin::Face "
 A Face is a MeshEntity of topological dimension 2.
@@ -8405,10 +8381,6 @@ Calculate the area of the face (triangle)
 
 %feature("docstring")  dolfin::FaceIterator "
 A FaceIterator is a MeshEntityIterator of topological dimension 2.
-";
-
-%feature("docstring")  dolfin::FaceFunction "
-A FaceFunction is a MeshFunction of topological dimension 2.
 ";
 
 // Documentation extracted from: (module=mesh, header=Facet.h)
@@ -8448,10 +8420,6 @@ connectivity.
 
 %feature("docstring")  dolfin::FacetIterator "
 A FacetIterator is a MeshEntityIterator of topological codimension 1.
-";
-
-%feature("docstring")  dolfin::FacetFunction "
-A FacetFunction is a MeshFunction of topological codimension 1.
 ";
 
 // Documentation extracted from: (module=mesh, header=Cell.h)
@@ -8513,10 +8481,6 @@ Check if entities are ordered
 
 %feature("docstring")  dolfin::CellIterator "
 A CellIterator is a MeshEntityIterator of topological codimension 0.
-";
-
-%feature("docstring")  dolfin::CellFunction "
-A CellFunction is a MeshFunction of topological codimension 0.
 ";
 
 // Documentation extracted from: (module=mesh, header=FacetCell.h)
@@ -8846,15 +8810,6 @@ Close mesh, finish editing, and order entities locally
 
 // Documentation extracted from: (module=mesh, header=MeshFunction.h)
 %feature("docstring")  dolfin::MeshFunction "
-A MeshFunction is a function that can be evaluated at a set of
-mesh entities. A MeshFunction is discrete and is only defined
-at the set of mesh entities of a fixed topological dimension.
-A MeshFunction may for example be used to store a global
-numbering scheme for the entities of a (parallel) mesh, marking
-sub domains or boolean markers for mesh refinement.
-";
-
-%feature("docstring")  dolfin::MeshFunction::MeshFunction "
 **Overloaded versions**
 
 * MeshFunction\ **()**
@@ -8883,19 +8838,19 @@ sub domains or boolean markers for mesh refinement.
   Copy constructor
 ";
 
-%feature("docstring")  dolfin::MeshFunction::mesh "
+%feature("docstring")  dolfin::mesh "
 Return mesh associated with mesh function
 ";
 
-%feature("docstring")  dolfin::MeshFunction::dim "
+%feature("docstring")  dolfin::dim "
 Return topological dimension
 ";
 
-%feature("docstring")  dolfin::MeshFunction::size "
+%feature("docstring")  dolfin::size "
 Return size (number of entities)
 ";
 
-%feature("docstring")  dolfin::MeshFunction::values "
+%feature("docstring")  dolfin::values "
 **Overloaded versions**
 
 * values\ **()**
@@ -8907,7 +8862,7 @@ Return size (number of entities)
   Return array of values
 ";
 
-%feature("docstring")  dolfin::MeshFunction::operator[] "
+%feature("docstring")  dolfin::operator[] "
 **Overloaded versions**
 
 * operator[]\ **(entity)**
@@ -8927,7 +8882,7 @@ Return size (number of entities)
   Return value at given index  (const version)
 ";
 
-%feature("docstring")  dolfin::MeshFunction::operator= "
+%feature("docstring")  dolfin::operator= "
 **Overloaded versions**
 
 * operator=\ **(f)**
@@ -8939,7 +8894,7 @@ Return size (number of entities)
   Set all values to given value
 ";
 
-%feature("docstring")  dolfin::MeshFunction::init "
+%feature("docstring")  dolfin::init "
 **Overloaded versions**
 
 * init\ **(dim)**
@@ -8959,15 +8914,15 @@ Return size (number of entities)
   Initialize mesh function for given topological dimension of given size
 ";
 
-%feature("docstring")  dolfin::MeshFunction::set_all "
+%feature("docstring")  dolfin::set_all "
 Set all values to given value
 ";
 
-%feature("docstring")  dolfin::MeshFunction::set "
+%feature("docstring")  dolfin::set "
 Set values
 ";
 
-%feature("docstring")  dolfin::MeshFunction::str "
+%feature("docstring")  dolfin::str "
 Return informal string representation (pretty-print)
 ";
 
@@ -9343,12 +9298,6 @@ Return current CPU time used by process
 
 // Documentation extracted from: (module=common, header=Array.h)
 %feature("docstring")  dolfin::Array "
-This class provides a simple wrapper for a pointer to an array. A purpose
-of this class is to enable the simple and safe exchange of data between
-C++ and Python.
-";
-
-%feature("docstring")  dolfin::Array::Array "
 **Overloaded versions**
 
 * Array\ **()**
@@ -9372,7 +9321,7 @@ C++ and Python.
   Construct array from a pointer. Array will not take ownership.
 ";
 
-%feature("docstring")  dolfin::Array::operator= "
+%feature("docstring")  dolfin::operator= "
 **Overloaded versions**
 
 * operator=\ **(x)**
@@ -9384,42 +9333,42 @@ C++ and Python.
   Assign value to all entries
 ";
 
-%feature("docstring")  dolfin::Array::update "
+%feature("docstring")  dolfin::update "
 Construct array from a pointer. Array will not take ownership.
 ";
 
-%feature("docstring")  dolfin::Array::str "
+%feature("docstring")  dolfin::str "
 Return informal string representation (pretty-print).
 Note that the Array class is not a subclass of Variable (for
 efficiency) which means that one needs to call str() directly
 instead of using the info() function on Array objects.
 ";
 
-%feature("docstring")  dolfin::Array::resize "
+%feature("docstring")  dolfin::resize "
 Resize array to size N. If size changes, contents will be destroyed.
 ";
 
-%feature("docstring")  dolfin::Array::size "
+%feature("docstring")  dolfin::size "
 Return size of array
 ";
 
-%feature("docstring")  dolfin::Array::zero "
+%feature("docstring")  dolfin::zero "
 Zero array
 ";
 
-%feature("docstring")  dolfin::Array::zero_eps "
+%feature("docstring")  dolfin::zero_eps "
 Set entries which meet (abs(x[i]) < eps) to zero
 ";
 
-%feature("docstring")  dolfin::Array::min "
+%feature("docstring")  dolfin::min "
 Return minimum value of array
 ";
 
-%feature("docstring")  dolfin::Array::max "
+%feature("docstring")  dolfin::max "
 Return maximum value of array
 ";
 
-%feature("docstring")  dolfin::Array::operator[] "
+%feature("docstring")  dolfin::operator[] "
 **Overloaded versions**
 
 * operator[]\ **(i)**
@@ -9431,7 +9380,7 @@ Return maximum value of array
   Access value of given entry (non-const version)
 ";
 
-%feature("docstring")  dolfin::Array::data "
+%feature("docstring")  dolfin::data "
 **Overloaded versions**
 
 * data\ **()**
