@@ -124,35 +124,35 @@ public:
     double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[3] = {0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         for (unsigned int s = 0; s < 2 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
@@ -171,28 +171,28 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[3] = {0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         for (unsigned int s = 0; s < 2 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
@@ -211,34 +211,34 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[3] = {0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         for (unsigned int s = 0; s < 2 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.471404520791032, 0.000000000000000, 0.333333333333333};
+      {0.471404520791032, 0.0, 0.333333333333333};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -257,7 +257,7 @@ public:
                                   const ufc::cell& c) const
   {
     // Helper variable to hold values of a single dof.
-    double dof_values = 0.000000000000000;
+    double dof_values = 0.0;
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 3; r++)
@@ -361,7 +361,7 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -370,28 +370,28 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[3] = {0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         for (unsigned int s = 0; s < 2 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
@@ -401,34 +401,34 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566356, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0},
+      {4.89897948556636, 0.0, 0.0},
+      {0.0, 0.0, 0.0}};
       
       static const double dmats1[3][3] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783178, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[3][3] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0},
+      {0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[3][3] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0},
+      {0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -438,10 +438,10 @@ public:
         {
           for (unsigned int u = 0; u < 3; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -456,7 +456,7 @@ public:
             for (unsigned int u = 0; u < 3; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -528,28 +528,28 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[3] = {0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         for (unsigned int s = 0; s < 2 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
@@ -559,34 +559,34 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566356, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0},
+      {4.89897948556636, 0.0, 0.0},
+      {0.0, 0.0, 0.0}};
       
       static const double dmats1[3][3] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783178, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[3][3] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0},
+      {0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[3][3] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0},
+      {0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -596,10 +596,10 @@ public:
         {
           for (unsigned int u = 0; u < 3; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -614,7 +614,7 @@ public:
             for (unsigned int u = 0; u < 3; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -686,65 +686,65 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[3] = {0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         for (unsigned int s = 0; s < 2 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.471404520791032, 0.000000000000000, 0.333333333333333};
+      {0.471404520791032, 0.0, 0.333333333333333};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566356, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0},
+      {4.89897948556636, 0.0, 0.0},
+      {0.0, 0.0, 0.0}};
       
       static const double dmats1[3][3] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783178, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[3][3] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0},
+      {0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[3][3] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0},
+      {0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -754,10 +754,10 @@ public:
         {
           for (unsigned int u = 0; u < 3; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -772,7 +772,7 @@ public:
             for (unsigned int u = 0; u < 3; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -861,7 +861,7 @@ public:
     double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -917,7 +917,7 @@ public:
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -1071,19 +1071,19 @@ public:
     // Get coordinates and map to the reference (FIAT) element
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     
     // Array of basisvalues.
-    double basisvalues[1] = {0.000000000000000};
+    double basisvalues[1] = {0.0};
     
     // Declare helper variables.
     
     // Compute basisvalues.
-    basisvalues[0] = 1.000000000000000;
+    basisvalues[0] = 1.0;
     
     // Table(s) of coefficients.
     static const double coefficients0[1] = \
-    {1.000000000000000};
+    {1.0};
     
     // Compute value(s).
     for (unsigned int r = 0; r < 1; r++)
@@ -1191,44 +1191,44 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     
     // Array of basisvalues.
-    double basisvalues[1] = {0.000000000000000};
+    double basisvalues[1] = {0.0};
     
     // Declare helper variables.
     
     // Compute basisvalues.
-    basisvalues[0] = 1.000000000000000;
+    basisvalues[0] = 1.0;
     
     // Table(s) of coefficients.
     static const double coefficients0[1] = \
-    {1.000000000000000};
+    {1.0};
     
     // Tables of derivatives of the polynomial base (transpose).
     static const double dmats0[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     static const double dmats1[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     // Compute reference derivatives.
     // Declare pointer to array of derivatives on FIAT element.
     double *derivatives = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      derivatives[r] = 0.000000000000000;
+      derivatives[r] = 0.0;
     }// end loop over 'r'
     
     // Declare derivative matrix (of polynomial basis).
     double dmats[1][1] = \
-    {{1.000000000000000}};
+    {{1.0}};
     
     // Declare (auxiliary) derivative matrix (of polynomial basis).
     double dmats_old[1][1] = \
-    {{1.000000000000000}};
+    {{1.0}};
     
     // Loop possible derivatives.
     for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1238,10 +1238,10 @@ public:
       {
         for (unsigned int u = 0; u < 1; u++)
         {
-          dmats[t][u] = 0.000000000000000;
+          dmats[t][u] = 0.0;
           if (t == u)
           {
-          dmats[t][u] = 1.000000000000000;
+          dmats[t][u] = 1.0;
           }
           
         }// end loop over 'u'
@@ -1256,7 +1256,7 @@ public:
           for (unsigned int u = 0; u < 1; u++)
           {
             dmats_old[t][u] = dmats[t][u];
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
           }// end loop over 'u'
         }// end loop over 't'
         
@@ -1357,7 +1357,7 @@ public:
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -1513,42 +1513,42 @@ public:
     double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1557,9 +1557,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -1568,13 +1568,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1587,35 +1587,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1624,9 +1624,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -1635,13 +1635,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1654,35 +1654,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1691,9 +1691,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -1702,13 +1702,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.000000000000000, 0.200000000000000, 0.000000000000000, 0.000000000000000, 0.163299316185545};
+      {0.0, 0.0, 0.2, 0.0, 0.0, 0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1721,35 +1721,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1758,9 +1758,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -1769,13 +1769,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.230940107675850, 0.133333333333333, 0.000000000000000, 0.188561808316413, -0.163299316185545};
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0.0, 0.188561808316413, -0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1788,35 +1788,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1825,9 +1825,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -1836,13 +1836,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, -0.230940107675850, 0.133333333333333, 0.000000000000000, -0.188561808316413, -0.163299316185545};
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0.0, -0.188561808316413, -0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1855,35 +1855,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1892,9 +1892,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -1903,13 +1903,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.000000000000000, -0.266666666666667, -0.243432247780074, 0.000000000000000, 0.054433105395182};
+      {0.471404520791032, 0.0, -0.266666666666667, -0.243432247780074, 0.0, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1928,7 +1928,7 @@ public:
                                   const ufc::cell& c) const
   {
     // Helper variable to hold values of a single dof.
-    double dof_values = 0.000000000000000;
+    double dof_values = 0.0;
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 6; r++)
@@ -2032,7 +2032,7 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -2041,35 +2041,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2078,9 +2078,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -2089,56 +2089,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2148,10 +2148,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2166,7 +2166,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -2238,35 +2238,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2275,9 +2275,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -2286,56 +2286,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2345,10 +2345,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2363,7 +2363,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -2435,35 +2435,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2472,9 +2472,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -2483,56 +2483,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.000000000000000, 0.200000000000000, 0.000000000000000, 0.000000000000000, 0.163299316185545};
+      {0.0, 0.0, 0.2, 0.0, 0.0, 0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2542,10 +2542,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2560,7 +2560,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -2632,35 +2632,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2669,9 +2669,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -2680,56 +2680,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.230940107675850, 0.133333333333333, 0.000000000000000, 0.188561808316413, -0.163299316185545};
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0.0, 0.188561808316413, -0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2739,10 +2739,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2757,7 +2757,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -2829,35 +2829,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2866,9 +2866,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -2877,56 +2877,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, -0.230940107675850, 0.133333333333333, 0.000000000000000, -0.188561808316413, -0.163299316185545};
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0.0, -0.188561808316413, -0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2936,10 +2936,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2954,7 +2954,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3026,35 +3026,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3063,9 +3063,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3074,56 +3074,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.000000000000000, -0.266666666666667, -0.243432247780074, 0.000000000000000, 0.054433105395182};
+      {0.471404520791032, 0.0, -0.266666666666667, -0.243432247780074, 0.0, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3133,10 +3133,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3151,7 +3151,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3240,7 +3240,7 @@ public:
     double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -3296,31 +3296,31 @@ public:
       }
     case 3:
       {
-        y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-      y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
+      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
+      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -3346,16 +3346,16 @@ public:
     y[1] = x[2][1];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-    y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
+    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
+    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
   }
@@ -3505,43 +3505,43 @@ public:
     double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
     
     // Reset values.
-    values[0] = 0.000000000000000;
-    values[1] = 0.000000000000000;
+    values[0] = 0.0;
+    values[1] = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3550,9 +3550,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3561,13 +3561,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3580,35 +3580,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3617,9 +3617,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3628,13 +3628,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3647,35 +3647,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3684,9 +3684,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3695,13 +3695,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.000000000000000, 0.200000000000000, 0.000000000000000, 0.000000000000000, 0.163299316185545};
+      {0.0, 0.0, 0.2, 0.0, 0.0, 0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3714,35 +3714,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3751,9 +3751,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3762,13 +3762,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.230940107675850, 0.133333333333333, 0.000000000000000, 0.188561808316413, -0.163299316185545};
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0.0, 0.188561808316413, -0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3781,35 +3781,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3818,9 +3818,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3829,13 +3829,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, -0.230940107675850, 0.133333333333333, 0.000000000000000, -0.188561808316413, -0.163299316185545};
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0.0, -0.188561808316413, -0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3848,35 +3848,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3885,9 +3885,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3896,13 +3896,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.000000000000000, -0.266666666666667, -0.243432247780074, 0.000000000000000, 0.054433105395182};
+      {0.471404520791032, 0.0, -0.266666666666667, -0.243432247780074, 0.0, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3915,35 +3915,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3952,9 +3952,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -3963,13 +3963,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3982,35 +3982,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4019,9 +4019,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4030,13 +4030,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -4049,35 +4049,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4086,9 +4086,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4097,13 +4097,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.000000000000000, 0.200000000000000, 0.000000000000000, 0.000000000000000, 0.163299316185545};
+      {0.0, 0.0, 0.2, 0.0, 0.0, 0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -4116,35 +4116,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4153,9 +4153,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4164,13 +4164,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.230940107675850, 0.133333333333333, 0.000000000000000, 0.188561808316413, -0.163299316185545};
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0.0, 0.188561808316413, -0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -4183,35 +4183,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4220,9 +4220,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4231,13 +4231,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, -0.230940107675850, 0.133333333333333, 0.000000000000000, -0.188561808316413, -0.163299316185545};
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0.0, -0.188561808316413, -0.163299316185545};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -4250,35 +4250,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4287,9 +4287,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4298,13 +4298,13 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.000000000000000, -0.266666666666667, -0.243432247780074, 0.000000000000000, 0.054433105395182};
+      {0.471404520791032, 0.0, -0.266666666666667, -0.243432247780074, 0.0, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -4323,7 +4323,7 @@ public:
                                   const ufc::cell& c) const
   {
     // Helper variable to hold values of a single dof.
-    double dof_values[2] = {0.000000000000000, 0.000000000000000};
+    double dof_values[2] = {0.0, 0.0};
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 12; r++)
@@ -4430,7 +4430,7 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < 2*num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -4439,35 +4439,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4476,9 +4476,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4487,56 +4487,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4546,10 +4546,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4564,7 +4564,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4636,35 +4636,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4673,9 +4673,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4684,56 +4684,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4743,10 +4743,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4761,7 +4761,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4833,35 +4833,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4870,9 +4870,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -4881,56 +4881,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.000000000000000, 0.200000000000000, 0.000000000000000, 0.000000000000000, 0.163299316185545};
+      {0.0, 0.0, 0.2, 0.0, 0.0, 0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4940,10 +4940,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4958,7 +4958,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -5030,35 +5030,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -5067,9 +5067,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -5078,56 +5078,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.230940107675850, 0.133333333333333, 0.000000000000000, 0.188561808316413, -0.163299316185545};
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0.0, 0.188561808316413, -0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -5137,10 +5137,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -5155,7 +5155,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -5227,35 +5227,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -5264,9 +5264,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -5275,56 +5275,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, -0.230940107675850, 0.133333333333333, 0.000000000000000, -0.188561808316413, -0.163299316185545};
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0.0, -0.188561808316413, -0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -5334,10 +5334,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -5352,7 +5352,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -5424,35 +5424,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -5461,9 +5461,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -5472,56 +5472,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.000000000000000, -0.266666666666667, -0.243432247780074, 0.000000000000000, 0.054433105395182};
+      {0.471404520791032, 0.0, -0.266666666666667, -0.243432247780074, 0.0, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -5531,10 +5531,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -5549,7 +5549,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -5621,35 +5621,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -5658,9 +5658,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -5669,56 +5669,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, -0.173205080756888, -0.100000000000000, 0.121716123890037, 0.094280904158206, 0.054433105395182};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -5728,10 +5728,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -5746,7 +5746,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -5818,35 +5818,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -5855,9 +5855,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -5866,56 +5866,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.173205080756888, -0.100000000000000, 0.121716123890037, -0.094280904158206, 0.054433105395182};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -5925,10 +5925,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -5943,7 +5943,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -6015,35 +6015,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -6052,9 +6052,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -6063,56 +6063,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.000000000000000, 0.000000000000000, 0.200000000000000, 0.000000000000000, 0.000000000000000, 0.163299316185545};
+      {0.0, 0.0, 0.2, 0.0, 0.0, 0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -6122,10 +6122,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -6140,7 +6140,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -6212,35 +6212,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -6249,9 +6249,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -6260,56 +6260,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.230940107675850, 0.133333333333333, 0.000000000000000, 0.188561808316413, -0.163299316185545};
+      {0.471404520791032, 0.23094010767585, 0.133333333333333, 0.0, 0.188561808316413, -0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -6319,10 +6319,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -6337,7 +6337,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -6409,35 +6409,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -6446,9 +6446,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -6457,56 +6457,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, -0.230940107675850, 0.133333333333333, 0.000000000000000, -0.188561808316413, -0.163299316185545};
+      {0.471404520791032, -0.23094010767585, 0.133333333333333, 0.0, -0.188561808316413, -0.163299316185545};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -6516,10 +6516,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -6534,7 +6534,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -6606,35 +6606,35 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[6] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
       unsigned int tt = 0;
-      double tmp5 = 0.000000000000000;
-      double tmp6 = 0.000000000000000;
-      double tmp7 = 0.000000000000000;
-      double tmp0 = (1.000000000000000 + Y + 2.000000000000000*X)/2.000000000000000;
-      double tmp1 = (1.000000000000000 - Y)/2.000000000000000;
+      double tmp5 = 0.0;
+      double tmp6 = 0.0;
+      double tmp7 = 0.0;
+      double tmp0 = (1.0 + Y + 2.0*X)/2.0;
+      double tmp1 = (1.0 - Y)/2.0;
       double tmp2 = tmp1*tmp1;
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 1; r < 2; r++)
       {
         rr = (r + 1)*((r + 1) + 1)/2;
         ss = r*(r + 1)/2;
         tt = (r - 1)*((r - 1) + 1)/2;
-        tmp5 = (1.000000000000000 + 2.000000000000000*r)/(1.000000000000000 + r);
-        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.000000000000000 + r));
+        tmp5 = (1.0 + 2.0*r)/(1.0 + r);
+        basisvalues[rr] = (basisvalues[ss]*tmp0*tmp5 - basisvalues[tt]*tmp2*r/(1.0 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
       {
         rr = (r + 1)*(r + 1 + 1)/2 + 1;
         ss = r*(r + 1)/2;
-        basisvalues[rr] = basisvalues[ss]*(0.500000000000000 + r + Y*(1.500000000000000 + r));
+        basisvalues[rr] = basisvalues[ss]*(0.5 + r + Y*(1.5 + r));
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -6643,9 +6643,9 @@ public:
           rr = (r + s + 1)*(r + s + 1 + 1)/2 + s + 1;
           ss = (r + s)*(r + s + 1)/2 + s;
           tt = (r + s - 1)*(r + s - 1 + 1)/2 + s - 1;
-          tmp5 = (2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp6 = (1.000000000000000 + 4.000000000000000*r*r + 4.000000000000000*r)*(2.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)/(2.000000000000000*(1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
-          tmp7 = (1.000000000000000 + s + 2.000000000000000*r)*(3.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*s/((1.000000000000000 + 2.000000000000000*r + 2.000000000000000*s)*(1.000000000000000 + s)*(2.000000000000000 + s + 2.000000000000000*r));
+          tmp5 = (2.0 + 2.0*r + 2.0*s)*(3.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp6 = (1.0 + 4.0*r*r + 4.0*r)*(2.0 + 2.0*r + 2.0*s)/(2.0*(1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
+          tmp7 = (1.0 + s + 2.0*r)*(3.0 + 2.0*r + 2.0*s)*s/((1.0 + 2.0*r + 2.0*s)*(1.0 + s)*(2.0 + s + 2.0*r));
           basisvalues[rr] = (basisvalues[ss]*(tmp6 + Y*tmp5) - basisvalues[tt]*tmp7);
         }// end loop over 's'
       }// end loop over 'r'
@@ -6654,56 +6654,56 @@ public:
         for (unsigned int s = 0; s < 3 - r; s++)
         {
           rr = (r + s)*(r + s + 1)/2 + s;
-          basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s));
+          basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.471404520791032, 0.000000000000000, -0.266666666666667, -0.243432247780074, 0.000000000000000, 0.054433105395182};
+      {0.471404520791032, 0.0, -0.266666666666667, -0.243432247780074, 0.0, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.898979485566354, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 9.486832980505138, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.999999999999997, 0.000000000000000, 7.071067811865476, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.449489742783177, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {4.242640687119285, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {2.581988897471611, 4.743416490252569, -0.912870929175277, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.999999999999998, 6.123724356957944, 3.535533905932738, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {-2.309401076758502, 0.000000000000000, 8.164965809277259, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[6][6] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -6713,10 +6713,10 @@ public:
         {
           for (unsigned int u = 0; u < 6; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -6731,7 +6731,7 @@ public:
             for (unsigned int u = 0; u < 6; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -6820,7 +6820,7 @@ public:
     double *dof_values = new double[2*num_derivatives];
     for (unsigned int r = 0; r < 2*num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -6876,24 +6876,24 @@ public:
       }
     case 3:
       {
-        y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-      y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
+      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
+      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -6924,31 +6924,31 @@ public:
       }
     case 9:
       {
-        y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-      y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
+      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 10:
       {
-        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
+      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 11:
       {
-        y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-      y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -6974,16 +6974,16 @@ public:
     y[1] = x[2][1];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-    y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
+    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
+    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
     y[0] = x[0][0];
@@ -6998,16 +6998,16 @@ public:
     y[1] = x[2][1];
     f.evaluate(vals, y, c);
     values[8] = vals[1];
-    y[0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-    y[1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
+    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
+    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
     f.evaluate(vals, y, c);
     values[9] = vals[1];
-    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
+    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
+    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
     f.evaluate(vals, y, c);
     values[10] = vals[1];
-    y[0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-    y[1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
     f.evaluate(vals, y, c);
     values[11] = vals[1];
   }
@@ -7837,12 +7837,12 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-    coordinates[3][1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
-    coordinates[4][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-    coordinates[4][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
-    coordinates[5][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-    coordinates[5][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -7921,7 +7921,7 @@ public:
   /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    _global_dimension = 2.000000000000000*m.num_entities[0] + 2.000000000000000*m.num_entities[1];
+    _global_dimension = 2.0*m.num_entities[0] + 2.0*m.num_entities[1];
     return false;
   }
 
@@ -8157,24 +8157,24 @@ public:
     coordinates[1][1] = x[1][1];
     coordinates[2][0] = x[2][0];
     coordinates[2][1] = x[2][1];
-    coordinates[3][0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-    coordinates[3][1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
-    coordinates[4][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-    coordinates[4][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
-    coordinates[5][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-    coordinates[5][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+    coordinates[3][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[3][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[4][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[4][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[5][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[5][1] = 0.5*x[0][1] + 0.5*x[1][1];
     coordinates[6][0] = x[0][0];
     coordinates[6][1] = x[0][1];
     coordinates[7][0] = x[1][0];
     coordinates[7][1] = x[1][1];
     coordinates[8][0] = x[2][0];
     coordinates[8][1] = x[2][1];
-    coordinates[9][0] = 0.500000000000000*x[1][0] + 0.500000000000000*x[2][0];
-    coordinates[9][1] = 0.500000000000000*x[1][1] + 0.500000000000000*x[2][1];
-    coordinates[10][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[2][0];
-    coordinates[10][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[2][1];
-    coordinates[11][0] = 0.500000000000000*x[0][0] + 0.500000000000000*x[1][0];
-    coordinates[11][1] = 0.500000000000000*x[0][1] + 0.500000000000000*x[1][1];
+    coordinates[9][0] = 0.5*x[1][0] + 0.5*x[2][0];
+    coordinates[9][1] = 0.5*x[1][1] + 0.5*x[2][1];
+    coordinates[10][0] = 0.5*x[0][0] + 0.5*x[2][0];
+    coordinates[10][1] = 0.5*x[0][1] + 0.5*x[2][1];
+    coordinates[11][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[11][1] = 0.5*x[0][1] + 0.5*x[1][1];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -8262,150 +8262,150 @@ public:
     const double G0_ = det;
     
     // Compute element tensor
-    A[0] = 0.016666666666667*G0_;
-    A[1] = -0.002777777777778*G0_;
-    A[2] = -0.002777777777778*G0_;
+    A[0] = 0.0166666666666666*G0_;
+    A[1] = -0.00277777777777778*G0_;
+    A[2] = -0.00277777777777778*G0_;
     A[3] = -0.011111111111111*G0_;
-    A[4] = 0.000000000000000;
-    A[5] = 0.000000000000000;
-    A[6] = 0.000000000000000;
-    A[7] = 0.000000000000000;
-    A[8] = 0.000000000000000;
-    A[9] = 0.000000000000000;
-    A[10] = 0.000000000000000;
-    A[11] = 0.000000000000000;
-    A[12] = -0.002777777777778*G0_;
-    A[13] = 0.016666666666667*G0_;
-    A[14] = -0.002777777777778*G0_;
-    A[15] = 0.000000000000000;
-    A[16] = -0.011111111111111*G0_;
-    A[17] = 0.000000000000000;
-    A[18] = 0.000000000000000;
-    A[19] = 0.000000000000000;
-    A[20] = 0.000000000000000;
-    A[21] = 0.000000000000000;
-    A[22] = 0.000000000000000;
-    A[23] = 0.000000000000000;
-    A[24] = -0.002777777777778*G0_;
-    A[25] = -0.002777777777778*G0_;
-    A[26] = 0.016666666666667*G0_;
-    A[27] = 0.000000000000000;
-    A[28] = 0.000000000000000;
-    A[29] = -0.011111111111111*G0_;
-    A[30] = 0.000000000000000;
-    A[31] = 0.000000000000000;
-    A[32] = 0.000000000000000;
-    A[33] = 0.000000000000000;
-    A[34] = 0.000000000000000;
-    A[35] = 0.000000000000000;
+    A[4] = 0.0;
+    A[5] = 0.0;
+    A[6] = 0.0;
+    A[7] = 0.0;
+    A[8] = 0.0;
+    A[9] = 0.0;
+    A[10] = 0.0;
+    A[11] = 0.0;
+    A[12] = -0.00277777777777778*G0_;
+    A[13] = 0.0166666666666667*G0_;
+    A[14] = -0.00277777777777781*G0_;
+    A[15] = 0.0;
+    A[16] = -0.0111111111111111*G0_;
+    A[17] = 0.0;
+    A[18] = 0.0;
+    A[19] = 0.0;
+    A[20] = 0.0;
+    A[21] = 0.0;
+    A[22] = 0.0;
+    A[23] = 0.0;
+    A[24] = -0.00277777777777778*G0_;
+    A[25] = -0.00277777777777781*G0_;
+    A[26] = 0.0166666666666667*G0_;
+    A[27] = 0.0;
+    A[28] = 0.0;
+    A[29] = -0.0111111111111111*G0_;
+    A[30] = 0.0;
+    A[31] = 0.0;
+    A[32] = 0.0;
+    A[33] = 0.0;
+    A[34] = 0.0;
+    A[35] = 0.0;
     A[36] = -0.011111111111111*G0_;
-    A[37] = 0.000000000000000;
-    A[38] = 0.000000000000000;
-    A[39] = 0.088888888888889*G0_;
-    A[40] = 0.044444444444444*G0_;
-    A[41] = 0.044444444444444*G0_;
-    A[42] = 0.000000000000000;
-    A[43] = 0.000000000000000;
-    A[44] = 0.000000000000000;
-    A[45] = 0.000000000000000;
-    A[46] = 0.000000000000000;
-    A[47] = 0.000000000000000;
-    A[48] = 0.000000000000000;
-    A[49] = -0.011111111111111*G0_;
-    A[50] = 0.000000000000000;
-    A[51] = 0.044444444444444*G0_;
-    A[52] = 0.088888888888889*G0_;
-    A[53] = 0.044444444444444*G0_;
-    A[54] = 0.000000000000000;
-    A[55] = 0.000000000000000;
-    A[56] = 0.000000000000000;
-    A[57] = 0.000000000000000;
-    A[58] = 0.000000000000000;
-    A[59] = 0.000000000000000;
-    A[60] = 0.000000000000000;
-    A[61] = 0.000000000000000;
-    A[62] = -0.011111111111111*G0_;
-    A[63] = 0.044444444444444*G0_;
-    A[64] = 0.044444444444444*G0_;
-    A[65] = 0.088888888888889*G0_;
-    A[66] = 0.000000000000000;
-    A[67] = 0.000000000000000;
-    A[68] = 0.000000000000000;
-    A[69] = 0.000000000000000;
-    A[70] = 0.000000000000000;
-    A[71] = 0.000000000000000;
-    A[72] = 0.000000000000000;
-    A[73] = 0.000000000000000;
-    A[74] = 0.000000000000000;
-    A[75] = 0.000000000000000;
-    A[76] = 0.000000000000000;
-    A[77] = 0.000000000000000;
-    A[78] = 0.016666666666667*G0_;
-    A[79] = -0.002777777777778*G0_;
-    A[80] = -0.002777777777778*G0_;
+    A[37] = 0.0;
+    A[38] = 0.0;
+    A[39] = 0.0888888888888888*G0_;
+    A[40] = 0.0444444444444443*G0_;
+    A[41] = 0.0444444444444443*G0_;
+    A[42] = 0.0;
+    A[43] = 0.0;
+    A[44] = 0.0;
+    A[45] = 0.0;
+    A[46] = 0.0;
+    A[47] = 0.0;
+    A[48] = 0.0;
+    A[49] = -0.0111111111111111*G0_;
+    A[50] = 0.0;
+    A[51] = 0.0444444444444443*G0_;
+    A[52] = 0.0888888888888887*G0_;
+    A[53] = 0.0444444444444443*G0_;
+    A[54] = 0.0;
+    A[55] = 0.0;
+    A[56] = 0.0;
+    A[57] = 0.0;
+    A[58] = 0.0;
+    A[59] = 0.0;
+    A[60] = 0.0;
+    A[61] = 0.0;
+    A[62] = -0.0111111111111111*G0_;
+    A[63] = 0.0444444444444443*G0_;
+    A[64] = 0.0444444444444443*G0_;
+    A[65] = 0.0888888888888888*G0_;
+    A[66] = 0.0;
+    A[67] = 0.0;
+    A[68] = 0.0;
+    A[69] = 0.0;
+    A[70] = 0.0;
+    A[71] = 0.0;
+    A[72] = 0.0;
+    A[73] = 0.0;
+    A[74] = 0.0;
+    A[75] = 0.0;
+    A[76] = 0.0;
+    A[77] = 0.0;
+    A[78] = 0.0166666666666666*G0_;
+    A[79] = -0.00277777777777778*G0_;
+    A[80] = -0.00277777777777778*G0_;
     A[81] = -0.011111111111111*G0_;
-    A[82] = 0.000000000000000;
-    A[83] = 0.000000000000000;
-    A[84] = 0.000000000000000;
-    A[85] = 0.000000000000000;
-    A[86] = 0.000000000000000;
-    A[87] = 0.000000000000000;
-    A[88] = 0.000000000000000;
-    A[89] = 0.000000000000000;
-    A[90] = -0.002777777777778*G0_;
-    A[91] = 0.016666666666667*G0_;
-    A[92] = -0.002777777777778*G0_;
-    A[93] = 0.000000000000000;
-    A[94] = -0.011111111111111*G0_;
-    A[95] = 0.000000000000000;
-    A[96] = 0.000000000000000;
-    A[97] = 0.000000000000000;
-    A[98] = 0.000000000000000;
-    A[99] = 0.000000000000000;
-    A[100] = 0.000000000000000;
-    A[101] = 0.000000000000000;
-    A[102] = -0.002777777777778*G0_;
-    A[103] = -0.002777777777778*G0_;
-    A[104] = 0.016666666666667*G0_;
-    A[105] = 0.000000000000000;
-    A[106] = 0.000000000000000;
-    A[107] = -0.011111111111111*G0_;
-    A[108] = 0.000000000000000;
-    A[109] = 0.000000000000000;
-    A[110] = 0.000000000000000;
-    A[111] = 0.000000000000000;
-    A[112] = 0.000000000000000;
-    A[113] = 0.000000000000000;
+    A[82] = 0.0;
+    A[83] = 0.0;
+    A[84] = 0.0;
+    A[85] = 0.0;
+    A[86] = 0.0;
+    A[87] = 0.0;
+    A[88] = 0.0;
+    A[89] = 0.0;
+    A[90] = -0.00277777777777778*G0_;
+    A[91] = 0.0166666666666667*G0_;
+    A[92] = -0.00277777777777781*G0_;
+    A[93] = 0.0;
+    A[94] = -0.0111111111111111*G0_;
+    A[95] = 0.0;
+    A[96] = 0.0;
+    A[97] = 0.0;
+    A[98] = 0.0;
+    A[99] = 0.0;
+    A[100] = 0.0;
+    A[101] = 0.0;
+    A[102] = -0.00277777777777778*G0_;
+    A[103] = -0.00277777777777781*G0_;
+    A[104] = 0.0166666666666667*G0_;
+    A[105] = 0.0;
+    A[106] = 0.0;
+    A[107] = -0.0111111111111111*G0_;
+    A[108] = 0.0;
+    A[109] = 0.0;
+    A[110] = 0.0;
+    A[111] = 0.0;
+    A[112] = 0.0;
+    A[113] = 0.0;
     A[114] = -0.011111111111111*G0_;
-    A[115] = 0.000000000000000;
-    A[116] = 0.000000000000000;
-    A[117] = 0.088888888888889*G0_;
-    A[118] = 0.044444444444444*G0_;
-    A[119] = 0.044444444444444*G0_;
-    A[120] = 0.000000000000000;
-    A[121] = 0.000000000000000;
-    A[122] = 0.000000000000000;
-    A[123] = 0.000000000000000;
-    A[124] = 0.000000000000000;
-    A[125] = 0.000000000000000;
-    A[126] = 0.000000000000000;
-    A[127] = -0.011111111111111*G0_;
-    A[128] = 0.000000000000000;
-    A[129] = 0.044444444444444*G0_;
-    A[130] = 0.088888888888889*G0_;
-    A[131] = 0.044444444444444*G0_;
-    A[132] = 0.000000000000000;
-    A[133] = 0.000000000000000;
-    A[134] = 0.000000000000000;
-    A[135] = 0.000000000000000;
-    A[136] = 0.000000000000000;
-    A[137] = 0.000000000000000;
-    A[138] = 0.000000000000000;
-    A[139] = 0.000000000000000;
-    A[140] = -0.011111111111111*G0_;
-    A[141] = 0.044444444444444*G0_;
-    A[142] = 0.044444444444444*G0_;
-    A[143] = 0.088888888888889*G0_;
+    A[115] = 0.0;
+    A[116] = 0.0;
+    A[117] = 0.0888888888888888*G0_;
+    A[118] = 0.0444444444444443*G0_;
+    A[119] = 0.0444444444444443*G0_;
+    A[120] = 0.0;
+    A[121] = 0.0;
+    A[122] = 0.0;
+    A[123] = 0.0;
+    A[124] = 0.0;
+    A[125] = 0.0;
+    A[126] = 0.0;
+    A[127] = -0.0111111111111111*G0_;
+    A[128] = 0.0;
+    A[129] = 0.0444444444444443*G0_;
+    A[130] = 0.0888888888888887*G0_;
+    A[131] = 0.0444444444444443*G0_;
+    A[132] = 0.0;
+    A[133] = 0.0;
+    A[134] = 0.0;
+    A[135] = 0.0;
+    A[136] = 0.0;
+    A[137] = 0.0;
+    A[138] = 0.0;
+    A[139] = 0.0;
+    A[140] = -0.0111111111111111*G0_;
+    A[141] = 0.0444444444444443*G0_;
+    A[142] = 0.0444444444444443*G0_;
+    A[143] = 0.0888888888888888*G0_;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -8496,18 +8496,18 @@ public:
     const double G1_0_1_2_1 = det*w[0][0]*w[2][2]*K_11*(1.0);
     
     // Compute element tensor
-    A[0] = 0.016666666666667*G0_0 - 0.002777777777778*G0_1 - 0.002777777777778*G0_2 - 0.011111111111111*G0_3;
-    A[1] = -0.002777777777778*G0_0 + 0.016666666666667*G0_1 - 0.002777777777778*G0_2 - 0.011111111111111*G0_4;
-    A[2] = -0.002777777777778*G0_0 - 0.002777777777778*G0_1 + 0.016666666666667*G0_2 - 0.011111111111111*G0_5;
-    A[3] = -0.011111111111111*G0_0 + 0.088888888888889*G0_3 + 0.044444444444444*G0_4 + 0.044444444444444*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
-    A[4] = -0.011111111111111*G0_1 + 0.044444444444444*G0_3 + 0.088888888888889*G0_4 + 0.044444444444444*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
-    A[5] = -0.011111111111111*G0_2 + 0.044444444444444*G0_3 + 0.044444444444444*G0_4 + 0.088888888888889*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
-    A[6] = 0.016666666666667*G0_6 - 0.002777777777778*G0_7 - 0.002777777777778*G0_8 - 0.011111111111111*G0_9;
-    A[7] = -0.002777777777778*G0_6 + 0.016666666666667*G0_7 - 0.002777777777778*G0_8 - 0.011111111111111*G0_10;
-    A[8] = -0.002777777777778*G0_6 - 0.002777777777778*G0_7 + 0.016666666666667*G0_8 - 0.011111111111111*G0_11;
-    A[9] = -0.011111111111111*G0_6 + 0.088888888888889*G0_9 + 0.044444444444444*G0_10 + 0.044444444444444*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
-    A[10] = -0.011111111111111*G0_7 + 0.044444444444444*G0_9 + 0.088888888888889*G0_10 + 0.044444444444444*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
-    A[11] = -0.011111111111111*G0_8 + 0.044444444444444*G0_9 + 0.044444444444444*G0_10 + 0.088888888888889*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
+    A[0] = 0.0166666666666666*G0_0 - 0.00277777777777778*G0_1 - 0.00277777777777778*G0_2 - 0.011111111111111*G0_3;
+    A[1] = -0.00277777777777778*G0_0 + 0.0166666666666667*G0_1 - 0.00277777777777781*G0_2 - 0.0111111111111111*G0_4;
+    A[2] = -0.00277777777777778*G0_0 - 0.00277777777777781*G0_1 + 0.0166666666666667*G0_2 - 0.0111111111111111*G0_5;
+    A[3] = -0.011111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444443*G0_4 + 0.0444444444444443*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
+    A[4] = -0.0111111111111111*G0_1 + 0.0444444444444443*G0_3 + 0.0888888888888887*G0_4 + 0.0444444444444443*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
+    A[5] = -0.0111111111111111*G0_2 + 0.0444444444444443*G0_3 + 0.0444444444444443*G0_4 + 0.0888888888888888*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
+    A[6] = 0.0166666666666666*G0_6 - 0.00277777777777778*G0_7 - 0.00277777777777778*G0_8 - 0.011111111111111*G0_9;
+    A[7] = -0.00277777777777778*G0_6 + 0.0166666666666667*G0_7 - 0.00277777777777781*G0_8 - 0.0111111111111111*G0_10;
+    A[8] = -0.00277777777777778*G0_6 - 0.00277777777777781*G0_7 + 0.0166666666666667*G0_8 - 0.0111111111111111*G0_11;
+    A[9] = -0.011111111111111*G0_6 + 0.0888888888888888*G0_9 + 0.0444444444444443*G0_10 + 0.0444444444444443*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
+    A[10] = -0.0111111111111111*G0_7 + 0.0444444444444443*G0_9 + 0.0888888888888887*G0_10 + 0.0444444444444443*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
+    A[11] = -0.0111111111111111*G0_8 + 0.0444444444444443*G0_9 + 0.0444444444444443*G0_10 + 0.0888888888888888*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell

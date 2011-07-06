@@ -115,23 +115,23 @@ public:
     double X = (2.0*coordinates[0] - x[0][0] - x[1][0]) / J_00;
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[2] = {0.000000000000000, 0.000000000000000};
+      double basisvalues[2] = {0.0, 0.0};
       
       // Declare helper variables.
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
       {
-        basisvalues[r] *= std::sqrt((0.500000000000000 + r));
+        basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
       // Table(s) of coefficients.
@@ -149,16 +149,16 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[2] = {0.000000000000000, 0.000000000000000};
+      double basisvalues[2] = {0.0, 0.0};
       
       // Declare helper variables.
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
       {
-        basisvalues[r] *= std::sqrt((0.500000000000000 + r));
+        basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
       // Table(s) of coefficients.
@@ -182,7 +182,7 @@ public:
                                   const ufc::cell& c) const
   {
     // Helper variable to hold values of a single dof.
-    double dof_values = 0.000000000000000;
+    double dof_values = 0.0;
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 2; r++)
@@ -275,7 +275,7 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -284,16 +284,16 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[2] = {0.000000000000000, 0.000000000000000};
+      double basisvalues[2] = {0.0, 0.0};
       
       // Declare helper variables.
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
       {
-        basisvalues[r] *= std::sqrt((0.500000000000000 + r));
+        basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
       // Table(s) of coefficients.
@@ -302,26 +302,26 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[2][2] = \
-      {{0.000000000000000, 0.000000000000000},
-      {3.464101615137754, 0.000000000000000}};
+      {{0.0, 0.0},
+      {3.46410161513775, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[2][2] = \
-      {{1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0},
+      {0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[2][2] = \
-      {{1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0},
+      {0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -331,10 +331,10 @@ public:
         {
           for (unsigned int u = 0; u < 2; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -349,7 +349,7 @@ public:
             for (unsigned int u = 0; u < 2; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -407,16 +407,16 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[2] = {0.000000000000000, 0.000000000000000};
+      double basisvalues[2] = {0.0, 0.0};
       
       // Declare helper variables.
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
       {
-        basisvalues[r] *= std::sqrt((0.500000000000000 + r));
+        basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
       // Table(s) of coefficients.
@@ -425,26 +425,26 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[2][2] = \
-      {{0.000000000000000, 0.000000000000000},
-      {3.464101615137754, 0.000000000000000}};
+      {{0.0, 0.0},
+      {3.46410161513775, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[2][2] = \
-      {{1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0},
+      {0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[2][2] = \
-      {{1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0},
+      {0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -454,10 +454,10 @@ public:
         {
           for (unsigned int u = 0; u < 2; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -472,7 +472,7 @@ public:
             for (unsigned int u = 0; u < 2; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -547,7 +547,7 @@ public:
     double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -593,7 +593,7 @@ public:
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -1075,12 +1075,12 @@ public:
     case 0:
       {
         A[0] = G0_0;
-      A[1] = 0.000000000000000;
+      A[1] = 0.0;
         break;
       }
     case 1:
       {
-        A[0] = 0.000000000000000;
+        A[0] = 0.0;
       A[1] = G0_1;
         break;
       }

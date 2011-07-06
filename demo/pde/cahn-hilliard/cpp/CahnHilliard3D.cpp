@@ -105,19 +105,19 @@ void cahnhilliard3d_finite_element_0::evaluate_basis(unsigned int i,
     
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     
     // Array of basisvalues.
-    double basisvalues[1] = {0.000000000000000};
+    double basisvalues[1] = {0.0};
     
     // Declare helper variables.
     
     // Compute basisvalues.
-    basisvalues[0] = 1.000000000000000;
+    basisvalues[0] = 1.0;
     
     // Table(s) of coefficients.
     static const double coefficients0[1] = \
-    {1.000000000000000};
+    {1.0};
     
     // Compute value(s).
     for (unsigned int r = 0; r < 1; r++)
@@ -247,47 +247,47 @@ void cahnhilliard3d_finite_element_0::evaluate_basis_derivatives(unsigned int i,
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     
     // Array of basisvalues.
-    double basisvalues[1] = {0.000000000000000};
+    double basisvalues[1] = {0.0};
     
     // Declare helper variables.
     
     // Compute basisvalues.
-    basisvalues[0] = 1.000000000000000;
+    basisvalues[0] = 1.0;
     
     // Table(s) of coefficients.
     static const double coefficients0[1] = \
-    {1.000000000000000};
+    {1.0};
     
     // Tables of derivatives of the polynomial base (transpose).
     static const double dmats0[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     static const double dmats1[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     static const double dmats2[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     // Compute reference derivatives.
     // Declare pointer to array of derivatives on FIAT element.
     double *derivatives = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      derivatives[r] = 0.000000000000000;
+      derivatives[r] = 0.0;
     }// end loop over 'r'
     
     // Declare derivative matrix (of polynomial basis).
     double dmats[1][1] = \
-    {{1.000000000000000}};
+    {{1.0}};
     
     // Declare (auxiliary) derivative matrix (of polynomial basis).
     double dmats_old[1][1] = \
-    {{1.000000000000000}};
+    {{1.0}};
     
     // Loop possible derivatives.
     for (unsigned int r = 0; r < num_derivatives; r++)
@@ -297,10 +297,10 @@ void cahnhilliard3d_finite_element_0::evaluate_basis_derivatives(unsigned int i,
       {
         for (unsigned int u = 0; u < 1; u++)
         {
-          dmats[t][u] = 0.000000000000000;
+          dmats[t][u] = 0.0;
           if (t == u)
           {
-          dmats[t][u] = 1.000000000000000;
+          dmats[t][u] = 1.0;
           }
           
         }// end loop over 'u'
@@ -315,7 +315,7 @@ void cahnhilliard3d_finite_element_0::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int u = 0; u < 1; u++)
           {
             dmats_old[t][u] = dmats[t][u];
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
           }// end loop over 'u'
         }// end loop over 't'
         
@@ -422,16 +422,16 @@ double cahnhilliard3d_finite_element_0::evaluate_dof(unsigned int i,
     {
     case 0:
       {
-        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+        y[0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+      y[1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+      y[2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
 }
 
 /// Evaluate linear functionals for all dofs on the function f
@@ -445,9 +445,9 @@ void cahnhilliard3d_finite_element_0::evaluate_dofs(double* values,
     // Declare variable for physical coordinates.
     double y[3];
     const double * const * x = c.coordinates;
-    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    y[0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    y[1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    y[2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
 }
@@ -601,28 +601,28 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
     
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -630,7 +630,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -640,7 +640,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -660,21 +660,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -682,7 +682,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -692,7 +692,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -712,21 +712,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -734,7 +734,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -744,14 +744,14 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -764,21 +764,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -786,7 +786,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -796,14 +796,14 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -822,7 +822,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_all(double* values,
                                        const ufc::cell& c) const
 {
     // Helper variable to hold values of a single dof.
-    double dof_values = 0.000000000000000;
+    double dof_values = 0.0;
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 4; r++)
@@ -950,7 +950,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -959,21 +959,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -981,7 +981,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -991,7 +991,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -1002,44 +1002,44 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1049,10 +1049,10 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1067,7 +1067,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1153,21 +1153,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1175,7 +1175,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1185,7 +1185,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -1196,44 +1196,44 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1243,10 +1243,10 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1261,7 +1261,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1347,21 +1347,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1369,7 +1369,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1379,55 +1379,55 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1437,10 +1437,10 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1455,7 +1455,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1541,21 +1541,21 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1563,7 +1563,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1573,55 +1573,55 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1631,10 +1631,10 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1649,7 +1649,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1752,7 +1752,7 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives_all(unsigned in
     double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -1820,7 +1820,7 @@ double cahnhilliard3d_finite_element_1::evaluate_dof(unsigned int i,
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
 }
 
 /// Evaluate linear functionals for all dofs on the function f
@@ -2014,29 +2014,29 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
     
     
     // Reset values.
-    values[0] = 0.000000000000000;
-    values[1] = 0.000000000000000;
+    values[0] = 0.0;
+    values[1] = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2044,7 +2044,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2054,7 +2054,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2074,21 +2074,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2096,7 +2096,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2106,7 +2106,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2126,21 +2126,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2148,7 +2148,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2158,14 +2158,14 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2178,21 +2178,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2200,7 +2200,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2210,14 +2210,14 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2230,21 +2230,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2252,7 +2252,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2262,7 +2262,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2282,21 +2282,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2304,7 +2304,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2314,7 +2314,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2334,21 +2334,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2356,7 +2356,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2366,14 +2366,14 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2386,21 +2386,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2408,7 +2408,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2418,14 +2418,14 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2444,7 +2444,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_all(double* values,
                                        const ufc::cell& c) const
 {
     // Helper variable to hold values of a single dof.
-    double dof_values[2] = {0.000000000000000, 0.000000000000000};
+    double dof_values[2] = {0.0, 0.0};
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 8; r++)
@@ -2575,7 +2575,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < 2*num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -2584,21 +2584,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2606,7 +2606,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2616,7 +2616,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2627,44 +2627,44 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2674,10 +2674,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2692,7 +2692,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -2778,21 +2778,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2800,7 +2800,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2810,7 +2810,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2821,44 +2821,44 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2868,10 +2868,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2886,7 +2886,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -2972,21 +2972,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2994,7 +2994,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3004,55 +3004,55 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3062,10 +3062,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3080,7 +3080,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3166,21 +3166,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3188,7 +3188,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3198,55 +3198,55 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3256,10 +3256,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3274,7 +3274,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3360,21 +3360,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3382,7 +3382,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3392,7 +3392,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -3403,44 +3403,44 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3450,10 +3450,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3468,7 +3468,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3554,21 +3554,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3576,7 +3576,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3586,7 +3586,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -3597,44 +3597,44 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3644,10 +3644,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3662,7 +3662,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3748,21 +3748,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3770,7 +3770,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3780,55 +3780,55 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3838,10 +3838,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3856,7 +3856,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3942,21 +3942,21 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3964,7 +3964,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3974,55 +3974,55 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4032,10 +4032,10 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4050,7 +4050,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(unsigned int i,
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4153,7 +4153,7 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives_all(unsigned in
     double *dof_values = new double[2*num_derivatives];
     for (unsigned int r = 0; r < 2*num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -4257,7 +4257,7 @@ double cahnhilliard3d_finite_element_2::evaluate_dof(unsigned int i,
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
 }
 
 /// Evaluate linear functionals for all dofs on the function f
@@ -4596,9 +4596,9 @@ void cahnhilliard3d_dofmap_0::tabulate_coordinates(double** coordinates,
 {
     const double * const * x = c.coordinates;
     
-    coordinates[0][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    coordinates[0][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
 }
 
 /// Return the number of sub dofmaps (for a mixed element)
@@ -4954,7 +4954,7 @@ bool cahnhilliard3d_dofmap_2::needs_mesh_entities(unsigned int d) const
 /// Initialize dofmap for mesh (return true iff init_cell() is needed)
 bool cahnhilliard3d_dofmap_2::init_mesh(const ufc::mesh& m)
 {
-    _global_dimension = 2.000000000000000*m.num_entities[0];
+    _global_dimension = 2.0*m.num_entities[0];
     return false;
 }
 
@@ -5301,25 +5301,25 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     
     
     // Array of quadrature weights.
-    static const double W14[14] = {0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.022139791114265, 0.022139791114265, 0.022139791114265, 0.022139791114265};
-    // Quadrature points on the UFC reference element: (0.000000000000000, 0.500000000000000, 0.500000000000000), (0.500000000000000, 0.000000000000000, 0.500000000000000), (0.500000000000000, 0.500000000000000, 0.000000000000000), (0.500000000000000, 0.000000000000000, 0.000000000000000), (0.000000000000000, 0.500000000000000, 0.000000000000000), (0.000000000000000, 0.000000000000000, 0.500000000000000), (0.698419704324387, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.698419704324387), (0.100526765225204, 0.698419704324387, 0.100526765225204), (0.056881379520423, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.056881379520423), (0.314372873493192, 0.056881379520423, 0.314372873493192)
+    static const double W14[14] = {0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.0147649707904968, 0.0147649707904968, 0.0147649707904968, 0.0147649707904968, 0.0221397911142651, 0.0221397911142651, 0.0221397911142651, 0.0221397911142651};
+    // Quadrature points on the UFC reference element: (0.0, 0.5, 0.5), (0.5, 0.0, 0.5), (0.5, 0.5, 0.0), (0.5, 0.0, 0.0), (0.0, 0.5, 0.0), (0.0, 0.0, 0.5), (0.698419704324387, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.698419704324387), (0.100526765225204, 0.698419704324387, 0.100526765225204), (0.0568813795204234, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.0568813795204234), (0.314372873493192, 0.0568813795204234, 0.314372873493192)
     
     // Value of basis functions at quadrature points.
     static const double FE1_C0[14][4] = \
-    {{0.000000000000000, 0.000000000000000, 0.500000000000000, 0.500000000000000},
-    {0.000000000000000, 0.500000000000000, 0.000000000000000, 0.500000000000000},
-    {0.000000000000000, 0.500000000000000, 0.500000000000000, 0.000000000000000},
-    {0.500000000000000, 0.500000000000000, 0.000000000000000, 0.000000000000000},
-    {0.500000000000000, 0.000000000000000, 0.500000000000000, 0.000000000000000},
-    {0.500000000000000, 0.000000000000000, 0.000000000000000, 0.500000000000000},
+    {{0.0, 0.0, 0.5, 0.5},
+    {0.0, 0.5, 0.0, 0.5},
+    {0.0, 0.5, 0.5, 0.0},
+    {0.5, 0.5, 0.0, 0.0},
+    {0.5, 0.0, 0.5, 0.0},
+    {0.5, 0.0, 0.0, 0.5},
     {0.100526765225204, 0.698419704324386, 0.100526765225205, 0.100526765225205},
     {0.698419704324386, 0.100526765225204, 0.100526765225205, 0.100526765225205},
     {0.100526765225204, 0.100526765225204, 0.100526765225205, 0.698419704324386},
     {0.100526765225204, 0.100526765225204, 0.698419704324386, 0.100526765225205},
-    {0.314372873493192, 0.056881379520423, 0.314372873493192, 0.314372873493192},
-    {0.056881379520423, 0.314372873493192, 0.314372873493192, 0.314372873493192},
-    {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.056881379520423},
-    {0.314372873493192, 0.314372873493192, 0.056881379520423, 0.314372873493192}};
+    {0.314372873493192, 0.0568813795204234, 0.314372873493192, 0.314372873493192},
+    {0.0568813795204234, 0.314372873493192, 0.314372873493192, 0.314372873493192},
+    {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.0568813795204234},
+    {0.314372873493192, 0.314372873493192, 0.0568813795204235, 0.314372873493192}};
     
     // Array of non-zero columns
     static const unsigned int nzc0[4] = {0, 1, 2, 3};
@@ -5328,20 +5328,20 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     static const unsigned int nzc4[4] = {4, 5, 6, 7};
     
     static const double FE1_C0_D001[14][2] = \
-    {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000}};
+    {{-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0}};
     
     // Array of non-zero columns
     static const unsigned int nzc1[2] = {0, 3};
@@ -5364,7 +5364,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 8; r++)
     {
-      A[r] = 0.000000000000000;
+      A[r] = 0.0;
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 177.
     double G[21];
@@ -5386,9 +5386,9 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     G[15] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12);
     G[16] = det*w[3][0]*w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02);
     G[17] = det*w[3][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02 - w[4][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02));
-    G[18] = -4.000000000000000e+02*det;
-    G[19] = 6.000000000000000e+02*det;
-    G[20] = -2.000000000000000e+02*det;
+    G[18] = -400.0*det;
+    G[19] = 600.0*det;
+    G[20] = -200.0*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -5399,18 +5399,18 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {
       
       // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      double F1 = 0.000000000000000;
-      double F2 = 0.000000000000000;
-      double F3 = 0.000000000000000;
-      double F4 = 0.000000000000000;
-      double F5 = 0.000000000000000;
-      double F6 = 0.000000000000000;
-      double F7 = 0.000000000000000;
-      double F8 = 0.000000000000000;
-      double F9 = 0.000000000000000;
-      double F10 = 0.000000000000000;
-      double F11 = 0.000000000000000;
+      double F0 = 0.0;
+      double F1 = 0.0;
+      double F2 = 0.0;
+      double F3 = 0.0;
+      double F4 = 0.0;
+      double F5 = 0.0;
+      double F6 = 0.0;
+      double F7 = 0.0;
+      double F8 = 0.0;
+      double F9 = 0.0;
+      double F10 = 0.0;
+      double F11 = 0.0;
       
       // Total number of operations to compute function values = 36
       for (unsigned int r = 0; r < 2; r++)
@@ -5566,25 +5566,25 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     
     
     // Array of quadrature weights.
-    static const double W14[14] = {0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.003174603174603, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.014764970790497, 0.022139791114265, 0.022139791114265, 0.022139791114265, 0.022139791114265};
-    // Quadrature points on the UFC reference element: (0.000000000000000, 0.500000000000000, 0.500000000000000), (0.500000000000000, 0.000000000000000, 0.500000000000000), (0.500000000000000, 0.500000000000000, 0.000000000000000), (0.500000000000000, 0.000000000000000, 0.000000000000000), (0.000000000000000, 0.500000000000000, 0.000000000000000), (0.000000000000000, 0.000000000000000, 0.500000000000000), (0.698419704324387, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.698419704324387), (0.100526765225204, 0.698419704324387, 0.100526765225204), (0.056881379520423, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.056881379520423), (0.314372873493192, 0.056881379520423, 0.314372873493192)
+    static const double W14[14] = {0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.00317460317460317, 0.0147649707904968, 0.0147649707904968, 0.0147649707904968, 0.0147649707904968, 0.0221397911142651, 0.0221397911142651, 0.0221397911142651, 0.0221397911142651};
+    // Quadrature points on the UFC reference element: (0.0, 0.5, 0.5), (0.5, 0.0, 0.5), (0.5, 0.5, 0.0), (0.5, 0.0, 0.0), (0.0, 0.5, 0.0), (0.0, 0.0, 0.5), (0.698419704324387, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.100526765225204), (0.100526765225204, 0.100526765225204, 0.698419704324387), (0.100526765225204, 0.698419704324387, 0.100526765225204), (0.0568813795204234, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.314372873493192), (0.314372873493192, 0.314372873493192, 0.0568813795204234), (0.314372873493192, 0.0568813795204234, 0.314372873493192)
     
     // Value of basis functions at quadrature points.
     static const double FE1_C0[14][4] = \
-    {{0.000000000000000, 0.000000000000000, 0.500000000000000, 0.500000000000000},
-    {0.000000000000000, 0.500000000000000, 0.000000000000000, 0.500000000000000},
-    {0.000000000000000, 0.500000000000000, 0.500000000000000, 0.000000000000000},
-    {0.500000000000000, 0.500000000000000, 0.000000000000000, 0.000000000000000},
-    {0.500000000000000, 0.000000000000000, 0.500000000000000, 0.000000000000000},
-    {0.500000000000000, 0.000000000000000, 0.000000000000000, 0.500000000000000},
+    {{0.0, 0.0, 0.5, 0.5},
+    {0.0, 0.5, 0.0, 0.5},
+    {0.0, 0.5, 0.5, 0.0},
+    {0.5, 0.5, 0.0, 0.0},
+    {0.5, 0.0, 0.5, 0.0},
+    {0.5, 0.0, 0.0, 0.5},
     {0.100526765225204, 0.698419704324386, 0.100526765225205, 0.100526765225205},
     {0.698419704324386, 0.100526765225204, 0.100526765225205, 0.100526765225205},
     {0.100526765225204, 0.100526765225204, 0.100526765225205, 0.698419704324386},
     {0.100526765225204, 0.100526765225204, 0.698419704324386, 0.100526765225205},
-    {0.314372873493192, 0.056881379520423, 0.314372873493192, 0.314372873493192},
-    {0.056881379520423, 0.314372873493192, 0.314372873493192, 0.314372873493192},
-    {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.056881379520423},
-    {0.314372873493192, 0.314372873493192, 0.056881379520423, 0.314372873493192}};
+    {0.314372873493192, 0.0568813795204234, 0.314372873493192, 0.314372873493192},
+    {0.0568813795204234, 0.314372873493192, 0.314372873493192, 0.314372873493192},
+    {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.0568813795204234},
+    {0.314372873493192, 0.314372873493192, 0.0568813795204235, 0.314372873493192}};
     
     // Array of non-zero columns
     static const unsigned int nzc0[4] = {0, 1, 2, 3};
@@ -5593,20 +5593,20 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     static const unsigned int nzc4[4] = {4, 5, 6, 7};
     
     static const double FE1_C0_D001[14][2] = \
-    {{-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000},
-    {-1.000000000000000, 1.000000000000000}};
+    {{-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0},
+    {-1.0, 1.0}};
     
     // Array of non-zero columns
     static const unsigned int nzc1[2] = {0, 3};
@@ -5629,7 +5629,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 64; r++)
     {
-      A[r] = 0.000000000000000;
+      A[r] = 0.0;
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 93.
     double G[15];
@@ -5645,9 +5645,9 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     G[9] = det*w[2][0]*w[3][0]*(K_00*K_20 + K_01*K_21 + K_02*K_22);
     G[10] = det*w[2][0]*w[3][0]*(K_10*K_10 + K_11*K_11 + K_12*K_12);
     G[11] =  - det*w[1][0]*(K_00*K_00 + K_01*K_01 + K_02*K_02);
-    G[12] = -2.000000000000000e+02*det;
-    G[13] = -1.200000000000000e+03*det;
-    G[14] = 1.200000000000000e+03*det;
+    G[12] = -200.0*det;
+    G[13] = -1200.0*det;
+    G[14] = 1200.0*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -5658,7 +5658,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {
       
       // Coefficient declarations.
-      double F0 = 0.000000000000000;
+      double F0 = 0.0;
       
       // Total number of operations to compute function values = 8
       for (unsigned int r = 0; r < 4; r++)

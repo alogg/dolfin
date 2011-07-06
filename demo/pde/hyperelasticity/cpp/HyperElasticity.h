@@ -117,19 +117,19 @@ public:
     
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     
     // Array of basisvalues.
-    double basisvalues[1] = {0.000000000000000};
+    double basisvalues[1] = {0.0};
     
     // Declare helper variables.
     
     // Compute basisvalues.
-    basisvalues[0] = 1.000000000000000;
+    basisvalues[0] = 1.0;
     
     // Table(s) of coefficients.
     static const double coefficients0[1] = \
-    {1.000000000000000};
+    {1.0};
     
     // Compute value(s).
     for (unsigned int r = 0; r < 1; r++)
@@ -259,47 +259,47 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     
     // Array of basisvalues.
-    double basisvalues[1] = {0.000000000000000};
+    double basisvalues[1] = {0.0};
     
     // Declare helper variables.
     
     // Compute basisvalues.
-    basisvalues[0] = 1.000000000000000;
+    basisvalues[0] = 1.0;
     
     // Table(s) of coefficients.
     static const double coefficients0[1] = \
-    {1.000000000000000};
+    {1.0};
     
     // Tables of derivatives of the polynomial base (transpose).
     static const double dmats0[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     static const double dmats1[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     static const double dmats2[1][1] = \
-    {{0.000000000000000}};
+    {{0.0}};
     
     // Compute reference derivatives.
     // Declare pointer to array of derivatives on FIAT element.
     double *derivatives = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      derivatives[r] = 0.000000000000000;
+      derivatives[r] = 0.0;
     }// end loop over 'r'
     
     // Declare derivative matrix (of polynomial basis).
     double dmats[1][1] = \
-    {{1.000000000000000}};
+    {{1.0}};
     
     // Declare (auxiliary) derivative matrix (of polynomial basis).
     double dmats_old[1][1] = \
-    {{1.000000000000000}};
+    {{1.0}};
     
     // Loop possible derivatives.
     for (unsigned int r = 0; r < num_derivatives; r++)
@@ -309,10 +309,10 @@ public:
       {
         for (unsigned int u = 0; u < 1; u++)
         {
-          dmats[t][u] = 0.000000000000000;
+          dmats[t][u] = 0.0;
           if (t == u)
           {
-          dmats[t][u] = 1.000000000000000;
+          dmats[t][u] = 1.0;
           }
           
         }// end loop over 'u'
@@ -327,7 +327,7 @@ public:
           for (unsigned int u = 0; u < 1; u++)
           {
             dmats_old[t][u] = dmats[t][u];
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
           }// end loop over 'u'
         }// end loop over 't'
         
@@ -434,16 +434,16 @@ public:
     {
     case 0:
       {
-        y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-      y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-      y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+        y[0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+      y[1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+      y[2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -457,9 +457,9 @@ public:
     // Declare variable for physical coordinates.
     double y[3];
     const double * const * x = c.coordinates;
-    y[0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    y[1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    y[2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    y[0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    y[1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    y[2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
   }
@@ -620,28 +620,28 @@ public:
     
     
     // Reset values.
-    *values = 0.000000000000000;
+    *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -649,7 +649,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -659,7 +659,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -679,21 +679,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -701,7 +701,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -711,7 +711,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -731,21 +731,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -753,7 +753,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -763,14 +763,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -783,21 +783,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -805,7 +805,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -815,14 +815,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -841,7 +841,7 @@ public:
                                   const ufc::cell& c) const
   {
     // Helper variable to hold values of a single dof.
-    double dof_values = 0.000000000000000;
+    double dof_values = 0.0;
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 4; r++)
@@ -969,7 +969,7 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -978,21 +978,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1000,7 +1000,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1010,7 +1010,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -1021,44 +1021,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1068,10 +1068,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1086,7 +1086,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1172,21 +1172,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1194,7 +1194,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1204,7 +1204,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -1215,44 +1215,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1262,10 +1262,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1280,7 +1280,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1366,21 +1366,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1388,7 +1388,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1398,55 +1398,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1456,10 +1456,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1474,7 +1474,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1560,21 +1560,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -1582,7 +1582,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -1592,55 +1592,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -1650,10 +1650,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -1668,7 +1668,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -1771,7 +1771,7 @@ public:
     double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -1839,7 +1839,7 @@ public:
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -2040,30 +2040,30 @@ public:
     
     
     // Reset values.
-    values[0] = 0.000000000000000;
-    values[1] = 0.000000000000000;
-    values[2] = 0.000000000000000;
+    values[0] = 0.0;
+    values[1] = 0.0;
+    values[2] = 0.0;
     switch (i)
     {
     case 0:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2071,7 +2071,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2081,7 +2081,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2101,21 +2101,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2123,7 +2123,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2133,7 +2133,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2153,21 +2153,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2175,7 +2175,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2185,14 +2185,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2205,21 +2205,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2227,7 +2227,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2237,14 +2237,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2257,21 +2257,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2279,7 +2279,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2289,7 +2289,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2309,21 +2309,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2331,7 +2331,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2341,7 +2341,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2361,21 +2361,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2383,7 +2383,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2393,14 +2393,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2413,21 +2413,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2435,7 +2435,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2445,14 +2445,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2465,21 +2465,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2487,7 +2487,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2497,7 +2497,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2517,21 +2517,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2539,7 +2539,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2549,7 +2549,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2569,21 +2569,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2591,7 +2591,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2601,14 +2601,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2621,21 +2621,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2643,7 +2643,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2653,14 +2653,14 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -2679,7 +2679,7 @@ public:
                                   const ufc::cell& c) const
   {
     // Helper variable to hold values of a single dof.
-    double dof_values[3] = {0.000000000000000, 0.000000000000000, 0.000000000000000};
+    double dof_values[3] = {0.0, 0.0, 0.0};
     
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 12; r++)
@@ -2810,7 +2810,7 @@ public:
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < 3*num_derivatives; r++)
     {
-      values[r] = 0.000000000000000;
+      values[r] = 0.0;
     }// end loop over 'r'
     
     switch (i)
@@ -2819,21 +2819,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -2841,7 +2841,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -2851,7 +2851,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -2862,44 +2862,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -2909,10 +2909,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -2927,7 +2927,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3013,21 +3013,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3035,7 +3035,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3045,7 +3045,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -3056,44 +3056,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3103,10 +3103,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3121,7 +3121,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3207,21 +3207,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3229,7 +3229,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3239,55 +3239,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3297,10 +3297,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3315,7 +3315,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3401,21 +3401,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3423,7 +3423,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3433,55 +3433,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3491,10 +3491,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3509,7 +3509,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3595,21 +3595,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3617,7 +3617,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3627,7 +3627,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -3638,44 +3638,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3685,10 +3685,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3703,7 +3703,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3789,21 +3789,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -3811,7 +3811,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -3821,7 +3821,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -3832,44 +3832,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -3879,10 +3879,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -3897,7 +3897,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -3983,21 +3983,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4005,7 +4005,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -4015,55 +4015,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4073,10 +4073,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4091,7 +4091,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4177,21 +4177,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4199,7 +4199,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -4209,55 +4209,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4267,10 +4267,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4285,7 +4285,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4371,21 +4371,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4393,7 +4393,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -4403,7 +4403,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -4414,44 +4414,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4461,10 +4461,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4479,7 +4479,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4565,21 +4565,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4587,7 +4587,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -4597,7 +4597,7 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
@@ -4608,44 +4608,44 @@ public:
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4655,10 +4655,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4673,7 +4673,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4759,21 +4759,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4781,7 +4781,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -4791,55 +4791,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.210818510677892, -0.074535599249993};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -4849,10 +4849,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -4867,7 +4867,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -4953,21 +4953,21 @@ public:
       {
         
       // Array of basisvalues.
-      double basisvalues[4] = {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000};
+      double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
       // Declare helper variables.
       unsigned int rr = 0;
       unsigned int ss = 0;
-      double tmp0 = 0.500000000000000*(2.000000000000000 + Y + Z + 2.000000000000000*X);
+      double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
       // Compute basisvalues.
-      basisvalues[0] = 1.000000000000000;
+      basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       for (unsigned int r = 0; r < 1; r++)
       {
         rr = (r + 1)*(r + 1 + 1)*(r + 1 + 2)/6 + 1*(1 + 1)/2;
         ss = r*(r + 1)*(r + 2)/6;
-        basisvalues[rr] = basisvalues[ss]*(r*(1.000000000000000 + Y) + (2.000000000000000 + Z + 3.000000000000000*Y)/2.000000000000000);
+        basisvalues[rr] = basisvalues[ss]*(r*(1.0 + Y) + (2.0 + Z + 3.0*Y)/2.0);
       }// end loop over 'r'
       for (unsigned int r = 0; r < 1; r++)
       {
@@ -4975,7 +4975,7 @@ public:
         {
           rr = (r + s + 1)*(r + s + 1 + 1)*(r + s + 1 + 2)/6 + (s + 1)*(s + 1 + 1)/2 + 1;
           ss = (r + s)*(r + s + 1)*(r + s + 2)/6 + s*(s + 1)/2;
-          basisvalues[rr] = basisvalues[ss]*(1.000000000000000 + r + s + Z*(2.000000000000000 + r + s));
+          basisvalues[rr] = basisvalues[ss]*(1.0 + r + s + Z*(2.0 + r + s));
         }// end loop over 's'
       }// end loop over 'r'
       for (unsigned int r = 0; r < 2; r++)
@@ -4985,55 +4985,55 @@ public:
           for (unsigned int t = 0; t < 2 - r - s; t++)
           {
             rr = (r + s + t)*(r + s + t + 1)*(r + s + t + 2)/6 + (s + t)*(s + t + 1)/2 + t;
-            basisvalues[rr] *= std::sqrt((0.500000000000000 + r)*(1.000000000000000 + r + s)*(1.500000000000000 + r + s + t));
+            basisvalues[rr] *= std::sqrt((0.5 + r)*(1.0 + r + s)*(1.5 + r + s + t));
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
       
       // Table(s) of coefficients.
       static const double coefficients0[4] = \
-      {0.288675134594813, 0.000000000000000, 0.000000000000000, 0.223606797749979};
+      {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {6.324555320336760, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {6.32455532033676, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.477225575051662, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats2[4][4] = \
-      {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {3.162277660168380, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {1.825741858350554, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {5.163977794943223, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+      {{0.0, 0.0, 0.0, 0.0},
+      {3.16227766016838, 0.0, 0.0, 0.0},
+      {1.82574185835055, 0.0, 0.0, 0.0},
+      {5.16397779494322, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
-        derivatives[r] = 0.000000000000000;
+        derivatives[r] = 0.0;
       }// end loop over 'r'
       
       // Declare derivative matrix (of polynomial basis).
       double dmats[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[4][4] = \
-      {{1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-      {0.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+      {{1.0, 0.0, 0.0, 0.0},
+      {0.0, 1.0, 0.0, 0.0},
+      {0.0, 0.0, 1.0, 0.0},
+      {0.0, 0.0, 0.0, 1.0}};
       
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
@@ -5043,10 +5043,10 @@ public:
         {
           for (unsigned int u = 0; u < 4; u++)
           {
-            dmats[t][u] = 0.000000000000000;
+            dmats[t][u] = 0.0;
             if (t == u)
             {
-            dmats[t][u] = 1.000000000000000;
+            dmats[t][u] = 1.0;
             }
             
           }// end loop over 'u'
@@ -5061,7 +5061,7 @@ public:
             for (unsigned int u = 0; u < 4; u++)
             {
               dmats_old[t][u] = dmats[t][u];
-              dmats[t][u] = 0.000000000000000;
+              dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
           
@@ -5164,7 +5164,7 @@ public:
     double *dof_values = new double[3*num_derivatives];
     for (unsigned int r = 0; r < 3*num_derivatives; r++)
     {
-      dof_values[r] = 0.000000000000000;
+      dof_values[r] = 0.0;
     }// end loop over 'r'
     
     // Loop dofs and call evaluate_basis_derivatives.
@@ -5304,7 +5304,7 @@ public:
       }
     }
     
-    return 0.000000000000000;
+    return 0.0;
   }
 
   /// Evaluate linear functionals for all dofs on the function f
@@ -5685,9 +5685,9 @@ public:
   {
     const double * const * x = c.coordinates;
     
-    coordinates[0][0] = 0.250000000000000*x[0][0] + 0.250000000000000*x[1][0] + 0.250000000000000*x[2][0] + 0.250000000000000*x[3][0];
-    coordinates[0][1] = 0.250000000000000*x[0][1] + 0.250000000000000*x[1][1] + 0.250000000000000*x[2][1] + 0.250000000000000*x[3][1];
-    coordinates[0][2] = 0.250000000000000*x[0][2] + 0.250000000000000*x[1][2] + 0.250000000000000*x[2][2] + 0.250000000000000*x[3][2];
+    coordinates[0][0] = 0.25*x[0][0] + 0.25*x[1][0] + 0.25*x[2][0] + 0.25*x[3][0];
+    coordinates[0][1] = 0.25*x[0][1] + 0.25*x[1][1] + 0.25*x[2][1] + 0.25*x[3][1];
+    coordinates[0][2] = 0.25*x[0][2] + 0.25*x[1][2] + 0.25*x[2][2] + 0.25*x[3][2];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -6067,7 +6067,7 @@ public:
   /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    _global_dimension = 3.000000000000000*m.num_entities[0];
+    _global_dimension = 3.0*m.num_entities[0];
     return false;
   }
 
@@ -6462,86 +6462,86 @@ public:
     
     
     // Array of quadrature weights.
-    static const double W4[4] = {0.041666666666667, 0.041666666666667, 0.041666666666667, 0.041666666666667};
+    static const double W4[4] = {0.0416666666666667, 0.0416666666666667, 0.0416666666666667, 0.0416666666666667};
     // Quadrature points on the UFC reference element: (0.585410196624969, 0.138196601125011, 0.138196601125011), (0.138196601125011, 0.585410196624969, 0.138196601125011), (0.138196601125011, 0.138196601125011, 0.585410196624969), (0.138196601125011, 0.138196601125011, 0.138196601125011)
     
     // Value of basis functions at quadrature points.
     static const double FE1_C0[4][12] = \
-    {{0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C0_D001[4][12] = \
-    {{-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{-1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C0_D010[4][12] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{-1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C0_D100[4][12] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{-1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {-1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1_D001[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1_D010[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1_D100[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C2[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.138196601125009, 0.585410196624969, 0.138196601125011, 0.138196601125011},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.138196601125009, 0.138196601125011, 0.585410196624969, 0.138196601125011},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.138196601125009, 0.138196601125011, 0.138196601125011, 0.585410196624969},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.585410196624967, 0.138196601125011, 0.138196601125011, 0.138196601125011}};
     
     static const double FE1_C2_D001[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0}};
     
     static const double FE1_C2_D010[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0}};
     
     static const double FE1_C2_D100[4][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000},
-    {0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0},
+    {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0}};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 12; r++)
     {
-      A[r] = 0.000000000000000;
+      A[r] = 0.0;
     }// end loop over 'r'
     
     // Compute element tensor using UFL quadrature representation
@@ -6553,18 +6553,18 @@ public:
     {
       
       // Coefficient declarations.
-      double F0 = 0.000000000000000;
-      double F1 = 0.000000000000000;
-      double F2 = 0.000000000000000;
-      double F3 = 0.000000000000000;
-      double F4 = 0.000000000000000;
-      double F5 = 0.000000000000000;
-      double F6 = 0.000000000000000;
-      double F7 = 0.000000000000000;
-      double F8 = 0.000000000000000;
-      double F9 = 0.000000000000000;
-      double F10 = 0.000000000000000;
-      double F11 = 0.000000000000000;
+      double F0 = 0.0;
+      double F1 = 0.0;
+      double F2 = 0.0;
+      double F3 = 0.0;
+      double F4 = 0.0;
+      double F5 = 0.0;
+      double F6 = 0.0;
+      double F7 = 0.0;
+      double F8 = 0.0;
+      double F9 = 0.0;
+      double F10 = 0.0;
+      double F11 = 0.0;
       
       // Total number of operations to compute function values = 288
       for (unsigned int r = 0; r < 12; r++)
@@ -6587,7 +6587,7 @@ public:
       for (unsigned int j = 0; j < 12; j++)
       {
         // Number of operations to compute entry: 960
-        A[j] += (((FE1_C0[ip][j]*F0 + FE1_C1[ip][j]*F1 + FE1_C2[ip][j]*F2))*(-1.000000000000000) + (((((((((K_00*FE1_C0_D100[ip][j] + K_10*FE1_C0_D010[ip][j] + K_20*FE1_C0_D001[ip][j]))*(((-1.000000000000000)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11))))) + ((((((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11))))*(-1.000000000000000) + (((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000)) + ((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11))))))*(((K_00*F3 + K_10*F4 + K_20*F5) + 1.000000000000000))) + (((((((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11))) + ((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8))))*(-1.000000000000000) + (((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11)))))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C0_D100[ip][j] + K_11*FE1_C0_D010[ip][j] + K_21*FE1_C0_D001[ip][j]))*(((-1.000000000000000)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))) + ((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)))))) + (((((((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11)) + ((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11)) + ((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8)))))*((K_02*F3 + K_12*F4 + K_22*F5)) + ((K_02*FE1_C0_D100[ip][j] + K_12*FE1_C0_D010[ip][j] + K_22*FE1_C0_D001[ip][j]))*(((-1.000000000000000)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11))))))/(((((K_01*F3 + K_11*F4 + K_21*F5))*(((-1.000000000000000)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))) + ((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)))) + (((K_00*F3 + K_10*F4 + K_20*F5) + 1.000000000000000))*(((-1.000000000000000)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + ((K_02*F3 + K_12*F4 + K_22*F5))*(((-1.000000000000000)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)))))))*2.000000000000000)*(std::log(((((K_01*F3 + K_11*F4 + K_21*F5))*(((-1.000000000000000)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))) + ((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)))) + (((K_00*F3 + K_10*F4 + K_20*F5) + 1.000000000000000))*(((-1.000000000000000)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + ((K_02*F3 + K_12*F4 + K_22*F5))*(((-1.000000000000000)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11))))))))*w[4][0]/(2.000000000000000) + ((((2.000000000000000*(((K_00*FE1_C0_D100[ip][j] + K_10*FE1_C0_D010[ip][j] + K_20*FE1_C0_D001[ip][j]))*(((K_00*F3 + K_10*F4 + K_20*F5) + 1.000000000000000))) + 2.000000000000000*(((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11))) + 2.000000000000000*(((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8)))) + (2.000000000000000*(((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))) + 2.000000000000000*(((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11))) + 2.000000000000000*(((K_01*FE1_C0_D100[ip][j] + K_11*FE1_C0_D010[ip][j] + K_21*FE1_C0_D001[ip][j]))*((K_01*F3 + K_11*F4 + K_21*F5)))) + (2.000000000000000*(((K_02*FE1_C0_D100[ip][j] + K_12*FE1_C0_D010[ip][j] + K_22*FE1_C0_D001[ip][j]))*((K_02*F3 + K_12*F4 + K_22*F5))) + 2.000000000000000*(((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))) + 2.000000000000000*(((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8))))))*w[3][0]/(2.000000000000000) + (((((((K_00*FE1_C0_D100[ip][j] + K_10*FE1_C0_D010[ip][j] + K_20*FE1_C0_D001[ip][j]))*(((-1.000000000000000)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11))))) + ((((((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11))))*(-1.000000000000000) + (((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000)) + ((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11))))))*(((K_00*F3 + K_10*F4 + K_20*F5) + 1.000000000000000))) + (((((((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11))) + ((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8))))*(-1.000000000000000) + (((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11)))))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C0_D100[ip][j] + K_11*FE1_C0_D010[ip][j] + K_21*FE1_C0_D001[ip][j]))*(((-1.000000000000000)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))) + ((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)))))) + (((((((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11)) + ((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11)) + ((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8)))))*((K_02*F3 + K_12*F4 + K_22*F5)) + ((K_02*FE1_C0_D100[ip][j] + K_12*FE1_C0_D010[ip][j] + K_22*FE1_C0_D001[ip][j]))*(((-1.000000000000000)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11))))))/(((((K_01*F3 + K_11*F4 + K_21*F5))*(((-1.000000000000000)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))) + ((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)))) + (((K_00*F3 + K_10*F4 + K_20*F5) + 1.000000000000000))*(((-1.000000000000000)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((1.000000000000000 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + ((K_02*F3 + K_12*F4 + K_22*F5))*(((-1.000000000000000)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.000000000000000))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)))))))*w[3][0])*(-1.000000000000000))))*W4[ip]*det;
+        A[j] += ((((((((((K_01*FE1_C0_D100[ip][j] + K_11*FE1_C0_D010[ip][j] + K_21*FE1_C0_D001[ip][j]))*((((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)) + (-1.0)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + (((((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8)) + ((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))*(-1.0)))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((((((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11))))*(-1.0) + (((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11))) + ((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.0)))))*(((K_00*F3 + K_10*F4 + K_20*F5) + 1.0)) + ((K_00*FE1_C0_D100[ip][j] + K_10*FE1_C0_D010[ip][j] + K_20*FE1_C0_D001[ip][j]))*(((-1.0)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11))))))) + (((K_02*FE1_C0_D100[ip][j] + K_12*FE1_C0_D010[ip][j] + K_22*FE1_C0_D001[ip][j]))*((((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)) + (-1.0)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((K_00*F9 + K_10*F10 + K_20*F11))))) + (((((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11)) + ((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8))) + ((((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.0)) + ((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11))))*(-1.0)))*((K_02*F3 + K_12*F4 + K_22*F5))))/(((((K_01*F3 + K_11*F4 + K_21*F5))*((((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)) + (-1.0)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + (((K_00*F3 + K_10*F4 + K_20*F5) + 1.0))*(((-1.0)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + ((K_02*F3 + K_12*F4 + K_22*F5))*((((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)) + (-1.0)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((K_00*F9 + K_10*F10 + K_20*F11))))))))*2.0)*(std::log(((((K_01*F3 + K_11*F4 + K_21*F5))*((((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)) + (-1.0)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + (((K_00*F3 + K_10*F4 + K_20*F5) + 1.0))*(((-1.0)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + ((K_02*F3 + K_12*F4 + K_22*F5))*((((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)) + (-1.0)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((K_00*F9 + K_10*F10 + K_20*F11)))))))))*w[4][0]/(2.0) + ((((((((K_01*FE1_C0_D100[ip][j] + K_11*FE1_C0_D010[ip][j] + K_21*FE1_C0_D001[ip][j]))*((((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)) + (-1.0)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + (((((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11))) + ((((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8)) + ((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))*(-1.0)))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((((((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11))))*(-1.0) + (((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11))) + ((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.0)))))*(((K_00*F3 + K_10*F4 + K_20*F5) + 1.0)) + ((K_00*FE1_C0_D100[ip][j] + K_10*FE1_C0_D010[ip][j] + K_20*FE1_C0_D001[ip][j]))*(((-1.0)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11))))))) + (((K_02*FE1_C0_D100[ip][j] + K_12*FE1_C0_D010[ip][j] + K_22*FE1_C0_D001[ip][j]))*((((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)) + (-1.0)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((K_00*F9 + K_10*F10 + K_20*F11))))) + (((((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11)) + ((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8))) + ((((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.0)) + ((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11))))*(-1.0)))*((K_02*F3 + K_12*F4 + K_22*F5))))/(((((K_01*F3 + K_11*F4 + K_21*F5))*((((K_02*F6 + K_12*F7 + K_22*F8))*((K_00*F9 + K_10*F10 + K_20*F11)) + (-1.0)*(((K_00*F6 + K_10*F7 + K_20*F8))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + (((K_00*F3 + K_10*F4 + K_20*F5) + 1.0))*(((-1.0)*(((K_02*F6 + K_12*F7 + K_22*F8))*((K_01*F9 + K_11*F10 + K_21*F11))) + (((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))))) + ((K_02*F3 + K_12*F4 + K_22*F5))*((((K_00*F6 + K_10*F7 + K_20*F8))*((K_01*F9 + K_11*F10 + K_21*F11)) + (-1.0)*((((K_01*F6 + K_11*F7 + K_21*F8) + 1.0))*((K_00*F9 + K_10*F10 + K_20*F11))))))))*w[3][0])*(-1.0) + (((2.0*(((K_01*FE1_C2_D100[ip][j] + K_11*FE1_C2_D010[ip][j] + K_21*FE1_C2_D001[ip][j]))*((K_01*F9 + K_11*F10 + K_21*F11))) + 2.0*(((K_01*FE1_C0_D100[ip][j] + K_11*FE1_C0_D010[ip][j] + K_21*FE1_C0_D001[ip][j]))*((K_01*F3 + K_11*F4 + K_21*F5))) + 2.0*(((K_01*FE1_C1_D100[ip][j] + K_11*FE1_C1_D010[ip][j] + K_21*FE1_C1_D001[ip][j]))*(((K_01*F6 + K_11*F7 + K_21*F8) + 1.0)))) + (2.0*(((K_02*FE1_C2_D100[ip][j] + K_12*FE1_C2_D010[ip][j] + K_22*FE1_C2_D001[ip][j]))*((1.0 + (K_02*F9 + K_12*F10 + K_22*F11)))) + 2.0*(((K_02*FE1_C1_D100[ip][j] + K_12*FE1_C1_D010[ip][j] + K_22*FE1_C1_D001[ip][j]))*((K_02*F6 + K_12*F7 + K_22*F8))) + 2.0*(((K_02*FE1_C0_D100[ip][j] + K_12*FE1_C0_D010[ip][j] + K_22*FE1_C0_D001[ip][j]))*((K_02*F3 + K_12*F4 + K_22*F5)))) + (2.0*(((K_00*FE1_C1_D100[ip][j] + K_10*FE1_C1_D010[ip][j] + K_20*FE1_C1_D001[ip][j]))*((K_00*F6 + K_10*F7 + K_20*F8))) + 2.0*(((K_00*FE1_C2_D100[ip][j] + K_10*FE1_C2_D010[ip][j] + K_20*FE1_C2_D001[ip][j]))*((K_00*F9 + K_10*F10 + K_20*F11))) + 2.0*(((K_00*FE1_C0_D100[ip][j] + K_10*FE1_C0_D010[ip][j] + K_20*FE1_C0_D001[ip][j]))*(((K_00*F3 + K_10*F4 + K_20*F5) + 1.0))))))*w[3][0]/(2.0))) + ((FE1_C0[ip][j]*F0 + FE1_C1[ip][j]*F1 + FE1_C2[ip][j]*F2))*(-1.0))*W4[ip]*det;
       }// end loop over 'j'
     }// end loop over 'ip'
   }
@@ -6682,66 +6682,66 @@ public:
     {
     case 0:
       {
-        A[0] = 0.000000000000000;
-      A[1] = -0.083333333333333*G0_1 - 0.041666666666667*G0_2 - 0.041666666666667*G0_3;
-      A[2] = -0.041666666666667*G0_1 - 0.083333333333333*G0_2 - 0.041666666666667*G0_3;
-      A[3] = -0.041666666666667*G0_1 - 0.041666666666667*G0_2 - 0.083333333333333*G0_3;
-      A[4] = 0.000000000000000;
-      A[5] = -0.083333333333333*G0_5 - 0.041666666666667*G0_6 - 0.041666666666667*G0_7;
-      A[6] = -0.041666666666667*G0_5 - 0.083333333333333*G0_6 - 0.041666666666667*G0_7;
-      A[7] = -0.041666666666667*G0_5 - 0.041666666666667*G0_6 - 0.083333333333333*G0_7;
-      A[8] = 0.000000000000000;
-      A[9] = -0.083333333333333*G0_9 - 0.041666666666667*G0_10 - 0.041666666666667*G0_11;
-      A[10] = -0.041666666666667*G0_9 - 0.083333333333333*G0_10 - 0.041666666666667*G0_11;
-      A[11] = -0.041666666666667*G0_9 - 0.041666666666667*G0_10 - 0.083333333333333*G0_11;
+        A[0] = 0.0;
+      A[1] = -0.0833333333333333*G0_1 - 0.0416666666666667*G0_2 - 0.0416666666666667*G0_3;
+      A[2] = -0.0416666666666667*G0_1 - 0.0833333333333333*G0_2 - 0.0416666666666667*G0_3;
+      A[3] = -0.0416666666666667*G0_1 - 0.0416666666666667*G0_2 - 0.0833333333333333*G0_3;
+      A[4] = 0.0;
+      A[5] = -0.0833333333333333*G0_5 - 0.0416666666666667*G0_6 - 0.0416666666666667*G0_7;
+      A[6] = -0.0416666666666667*G0_5 - 0.0833333333333333*G0_6 - 0.0416666666666667*G0_7;
+      A[7] = -0.0416666666666667*G0_5 - 0.0416666666666667*G0_6 - 0.0833333333333333*G0_7;
+      A[8] = 0.0;
+      A[9] = -0.0833333333333333*G0_9 - 0.0416666666666667*G0_10 - 0.0416666666666667*G0_11;
+      A[10] = -0.0416666666666667*G0_9 - 0.0833333333333333*G0_10 - 0.0416666666666667*G0_11;
+      A[11] = -0.0416666666666667*G0_9 - 0.0416666666666667*G0_10 - 0.0833333333333333*G0_11;
         break;
       }
     case 1:
       {
-        A[0] = -0.083333333333333*G0_0 - 0.041666666666667*G0_2 - 0.041666666666667*G0_3;
-      A[1] = 0.000000000000000;
-      A[2] = -0.041666666666667*G0_0 - 0.083333333333333*G0_2 - 0.041666666666667*G0_3;
-      A[3] = -0.041666666666667*G0_0 - 0.041666666666667*G0_2 - 0.083333333333333*G0_3;
-      A[4] = -0.083333333333333*G0_4 - 0.041666666666667*G0_6 - 0.041666666666667*G0_7;
-      A[5] = 0.000000000000000;
-      A[6] = -0.041666666666667*G0_4 - 0.083333333333333*G0_6 - 0.041666666666667*G0_7;
-      A[7] = -0.041666666666667*G0_4 - 0.041666666666667*G0_6 - 0.083333333333333*G0_7;
-      A[8] = -0.083333333333333*G0_8 - 0.041666666666667*G0_10 - 0.041666666666667*G0_11;
-      A[9] = 0.000000000000000;
-      A[10] = -0.041666666666667*G0_8 - 0.083333333333333*G0_10 - 0.041666666666667*G0_11;
-      A[11] = -0.041666666666667*G0_8 - 0.041666666666667*G0_10 - 0.083333333333333*G0_11;
+        A[0] = -0.0833333333333334*G0_0 - 0.0416666666666667*G0_2 - 0.0416666666666667*G0_3;
+      A[1] = 0.0;
+      A[2] = -0.0416666666666667*G0_0 - 0.0833333333333333*G0_2 - 0.0416666666666667*G0_3;
+      A[3] = -0.0416666666666667*G0_0 - 0.0416666666666667*G0_2 - 0.0833333333333333*G0_3;
+      A[4] = -0.0833333333333334*G0_4 - 0.0416666666666667*G0_6 - 0.0416666666666667*G0_7;
+      A[5] = 0.0;
+      A[6] = -0.0416666666666667*G0_4 - 0.0833333333333333*G0_6 - 0.0416666666666667*G0_7;
+      A[7] = -0.0416666666666667*G0_4 - 0.0416666666666667*G0_6 - 0.0833333333333333*G0_7;
+      A[8] = -0.0833333333333334*G0_8 - 0.0416666666666667*G0_10 - 0.0416666666666667*G0_11;
+      A[9] = 0.0;
+      A[10] = -0.0416666666666667*G0_8 - 0.0833333333333333*G0_10 - 0.0416666666666667*G0_11;
+      A[11] = -0.0416666666666667*G0_8 - 0.0416666666666667*G0_10 - 0.0833333333333333*G0_11;
         break;
       }
     case 2:
       {
-        A[0] = -0.083333333333333*G0_0 - 0.041666666666667*G0_1 - 0.041666666666667*G0_3;
-      A[1] = -0.041666666666667*G0_0 - 0.083333333333333*G0_1 - 0.041666666666667*G0_3;
-      A[2] = 0.000000000000000;
-      A[3] = -0.041666666666667*G0_0 - 0.041666666666667*G0_1 - 0.083333333333333*G0_3;
-      A[4] = -0.083333333333333*G0_4 - 0.041666666666667*G0_5 - 0.041666666666667*G0_7;
-      A[5] = -0.041666666666667*G0_4 - 0.083333333333333*G0_5 - 0.041666666666667*G0_7;
-      A[6] = 0.000000000000000;
-      A[7] = -0.041666666666667*G0_4 - 0.041666666666667*G0_5 - 0.083333333333333*G0_7;
-      A[8] = -0.083333333333333*G0_8 - 0.041666666666667*G0_9 - 0.041666666666667*G0_11;
-      A[9] = -0.041666666666667*G0_8 - 0.083333333333333*G0_9 - 0.041666666666667*G0_11;
-      A[10] = 0.000000000000000;
-      A[11] = -0.041666666666667*G0_8 - 0.041666666666667*G0_9 - 0.083333333333333*G0_11;
+        A[0] = -0.0833333333333333*G0_0 - 0.0416666666666667*G0_1 - 0.0416666666666667*G0_3;
+      A[1] = -0.0416666666666667*G0_0 - 0.0833333333333333*G0_1 - 0.0416666666666667*G0_3;
+      A[2] = 0.0;
+      A[3] = -0.0416666666666667*G0_0 - 0.0416666666666666*G0_1 - 0.0833333333333333*G0_3;
+      A[4] = -0.0833333333333333*G0_4 - 0.0416666666666667*G0_5 - 0.0416666666666667*G0_7;
+      A[5] = -0.0416666666666667*G0_4 - 0.0833333333333333*G0_5 - 0.0416666666666667*G0_7;
+      A[6] = 0.0;
+      A[7] = -0.0416666666666667*G0_4 - 0.0416666666666666*G0_5 - 0.0833333333333333*G0_7;
+      A[8] = -0.0833333333333333*G0_8 - 0.0416666666666667*G0_9 - 0.0416666666666667*G0_11;
+      A[9] = -0.0416666666666667*G0_8 - 0.0833333333333333*G0_9 - 0.0416666666666667*G0_11;
+      A[10] = 0.0;
+      A[11] = -0.0416666666666667*G0_8 - 0.0416666666666666*G0_9 - 0.0833333333333333*G0_11;
         break;
       }
     case 3:
       {
-        A[0] = -0.083333333333333*G0_0 - 0.041666666666667*G0_1 - 0.041666666666667*G0_2;
-      A[1] = -0.041666666666667*G0_0 - 0.083333333333333*G0_1 - 0.041666666666667*G0_2;
-      A[2] = -0.041666666666667*G0_0 - 0.041666666666667*G0_1 - 0.083333333333333*G0_2;
-      A[3] = 0.000000000000000;
-      A[4] = -0.083333333333333*G0_4 - 0.041666666666667*G0_5 - 0.041666666666667*G0_6;
-      A[5] = -0.041666666666667*G0_4 - 0.083333333333333*G0_5 - 0.041666666666667*G0_6;
-      A[6] = -0.041666666666667*G0_4 - 0.041666666666667*G0_5 - 0.083333333333333*G0_6;
-      A[7] = 0.000000000000000;
-      A[8] = -0.083333333333333*G0_8 - 0.041666666666667*G0_9 - 0.041666666666667*G0_10;
-      A[9] = -0.041666666666667*G0_8 - 0.083333333333333*G0_9 - 0.041666666666667*G0_10;
-      A[10] = -0.041666666666667*G0_8 - 0.041666666666667*G0_9 - 0.083333333333333*G0_10;
-      A[11] = 0.000000000000000;
+        A[0] = -0.0833333333333334*G0_0 - 0.0416666666666667*G0_1 - 0.0416666666666667*G0_2;
+      A[1] = -0.0416666666666667*G0_0 - 0.0833333333333333*G0_1 - 0.0416666666666666*G0_2;
+      A[2] = -0.0416666666666667*G0_0 - 0.0416666666666666*G0_1 - 0.0833333333333333*G0_2;
+      A[3] = 0.0;
+      A[4] = -0.0833333333333334*G0_4 - 0.0416666666666667*G0_5 - 0.0416666666666667*G0_6;
+      A[5] = -0.0416666666666667*G0_4 - 0.0833333333333333*G0_5 - 0.0416666666666666*G0_6;
+      A[6] = -0.0416666666666667*G0_4 - 0.0416666666666666*G0_5 - 0.0833333333333333*G0_6;
+      A[7] = 0.0;
+      A[8] = -0.0833333333333334*G0_8 - 0.0416666666666667*G0_9 - 0.0416666666666667*G0_10;
+      A[9] = -0.0416666666666667*G0_8 - 0.0833333333333333*G0_9 - 0.0416666666666666*G0_10;
+      A[10] = -0.0416666666666667*G0_8 - 0.0416666666666666*G0_9 - 0.0833333333333333*G0_10;
+      A[11] = 0.0;
         break;
       }
     }
@@ -6836,40 +6836,40 @@ public:
     
     // Array of quadrature weights.
     static const double W1 = 0.166666666666667;
-    // Quadrature points on the UFC reference element: (0.250000000000000, 0.250000000000000, 0.250000000000000)
+    // Quadrature points on the UFC reference element: (0.25, 0.25, 0.25)
     
     // Value of basis functions at quadrature points.
     static const double FE1_C0_D001[1][12] = \
-    {{-1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{-1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C0_D010[1][12] = \
-    {{-1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{-1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C0_D100[1][12] = \
-    {{-1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{-1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1_D001[1][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1_D010[1][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C1_D100[1][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
     
     static const double FE1_C2_D001[1][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 0.000000000000000, 1.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 1.0}};
     
     static const double FE1_C2_D010[1][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 0.000000000000000, 1.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0}};
     
     static const double FE1_C2_D100[1][12] = \
-    {{0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, 0.000000000000000, -1.000000000000000, 1.000000000000000, 0.000000000000000, 0.000000000000000}};
+    {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.0, 1.0, 0.0, 0.0}};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 144; r++)
     {
-      A[r] = 0.000000000000000;
+      A[r] = 0.0;
     }// end loop over 'r'
     
     // Compute element tensor using UFL quadrature representation
@@ -6880,15 +6880,15 @@ public:
     // Only 1 integration point, omitting IP loop.
     
     // Coefficient declarations.
-    double F0 = 0.000000000000000;
-    double F1 = 0.000000000000000;
-    double F2 = 0.000000000000000;
-    double F3 = 0.000000000000000;
-    double F4 = 0.000000000000000;
-    double F5 = 0.000000000000000;
-    double F6 = 0.000000000000000;
-    double F7 = 0.000000000000000;
-    double F8 = 0.000000000000000;
+    double F0 = 0.0;
+    double F1 = 0.0;
+    double F2 = 0.0;
+    double F3 = 0.0;
+    double F4 = 0.0;
+    double F5 = 0.0;
+    double F6 = 0.0;
+    double F7 = 0.0;
+    double F8 = 0.0;
     
     // Total number of operations to compute function values = 216
     for (unsigned int r = 0; r < 12; r++)
@@ -6910,7 +6910,7 @@ public:
       for (unsigned int k = 0; k < 12; k++)
       {
         // Number of operations to compute entry: 3516
-        A[j*12 + k] += (((((((((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.000000000000000) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))) + (((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))) + (((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)) + ((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))))*(-1.000000000000000)))*((K_01*F6 + K_11*F7 + K_21*F8)))) + ((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000)))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))/((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))*(((((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))) + (((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.000000000000000)))*((K_01*F6 + K_11*F7 + K_21*F8))) + ((((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.000000000000000)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000)) + ((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))) + (((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2)))))*((K_02*F6 + K_12*F7 + K_22*F8))))/((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))*2.000000000000000) + (((((((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000))) + (((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))) + (((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k])) + ((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))) + ((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])) + ((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))))*(-1.000000000000000)))*((K_02*F6 + K_12*F7 + K_22*F8)))) + ((((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.000000000000000) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))))) + (((((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))))*(-1.000000000000000) + (((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000)) + ((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.000000000000000))))) + ((((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))))*(-1.000000000000000) + (((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])))))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.000000000000000)))) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)) + ((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))))*(-1.000000000000000)))))) + (((((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))) + (((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.000000000000000)))*((K_01*F6 + K_11*F7 + K_21*F8))) + ((((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.000000000000000)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000)) + ((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))) + (((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2)))))*((K_02*F6 + K_12*F7 + K_22*F8))))/((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))*((((((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.000000000000000) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))) + (((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))) + (((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)) + ((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))))*(-1.000000000000000)))*((K_01*F6 + K_11*F7 + K_21*F8)))) + ((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000)))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))))*(-1.000000000000000))/((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))*2.000000000000000)*(std::log((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))))*w[2][0]/(2.000000000000000) + (((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j])) + ((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))) + (((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k])) + ((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j])) + ((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k])))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j])) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))) + (((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k])) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))) + (((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])))) + ((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k])) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))) + (((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j])) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j])) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))))))*w[1][0]/(2.000000000000000) + (((((((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000))) + (((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))) + (((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k])) + ((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))) + ((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])) + ((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))))*(-1.000000000000000)))*((K_02*F6 + K_12*F7 + K_22*F8)))) + ((((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.000000000000000) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))))) + (((((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))))*(-1.000000000000000) + (((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000)) + ((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.000000000000000))))) + ((((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))))*(-1.000000000000000) + (((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])))))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.000000000000000)))) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)) + ((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))))*(-1.000000000000000)))))) + (((((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))) + (((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.000000000000000)))*((K_01*F6 + K_11*F7 + K_21*F8))) + ((((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.000000000000000)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000)) + ((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))) + (((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000) + (((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2)))))*((K_02*F6 + K_12*F7 + K_22*F8))))/((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))*((((((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.000000000000000) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))) + (((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))) + (((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)) + ((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))))*(-1.000000000000000)))*((K_01*F6 + K_11*F7 + K_21*F8)))) + ((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.000000000000000)))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))))*(-1.000000000000000))/((((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.000000000000000)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))) + ((((K_00*F6 + K_10*F7 + K_20*F8) + 1.000000000000000))*(((((K_01*F0 + K_11*F1 + K_21*F2) + 1.000000000000000))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5))) + (-1.000000000000000)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.000000000000000)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.000000000000000 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))))))*w[1][0])*(-1.000000000000000)))*W1*det;
+        A[j*12 + k] += (((((((((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.0) + (((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))) + (((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0) + (((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5)))))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))))) + (((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)))))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))/((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))*((((((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0)))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.0)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0)) + ((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))))) + ((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0)))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))/((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))*2.0) + (((((((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))) + (((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0))) + ((((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])) + ((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))))*(-1.0) + (((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k])) + ((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k])))))*((K_02*F6 + K_12*F7 + K_22*F8)))) + ((((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.0) + (((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))))) + ((((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))))*(-1.0)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0)) + ((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.0))))) + ((((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0))) + ((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))))*(-1.0) + (((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])))))*((K_01*F6 + K_11*F7 + K_21*F8))) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0) + (((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5)))))))) + ((((((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0)))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.0)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0)) + ((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))))) + ((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0)))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))/((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))*((((((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.0) + (((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))) + (((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0) + (((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5)))))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))))) + (((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)))))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))))*(-1.0))/((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))*2.0)*(std::log((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))))*w[2][0]/(2.0) + ((((((((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))) + (((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0))) + ((((((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])) + ((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))))*(-1.0) + (((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k])) + ((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k])))))*((K_02*F6 + K_12*F7 + K_22*F8)))) + ((((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.0) + (((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))))) + ((((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k])) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))))*(-1.0)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0)) + ((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.0))))) + ((((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0))) + ((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k])) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))))*(-1.0) + (((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k])))))*((K_01*F6 + K_11*F7 + K_21*F8))) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0) + (((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5)))))))) + ((((((((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0)))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((((((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5))))*(-1.0)))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0)) + ((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))))) + ((((((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_00*F0 + K_10*F1 + K_20*F2))) + ((((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0)))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))/((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))*((((((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((((((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2))))*(-1.0) + (((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))))*(((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))) + (((((((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))) + ((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2))))*(-1.0) + (((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_02*F0 + K_12*F1 + K_22*F2)) + ((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5)))))*((K_01*F6 + K_11*F7 + K_21*F8)) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5)))))) + (((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*(((K_01*F0 + K_11*F1 + K_21*F2) + 1.0)) + ((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_00*F3 + K_10*F4 + K_20*F5))))*(-1.0) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_01*F3 + K_11*F4 + K_21*F5)) + ((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_00*F0 + K_10*F1 + K_20*F2)))))*((K_02*F6 + K_12*F7 + K_22*F8)) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5))))))))*(-1.0))/((((((K_00*F6 + K_10*F7 + K_20*F8) + 1.0))*(((-1.0)*(((K_02*F0 + K_12*F1 + K_22*F2))*((K_01*F3 + K_11*F4 + K_21*F5))) + (((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5))))) + ((K_01*F6 + K_11*F7 + K_21*F8))*(((-1.0)*(((K_00*F0 + K_10*F1 + K_20*F2))*((1.0 + (K_02*F3 + K_12*F4 + K_22*F5)))) + ((K_02*F0 + K_12*F1 + K_22*F2))*((K_00*F3 + K_10*F4 + K_20*F5))))) + ((K_02*F6 + K_12*F7 + K_22*F8))*(((-1.0)*((((K_01*F0 + K_11*F1 + K_21*F2) + 1.0))*((K_00*F3 + K_10*F4 + K_20*F5))) + ((K_00*F0 + K_10*F1 + K_20*F2))*((K_01*F3 + K_11*F4 + K_21*F5)))))))*w[1][0])*(-1.0) + ((((((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))*((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j])) + ((K_00*FE1_C2_D100[0][j] + K_10*FE1_C2_D010[0][j] + K_20*FE1_C2_D001[0][j]))*((K_00*FE1_C2_D100[0][k] + K_10*FE1_C2_D010[0][k] + K_20*FE1_C2_D001[0][k]))) + (((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))*((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k])) + ((K_00*FE1_C0_D100[0][k] + K_10*FE1_C0_D010[0][k] + K_20*FE1_C0_D001[0][k]))*((K_00*FE1_C0_D100[0][j] + K_10*FE1_C0_D010[0][j] + K_20*FE1_C0_D001[0][j]))) + (((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k]))*((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j])) + ((K_00*FE1_C1_D100[0][j] + K_10*FE1_C1_D010[0][j] + K_20*FE1_C1_D001[0][j]))*((K_00*FE1_C1_D100[0][k] + K_10*FE1_C1_D010[0][k] + K_20*FE1_C1_D001[0][k])))) + ((((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))*((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j])) + ((K_02*FE1_C2_D100[0][j] + K_12*FE1_C2_D010[0][j] + K_22*FE1_C2_D001[0][j]))*((K_02*FE1_C2_D100[0][k] + K_12*FE1_C2_D010[0][k] + K_22*FE1_C2_D001[0][k]))) + (((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))*((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k])) + ((K_02*FE1_C0_D100[0][k] + K_12*FE1_C0_D010[0][k] + K_22*FE1_C0_D001[0][k]))*((K_02*FE1_C0_D100[0][j] + K_12*FE1_C0_D010[0][j] + K_22*FE1_C0_D001[0][j]))) + (((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k]))*((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j])) + ((K_02*FE1_C1_D100[0][j] + K_12*FE1_C1_D010[0][j] + K_22*FE1_C1_D001[0][j]))*((K_02*FE1_C1_D100[0][k] + K_12*FE1_C1_D010[0][k] + K_22*FE1_C1_D001[0][k])))) + ((((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))*((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k])) + ((K_01*FE1_C0_D100[0][k] + K_11*FE1_C0_D010[0][k] + K_21*FE1_C0_D001[0][k]))*((K_01*FE1_C0_D100[0][j] + K_11*FE1_C0_D010[0][j] + K_21*FE1_C0_D001[0][j]))) + (((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))*((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j])) + ((K_01*FE1_C2_D100[0][j] + K_11*FE1_C2_D010[0][j] + K_21*FE1_C2_D001[0][j]))*((K_01*FE1_C2_D100[0][k] + K_11*FE1_C2_D010[0][k] + K_21*FE1_C2_D001[0][k]))) + (((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))*((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j])) + ((K_01*FE1_C1_D100[0][j] + K_11*FE1_C1_D010[0][j] + K_21*FE1_C1_D001[0][j]))*((K_01*FE1_C1_D100[0][k] + K_11*FE1_C1_D010[0][k] + K_21*FE1_C1_D001[0][k]))))))*w[1][0]/(2.0)))*W1*det;
       }// end loop over 'k'
     }// end loop over 'j'
   }
