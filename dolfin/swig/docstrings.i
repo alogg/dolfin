@@ -2384,11 +2384,16 @@ Return linear algebra backend factory
   Cast a GenericTensor to its derived class (non-const version)
 ";
 
-%feature("docstring")  dolfin::GenericTensor::has_type "
+%feature("docstring")  dolfin::Y> "
+Cast a GenericTensor shared ptr to its derived class. Caller
+must check for success (returns null if cast fails).
+";
+
+%feature("docstring")  dolfin::Y>::has_type "
 Check whether the GenericTensor instance matches a specific type
 ";
 
-%feature("docstring")  dolfin::GenericTensor::instance "
+%feature("docstring")  dolfin::Y>::instance "
 **Overloaded versions**
 
 * instance\ **()**
@@ -2400,7 +2405,19 @@ Check whether the GenericTensor instance matches a specific type
   Return concrete instance / unwrap (non-const version)
 ";
 
-%feature("docstring")  dolfin::GenericTensor::operator= "
+%feature("docstring")  dolfin::Y>::shared_instance "
+**Overloaded versions**
+
+* shared_instance\ **()**
+
+  Return concrete shared ptr instance / unwrap (const version)
+
+* shared_instance\ **()**
+
+  Return concrete shared ptr instance / unwrap
+";
+
+%feature("docstring")  dolfin::Y>::operator= "
 Assignment (must be overloaded by subclass)
 ";
 
