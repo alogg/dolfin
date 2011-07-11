@@ -9847,7 +9847,7 @@ or \"crossed\") indicates the direction of the diagonals.
 
 %feature("docstring")  dolfin::UnitSquare::UnitSquare "
 Define a uniform finite element :py:class:`Mesh` over the unit square
-:math:`[0,1] \times [0,1]`.
+[0,1] x [0,1].
 
 *Arguments*
     nx (int)
