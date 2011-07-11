@@ -1066,14 +1066,30 @@ views and copies, are supported.
 * DofMap\ **(ufc_dofmap, mesh)**
 
   Create dof map on mesh (data is not shared)
+  
+  *Arguments*
+      ufc_dofmap (boost::shared_ptr<ufc::dofmap>)
+          The ufc::dofmap.
+      mesh (:py:class:`Mesh`)
+          The mesh.
 
 * DofMap\ **(ufc_dofmap, mesh)**
 
   Create dof map on mesh ((data is not shared), const mesh version)
+  
+  *Arguments*
+      ufc_dofmap (boost::shared_ptr<ufc::dofmap>)
+          The ufc::dofmap.
+      mesh (:py:class:`Mesh`)
+          The mesh.
 
 * DofMap\ **(dofmap)**
 
   Copy constructor
+  
+  *Arguments*
+      dofmap (DofMap)
+          The object to be copied.
 
 * DofMap\ **(parent_dofmap, component, mesh, distributed)**
 
@@ -1085,44 +1101,117 @@ views and copies, are supported.
 ";
 
 %feature("docstring")  dolfin::DofMap::is_view "
-True if dof map is a view into another map (is a sub-dofmap)
+True if dof map is a view into another map
+
+*Returns*
+    bool
+        True if the dof map is a sub-dofmap (a view into another map).
 ";
 
 %feature("docstring")  dolfin::DofMap::needs_mesh_entities "
 Return true iff mesh entities of topological dimension d are needed
+
+*Arguments*
+    d (int)
+        Topological dimension.
+
+*Returns*
+    bool
+        True if the mesh entities are needed.
 ";
 
 %feature("docstring")  dolfin::DofMap::global_dimension "
 Return the dimension of the global finite element function space
+
+*Returns*
+    int
+        The dimension of the global finite element function space.
+";
+
+%feature("docstring")  dolfin::DofMap::cell_dimension "
+Return the dimension of the local finite element function space on a
+cell
+
+*Arguments*
+    cell_index (int)
+        Index of cell
+
+*Returns*
+    int
+        Dimension of the local finite element function space.
 ";
 
 %feature("docstring")  dolfin::DofMap::max_cell_dimension "
 Return the maximum dimension of the local finite element function space
+
+*Returns*
+    int
+        Maximum dimension of the local finite element function space.
+";
+
+%feature("docstring")  dolfin::DofMap::geometric_dimension "
+Return the geometric dimension of the coordinates this dof map provides
+
+*Returns*
+    int
+        The geometric dimension.
 ";
 
 %feature("docstring")  dolfin::DofMap::num_facet_dofs "
 Return number of facet dofs
+
+*Returns*
+    int
+        The number of facet dofs.
 ";
 
 %feature("docstring")  dolfin::DofMap::ownership_range "
 Return the ownership range (dofs in this range are owned by this process)
+
+*Returns*
+    (int, int)
+        The ownership range.
 ";
 
 %feature("docstring")  dolfin::DofMap::off_process_owner "
 Return map from nonlocal-dofs that appear in local dof map to owning
 process
+
+*Returns*
+    boost::unordered_map<unsigned int, unsigned int>
+        The map from non-local dofs.
 ";
 
 %feature("docstring")  dolfin::DofMap::cell_dofs "
 Local-to-global mapping of dofs on a cell
+
+*Arguments*
+    cell_index (int)
+        The cell index.
+
+*Returns*
+    numpy.array(int)
+        Local-to-global mapping of dofs.
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_dofs "
 Tabulate the local-to-global mapping of dofs on a cell
+
+*Arguments*
+    dofs (int)
+        Degrees of freedom on a cell.
+    cell (:py:class:`Cell`)
+        The cell.
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
 Tabulate local-local facet dofs
+
+*Arguments*
+    dofs (int)
+        Degrees of freedom.
+    local_facet (int)
+        The local facet.
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
@@ -1131,30 +1220,78 @@ Tabulate local-local facet dofs
 * tabulate_coordinates\ **(coordinates, ufc_cell)**
 
   Tabulate the coordinates of all dofs on a cell (UFC cell version)
+  
+  *Arguments*
+      coordinates (boost::multi_array<double, 2>)
+          The coordinates of all dofs on a cell.
+      ufc_cell (ufc::cell)
+          The cell.
 
 * tabulate_coordinates\ **(coordinates, cell)**
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
+  
+  *Arguments*
+      coordinates (boost::multi_array<double, 2>)
+          The coordinates of all dofs on a cell.
+      cell (:py:class:`Cell`)
+          The cell.
 ";
 
 %feature("docstring")  dolfin::DofMap::copy "
 Create a copy of the dof map
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The object to be copied.
 ";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
 Extract sub dofmap component
+
+*Arguments*
+    component (numpy.array(int))
+        The component.
+    mesh (:py:class:`Mesh`)
+        The mesh.
+
+*Returns*
+    DofMap
+        The sub dofmap component.
 ";
 
 %feature("docstring")  dolfin::DofMap::collapse "
 Create a \"collapsed\" dofmap (collapses a sub-dofmap)
+
+*Arguments*
+    collapsed_map (boost::unordered_map<uint, uint>)
+        The \"collapsed\" map.
+    mesh (:py:class:`Mesh`)
+        The mesh.
+
+*Returns*
+    DofMap
+        The collapsed dofmap.
 ";
 
 %feature("docstring")  dolfin::DofMap::dofs "
 Return the set of dof indices
+
+*Returns*
+    boost::unordered_set<dolfin::uint>
+        The set of dof indices.
 ";
 
 %feature("docstring")  dolfin::DofMap::str "
 Return informal string representation (pretty-print)
+
+*Arguments*
+    verbose (bool)
+        Flag to turn on additional output.
+
+*Returns*
+    str
+        An informal representation of the function space.
 ";
 
 // Documentation extracted from: (module=fem, header=Equation.h)
@@ -2071,23 +2208,25 @@ variational form.
 Subdomains for cells and facets may be specified in a number
 of different ways:
 
-1. By explicitly passing MeshFunctions (as pointers) to the
+1. By explicitly passing :py:class:`MeshFunction` (as pointers) to the
    assemble functions
 
-2. By assigning subdomain indicators specified by MeshFunctions
-   to the Form being assembled:
+2. By assigning subdomain indicators specified by :py:class:`MeshFunction`
+   to the :py:class:`Form` being assembled:
 
-   form.cell_domains = cell_domains
-   form.exterior_facet_domains = exterior_facet_domains
-   form.interior_facet_domains = interior_facet_domains
+   .. code-block:: c++
 
-3. By MeshFunctions stored in MeshData as
+       form.cell_domains = cell_domains
+       form.exterior_facet_domains = exterior_facet_domains
+       form.interior_facet_domains = interior_facet_domains
 
-   \"cell_domains\"
-   \"exterior_facet_domains\"
-   \"interior_facet_domains\"
+3. By :py:class:`MeshFunction` stored in :py:class:`MeshData` as
 
-4. By specifying a SubDomain which specifies the domain numbered
+   * \"cell_domains\"
+   * \"exterior_facet_domains\"
+   * \"interior_facet_domains\"
+
+4. By specifying a :py:class:`SubDomain` which specifies the domain numbered
    as 0 (with the rest treated as domain number 1)
 
 Note that (1) overrides (2), which overrides (3).
@@ -2099,14 +2238,52 @@ Note that (1) overrides (2), which overrides (3).
 * assemble\ **(A, a, reset_sparsity=true, add_values=false)**
 
   Assemble tensor from given form
+  
+  *Arguments*
+      A (:py:class:`GenericTensor`)
+          The tensor to assemble.
+      a (:py:class:`Form`)
+          The form to assemble the tensor from.
+      reset_sparsity (bool)
+          Optional argument: Default value is true.
+      add_values (bool)
+          Optional argument: Default value is false.
 
 * assemble\ **(A, a, sub_domain, reset_sparsity=true, add_values=false)**
 
   Assemble tensor from given form on sub domain
+  
+  *Arguments*
+      A (:py:class:`GenericTensor`)
+          The tensor to assemble.
+      a (:py:class:`Form`)
+          The form to assemble the tensor from.
+      sub_domain (:py:class:`SubDomain`)
+          The sub domain to assemble on.
+      reset_sparsity (bool)
+          Optional argument: Default value is true.
+      add_values (bool)
+          Optional argument: Default value is false.
 
 * assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
 
   Assemble tensor from given form on sub domains
+  
+  *Arguments*
+      A (:py:class:`GenericTensor`)
+          The tensor to assemble.
+      a (:py:class:`Form`)
+          The form to assemble the tensor from.
+      cell_domains (:py:class:`MeshFunction`)
+          Cell domains.
+      exterior_facet_domains (:py:class:`MeshFunction`)
+          The exterior facet domains.
+      interior_facet_domains (:py:class:`MeshFunction`)
+          The interior facet domains.
+      reset_sparsity (bool)
+          Optional argument: Default value is true.
+      add_values (bool)
+          Optional argument: Default value is false.
 ";
 
 // Documentation extracted from: (module=fem, header=SparsityPatternBuilder.h)
@@ -8974,7 +9151,7 @@ A FacetFunction is a MeshFunction of topological codimension 1.
 
 // Documentation extracted from: (module=mesh, header=Cell.h)
 %feature("docstring")  dolfin::Cell "
-A Cell is a MeshEntity of topological codimension 0.
+A Cell is a :py:class:`MeshEntity` of topological codimension 0.
 ";
 
 %feature("docstring")  dolfin::Cell::Cell "
@@ -8987,6 +9164,12 @@ A Cell is a MeshEntity of topological codimension 0.
 * Cell\ **(mesh, index)**
 
   Create cell on given mesh with given index
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh.
+      index (int)
+          The index.
 ";
 
 %feature("docstring")  dolfin::Cell::type "
@@ -8994,15 +9177,27 @@ Return type of cell
 ";
 
 %feature("docstring")  dolfin::Cell::orientation "
-Compute orientation of cell (0 is right, 1 is left)
+Compute orientation of cell
+
+*Returns*
+    float
+        Orientation of the cell (0 is right, 1 is left).
 ";
 
 %feature("docstring")  dolfin::Cell::volume "
 Compute (generalized) volume of cell
+
+*Returns*
+    float
+        The volume of the cell.
 ";
 
 %feature("docstring")  dolfin::Cell::diameter "
 Compute diameter of cell
+
+*Returns*
+    float
+        The diameter of the cell.
 ";
 
 %feature("docstring")  dolfin::Cell::normal "
@@ -9011,22 +9206,60 @@ Compute diameter of cell
 * normal\ **(facet, i)**
 
   Compute component i of normal of given facet with respect to the cell
+  
+  *Arguments*
+      facet (int)
+          Index of facet.
+      i (int)
+          Component.
+  
+  *Returns*
+      float
+          Component i of the normal of the facet.
 
 * normal\ **(facet)**
 
   Compute normal of given facet with respect to the cell
+  
+  *Arguments*
+      facet (int)
+          Index of facet.
+  
+  *Returns*
+      :py:class:`Point`
+          Normal of the facet.
 ";
 
 %feature("docstring")  dolfin::Cell::facet_area "
 Compute the area/length of given facet with respect to the cell
+
+*Arguments*
+    facet (int)
+        Index of the facet.
+
+*Returns*
+    float
+        Area/length of the facet.
 ";
 
 %feature("docstring")  dolfin::Cell::order "
 Order entities locally
+
+*Arguments*
+    global_vertex_indices (:py:class:`MeshFunction`)
+        The global vertex indices.
 ";
 
 %feature("docstring")  dolfin::Cell::ordered "
 Check if entities are ordered
+
+*Arguments*
+    global_vertex_indices (:py:class:`MeshFunction`)
+        The global vertex indices.
+
+*Returns*
+    bool
+        True if ordered.
 ";
 
 %feature("docstring")  dolfin::CellIterator "
@@ -9794,10 +10027,28 @@ Create mesh of unit tetrahedron
 
 // Documentation extracted from: (module=mesh, header=UnitCube.h)
 %feature("docstring")  dolfin::UnitCube "
-Tetrahedral mesh of the 3D unit cube (0,1) x (0,1) x (0,1).
+Tetrahedral mesh of the 3D unit cube [0,1] x [0,1] x [0,1].
 Given the number of cells (nx, ny, nz) in each direction,
 the total number of tetrahedra will be 6*nx*ny*nz and the
 total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+";
+
+%feature("docstring")  dolfin::UnitCube::UnitCube "
+Define a uniform finite element :py:class:`Mesh` over the unit cube
+[0,1] x [0,1] x [0,1].
+
+*Arguments*
+    nx (int)
+        Number of cells in :math:`x` direction.
+    ny (int)
+        Number of cells in :math:`y` direction.
+    nz (int)
+        Number of cells in :math:`z` direction.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=mesh, header=UnitInterval.h)
@@ -9836,7 +10087,7 @@ Create mesh of unit triangle
 
 // Documentation extracted from: (module=mesh, header=UnitSquare.h)
 %feature("docstring")  dolfin::UnitSquare "
-Triangular mesh of the 2D unit square (0,1) x (0,1).
+Triangular mesh of the 2D unit square [0,1] x [0,1].
 Given the number of cells (nx, ny) in each direction,
 the total number of triangles will be 2*nx*ny and the
 total number of vertices will be (nx + 1)*(ny + 1).
@@ -9877,10 +10128,40 @@ std:string transformation (\"maxn\", \"sumn\" or \"rotsumn\")
 
 // Documentation extracted from: (module=mesh, header=Box.h)
 %feature("docstring")  dolfin::Box "
-Tetrahedral mesh of the 3D  rectangular prism (x0, y0) x (x1, y1) x (x2, y2).
+Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1] x [z0, z1].
 Given the number of cells (nx, ny, nz) in each direction,
 the total number of tetrahedra will be 6*nx*ny*nz and the
 total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+";
+
+%feature("docstring")  dolfin::Box::Box "
+Define a uniform finite element :py:class:`Mesh` over the rectangular prism
+[x0, x1] x [y0, y1] x [z0, z1].
+
+*Arguments*
+    x0 (float)
+        :math:`x`-min.
+    x1 (float)
+        :math:`x`-max.
+    y0 (float)
+        :math:`y`-min.
+    y1 (float)
+        :math:`y`-max.
+    z0 (float)
+        :math:`z`-min.
+    z1 (float)
+        :math:`z`-max.
+    xn (float)
+        Number of cells in :math:`x`-direction.
+    yn (float)
+        Number of cells in :math:`y`-direction.
+    zn (float)
+        Number of cells in :math:`z`-direction.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=mesh, header=Rectangle.h)
