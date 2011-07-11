@@ -887,7 +887,8 @@ Compute J = F' at current point x
 
 // Documentation extracted from: (module=nls, header=NewtonSolver.h)
 %feature("docstring")  dolfin::NewtonSolver "
-This class defines a Newton solver for equations of the form F(u) = 0.
+This class defines a Newton solver for equations of the form
+:math:`F(u) = 0`.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
@@ -902,31 +903,67 @@ This class defines a Newton solver for equations of the form F(u) = 0.
 
   Create nonlinear solver using provided linear solver and linear algebra
   backend determined by factory
+  
+  *Arguments*
+      solver (:py:class:`GenericLinearSolver`)
+          The linear solver.
+      factory (:py:class:`LinearAlgebraFactory`)
+          The factory.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::solve "
-Solve abstract nonlinear problem F(x) = 0 for given vector F and
-Jacobian dF/dx
+Solve abstract nonlinear problem :math:`F(x) = 0` for given vector
+:math:`F` and Jacobian :math:`\dfrac{\partial F}{\partial x}`.
+
+*Arguments*
+    nonlinear_function (:py:class:`NonlinearProblem`)
+        The nonlinear problem.
+    x (:py:class:`GenericVector`)
+        The vector.
+
+*Returns*
+    (int, bool)
+        Solution.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::iteration "
 Return Newton iteration number
+
+*Returns*
+    int
+        The iteration number.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::residual "
 Return current residual
+
+*Returns*
+    float
+        Current residual.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::relative_residual "
 Return current relative residual
+
+*Returns*
+    float
+      Current relative residual.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::linear_solver "
 Return the linear solver
+
+*Returns*
+    :py:class:`GenericLinearSolver`
+        The linear solver.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::default_parameters "
 Default parameter values
+
+*Returns*
+    :py:class:`Parameters`
+        Parameter values.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::converged "
@@ -2590,20 +2627,61 @@ Create log stream of given type
 ";
 
 // Documentation extracted from: (module=log, header=Progress.h)
+%feature("docstring")  dolfin::Progress "
+This class provides a simple way to create and update progress
+bars during a computation.
+
+*Example*
+    A progress bar may be used either in an iteration with a known number
+    of steps:
+    
+    .. code-block:: python
+    
+        >>> n = 1000000
+        >>> p = dolfin.Progress(\"Iterating...\", n)
+        >>> for i in range(n):
+        ...     p += 1
+    
+    or in an iteration with an unknown number of steps:
+    
+    .. code-block:: python
+    
+        >>> pr = dolfin.Progress(\"Iterating\")
+        >>> t = 0.0
+        >>> n = 1000000.0
+        >>> while t < n:
+        ...     t += 1.0
+        ...     p += t/n
+";
+
 %feature("docstring")  dolfin::Progress::Progress "
 **Overloaded versions**
 
 * Progress\ **(title, n)**
 
   Create progress bar with a known number of steps
+  
+  *Arguments*
+      title (str)
+          The title.
+      n (int)
+          Number of steps.
 
 * Progress\ **(title)**
 
   Create progress bar with an unknown number of steps
+  
+  *Arguments*
+      title (str)
+          The title.
 ";
 
 %feature("docstring")  dolfin::Progress::operator= "
 Set current position
+
+*Arguments*
+    p (float)
+        The position.
 ";
 
 %feature("docstring")  dolfin::Progress::operator++ "
