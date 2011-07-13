@@ -1860,14 +1860,17 @@ Default parameter values
 This class specifies the interface for setting periodic boundary
 conditions for partial differential equations,
 
-   u(x) = u(F^{-1}(x)) on G,
-   u(x) = u(F(x))      on H,
+.. math::
+
+    u(x) &= u(F^{-1}(x)) \hbox { on } G,
+
+    u(x) &= u(F(x))      \hbox{ on } H,
 
 where F : H --> G is a map from a subdomain H to a subdomain G.
 
 A periodic boundary condition must be defined by the domain G
 and the map F pulling coordinates back from H to G. The domain
-and the map are both defined by a subclass of SubDomain which
+and the map are both defined by a subclass of :py:class:`SubDomain` which
 must overload both the inside() function, which specifies the
 points of G, and the map() function, which specifies the map
 from the points of H to the points of G.
@@ -1881,7 +1884,7 @@ be aligned on G and H.
 The matching of degrees of freedom is done at the construction
 of the periodic boundary condition and is reused on subsequent
 applications to a linear system. The matching may be recomputed
-by calling the rebuild() function.
+by calling the ``rebuild()`` function.
 ";
 
 %feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
@@ -1890,10 +1893,22 @@ by calling the rebuild() function.
 * PeriodicBC\ **(V, sub_domain)**
 
   Create periodic boundary condition for sub domain
+  
+  *Arguments*
+      V (:py:class:`FunctionSpace`)
+          The function space.
+      sub_domain (:py:class:`SubDomain`)
+          The sub domain.
 
 * PeriodicBC\ **(V, sub_domain)**
 
   Create periodic boundary condition for sub domain
+  
+  *Arguments*
+      V (:py:class:`FunctionSpace`)
+          The function space.
+      sub_domain (:py:class:`SubDomain`)
+          The sub domain.
 ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
@@ -1902,22 +1917,50 @@ by calling the rebuild() function.
 * apply\ **(A)**
 
   Apply boundary condition to a matrix
+  
+  *Arguments*
+      A (:py:class:`GenericMatrix`)
+          The matrix to apply bc to.
 
 * apply\ **(b)**
 
   Apply boundary condition to a vector
+  
+  *Arguments*
+      b (:py:class:`GenericVector`)
+          The vector to apply bc to.
 
 * apply\ **(A, b)**
 
   Apply boundary condition to a linear system
+  
+  *Arguments*
+      A (:py:class:`GenericMatrix`)
+          The matrix.
+      b (:py:class:`GenericVector`)
+          The vector.
 
 * apply\ **(b, x)**
 
   Apply boundary condition to a vector for a nonlinear problem
+  
+  *Arguments*
+      b (:py:class:`GenericVector`)
+          The vector to apply bc to.
+      x (:py:class:`GenericVector`)
+          Another vector (nonlinear problem).
 
 * apply\ **(A, b, x)**
 
   Apply boundary condition to a linear system for a nonlinear problem
+  
+  *Arguments*
+      A (:py:class:`GenericMatrix`)
+          The matrix to apply bc to.
+      b (:py:class:`GenericVector`)
+          The vector to apply bc to.
+      x (:py:class:`GenericVector`)
+          Another vector (nonlinear problem).
 ";
 
 %feature("docstring")  dolfin::PeriodicBC::rebuild "
@@ -7894,60 +7937,50 @@ supported.
 
 The following named mesh data are recognized by DOLFIN:
 
-=========================   ======================================
-Boundary indicators         Description
-=========================   ======================================
-\"boundary_facet_cells\"      Array<uint> of size num_facets
-\"boundary_facet_numbers\"    Array<uint> of size num_facets
-\"boundary_indicators\"       Array<uint> of size num_facets
-\"material_indicators\"       MeshFunction<uint> of dimension D
-=========================   ======================================
+Boundary indicators
 
-=========================   ======================================
-Subdomain indicators        Description
-=========================   ======================================
-\"cell_domains\"              MeshFunction<uint> of dimension D
-\"interior_facet_domains\"    MeshFunction<uint> of dimension D - 1
-\"exterior_facet_domains\"    MeshFunction<uint> of dimension D - 1
-=========================   ======================================
+  * \"boundary_facet_cells\"   -  :py:class:`Array` <uint> of size num_facets
+  * \"boundary_facet_numbers\" -  :py:class:`Array` <uint> of size num_facets
+  * \"boundary_indicators\"    -  :py:class:`Array` <uint> of size num_facets
+  * \"material_indicators\"    -  :py:class:`MeshFunction` <uint> of dimension D
 
-=========================   ======================================
-Facet orientation*          Description
-=========================   ======================================
-\"facet orientation\"         MeshFunction<uint> of dimension D - 1
-=========================   ======================================
-*Used for assembly over interior facets.
 
-=========================   ======================================
-Boundary extraction         Description
-=========================   ======================================
-\"vertex map\"                MeshFunction<uint> of dimension 0
-\"cell map\"                  MeshFunction<uint> of dimension D
-=========================   ======================================
+Subdomain indicators
 
-===========================  ============================================
-Mesh partitioning            Description
-===========================  ============================================
-\"global entity indices %d\"*  MeshFunction<uint> of dimension 0, 1, ..., D
-\"exterior facets\"*           MeshFunction<uint> of dimension D - 1
-\"num global entities\"*       Array<uint> of size D + 1
-\"overlap\"*                   vector mapping
-===========================  ============================================
-*Moved to _ParallelData_.
+  * \"cell_domains\"           - :py:class:`MeshFunction` <uint> of dimension D
+  * \"interior_facet_domains\" - :py:class:`MeshFunction` <uint> of dimension D - 1
+  * \"exterior_facet_domains\" - :py:class:`MeshFunction` <uint> of dimension D - 1
 
-===========================  ============================================
-Sub meshes                   Description
-===========================  ============================================
-\"global vertex indices\"      MeshFunction<uint> of dimension 0
-===========================  ============================================
 
-===================  ======================================================================
-Mesh coloring        Description
-===================  ======================================================================
-\"colors-%D-%d-%1\"    MeshFunction<uint> of dimension D with colors based on connectivity %d
-\"num colored cells\"  Array<uint> listing the number of cells of each color
-\"colored cells %d\"   Array<uint> of cell indices with colors 0, 1, 2, ...
-===================  ======================================================================
+Facet orientation (used for assembly over interior facets)
+
+  * \"facet orientation\" - :py:class:`MeshFunction` <uint> of dimension D - 1
+
+
+Boundary extraction
+
+  * \"vertex map\" - :py:class:`MeshFunction` <uint> of dimension 0
+  * \"cell map\"   - :py:class:`MeshFunction` <uint> of dimension D
+
+
+Mesh partitioning
+
+  * (moved to ParallelData) \"global entity indices %d\" - :py:class:`MeshFunction` <uint> of dimension 0, 1, ..., D
+  * (moved to ParallelData) \"exterior facets\"          - :py:class:`MeshFunction` <uint> of dimension D - 1
+  * (moved to ParallelData) \"num global entities\"      - :py:class:`Array` <uint> of size D + 1
+  * (moved to ParallelData) \"overlap\"                  - vector mapping
+
+
+Sub meshes
+
+  * \"global vertex indices\" - :py:class:`MeshFunction` <uint> of dimension 0
+
+
+Mesh
+
+  * \"colors-%D-%d-%1\"   - :py:class:`MeshFunction` <uint> of dimension D with colors based on connectivity %d
+  * \"num colored cells\" - :py:class:`Array` <uint> listing the number of cells of each color
+  * \"colored cells %d\"  - :py:class:`Array` <uint> of cell indices with colors 0, 1, 2, ...
 ";
 
 %feature("docstring")  dolfin::MeshData::MeshData "
@@ -8936,7 +8969,7 @@ Informal string representation.
 // Documentation extracted from: (module=mesh, header=MeshEntity.h)
 %feature("docstring")  dolfin::MeshEntity "
 A MeshEntity represents a mesh entity associated with
-a specific topological dimension of some mesh.
+a specific topological dimension of some :py:class:`Mesh`.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::MeshEntity "
@@ -8949,18 +8982,54 @@ a specific topological dimension of some mesh.
 * MeshEntity\ **(mesh, dim, index)**
 
   Constructor
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh.
+      dim (int)
+          The topological dimension.
+      index (int)
+          The index.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::operator== "
 Comparision Operator
+
+*Arguments*
+    another (MeshEntity)
+        Another MeshEntity.
+
+*Returns*
+    bool
+        True if the two MeshEntity objects are equal.
+";
+
+%feature("docstring")  dolfin::MeshEntity::operator!= "
+Comparision Operator
+
+*Arguments*
+    another (MeshEntity)
+        Another MeshEntity.
+
+*Returns*
+    bool
+        True if the two MeshEntity objects are NOT equal.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::mesh "
 Return mesh associated with mesh entity
+
+*Returns*
+    :py:class:`Mesh`
+        The mesh.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::dim "
 Return topological dimension
+
+*Returns*
+    int
+        The dimension.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::index "
@@ -8969,26 +9038,67 @@ Return topological dimension
 * index\ **()**
 
   Return index of mesh entity
+  
+  *Returns*
+      int
+          The index.
 
 * index\ **(entity)**
 
   Compute local index of given incident entity (error if not found)
+  
+  *Arguments*
+      entity (MeshEntity)
+          The mesh entity.
+  
+  *Returns*
+      int
+          The local index of given entity.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::num_entities "
 Return number of incident mesh entities of given topological dimension
+
+*Arguments*
+    dim (int)
+        The topological dimension.
+
+*Returns*
+    int
+        The number of incident MeshEntity objects of given dimension.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::entities "
-Return array of indices for incident mesh entitites of given topological dimension
+Return array of indices for incident mesh entitites of given
+topological dimension
+
+*Arguments*
+    dim (int)
+        The topological dimension.
+
+*Returns*
+    int
+        The index for incident mesh entities of given dimension.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::mesh_id "
 Return unique mesh ID
+
+*Returns*
+    int
+        The unique mesh ID.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::incident "
 Check if given entity is indicent
+
+*Arguments*
+    entity (MeshEntity)
+        The entity.
+
+*Returns*
+    bool
+        True if the given entity is indicent.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::intersects "
@@ -8997,10 +9107,26 @@ Check if given entity is indicent
 * intersects\ **(point)**
 
   Check if given point intersects (using inexact but fast numerics)
+  
+  *Arguments*
+      point (:py:class:`Point`)
+          The point.
+  
+  *Returns*
+      bool
+          True if the given point intersects.
 
 * intersects\ **(entity)**
 
   Check if given entity intersects (using inexact but fast numerics)
+  
+  *Arguments*
+      entity (MeshEntity)
+          The mesh entity.
+  
+  *Returns*
+      bool
+          True if the given entity intersects.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::intersects_exactly "
@@ -9009,14 +9135,34 @@ Check if given entity is indicent
 * intersects_exactly\ **(point)**
 
   Check if given point intersects (using exact numerics)
+  
+  *Arguments*
+      point (:py:class:`Point`)
+          The point.
+  
+  *Returns*
+      bool
+          True if the given point intersects.
 
 * intersects_exactly\ **(entity)**
 
   Check if given entity intersects (using exact numerics)
+  
+  *Arguments*
+      entity (MeshEntity)
+          The mesh entity.
+  
+  *Returns*
+      bool
+          True if the given entity intersects.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::midpoint "
 Compute midpoint of cell
+
+*Returns*
+    :py:class:`Point`
+        The midpoint of the cell.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::bbox "
@@ -9025,6 +9171,14 @@ Returns a 3D bounding box of the mesh entity. For lower dimension it may be a de
 
 %feature("docstring")  dolfin::MeshEntity::str "
 Return informal string representation (pretty-print)
+
+*Arguments*
+    verbose (bool)
+        Flag to turn on additional output.
+
+*Returns*
+    str
+        An informal representation of the function space.
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshEntityIterator.h)
@@ -9153,25 +9307,44 @@ Check if iterator has reached the end
 
 // Documentation extracted from: (module=mesh, header=Point.h)
 %feature("docstring")  dolfin::Point "
-A Point represents a point in R^3 with coordinates x, y, z, or,
-alternatively, a vector in R^3, supporting standard operations
-like the norm, distances, scalar and vector products etc.
+A Point represents a point in :math:`\mathbb{R}^3` with coordinates
+:math:`x, y, z,` or
+alternatively, a vector in :math:`\mathbb{R}^3`, supporting standard
+operations like the norm, distances, scalar and vector products etc.
 ";
 
 %feature("docstring")  dolfin::Point::Point "
 **Overloaded versions**
 
-* Point\ **(0.0, 0.0, =0.0)**
+* Point\ **(x=0.0, y=0.0, z=0.0)**
 
-  Create a point at (x, y, z)
+  Create a point at (x, y, z). Default value (0, 0, 0).
+  
+  *Arguments*
+      x (float)
+          The x-coordinate.
+      y (float)
+          The y-coordinate.
+      z (float)
+          The z-coordinate.
 
 * Point\ **(dim, x)**
 
   Create point from array
+  
+  *Arguments*
+      dim (int)
+          Dimension of the array.
+      x (float)
+          The array to create a Point from.
 
 * Point\ **(p)**
 
   Copy constructor
+  
+  *Arguments*
+      p (Point)
+          The object to be copied.
 
 * Point\ **(point)**
 
@@ -9184,22 +9357,50 @@ like the norm, distances, scalar and vector products etc.
 * operator[]\ **(i)**
 
   Return address of coordinate in direction i
+  
+  *Arguments*
+      i (int)
+          Direction.
+  
+  *Returns*
+      float
+          Adress of coordinate in the given direction.
 
 * operator[]\ **(i)**
 
   Return coordinate in direction i
+  
+  *Arguments*
+      i (int)
+          Direction.
+  
+  *Returns*
+      float
+          The coordinate in the given direction.
 ";
 
 %feature("docstring")  dolfin::Point::x "
 Return x-coordinate
+
+*Returns*
+    float
+        The x-coordinate.
 ";
 
 %feature("docstring")  dolfin::Point::y "
 Return y-coordinate
+
+*Returns*
+    float
+        The y-coordinate.
 ";
 
 %feature("docstring")  dolfin::Point::z "
 Return z-coordinate
+
+*Returns*
+    float
+        The z-coordinate.
 ";
 
 %feature("docstring")  dolfin::Point::coordinates "
@@ -9208,10 +9409,18 @@ Return z-coordinate
 * coordinates\ **()**
 
   Return coordinate array
+  
+  *Returns*
+      float
+          The coordinates.
 
 * coordinates\ **()**
 
-  Return coordinate array
+  Return coordinate array (const. version)
+  
+  *Returns*
+      float
+          The coordinates.
 ";
 
 %feature("docstring")  dolfin::Point::operator+ "
@@ -9268,22 +9477,73 @@ Provides a CGAL bounding box, using conversion operator.
 
 %feature("docstring")  dolfin::Point::distance "
 Compute distance to given point
+
+*Arguments*
+    p (:py:class:`Point`)
+        The point to compute distance to.
+
+*Returns*
+    float
+        The distance.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Point::norm "
 Compute norm of point representing a vector from the origin
+
+*Returns*
+    float
+        The (euclidean) norm of the vector from the origin to the point.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Point::cross "
 Compute cross product with given vector
+
+*Arguments*
+    p (:py:class:`Point`)
+        Another point.
+
+*Returns*
+    Point
+        The cross product.
 ";
 
 %feature("docstring")  dolfin::Point::dot "
 Compute dot product with given vector
+
+*Arguments*
+    p (:py:class:`Point`)
+        Another point.
+
+*Returns*
+    float
+        The dot product.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Point::str "
 Return informal string representation (pretty-print)
+
+*Arguments*
+    verbose (bool)
+        Flag to turn on additional output.
+
+*Returns*
+    str
+        An informal representation of the function space.
 ";
 
 // Documentation extracted from: (module=mesh, header=Vertex.h)
