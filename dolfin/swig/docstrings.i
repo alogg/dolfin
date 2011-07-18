@@ -133,9 +133,9 @@ constructor.
   
   *Arguments*
       dim0 (int)
-          Dimension.
+          Dimension (rows).
       dim1 (int)
-          Dimension.
+          Dimension (columns).
 
 * Expression\ **(value_shape)**
 
@@ -164,9 +164,9 @@ constructor.
   
   *Arguments*
       values (numpy.array(float))
-          The values.
+          The values at the point.
       x (numpy.array(float))
-          The coordinates.
+          The coordinates of the point.
       cell (ufc::cell)
           The cell which contains the given point.
 
@@ -176,9 +176,9 @@ constructor.
   
   *Arguments*
       values (numpy.array(float))
-          The values.
+          The values at the point.
       x (numpy.array(float))
-          The coordinates.
+          The coordinates of the point.
 ";
 
 %feature("docstring")  dolfin::Expression::value_rank "
@@ -194,7 +194,7 @@ Return value dimension for given axis.
 
 *Arguments*
     i (int)
-        Integer denoting which axis to use.
+        Integer denoting the axis to use.
 
 *Returns*
     int
@@ -205,7 +205,7 @@ Return value dimension for given axis.
 Restrict function to local cell (compute expansion coefficients w).
 
 *Arguments*
-    w (float)
+    w (list of doubles)
         Expansion coefficients.
     element (:py:class:`FiniteElement`)
         The element.
@@ -232,9 +232,9 @@ element function space :math:`V_h`, given by
 
 .. math::
 
-    u_h = \sum_{i=1}^{\infty} U_i \phi_i
+    u_h = \sum_{i=1}^{n} U_i \phi_i
 
-where :math:`\{\phi_i\}_{i=1}^{\infty}` is a basis for :math:`V_h`,
+where :math:`\{\phi_i\}_{i=1}^{n}` is a basis for :math:`V_h`,
 and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
 ";
 
@@ -331,7 +331,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       v (:py:class:`Function`)
           The function to be copied.
       i (int)
-          Index of sub function.
+          Index of subfunction.
   
 ";
 
@@ -356,11 +356,11 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
 ";
 
 %feature("docstring")  dolfin::Function::operator[] "
-Extract sub-function
+Extract subfunction
 
 *Arguments*
     i (int)
-        Index of sub function.
+        Index of subfunction.
 ";
 
 %feature("docstring")  dolfin::Function::function_space "
@@ -424,7 +424,7 @@ Return geometric dimension
 
 * eval\ **(values, x)**
 
-  Evaluate function for given coordinate
+  Evaluate function at given coordinates
   
   *Arguments*
       values (numpy.array(float))
@@ -434,7 +434,7 @@ Return geometric dimension
 
 * eval\ **(values, x, dolfin_cell, ufc_cell)**
 
-  Evaluate function for given coordinate in given cell
+  Evaluate function at given coordinates in given cell
   
   *Arguments*
       values (numpy.array(float))
@@ -448,19 +448,19 @@ Return geometric dimension
 
 * eval\ **(values, x, cell)**
 
-  Evaluate function for given data
+  Evaluate at given point in given cell
   
   *Arguments*
       values (numpy.array(float))
-          The values.
+          The values at the point.
       x (numpy.array(float))
-          The coordinates.
+          The coordinates of the point.
       cell (ufc::cell)
-          The cell.
+          The cell which contains the given point.
 ";
 
 %feature("docstring")  dolfin::Function::interpolate "
-Interpolate function (possibly non-matching meshes)
+Interpolate function (on possibly non-matching meshes)
 
 *Arguments*
     v (:py:class:`GenericFunction`)
@@ -496,13 +496,13 @@ Return value dimension for given axis
 ";
 
 %feature("docstring")  dolfin::Function::non_matching_eval "
-Evaluate function for given data
+Evaluate function for given data (non-matching meshes)
 
 *Arguments*
     values (numpy.array(float))
-        The values.
+        The values at the point.
     x (numpy.array(float))
-        The coordinates.
+        The coordinates of the point.
     cell (ufc::cell)
         The cell.
 ";
@@ -511,7 +511,7 @@ Evaluate function for given data
 Restrict function to local cell (compute expansion coefficients w)
 
 *Arguments*
-    w (float)
+    w (list of doubles)
         Expansion coefficients.
     element (:py:class:`FiniteElement`)
         The element.
@@ -547,7 +547,8 @@ degrees of freedom (dofmap).
 
 * FunctionSpace\ **(mesh, element, dofmap)**
 
-  Create function space for given mesh, element and dofmap (shared data)
+  Create function space for given mesh, element and dofmap
+  (shared data)
   
   *Arguments*
       mesh (:py:class:`Mesh`)
@@ -574,12 +575,12 @@ degrees of freedom (dofmap).
   Copy constructor
   
   *Arguments*
-      V (FunctionSpace)
+      V (:py:class:`FunctionSpace`)
           The object to be copied.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::attach "
-Attach data to an empty FunctionSpace
+Attach data to an empty function space
 
 *Arguments*
     element (:py:class:`FiniteElement`)
@@ -592,7 +593,7 @@ Attach data to an empty FunctionSpace
 Assignment operator
 
 *Arguments*
-    V (FunctionSpace)
+    V (:py:class:`FunctionSpace`)
         Another function space.
 ";
 
@@ -629,8 +630,8 @@ Return dimension of function space
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::interpolate "
-Interpolate function v into function space, returning the vector of
-expansion coefficients
+Interpolate function v into function space, returning the
+vector of expansion coefficients
 
 *Arguments*
     expansion_coefficients (:py:class:`GenericVector`)
@@ -640,18 +641,18 @@ expansion coefficients
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::operator[] "
-Extract sub space for component
+Extract subspace for component
 
 *Arguments*
     i (int)
-        Index of sub space.
+        Index of the subspace.
 *Returns*
     :py:class:`FunctionSpace`
-        The sub space.
+        The subspace.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
-Extract sub space for component
+Extract subspace for component
 
 *Arguments*
     component (numpy.array(int))
@@ -659,7 +660,7 @@ Extract sub space for component
 
 *Returns*
     :py:class:`FunctionSpace`
-        The sub space.
+        The subspace.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::collapse "
@@ -675,8 +676,8 @@ Extract sub space for component
 
 * collapse\ **(collapsed_dofs)**
 
-  Collapse a subspace and return a new function space and a map from new
-  to old dofs
+  Collapse a subspace and return a new function space and a map
+  from new to old dofs
   
   *Arguments*
       collapsed_dofs (boost::unordered_map<uint, uint>)
@@ -716,7 +717,7 @@ Return component
 
 *Returns*
     numpy.array(int)
-        The component (relative to super space).
+        The component (relative to superspace).
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::str "
@@ -834,7 +835,7 @@ This class represents a constant-valued expression.
       value_shape (numpy.array(int))
           Shape of tensor.
       values (numpy.array(float))
-          Values to create a Constant object from.
+          Values to create tensor-valued constant from.
 
 * Constant\ **(constant)**
 
@@ -990,8 +991,8 @@ Compute J = F' at current point x
 
 // Documentation extracted from: (module=nls, header=NewtonSolver.h)
 %feature("docstring")  dolfin::NewtonSolver "
-This class defines a Newton solver for equations of the form
-:math:`F(u) = 0`.
+This class defines a Newton solver for nonlinear systems of
+equations of the form :math:`F(x) = 0`.
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
@@ -1015,7 +1016,7 @@ This class defines a Newton solver for equations of the form
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::solve "
-Solve abstract nonlinear problem :math:`F(x) = 0` for given vector
+Solve abstract nonlinear problem :math:`F(x) = 0` for given
 :math:`F` and Jacobian :math:`\dfrac{\partial F}{\partial x}`.
 
 *Arguments*
@@ -1026,7 +1027,8 @@ Solve abstract nonlinear problem :math:`F(x) = 0` for given vector
 
 *Returns*
     (int, bool)
-        Solution.
+        Pair of number of Newton iterations, and whether
+        iteration converged)
 ";
 
 %feature("docstring")  dolfin::NewtonSolver::iteration "
@@ -1171,17 +1173,18 @@ views and copies, are supported.
   Create dof map on mesh (data is not shared)
   
   *Arguments*
-      ufc_dofmap (boost::shared_ptr<ufc::dofmap>)
+      ufc_dofmap (ufc::dofmap)
           The ufc::dofmap.
       mesh (:py:class:`Mesh`)
           The mesh.
 
 * DofMap\ **(ufc_dofmap, mesh)**
 
-  Create dof map on mesh ((data is not shared), const mesh version)
+  Create dof map on mesh ((data is not shared), const mesh
+  version)
   
   *Arguments*
-      ufc_dofmap (boost::shared_ptr<ufc::dofmap>)
+      ufc_dofmap (ufc::dofmap)
           The ufc::dofmap.
       mesh (:py:class:`Mesh`)
           The mesh.
@@ -1191,7 +1194,7 @@ views and copies, are supported.
   Copy constructor
   
   *Arguments*
-      dofmap (DofMap)
+      dofmap (:py:class:`DofMap`)
           The object to be copied.
 
 * DofMap\ **(parent_dofmap, component, mesh, distributed)**
@@ -1208,11 +1211,13 @@ True if dof map is a view into another map
 
 *Returns*
     bool
-        True if the dof map is a sub-dofmap (a view into another map).
+        True if the dof map is a sub-dof map (a view into
+        another map).
 ";
 
 %feature("docstring")  dolfin::DofMap::needs_mesh_entities "
-Return true iff mesh entities of topological dimension d are needed
+Return true iff mesh entities of topological dimension d are
+needed
 
 *Arguments*
     d (int)
@@ -1224,7 +1229,8 @@ Return true iff mesh entities of topological dimension d are needed
 ";
 
 %feature("docstring")  dolfin::DofMap::global_dimension "
-Return the dimension of the global finite element function space
+Return the dimension of the global finite element function
+space
 
 *Returns*
     int
@@ -1232,8 +1238,8 @@ Return the dimension of the global finite element function space
 ";
 
 %feature("docstring")  dolfin::DofMap::cell_dimension "
-Return the dimension of the local finite element function space on a
-cell
+Return the dimension of the local finite element function
+space on a cell
 
 *Arguments*
     cell_index (int)
@@ -1245,15 +1251,18 @@ cell
 ";
 
 %feature("docstring")  dolfin::DofMap::max_cell_dimension "
-Return the maximum dimension of the local finite element function space
+Return the maximum dimension of the local finite element
+function space
 
 *Returns*
     int
-        Maximum dimension of the local finite element function space.
+        Maximum dimension of the local finite element function
+        space.
 ";
 
 %feature("docstring")  dolfin::DofMap::geometric_dimension "
-Return the geometric dimension of the coordinates this dof map provides
+Return the geometric dimension of the coordinates this dof map
+provides
 
 *Returns*
     int
@@ -1269,7 +1278,8 @@ Return number of facet dofs
 ";
 
 %feature("docstring")  dolfin::DofMap::ownership_range "
-Return the ownership range (dofs in this range are owned by this process)
+Return the ownership range (dofs in this range are owned by
+this process)
 
 *Returns*
     (int, int)
@@ -1277,8 +1287,8 @@ Return the ownership range (dofs in this range are owned by this process)
 ";
 
 %feature("docstring")  dolfin::DofMap::off_process_owner "
-Return map from nonlocal-dofs that appear in local dof map to owning
-process
+Return map from nonlocal dofs that appear in local dof map to
+owning process
 
 *Returns*
     boost::unordered_map<unsigned int, unsigned int>
@@ -1322,7 +1332,8 @@ Tabulate local-local facet dofs
 
 * tabulate_coordinates\ **(coordinates, ufc_cell)**
 
-  Tabulate the coordinates of all dofs on a cell (UFC cell version)
+  Tabulate the coordinates of all dofs on a cell (UFC cell
+  version)
   
   *Arguments*
       coordinates (boost::multi_array<double, 2>)
@@ -1332,7 +1343,8 @@ Tabulate local-local facet dofs
 
 * tabulate_coordinates\ **(coordinates, cell)**
 
-  Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
+  Tabulate the coordinates of all dofs on a cell (DOLFIN cell
+  version)
   
   *Arguments*
       coordinates (boost::multi_array<double, 2>)
@@ -1350,7 +1362,7 @@ Create a copy of the dof map
 ";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
-Extract sub dofmap component
+Extract subdofmap component
 
 *Arguments*
     component (numpy.array(int))
@@ -1360,7 +1372,7 @@ Extract sub dofmap component
 
 *Returns*
     DofMap
-        The sub dofmap component.
+        The subdofmap component.
 ";
 
 %feature("docstring")  dolfin::DofMap::collapse "
@@ -1568,9 +1580,9 @@ Evaluate basis function at given point
 
 *Arguments*
     values (float)
-        The values.
+        The values of the function at the point.
     x (float)
-        The point to evaluate at.
+        The coordinates of the point.
 ";
 
 %feature("docstring")  dolfin::BasisFunction::eval_derivatives "
@@ -1578,9 +1590,9 @@ Evaluate all order n derivatives at given point
 
 *Arguments*
     values (float)
-        The values.
+        The values of derivatives at the point.
     x (float)
-        The point to evaluate at.
+        The coordinates of the point.
     n (int)
         The order of derivation.
 ";
@@ -1590,7 +1602,7 @@ Evaluate function at given point in cell
 
 *Arguments*
     values (float)
-        The values.
+        The values of the function at the point..
     coordinates (float)
         The coordinates of the point.
     cell (ufc::cell)
@@ -1659,7 +1671,7 @@ equations,
 where :math:`u` is the solution to be computed, :math:`g` is a function
 and :math:`G` is a sub domain of the mesh.
 
-A DirichletBC is specified by the function :math:`g`, the function space
+A DirichletBC is specified by the function g, the function space
 (trial space) and boundary indicators on (a subset of) the mesh
 boundary.
 
@@ -1678,19 +1690,20 @@ The third option is to attach the boundary information to the
 mesh. This is handled automatically when exporting a mesh from
 for example VMTK.
 
-The BCMethod variable may be used to specify the type of method
-used to identify degrees of freedom on the boundary. Available
-methods are: topological approach (default), geometric approach,
-and pointwise approach. The topological approach is faster, but
-will only identify degrees of freedom that are located on a
-facet that is entirely on the boundary. In particular, the
-topological approach will not identify degrees of freedom for
-discontinuous elements (which are all internal to the cell).  A
-remedy for this is to use the geometric approach. To apply
-pointwise boundary conditions e.g. pointloads, one will have to
-use the pointwise approach which in turn is the slowest of the
-three possible methods.  The three possibilties are
-\"topological\", \"geometric\" and \"pointwise\".
+The ``method`` variable may be used to specify the type of
+method used to identify degrees of freedom on the
+boundary. Available methods are: topological approach (default),
+geometric approach, and pointwise approach. The topological
+approach is faster, but will only identify degrees of freedom
+that are located on a facet that is entirely on the boundary. In
+particular, the topological approach will not identify degrees
+of freedom for discontinuous elements (which are all internal to
+the cell).  A remedy for this is to use the geometric
+approach. To apply pointwise boundary conditions
+e.g. pointloads, one will have to use the pointwise approach
+which in turn is the slowest of the three possible methods.  The
+three possibilties are \"topological\", \"geometric\" and
+\"pointwise\".
 This class specifies the interface for setting (strong)
 ";
 
@@ -1737,11 +1750,11 @@ This class specifies the interface for setting (strong)
       g (:py:class:`GenericFunction`)
           The value.
       sub_domains (:py:class:`MeshFunction`)
-          The sub domains.
+          Subdomain markers
       sub_domain (int)
-          The number of the subdomain.
+          The subdomain index (number)
       method (str)
-          Opional argument: A string specifying the
+          Optional argument: A string specifying the
           method to identify dofs.
 
 * DirichletBC\ **(V, g, sub_domains, sub_domain, method=\"topological\")**
@@ -1754,24 +1767,9 @@ This class specifies the interface for setting (strong)
       g (:py:class:`GenericFunction`)
           The value.
       sub_domains (:py:class:`MeshFunction`)
-          The sub domains.
+          Subdomain markers
       sub_domain (int)
-          The number of the subdomain.
-      method (str)
-          Optional argument: A string specifying the
-          method to identify dofsy.
-
-* DirichletBC\ **(V, g, sub_domain, method=\"topological\")**
-
-  Create boundary condition for boundary data included in the mesh
-  
-  *Arguments*
-      V (:py:class:`FunctionSpace`)
-          The function space.
-      g (:py:class:`GenericFunction`)
-          The value.
-      sub_domain (int)
-          The number of the sub domain.
+          The subdomain index (number)
       method (str)
           Optional argument: A string specifying the
           method to identify dofs.
@@ -1786,9 +1784,24 @@ This class specifies the interface for setting (strong)
       g (:py:class:`GenericFunction`)
           The value.
       sub_domain (int)
-          The number of the sub domain.
+          The subdomain index (number)
       method (str)
-          Opional argument: A string specifying the
+          Optional argument: A string specifying the
+          method to identify dofs.
+
+* DirichletBC\ **(V, g, sub_domain, method=\"topological\")**
+
+  Create boundary condition for boundary data included in the mesh
+  
+  *Arguments*
+      V (:py:class:`FunctionSpace`)
+          The function space.
+      g (:py:class:`GenericFunction`)
+          The value.
+      sub_domain (int)
+          The subdomain index (number)
+      method (str)
+          Optional argument: A string specifying the
           method to identify dofs.
 
 * DirichletBC\ **(V, g, markers, method=\"topological\")**
@@ -1802,9 +1815,9 @@ This class specifies the interface for setting (strong)
       g (:py:class:`GenericFunction`)
           The value.
       markers (numpy.array((int, int)))
-          The boundary markers.
+          Subdomain markers (cells, local facet number)
       method (str)
-          Opional argument: A string specifying the
+          Optional argument: A string specifying the
           method to identify dofs.
 
 * DirichletBC\ **(bc)**
@@ -1812,7 +1825,7 @@ This class specifies the interface for setting (strong)
   Copy constructor
   
   *Arguments*
-      bc (DiricletBC)
+      bc (:py:class:`DirichletBC`)
           The object to be copied.
 ";
 
@@ -1820,7 +1833,7 @@ This class specifies the interface for setting (strong)
 Assignment operator
 
 *Arguments*
-    bc (DiricletBC)
+    bc (:py:class:`DirichletBC`)
         Another DirichletBC object.
 ";
 
@@ -1833,7 +1846,7 @@ Assignment operator
   
   *Arguments*
       A (:py:class:`GenericMatrix`)
-          The matrix to apply boundary conditions to.
+          The matrix to apply boundary condition to.
 
 * apply\ **(b)**
 
@@ -1841,7 +1854,7 @@ Assignment operator
   
   *Arguments*
       b (:py:class:`GenericVector`)
-          The vector to apply boundary conditions to.
+          The vector to apply boundary condition to.
 
 * apply\ **(A, b)**
 
@@ -1849,13 +1862,13 @@ Assignment operator
   
   *Arguments*
       A (:py:class:`GenericMatrix`)
-          The matrix to apply boundary conditions to.
+          The matrix to apply boundary condition to.
       b (:py:class:`GenericVector`)
-          The vector to apply boundary conditions to.
+          The vector to apply boundary condition to.
 
 * apply\ **(b, x)**
 
-  Apply boundary condition to a vector for a nonlinear problem
+  Apply boundary condition to vectors for a nonlinear problem
   
   *Arguments*
       b (:py:class:`GenericVector`)
@@ -1880,7 +1893,7 @@ Assignment operator
 Get Dirichlet dofs and values
 
 *Arguments*
-    boundary_values (Map)
+    boundary_values (boost::unordered_map<uint, double>)
         The boundary values.
     method (str)
         Optional argument: A string specifying which
@@ -1888,26 +1901,24 @@ Get Dirichlet dofs and values
 ";
 
 %feature("docstring")  dolfin::DirichletBC::zero "
-Make row associated with boundary conditions zero, useful for
-non-diagonal matrices in a block matrix.
+Make rows of matrix associated with boundary condition zero,
+useful for non-diagonal matrices in a block matrix.
 
 *Arguments*
     A (:py:class:`GenericMatrix`)
-        The matrix to associate with
-        boundary conditions.
+        The matrix
 ";
 
 %feature("docstring")  dolfin::DirichletBC::zero_columns "
-Make columns associated with boundary conditions zero, and
-update the RHS to reflect the changes. Useful for non-diagonals.
+Make columns of matrix associated with boundary condition
+zero, and update a (right-hand side) vector to reflect the
+changes. Useful for non-diagonals.
 
 *Arguments*
     A (:py:class:`GenericMatrix`)
-        The matrix to associate with
-        boundary conditions.
+        The matrix
     b (:py:class:`GenericVector`)
-        The vector to associate with
-        boundary conditions.
+        The vector
     diag_val (float)
         This parameter would normally be -1, 0 or 1.
 ";
@@ -1917,8 +1928,8 @@ Return boundary markers
 
 *Returns*
     numpy.array((int, int))
-        Boundary markers (facets stored as pairs of cells and local
-        facet numbers).
+        Boundary markers (facets stored as pairs of cells and
+        local facet numbers).
 ";
 
 %feature("docstring")  dolfin::DirichletBC::value "
@@ -1930,11 +1941,11 @@ Return boundary value g
 ";
 
 %feature("docstring")  dolfin::DirichletBC::user_sub_domain "
-Return shared pointer to sub-domain
+Return shared pointer to subdomain
 
 *Returns*
     :py:class:`SubDomain`
-        Shared pointer to sub domain.
+        Shared pointer to subdomain.
 ";
 
 %feature("docstring")  dolfin::DirichletBC::is_compatible "
@@ -2025,7 +2036,7 @@ by calling the ``rebuild()`` function.
 
 * PeriodicBC\ **(V, sub_domain)**
 
-  Create periodic boundary condition for sub domain
+  Create periodic boundary condition for subdomain
   
   *Arguments*
       V (:py:class:`FunctionSpace`)
@@ -2035,13 +2046,13 @@ by calling the ``rebuild()`` function.
 
 * PeriodicBC\ **(V, sub_domain)**
 
-  Create periodic boundary condition for sub domain
+  Create periodic boundary condition for subdomain
   
   *Arguments*
       V (:py:class:`FunctionSpace`)
           The function space.
       sub_domain (:py:class:`SubDomain`)
-          The sub domain.
+          The subdomain.
 ";
 
 %feature("docstring")  dolfin::PeriodicBC::apply "
@@ -2085,7 +2096,8 @@ by calling the ``rebuild()`` function.
 
 * apply\ **(A, b, x)**
 
-  Apply boundary condition to a linear system for a nonlinear problem
+  Apply boundary condition to a linear system for a nonlinear
+  problem
   
   *Arguments*
       A (:py:class:`GenericMatrix`)
@@ -2232,7 +2244,7 @@ the spaces are numbered from right to
 .. note::
 
     Figure out how to write this in math mode without it getting
-    messed up in the python version.
+    messed up in the Python version.
 
 This is reflected in the ordering of the spaces that should be
 supplied to generated subclasses. In particular, when a bilinear
@@ -2267,11 +2279,11 @@ and then space number 1 (the trial space).
   Create form (shared data)
   
   *Arguments*
-      ufc_form (boost::shared_ptr<ufc::form>)
+      ufc_form (ufc::form)
           The UFC form.
-      function_spaces (std::vector<boost::shared_ptr<:py:class:`FunctionSpace`> >)
+      function_spaces (list of :py:class:`FunctionSpace`)
           Vector of function spaces.
-      coefficients (std::vector<boost::shared_ptr<:py:class:`GenericFunction`> >)
+      coefficients (list of :py:class:`GenericFunction`)
           Vector of coefficients.
 ";
 
@@ -2345,7 +2357,7 @@ Return function space for given argument
 Return function spaces for arguments
 
 *Returns*
-    std::vector<boost::shared_ptr<:py:class:`FunctionSpace`> >
+    list of :py:class:`FunctionSpace`
         Vector of function space shared pointers.
 ";
 
@@ -2374,8 +2386,8 @@ Return function spaces for arguments
 ";
 
 %feature("docstring")  dolfin::Form::set_coefficients "
-Set all coefficients in given map, possibly a subset
-(shared pointer version)
+Set all coefficients in given map, possibly a subset (shared
+pointer version)
 
 *Arguments*
     coefficients (:py:class:`GenericFunction`)
@@ -2414,7 +2426,7 @@ Set all coefficients in given map, possibly a subset
 Return all coefficients
 
 *Returns*
-    std::vector<boost::shared_ptr<:py:class:`GenericFunction`> >
+    list of :py:class:`GenericFunction`
         All coefficients.
 ";
 
@@ -2443,7 +2455,8 @@ Return the name of the coefficient with this number
 ";
 
 %feature("docstring")  dolfin::Form::cell_domains_shared_ptr "
-Return cell domains (zero pointer if no domains have been specified)
+Return cell domains (zero pointer if no domains have been
+specified)
 
 *Returns*
     :py:class:`MeshFunction`
@@ -2451,7 +2464,8 @@ Return cell domains (zero pointer if no domains have been specified)
 ";
 
 %feature("docstring")  dolfin::Form::exterior_facet_domains_shared_ptr "
-Return exterior facet domains (zero pointer if no domains have been specified)
+Return exterior facet domains (zero pointer if no domains have
+been specified)
 
 *Returns*
     :py:class:`MeshFunction`
@@ -2459,7 +2473,8 @@ Return exterior facet domains (zero pointer if no domains have been specified)
 ";
 
 %feature("docstring")  dolfin::Form::interior_facet_domains_shared_ptr "
-Return interior facet domains (zero pointer if no domains have been specified)
+Return interior facet domains (zero pointer if no domains have
+been specified)
 
 *Returns*
     :py:class:`MeshFunction`
@@ -2502,7 +2517,7 @@ Return UFC form
 Return UFC form shared pointer
 
 *Returns*
-    boost::shared_ptr<ufc::form>
+    ufc::form
         The UFC form.
 ";
 
@@ -2528,8 +2543,8 @@ This class provides automated assembly of linear systems, or
 more generally, assembly of a sparse tensor from a given
 variational form.
 
-Subdomains for cells and facets may be specified in a number
-of different ways:
+Subdomains for cells and facets may be specified in a number of
+different ways:
 
 1. By explicitly passing :py:class:`MeshFunction` (as pointers) to the
    assemble functions
@@ -2539,9 +2554,9 @@ of different ways:
 
    .. code-block:: c++
 
-       form.cell_domains = cell_domains
-       form.exterior_facet_domains = exterior_facet_domains
-       form.interior_facet_domains = interior_facet_domains
+       form.dx = cell_domains
+       form.ds = exterior_facet_domains
+       form.dS = interior_facet_domains
 
 3. By :py:class:`MeshFunction` stored in :py:class:`MeshData` as
 
@@ -2574,7 +2589,7 @@ Note that (1) overrides (2), which overrides (3).
 
 * assemble\ **(A, a, sub_domain, reset_sparsity=true, add_values=false)**
 
-  Assemble tensor from given form on sub domain
+  Assemble tensor from given form on subdomain
   
   *Arguments*
       A (:py:class:`GenericTensor`)
@@ -2582,7 +2597,7 @@ Note that (1) overrides (2), which overrides (3).
       a (:py:class:`Form`)
           The form to assemble the tensor from.
       sub_domain (:py:class:`SubDomain`)
-          The sub domain to assemble on.
+          The subdomain to assemble on.
       reset_sparsity (bool)
           Optional argument: Default value is true.
       add_values (bool)
@@ -2590,7 +2605,7 @@ Note that (1) overrides (2), which overrides (3).
 
 * assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
 
-  Assemble tensor from given form on sub domains
+  Assemble tensor from given form on subdomains
   
   *Arguments*
       A (:py:class:`GenericTensor`)
@@ -7618,8 +7633,8 @@ the new coordinates for the interior vertices accordingly.
       mesh (:py:class:`Mesh`)
           The mesh to refine.
       cell_markers (:py:class:`MeshFunction`)
-          A boolean MeshFunction to specify which
-          cells that should be refined.
+          A mesh function over booleans specifying which cells
+          that should be refined (and which should not).
   
   *Returns*
       :py:class:`Mesh`
@@ -7640,8 +7655,8 @@ the new coordinates for the interior vertices accordingly.
       mesh (:py:class:`Mesh`)
           The original mesh.
       cell_markers (:py:class:`MeshFunction`)
-          A boolean MeshFunction to specify which
-          cells that should be refined.
+          A mesh function over booleans specifying which cells
+          that should be refined (and which should not).
 ";
 
 // Documentation extracted from: (module=quadrature, header=Quadrature.h)
@@ -8156,7 +8171,7 @@ Constructor
 Assignment operator
 
 *Arguments*
-    data (MeshData)
+    data (:py:class:`MeshData`)
         Another MeshData object.
 ";
 
@@ -8173,11 +8188,11 @@ Clear all data
   
   *Arguments*
       name (str)
-          The name of the :py:class:`MeshFunction`.
+          The name of the mesh function.
   
   *Returns*
       :py:class:`MeshFunction`
-          The MeshFunction.
+          The mesh function.
 
 * create_mesh_function\ **(name, dim)**
 
@@ -8185,13 +8200,13 @@ Clear all data
   
   *Arguments*
       name (str)
-          The name of the :py:class:`MeshFunction`.
+          The name of the mesh function.
       dim (int)
-          The dimension of the :py:class:`MeshFunction`.
+          The dimension of the mesh function.
   
   *Returns*
       :py:class:`MeshFunction`
-          The MeshFunction
+          The mesh function.
 ";
 
 %feature("docstring")  dolfin::MeshData::create_array "
@@ -8249,7 +8264,8 @@ Create mapping from uint to vector of uint with given name
 ";
 
 %feature("docstring")  dolfin::MeshData::mesh_function "
-Return MeshFunction with given name (returning zero if data is not available)
+Return MeshFunction with given name (returning zero if data is
+not available)
 
 *Arguments*
     name (str)
@@ -8257,7 +8273,7 @@ Return MeshFunction with given name (returning zero if data is not available)
 
 *Returns*
     :py:class:`MeshFunction`
-        The MeshFunction.
+        The mesh function with given name
 ";
 
 %feature("docstring")  dolfin::MeshData::array "
@@ -8265,7 +8281,8 @@ Return MeshFunction with given name (returning zero if data is not available)
 
 * array\ **(name)**
 
-  Return array with given name (returning zero if data is not available)
+  Return array with given name (returning zero if data is not
+  available)
   
   *Arguments*
       name (str)
@@ -8292,7 +8309,8 @@ Return MeshFunction with given name (returning zero if data is not available)
 ";
 
 %feature("docstring")  dolfin::MeshData::mapping "
-Return mapping with given name (returning zero if data is not available)
+Return mapping with given name (returning zero if data is not
+available)
 
 *Arguments*
     name (str)
@@ -8304,8 +8322,8 @@ Return mapping with given name (returning zero if data is not available)
 ";
 
 %feature("docstring")  dolfin::MeshData::vector_mapping "
-Return vector mapping with given name (returning zero
-if data is not available)
+Return vector mapping with given name (returning zero if data
+is not available)
 
 *Arguments*
     name (str)
@@ -8321,7 +8339,7 @@ Erase MeshFunction with given name
 
 *Arguments*
     name (str)
-        The name of the MeshFunction.
+        The name of the mesh function
 ";
 
 %feature("docstring")  dolfin::MeshData::erase_array "
@@ -9161,12 +9179,12 @@ a specific topological dimension of some :py:class:`Mesh`.
 Comparision Operator
 
 *Arguments*
-    another (MeshEntity)
-        Another MeshEntity.
+    another (:py:class:`MeshEntity`)
+        Another mesh entity
 
 *Returns*
     bool
-        True if the two MeshEntity objects are equal.
+        True if the two mesh entities are equal.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::operator!= "
@@ -9174,11 +9192,11 @@ Comparision Operator
 
 *Arguments*
     another (MeshEntity)
-        Another MeshEntity.
+        Another mesh entity.
 
 *Returns*
     bool
-        True if the two MeshEntity objects are NOT equal.
+        True if the two mesh entities are NOT equal.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::mesh "
@@ -9210,10 +9228,11 @@ Return topological dimension
 
 * index\ **(entity)**
 
-  Compute local index of given incident entity (error if not found)
+  Compute local index of given incident entity (error if not
+  found)
   
   *Arguments*
-      entity (MeshEntity)
+      entity (:py:class:`MeshEntity`)
           The mesh entity.
   
   *Returns*
@@ -9255,15 +9274,15 @@ Return unique mesh ID
 ";
 
 %feature("docstring")  dolfin::MeshEntity::incident "
-Check if given entity is indicent
+Check if given entity is incident
 
 *Arguments*
-    entity (MeshEntity)
+    entity (:py:class:`MeshEntity`)
         The entity.
 
 *Returns*
     bool
-        True if the given entity is indicent.
+        True if the given entity is incident
 ";
 
 %feature("docstring")  dolfin::MeshEntity::intersects "
@@ -9271,7 +9290,8 @@ Check if given entity is indicent
 
 * intersects\ **(point)**
 
-  Check if given point intersects (using inexact but fast numerics)
+  Check if given point intersects (using inexact but fast
+  numerics)
   
   *Arguments*
       point (:py:class:`Point`)
@@ -9283,10 +9303,11 @@ Check if given entity is indicent
 
 * intersects\ **(entity)**
 
-  Check if given entity intersects (using inexact but fast numerics)
+  Check if given entity intersects (using inexact but fast
+  numerics)
   
   *Arguments*
-      entity (MeshEntity)
+      entity (:py:class:`MeshEntity`)
           The mesh entity.
   
   *Returns*
@@ -9314,7 +9335,7 @@ Check if given entity is indicent
   Check if given entity intersects (using exact numerics)
   
   *Arguments*
-      entity (MeshEntity)
+      entity (:py:class:`MeshEntity`)
           The mesh entity.
   
   *Returns*
@@ -9331,7 +9352,8 @@ Compute midpoint of cell
 ";
 
 %feature("docstring")  dolfin::MeshEntity::bbox "
-Returns a 3D bounding box of the mesh entity. For lower dimension it may be a degenerated box.
+Returns a 3D bounding box of the mesh entity. For lower
+dimension it may be a degenerated box.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::str "
@@ -9472,10 +9494,10 @@ Check if iterator has reached the end
 
 // Documentation extracted from: (module=mesh, header=Point.h)
 %feature("docstring")  dolfin::Point "
-A Point represents a point in :math:`\mathbb{R}^3` with coordinates
-:math:`x, y, z,` or
-alternatively, a vector in :math:`\mathbb{R}^3`, supporting standard
-operations like the norm, distances, scalar and vector products etc.
+A Point represents a point in :math:`\mathbb{R}^3` with
+coordinates :math:`x, y, z,` or alternatively, a vector in
+:math:`\mathbb{R}^3`, supporting standard operations like the
+norm, distances, scalar and vector products etc.
 ";
 
 %feature("docstring")  dolfin::Point::Point "
@@ -9508,12 +9530,13 @@ operations like the norm, distances, scalar and vector products etc.
   Copy constructor
   
   *Arguments*
-      p (Point)
+      p (:py:class:`Point`)
           The object to be copied.
 
 * Point\ **(point)**
 
-  Constructor taking a CGAL::Point_3. Allows conversion from CGAL Point_3 class to Point class.
+  Constructor taking a CGAL::Point_3. Allows conversion from
+  CGAL Point_3 class to Point class.
 ";
 
 %feature("docstring")  dolfin::Point::operator[] "
@@ -9576,7 +9599,7 @@ Return z-coordinate
   Return coordinate array
   
   *Returns*
-      float
+      list of doubles
           The coordinates.
 
 * coordinates\ **()**
@@ -9584,7 +9607,7 @@ Return z-coordinate
   Return coordinate array (const. version)
   
   *Returns*
-      float
+      list of doubles
           The coordinates.
 ";
 
@@ -9662,7 +9685,8 @@ Compute norm of point representing a vector from the origin
 
 *Returns*
     float
-        The (euclidean) norm of the vector from the origin to the point.
+        The (Euclidean) norm of the vector from the origin to
+        the point.
 
 *Example*
     .. note::
@@ -10170,7 +10194,8 @@ Return informal string representation (pretty-print)
 
 // Documentation extracted from: (module=mesh, header=MeshEditor.h)
 %feature("docstring")  dolfin::MeshEditor "
-A simple mesh editor for creating simplicial meshes in 1D, 2D and 3D.
+A simple mesh editor for creating simplicial meshes in 1D, 2D
+and 3D.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::MeshEditor "
@@ -10390,7 +10415,7 @@ Set boolean indicator inside MeshGeometry
       c (int)
           The cell (index).
       v (numpy.array(int))
-          The vertices.
+          The vertex indices
 
 * add_cell\ **(c, v0, v1)**
 
@@ -10574,7 +10599,7 @@ sub domains or boolean markers for mesh refinement.
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
       dim (int)
-          The dimension.
+          The mesh entity dimension for the mesh function
 
 * MeshFunction\ **(mesh, dim, value)**
 
@@ -10585,7 +10610,7 @@ sub domains or boolean markers for mesh refinement.
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
       dim (int)
-          The dimension.
+          The mesh entity dimension
       value (T)
           The value.
 
@@ -10604,7 +10629,7 @@ sub domains or boolean markers for mesh refinement.
   Copy constructor
   
   *Arguments*
-      f (MeshFunction<T>)
+      f (:py:class:`MeshFunction`)
           The object to be copied.
 ";
 
@@ -10709,7 +10734,7 @@ Return size (number of entities)
 
 * operator=\ **(f)**
 
-  Assign mesh function
+  Assign mesh function to other mesh function
 
 * operator=\ **(value)**
 
@@ -10729,7 +10754,8 @@ Return size (number of entities)
 
 * init\ **(dim, size)**
 
-  Initialize mesh function for given topological dimension of given size
+  Initialize mesh function for given topological dimension of
+  given size
   
   *Arguments*
       dim (int)
@@ -10749,7 +10775,8 @@ Return size (number of entities)
 
 * init\ **(mesh, dim, size)**
 
-  Initialize mesh function for given topological dimension of given size
+  Initialize mesh function for given topological dimension of
+  given size
   
   *Arguments*
       mesh (:py:class:`Mesh`)
@@ -10913,8 +10940,8 @@ Receive mesh data from main process
 
 // Documentation extracted from: (module=mesh, header=SubDomain.h)
 %feature("docstring")  dolfin::SubDomain "
-This class defines the interface for definition of sub domains.
-Alternatively, sub domains may be defined by a :py:class:`Mesh` and a
+This class defines the interface for definition of subdomains.
+Alternatively, subdomains may be defined by a :py:class:`Mesh` and a
 :py:class:`MeshFunction` <uint> over the mesh.
 ";
 
@@ -10927,7 +10954,7 @@ Return true for points inside the subdomain
 
 *Arguments*
     x (numpy.array(float))
-        The points.
+        The coordinates of the point.
     on_boundary (bool)
         True for points on the boundary.
 
@@ -10948,7 +10975,7 @@ periodic boundary conditions)
 ";
 
 %feature("docstring")  dolfin::SubDomain::snap "
-Snap coordinate to boundary of sub domain
+Snap coordinate to boundary of subdomain
 
 *Arguments*
     x (numpy.array(float))
@@ -10960,43 +10987,43 @@ Snap coordinate to boundary of sub domain
 
 * mark\ **(sub_domains, sub_domain)**
 
-  Set sub domain markers (uint) for given subdomain
+  Set subdomain markers (uint) for given subdomain index
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          A :py:class:`MeshFunction` object.
+          The subdomain markers
       sub_domain (int)
-          An unsigned int.
+          The index
 
 * mark\ **(sub_domains, sub_domain)**
 
-  Set sub domain markers (int) for given subdomain
+  Set subdomain markers (int) for given subdomain index
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          The sub domains.
+          The subdomain markers
       sub_domain (int)
-          Markers.
+          The index
 
 * mark\ **(sub_domains, sub_domain)**
 
-  Set sub domain markers (double) for given subdomain
+  Set subdomain markers (double) for given subdomain index
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          The sub domains.
+          The subdomain markers.
       sub_domain (float)
-          Markers.
+          The index
 
 * mark\ **(sub_domains, sub_domain)**
 
-  Set sub domain markers (bool) for given subdomain
+  Set subdomain markers (bool) for given subdomain
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          The sub domains.
+          The subdomain markers
       sub_domain (bool)
-          Markers.
+          The index
 ";
 
 %feature("docstring")  dolfin::SubDomain::geometric_dimension "
@@ -11130,10 +11157,9 @@ Create mesh of unit interval
 
 // Documentation extracted from: (module=mesh, header=Interval.h)
 %feature("docstring")  dolfin::Interval "
-Interval mesh of the 1D line [a,b].
-Given the number of cells (nx) in the axial direction,
-the total number of intervals will be nx and the
-total number of vertices will be (nx + 1).
+Interval mesh of the 1D line [a,b].  Given the number of cells
+(nx) in the axial direction, the total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
 ";
 
 %feature("docstring")  dolfin::Interval::Interval "
@@ -11211,10 +11237,10 @@ std:string transformation (\"maxn\", \"sumn\" or \"rotsumn\")
 
 // Documentation extracted from: (module=mesh, header=Box.h)
 %feature("docstring")  dolfin::Box "
-Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1] x [z0, z1].
-Given the number of cells (nx, ny, nz) in each direction,
-the total number of tetrahedra will be 6*nx*ny*nz and the
-total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
+x [z0, z1].  Given the number of cells (nx, ny, nz) in each
+direction, the total number of tetrahedra will be 6*nx*ny*nz and
+the total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
 ";
 
 %feature("docstring")  dolfin::Box::Box "
@@ -11993,7 +12019,7 @@ GenericFile.h. Compatible file formats include:
 
 * File\ **(outstream)**
 
-  Create a outfile object writing to stream
+  Create an outfile object writing to stream
   
   *Arguments*
       outstream (std::ostream)
@@ -12013,7 +12039,7 @@ Read from file
 
 * operator<<\ **(Function*, u)**
 
-  Write Function to file (with time)
+  Write Function to file (with, for instance, time)
   
   *Example*
       .. note::
