@@ -5068,10 +5068,6 @@ solver of PETSc.
 * PETScLUSolver\ **(A, lu_package=\"default\")**
 
   Constructor
-
-* PETScLUSolver\ **(A, lu_package=\"default\")**
-
-  Constructor
 ";
 
 %feature("docstring")  dolfin::PETScLUSolver::set_operator "
@@ -5130,10 +5126,6 @@ if installed.
 **Overloaded versions**
 
 * CholmodCholeskySolver\ **()**
-
-  Constructor
-
-* CholmodCholeskySolver\ **(A)**
 
   Constructor
 
@@ -5205,10 +5197,6 @@ linear systems of the form Ax = b using UMFPACK
 **Overloaded versions**
 
 * UmfpackLUSolver\ **()**
-
-  Constructor
-
-* UmfpackLUSolver\ **(A)**
 
   Constructor
 
@@ -13136,7 +13124,7 @@ Parameter with value type bool
 
 * BoolParameter\ **(key)**
 
-  Create usnet bool-valued parameter
+  Create unset bool-valued parameter
 
 * BoolParameter\ **(key, value)**
 
@@ -13282,6 +13270,10 @@ Clear parameter set
 * add\ **(parameters)**
 
   Add nested parameter set
+";
+
+%feature("docstring")  dolfin::Parameters::remove "
+Remove parameter or parameter set with given key
 ";
 
 %feature("docstring")  dolfin::Parameters::parse "
