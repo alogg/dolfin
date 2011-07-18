@@ -29,11 +29,11 @@ Return value dimension for given axis
 %feature("docstring")  dolfin::GenericFunction::eval "
 **Overloaded versions**
 
-* eval\ **(values, x, cell)**
+* eval\ (values, x, cell)
 
   Evaluate at given point in given cell
 
-* eval\ **(values, x)**
+* eval\ (values, x)
 
   Evaluate at given point
 ";
@@ -53,35 +53,35 @@ Collect off-process coefficients to prepare for interpolation
 %feature("docstring")  dolfin::GenericFunction::operator "
 **Overloaded versions**
 
-* operator\ **(x)**
+* operator\ (x)
 
   Evaluation at given point (scalar function)
 
-* operator\ **(x, y)**
+* operator\ (x, y)
 
   Evaluation at given point (scalar function)
 
-* operator\ **(x, y, z)**
+* operator\ (x, y, z)
 
   Evaluation at given point (scalar function)
 
-* operator\ **(p)**
+* operator\ (p)
 
   Evaluation at given point (scalar function)
 
-* operator\ **(values, x)**
+* operator\ (values, x)
 
   Evaluation at given point (vector-valued function)
 
-* operator\ **(values, x, y)**
+* operator\ (values, x, y)
 
   Evaluation at given point (vector-valued function)
 
-* operator\ **(values, x, y, z)**
+* operator\ (values, x, y, z)
 
   Evaluation at given point (vector-valued function)
 
-* operator\ **(values, p)**
+* operator\ (values, p)
 
   Evaluation at given point (vector-valued function)
 ";
@@ -115,11 +115,11 @@ constructor.
 %feature("docstring")  dolfin::Expression::Expression "
 **Overloaded versions**
 
-* Expression\ **()**
+* Expression\ ()
 
   Create scalar expression.
 
-* Expression\ **(dim)**
+* Expression\ (dim)
 
   Create vector-valued expression with given dimension.
   
@@ -127,7 +127,7 @@ constructor.
       dim (int)
           Dimension of the vector-valued expression.
 
-* Expression\ **(dim0, dim1)**
+* Expression\ (dim0, dim1)
 
   Create matrix-valued expression with given dimensions.
   
@@ -137,7 +137,7 @@ constructor.
       dim1 (int)
           Dimension (columns).
 
-* Expression\ **(value_shape)**
+* Expression\ (value_shape)
 
   Create tensor-valued expression with given shape.
   
@@ -145,7 +145,7 @@ constructor.
       value_shape (numpy.array(int))
           Shape of expression.
 
-* Expression\ **(expression)**
+* Expression\ (expression)
 
   Copy constructor
   
@@ -157,7 +157,7 @@ constructor.
 %feature("docstring")  dolfin::Expression::eval "
 **Overloaded versions**
 
-* eval\ **(values, x, cell)**
+* eval\ (values, x, cell)
 
   Note: The reimplementation of eval is needed for the Python interface.
   Evaluate at given point in given cell.
@@ -170,7 +170,7 @@ constructor.
       cell (ufc::cell)
           The cell which contains the given point.
 
-* eval\ **(values, x)**
+* eval\ (values, x)
 
   Evaluate at given point.
   
@@ -241,7 +241,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
 %feature("docstring")  dolfin::Function::Function "
 **Overloaded versions**
 
-* Function\ **(V)**
+* Function\ (V)
 
   Create function on given function space
   
@@ -254,7 +254,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       
           No example code available for this function.
 
-* Function\ **(V)**
+* Function\ (V)
 
   Create function on given function space (shared data)
   
@@ -262,7 +262,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       V (:py:class:`FunctionSpace`)
           The function space.
 
-* Function\ **(V, x)**
+* Function\ (V, x)
 
   Create function on given function space with a given vector
   
@@ -272,7 +272,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ **(V, x)**
+* Function\ (V, x)
 
   Create function on given function space with a given vector
   (shared data)
@@ -283,7 +283,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ **(V, x)**
+* Function\ (V, x)
 
   Create function on given function space with a given vector (used by
   Python interface)
@@ -294,7 +294,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ **(V, filename)**
+* Function\ (V, filename)
 
   Create function from vector of dofs stored to file
   
@@ -304,7 +304,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       filename (str)
           The name of the file containing the vector.
 
-* Function\ **(V, filename)**
+* Function\ (V, filename)
 
   Create function from vector of dofs stored to file (shared data)
   
@@ -314,7 +314,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       filename (str)
           The name of the file containing the vector.
 
-* Function\ **(v)**
+* Function\ (v)
 
   Copy constructor
   
@@ -322,7 +322,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       v (:py:class:`Function`)
           The object to be copied.
 
-* Function\ **(v, i)**
+* Function\ (v, i)
 
   Sub-function constructor with shallow copy of vector (used in Python
   interface)
@@ -338,7 +338,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
 %feature("docstring")  dolfin::Function::operator= "
 **Overloaded versions**
 
-* operator=\ **(v)**
+* operator=\ (v)
 
   Assignment from function
   
@@ -346,7 +346,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       v (:py:class:`Function`)
           Another function.
 
-* operator=\ **(v)**
+* operator=\ (v)
 
   Assignment from expression using interpolation
   
@@ -382,7 +382,7 @@ Return shared pointer to function space
 %feature("docstring")  dolfin::Function::vector "
 **Overloaded versions**
 
-* vector\ **()**
+* vector\ ()
 
   Return vector of expansion coefficients (non-const version)
   
@@ -390,7 +390,7 @@ Return shared pointer to function space
       :py:class:`GenericVector`
           The vector of expansion coefficients.
 
-* vector\ **()**
+* vector\ ()
 
   Return vector of expansion coefficients (const version)
   
@@ -422,7 +422,7 @@ Return geometric dimension
 %feature("docstring")  dolfin::Function::eval "
 **Overloaded versions**
 
-* eval\ **(values, x)**
+* eval\ (values, x)
 
   Evaluate function at given coordinates
   
@@ -432,7 +432,7 @@ Return geometric dimension
       x (numpy.array(float))
           The coordinates.
 
-* eval\ **(values, x, dolfin_cell, ufc_cell)**
+* eval\ (values, x, dolfin_cell, ufc_cell)
 
   Evaluate function at given coordinates in given cell
   
@@ -446,7 +446,7 @@ Return geometric dimension
       ufc_cell (ufc::cell)
           The ufc::cell.
 
-* eval\ **(values, x, cell)**
+* eval\ (values, x, cell)
 
   Evaluate at given point in given cell
   
@@ -545,7 +545,7 @@ degrees of freedom (dofmap).
 %feature("docstring")  dolfin::FunctionSpace::FunctionSpace "
 **Overloaded versions**
 
-* FunctionSpace\ **(mesh, element, dofmap)**
+* FunctionSpace\ (mesh, element, dofmap)
 
   Create function space for given mesh, element and dofmap
   (shared data)
@@ -558,7 +558,7 @@ degrees of freedom (dofmap).
       dofmap (:py:class:`GenericDofMap`)
           The dofmap.
 
-* FunctionSpace\ **(mesh)**
+* FunctionSpace\ (mesh)
 
   Create empty function space for later initialization. This
   constructor is intended for use by any sub-classes which need
@@ -570,7 +570,7 @@ degrees of freedom (dofmap).
       mesh (:py:class:`Mesh`)
           The mesh.
 
-* FunctionSpace\ **(V)**
+* FunctionSpace\ (V)
 
   Copy constructor
   
@@ -666,7 +666,7 @@ Extract subspace for component
 %feature("docstring")  dolfin::FunctionSpace::collapse "
 **Overloaded versions**
 
-* collapse\ **()**
+* collapse\ ()
 
   Collapse a subspace and return a new function space
   
@@ -674,7 +674,7 @@ Extract subspace for component
       :py:class:`FunctionSpace`
           The new function space.
 
-* collapse\ **(collapsed_dofs)**
+* collapse\ (collapsed_dofs)
 
   Collapse a subspace and return a new function space and a map
   from new to old dofs
@@ -753,15 +753,15 @@ W[0][0] = V[0] is the first component of the velocity space etc.
 %feature("docstring")  dolfin::SubSpace::SubSpace "
 **Overloaded versions**
 
-* SubSpace\ **(V, component)**
+* SubSpace\ (V, component)
 
   Create subspace for given component (one level)
 
-* SubSpace\ **(V, component, sub_component)**
+* SubSpace\ (V, component, sub_component)
 
   Create subspace for given component (two levels)
 
-* SubSpace\ **(V, component)**
+* SubSpace\ (V, component)
 
   Create subspace for given component (n levels)
 ";
@@ -774,7 +774,7 @@ This class represents a constant-valued expression.
 %feature("docstring")  dolfin::Constant::Constant "
 **Overloaded versions**
 
-* Constant\ **(value)**
+* Constant\ (value)
 
   Create scalar constant
   
@@ -787,7 +787,7 @@ This class represents a constant-valued expression.
       
           No example code available for this function.
 
-* Constant\ **(value0, value1)**
+* Constant\ (value0, value1)
 
   Create vector constant (dim = 2)
   
@@ -802,7 +802,7 @@ This class represents a constant-valued expression.
       
           No example code available for this function.
 
-* Constant\ **(value0, value1, value2)**
+* Constant\ (value0, value1, value2)
 
   Create vector constant (dim = 3)
   
@@ -819,7 +819,7 @@ This class represents a constant-valued expression.
       
           No example code available for this function.
 
-* Constant\ **(values)**
+* Constant\ (values)
 
   Create vector-valued constant
   
@@ -827,7 +827,7 @@ This class represents a constant-valued expression.
       values (numpy.array(float))
           Values to create a vector-valued constant from.
 
-* Constant\ **(value_shape, values)**
+* Constant\ (value_shape, values)
 
   Create tensor-valued constant for flattened array of values
   
@@ -837,7 +837,7 @@ This class represents a constant-valued expression.
       values (numpy.array(float))
           Values to create tensor-valued constant from.
 
-* Constant\ **(constant)**
+* Constant\ (constant)
 
   Copy constructor
   
@@ -849,7 +849,7 @@ This class represents a constant-valued expression.
 %feature("docstring")  dolfin::Constant::operator= "
 **Overloaded versions**
 
-* operator=\ **(constant)**
+* operator=\ (constant)
 
   Assignment operator
   
@@ -857,7 +857,7 @@ This class represents a constant-valued expression.
       constant (:py:class:`Constant`)
           Another constant.
 
-* operator=\ **(constant)**
+* operator=\ (constant)
 
   Assignment operator
   
@@ -915,29 +915,29 @@ Evaluate function
 %feature("docstring")  dolfin::plot "
 **Overloaded versions**
 
-* plot\ **(v, title=\"Function\", mode=\"auto\")**
+* plot\ (v, title=\"Function\", mode=\"auto\")
 
   Simple built-in plot commands for plotting functions and meshes.
   For plotting to work, PyDOLFIN and Viper must be installed.
   Plot function
 
-* plot\ **(v, mesh, title=\"Expression\", mode=\"auto\")**
+* plot\ (v, mesh, title=\"Expression\", mode=\"auto\")
 
   Plot function
 
-* plot\ **(mesh, title=\"Mesh\")**
+* plot\ (mesh, title=\"Mesh\")
 
   Plot mesh
 
-* plot\ **(f, MeshFunction<uint>\")**
+* plot\ (f, MeshFunction<uint>\")
 
   Plot mesh function
 
-* plot\ **(f, title=\"MeshFunction<double>\")**
+* plot\ (f, title=\"MeshFunction<double>\")
 
   Plot mesh function
 
-* plot\ **(f, title=\"MeshFunction<bool>\")**
+* plot\ (f, title=\"MeshFunction<bool>\")
 
   Plot mesh function
 ";
@@ -953,11 +953,11 @@ of interpolated vertex values.
 %feature("docstring")  dolfin::FunctionPlotData::FunctionPlotData "
 **Overloaded versions**
 
-* FunctionPlotData\ **(v, mesh)**
+* FunctionPlotData\ (v, mesh)
 
   Create plot data for given function
 
-* FunctionPlotData\ **()**
+* FunctionPlotData\ ()
 
   Create empty data to be read from file
 ";
@@ -998,12 +998,12 @@ equations of the form :math:`F(x) = 0`.
 %feature("docstring")  dolfin::NewtonSolver::NewtonSolver "
 **Overloaded versions**
 
-* NewtonSolver\ **(solver_type=\"lu\", pc_type=\"default\")**
+* NewtonSolver\ (solver_type=\"lu\", pc_type=\"default\")
 
   Create nonlinear solver with default linear solver and default
   linear algebra backend
 
-* NewtonSolver\ **(solver, factory)**
+* NewtonSolver\ (solver, factory)
 
   Create nonlinear solver using provided linear solver and linear algebra
   backend determined by factory
@@ -1128,11 +1128,11 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
 **Overloaded versions**
 
-* tabulate_coordinates\ **(coordinates, ufc_cell)**
+* tabulate_coordinates\ (coordinates, ufc_cell)
 
   Tabulate the coordinates of all dofs on a cell (UFC cell version)
 
-* tabulate_coordinates\ **(coordinates, cell)**
+* tabulate_coordinates\ (coordinates, cell)
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
 ";
@@ -1168,7 +1168,7 @@ views and copies, are supported.
 %feature("docstring")  dolfin::DofMap::DofMap "
 **Overloaded versions**
 
-* DofMap\ **(ufc_dofmap, mesh)**
+* DofMap\ (ufc_dofmap, mesh)
 
   Create dof map on mesh (data is not shared)
   
@@ -1178,7 +1178,7 @@ views and copies, are supported.
       mesh (:py:class:`Mesh`)
           The mesh.
 
-* DofMap\ **(ufc_dofmap, mesh)**
+* DofMap\ (ufc_dofmap, mesh)
 
   Create dof map on mesh ((data is not shared), const mesh
   version)
@@ -1189,7 +1189,7 @@ views and copies, are supported.
       mesh (:py:class:`Mesh`)
           The mesh.
 
-* DofMap\ **(dofmap)**
+* DofMap\ (dofmap)
 
   Copy constructor
   
@@ -1197,11 +1197,11 @@ views and copies, are supported.
       dofmap (:py:class:`DofMap`)
           The object to be copied.
 
-* DofMap\ **(parent_dofmap, component, mesh, distributed)**
+* DofMap\ (parent_dofmap, component, mesh, distributed)
 
   Create a sub-dofmap (a view) from parent_dofmap
 
-* DofMap\ **(collapsed_map, dofmap_view, mesh, distributed)**
+* DofMap\ (collapsed_map, dofmap_view, mesh, distributed)
 
   Create a collapsed dofmap from parent_dofmap
 ";
@@ -1330,7 +1330,7 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
 **Overloaded versions**
 
-* tabulate_coordinates\ **(coordinates, ufc_cell)**
+* tabulate_coordinates\ (coordinates, ufc_cell)
 
   Tabulate the coordinates of all dofs on a cell (UFC cell
   version)
@@ -1341,7 +1341,7 @@ Tabulate local-local facet dofs
       ufc_cell (ufc::cell)
           The cell.
 
-* tabulate_coordinates\ **(coordinates, cell)**
+* tabulate_coordinates\ (coordinates, cell)
 
   Tabulate the coordinates of all dofs on a cell (DOLFIN cell
   version)
@@ -1423,11 +1423,11 @@ The equation can be either linear or nonlinear:
 %feature("docstring")  dolfin::Equation::Equation "
 **Overloaded versions**
 
-* Equation\ **(a, L)**
+* Equation\ (a, L)
 
   Create equation a == L
 
-* Equation\ **(F, rhs)**
+* Equation\ (F, rhs)
 
   Create equation F == 0
 ";
@@ -1480,11 +1480,11 @@ Return the dimension of the value space for axis i
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis "
 **Overloaded versions**
 
-* evaluate_basis\ **(i, values, x, cell)**
+* evaluate_basis\ (i, values, x, cell)
 
   Evaluate basis function i at given point in cell
 
-* evaluate_basis\ **(i, values, x, cell)**
+* evaluate_basis\ (i, values, x, cell)
 
   Evaluate basis function i at given point in cell
 ";
@@ -1492,11 +1492,11 @@ Return the dimension of the value space for axis i
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis_all "
 **Overloaded versions**
 
-* evaluate_basis_all\ **(values, coordinates, c)**
+* evaluate_basis_all\ (values, coordinates, c)
 
   Evaluate all basis functions at given point in cell
 
-* evaluate_basis_all\ **(values, coordinates, cell)**
+* evaluate_basis_all\ (values, coordinates, cell)
 
   Evaluate all basis functions at given point in cell
 ";
@@ -1617,11 +1617,11 @@ Common base class for boundary conditions
 %feature("docstring")  dolfin::BoundaryCondition::BoundaryCondition "
 **Overloaded versions**
 
-* BoundaryCondition\ **(V)**
+* BoundaryCondition\ (V)
 
   Constructor
 
-* BoundaryCondition\ **(V)**
+* BoundaryCondition\ (V)
 
   Constructor
 ";
@@ -1629,23 +1629,23 @@ Common base class for boundary conditions
 %feature("docstring")  dolfin::BoundaryCondition::apply "
 **Overloaded versions**
 
-* apply\ **(A)**
+* apply\ (A)
 
   Apply boundary condition to a matrix
 
-* apply\ **(b)**
+* apply\ (b)
 
   Apply boundary condition to a vector
 
-* apply\ **(A, b)**
+* apply\ (A, b)
 
   Apply boundary condition to a linear system
 
-* apply\ **(b, x)**
+* apply\ (b, x)
 
   Apply boundary condition to a vector for a nonlinear problem
 
-* apply\ **(A, b, x)**
+* apply\ (A, b, x)
 
   Apply boundary condition to a linear system for a nonlinear problem
 ";
@@ -1710,7 +1710,7 @@ This class specifies the interface for setting (strong)
 %feature("docstring")  dolfin::DirichletBC::DirichletBC "
 **Overloaded versions**
 
-* DirichletBC\ **(V, g, sub_domain, method=\"topological\")**
+* DirichletBC\ (V, g, sub_domain, method=\"topological\")
 
   Create boundary condition for subdomain
   
@@ -1725,7 +1725,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying
           the method to identify dofs.
 
-* DirichletBC\ **(V, g, sub_domain, method=\"topological\")**
+* DirichletBC\ (V, g, sub_domain, method=\"topological\")
 
   Create boundary condition for subdomain
   
@@ -1740,7 +1740,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying
           the method to identify dofs
 
-* DirichletBC\ **(V, g, sub_domains, sub_domain, method=\"topological\")**
+* DirichletBC\ (V, g, sub_domains, sub_domain, method=\"topological\")
 
   Create boundary condition for subdomain specified by index
   
@@ -1757,7 +1757,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying the
           method to identify dofs.
 
-* DirichletBC\ **(V, g, sub_domains, sub_domain, method=\"topological\")**
+* DirichletBC\ (V, g, sub_domains, sub_domain, method=\"topological\")
 
   Create boundary condition for subdomain specified by index
   
@@ -1774,7 +1774,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying the
           method to identify dofs.
 
-* DirichletBC\ **(V, g, sub_domain, method=\"topological\")**
+* DirichletBC\ (V, g, sub_domain, method=\"topological\")
 
   Create boundary condition for boundary data included in the mesh
   
@@ -1789,7 +1789,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying the
           method to identify dofs.
 
-* DirichletBC\ **(V, g, sub_domain, method=\"topological\")**
+* DirichletBC\ (V, g, sub_domain, method=\"topological\")
 
   Create boundary condition for boundary data included in the mesh
   
@@ -1804,7 +1804,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying the
           method to identify dofs.
 
-* DirichletBC\ **(V, g, markers, method=\"topological\")**
+* DirichletBC\ (V, g, markers, method=\"topological\")
 
   Create boundary condition for subdomain by boundary markers
   (cells, local facet numbers)
@@ -1820,7 +1820,7 @@ This class specifies the interface for setting (strong)
           Optional argument: A string specifying the
           method to identify dofs.
 
-* DirichletBC\ **(bc)**
+* DirichletBC\ (bc)
 
   Copy constructor
   
@@ -1840,7 +1840,7 @@ Assignment operator
 %feature("docstring")  dolfin::DirichletBC::apply "
 **Overloaded versions**
 
-* apply\ **(A)**
+* apply\ (A)
 
   Apply boundary condition to a matrix
   
@@ -1848,7 +1848,7 @@ Assignment operator
       A (:py:class:`GenericMatrix`)
           The matrix to apply boundary condition to.
 
-* apply\ **(b)**
+* apply\ (b)
 
   Apply boundary condition to a vector
   
@@ -1856,7 +1856,7 @@ Assignment operator
       b (:py:class:`GenericVector`)
           The vector to apply boundary condition to.
 
-* apply\ **(A, b)**
+* apply\ (A, b)
 
   Apply boundary condition to a linear system
   
@@ -1866,7 +1866,7 @@ Assignment operator
       b (:py:class:`GenericVector`)
           The vector to apply boundary condition to.
 
-* apply\ **(b, x)**
+* apply\ (b, x)
 
   Apply boundary condition to vectors for a nonlinear problem
   
@@ -1876,7 +1876,7 @@ Assignment operator
       x (:py:class:`GenericVector`)
           Another vector (nonlinear problem).
 
-* apply\ **(A, b, x)**
+* apply\ (A, b, x)
 
   Apply boundary condition to a linear system for a nonlinear problem
   
@@ -1965,7 +1965,7 @@ Check if given function is compatible with boundary condition
 %feature("docstring")  dolfin::DirichletBC::set_value "
 **Overloaded versions**
 
-* set_value\ **(g)**
+* set_value\ (g)
 
   Set value g for boundary condition, domain remains unchanged
   
@@ -1973,7 +1973,7 @@ Check if given function is compatible with boundary condition
       g (:py:class:`GenericFunction`)
           The value.
 
-* set_value\ **(g)**
+* set_value\ (g)
 
   Set value g for boundary condition, domain remains unchanged
   
@@ -2034,7 +2034,7 @@ by calling the ``rebuild()`` function.
 %feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
 **Overloaded versions**
 
-* PeriodicBC\ **(V, sub_domain)**
+* PeriodicBC\ (V, sub_domain)
 
   Create periodic boundary condition for subdomain
   
@@ -2044,7 +2044,7 @@ by calling the ``rebuild()`` function.
       sub_domain (:py:class:`SubDomain`)
           The sub domain.
 
-* PeriodicBC\ **(V, sub_domain)**
+* PeriodicBC\ (V, sub_domain)
 
   Create periodic boundary condition for subdomain
   
@@ -2058,7 +2058,7 @@ by calling the ``rebuild()`` function.
 %feature("docstring")  dolfin::PeriodicBC::apply "
 **Overloaded versions**
 
-* apply\ **(A)**
+* apply\ (A)
 
   Apply boundary condition to a matrix
   
@@ -2066,7 +2066,7 @@ by calling the ``rebuild()`` function.
       A (:py:class:`GenericMatrix`)
           The matrix to apply bc to.
 
-* apply\ **(b)**
+* apply\ (b)
 
   Apply boundary condition to a vector
   
@@ -2074,7 +2074,7 @@ by calling the ``rebuild()`` function.
       b (:py:class:`GenericVector`)
           The vector to apply bc to.
 
-* apply\ **(A, b)**
+* apply\ (A, b)
 
   Apply boundary condition to a linear system
   
@@ -2084,7 +2084,7 @@ by calling the ``rebuild()`` function.
       b (:py:class:`GenericVector`)
           The vector.
 
-* apply\ **(b, x)**
+* apply\ (b, x)
 
   Apply boundary condition to a vector for a nonlinear problem
   
@@ -2094,7 +2094,7 @@ by calling the ``rebuild()`` function.
       x (:py:class:`GenericVector`)
           Another vector (nonlinear problem).
 
-* apply\ **(A, b, x)**
+* apply\ (A, b, x)
 
   Apply boundary condition to a linear system for a nonlinear
   problem
@@ -2124,11 +2124,11 @@ delta function to be well defined.
 %feature("docstring")  dolfin::PointSource::PointSource "
 **Overloaded versions**
 
-* PointSource\ **(V, p, magnitude=1.0)**
+* PointSource\ (V, p, magnitude=1.0)
 
   Create point source at given point of given magnitude
 
-* PointSource\ **(V, p, magnitude=1.0)**
+* PointSource\ (V, p, magnitude=1.0)
 
   Create point source at given point of given magnitude
 ";
@@ -2141,27 +2141,27 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble "
 **Overloaded versions**
 
-* assemble\ **(A, a, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, reset_sparsity=true, add_values=false)
 
   Assemble tensor
 
-* assemble\ **(A, a, sub_domain, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false)
 
   Assemble tensor on sub domain
 
-* assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
 
   Assemble tensor on sub domains
 
-* assemble\ **(a, reset_sparsity=true, add_values=false)**
+* assemble\ (a, reset_sparsity=true, add_values=false)
 
   Assemble scalar
 
-* assemble\ **(a, sub_domain, reset_sparsity=true, add_values=false)**
+* assemble\ (a, sub_domain, reset_sparsity=true, add_values=false)
 
   Assemble scalar on sub domain
 
-* assemble\ **(a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
+* assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
 
   Assemble scalar on sub domains
 ";
@@ -2169,19 +2169,19 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ **(A, b, a, L, reset_sparsities=true, add_values=false)**
+* assemble_system\ (A, b, a, L, reset_sparsities=true, add_values=false)
 
   Assemble system (A, b)
 
-* assemble_system\ **(A, b, a, L, bc, reset_sparsities=true, add_values=false)**
+* assemble_system\ (A, b, a, L, bc, reset_sparsities=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ **(A, b, a, L, bcs, reset_sparsities=true, add_values=false)**
+* assemble_system\ (A, b, a, L, bcs, reset_sparsities=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ **(A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsities=true, add_values=false)**
+* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsities=true, add_values=false)
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
@@ -2190,34 +2190,34 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::solve "
 **Overloaded versions**
 
-* solve\ **(equation, u)**
+* solve\ (equation, u)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
   variational problem F(u; v) = 0 without boundary conditions
 
-* solve\ **(equation, u, bc)**
+* solve\ (equation, u, bc)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
   variational problem F(u; v) = 0 with a single boundary condition
 
-* solve\ **(equation, u, bcs)**
+* solve\ (equation, u, bcs)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
   variational problem F(u; v) = 0 with a list of boundary conditions
 
-* solve\ **(equation, u, J)**
+* solve\ (equation, u, J)
 
   Solve nonlinear variational problem F(u; v) == 0 without boundary
   conditions. The argument J should provide the Jacobian bilinear
   form F' = dF/du.
 
-* solve\ **(equation, u, bc, J)**
+* solve\ (equation, u, bc, J)
 
   Solve nonlinear variational problem F(u; v) == 0 with a single
   boundary condition. The argument J should provide the Jacobian
   bilinear form F' = dF/du.
 
-* solve\ **(equation, u, bcs, J)**
+* solve\ (equation, u, bcs, J)
 
   Solve nonlinear variational problem F(u; v) == 0 with a list of
   boundary conditions.The argument J should provide the Jacobian
@@ -2264,7 +2264,7 @@ and then space number 1 (the trial space).
 %feature("docstring")  dolfin::Form::Form "
 **Overloaded versions**
 
-* Form\ **(rank, num_coefficients)**
+* Form\ (rank, num_coefficients)
 
   Create form of given rank with given number of coefficients
   
@@ -2274,7 +2274,7 @@ and then space number 1 (the trial space).
       num_coefficients (int)
           The number of coefficients.
 
-* Form\ **(ufc_form, function_spaces, coefficients)**
+* Form\ (ufc_form, function_spaces, coefficients)
 
   Create form (shared data)
   
@@ -2364,7 +2364,7 @@ Return function spaces for arguments
 %feature("docstring")  dolfin::Form::set_coefficient "
 **Overloaded versions**
 
-* set_coefficient\ **(i, coefficient)**
+* set_coefficient\ (i, coefficient)
 
   Set coefficient with given number (shared pointer version)
   
@@ -2374,7 +2374,7 @@ Return function spaces for arguments
       coefficient (:py:class:`GenericFunction`)
           The coefficient.
 
-* set_coefficient\ **(name, coefficient)**
+* set_coefficient\ (name, coefficient)
 
   Set coefficient with given name (shared pointer version)
   
@@ -2397,7 +2397,7 @@ pointer version)
 %feature("docstring")  dolfin::Form::coefficient "
 **Overloaded versions**
 
-* coefficient\ **(i)**
+* coefficient\ (i)
 
   Return coefficient with given number
   
@@ -2409,7 +2409,7 @@ pointer version)
       :py:class:`GenericFunction`
           The coefficient.
 
-* coefficient\ **(name)**
+* coefficient\ (name)
 
   Return coefficient with given name
   
@@ -2528,11 +2528,11 @@ Check function spaces and coefficients
 %feature("docstring")  dolfin::Form::operator== "
 **Overloaded versions**
 
-* operator==\ **(rhs)**
+* operator==\ (rhs)
 
   Comparison operator, returning equation lhs == rhs
 
-* operator==\ **(rhs)**
+* operator==\ (rhs)
 
   Comparison operator, returning equation lhs == 0
 ";
@@ -2573,7 +2573,7 @@ Note that (1) overrides (2), which overrides (3).
 %feature("docstring")  dolfin::Assembler::assemble "
 **Overloaded versions**
 
-* assemble\ **(A, a, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, reset_sparsity=true, add_values=false)
 
   Assemble tensor from given form
   
@@ -2587,7 +2587,7 @@ Note that (1) overrides (2), which overrides (3).
       add_values (bool)
           Optional argument: Default value is false.
 
-* assemble\ **(A, a, sub_domain, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false)
 
   Assemble tensor from given form on subdomain
   
@@ -2603,7 +2603,7 @@ Note that (1) overrides (2), which overrides (3).
       add_values (bool)
           Optional argument: Default value is false.
 
-* assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
 
   Assemble tensor from given form on subdomains
   
@@ -2645,19 +2645,19 @@ boundary conditions at the time of assembly.
 %feature("docstring")  dolfin::SystemAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ **(A, b, a, L, reset_sparsity=true, add_values=false)**
+* assemble\ (A, b, a, L, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b)
 
-* assemble\ **(A, b, a, L, bc, reset_sparsity=true, add_values=true)**
+* assemble\ (A, b, a, L, bc, reset_sparsity=true, add_values=true)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble\ **(A, b, a, L, bcs, reset_sparsity=true, add_values=false)**
+* assemble\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble\ **(A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)**
+* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
@@ -2676,29 +2676,29 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::LinearVariationalProblem::LinearVariationalProblem "
 **Overloaded versions**
 
-* LinearVariationalProblem\ **(a, L, u)**
+* LinearVariationalProblem\ (a, L, u)
 
   Create linear variational problem without boundary conditions
 
-* LinearVariationalProblem\ **(a, L, u)**
+* LinearVariationalProblem\ (a, L, u)
 
   Create linear variational problem without boundary conditions
   (shared pointer version)
 
-* LinearVariationalProblem\ **(a, L, u, bc)**
+* LinearVariationalProblem\ (a, L, u, bc)
 
   Create linear variational problem with a single boundary condition
 
-* LinearVariationalProblem\ **(a, L, u, bc)**
+* LinearVariationalProblem\ (a, L, u, bc)
 
   Create linear variational problem with a single boundary condition
   (shared pointer version)
 
-* LinearVariationalProblem\ **(a, L, u, bcs)**
+* LinearVariationalProblem\ (a, L, u, bcs)
 
   Create linear variational problem with a list of boundary conditions
 
-* LinearVariationalProblem\ **(a, L, u, bcs)**
+* LinearVariationalProblem\ (a, L, u, bcs)
 
   Create linear variational problem with a list of boundary conditions
   (shared pointer version)
@@ -2715,11 +2715,11 @@ Return linear form
 %feature("docstring")  dolfin::LinearVariationalProblem::solution "
 **Overloaded versions**
 
-* solution\ **()**
+* solution\ ()
 
   Return solution variable
 
-* solution\ **()**
+* solution\ ()
 
   Return solution variable (const version)
 ";
@@ -2744,11 +2744,11 @@ This class implements a solver for linear variational problems.
 %feature("docstring")  dolfin::LinearVariationalSolver::LinearVariationalSolver "
 **Overloaded versions**
 
-* LinearVariationalSolver\ **(problem)**
+* LinearVariationalSolver\ (problem)
 
   Create linear variational solver for given problem
 
-* LinearVariationalSolver\ **(problem)**
+* LinearVariationalSolver\ (problem)
 
   Create linear variational solver for given problem (shared pointer version)
 ";
@@ -2775,29 +2775,29 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::NonlinearVariationalProblem::NonlinearVariationalProblem "
 **Overloaded versions**
 
-* NonlinearVariationalProblem\ **(F, rhs, u)**
+* NonlinearVariationalProblem\ (F, rhs, u)
 
   Create nonlinear variational problem without boundary conditions
 
-* NonlinearVariationalProblem\ **(F, rhs, u)**
+* NonlinearVariationalProblem\ (F, rhs, u)
 
   Create nonlinear variational problem without boundary conditions
   (shared pointer version)
 
-* NonlinearVariationalProblem\ **(F, rhs, u, bc)**
+* NonlinearVariationalProblem\ (F, rhs, u, bc)
 
   Create nonlinear variational problem with a single boundary condition
 
-* NonlinearVariationalProblem\ **(F, rhs, u, bc)**
+* NonlinearVariationalProblem\ (F, rhs, u, bc)
 
   Create nonlinear variational problem with a single boundary condition
   (shared pointer version)
 
-* NonlinearVariationalProblem\ **(F, rhs, u, bcs)**
+* NonlinearVariationalProblem\ (F, rhs, u, bcs)
 
   Create nonlinear variational problem with a list of boundary conditions
 
-* NonlinearVariationalProblem\ **(F, rhs, u, bcs)**
+* NonlinearVariationalProblem\ (F, rhs, u, bcs)
 
   Create nonlinear variational problem with a list of boundary conditions
   (shared pointer version)
@@ -2814,11 +2814,11 @@ Return Jacobian form
 %feature("docstring")  dolfin::NonlinearVariationalProblem::solution "
 **Overloaded versions**
 
-* solution\ **()**
+* solution\ ()
 
   Return solution variable
 
-* solution\ **()**
+* solution\ ()
 
   Return solution variable (const version)
 ";
@@ -2838,11 +2838,11 @@ Return test space
 %feature("docstring")  dolfin::NonlinearVariationalProblem::set_jacobian "
 **Overloaded versions**
 
-* set_jacobian\ **(J)**
+* set_jacobian\ (J)
 
   Set Jacobian form
 
-* set_jacobian\ **(J)**
+* set_jacobian\ (J)
 
   Set Jacobian form (shared pointer version)
 ";
@@ -2859,11 +2859,11 @@ This class implements a solver for nonlinear variational problems.
 %feature("docstring")  dolfin::NonlinearVariationalSolver::NonlinearVariationalSolver "
 **Overloaded versions**
 
-* NonlinearVariationalSolver\ **(problem)**
+* NonlinearVariationalSolver\ (problem)
 
   Create nonlinear variational solver for given problem
 
-* NonlinearVariationalSolver\ **(problem)**
+* NonlinearVariationalSolver\ (problem)
 
   Create nonlinear variational solver for given problem (shared pointer version)
 ";
@@ -2892,11 +2892,11 @@ entire set of cells or facets.
 %feature("docstring")  dolfin::OpenMpAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ **(A, a, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, reset_sparsity=true, add_values=false)
 
   Assemble tensor from given form
 
-* assemble\ **(A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)**
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
 
   Assemble tensor from given form on sub domains
 ";
@@ -2910,19 +2910,19 @@ message to users about the new interface.
 %feature("docstring")  dolfin::VariationalProblem::VariationalProblem "
 **Overloaded versions**
 
-* VariationalProblem\ **(form_0, form_1)**
+* VariationalProblem\ (form_0, form_1)
 
   Deprecated
 
-* VariationalProblem\ **(form_0, form_1, bc)**
+* VariationalProblem\ (form_0, form_1, bc)
 
   Deprecated
 
-* VariationalProblem\ **(form_0, form_1, bcs)**
+* VariationalProblem\ (form_0, form_1, bcs)
 
   Deprecated
 
-* VariationalProblem\ **(form_0, form_1, bcs)**
+* VariationalProblem\ (form_0, form_1, bcs)
 
   Deprecated
 ";
@@ -2930,23 +2930,23 @@ message to users about the new interface.
 %feature("docstring")  dolfin::VariationalProblem::solve "
 **Overloaded versions**
 
-* solve\ **(u)**
+* solve\ (u)
 
   Deprecated
 
-* solve\ **(u0, u1)**
+* solve\ (u0, u1)
 
   Deprecated
 
-* solve\ **(u0, u1, u2)**
+* solve\ (u0, u1, u2)
 
   Deprecated
 
-* solve\ **(u, tol, M)**
+* solve\ (u, tol, M)
 
   Deprecated
 
-* solve\ **(u, tol, M, ec)**
+* solve\ (u, tol, M, ec)
 
   Deprecated
 ";
@@ -2955,7 +2955,7 @@ message to users about the new interface.
 %feature("docstring")  dolfin::info "
 **Overloaded versions**
 
-* info\ **(msg, ...)**
+* info\ (msg, ...)
 
   The DOLFIN log system provides the following set of functions for
   uniform handling of log messages, warnings and errors. In addition,
@@ -2966,11 +2966,11 @@ message to users about the new interface.
   turned off by calling set_log_active(false).
   Print message
 
-* info\ **(parameters, verbose=false)**
+* info\ (parameters, verbose=false)
 
   Print parameter (using output of str() method)
 
-* info\ **(variable, verbose=false)**
+* info\ (variable, verbose=false)
 
   Print variable (using output of str() method)
 ";
@@ -3002,11 +3002,11 @@ Print message at given debug level
 %feature("docstring")  dolfin::begin "
 **Overloaded versions**
 
-* begin\ **(msg, ...)**
+* begin\ (msg, ...)
 
   Begin task (increase indentation level)
 
-* begin\ **(debug_level, msg, ...)**
+* begin\ (debug_level, msg, ...)
 
   Begin task (increase indentation level)
 ";
@@ -3096,47 +3096,47 @@ Create log stream of given type
 %feature("docstring")  dolfin::LogStream::operator<< "
 **Overloaded versions**
 
-* operator<<\ **(stream)**
+* operator<<\ (stream)
 
   Output for log stream
 
-* operator<<\ **(s)**
+* operator<<\ (s)
 
   Output for string
 
-* operator<<\ **(a)**
+* operator<<\ (a)
 
   Output for int
 
-* operator<<\ **(a)**
+* operator<<\ (a)
 
   Output for unsigned int
 
-* operator<<\ **(a)**
+* operator<<\ (a)
 
   Output for long int
 
-* operator<<\ **(a)**
+* operator<<\ (a)
 
   Output for long int
 
-* operator<<\ **(a)**
+* operator<<\ (a)
 
   Output for double
 
-* operator<<\ **(z)**
+* operator<<\ (z)
 
   Output for complex
 
-* operator<<\ **(variable)**
+* operator<<\ (variable)
 
   Output for variable (calling str() method)
 
-* operator<<\ **(entity)**
+* operator<<\ (entity)
 
   Output for mesh entity (not subclass of Variable for efficiency)
 
-* operator<<\ **(point)**
+* operator<<\ (point)
 
   Output for point (not subclass of Variable for efficiency)
 ";
@@ -3172,7 +3172,7 @@ bars during a computation.
 %feature("docstring")  dolfin::Progress::Progress "
 **Overloaded versions**
 
-* Progress\ **(title, n)**
+* Progress\ (title, n)
 
   Create progress bar with a known number of steps
   
@@ -3182,7 +3182,7 @@ bars during a computation.
       n (int)
           Number of steps.
 
-* Progress\ **(title)**
+* Progress\ (title)
 
   Create progress bar with an unknown number of steps
   
@@ -3231,19 +3231,19 @@ Return table entry
 %feature("docstring")  dolfin::Table::set "
 **Overloaded versions**
 
-* set\ **(row, col, value)**
+* set\ (row, col, value)
 
   Set value of table entry
 
-* set\ **(row, col, value)**
+* set\ (row, col, value)
 
   Set value of table entry
 
-* set\ **(row, col, value)**
+* set\ (row, col, value)
 
   Set value of table entry
 
-* set\ **(row, col, value)**
+* set\ (row, col, value)
 
   Set value of table entry
 ";
@@ -3283,19 +3283,19 @@ Create table entry
 %feature("docstring")  dolfin::TableEntry::operator= "
 **Overloaded versions**
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assign value to table entry
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assign value to table entry
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assign value to table entry
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assign value to table entry
 ";
@@ -3322,11 +3322,11 @@ Set operator (matrix) and preconditioner matrix
 %feature("docstring")  dolfin::GenericLinearSolver::solve "
 **Overloaded versions**
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 ";
@@ -3343,11 +3343,11 @@ Set operator (matrix)
 %feature("docstring")  dolfin::GenericLUSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 ";
@@ -3388,15 +3388,15 @@ Set block of values
 %feature("docstring")  dolfin::GenericTensor::add "
 **Overloaded versions**
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, num_rows, rows)**
+* add\ (block, num_rows, rows)
 
   Add block of values
 ";
@@ -3420,15 +3420,15 @@ Return linear algebra backend factory
 %feature("docstring")  dolfin::GenericTensor::down_cast "
 **Overloaded versions**
 
-* down_cast\ **()**
+* down_cast\ ()
 
   Cast a GenericTensor to its derived class (const version)
 
-* down_cast\ **()**
+* down_cast\ ()
 
   Cast a GenericTensor to its derived class (non-const version)
 
-* down_cast\ **(A)**
+* down_cast\ (A)
 
   Cast a GenericTensor shared ptr to its derived class. Caller
   must check for success (returns null if cast fails).
@@ -3441,11 +3441,11 @@ Check whether the GenericTensor instance matches a specific type
 %feature("docstring")  dolfin::GenericTensor::instance "
 **Overloaded versions**
 
-* instance\ **()**
+* instance\ ()
 
   Return concrete instance / unwrap (const version)
 
-* instance\ **()**
+* instance\ ()
 
   Return concrete instance / unwrap (non-const version)
 ";
@@ -3453,11 +3453,11 @@ Check whether the GenericTensor instance matches a specific type
 %feature("docstring")  dolfin::GenericTensor::shared_instance "
 **Overloaded versions**
 
-* shared_instance\ **()**
+* shared_instance\ ()
 
   Return concrete shared ptr instance / unwrap (const version)
 
-* shared_instance\ **()**
+* shared_instance\ ()
 
   Return concrete shared ptr instance / unwrap
 ";
@@ -3494,11 +3494,11 @@ Return local ownership range
 %feature("docstring")  dolfin::GenericMatrix::get "
 **Overloaded versions**
 
-* get\ **(block, num_rows, rows)**
+* get\ (block, num_rows, rows)
 
   Get block of values
 
-* get\ **(block, m, rows, n, cols)**
+* get\ (block, m, rows, n, cols)
 
   Get block of values
 ";
@@ -3506,11 +3506,11 @@ Return local ownership range
 %feature("docstring")  dolfin::GenericMatrix::set "
 **Overloaded versions**
 
-* set\ **(block, num_rows, rows)**
+* set\ (block, num_rows, rows)
 
   Set block of values
 
-* set\ **(block, m, rows, n, cols)**
+* set\ (block, m, rows, n, cols)
 
   Set block of values
 ";
@@ -3518,19 +3518,19 @@ Return local ownership range
 %feature("docstring")  dolfin::GenericMatrix::add "
 **Overloaded versions**
 
-* add\ **(block, num_rows, rows)**
+* add\ (block, num_rows, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, m, rows, n, cols)**
+* add\ (block, m, rows, n, cols)
 
   Add block of values
 ";
@@ -3538,11 +3538,11 @@ Return local ownership range
 %feature("docstring")  dolfin::GenericMatrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -3696,19 +3696,19 @@ This class defines a common interface for vectors.
 %feature("docstring")  dolfin::GenericVector::resize "
 **Overloaded versions**
 
-* resize\ **(rank, dims)**
+* resize\ (rank, dims)
 
   Resize tensor with given dimensions
 
-* resize\ **(N)**
+* resize\ (N)
 
   Resize vector to global size N
 
-* resize\ **(range)**
+* resize\ (range)
 
   Resize vector with given ownership range
 
-* resize\ **(range, ghost_indices)**
+* resize\ (range, ghost_indices)
 
   Resize vector with given ownership range and with ghost values
 ";
@@ -3728,11 +3728,11 @@ Return tensor rank (number of dimensions)
 %feature("docstring")  dolfin::GenericVector::size "
 **Overloaded versions**
 
-* size\ **(dim)**
+* size\ (dim)
 
   Return size of given dimension
 
-* size\ **()**
+* size\ ()
 
   Return global size of vector
 ";
@@ -3740,11 +3740,11 @@ Return tensor rank (number of dimensions)
 %feature("docstring")  dolfin::GenericVector::local_range "
 **Overloaded versions**
 
-* local_range\ **(dim)**
+* local_range\ (dim)
 
   Return local ownership range
 
-* local_range\ **()**
+* local_range\ ()
 
   Return local ownership range of a vector
 ";
@@ -3752,11 +3752,11 @@ Return tensor rank (number of dimensions)
 %feature("docstring")  dolfin::GenericVector::get "
 **Overloaded versions**
 
-* get\ **(block, num_rows, rows)**
+* get\ (block, num_rows, rows)
 
   Get block of values
 
-* get\ **(block, m, rows)**
+* get\ (block, m, rows)
 
   Get block of values (values may live on any process)
 ";
@@ -3764,11 +3764,11 @@ Return tensor rank (number of dimensions)
 %feature("docstring")  dolfin::GenericVector::set "
 **Overloaded versions**
 
-* set\ **(block, num_rows, rows)**
+* set\ (block, num_rows, rows)
 
   Set block of values
 
-* set\ **(block, m, rows)**
+* set\ (block, m, rows)
 
   Set block of values
 ";
@@ -3776,19 +3776,19 @@ Return tensor rank (number of dimensions)
 %feature("docstring")  dolfin::GenericVector::add "
 **Overloaded versions**
 
-* add\ **(block, num_rows, rows)**
+* add\ (block, num_rows, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, m, rows)**
+* add\ (block, m, rows)
 
   Add block of values
 ";
@@ -3816,11 +3816,11 @@ Determine whether global vector index is owned by this process
 %feature("docstring")  dolfin::GenericVector::get_local "
 **Overloaded versions**
 
-* get_local\ **(block, m, rows)**
+* get_local\ (block, m, rows)
 
   Get block of values (values must all live on the local process)
 
-* get_local\ **(values)**
+* get_local\ (values)
 
   Get all values on local process
 ";
@@ -3836,11 +3836,11 @@ Add values to each entry on local process
 %feature("docstring")  dolfin::GenericVector::gather "
 **Overloaded versions**
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into local vector x
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into Array x
 ";
@@ -3876,11 +3876,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::GenericVector::sum "
 **Overloaded versions**
 
-* sum\ **()**
+* sum\ ()
 
   Return sum of vector
 
-* sum\ **(rows)**
+* sum\ (rows)
 
   Return sum of selected rows in vector. Repeated entries are only summed once.
 ";
@@ -3888,11 +3888,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::GenericVector::operator*= "
 **Overloaded versions**
 
-* operator*=\ **(a)**
+* operator*=\ (a)
 
   Multiply vector by given number
 
-* operator*=\ **(x)**
+* operator*=\ (x)
 
   Multiply vector by another vector pointwise
 ";
@@ -3912,11 +3912,11 @@ Subtract given vector
 %feature("docstring")  dolfin::GenericVector::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 ";
@@ -3924,11 +3924,11 @@ Subtract given vector
 %feature("docstring")  dolfin::GenericVector::data "
 **Overloaded versions**
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data (const version)
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data
 ";
@@ -4022,11 +4022,11 @@ PETScKrylovSolver.
 %feature("docstring")  dolfin::PETScBaseMatrix::PETScBaseMatrix "
 **Overloaded versions**
 
-* PETScBaseMatrix\ **()**
+* PETScBaseMatrix\ ()
 
   Constructor
 
-* PETScBaseMatrix\ **(A)**
+* PETScBaseMatrix\ (A)
 
   Constructor
 ";
@@ -4034,11 +4034,11 @@ PETScKrylovSolver.
 %feature("docstring")  dolfin::PETScBaseMatrix::resize "
 **Overloaded versions**
 
-* resize\ **(m, n)**
+* resize\ (m, n)
 
   Resize virtual matrix
 
-* resize\ **(y, dim)**
+* resize\ (y, dim)
 
   Resize vector y such that is it compatible with matrix for
   multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
@@ -4100,19 +4100,19 @@ inlined to avoid link errors.
 %feature("docstring")  dolfin::uBLASMatrix::uBLASMatrix "
 **Overloaded versions**
 
-* uBLASMatrix\ **()**
+* uBLASMatrix\ ()
 
   Create empty matrix
 
-* uBLASMatrix\ **(M, N)**
+* uBLASMatrix\ (M, N)
 
   Create M x N matrix
 
-* uBLASMatrix\ **(A)**
+* uBLASMatrix\ (A)
 
   Copy constructor
 
-* uBLASMatrix\ **(A)**
+* uBLASMatrix\ (A)
 
   Create matrix from given uBLAS matrix expression
 ";
@@ -4136,11 +4136,11 @@ Return local ownership range
 %feature("docstring")  dolfin::uBLASMatrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -4156,11 +4156,11 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::uBLASMatrix::resize "
 **Overloaded versions**
 
-* resize\ **(M, N)**
+* resize\ (M, N)
 
   Resize matrix to M x N
 
-* resize\ **(y, dim)**
+* resize\ (y, dim)
 
   Resize vector y such that is it compatible with matrix for
   multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
@@ -4218,11 +4218,11 @@ Divide matrix by given number
 %feature("docstring")  dolfin::uBLASMatrix::operator= "
 **Overloaded versions**
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 ";
@@ -4239,11 +4239,11 @@ Return linear algebra backend factory
 %feature("docstring")  dolfin::uBLASMatrix::mat "
 **Overloaded versions**
 
-* mat\ **()**
+* mat\ ()
 
   Return reference to uBLAS matrix (const version)
 
-* mat\ **()**
+* mat\ ()
 
   Return reference to uBLAS matrix (non-const version)
 ";
@@ -4255,11 +4255,11 @@ Solve Ax = b out-of-place using uBLAS (A is not destroyed)
 %feature("docstring")  dolfin::uBLASMatrix::solveInPlace "
 **Overloaded versions**
 
-* solveInPlace\ **(x, b)**
+* solveInPlace\ (x, b)
 
   Solve Ax = b in-place using uBLAS(A is destroyed)
 
-* solveInPlace\ **(X)**
+* solveInPlace\ (X)
 
   General uBLAS LU solver which accepts both vector and matrix right-hand sides
 ";
@@ -4323,15 +4323,15 @@ use the standard PETSc interface.
 %feature("docstring")  dolfin::PETScMatrix::PETScMatrix "
 **Overloaded versions**
 
-* PETScMatrix\ **()**
+* PETScMatrix\ ()
 
   Create empty matrix
 
-* PETScMatrix\ **(A)**
+* PETScMatrix\ (A)
 
   Copy constructor
 
-* PETScMatrix\ **(A)**
+* PETScMatrix\ (A)
 
   Create matrix from given PETSc Mat pointer
 ";
@@ -4355,11 +4355,11 @@ Return local ownership range
 %feature("docstring")  dolfin::PETScMatrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -4375,11 +4375,11 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::PETScMatrix::resize "
 **Overloaded versions**
 
-* resize\ **(M, N)**
+* resize\ (M, N)
 
   Resize matrix to M x N
 
-* resize\ **(y, dim)**
+* resize\ (y, dim)
 
   Resize vector y such that is it compatible with matrix for
   multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
@@ -4425,11 +4425,11 @@ Divide matrix by given number
 %feature("docstring")  dolfin::PETScMatrix::operator= "
 **Overloaded versions**
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 ";
@@ -4465,11 +4465,11 @@ PETSc data structures (Vec), since it will be called from PETSc.
 %feature("docstring")  dolfin::PETScKrylovMatrix::PETScKrylovMatrix "
 **Overloaded versions**
 
-* PETScKrylovMatrix\ **()**
+* PETScKrylovMatrix\ ()
 
   Constructor
 
-* PETScKrylovMatrix\ **(m, n)**
+* PETScKrylovMatrix\ (m, n)
 
   Create a virtual matrix matching the given vectors
 ";
@@ -4519,11 +4519,11 @@ solver of Epetra.
 %feature("docstring")  dolfin::EpetraLUSolver::EpetraLUSolver "
 **Overloaded versions**
 
-* EpetraLUSolver\ **()**
+* EpetraLUSolver\ ()
 
   Constructor
 
-* EpetraLUSolver\ **(A)**
+* EpetraLUSolver\ (A)
 
   Constructor
 ";
@@ -4539,15 +4539,15 @@ Get operator (matrix)
 %feature("docstring")  dolfin::EpetraLUSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 ";
@@ -4570,11 +4570,11 @@ of Epetra.
 %feature("docstring")  dolfin::EpetraKrylovSolver::EpetraKrylovSolver "
 **Overloaded versions**
 
-* EpetraKrylovSolver\ **(\"default\", \"default\")**
+* EpetraKrylovSolver\ (\"default\", \"default\")
 
   Create Krylov solver for a particular method and preconditioner
 
-* EpetraKrylovSolver\ **(method, preconditioner)**
+* EpetraKrylovSolver\ (method, preconditioner)
 
   Create Krylov solver for a particular method and TrilinosPreconditioner
 ";
@@ -4594,19 +4594,19 @@ Get the operator (matrix)
 %feature("docstring")  dolfin::EpetraKrylovSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
 ";
@@ -4637,19 +4637,19 @@ use the standard Epetra interface.
 %feature("docstring")  dolfin::EpetraMatrix::EpetraMatrix "
 **Overloaded versions**
 
-* EpetraMatrix\ **()**
+* EpetraMatrix\ ()
 
   Create empty matrix
 
-* EpetraMatrix\ **(A)**
+* EpetraMatrix\ (A)
 
   Copy constuctor
 
-* EpetraMatrix\ **(A)**
+* EpetraMatrix\ (A)
 
   Create matrix from given Epetra_FECrsMatrix pointer
 
-* EpetraMatrix\ **(graph)**
+* EpetraMatrix\ (graph)
 
   Create matrix from given Epetra_CrsGraph
 ";
@@ -4657,11 +4657,11 @@ use the standard Epetra interface.
 %feature("docstring")  dolfin::EpetraMatrix::init "
 **Overloaded versions**
 
-* init\ **(sparsity_pattern)**
+* init\ (sparsity_pattern)
 
   Initialize zero tensor using sparsity pattern
 
-* init\ **(sparsity_pattern)**
+* init\ (sparsity_pattern)
 
   Initialize zero tensor using sparsity pattern
 ";
@@ -4681,11 +4681,11 @@ Return local ownership range
 %feature("docstring")  dolfin::EpetraMatrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -4747,11 +4747,11 @@ Divide matrix by given number
 %feature("docstring")  dolfin::EpetraMatrix::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 ";
@@ -4778,23 +4778,23 @@ and use the standard Epetra interface.
 %feature("docstring")  dolfin::EpetraVector::EpetraVector "
 **Overloaded versions**
 
-* EpetraVector\ **(type=\"global\")**
+* EpetraVector\ (type=\"global\")
 
   Create empty vector
 
-* EpetraVector\ **(N, type=\"global\")**
+* EpetraVector\ (N, type=\"global\")
 
   Create vector of size N
 
-* EpetraVector\ **(x)**
+* EpetraVector\ (x)
 
   Copy constructor
 
-* EpetraVector\ **(vector)**
+* EpetraVector\ (vector)
 
   Create vector view from given Epetra_FEVector pointer
 
-* EpetraVector\ **(map)**
+* EpetraVector\ (map)
 
   Create vector from given Epetra_BlockMap
 ";
@@ -4818,15 +4818,15 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::EpetraVector::resize "
 **Overloaded versions**
 
-* resize\ **(N)**
+* resize\ (N)
 
   Resize vector to size N
 
-* resize\ **(range)**
+* resize\ (range)
 
   Resize vector with given ownership range
 
-* resize\ **(range, ghost_indices)**
+* resize\ (range, ghost_indices)
 
   Resize vector with given ownership range and with ghost values
 ";
@@ -4870,11 +4870,11 @@ Add all values to each entry on local process
 %feature("docstring")  dolfin::EpetraVector::gather "
 **Overloaded versions**
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into local vector x
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into Array x
 ";
@@ -4910,11 +4910,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::EpetraVector::sum "
 **Overloaded versions**
 
-* sum\ **()**
+* sum\ ()
 
   Return sum of values of vector
 
-* sum\ **(rows)**
+* sum\ (rows)
 
   Return sum of selected rows in vector
 ";
@@ -4922,11 +4922,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::EpetraVector::operator*= "
 **Overloaded versions**
 
-* operator*=\ **(a)**
+* operator*=\ (a)
 
   Multiply vector by given number
 
-* operator*=\ **(x)**
+* operator*=\ (x)
 
   Multiply vector by another vector pointwise
 ";
@@ -4946,15 +4946,15 @@ Subtract given vector
 %feature("docstring")  dolfin::EpetraVector::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 ";
@@ -4981,19 +4981,19 @@ of PETSc.
 %feature("docstring")  dolfin::PETScKrylovSolver::PETScKrylovSolver "
 **Overloaded versions**
 
-* PETScKrylovSolver\ **(\"default\", \"default\")**
+* PETScKrylovSolver\ (\"default\", \"default\")
 
   Create Krylov solver for a particular method and names preconditioner
 
-* PETScKrylovSolver\ **(method, preconditioner)**
+* PETScKrylovSolver\ (method, preconditioner)
 
   Create Krylov solver for a particular method and PETScPreconditioner
 
-* PETScKrylovSolver\ **(method, preconditioner)**
+* PETScKrylovSolver\ (method, preconditioner)
 
   Create Krylov solver for a particular method and PETScPreconditioner
 
-* PETScKrylovSolver\ **(ksp)**
+* PETScKrylovSolver\ (ksp)
 
   Create solver from given PETSc KSP pointer
 ";
@@ -5001,11 +5001,11 @@ of PETSc.
 %feature("docstring")  dolfin::PETScKrylovSolver::set_operator "
 **Overloaded versions**
 
-* set_operator\ **(A)**
+* set_operator\ (A)
 
   Set operator (matrix)
 
-* set_operator\ **(A)**
+* set_operator\ (A)
 
   Set operator (matrix)
 ";
@@ -5013,11 +5013,11 @@ of PETSc.
 %feature("docstring")  dolfin::PETScKrylovSolver::set_operators "
 **Overloaded versions**
 
-* set_operators\ **(A, P)**
+* set_operators\ (A, P)
 
   Set operator (matrix) and preconditioner matrix
 
-* set_operators\ **(A, P)**
+* set_operators\ (A, P)
 
   Set operator (matrix) and preconditioner matrix
 ";
@@ -5029,19 +5029,19 @@ Get operator (matrix)
 %feature("docstring")  dolfin::PETScKrylovSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
 ";
@@ -5076,11 +5076,11 @@ solver of PETSc.
 %feature("docstring")  dolfin::PETScLUSolver::PETScLUSolver "
 **Overloaded versions**
 
-* PETScLUSolver\ **(lu_package=\"default\")**
+* PETScLUSolver\ (lu_package=\"default\")
 
   Constructor
 
-* PETScLUSolver\ **(A, lu_package=\"default\")**
+* PETScLUSolver\ (A, lu_package=\"default\")
 
   Constructor
 ";
@@ -5088,11 +5088,11 @@ solver of PETSc.
 %feature("docstring")  dolfin::PETScLUSolver::set_operator "
 **Overloaded versions**
 
-* set_operator\ **(A)**
+* set_operator\ (A)
 
   Set operator (matrix)
 
-* set_operator\ **(A)**
+* set_operator\ (A)
 
   Set operator (matrix)
 ";
@@ -5104,15 +5104,15 @@ Get operator (matrix)
 %feature("docstring")  dolfin::PETScLUSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 ";
@@ -5140,11 +5140,11 @@ if installed.
 %feature("docstring")  dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
 **Overloaded versions**
 
-* CholmodCholeskySolver\ **()**
+* CholmodCholeskySolver\ ()
 
   Constructor
 
-* CholmodCholeskySolver\ **(A)**
+* CholmodCholeskySolver\ (A)
 
   Constructor
 ";
@@ -5211,11 +5211,11 @@ linear systems of the form Ax = b using UMFPACK
 %feature("docstring")  dolfin::UmfpackLUSolver::UmfpackLUSolver "
 **Overloaded versions**
 
-* UmfpackLUSolver\ **()**
+* UmfpackLUSolver\ ()
 
   Constructor
 
-* UmfpackLUSolver\ **(A)**
+* UmfpackLUSolver\ (A)
 
   Constructor
 ";
@@ -5231,11 +5231,11 @@ Return the operator (matrix)
 %feature("docstring")  dolfin::UmfpackLUSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b for a sparse matrix using UMFPACK if installed
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system
 ";
@@ -5282,15 +5282,15 @@ Get operator (matrix)
 %feature("docstring")  dolfin::ITLKrylovSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
 ";
@@ -5307,15 +5307,15 @@ Default parameter values
 %feature("docstring")  dolfin::MTL4Matrix::MTL4Matrix "
 **Overloaded versions**
 
-* MTL4Matrix\ **()**
+* MTL4Matrix\ ()
 
   Create empty matrix
 
-* MTL4Matrix\ **(A)**
+* MTL4Matrix\ (A)
 
   Copy constuctor
 
-* MTL4Matrix\ **(M, N, nz)**
+* MTL4Matrix\ (M, N, nz)
 
   Create M x N matrix with estimate of nonzeroes per row
 ";
@@ -5339,11 +5339,11 @@ Return local ownership range
 %feature("docstring")  dolfin::MTL4Matrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -5359,11 +5359,11 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::MTL4Matrix::resize "
 **Overloaded versions**
 
-* resize\ **(M, N)**
+* resize\ (M, N)
 
   Resize matrix to M x N
 
-* resize\ **(y, dim)**
+* resize\ (y, dim)
 
   Resize vector y such that is it compatible with matrix for
   multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
@@ -5413,11 +5413,11 @@ Divide matrix by given number
 %feature("docstring")  dolfin::MTL4Matrix::operator= "
 **Overloaded versions**
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 ";
@@ -5446,15 +5446,15 @@ be the fastest.
 %feature("docstring")  dolfin::STLMatrix::STLMatrix "
 **Overloaded versions**
 
-* STLMatrix\ **()**
+* STLMatrix\ ()
 
   Create empty matrix
 
-* STLMatrix\ **(M, N)**
+* STLMatrix\ (M, N)
 
   Create M x N matrix
 
-* STLMatrix\ **(A)**
+* STLMatrix\ (A)
 
   Copy constructor
 ";
@@ -5479,11 +5479,11 @@ Return local ownership range
 %feature("docstring")  dolfin::STLMatrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -5499,17 +5499,17 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::STLMatrix::resize "
 **Overloaded versions**
 
-* resize\ **(M, N)**
+* resize\ (M, N)
 
   Initialize M x N matrix
 
-* resize\ **(y, dim)**
+* resize\ (y, dim)
 
   Resize vector y such that is it compatible with matrix for
   multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
   case, size and layout are important.
 
-* resize\ **(rank, dims, reset)**
+* resize\ (rank, dims, reset)
 
   Resize tensor of given rank and dimensions
 ";
@@ -5578,19 +5578,19 @@ http://www.boost.org/libs/numeric/ublas/doc/index.htm.
 %feature("docstring")  dolfin::uBLASVector::uBLASVector "
 **Overloaded versions**
 
-* uBLASVector\ **()**
+* uBLASVector\ ()
 
   Create empty vector
 
-* uBLASVector\ **(N)**
+* uBLASVector\ (N)
 
   Create vector of size N
 
-* uBLASVector\ **(x)**
+* uBLASVector\ (x)
 
   Copy constructor
 
-* uBLASVector\ **(x)**
+* uBLASVector\ (x)
 
   Construct vector from a ublas_vector
 ";
@@ -5614,15 +5614,15 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::uBLASVector::resize "
 **Overloaded versions**
 
-* resize\ **(N)**
+* resize\ (N)
 
   Resize vector to size N
 
-* resize\ **(range)**
+* resize\ (range)
 
   Resize vector with given ownership range
 
-* resize\ **(range, ghost_indices)**
+* resize\ (range, ghost_indices)
 
   Resize vector with given ownership range and with ghost values
 ";
@@ -5646,11 +5646,11 @@ Determine whether global vector index is owned by this process
 %feature("docstring")  dolfin::uBLASVector::get_local "
 **Overloaded versions**
 
-* get_local\ **(block, m, rows)**
+* get_local\ (block, m, rows)
 
   Get block of values
 
-* get_local\ **(values)**
+* get_local\ (values)
 
   Get all values on local process
 ";
@@ -5674,11 +5674,11 @@ Add values to each entry on local process
 %feature("docstring")  dolfin::uBLASVector::gather "
 **Overloaded versions**
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into local vector x
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into Array x
 ";
@@ -5714,11 +5714,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::uBLASVector::sum "
 **Overloaded versions**
 
-* sum\ **()**
+* sum\ ()
 
   Return sum of values of vector
 
-* sum\ **(rows)**
+* sum\ (rows)
 
   Return sum of selected rows in vector. Repeated entries are only summed once.
 ";
@@ -5726,11 +5726,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::uBLASVector::operator*= "
 **Overloaded versions**
 
-* operator*=\ **(a)**
+* operator*=\ (a)
 
   Multiply vector by given number
 
-* operator*=\ **(x)**
+* operator*=\ (x)
 
   Multiply vector by another vector pointwise
 ";
@@ -5750,15 +5750,15 @@ Subtract given vector
 %feature("docstring")  dolfin::uBLASVector::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 ";
@@ -5766,11 +5766,11 @@ Subtract given vector
 %feature("docstring")  dolfin::uBLASVector::data "
 **Overloaded versions**
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data (const version)
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data
 ";
@@ -5782,11 +5782,11 @@ Return linear algebra backend factory
 %feature("docstring")  dolfin::uBLASVector::vec "
 **Overloaded versions**
 
-* vec\ **()**
+* vec\ ()
 
   Return reference to uBLAS vector (const version)
 
-* vec\ **()**
+* vec\ ()
 
   Return reference to uBLAS vector (non-const version)
 ";
@@ -5794,11 +5794,11 @@ Return linear algebra backend factory
 %feature("docstring")  dolfin::uBLASVector::operator[] "
 **Overloaded versions**
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Access value of given entry (const version)
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Access value of given entry (non-const version)
 ";
@@ -5817,23 +5817,23 @@ use the standard PETSc interface.
 %feature("docstring")  dolfin::PETScVector::PETScVector "
 **Overloaded versions**
 
-* PETScVector\ **(type=\"global\")**
+* PETScVector\ (type=\"global\")
 
   Create empty vector
 
-* PETScVector\ **(N, type=\"global\")**
+* PETScVector\ (N, type=\"global\")
 
   Create vector of size N
 
-* PETScVector\ **(sparsity_pattern)**
+* PETScVector\ (sparsity_pattern)
 
   Create vector
 
-* PETScVector\ **(x)**
+* PETScVector\ (x)
 
   Copy constructor
 
-* PETScVector\ **(x)**
+* PETScVector\ (x)
 
   Create vector from given PETSc Vec pointer
 ";
@@ -5857,15 +5857,15 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::PETScVector::resize "
 **Overloaded versions**
 
-* resize\ **(N)**
+* resize\ (N)
 
   Resize vector to global size N
 
-* resize\ **(range)**
+* resize\ (range)
 
   Resize vector with given ownership range
 
-* resize\ **(range, ghost_indices)**
+* resize\ (range, ghost_indices)
 
   Resize vector with given ownership range and with ghost values
 ";
@@ -5889,11 +5889,11 @@ Determine whether global vector index is owned by this process
 %feature("docstring")  dolfin::PETScVector::get_local "
 **Overloaded versions**
 
-* get_local\ **(block, m, rows)**
+* get_local\ (block, m, rows)
 
   Get block of values (values must all live on the local process)
 
-* get_local\ **(values)**
+* get_local\ (values)
 
   Get all values on local process
 ";
@@ -5917,11 +5917,11 @@ Add values to each entry on local process
 %feature("docstring")  dolfin::PETScVector::gather "
 **Overloaded versions**
 
-* gather\ **(y, indices)**
+* gather\ (y, indices)
 
   Gather vector entries into a local vector
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into Array x
 ";
@@ -5957,11 +5957,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::PETScVector::sum "
 **Overloaded versions**
 
-* sum\ **()**
+* sum\ ()
 
   Return sum of values of vector
 
-* sum\ **(rows)**
+* sum\ (rows)
 
   Return sum of selected rows in vector
 ";
@@ -5969,11 +5969,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::PETScVector::operator*= "
 **Overloaded versions**
 
-* operator*=\ **(a)**
+* operator*=\ (a)
 
   Multiply vector by given number
 
-* operator*=\ **(x)**
+* operator*=\ (x)
 
   Multiply vector by another vector pointwise
 ";
@@ -5993,15 +5993,15 @@ Subtract given vector
 %feature("docstring")  dolfin::PETScVector::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 ";
@@ -6022,15 +6022,15 @@ Return shared_ptr to PETSc Vec object
 %feature("docstring")  dolfin::MTL4Vector::MTL4Vector "
 **Overloaded versions**
 
-* MTL4Vector\ **()**
+* MTL4Vector\ ()
 
   Create empty vector
 
-* MTL4Vector\ **(N)**
+* MTL4Vector\ (N)
 
   Create vector of size N
 
-* MTL4Vector\ **(x)**
+* MTL4Vector\ (x)
 
   Copy constructor
 ";
@@ -6054,15 +6054,15 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::MTL4Vector::resize "
 **Overloaded versions**
 
-* resize\ **(N)**
+* resize\ (N)
 
   Resize vector to size N
 
-* resize\ **(range)**
+* resize\ (range)
 
   Resize vector with given ownership range
 
-* resize\ **(range, ghost_indices)**
+* resize\ (range, ghost_indices)
 
   Resize vector with given ownership range and with ghost values
 ";
@@ -6086,11 +6086,11 @@ Determine whether global vector index is owned by this process
 %feature("docstring")  dolfin::MTL4Vector::get_local "
 **Overloaded versions**
 
-* get_local\ **(block, m, rows)**
+* get_local\ (block, m, rows)
 
   Get block of values
 
-* get_local\ **(values)**
+* get_local\ (values)
 
   Get all values on local process
 ";
@@ -6146,11 +6146,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::MTL4Vector::sum "
 **Overloaded versions**
 
-* sum\ **()**
+* sum\ ()
 
   Return sum of values of vector
 
-* sum\ **(rows)**
+* sum\ (rows)
 
   Return sum of selected rows in vector. Repeated entries are only summed once.
 ";
@@ -6158,11 +6158,11 @@ Return maximum value of vector
 %feature("docstring")  dolfin::MTL4Vector::operator*= "
 **Overloaded versions**
 
-* operator*=\ **(a)**
+* operator*=\ (a)
 
   Multiply vector by given number
 
-* operator*=\ **(x)**
+* operator*=\ (x)
 
   Multiply vector by another vector pointwise
 ";
@@ -6174,15 +6174,15 @@ Divide vector by given number
 %feature("docstring")  dolfin::MTL4Vector::operator= "
 **Overloaded versions**
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 ";
@@ -6198,11 +6198,11 @@ Subtract given vector
 %feature("docstring")  dolfin::MTL4Vector::data "
 **Overloaded versions**
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data (const version)
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data (non-const version)
 ";
@@ -6210,11 +6210,11 @@ Subtract given vector
 %feature("docstring")  dolfin::MTL4Vector::vec "
 **Overloaded versions**
 
-* vec\ **()**
+* vec\ ()
 
   Return const mtl4_vector reference
 
-* vec\ **()**
+* vec\ ()
 
   Return mtl4_vector reference
 ";
@@ -6629,19 +6629,19 @@ possible values are real numbers.
 %feature("docstring")  dolfin::SLEPcEigenSolver::SLEPcEigenSolver "
 **Overloaded versions**
 
-* SLEPcEigenSolver\ **(A)**
+* SLEPcEigenSolver\ (A)
 
   Create eigenvalue solver for Ax = \lambda x
 
-* SLEPcEigenSolver\ **(A, B)**
+* SLEPcEigenSolver\ (A, B)
 
   Create eigenvalue solver Ax = \lambda Bx
 
-* SLEPcEigenSolver\ **(A)**
+* SLEPcEigenSolver\ (A)
 
   Create eigenvalue solver for Ax = \lambda x
 
-* SLEPcEigenSolver\ **(A, B)**
+* SLEPcEigenSolver\ (A, B)
 
   Create eigenvalue solver for Ax = \lambda x
 ";
@@ -6649,11 +6649,11 @@ possible values are real numbers.
 %feature("docstring")  dolfin::SLEPcEigenSolver::solve "
 **Overloaded versions**
 
-* solve\ **()**
+* solve\ ()
 
   Compute all eigenpairs of the matrix A (solve Ax = \lambda x)
 
-* solve\ **(n)**
+* solve\ (n)
 
   Compute the n first eigenpairs of the matrix A (solve Ax = \lambda x)
 ";
@@ -6661,11 +6661,11 @@ possible values are real numbers.
 %feature("docstring")  dolfin::SLEPcEigenSolver::get_eigenvalue "
 **Overloaded versions**
 
-* get_eigenvalue\ **(lr, lc)**
+* get_eigenvalue\ (lr, lc)
 
   Get the first eigenvalue
 
-* get_eigenvalue\ **(lr, lc, i)**
+* get_eigenvalue\ (lr, lc, i)
 
   Get eigenvalue i
 ";
@@ -6673,11 +6673,11 @@ possible values are real numbers.
 %feature("docstring")  dolfin::SLEPcEigenSolver::get_eigenpair "
 **Overloaded versions**
 
-* get_eigenpair\ **(lr, lc, r, c)**
+* get_eigenpair\ (lr, lc, r, c)
 
   Get the first eigenpair
 
-* get_eigenpair\ **(lr, lc, r, c, i)**
+* get_eigenpair\ (lr, lc, r, c, i)
 
   Get eigenpair i
 ";
@@ -6736,15 +6736,15 @@ Constructor
 %feature("docstring")  dolfin::uBLASPreconditioner::init "
 **Overloaded versions**
 
-* init\ **(P)**
+* init\ (P)
 
   Initialise preconditioner (sparse matrix)
 
-* init\ **(P)**
+* init\ (P)
 
   Initialise preconditioner (dense matrix)
 
-* init\ **(P)**
+* init\ (P)
 
   Initialise preconditioner (virtual matrix)
 ";
@@ -6762,15 +6762,15 @@ of the form Ax = b using uBLAS data types.
 %feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 **Overloaded versions**
 
-* uBLASKrylovSolver\ **(solver_type=\"default\", pc_type=\"default\")**
+* uBLASKrylovSolver\ (solver_type=\"default\", pc_type=\"default\")
 
   Create Krylov solver for a particular method and preconditioner
 
-* uBLASKrylovSolver\ **(pc)**
+* uBLASKrylovSolver\ (pc)
 
   Create Krylov solver for a particular uBLASPreconditioner
 
-* uBLASKrylovSolver\ **(solver_type, preconditioner)**
+* uBLASKrylovSolver\ (solver_type, preconditioner)
 
   Create Krylov solver for a particular method and uBLASPreconditioner
 ";
@@ -6786,19 +6786,19 @@ Return the operator (matrix)
 %feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 **Overloaded versions**
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations (dense matrix)
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations (sparse matrix)
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations (virtual matrix)
 ";
@@ -6854,19 +6854,19 @@ based on the default DOLFIN linear algebra backend.
 %feature("docstring")  dolfin::Vector::Vector "
 **Overloaded versions**
 
-* Vector\ **()**
+* Vector\ ()
 
   Create empty vector
 
-* Vector\ **(N)**
+* Vector\ (N)
 
   Create vector of size N
 
-* Vector\ **(x)**
+* Vector\ (x)
 
   Copy constructor
 
-* Vector\ **(x)**
+* Vector\ (x)
 
   Create a Vector from a GenericVetor
 ";
@@ -6890,15 +6890,15 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::Vector::resize "
 **Overloaded versions**
 
-* resize\ **(N)**
+* resize\ (N)
 
   Resize vector to size N
 
-* resize\ **(range)**
+* resize\ (range)
 
   Resize vector with given ownership range
 
-* resize\ **(range, ghost_indices)**
+* resize\ (range, ghost_indices)
 
   Resize vector with given ownership range and with ghost values
 ";
@@ -6922,11 +6922,11 @@ Determine whether global vector index is owned by this process
 %feature("docstring")  dolfin::Vector::get_local "
 **Overloaded versions**
 
-* get_local\ **(block, m, rows)**
+* get_local\ (block, m, rows)
 
   Get block of values (values must all live on the local process)
 
-* get_local\ **(values)**
+* get_local\ (values)
 
   Get all values on local process
 ";
@@ -6950,11 +6950,11 @@ Add values to each entry on local process
 %feature("docstring")  dolfin::Vector::gather "
 **Overloaded versions**
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into local vector x
 
-* gather\ **(x, indices)**
+* gather\ (x, indices)
 
   Gather entries into Array x
 ";
@@ -6994,11 +6994,11 @@ Return sum of values of vector
 %feature("docstring")  dolfin::Vector::operator*= "
 **Overloaded versions**
 
-* operator*=\ **(a)**
+* operator*=\ (a)
 
   Multiply vector by given number
 
-* operator*=\ **(x)**
+* operator*=\ (x)
 
   Multiply vector by another vector pointwise
 ";
@@ -7018,15 +7018,15 @@ Subtract given vector
 %feature("docstring")  dolfin::Vector::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 ";
@@ -7034,11 +7034,11 @@ Subtract given vector
 %feature("docstring")  dolfin::Vector::data "
 **Overloaded versions**
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data (const version)
 
-* data\ **()**
+* data\ ()
 
   Return pointer to underlying data
 ";
@@ -7050,11 +7050,11 @@ Return linear algebra backend factory
 %feature("docstring")  dolfin::Vector::instance "
 **Overloaded versions**
 
-* instance\ **()**
+* instance\ ()
 
   Return concrete instance / unwrap (const version)
 
-* instance\ **()**
+* instance\ ()
 
   Return concrete instance / unwrap (non-const version)
 ";
@@ -7068,11 +7068,11 @@ based on the default DOLFIN linear algebra backend.
 %feature("docstring")  dolfin::Matrix::Matrix "
 **Overloaded versions**
 
-* Matrix\ **()**
+* Matrix\ ()
 
   Create empty matrix
 
-* Matrix\ **(A)**
+* Matrix\ (A)
 
   Copy constructor
 ";
@@ -7096,11 +7096,11 @@ Return local ownership range
 %feature("docstring")  dolfin::Matrix::zero "
 **Overloaded versions**
 
-* zero\ **()**
+* zero\ ()
 
   Set all entries to zero and keep any sparse structure
 
-* zero\ **(m, rows)**
+* zero\ (m, rows)
 
   Set given rows to zero
 ";
@@ -7162,11 +7162,11 @@ Divide matrix by given number
 %feature("docstring")  dolfin::Matrix::operator= "
 **Overloaded versions**
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 
-* operator=\ **(A)**
+* operator=\ (A)
 
   Assignment operator
 ";
@@ -7183,11 +7183,11 @@ Return linear algebra backend factory
 %feature("docstring")  dolfin::Matrix::instance "
 **Overloaded versions**
 
-* instance\ **()**
+* instance\ ()
 
   Return concrete instance / unwrap (const version)
 
-* instance\ **()**
+* instance\ ()
 
   Return concrete instance / unwrap (non-const version)
 ";
@@ -7237,15 +7237,15 @@ Set block of values
 %feature("docstring")  dolfin::Scalar::add "
 **Overloaded versions**
 
-* add\ **(block, num_rows, rows)**
+* add\ (block, num_rows, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 
-* add\ **(block, rows)**
+* add\ (block, rows)
 
   Add block of values
 ";
@@ -7298,11 +7298,11 @@ Set the operator (matrix) and preconitioner matrix
 %feature("docstring")  dolfin::LinearSolver::solve "
 **Overloaded versions**
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 ";
@@ -7332,11 +7332,11 @@ Set operator (matrix) and preconditioner matrix
 %feature("docstring")  dolfin::KrylovSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 ";
@@ -7357,11 +7357,11 @@ Set operator (matrix)
 %feature("docstring")  dolfin::LUSolver::solve "
 **Overloaded versions**
 
-* solve\ **(x, b)**
+* solve\ (x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system
 ";
@@ -7398,11 +7398,11 @@ Create linear solver
 %feature("docstring")  dolfin::SingularSolver::solve "
 **Overloaded versions**
 
-* solve\ **(A, x, b)**
+* solve\ (A, x, b)
 
   Solve linear system Ax = b
 
-* solve\ **(A, x, b, M)**
+* solve\ (A, x, b, M)
 
   Solve linear system Ax = b using mass matrix M for setting constraint
 ";
@@ -7440,11 +7440,11 @@ Set function
 %feature("docstring")  dolfin::BlockVector::get_block "
 **Overloaded versions**
 
-* get_block\ **(i)**
+* get_block\ (i)
 
   Get sub-vector (const)
 
-* get_block\ **(uint)**
+* get_block\ (uint)
 
   Get sub-vector (non-const)
 ";
@@ -7488,11 +7488,11 @@ Subtract given vector
 %feature("docstring")  dolfin::BlockVector::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(a)**
+* operator=\ (a)
 
   Assignment operator
 ";
@@ -7513,11 +7513,11 @@ Set block
 %feature("docstring")  dolfin::BlockMatrix::get_block "
 **Overloaded versions**
 
-* get_block\ **(i, j)**
+* get_block\ (i, j)
 
   Get block (const version)
 
-* get_block\ **(i, j)**
+* get_block\ (i, j)
 
   Get block
 ";
@@ -7581,15 +7581,15 @@ the new coordinates for the interior vertices accordingly.
 %feature("docstring")  dolfin::ALE::move "
 **Overloaded versions**
 
-* move\ **(mesh, new_boundary)**
+* move\ (mesh, new_boundary)
 
   Move coordinates of mesh according to new boundary coordinates
 
-* move\ **(mesh0, mesh1)**
+* move\ (mesh0, mesh1)
 
   Move coordinates of mesh0 according to mesh1 with common global vertices
 
-* move\ **(mesh, displacement)**
+* move\ (mesh, displacement)
 
   Move coordinates of mesh according to displacement function
 ";
@@ -7598,7 +7598,7 @@ the new coordinates for the interior vertices accordingly.
 %feature("docstring")  dolfin::refine "
 **Overloaded versions**
 
-* refine\ **(mesh)**
+* refine\ (mesh)
 
   Create uniformly refined mesh
   
@@ -7615,7 +7615,7 @@ the new coordinates for the interior vertices accordingly.
       
           No example code available for this function.
 
-* refine\ **(refined_mesh, mesh)**
+* refine\ (refined_mesh, mesh)
 
   Create uniformly refined mesh
   
@@ -7625,7 +7625,7 @@ the new coordinates for the interior vertices accordingly.
       mesh (:py:class:`Mesh`)
           The original mesh.
 
-* refine\ **(mesh, cell_markers)**
+* refine\ (mesh, cell_markers)
 
   Create locally refined mesh
   
@@ -7645,7 +7645,7 @@ the new coordinates for the interior vertices accordingly.
       
           No example code available for this function.
 
-* refine\ **(refined_mesh, mesh, cell_markers)**
+* refine\ (refined_mesh, mesh, cell_markers)
 
   Create locally refined mesh
   
@@ -7796,11 +7796,11 @@ Constructor
 %feature("docstring")  dolfin::CellType::create "
 **Overloaded versions**
 
-* create\ **(type)**
+* create\ (type)
 
   Create cell type from type (factory function)
 
-* create\ **(type)**
+* create\ (type)
 
   Create cell type from string (factory function)
 ";
@@ -7856,11 +7856,11 @@ Compute diameter of mesh entity
 %feature("docstring")  dolfin::CellType::normal "
 **Overloaded versions**
 
-* normal\ **(cell, facet, i)**
+* normal\ (cell, facet, i)
 
   Compute component i of normal of given facet with respect to the cell
 
-* normal\ **(cell, facet)**
+* normal\ (cell, facet)
 
   Compute of given facet with respect to the cell
 ";
@@ -7897,11 +7897,11 @@ that topological dimension.
 %feature("docstring")  dolfin::MeshTopology::MeshTopology "
 **Overloaded versions**
 
-* MeshTopology\ **()**
+* MeshTopology\ ()
 
   Create empty mesh topology
 
-* MeshTopology\ **(topology)**
+* MeshTopology\ (topology)
 
   Copy constructor
 ";
@@ -7921,11 +7921,11 @@ Return number of entities for given dimension
 %feature("docstring")  dolfin::MeshTopology::clear "
 **Overloaded versions**
 
-* clear\ **()**
+* clear\ ()
 
   Clear all data
 
-* clear\ **(d0, d1)**
+* clear\ (d0, d1)
 
   Clear data for given pair of topological dimensions
 ";
@@ -7933,11 +7933,11 @@ Return number of entities for given dimension
 %feature("docstring")  dolfin::MeshTopology::init "
 **Overloaded versions**
 
-* init\ **(dim)**
+* init\ (dim)
 
   Initialize topology of given maximum dimension
 
-* init\ **(dim, size)**
+* init\ (dim, size)
 
   Set number of entities (size) for given topological dimension
 ";
@@ -7945,11 +7945,11 @@ Return number of entities for given dimension
 %feature("docstring")  dolfin::MeshTopology::operator "
 **Overloaded versions**
 
-* operator\ **(d0, d1)**
+* operator\ (d0, d1)
 
   Return connectivity for given pair of topological dimensions
 
-* operator\ **(d0, d1)**
+* operator\ (d0, d1)
 
   Return connectivity for given pair of topological dimensions
 ";
@@ -7962,11 +7962,11 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::MeshGeometry::MeshGeometry "
 **Overloaded versions**
 
-* MeshGeometry\ **()**
+* MeshGeometry\ ()
 
   Create empty set of coordinates
 
-* MeshGeometry\ **(geometry)**
+* MeshGeometry\ (geometry)
 
   Copy constructor
 ";
@@ -7986,27 +7986,27 @@ Return number of coordinates
 %feature("docstring")  dolfin::MeshGeometry::x "
 **Overloaded versions**
 
-* x\ **(n, i)**
+* x\ (n, i)
 
   Return value of coordinate n in direction i
 
-* x\ **(n, i)**
+* x\ (n, i)
 
   Return value of coordinate n in direction i
 
-* x\ **(n)**
+* x\ (n)
 
   Return array of values for coordinate n
 
-* x\ **(n)**
+* x\ (n)
 
   Return array of values for coordinate n
 
-* x\ **()**
+* x\ ()
 
   Return array of values for all coordinates
 
-* x\ **()**
+* x\ ()
 
   Return array of values for all coordinates
 ";
@@ -8014,19 +8014,19 @@ Return number of coordinates
 %feature("docstring")  dolfin::MeshGeometry::higher_order_x "
 **Overloaded versions**
 
-* higher_order_x\ **(n)**
+* higher_order_x\ (n)
 
   Return array of values for higher order coordinate n
 
-* higher_order_x\ **(n)**
+* higher_order_x\ (n)
 
   Return array of values for higher order coordinate n
 
-* higher_order_x\ **()**
+* higher_order_x\ ()
 
   Return array of values for all higher order coordinates
 
-* higher_order_x\ **()**
+* higher_order_x\ ()
 
   Return array of values for all higher order coordinates
 ";
@@ -8038,11 +8038,11 @@ Return number of vertices used (per cell) to represent the higher order geometry
 %feature("docstring")  dolfin::MeshGeometry::higher_order_cell "
 **Overloaded versions**
 
-* higher_order_cell\ **(c)**
+* higher_order_cell\ (c)
 
   Return array of higher order vertex indices for a specific higher order cell
 
-* higher_order_cell\ **(c)**
+* higher_order_cell\ (c)
 
   Return array of higher order vertex indices for a specific higher order cell
 ";
@@ -8050,11 +8050,11 @@ Return number of vertices used (per cell) to represent the higher order geometry
 %feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
 **Overloaded versions**
 
-* higher_order_cells\ **()**
+* higher_order_cells\ ()
 
   Return array of values for all higher order cell data
 
-* higher_order_cells\ **()**
+* higher_order_cells\ ()
 
   Return array of values for all higher order cell data
 ";
@@ -8182,7 +8182,7 @@ Clear all data
 %feature("docstring")  dolfin::MeshData::create_mesh_function "
 **Overloaded versions**
 
-* create_mesh_function\ **(name)**
+* create_mesh_function\ (name)
 
   Create MeshFunction with given name (uninitialized)
   
@@ -8194,7 +8194,7 @@ Clear all data
       :py:class:`MeshFunction`
           The mesh function.
 
-* create_mesh_function\ **(name, dim)**
+* create_mesh_function\ (name, dim)
 
   Create MeshFunction with given name and dimension
   
@@ -8212,7 +8212,7 @@ Clear all data
 %feature("docstring")  dolfin::MeshData::create_array "
 **Overloaded versions**
 
-* create_array\ **(name)**
+* create_array\ (name)
 
   Create empty array (vector) with given name
   
@@ -8224,7 +8224,7 @@ Clear all data
       numpy.array(int)
           The array.
 
-* create_array\ **(name, size)**
+* create_array\ (name, size)
 
   Create array (vector) with given name and size
   
@@ -8279,7 +8279,7 @@ not available)
 %feature("docstring")  dolfin::MeshData::array "
 **Overloaded versions**
 
-* array\ **(name)**
+* array\ (name)
 
   Return array with given name (returning zero if data is not
   available)
@@ -8292,7 +8292,7 @@ not available)
       numpy.array(int)
           The array.
 
-* array\ **(name, number)**
+* array\ (name, number)
 
   Return array with given name postfixed by \" %d\" (returning zero
   if data is not available)
@@ -8391,19 +8391,19 @@ intersections and such. Depending on this choice the kernel
 %feature("docstring")  dolfin::IntersectionOperator::all_intersected_entities "
 **Overloaded versions**
 
-* all_intersected_entities\ **(point, ids_result)**
+* all_intersected_entities\ (point, ids_result)
 
   Compute all id of all cells which are intersects by a \em point.
   \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
   reasons, to avoid to sort out duplicates later on.
 
-* all_intersected_entities\ **(points, ids_result)**
+* all_intersected_entities\ (points, ids_result)
 
   Compute all id of all cells which are intersects any point in \em points.
   \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
   reasons, to avoid to sort out duplicates later on.
 
-* all_intersected_entities\ **(entity, ids_result)**
+* all_intersected_entities\ (entity, ids_result)
 
   Compute all id of all cells which are intersects by a \em entity.
   \param[out] ids_result The ids of the intersected entities are saved in a vector.
@@ -8419,13 +8419,13 @@ intersections and such. Depending on this choice the kernel
   implementation for each geometric  primitive if they have no common base
   class.
 
-* all_intersected_entities\ **(entities, ids_result)**
+* all_intersected_entities\ (entities, ids_result)
 
   Compute all id of all cells which are intersects by any of the entities in \em entities. This
   \param[out] ids_result The ids of the intersected set are saved in a set for efficienty
   reasons, to avoid to sort out duplicates later on.
 
-* all_intersected_entities\ **(another_mesh, ids_result)**
+* all_intersected_entities\ (another_mesh, ids_result)
 
   Compute all id of all cells which are intersects by the given mesh \em another_mesh;
   \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
@@ -8499,11 +8499,11 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
 %feature("docstring")  dolfin::Mesh::Mesh "
 **Overloaded versions**
 
-* Mesh\ **()**
+* Mesh\ ()
 
   Create empty mesh
 
-* Mesh\ **(mesh)**
+* Mesh\ (mesh)
 
   Copy constructor.
   
@@ -8511,7 +8511,7 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
       mesh (:py:class:`Mesh`)
           Object to be copied.
 
-* Mesh\ **(filename)**
+* Mesh\ (filename)
 
   Create mesh from data file.
   
@@ -8637,7 +8637,7 @@ Get number of entities of given topological dimension.
 %feature("docstring")  dolfin::Mesh::coordinates "
 **Overloaded versions**
 
-* coordinates\ **()**
+* coordinates\ ()
 
   Get vertex coordinates.
   
@@ -8655,7 +8655,7 @@ Get number of entities of given topological dimension.
                  [ 0.,  1.],
                  [ 1.,  1.]])
 
-* coordinates\ **()**
+* coordinates\ ()
 
   Return coordinates of all vertices (const version).
 ";
@@ -8703,7 +8703,7 @@ Get number of entities of given topological dimension.
 %feature("docstring")  dolfin::Mesh::topology "
 **Overloaded versions**
 
-* topology\ **()**
+* topology\ ()
 
   Get topology associated with mesh.
   
@@ -8711,7 +8711,7 @@ Get number of entities of given topological dimension.
       :py:class:`MeshTopology`
           The topology object associated with the mesh.
 
-* topology\ **()**
+* topology\ ()
 
   Get mesh topology (const version).
 ";
@@ -8719,7 +8719,7 @@ Get number of entities of given topological dimension.
 %feature("docstring")  dolfin::Mesh::geometry "
 **Overloaded versions**
 
-* geometry\ **()**
+* geometry\ ()
 
   Get mesh geometry.
   
@@ -8727,7 +8727,7 @@ Get number of entities of given topological dimension.
       :py:class:`MeshGeometry`
           The geometry object associated with the mesh.
 
-* geometry\ **()**
+* geometry\ ()
 
   Get mesh geometry (const version).
 ";
@@ -8743,7 +8743,7 @@ Get unique mesh identifier.
 %feature("docstring")  dolfin::Mesh::intersection_operator "
 **Overloaded versions**
 
-* intersection_operator\ **()**
+* intersection_operator\ ()
 
   Get intersection operator.
   
@@ -8751,7 +8751,7 @@ Get unique mesh identifier.
       :py:class:`IntersectionOperator`
           The intersection operator object associated with the mesh.
 
-* intersection_operator\ **()**
+* intersection_operator\ ()
 
   Return intersection operator (const version);
 ";
@@ -8759,7 +8759,7 @@ Get unique mesh identifier.
 %feature("docstring")  dolfin::Mesh::data "
 **Overloaded versions**
 
-* data\ **()**
+* data\ ()
 
   Get mesh data.
   
@@ -8767,7 +8767,7 @@ Get unique mesh identifier.
       :py:class:`MeshData`
           The mesh data object associated with the mesh.
 
-* data\ **()**
+* data\ ()
 
   Get mesh data (const version).
 ";
@@ -8775,7 +8775,7 @@ Get unique mesh identifier.
 %feature("docstring")  dolfin::Mesh::parallel_data "
 **Overloaded versions**
 
-* parallel_data\ **()**
+* parallel_data\ ()
 
   Get parallel mesh data.
   
@@ -8783,7 +8783,7 @@ Get unique mesh identifier.
       _ParallelData_
           The parallel data object associated with the mesh.
 
-* parallel_data\ **()**
+* parallel_data\ ()
 
   Get parallel mesh data (const version).
 ";
@@ -8791,7 +8791,7 @@ Get unique mesh identifier.
 %feature("docstring")  dolfin::Mesh::type "
 **Overloaded versions**
 
-* type\ **()**
+* type\ ()
 
   Get mesh cell type.
   
@@ -8799,7 +8799,7 @@ Get unique mesh identifier.
       :py:class:`CellType`
           The cell type object associated with the mesh.
 
-* type\ **()**
+* type\ ()
 
   Get mesh cell type (const version).
 ";
@@ -8807,7 +8807,7 @@ Get unique mesh identifier.
 %feature("docstring")  dolfin::Mesh::init "
 **Overloaded versions**
 
-* init\ **(dim)**
+* init\ (dim)
 
   Compute entities of given topological dimension.
   
@@ -8819,7 +8819,7 @@ Get unique mesh identifier.
       int
           Number of created entities.
 
-* init\ **(d0, d1)**
+* init\ (d0, d1)
 
   Compute connectivity between given pair of dimensions.
   
@@ -8830,7 +8830,7 @@ Get unique mesh identifier.
       d1 (int)
           Topological dimension.
 
-* init\ **()**
+* init\ ()
 
   Compute all entities and connectivity.
 ";
@@ -8864,7 +8864,7 @@ Check if mesh is ordered according to the UFC numbering convention.
 %feature("docstring")  dolfin::Mesh::move "
 **Overloaded versions**
 
-* move\ **(boundary)**
+* move\ (boundary)
 
   Move coordinates of mesh according to new boundary coordinates.
   
@@ -8872,7 +8872,7 @@ Check if mesh is ordered according to the UFC numbering convention.
       boundary (:py:class:`BoundaryMesh`)
           A mesh containing just the boundary cells.
 
-* move\ **(mesh)**
+* move\ (mesh)
 
   Move coordinates of mesh according to adjacent mesh with common global
   vertices.
@@ -8881,7 +8881,7 @@ Check if mesh is ordered according to the UFC numbering convention.
       mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
 
-* move\ **(displacement)**
+* move\ (displacement)
 
   Move coordinates of mesh according to displacement function.
   
@@ -8927,7 +8927,7 @@ Snap boundary vertices of mesh to match given sub domain.
 %feature("docstring")  dolfin::Mesh::color "
 **Overloaded versions**
 
-* color\ **(coloring_type)**
+* color\ (coloring_type)
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
@@ -8944,7 +8944,7 @@ Snap boundary vertices of mesh to match given sub domain.
       MeshFunction<unsigned int>
           The colors as a mesh function over the cells of the mesh.
 
-* color\ **(coloring_type)**
+* color\ (coloring_type)
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
@@ -8964,7 +8964,7 @@ Snap boundary vertices of mesh to match given sub domain.
 %feature("docstring")  dolfin::Mesh::all_intersected_entities "
 **Overloaded versions**
 
-* all_intersected_entities\ **(point, ids_result)**
+* all_intersected_entities\ (point, ids_result)
 
   Compute all ids of all cells which are intersected by the
   given point.
@@ -8977,7 +8977,7 @@ Snap boundary vertices of mesh to match given sub domain.
           The cell ids which are intersected are stored in a set for
           efficiency reasons, to avoid to sort out duplicates later on.
 
-* all_intersected_entities\ **(points, ids_result)**
+* all_intersected_entities\ (points, ids_result)
 
   Compute all ids of all cells which are intersected by any
   point in points.
@@ -8991,7 +8991,7 @@ Snap boundary vertices of mesh to match given sub domain.
           for efficiency reasons, to avoid to sort out
           duplicates later on.
 
-* all_intersected_entities\ **(entity, ids_result)**
+* all_intersected_entities\ (entity, ids_result)
 
   Compute all ids of all cells which are intersected by the given
   entity.
@@ -9006,7 +9006,7 @@ Snap boundary vertices of mesh to match given sub domain.
           map between the (external) cell and the intersected
           cell of the mesh.
 
-* all_intersected_entities\ **(entities, ids_result)**
+* all_intersected_entities\ (entities, ids_result)
 
   Compute all id of all cells which are intersected by any entity in the
   vector entities.
@@ -9019,7 +9019,7 @@ Snap boundary vertices of mesh to match given sub domain.
           The cell ids which are intersected are stored in a set for
           efficiency reasons, to avoid to sort out duplicates later on.
 
-* all_intersected_entities\ **(another_mesh, ids_result)**
+* all_intersected_entities\ (another_mesh, ids_result)
 
   Compute all ids of all cells which are intersected by
   another_mesh.
@@ -9158,11 +9158,11 @@ a specific topological dimension of some :py:class:`Mesh`.
 %feature("docstring")  dolfin::MeshEntity::MeshEntity "
 **Overloaded versions**
 
-* MeshEntity\ **()**
+* MeshEntity\ ()
 
   Default Constructor
 
-* MeshEntity\ **(mesh, dim, index)**
+* MeshEntity\ (mesh, dim, index)
 
   Constructor
   
@@ -9218,7 +9218,7 @@ Return topological dimension
 %feature("docstring")  dolfin::MeshEntity::index "
 **Overloaded versions**
 
-* index\ **()**
+* index\ ()
 
   Return index of mesh entity
   
@@ -9226,7 +9226,7 @@ Return topological dimension
       int
           The index.
 
-* index\ **(entity)**
+* index\ (entity)
 
   Compute local index of given incident entity (error if not
   found)
@@ -9288,7 +9288,7 @@ Check if given entity is incident
 %feature("docstring")  dolfin::MeshEntity::intersects "
 **Overloaded versions**
 
-* intersects\ **(point)**
+* intersects\ (point)
 
   Check if given point intersects (using inexact but fast
   numerics)
@@ -9301,7 +9301,7 @@ Check if given entity is incident
       bool
           True if the given point intersects.
 
-* intersects\ **(entity)**
+* intersects\ (entity)
 
   Check if given entity intersects (using inexact but fast
   numerics)
@@ -9318,7 +9318,7 @@ Check if given entity is incident
 %feature("docstring")  dolfin::MeshEntity::intersects_exactly "
 **Overloaded versions**
 
-* intersects_exactly\ **(point)**
+* intersects_exactly\ (point)
 
   Check if given point intersects (using exact numerics)
   
@@ -9330,7 +9330,7 @@ Check if given entity is incident
       bool
           True if the given point intersects.
 
-* intersects_exactly\ **(entity)**
+* intersects_exactly\ (entity)
 
   Check if given entity intersects (using exact numerics)
   
@@ -9400,19 +9400,19 @@ classes.
 %feature("docstring")  dolfin::MeshEntityIterator::MeshEntityIterator "
 **Overloaded versions**
 
-* MeshEntityIterator\ **()**
+* MeshEntityIterator\ ()
 
   Default constructor
 
-* MeshEntityIterator\ **(mesh, dim)**
+* MeshEntityIterator\ (mesh, dim)
 
   Create iterator for mesh entities over given topological dimension
 
-* MeshEntityIterator\ **(entity, dim)**
+* MeshEntityIterator\ (entity, dim)
 
   Create iterator for entities of given dimension connected to given entity
 
-* MeshEntityIterator\ **(it)**
+* MeshEntityIterator\ (it)
 
   Copy constructor
 ";
@@ -9503,7 +9503,7 @@ norm, distances, scalar and vector products etc.
 %feature("docstring")  dolfin::Point::Point "
 **Overloaded versions**
 
-* Point\ **(x=0.0, y=0.0, z=0.0)**
+* Point\ (x=0.0, y=0.0, z=0.0)
 
   Create a point at (x, y, z). Default value (0, 0, 0).
   
@@ -9515,7 +9515,7 @@ norm, distances, scalar and vector products etc.
       z (float)
           The z-coordinate.
 
-* Point\ **(dim, x)**
+* Point\ (dim, x)
 
   Create point from array
   
@@ -9525,7 +9525,7 @@ norm, distances, scalar and vector products etc.
       x (float)
           The array to create a Point from.
 
-* Point\ **(p)**
+* Point\ (p)
 
   Copy constructor
   
@@ -9533,7 +9533,7 @@ norm, distances, scalar and vector products etc.
       p (:py:class:`Point`)
           The object to be copied.
 
-* Point\ **(point)**
+* Point\ (point)
 
   Constructor taking a CGAL::Point_3. Allows conversion from
   CGAL Point_3 class to Point class.
@@ -9542,7 +9542,7 @@ norm, distances, scalar and vector products etc.
 %feature("docstring")  dolfin::Point::operator[] "
 **Overloaded versions**
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Return address of coordinate in direction i
   
@@ -9554,7 +9554,7 @@ norm, distances, scalar and vector products etc.
       float
           Adress of coordinate in the given direction.
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Return coordinate in direction i
   
@@ -9594,7 +9594,7 @@ Return z-coordinate
 %feature("docstring")  dolfin::Point::coordinates "
 **Overloaded versions**
 
-* coordinates\ **()**
+* coordinates\ ()
 
   Return coordinate array
   
@@ -9602,7 +9602,7 @@ Return z-coordinate
       list of doubles
           The coordinates.
 
-* coordinates\ **()**
+* coordinates\ ()
 
   Return coordinate array (const. version)
   
@@ -9630,11 +9630,11 @@ Subtract given point
 %feature("docstring")  dolfin::Point::operator* "
 **Overloaded versions**
 
-* operator*\ **(a)**
+* operator*\ (a)
 
   Multiplication with scalar
 
-* operator*\ **(a, p)**
+* operator*\ (a, p)
 
   Multiplication with scalar
 ";
@@ -9743,11 +9743,11 @@ A Vertex is a MeshEntity of topological dimension 0.
 %feature("docstring")  dolfin::Vertex::Vertex "
 **Overloaded versions**
 
-* Vertex\ **(mesh, index)**
+* Vertex\ (mesh, index)
 
   Create vertex on given mesh
 
-* Vertex\ **(entity)**
+* Vertex\ (entity)
 
   Create vertex from mesh entity
 ";
@@ -9755,11 +9755,11 @@ A Vertex is a MeshEntity of topological dimension 0.
 %feature("docstring")  dolfin::Vertex::x "
 **Overloaded versions**
 
-* x\ **(i)**
+* x\ (i)
 
   Return value of vertex coordinate i
 
-* x\ **()**
+* x\ ()
 
   Return array of vertex coordinates (const version)
 ";
@@ -9784,7 +9784,7 @@ An Edge is a :py:class:`MeshEntity` of topological dimension 1.
 %feature("docstring")  dolfin::Edge::Edge "
 **Overloaded versions**
 
-* Edge\ **(mesh, index)**
+* Edge\ (mesh, index)
 
   Create edge on given mesh
   
@@ -9794,7 +9794,7 @@ An Edge is a :py:class:`MeshEntity` of topological dimension 1.
       index (int)
           Index of the edge.
 
-* Edge\ **(entity)**
+* Edge\ (entity)
 
   Create edge from mesh entity
   
@@ -9857,11 +9857,11 @@ Calculate the area of the face (triangle)
 %feature("docstring")  dolfin::Face::normal "
 **Overloaded versions**
 
-* normal\ **(i)**
+* normal\ (i)
 
   Compute component i of the normal to the face
 
-* normal\ **()**
+* normal\ ()
 
   Compute normal to the face
 ";
@@ -9886,11 +9886,11 @@ Constructor
 %feature("docstring")  dolfin::Facet::normal "
 **Overloaded versions**
 
-* normal\ **(i)**
+* normal\ (i)
 
   Compute component i of the normal to the facet
 
-* normal\ **()**
+* normal\ ()
 
   Compute normal to the facet
 ";
@@ -9925,11 +9925,11 @@ A Cell is a :py:class:`MeshEntity` of topological codimension 0.
 %feature("docstring")  dolfin::Cell::Cell "
 **Overloaded versions**
 
-* Cell\ **()**
+* Cell\ ()
 
   Create empty cell
 
-* Cell\ **(mesh, index)**
+* Cell\ (mesh, index)
 
   Create cell on given mesh with given index
   
@@ -9981,7 +9981,7 @@ Compute diameter of cell
 %feature("docstring")  dolfin::Cell::normal "
 **Overloaded versions**
 
-* normal\ **(facet, i)**
+* normal\ (facet, i)
 
   Compute component i of normal of given facet with respect to the cell
   
@@ -9995,7 +9995,7 @@ Compute diameter of cell
       float
           Component i of the normal of the facet.
 
-* normal\ **(facet)**
+* normal\ (facet)
 
   Compute normal of given facet with respect to the cell
   
@@ -10073,13 +10073,13 @@ whether two given (arbitrary) meshentities intersect.
 %feature("docstring")  dolfin::PrimitiveIntersector::do_intersect "
 **Overloaded versions**
 
-* do_intersect\ **(entity_1, entity_2)**
+* do_intersect\ (entity_1, entity_2)
 
   Computes whether two mesh entities intersect using an inexact
   geometry kernel which is fast but may suffer from floating
   point precision
 
-* do_intersect\ **(entity_1, point)**
+* do_intersect\ (entity_1, point)
 
   Computes whether a mesh entity and point intersect using an
   inexact geometry kernel which is fast but may suffer from
@@ -10089,12 +10089,12 @@ whether two given (arbitrary) meshentities intersect.
 %feature("docstring")  dolfin::PrimitiveIntersector::do_intersect_exact "
 **Overloaded versions**
 
-* do_intersect_exact\ **(entity_1, entity_2)**
+* do_intersect_exact\ (entity_1, entity_2)
 
   Computes whether two mesh entities intersect using an exact
   geometry kernel which is slow but always correct
 
-* do_intersect_exact\ **(entity_1, point)**
+* do_intersect_exact\ (entity_1, point)
 
   Computes whether a mesh entity and point intersect using an
   exact geometry kernel which is slow but always correct
@@ -10115,11 +10115,11 @@ giving the entire (sparse) connectivity pattern.
 %feature("docstring")  dolfin::MeshConnectivity::MeshConnectivity "
 **Overloaded versions**
 
-* MeshConnectivity\ **(d0, d1)**
+* MeshConnectivity\ (d0, d1)
 
   Create empty connectivity between given dimensions (d0 -- d1)
 
-* MeshConnectivity\ **(connectivity)**
+* MeshConnectivity\ (connectivity)
 
   Copy constructor
 ";
@@ -10131,11 +10131,11 @@ Assignment
 %feature("docstring")  dolfin::MeshConnectivity::size "
 **Overloaded versions**
 
-* size\ **()**
+* size\ ()
 
   Return total number of connections
 
-* size\ **(entity)**
+* size\ (entity)
 
   Return number of connections for given entity
 ";
@@ -10143,11 +10143,11 @@ Assignment
 %feature("docstring")  dolfin::MeshConnectivity::operator "
 **Overloaded versions**
 
-* operator\ **(entity)**
+* operator\ (entity)
 
   Return array of connections for given entity
 
-* operator\ **()**
+* operator\ ()
 
   Return contiguous array of connections for all entities
 ";
@@ -10159,11 +10159,11 @@ Clear all data
 %feature("docstring")  dolfin::MeshConnectivity::init "
 **Overloaded versions**
 
-* init\ **(num_entities, num_connections)**
+* init\ (num_entities, num_connections)
 
   Initialize number of entities and number of connections (equal for all)
 
-* init\ **(num_connections)**
+* init\ (num_connections)
 
   Initialize number of entities and number of connections (individually)
 ";
@@ -10171,19 +10171,19 @@ Clear all data
 %feature("docstring")  dolfin::MeshConnectivity::set "
 **Overloaded versions**
 
-* set\ **(entity, connection, pos)**
+* set\ (entity, connection, pos)
 
   Set given connection for given entity
 
-* set\ **(entity, connections)**
+* set\ (entity, connections)
 
   Set all connections for given entity
 
-* set\ **(entity, connections)**
+* set\ (entity, connections)
 
   Set all connections for given entity
 
-* set\ **(connectivity)**
+* set\ (connectivity)
 
   Set all connections for all entities
 ";
@@ -10205,7 +10205,7 @@ Constructor
 %feature("docstring")  dolfin::MeshEditor::open "
 **Overloaded versions**
 
-* open\ **(mesh, tdim, gdim)**
+* open\ (mesh, tdim, gdim)
 
   Open mesh of given topological and geometrical dimension
   
@@ -10222,7 +10222,7 @@ Constructor
       
           No example code available for this function.
 
-* open\ **(mesh, type, tdim, gdim)**
+* open\ (mesh, type, tdim, gdim)
 
   Open mesh of given cell type, topological and geometrical dimension
   
@@ -10236,7 +10236,7 @@ Constructor
       gdim (int)
           The geometrical dimension.
 
-* open\ **(mesh, type, tdim, gdim)**
+* open\ (mesh, type, tdim, gdim)
 
   Open mesh of given cell type, topological and geometrical dimension
   
@@ -10302,7 +10302,7 @@ Set boolean indicator inside MeshGeometry
 %feature("docstring")  dolfin::MeshEditor::add_vertex "
 **Overloaded versions**
 
-* add_vertex\ **(v, p)**
+* add_vertex\ (v, p)
 
   Add vertex v at given point p
   
@@ -10312,7 +10312,7 @@ Set boolean indicator inside MeshGeometry
       p (:py:class:`Point`)
           The point.
 
-* add_vertex\ **(v, x)**
+* add_vertex\ (v, x)
 
   Add vertex v at given coordinate x
   
@@ -10322,7 +10322,7 @@ Set boolean indicator inside MeshGeometry
       x (float)
           The x-coordinate.
 
-* add_vertex\ **(v, x, y)**
+* add_vertex\ (v, x, y)
 
   Add vertex v at given coordinate (x, y)
   
@@ -10339,7 +10339,7 @@ Set boolean indicator inside MeshGeometry
       
           No example code available for this function.
 
-* add_vertex\ **(v, x, y, z)**
+* add_vertex\ (v, x, y, z)
 
   Add vertex v at given coordinate (x, y, z)
   
@@ -10357,7 +10357,7 @@ Set boolean indicator inside MeshGeometry
 %feature("docstring")  dolfin::MeshEditor::add_higher_order_vertex "
 **Overloaded versions**
 
-* add_higher_order_vertex\ **(v, p)**
+* add_higher_order_vertex\ (v, p)
 
   Add vertex v at given point p
   
@@ -10367,7 +10367,7 @@ Set boolean indicator inside MeshGeometry
       p (:py:class:`Point`)
           The point.
 
-* add_higher_order_vertex\ **(v, x)**
+* add_higher_order_vertex\ (v, x)
 
   Add vertex v at given coordinate x
   
@@ -10377,7 +10377,7 @@ Set boolean indicator inside MeshGeometry
       x (float)
           The x-coordinate.
 
-* add_higher_order_vertex\ **(v, x, y)**
+* add_higher_order_vertex\ (v, x, y)
 
   Add vertex v at given coordinate (x, y)
   
@@ -10389,7 +10389,7 @@ Set boolean indicator inside MeshGeometry
       y (float)
           The y-coordinate.
 
-* add_higher_order_vertex\ **(v, x, y, z)**
+* add_higher_order_vertex\ (v, x, y, z)
 
   Add vertex v at given coordinate (x, y, z)
   
@@ -10407,7 +10407,7 @@ Set boolean indicator inside MeshGeometry
 %feature("docstring")  dolfin::MeshEditor::add_cell "
 **Overloaded versions**
 
-* add_cell\ **(c, v)**
+* add_cell\ (c, v)
 
   Add cell with given vertices
   
@@ -10417,7 +10417,7 @@ Set boolean indicator inside MeshGeometry
       v (numpy.array(int))
           The vertex indices
 
-* add_cell\ **(c, v0, v1)**
+* add_cell\ (c, v0, v1)
 
   Add cell (interval) with given vertices
   
@@ -10429,7 +10429,7 @@ Set boolean indicator inside MeshGeometry
       v1 (int)
           Index of the second vertex.
 
-* add_cell\ **(c, v0, v1, v2)**
+* add_cell\ (c, v0, v1, v2)
 
   Add cell (triangle) with given vertices
   
@@ -10448,7 +10448,7 @@ Set boolean indicator inside MeshGeometry
       
           No example code available for this function.
 
-* add_cell\ **(c, v0, v1, v2, v3)**
+* add_cell\ (c, v0, v1, v2, v3)
 
   Add cell (tetrahedron) with given vertices
   
@@ -10513,11 +10513,11 @@ Constructor
 %feature("docstring")  dolfin::DynamicMeshEditor::open "
 **Overloaded versions**
 
-* open\ **(mesh, type, tdim, gdim)**
+* open\ (mesh, type, tdim, gdim)
 
   Open mesh of given cell type, topological and geometrical dimension
 
-* open\ **(mesh, type, tdim, gdim)**
+* open\ (mesh, type, tdim, gdim)
 
   Open mesh of given cell type, topological and geometrical dimension
 ";
@@ -10525,19 +10525,19 @@ Constructor
 %feature("docstring")  dolfin::DynamicMeshEditor::add_vertex "
 **Overloaded versions**
 
-* add_vertex\ **(v, p)**
+* add_vertex\ (v, p)
 
   Add vertex v at given point p
 
-* add_vertex\ **(v, x)**
+* add_vertex\ (v, x)
 
   Add vertex v at given coordinate x
 
-* add_vertex\ **(v, x, y)**
+* add_vertex\ (v, x, y)
 
   Add vertex v at given coordinate (x, y)
 
-* add_vertex\ **(v, x, y, z)**
+* add_vertex\ (v, x, y, z)
 
   Add vertex v at given coordinate (x, y, z)
 ";
@@ -10545,19 +10545,19 @@ Constructor
 %feature("docstring")  dolfin::DynamicMeshEditor::add_cell "
 **Overloaded versions**
 
-* add_cell\ **(c, v)**
+* add_cell\ (c, v)
 
   Add cell with given vertices
 
-* add_cell\ **(c, v0, v1)**
+* add_cell\ (c, v0, v1)
 
   Add cell (interval) with given vertices
 
-* add_cell\ **(c, v0, v1, v2)**
+* add_cell\ (c, v0, v1, v2)
 
   Add cell (triangle) with given vertices
 
-* add_cell\ **(c, v0, v1, v2, v3)**
+* add_cell\ (c, v0, v1, v2, v3)
 
   Add cell (tetrahedron) with given vertices
 ";
@@ -10579,11 +10579,11 @@ sub domains or boolean markers for mesh refinement.
 %feature("docstring")  dolfin::MeshFunction::MeshFunction "
 **Overloaded versions**
 
-* MeshFunction\ **()**
+* MeshFunction\ ()
 
   Create empty mesh function
 
-* MeshFunction\ **(mesh)**
+* MeshFunction\ (mesh)
 
   Create empty mesh function on given mesh
   
@@ -10591,7 +10591,7 @@ sub domains or boolean markers for mesh refinement.
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
 
-* MeshFunction\ **(mesh, dim)**
+* MeshFunction\ (mesh, dim)
 
   Create mesh function on given mesh of given dimension
   
@@ -10601,7 +10601,7 @@ sub domains or boolean markers for mesh refinement.
       dim (int)
           The mesh entity dimension for the mesh function
 
-* MeshFunction\ **(mesh, dim, value)**
+* MeshFunction\ (mesh, dim, value)
 
   Create mesh function on given mesh of given dimension and initialize
   to a value
@@ -10614,7 +10614,7 @@ sub domains or boolean markers for mesh refinement.
       value (T)
           The value.
 
-* MeshFunction\ **(mesh, filename)**
+* MeshFunction\ (mesh, filename)
 
   Create function from data file
   
@@ -10624,7 +10624,7 @@ sub domains or boolean markers for mesh refinement.
       filename (str)
           The filename to create mesh function from.
 
-* MeshFunction\ **(f)**
+* MeshFunction\ (f)
 
   Copy constructor
   
@@ -10660,7 +10660,7 @@ Return size (number of entities)
 %feature("docstring")  dolfin::MeshFunction::values "
 **Overloaded versions**
 
-* values\ **()**
+* values\ ()
 
   Return array of values (const. version)
   
@@ -10668,7 +10668,7 @@ Return size (number of entities)
       T
           The values.
 
-* values\ **()**
+* values\ ()
 
   Return array of values
   
@@ -10680,7 +10680,7 @@ Return size (number of entities)
 %feature("docstring")  dolfin::MeshFunction::operator[] "
 **Overloaded versions**
 
-* operator[]\ **(entity)**
+* operator[]\ (entity)
 
   Return value at given mesh entity
   
@@ -10692,7 +10692,7 @@ Return size (number of entities)
       T
           The value at the given entity.
 
-* operator[]\ **(entity)**
+* operator[]\ (entity)
 
   Return value at given mesh entity (const version)
   
@@ -10704,7 +10704,7 @@ Return size (number of entities)
       T
           The value at the given entity.
 
-* operator[]\ **(index)**
+* operator[]\ (index)
 
   Return value at given index
   
@@ -10716,7 +10716,7 @@ Return size (number of entities)
       T
           The value at the given index.
 
-* operator[]\ **(index)**
+* operator[]\ (index)
 
   Return value at given index  (const version)
   
@@ -10732,11 +10732,11 @@ Return size (number of entities)
 %feature("docstring")  dolfin::MeshFunction::operator= "
 **Overloaded versions**
 
-* operator=\ **(f)**
+* operator=\ (f)
 
   Assign mesh function to other mesh function
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Set all values to given value
 ";
@@ -10744,7 +10744,7 @@ Return size (number of entities)
 %feature("docstring")  dolfin::MeshFunction::init "
 **Overloaded versions**
 
-* init\ **(dim)**
+* init\ (dim)
 
   Initialize mesh function for given topological dimension
   
@@ -10752,7 +10752,7 @@ Return size (number of entities)
       dim (int)
           The dimension.
 
-* init\ **(dim, size)**
+* init\ (dim, size)
 
   Initialize mesh function for given topological dimension of
   given size
@@ -10763,7 +10763,7 @@ Return size (number of entities)
       size (int)
           The size.
 
-* init\ **(mesh, dim)**
+* init\ (mesh, dim)
 
   Initialize mesh function for given topological dimension
   
@@ -10773,7 +10773,7 @@ Return size (number of entities)
       dim (int)
           The dimension.
 
-* init\ **(mesh, dim, size)**
+* init\ (mesh, dim, size)
 
   Initialize mesh function for given topological dimension of
   given size
@@ -10860,11 +10860,11 @@ entities of dimension 0 (vertices) and dimension D (cells).
 %feature("docstring")  dolfin::MeshPartitioning::partition "
 **Overloaded versions**
 
-* partition\ **(mesh)**
+* partition\ (mesh)
 
   Create a partitioned mesh based on local meshes
 
-* partition\ **(mesh, data)**
+* partition\ (mesh, data)
 
   Create a partitioned mesh based on local mesh data
 ";
@@ -10909,11 +10909,11 @@ This class implements renumbering algorithms for meshes.
 %feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
 **Overloaded versions**
 
-* LocalMeshData\ **()**
+* LocalMeshData\ ()
 
   Create empty local mesh data
 
-* LocalMeshData\ **(mesh)**
+* LocalMeshData\ (mesh)
 
   Create local mesh data for given mesh
 ";
@@ -10985,7 +10985,7 @@ Snap coordinate to boundary of subdomain
 %feature("docstring")  dolfin::SubDomain::mark "
 **Overloaded versions**
 
-* mark\ **(sub_domains, sub_domain)**
+* mark\ (sub_domains, sub_domain)
 
   Set subdomain markers (uint) for given subdomain index
   
@@ -10995,7 +10995,7 @@ Snap coordinate to boundary of subdomain
       sub_domain (int)
           The index
 
-* mark\ **(sub_domains, sub_domain)**
+* mark\ (sub_domains, sub_domain)
 
   Set subdomain markers (int) for given subdomain index
   
@@ -11005,7 +11005,7 @@ Snap coordinate to boundary of subdomain
       sub_domain (int)
           The index
 
-* mark\ **(sub_domains, sub_domain)**
+* mark\ (sub_domains, sub_domain)
 
   Set subdomain markers (double) for given subdomain index
   
@@ -11015,7 +11015,7 @@ Snap coordinate to boundary of subdomain
       sub_domain (float)
           The index
 
-* mark\ **(sub_domains, sub_domain)**
+* mark\ (sub_domains, sub_domain)
 
   Set subdomain markers (bool) for given subdomain
   
@@ -11049,11 +11049,11 @@ subsets of a single global mesh.
 %feature("docstring")  dolfin::SubMesh::SubMesh "
 **Overloaded versions**
 
-* SubMesh\ **(mesh, sub_domain)**
+* SubMesh\ (mesh, sub_domain)
 
   Create subset of given mesh marked by sub domain
 
-* SubMesh\ **(mesh, sub_domains, sub_domain)**
+* SubMesh\ (mesh, sub_domains, sub_domain)
 
   Create subset of given mesh marked by mesh function
 ";
@@ -11085,11 +11085,11 @@ A BoundaryMesh is a mesh over the boundary of some given mesh.
 %feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
 **Overloaded versions**
 
-* BoundaryMesh\ **()**
+* BoundaryMesh\ ()
 
   Create an empty boundary mesh
 
-* BoundaryMesh\ **(mesh)**
+* BoundaryMesh\ (mesh)
 
   Create (interior) boundary mesh from given mesh
 ";
@@ -11327,23 +11327,23 @@ C++ and Python.
 %feature("docstring")  dolfin::Array::Array "
 **Overloaded versions**
 
-* Array\ **()**
+* Array\ ()
 
   Create empty array
 
-* Array\ **(N)**
+* Array\ (N)
 
   Create array of size N
 
-* Array\ **(other)**
+* Array\ (other)
 
   Copy constructor (arg name need to have a different name that 'x')
 
-* Array\ **(N, x)**
+* Array\ (N, x)
 
   Construct array from a shared pointer
 
-* Array\ **(N, x)**
+* Array\ (N, x)
 
   Construct array from a pointer. Array will not take ownership.
 ";
@@ -11351,11 +11351,11 @@ C++ and Python.
 %feature("docstring")  dolfin::Array::operator= "
 **Overloaded versions**
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assignment operator
 
-* operator=\ **(x)**
+* operator=\ (x)
 
   Assign value to all entries
 ";
@@ -11398,11 +11398,11 @@ Return maximum value of array
 %feature("docstring")  dolfin::Array::operator[] "
 **Overloaded versions**
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Access value of given entry (const version)
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Access value of given entry (non-const version)
 ";
@@ -11410,11 +11410,11 @@ Return maximum value of array
 %feature("docstring")  dolfin::Array::data "
 **Overloaded versions**
 
-* data\ **()**
+* data\ ()
 
   Return pointer to data (const version)
 
-* data\ **()**
+* data\ ()
 
   Return pointer to data (non-const version)
 ";
@@ -11445,11 +11445,11 @@ Return position (if any) for given index
 %feature("docstring")  dolfin::IndexSet::operator[] "
 **Overloaded versions**
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Return given index
 
-* operator[]\ **(i)**
+* operator[]\ (i)
 
   Return given index (const version)
 ";
@@ -11470,15 +11470,15 @@ Clear set
 %feature("docstring")  dolfin::Set::Set "
 **Overloaded versions**
 
-* Set\ **()**
+* Set\ ()
 
   Create empty set
 
-* Set\ **(x)**
+* Set\ (x)
 
   Wrap std::vectpr as a set. Contents will be erased.
 
-* Set\ **(x)**
+* Set\ (x)
 
   Copy constructor
 ";
@@ -11486,11 +11486,11 @@ Clear set
 %feature("docstring")  dolfin::Set::find "
 **Overloaded versions**
 
-* find\ **(x)**
+* find\ (x)
 
   Find entry in set and return an iterator to the entry
 
-* find\ **(x)**
+* find\ (x)
 
   Find entry in set and return an iterator to the entry (const)
 ";
@@ -11498,11 +11498,11 @@ Clear set
 %feature("docstring")  dolfin::Set::insert "
 **Overloaded versions**
 
-* insert\ **(x)**
+* insert\ (x)
 
   Insert entry
 
-* insert\ **(first, last)**
+* insert\ (first, last)
 
   Insert entries
 ";
@@ -11530,11 +11530,11 @@ Index the nth entry in the set
 %feature("docstring")  dolfin::Set::set "
 **Overloaded versions**
 
-* set\ **()**
+* set\ ()
 
   Return the vector that stores the data in the Set
 
-* set\ **()**
+* set\ ()
 
   Return the vector that stores the data in the Set
 ";
@@ -11582,11 +11582,11 @@ Common base class for DOLFIN variables.
 %feature("docstring")  dolfin::Variable::Variable "
 **Overloaded versions**
 
-* Variable\ **()**
+* Variable\ ()
 
   Create unnamed variable
 
-* Variable\ **(name, label)**
+* Variable\ (name, label)
 
   Create variable with given name and label
 ";
@@ -11656,7 +11656,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::parent "
 **Overloaded versions**
 
-* parent\ **()**
+* parent\ ()
 
   Return parent in hierarchy. An error is thrown if the object
   has no parent.
@@ -11665,7 +11665,7 @@ Check if the object has a child.
       _Object_
           The parent object.
 
-* parent\ **()**
+* parent\ ()
 
   Return parent in hierarchy (const version).
 ";
@@ -11673,7 +11673,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::parent_shared_ptr "
 **Overloaded versions**
 
-* parent_shared_ptr\ **()**
+* parent_shared_ptr\ ()
 
   Return shared pointer to parent. A zero pointer is returned if
   the object has no parent.
@@ -11682,7 +11682,7 @@ Check if the object has a child.
       shared_ptr<T>
           The parent object.
 
-* parent_shared_ptr\ **()**
+* parent_shared_ptr\ ()
 
   Return shared pointer to parent (const version).
 ";
@@ -11690,7 +11690,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::child "
 **Overloaded versions**
 
-* child\ **()**
+* child\ ()
 
   Return child in hierarchy. An error is thrown if the object
   has no child.
@@ -11699,7 +11699,7 @@ Check if the object has a child.
       _T_
           The child object.
 
-* child\ **()**
+* child\ ()
 
   Return child in hierarchy (const version).
 ";
@@ -11707,7 +11707,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::child_shared_ptr "
 **Overloaded versions**
 
-* child_shared_ptr\ **()**
+* child_shared_ptr\ ()
 
   Return shared pointer to child. A zero pointer is returned if
   the object has no child.
@@ -11716,7 +11716,7 @@ Check if the object has a child.
       shared_ptr<T>
           The child object.
 
-* child_shared_ptr\ **()**
+* child_shared_ptr\ ()
 
   Return shared pointer to child (const version).
 ";
@@ -11724,7 +11724,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::coarse "
 **Overloaded versions**
 
-* coarse\ **()**
+* coarse\ ()
 
   Return coarsest object in hierarchy.
   
@@ -11732,7 +11732,7 @@ Check if the object has a child.
       _T_
           The coarse object.
 
-* coarse\ **()**
+* coarse\ ()
 
   Return coarsest object in hierarchy (const version).
 ";
@@ -11740,7 +11740,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::coarse_shared_ptr "
 **Overloaded versions**
 
-* coarse_shared_ptr\ **()**
+* coarse_shared_ptr\ ()
 
   Return shared pointer to coarsest object in hierarchy.
   
@@ -11748,7 +11748,7 @@ Check if the object has a child.
       _T_
           The coarse object.
 
-* coarse_shared_ptr\ **()**
+* coarse_shared_ptr\ ()
 
   Return shared pointer to coarsest object in hierarchy (const version).
 ";
@@ -11756,7 +11756,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::fine "
 **Overloaded versions**
 
-* fine\ **()**
+* fine\ ()
 
   Return finest object in hierarchy.
   
@@ -11764,7 +11764,7 @@ Check if the object has a child.
       _T_
           The fine object.
 
-* fine\ **()**
+* fine\ ()
 
   Return finest object in hierarchy (const version).
 ";
@@ -11772,7 +11772,7 @@ Check if the object has a child.
 %feature("docstring")  dolfin::Hierarchical::fine_shared_ptr "
 **Overloaded versions**
 
-* fine_shared_ptr\ **()**
+* fine_shared_ptr\ ()
 
   Return shared pointer to finest object in hierarchy.
   
@@ -11780,7 +11780,7 @@ Check if the object has a child.
       _T_
           The fine object.
 
-* fine_shared_ptr\ **()**
+* fine_shared_ptr\ ()
 
   Return shared pointer to finest object in hierarchy (const version).
 ";
@@ -11837,11 +11837,11 @@ Set a barrier (synchronization point)
 %feature("docstring")  dolfin::MPI::distribute "
 **Overloaded versions**
 
-* distribute\ **(values, partition)**
+* distribute\ (values, partition)
 
   Distribute local arrays on all processors according to given partition
 
-* distribute\ **(values, partition)**
+* distribute\ (values, partition)
 
   Distribute local arrays on all processors according to given partition
 ";
@@ -11849,11 +11849,11 @@ Set a barrier (synchronization point)
 %feature("docstring")  dolfin::MPI::broadcast "
 **Overloaded versions**
 
-* broadcast\ **(value, broadcaster=0)**
+* broadcast\ (value, broadcaster=0)
 
   Broadcast value from broadcaster process to all processes
 
-* broadcast\ **(values, broadcaster=0)**
+* broadcast\ (values, broadcaster=0)
 
   Broadcast value from broadcaster process to all processes
 ";
@@ -11861,15 +11861,15 @@ Set a barrier (synchronization point)
 %feature("docstring")  dolfin::MPI::scatter "
 **Overloaded versions**
 
-* scatter\ **(values, sending_process=0)**
+* scatter\ (values, sending_process=0)
 
   Scatter values, one to each process
 
-* scatter\ **(values, sending_process=0)**
+* scatter\ (values, sending_process=0)
 
   Scatter values (wrapper for MPI_Scatterv)
 
-* scatter\ **(values, sending_process=0)**
+* scatter\ (values, sending_process=0)
 
   Scatter values (wrapper for MPI_Scatterv)
 ";
@@ -11877,11 +11877,11 @@ Set a barrier (synchronization point)
 %feature("docstring")  dolfin::MPI::gather "
 **Overloaded versions**
 
-* gather\ **(value)**
+* gather\ (value)
 
   Gather values, one from each process (wrapper for MPI_Allgather)
 
-* gather\ **(values)**
+* gather\ (values)
 
   Gather values, one from each process (wrapper for MPI_Allgather)
 ";
@@ -11906,11 +11906,11 @@ reduction op)
 %feature("docstring")  dolfin::MPI::send_recv "
 **Overloaded versions**
 
-* send_recv\ **(send_buffer, send_size, dest, recv_buffer, recv_size, source)**
+* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
 
   Send-receive and return number of received values (wrapper for MPI_Sendrecv)
 
-* send_recv\ **(send_buffer, send_size, dest, recv_buffer, recv_size, source)**
+* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
 
   Send-receive and return number of received values (wrapper for MPI_Sendrecv)
 ";
@@ -11918,17 +11918,17 @@ reduction op)
 %feature("docstring")  dolfin::MPI::local_range "
 **Overloaded versions**
 
-* local_range\ **(N)**
+* local_range\ (N)
 
   Return local range for local process, splitting [0, N - 1] into
   num_processes() portions of almost equal size
 
-* local_range\ **(process, N)**
+* local_range\ (process, N)
 
   Return local range for given process, splitting [0, N - 1] into
   num_processes() portions of almost equal size
 
-* local_range\ **(process, N, num_processes)**
+* local_range\ (process, N, num_processes)
 
   Return local range for given process, splitting [0, N - 1] into
   num_processes portions of almost equal size
@@ -11951,11 +11951,11 @@ Initialise MPI
 %feature("docstring")  dolfin::SubSystemsManager::init_petsc "
 **Overloaded versions**
 
-* init_petsc\ **()**
+* init_petsc\ ()
 
   Initialize PETSc without command-line arguments
 
-* init_petsc\ **(argc, argv[])**
+* init_petsc\ (argc, argv[])
 
   Initialize PETSc with command-line arguments. Note that PETSc
   command-line arguments may also be filtered and sent to PETSc
@@ -11985,7 +11985,7 @@ GenericFile.h. Compatible file formats include:
 %feature("docstring")  dolfin::File::File "
 **Overloaded versions**
 
-* File\ **(filename, encoding=\"ascii\")**
+* File\ (filename, encoding=\"ascii\")
 
   Create a file with given name
   
@@ -12000,7 +12000,7 @@ GenericFile.h. Compatible file formats include:
       
           No example code available for this function.
 
-* File\ **(filename, type, encoding=\"ascii\")**
+* File\ (filename, type, encoding=\"ascii\")
 
   Create a file with given name and type (format)
   
@@ -12017,7 +12017,7 @@ GenericFile.h. Compatible file formats include:
       
           No example code available for this function.
 
-* File\ **(outstream)**
+* File\ (outstream)
 
   Create an outfile object writing to stream
   
@@ -12033,11 +12033,11 @@ Read from file
 %feature("docstring")  dolfin::File::operator<< "
 **Overloaded versions**
 
-* operator<<\ **(u)**
+* operator<<\ (u)
 
   Write Function to file
 
-* operator<<\ **(Function*, u)**
+* operator<<\ (Function*, u)
 
   Write Function to file (with, for instance, time)
   
@@ -12046,7 +12046,7 @@ Read from file
       
           No example code available for this function.
 
-* operator<<\ **(t)**
+* operator<<\ (t)
 
   Write object to file
 ";
@@ -12088,7 +12088,7 @@ Create adaptive datum
 %feature("docstring")  dolfin::AdaptiveDatum::store "
 **Overloaded versions**
 
-* store\ **(filename)**
+* store\ (filename)
 
   Store adaptive datum to file
   
@@ -12096,7 +12096,7 @@ Create adaptive datum
       filename (str)
           Name of file to store in
 
-* store\ **(table)**
+* store\ (table)
 
   Store adaptive datum to :py:class:`Table`.
   
@@ -12122,7 +12122,7 @@ variational problems.
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve "
 **Overloaded versions**
 
-* solve\ **(tol, goal, control)**
+* solve\ (tol, goal, control)
 
   Solve such that the error measured in the functional 'goal' is
   less than the given tolerance using the ErrorControl object
@@ -12136,7 +12136,7 @@ variational problems.
       control (:py:class:`ErrorControl`)
           The error controller
 
-* solve\ **(tol, M)**
+* solve\ (tol, M)
 
   Solve such that the error measured in the goal functional 'M'
   is less than the given tolerance using the GoalFunctional's
@@ -12206,11 +12206,11 @@ Check if stopping criterion is satisfied
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
 **Overloaded versions**
 
-* summary\ **(data, parameters)**
+* summary\ (data, parameters)
 
   Present summary of all adaptive data
 
-* summary\ **(data)**
+* summary\ (data)
 
   Present summary of single adaptive datum
 ";
@@ -12244,7 +12244,7 @@ problem and subsequent h-adaptivity.
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::AdaptiveLinearVariationalSolver "
 **Overloaded versions**
 
-* AdaptiveLinearVariationalSolver\ **(problem)**
+* AdaptiveLinearVariationalSolver\ (problem)
 
   Create AdaptiveLinearVariationalSolver
   
@@ -12252,7 +12252,7 @@ problem and subsequent h-adaptivity.
       problem (:py:class:`LinearVariationalProblem`)
           The primal problem
 
-* AdaptiveLinearVariationalSolver\ **(problem)**
+* AdaptiveLinearVariationalSolver\ (problem)
 
   Create AdaptiveLinearVariationalSolver
   
@@ -12340,7 +12340,7 @@ problem and subsequent h-adaptivity.
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
 **Overloaded versions**
 
-* AdaptiveNonlinearVariationalSolver\ **(problem)**
+* AdaptiveNonlinearVariationalSolver\ (problem)
 
   Create AdaptiveNonlinearVariationalSolver
   
@@ -12348,7 +12348,7 @@ problem and subsequent h-adaptivity.
       problem (:py:class:`NonlinearVariationalProblem`)
           The primal problem
 
-* AdaptiveNonlinearVariationalSolver\ **(problem)**
+* AdaptiveNonlinearVariationalSolver\ (problem)
 
   Create AdaptiveNonlinearVariationalSolver
   
@@ -12604,7 +12604,7 @@ Compute extrapolation w from v
 %feature("docstring")  dolfin::SpecialFacetFunction::SpecialFacetFunction "
 **Overloaded versions**
 
-* SpecialFacetFunction\ **(f_e)**
+* SpecialFacetFunction\ (f_e)
 
   Create (scalar-valued) SpecialFacetFunction
   
@@ -12612,7 +12612,7 @@ Compute extrapolation w from v
       f_e (list of :py:class:`Function`)
          Separate _Function_s for each facet
 
-* SpecialFacetFunction\ **(f_e, dim)**
+* SpecialFacetFunction\ (f_e, dim)
 
   Create (vector-valued) SpecialFacetFunction
   
@@ -12661,11 +12661,11 @@ Create empty time series
 %feature("docstring")  dolfin::TimeSeries::store "
 **Overloaded versions**
 
-* store\ **(vector, t)**
+* store\ (vector, t)
 
   Store vector at given time
 
-* store\ **(mesh, t)**
+* store\ (mesh, t)
 
   Store mesh at given time
 ";
@@ -12673,11 +12673,11 @@ Create empty time series
 %feature("docstring")  dolfin::TimeSeries::retrieve "
 **Overloaded versions**
 
-* retrieve\ **(vector, t, interpolate=true)**
+* retrieve\ (vector, t, interpolate=true)
 
   Retrieve vector at given time
 
-* retrieve\ **(mesh, t)**
+* retrieve\ (mesh, t)
 
   Retrieve mesh at given time
 ";
@@ -12714,51 +12714,51 @@ Default parameter values
 %feature("docstring")  dolfin::adapt "
 **Overloaded versions**
 
-* adapt\ **(mesh)**
+* adapt\ (mesh)
 
   Refine mesh uniformly
 
-* adapt\ **(mesh, cell_markers)**
+* adapt\ (mesh, cell_markers)
 
   Refine mesh based on cell markers
 
-* adapt\ **(space)**
+* adapt\ (space)
 
   Refine function space uniformly
 
-* adapt\ **(space, cell_markers)**
+* adapt\ (space, cell_markers)
 
   Refine function space based on cell markers
 
-* adapt\ **(space, refined_mesh)**
+* adapt\ (space, refined_mesh)
 
   Refine function space based on refined mesh
 
-* adapt\ **(function, refined_mesh)**
+* adapt\ (function, refined_mesh)
 
   Refine coefficient based on refined mesh
 
-* adapt\ **(mesh_function, refined_mesh)**
+* adapt\ (mesh_function, refined_mesh)
 
   Refine mesh function<uint> based on mesh
 
-* adapt\ **(bc, refined_mesh, S)**
+* adapt\ (bc, refined_mesh, S)
 
   Refine Dirichlet bc based on refined mesh
 
-* adapt\ **(form, refined_mesh)**
+* adapt\ (form, refined_mesh)
 
   Refine form based on refined mesh
 
-* adapt\ **(problem, refined_mesh)**
+* adapt\ (problem, refined_mesh)
 
   Refine linear variational problem based on mesh
 
-* adapt\ **(problem, refined_mesh)**
+* adapt\ (problem, refined_mesh)
 
   Refine nonlinear variational problem based on mesh
 
-* adapt\ **(ec, refined_mesh)**
+* adapt\ (ec, refined_mesh)
 
   Refine error control object based on mesh
 ";
@@ -12803,32 +12803,32 @@ Mark cells using Dorfler marking
 %feature("docstring")  dolfin::solve "
 **Overloaded versions**
 
-* solve\ **(equation, u, tol, M)**
+* solve\ (equation, u, tol, M)
 
   Solve linear variational problem a(u, v) == L(v) without
   essential boundary conditions
 
-* solve\ **(equation, u, bc, tol, M)**
+* solve\ (equation, u, bc, tol, M)
 
   Solve linear variational problem a(u, v) == L(v) with single
   boundary condition
 
-* solve\ **(equation, u, bcs, tol, M)**
+* solve\ (equation, u, bcs, tol, M)
 
   Solve linear variational problem a(u, v) == L(v) with list of
   boundary conditions
 
-* solve\ **(equation, u, J, tol, M)**
+* solve\ (equation, u, J, tol, M)
 
   Solve nonlinear variational problem F(u; v) = 0 without
   essential boundary conditions
 
-* solve\ **(equation, u, bc, J, tol, M)**
+* solve\ (equation, u, bc, J, tol, M)
 
   Solve linear variational problem F(u; v) = 0 with single
   boundary condition
 
-* solve\ **(equation, u, bcs, J, tol, M)**
+* solve\ (equation, u, bcs, J, tol, M)
 
   Solve linear variational problem F(u; v) = 0 with list of
   boundary conditions
@@ -12866,15 +12866,15 @@ Return change count (number of times parameter has been changed)
 %feature("docstring")  dolfin::Parameter::set_range "
 **Overloaded versions**
 
-* set_range\ **(min_value, max_value)**
+* set_range\ (min_value, max_value)
 
   Set range for int-valued parameter
 
-* set_range\ **(min_value, max_value)**
+* set_range\ (min_value, max_value)
 
   Set range for double-valued parameter
 
-* set_range\ **(range)**
+* set_range\ (range)
 
   Set range for string-valued parameter
 ";
@@ -12882,15 +12882,15 @@ Return change count (number of times parameter has been changed)
 %feature("docstring")  dolfin::Parameter::get_range "
 **Overloaded versions**
 
-* get_range\ **(min_value, max_value)**
+* get_range\ (min_value, max_value)
 
   Get range for int-valued parameter
 
-* get_range\ **(min_value, max_value)**
+* get_range\ (min_value, max_value)
 
   Get range for double-valued parameter
 
-* get_range\ **(range)**
+* get_range\ (range)
 
   Get range for string-valued parameter
 ";
@@ -12898,23 +12898,23 @@ Return change count (number of times parameter has been changed)
 %feature("docstring")  dolfin::Parameter::operator= "
 **Overloaded versions**
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment from int
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment from double
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment from string
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment from string
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment from bool
 ";
@@ -12962,11 +12962,11 @@ Parameter with value type int
 %feature("docstring")  dolfin::IntParameter::IntParameter "
 **Overloaded versions**
 
-* IntParameter\ **(key)**
+* IntParameter\ (key)
 
   Create unset int-valued
 
-* IntParameter\ **(key, value)**
+* IntParameter\ (key, value)
 
   Create int-valued parameter
 ";
@@ -13014,11 +13014,11 @@ Parameter with value type double
 %feature("docstring")  dolfin::DoubleParameter::DoubleParameter "
 **Overloaded versions**
 
-* DoubleParameter\ **(key)**
+* DoubleParameter\ (key)
 
   Create unset double-valued parameter
 
-* DoubleParameter\ **(key, value)**
+* DoubleParameter\ (key, value)
 
   Create double-valued parameter
 ";
@@ -13062,11 +13062,11 @@ Parameter with value type string
 %feature("docstring")  dolfin::StringParameter::StringParameter "
 **Overloaded versions**
 
-* StringParameter\ **(key)**
+* StringParameter\ (key)
 
   Create unset string-valued parameter
 
-* StringParameter\ **(key, value)**
+* StringParameter\ (key, value)
 
   Create string-valued parameter
 ";
@@ -13082,11 +13082,11 @@ Get range
 %feature("docstring")  dolfin::StringParameter::operator= "
 **Overloaded versions**
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment
 
-* operator=\ **(value)**
+* operator=\ (value)
 
   Assignment
 ";
@@ -13118,11 +13118,11 @@ Parameter with value type bool
 %feature("docstring")  dolfin::BoolParameter::BoolParameter "
 **Overloaded versions**
 
-* BoolParameter\ **(key)**
+* BoolParameter\ (key)
 
   Create unset bool-valued parameter
 
-* BoolParameter\ **(key, value)**
+* BoolParameter\ (key, value)
 
   Create bool-valued parameter
 ";
@@ -13198,11 +13198,11 @@ usage from command-line).
 %feature("docstring")  dolfin::Parameters::Parameters "
 **Overloaded versions**
 
-* Parameters\ **(\"parameters\")**
+* Parameters\ (\"parameters\")
 
   Create empty parameter set
 
-* Parameters\ **(parameters)**
+* Parameters\ (parameters)
 
   Copy constructor
 ";
@@ -13222,48 +13222,48 @@ Clear parameter set
 %feature("docstring")  dolfin::Parameters::add "
 **Overloaded versions**
 
-* add\ **(key)**
+* add\ (key)
 
   Add an unset parameter of type T. For example, to create a unset
   parameter of type bool, do parameters.add<bool>(\"my_setting\")
 
-* add\ **(key, value)**
+* add\ (key, value)
 
   Add int-valued parameter
 
-* add\ **(key, value, min_value, max_value)**
+* add\ (key, value, min_value, max_value)
 
   Add int-valued parameter with given range
 
-* add\ **(key, value)**
+* add\ (key, value)
 
   Add double-valued parameter
 
-* add\ **(key, value, min_value, max_value)**
+* add\ (key, value, min_value, max_value)
 
   Add double-valued parameter with given range
 
-* add\ **(key, value)**
+* add\ (key, value)
 
   Add string-valued parameter
 
-* add\ **(key, value)**
+* add\ (key, value)
 
   Add string-valued parameter
 
-* add\ **(key, value, range)**
+* add\ (key, value, range)
 
   Add string-valued parameter with given range
 
-* add\ **(key, value, range)**
+* add\ (key, value, range)
 
   Add string-valued parameter with given range
 
-* add\ **(key, value)**
+* add\ (key, value)
 
   Add bool-valued parameter
 
-* add\ **(parameters)**
+* add\ (parameters)
 
   Add nested parameter set
 ";
@@ -13283,11 +13283,11 @@ Update parameters with another set of parameters
 %feature("docstring")  dolfin::Parameters::operator[] "
 **Overloaded versions**
 
-* operator[]\ **(key)**
+* operator[]\ (key)
 
   Return parameter for given key
 
-* operator[]\ **(key)**
+* operator[]\ (key)
 
   Return parameter for given key (const version)
 ";
@@ -13295,11 +13295,11 @@ Update parameters with another set of parameters
 %feature("docstring")  dolfin::Parameters::operator "
 **Overloaded versions**
 
-* operator\ **(key)**
+* operator\ (key)
 
   Return nested parameter set for given key
 
-* operator\ **(key)**
+* operator\ (key)
 
   Return nested parameter set for given key (const)
 ";
@@ -13392,11 +13392,11 @@ This creates a Lagrange polynomial (actually two Lagrange polynomials):
 %feature("docstring")  dolfin::Lagrange::Lagrange "
 **Overloaded versions**
 
-* Lagrange\ **(q)**
+* Lagrange\ (q)
 
   Constructor
 
-* Lagrange\ **(p)**
+* Lagrange\ (p)
 
   Copy constructor
 ";
