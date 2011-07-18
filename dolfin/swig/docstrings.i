@@ -548,6 +548,14 @@ degrees of freedom (dofmap).
 * FunctionSpace\ **(mesh, element, dofmap)**
 
   Create function space for given mesh, element and dofmap (shared data)
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh.
+      element (:py:class:`FiniteElement`)
+          The element.
+      dofmap (:py:class:`GenericDofMap`)
+          The dofmap.
 
 * FunctionSpace\ **(mesh)**
 
@@ -556,47 +564,102 @@ degrees of freedom (dofmap).
   to construct objects before the initialisation of the base
   class. Data can be attached to the base class using
   FunctionSpace::attach(...).
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh.
 
 * FunctionSpace\ **(V)**
 
   Copy constructor
+  
+  *Arguments*
+      V (FunctionSpace)
+          The object to be copied.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::attach "
 Attach data to an empty FunctionSpace
+
+*Arguments*
+    element (:py:class:`FiniteElement`)
+        The element.
+    dofmap (:py:class:`GenericDofMap`)
+        The dofmap.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::operator= "
 Assignment operator
+
+*Arguments*
+    V (FunctionSpace)
+        Another function space.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::mesh "
 Return mesh
+
+*Returns*
+    :py:class:`Mesh`
+        The mesh.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::element "
 Return finite element
+
+*Returns*
+    :py:class:`FiniteElement`
+        The finite element.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::dofmap "
 Return dofmap
+
+*Returns*
+    :py:class:`GenericDofMap`
+        The dofmap.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::dim "
 Return dimension of function space
+
+*Returns*
+    int
+        The dimension of the function space.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::interpolate "
 Interpolate function v into function space, returning the vector of
 expansion coefficients
+
+*Arguments*
+    expansion_coefficients (:py:class:`GenericVector`)
+        The expansion coefficients.
+    v (:py:class:`GenericFunction`)
+        The function to be interpolated.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::operator[] "
 Extract sub space for component
+
+*Arguments*
+    i (int)
+        Index of sub space.
+*Returns*
+    :py:class:`FunctionSpace`
+        The sub space.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::extract_sub_space "
 Extract sub space for component
+
+*Arguments*
+    component (numpy.array(int))
+        The component.
+
+*Returns*
+    :py:class:`FunctionSpace`
+        The sub space.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::collapse "
@@ -605,27 +668,67 @@ Extract sub space for component
 * collapse\ **()**
 
   Collapse a subspace and return a new function space
+  
+  *Returns*
+      :py:class:`FunctionSpace`
+          The new function space.
 
 * collapse\ **(collapsed_dofs)**
 
   Collapse a subspace and return a new function space and a map from new
   to old dofs
+  
+  *Arguments*
+      collapsed_dofs (boost::unordered_map<uint, uint>)
+          The map from new to old dofs.
+  
+  *Returns*
+      :py:class:`FunctionSpace`
+        The new function space.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::has_cell "
 Check if function space has given cell
+
+*Arguments*
+    cell (:py:class:`Cell`)
+        The cell.
+
+*Returns*
+    bool
+        True if the function space has the given cell.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::has_element "
 Check if function space has given element
+
+*Arguments*
+    element (:py:class:`FiniteElement`)
+        The finite element.
+
+*Returns*
+    bool
+        True if the function space has the given element.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::component "
-Return component (relative to super space)
+Return component
+
+*Returns*
+    numpy.array(int)
+        The component (relative to super space).
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::str "
 Return informal string representation (pretty-print)
+
+*Arguments*
+    verbose (bool)
+        Flag to turn on additional output.
+
+*Returns*
+    str
+        An informal representation of the function space.
 ";
 
 %feature("docstring")  dolfin::FunctionSpace::print_dofmap "
@@ -1440,8 +1543,8 @@ This class represents a finite element basis function. It can be
 used for computation of basis function values and derivatives.
 
 Evaluation of basis functions is also possible through the use
-of the functions evaluate_basis and evaluate_basis_derivatives
-available in the FiniteElement class. The BasisFunction class
+of the functions ``evaluate_basis`` and ``evaluate_basis_derivatives``
+available in the :py:class:`FiniteElement` class. The BasisFunction class
 relies on these functions for evaluation but also implements the
 ufc::function interface which allows evaluate_dof to be
 evaluated for a basis function (on a possibly different
@@ -1450,18 +1553,48 @@ element).
 
 %feature("docstring")  dolfin::BasisFunction::BasisFunction "
 Create basis function with given index on element on given cell
+
+*Arguments*
+    index (int)
+        The index of the basis function.
+    element (:py:class:`FiniteElement`)
+        The element to create basis function on.
+    cell (ufc::cell)
+        The cell.
 ";
 
 %feature("docstring")  dolfin::BasisFunction::eval "
 Evaluate basis function at given point
+
+*Arguments*
+    values (float)
+        The values.
+    x (float)
+        The point to evaluate at.
 ";
 
 %feature("docstring")  dolfin::BasisFunction::eval_derivatives "
 Evaluate all order n derivatives at given point
+
+*Arguments*
+    values (float)
+        The values.
+    x (float)
+        The point to evaluate at.
+    n (int)
+        The order of derivation.
 ";
 
 %feature("docstring")  dolfin::BasisFunction::evaluate "
 Evaluate function at given point in cell
+
+*Arguments*
+    values (float)
+        The values.
+    coordinates (float)
+        The coordinates of the point.
+    cell (ufc::cell)
+        The cell.
 ";
 
 // Documentation extracted from: (module=fem, header=BoundaryCondition.h)
@@ -7465,18 +7598,62 @@ the new coordinates for the interior vertices accordingly.
 * refine\ **(mesh)**
 
   Create uniformly refined mesh
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to refine.
+  
+  *Returns*
+      :py:class:`Mesh`
+          The refined mesh.
+  
+  *Example*
+      .. note::
+      
+          No example code available for this function.
 
 * refine\ **(refined_mesh, mesh)**
 
   Create uniformly refined mesh
+  
+  *Arguments*
+      refined_mesh (:py:class:`Mesh`)
+          The mesh that will be the refined mesh.
+      mesh (:py:class:`Mesh`)
+          The original mesh.
 
 * refine\ **(mesh, cell_markers)**
 
   Create locally refined mesh
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to refine.
+      cell_markers (:py:class:`MeshFunction`)
+          A boolean MeshFunction to specify which
+          cells that should be refined.
+  
+  *Returns*
+      :py:class:`Mesh`
+          The locally refined mesh.
+  
+  *Example*
+      .. note::
+      
+          No example code available for this function.
 
 * refine\ **(refined_mesh, mesh, cell_markers)**
 
   Create locally refined mesh
+  
+  *Arguments*
+      refined_mesh (:py:class:`Mesh`)
+          The mesh that will be the refined mesh.
+      mesh (:py:class:`Mesh`)
+          The original mesh.
+      cell_markers (:py:class:`MeshFunction`)
+          A boolean MeshFunction to specify which
+          cells that should be refined.
 ";
 
 // Documentation extracted from: (module=quadrature, header=Quadrature.h)
@@ -10018,30 +10195,91 @@ Constructor
 * open\ **(mesh, tdim, gdim)**
 
   Open mesh of given topological and geometrical dimension
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to open.
+      tdim (int)
+          The topological dimension.
+      gdim (int)
+          The geometrical dimension.
+  
+  *Example*
+      .. note::
+      
+          No example code available for this function.
 
 * open\ **(mesh, type, tdim, gdim)**
 
   Open mesh of given cell type, topological and geometrical dimension
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to open.
+      type (CellType::Type)
+          Cell type.
+      tdim (int)
+          The topological dimension.
+      gdim (int)
+          The geometrical dimension.
 
 * open\ **(mesh, type, tdim, gdim)**
 
   Open mesh of given cell type, topological and geometrical dimension
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to open.
+      type (str)
+          Cell type.
+      tdim (int)
+          The topological dimension.
+      gdim (int)
+          The geometrical dimension.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::init_vertices "
 Specify number of vertices
+
+*Arguments*
+    num_vertices (int)
+        The number of vertices.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::init_higher_order_vertices "
 Specify number of vertices
+
+*Arguments*
+    num_higher_order_vertices (int)
+        The number of higher order vertices.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::init_cells "
 Specify number of cells
+
+*Arguments*
+    num_cells (int)
+        The number of cells.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::init_higher_order_cells "
 Specify number of cells
+
+*Arguments*
+    num_higher_order_cells (int)
+        The number of higher order cells.
+    num_higher_order_cell_dof (int)
+        The number of cell dofs.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::set_affine_cell_indicator "
@@ -10054,18 +10292,53 @@ Set boolean indicator inside MeshGeometry
 * add_vertex\ **(v, p)**
 
   Add vertex v at given point p
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      p (:py:class:`Point`)
+          The point.
 
 * add_vertex\ **(v, x)**
 
   Add vertex v at given coordinate x
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      x (float)
+          The x-coordinate.
 
 * add_vertex\ **(v, x, y)**
 
   Add vertex v at given coordinate (x, y)
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      x (float)
+          The x-coordinate.
+      y (float)
+          The y-coordinate.
+  
+  *Example*
+      .. note::
+      
+          No example code available for this function.
 
 * add_vertex\ **(v, x, y, z)**
 
   Add vertex v at given coordinate (x, y, z)
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      x (float)
+          The x-coordinate.
+      y (float)
+          The y-coordinate.
+      z (float)
+          The z-coordinate.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::add_higher_order_vertex "
@@ -10074,18 +10347,48 @@ Set boolean indicator inside MeshGeometry
 * add_higher_order_vertex\ **(v, p)**
 
   Add vertex v at given point p
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      p (:py:class:`Point`)
+          The point.
 
 * add_higher_order_vertex\ **(v, x)**
 
   Add vertex v at given coordinate x
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      x (float)
+          The x-coordinate.
 
 * add_higher_order_vertex\ **(v, x, y)**
 
   Add vertex v at given coordinate (x, y)
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      x (float)
+          The x-coordinate.
+      y (float)
+          The y-coordinate.
 
 * add_higher_order_vertex\ **(v, x, y, z)**
 
   Add vertex v at given coordinate (x, y, z)
+  
+  *Arguments*
+      v (int)
+          The vertex (index).
+      x (float)
+          The x-coordinate.
+      y (float)
+          The y-coordinate.
+      z (float)
+          The z-coordinate.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::add_cell "
@@ -10094,26 +10397,92 @@ Set boolean indicator inside MeshGeometry
 * add_cell\ **(c, v)**
 
   Add cell with given vertices
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v (numpy.array(int))
+          The vertices.
 
 * add_cell\ **(c, v0, v1)**
 
   Add cell (interval) with given vertices
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (int)
+          Index of the first vertex.
+      v1 (int)
+          Index of the second vertex.
 
 * add_cell\ **(c, v0, v1, v2)**
 
   Add cell (triangle) with given vertices
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (int)
+          Index of the first vertex.
+      v1 (int)
+          Index of the second vertex.
+      v2 (int)
+          Index of the third vertex.
+  
+  *Example*
+      .. note::
+      
+          No example code available for this function.
 
 * add_cell\ **(c, v0, v1, v2, v3)**
 
   Add cell (tetrahedron) with given vertices
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (int)
+          Index of the first vertex.
+      v1 (int)
+          Index of the second vertex.
+      v2 (int)
+          Index of the third vertex.
+      v3 (int)
+          Index of the fourth vertex.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::add_higher_order_cell_data "
 Add higher order cell data (assume P2 triangle for now)
+
+*Arguments*
+    c (int)
+        The cell (index).
+    v0 (int)
+        Index of the first vertex.
+    v1 (int)
+        Index of the second vertex.
+    v2 (int)
+        Index of the third vertex.
+    v3 (int)
+        Index of the fourth vertex.
+    v4 (int)
+        Index of the fifth vertex.
+    v5 (int)
+        Index of the sixth vertex.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
 Close mesh, finish editing, and order entities locally
+
+*Arguments*
+    order (bool)
+        Order entities locally if true. Default values is true.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=mesh, header=DynamicMeshEditor.h)
@@ -10204,35 +10573,75 @@ sub domains or boolean markers for mesh refinement.
 * MeshFunction\ **(mesh)**
 
   Create empty mesh function on given mesh
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh function on.
 
 * MeshFunction\ **(mesh, dim)**
 
   Create mesh function on given mesh of given dimension
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh function on.
+      dim (int)
+          The dimension.
 
 * MeshFunction\ **(mesh, dim, value)**
 
-  Create mesh function on given mesh of given dimension and initialise
+  Create mesh function on given mesh of given dimension and initialize
   to a value
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh function on.
+      dim (int)
+          The dimension.
+      value (T)
+          The value.
 
 * MeshFunction\ **(mesh, filename)**
 
   Create function from data file
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh function on.
+      filename (str)
+          The filename to create mesh function from.
 
 * MeshFunction\ **(f)**
 
   Copy constructor
+  
+  *Arguments*
+      f (MeshFunction<T>)
+          The object to be copied.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::mesh "
 Return mesh associated with mesh function
+
+*Returns*
+    :py:class:`Mesh`
+        The mesh.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::dim "
 Return topological dimension
+
+*Returns*
+    int
+        The dimension.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::size "
 Return size (number of entities)
+
+*Returns*
+    int
+        The size.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::values "
@@ -10240,11 +10649,19 @@ Return size (number of entities)
 
 * values\ **()**
 
-  Return array of values
+  Return array of values (const. version)
+  
+  *Returns*
+      T
+          The values.
 
 * values\ **()**
 
   Return array of values
+  
+  *Returns*
+      T
+          The values.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::operator[] "
@@ -10252,19 +10669,51 @@ Return size (number of entities)
 
 * operator[]\ **(entity)**
 
-  Return value at given entity
+  Return value at given mesh entity
+  
+  *Arguments*
+      entity (:py:class:`MeshEntity`)
+          The mesh entity.
+  
+  *Returns*
+      T
+          The value at the given entity.
 
 * operator[]\ **(entity)**
 
-  Return value at given entity (const version)
+  Return value at given mesh entity (const version)
+  
+  *Arguments*
+      entity (:py:class:`MeshEntity`)
+          The mesh entity.
+  
+  *Returns*
+      T
+          The value at the given entity.
 
 * operator[]\ **(index)**
 
   Return value at given index
+  
+  *Arguments*
+      index (int)
+          The index.
+  
+  *Returns*
+      T
+          The value at the given index.
 
 * operator[]\ **(index)**
 
   Return value at given index  (const version)
+  
+  *Arguments*
+      index (int)
+          The index.
+  
+  *Returns*
+      T
+          The value at the given index.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::operator= "
@@ -10285,30 +10734,70 @@ Return size (number of entities)
 * init\ **(dim)**
 
   Initialize mesh function for given topological dimension
+  
+  *Arguments*
+      dim (int)
+          The dimension.
 
 * init\ **(dim, size)**
 
   Initialize mesh function for given topological dimension of given size
+  
+  *Arguments*
+      dim (int)
+          The dimension.
+      size (int)
+          The size.
 
 * init\ **(mesh, dim)**
 
   Initialize mesh function for given topological dimension
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh.
+      dim (int)
+          The dimension.
 
 * init\ **(mesh, dim, size)**
 
   Initialize mesh function for given topological dimension of given size
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh.
+      dim (int)
+          The dimension.
+      size (int)
+          The size.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::set_all "
 Set all values to given value
+
+*Arguments*
+    value (T)
+        The value to set all values to.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::set "
 Set values
+
+*Arguments*
+    values (std::vector<T>)
+        The values.
 ";
 
 %feature("docstring")  dolfin::MeshFunction::str "
 Return informal string representation (pretty-print)
+
+*Arguments*
+    verbose (bool)
+        Flag to turn on additional output.
+
+*Returns*
+    str
+        An informal representation.
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
@@ -10653,10 +11142,27 @@ Create mesh of unit interval
 
 // Documentation extracted from: (module=mesh, header=Interval.h)
 %feature("docstring")  dolfin::Interval "
-Interval mesh of the 1D line (a,b).
+Interval mesh of the 1D line [a,b].
 Given the number of cells (nx) in the axial direction,
 the total number of intervals will be nx and the
 total number of vertices will be (nx + 1).
+";
+
+%feature("docstring")  dolfin::Interval::Interval "
+Constructor
+
+*Arguments*
+    nx (int)
+        The number of cells.
+    a (float)
+        The minimum point (inclusive).
+    b (float)
+        The maximum point (inclusive).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=mesh, header=UnitTriangle.h)
