@@ -842,7 +842,7 @@ This class represents a constant-valued expression.
   Copy constructor
   
   *Arguments*
-      constant (Constant)
+      constant (:py:class:`Constant`)
           Object to be copied.
 ";
 
@@ -854,8 +854,8 @@ This class represents a constant-valued expression.
   Assignment operator
   
   *Arguments*
-      constant (Constant)
-          Another Constant object.
+      constant (:py:class:`Constant`)
+          Another constant.
 
 * operator=\ **(constant)**
 
@@ -12073,19 +12073,14 @@ adaptive process.
 Create adaptive datum
 
 *Arguments*
-
     refinement_level (int)
         the number of refinements relative to coarset mesh
-
     num_dofs (int)
         dimension of discrete solution space
-
     num_cells (int)
         number of cells in mesh
-
     error_estimate (float)
         error estimate
-
     tolerance (float)
         error (or num_dofs) tolerance
 ";
@@ -12110,6 +12105,14 @@ Create adaptive datum
           Table to store in
 ";
 
+%feature("docstring")  dolfin::AdaptiveDatum::set_reference_value "
+Set reference value for goal functional
+
+*Arguments*
+    reference (float)
+        The value.
+";
+
 // Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver "
 An abstract class for goal-oriented adaptive solution of
@@ -12126,16 +12129,12 @@ variational problems.
   'control'
   
   *Arguments*
-  
       tol (float)
           The error tolerance
-  
       goal (:py:class:`Form`)
           The goal functional
-  
       control (:py:class:`ErrorControl`)
           The error controller
-  
 
 * solve\ **(tol, M)**
 
@@ -12144,23 +12143,18 @@ variational problems.
   ErrorControl object. Must be overloaded in subclass.
   
   *Arguments*
-  
       tol (float)
           The error tolerance
-  
       goal (:py:class:`GoalFunctional`)
           The goal functional
-  
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve_primal "
 Solve the primal problem. Must be overloaded in subclass.
 
 *Returns*
-
     :py:class:`Function`
         The solution to the primal problem
-
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::extract_bcs "
@@ -12168,38 +12162,30 @@ Extract the boundary conditions for the primal problem. Must
 be overloaded in subclass.
 
 *Returns*
-
-    std::vector<boost::shared_ptr<const BoundaryCondition> >
+    list of :py:class:`BoundaryCondition`
         The primal boundary conditions
-
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::evaluate_goal "
 Evaluate the goal functional. Must be overloaded in subclass.
 
 *Arguments*
-
    M (:py:class:`Form`)
        The functional to be evaluated
-
    u (:py:class:`Function`)
        The function of which to evaluate the functional
 
 *Returns*
-
     float
         The value of M evaluated at u
-
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::adapt_problem "
 Adapt the problem to other mesh. Must be overloaded in subclass.
 
 *Arguments*
-
    mesh (:py:class:`Mesh`)
        The other mesh
-
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::default_parameters "
@@ -12211,7 +12197,6 @@ Default parameter values:
     \"reference\"  (double)
     \"marking_strategy\"  (string)
     \"marking_fraction\"  (double)
-
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::stop "
@@ -12264,20 +12249,16 @@ problem and subsequent h-adaptivity.
   Create AdaptiveLinearVariationalSolver
   
   *Arguments*
-  
       problem (:py:class:`LinearVariationalProblem`)
           The primal problem
-  
 
 * AdaptiveLinearVariationalSolver\ **(problem)**
 
   Create AdaptiveLinearVariationalSolver
   
   *Arguments*
-  
       problem (:py:class:`LinearVariationalProblem`)
           The primal problem
-  
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve "
@@ -12286,61 +12267,48 @@ functional 'M' is less than the given tolerance using the
 GoalFunctional's ErrorControl object.
 
 *Arguments*
-
     tol (float)
         The error tolerance
-
     goal (:py:class:`GoalFunctional`)
         The goal functional
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve_primal "
 Solve the primal problem.
 
 *Returns*
-
     :py:class:`Function`
         The solution to the primal problem
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::extract_bcs "
 Extract the boundary conditions for the primal problem.
 
 *Returns*
-
-    std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >
+    list of :py:class:`BoundaryCondition`
         The primal boundary conditions
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::evaluate_goal "
 Evaluate the goal functional.
 
 *Arguments*
-
    M (:py:class:`Form`)
        The functional to be evaluated
-
    u (:py:class:`Function`)
        The function at which to evaluate the functional
 
 *Returns*
-
     float
         The value of M evaluated at u
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::adapt_problem "
 Adapt the problem to other mesh.
 
 *Arguments*
-
    mesh (:py:class:`Mesh`)
        The other mesh
-
 ";
 
 // Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
@@ -12377,20 +12345,16 @@ problem and subsequent h-adaptivity.
   Create AdaptiveNonlinearVariationalSolver
   
   *Arguments*
-  
       problem (:py:class:`NonlinearVariationalProblem`)
           The primal problem
-  
 
 * AdaptiveNonlinearVariationalSolver\ **(problem)**
 
   Create AdaptiveNonlinearVariationalSolver
   
   *Arguments*
-  
       problem (:py:class:`NonlinearVariationalProblem`)
           The primal problem
-  
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve "
@@ -12399,61 +12363,48 @@ functional 'M' is less than the given tolerance using the
 GoalFunctional's ErrorControl object.
 
 *Arguments*
-
     tol (float)
         The error tolerance
-
     goal (:py:class:`GoalFunctional`)
         The goal functional
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve_primal "
 Solve the primal problem.
 
 *Returns*
-
     :py:class:`Function`
         The solution to the primal problem
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::extract_bcs "
 Extract the boundary conditions for the primal problem.
 
 *Returns*
-
-    std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >
+    list of :py:class:`BoundaryCondition`
         The primal boundary conditions
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::evaluate_goal "
 Evaluate the goal functional.
 
 *Arguments*
-
    M (:py:class:`Form`)
        The functional to be evaluated
-
    u (:py:class:`Function`)
        The function at which to evaluate the functional
 
 *Returns*
-
     float
         The value of M evaluated at u
-
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::adapt_problem "
 Adapt the problem to other mesh.
 
 *Arguments*
-
    mesh (:py:class:`Mesh`)
        The other mesh
-
 ";
 
 // Documentation extracted from: (module=adaptivity, header=GoalFunctional.h)
@@ -12468,7 +12419,6 @@ Create :py:class:`GoalFunctional`
 *Arguments*
     rank (int)
         the rank of the functional (should be 0)
-
     num_coefficients (int)
         the number of coefficients in functional
 ";
@@ -12492,7 +12442,27 @@ ME Rognes and A Logg, 2010-2011.
 ";
 
 %feature("docstring")  dolfin::ErrorControl::ErrorControl "
-Create error control
+Create error control object
+
+*Arguments*
+    a_star (:py:class:`Form`)
+       the bilinear form for the dual problem
+    L_star (:py:class:`Form`)
+       the linear form for the dual problem
+    residual (:py:class:`Form`)
+       a functional for the residual (error estimate)
+    a_R_T (:py:class:`Form`)
+       the bilinear form for the strong cell residual problem
+    L_R_T (:py:class:`Form`)
+       the linear form for the strong cell residual problem
+    a_R_dT (:py:class:`Form`)
+       the bilinear form for the strong facet residual problem
+    L_R_dT (:py:class:`Form`)
+       the linear form for the strong facet residual problem
+    eta_T (:py:class:`Form`)
+       a linear form over DG_0 for error indicators
+    is_linear (bool)
+       true iff primal problem is linear
 ";
 
 %feature("docstring")  dolfin::ErrorControl::estimate_error "
@@ -12505,7 +12475,7 @@ solution.
     u (:py:class:`Function`)
        the primal approximation
 
-    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
+    bcs (list of :py:class:`BoundaryCondition`)
         the primal boundary conditions
 
 *Returns*
@@ -12575,7 +12545,7 @@ boundary conditions.
     z (:py:class:`Function`)
         the dual approximation (to be computed)
 
-    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
+    bcs (list of :py:class:`BoundaryCondition`)
         the primal boundary conditions
 ";
 
@@ -12586,7 +12556,7 @@ Compute extrapolation with boundary conditions
     z (:py:class:`Function`)
         the extrapolated function (to be computed)
 
-    bcs (std::vector<boost::shared_ptr<const :py:class:`BoundaryCondition`> >)
+    bcs (list of :py:class:`BoundaryCondition`)
         the dual boundary conditions
 ";
 
