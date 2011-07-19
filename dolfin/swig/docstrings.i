@@ -12085,6 +12085,14 @@ Create adaptive datum
         error (or num_dofs) tolerance
 ";
 
+%feature("docstring")  dolfin::AdaptiveDatum::operator= "
+Assignment operator
+
+*Arguments*
+    other (:py:class:`AdaptiveDatum`)
+        Another adaptive datum
+";
+
 %feature("docstring")  dolfin::AdaptiveDatum::store "
 **Overloaded versions**
 
@@ -12188,15 +12196,25 @@ Adapt the problem to other mesh. Must be overloaded in subclass.
        The other mesh
 ";
 
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::adaptive_data "
+Return stored adaptive data
+
+*Returns*
+   list of :py:class:`AdaptiveDatum`
+       The data stored in the adaptive loop
+";
+
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::default_parameters "
 Default parameter values:
 
-    \"max_iterations\" (int)
-    \"max_dimension\"  (int)
-    \"plot_mesh\"  (bool)
-    \"reference\"  (double)
-    \"marking_strategy\"  (string)
-    \"marking_fraction\"  (double)
+    \"max_iterations\"     (int)
+    \"max_dimension\"      (int)
+    \"plot_mesh\"          (bool)
+    \"save_data\"          (bool)
+    \"data_label\"         (std::string)
+    \"reference\"          (double)
+    \"marking_strategy\"   (std::string)
+    \"marking_fraction\"   (double)
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::stop "
@@ -12206,9 +12224,9 @@ Check if stopping criterion is satisfied
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
 **Overloaded versions**
 
-* summary\ (data, parameters)
+* summary\ ()
 
-  Present summary of all adaptive data
+  Present summary of all adaptive data and parameters
 
 * summary\ (data)
 
@@ -12656,6 +12674,10 @@ values will be cleared.
 
 %feature("docstring")  dolfin::TimeSeries::TimeSeries "
 Create empty time series
+
+*Arguments*
+    name (str)
+        The time series name
 ";
 
 %feature("docstring")  dolfin::TimeSeries::store "
@@ -12664,10 +12686,22 @@ Create empty time series
 * store\ (vector, t)
 
   Store vector at given time
+  
+  *Arguments*
+      vector (:py:class:`GenericVector`)
+          The vector to be stored.
+      t (float)
+          The time.
 
 * store\ (mesh, t)
 
   Store mesh at given time
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to be stored.
+      t (float)
+          The time.
 ";
 
 %feature("docstring")  dolfin::TimeSeries::retrieve "
@@ -12676,18 +12710,41 @@ Create empty time series
 * retrieve\ (vector, t, interpolate=true)
 
   Retrieve vector at given time
+  
+  *Arguments*
+      vector (:py:class:`GenericVector`)
+          The vector (values to be retrieved).
+      t (float)
+          The time.
+      interpolate (bool)
+          Optional argument: If true (default), interpolate
+          time samples closest to t if t is not present.
 
 * retrieve\ (mesh, t)
 
   Retrieve mesh at given time
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh (values to be retrieved).
+      t (float)
+          The time.
 ";
 
 %feature("docstring")  dolfin::TimeSeries::vector_times "
 Return array of sample times for vectors
+
+*Returns*
+    numpy.array(float)
+        The times.
 ";
 
 %feature("docstring")  dolfin::TimeSeries::mesh_times "
 Return array of sample times for meshes
+
+*Returns*
+    numpy.array(float)
+        The times.
 ";
 
 %feature("docstring")  dolfin::TimeSeries::clear "
@@ -12696,10 +12753,32 @@ Clear time series
 
 %feature("docstring")  dolfin::TimeSeries::filename_data "
 Return filename for data
+
+*Arguments*
+    series_name (str)
+        The time series name
+    type_name (str)
+        The type of data
+    index (int)
+        The index
+
+*Returns*
+    str
+        The filename
 ";
 
 %feature("docstring")  dolfin::TimeSeries::filename_times "
 Return filename for times
+
+*Arguments*
+    series_name (str)
+        The time series name
+    type_name (str)
+        The type of data
+
+*Returns*
+    str
+        The filename
 ";
 
 %feature("docstring")  dolfin::TimeSeries::str "
