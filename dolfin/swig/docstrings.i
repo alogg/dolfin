@@ -283,17 +283,6 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ (V, x)
-
-  Create function on given function space with a given vector (used by
-  Python interface)
-  
-  *Arguments*
-      V (:py:class:`FunctionSpace`)
-          The function space.
-      x (:py:class:`GenericVector`)
-          The vector.
-
 * Function\ (V, filename)
 
   Create function from vector of dofs stored to file
@@ -12083,14 +12072,6 @@ Create adaptive datum
         error estimate
     tolerance (float)
         error (or num_dofs) tolerance
-";
-
-%feature("docstring")  dolfin::AdaptiveDatum::operator= "
-Assignment operator
-
-*Arguments*
-    other (:py:class:`AdaptiveDatum`)
-        Another adaptive datum
 ";
 
 %feature("docstring")  dolfin::AdaptiveDatum::store "
