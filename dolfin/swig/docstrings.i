@@ -2198,19 +2198,19 @@ Apply (add) point source to right-hand side vector
 
   Solve nonlinear variational problem F(u; v) == 0 without boundary
   conditions. The argument J should provide the Jacobian bilinear
-  form F' = dF/du.
+  form J = dF/du.
 
 * solve\ (equation, u, bc, J)
 
   Solve nonlinear variational problem F(u; v) == 0 with a single
   boundary condition. The argument J should provide the Jacobian
-  bilinear form F' = dF/du.
+  bilinear form J = dF/du.
 
 * solve\ (equation, u, bcs, J)
 
   Solve nonlinear variational problem F(u; v) == 0 with a list of
-  boundary conditions.The argument J should provide the Jacobian
-  bilinear form F'.
+  boundary conditions. The argument J should provide the Jacobian
+  bilinear form J = dF/du.
 ";
 
 // Documentation extracted from: (module=fem, header=Form.h)
@@ -2669,19 +2669,9 @@ where V is the trial space and V^ is the test space.
 
   Create linear variational problem without boundary conditions
 
-* LinearVariationalProblem\ (a, L, u)
-
-  Create linear variational problem without boundary conditions
-  (shared pointer version)
-
 * LinearVariationalProblem\ (a, L, u, bc)
 
   Create linear variational problem with a single boundary condition
-
-* LinearVariationalProblem\ (a, L, u, bc)
-
-  Create linear variational problem with a single boundary condition
-  (shared pointer version)
 
 * LinearVariationalProblem\ (a, L, u, bcs)
 
@@ -2764,32 +2754,53 @@ where V is the trial space and V^ is the test space.
 %feature("docstring")  dolfin::NonlinearVariationalProblem::NonlinearVariationalProblem "
 **Overloaded versions**
 
-* NonlinearVariationalProblem\ (F, rhs, u)
+* NonlinearVariationalProblem\ (F, u)
 
-  Create nonlinear variational problem without boundary conditions
+  Create nonlinear variational problem without boundary conditions.
+  The Jacobian form is not specified which requires the use of a
+  nonlinear solver that does not rely on the Jacobian.
 
-* NonlinearVariationalProblem\ (F, rhs, u)
+* NonlinearVariationalProblem\ (F, u, J)
 
-  Create nonlinear variational problem without boundary conditions
-  (shared pointer version)
+  Create nonlinear variational problem without boundary conditions.
+  The Jacobian form is specified which allows the use of a nonlinear
+  solver that relies on the Jacobian (using Newton's method).
 
-* NonlinearVariationalProblem\ (F, rhs, u, bc)
+* NonlinearVariationalProblem\ (F, u, bc)
 
-  Create nonlinear variational problem with a single boundary condition
+  Create nonlinear variational problem with a single boundary condition.
+  The Jacobian form is not specified which requires the use of a
+  nonlinear solver that does not rely on the Jacobian.
 
-* NonlinearVariationalProblem\ (F, rhs, u, bc)
+* NonlinearVariationalProblem\ (F, u, bc, J)
 
-  Create nonlinear variational problem with a single boundary condition
-  (shared pointer version)
+  Create nonlinear variational problem with a single boundary condition.
+  The Jacobian form is specified which allows the use of a nonlinear
+  solver that relies on the Jacobian (using Newton's method).
 
-* NonlinearVariationalProblem\ (F, rhs, u, bcs)
+* NonlinearVariationalProblem\ (F, u, bcs)
 
-  Create nonlinear variational problem with a list of boundary conditions
+  Create nonlinear variational problem with a list of boundary conditions.
+  The Jacobian form is not specified which requires the use of a
+  nonlinear solver that does not rely on the Jacobian.
 
-* NonlinearVariationalProblem\ (F, rhs, u, bcs)
+* NonlinearVariationalProblem\ (F, u, bcs, J)
 
-  Create nonlinear variational problem with a list of boundary conditions
-  (shared pointer version)
+  Create nonlinear variational problem with a list of boundary conditions.
+  The Jacobian form is specified which allows the use of a nonlinear
+  solver that relies on the Jacobian (using Newton's method).
+
+* NonlinearVariationalProblem\ (F, u, bcs)
+
+  Create nonlinear variational problem, shared pointer version.
+  The Jacobian form is not specified which requires the use of a
+  nonlinear solver that does not rely on the Jacobian.
+
+* NonlinearVariationalProblem\ (F, u, bcs, J)
+
+  Create nonlinear variational problem, shared pointer version.
+  The Jacobian form is specified which allows the use of a nonlinear
+  solver that relies on the Jacobian (using Newton's method).
 ";
 
 %feature("docstring")  dolfin::NonlinearVariationalProblem::residual_form "
@@ -2822,18 +2833,6 @@ Return trial space
 
 %feature("docstring")  dolfin::NonlinearVariationalProblem::test_space "
 Return test space
-";
-
-%feature("docstring")  dolfin::NonlinearVariationalProblem::set_jacobian "
-**Overloaded versions**
-
-* set_jacobian\ (J)
-
-  Set Jacobian form
-
-* set_jacobian\ (J)
-
-  Set Jacobian form (shared pointer version)
 ";
 
 %feature("docstring")  dolfin::NonlinearVariationalProblem::has_jacobian "
@@ -8128,8 +8127,8 @@ Facet orientation (used for assembly over interior facets)
 
 Boundary extraction
 
-  * \"vertex map\" - :py:class:`MeshFunction` <uint> of dimension 0
-  * \"cell map\"   - :py:class:`MeshFunction` <uint> of dimension D
+  * (removed, is now a member function of BoundaryMesh) \"vertex map\" - :py:class:`MeshFunction` <uint> of dimension 0
+  * (removed, is now a member function of BoundaryMesh) \"cell map\"   - :py:class:`MeshFunction` <uint> of dimension D
 
 
 Mesh partitioning
@@ -8365,87 +8364,6 @@ Return informal string representation (pretty-print)
 *Returns*
     str
         An informal representation.
-";
-
-// Documentation extracted from: (module=mesh, header=IntersectionOperator.h)
-%feature("docstring")  dolfin::IntersectionOperator::IntersectionOperator "
-Create intersection detector for the mesh \em mesh.
-@param kernel_type The CGAL geometric kernel is used to compute predicates,
-intersections and such. Depending on this choice the kernel
-(kernel_type = \"ExcactPredicates\") can compute predicates excactly
-(without roundoff error) or only approximately (default, kernel_type =
-\"SimpleCartesian\").
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::all_intersected_entities "
-**Overloaded versions**
-
-* all_intersected_entities\ (point, ids_result)
-
-  Compute all id of all cells which are intersects by a \em point.
-  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-
-* all_intersected_entities\ (points, ids_result)
-
-  Compute all id of all cells which are intersects any point in \em points.
-  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-
-* all_intersected_entities\ (entity, ids_result)
-
-  Compute all id of all cells which are intersects by a \em entity.
-  \param[out] ids_result The ids of the intersected entities are saved in a vector.
-  This allows is more efficent than using a set and allows a map between
-  the (external) cell and the intersected cell of the mesh. If you
-  are only interested in intersection with a list of cells without caring about which
-  cell what intersected by which one, use
-  void IntersectionOperator::all_intersected_entities(const std::vector<Cell> &, uint_set &) const;
-  @internal
-  @todo This function has to improved: 1) it requires the object the
-  mesh is to be cut with to be another mesh entitiy instead of being just a
-  kind of geometric object. 2) Requires a runtime switch 3) would require a
-  implementation for each geometric  primitive if they have no common base
-  class.
-
-* all_intersected_entities\ (entities, ids_result)
-
-  Compute all id of all cells which are intersects by any of the entities in \em entities. This
-  \param[out] ids_result The ids of the intersected set are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-
-* all_intersected_entities\ (another_mesh, ids_result)
-
-  Compute all id of all cells which are intersects by the given mesh \em another_mesh;
-  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
-  reasons, to avoid to sort out duplicates later on.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::any_intersected_entity "
-Computes only the first id of the entity, which contains the point. Returns -1 if no cell is intersected.
-@internal @remark This makes the function evaluation significantly faster.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::closest_point "
-Computes the point inside the mesh which is closest to the point query.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::closest_cell "
-Computes the index of the cell inside the mesh which are closest to the point query.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::closest_point_and_cell "
-Computes the point inside the mesh and the corresponding cell index
-that are closest to the point query.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
-Rebuilds the underlying search structure from scratch and uses
-the kernel kernel_type underlying CGAL Geometry kernel.
-";
-
-%feature("docstring")  dolfin::IntersectionOperator::clear "
-Clears search structure. Should be used if the mesh has changed
 ";
 
 // Documentation extracted from: (module=mesh, header=Mesh.h)
@@ -10053,42 +9971,6 @@ Create cell on mesh corresponding to given facet (cell) on boundary
 Return local index of facet with respect to the cell
 ";
 
-// Documentation extracted from: (module=mesh, header=PrimitiveIntersector.h)
-%feature("docstring")  dolfin::PrimitiveIntersector "
-This class implements an intersection detection, detecting
-whether two given (arbitrary) meshentities intersect.
-";
-
-%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect "
-**Overloaded versions**
-
-* do_intersect\ (entity_1, entity_2)
-
-  Computes whether two mesh entities intersect using an inexact
-  geometry kernel which is fast but may suffer from floating
-  point precision
-
-* do_intersect\ (entity_1, point)
-
-  Computes whether a mesh entity and point intersect using an
-  inexact geometry kernel which is fast but may suffer from
-  floating point precision
-";
-
-%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect_exact "
-**Overloaded versions**
-
-* do_intersect_exact\ (entity_1, entity_2)
-
-  Computes whether two mesh entities intersect using an exact
-  geometry kernel which is slow but always correct
-
-* do_intersect_exact\ (entity_1, point)
-
-  Computes whether a mesh entity and point intersect using an
-  exact geometry kernel which is slow but always correct
-";
-
 // Documentation extracted from: (module=mesh, header=MeshConnectivity.h)
 %feature("docstring")  dolfin::MeshConnectivity "
 Mesh connectivity stores a sparse data structure of connections
@@ -10892,8 +10774,6 @@ Convert coloring type to topological dimension
 This class implements renumbering algorithms for meshes.
 ";
 
-// Documentation extracted from: (module=mesh, header=MeshPrimitive.h)
-// Documentation extracted from: (module=mesh, header=PrimitiveTraits.h)
 // Documentation extracted from: (module=mesh, header=LocalMeshData.h)
 %feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
 **Overloaded versions**
@@ -11089,6 +10969,14 @@ Initialize exterior boundary of given mesh
 
 %feature("docstring")  dolfin::BoundaryMesh::init_interior_boundary "
 Initialize interior boundary of given mesh
+";
+
+%feature("docstring")  dolfin::BoundaryMesh::cell_map "
+Get cell mapping from the boundary mesh to the original full mesh
+";
+
+%feature("docstring")  dolfin::BoundaryMesh::vertex_map "
+Get vertex mapping from the boundary mesh to the original full mesh
 ";
 
 // Documentation extracted from: (module=mesh, header=UnitTetrahedron.h)
@@ -12894,6 +12782,125 @@ Mark cells using Dorfler marking
   boundary conditions
 ";
 
+// Documentation extracted from: (module=intersection, header=IntersectionOperator.h)
+%feature("docstring")  dolfin::IntersectionOperator::IntersectionOperator "
+Create intersection detector for the mesh \em mesh.
+@param kernel_type The CGAL geometric kernel is used to compute predicates,
+intersections and such. Depending on this choice the kernel
+(kernel_type = \"ExcactPredicates\") can compute predicates excactly
+(without roundoff error) or only approximately (default, kernel_type =
+\"SimpleCartesian\").
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::all_intersected_entities "
+**Overloaded versions**
+
+* all_intersected_entities\ (point, ids_result)
+
+  Compute all id of all cells which are intersects by a \em point.
+  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
+
+* all_intersected_entities\ (points, ids_result)
+
+  Compute all id of all cells which are intersects any point in \em points.
+  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
+
+* all_intersected_entities\ (entity, ids_result)
+
+  Compute all id of all cells which are intersects by a \em entity.
+  \param[out] ids_result The ids of the intersected entities are saved in a vector.
+  This allows is more efficent than using a set and allows a map between
+  the (external) cell and the intersected cell of the mesh. If you
+  are only interested in intersection with a list of cells without caring about which
+  cell what intersected by which one, use
+  void IntersectionOperator::all_intersected_entities(const std::vector<Cell> &, uint_set &) const;
+  @internal
+  @todo This function has to improved: 1) it requires the object the
+  mesh is to be cut with to be another mesh entitiy instead of being just a
+  kind of geometric object. 2) Requires a runtime switch 3) would require a
+  implementation for each geometric  primitive if they have no common base
+  class.
+
+* all_intersected_entities\ (entities, ids_result)
+
+  Compute all id of all cells which are intersects by any of the entities in \em entities. This
+  \param[out] ids_result The ids of the intersected set are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
+
+* all_intersected_entities\ (another_mesh, ids_result)
+
+  Compute all id of all cells which are intersects by the given mesh \em another_mesh;
+  \param[out] ids_result The ids of the intersected entities are saved in a set for efficienty
+  reasons, to avoid to sort out duplicates later on.
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::any_intersected_entity "
+Computes only the first id of the entity, which contains the point. Returns -1 if no cell is intersected.
+@internal @remark This makes the function evaluation significantly faster.
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::closest_point "
+Computes the point inside the mesh which is closest to the point query.
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::closest_cell "
+Computes the index of the cell inside the mesh which are closest to the point query.
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::closest_point_and_cell "
+Computes the point inside the mesh and the corresponding cell index
+that are closest to the point query.
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
+Rebuilds the underlying search structure from scratch and uses
+the kernel kernel_type underlying CGAL Geometry kernel.
+";
+
+%feature("docstring")  dolfin::IntersectionOperator::clear "
+Clears search structure. Should be used if the mesh has changed
+";
+
+// Documentation extracted from: (module=intersection, header=PrimitiveIntersector.h)
+%feature("docstring")  dolfin::PrimitiveIntersector "
+This class implements an intersection detection, detecting
+whether two given (arbitrary) meshentities intersect.
+";
+
+%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect "
+**Overloaded versions**
+
+* do_intersect\ (entity_1, entity_2)
+
+  Computes whether two mesh entities intersect using an inexact
+  geometry kernel which is fast but may suffer from floating
+  point precision
+
+* do_intersect\ (entity_1, point)
+
+  Computes whether a mesh entity and point intersect using an
+  inexact geometry kernel which is fast but may suffer from
+  floating point precision
+";
+
+%feature("docstring")  dolfin::PrimitiveIntersector::do_intersect_exact "
+**Overloaded versions**
+
+* do_intersect_exact\ (entity_1, entity_2)
+
+  Computes whether two mesh entities intersect using an exact
+  geometry kernel which is slow but always correct
+
+* do_intersect_exact\ (entity_1, point)
+
+  Computes whether a mesh entity and point intersect using an
+  exact geometry kernel which is slow but always correct
+";
+
+// Documentation extracted from: (module=intersection, header=PrimitiveTraits.h)
+// Documentation extracted from: (module=intersection, header=MeshPrimitive.h)
 // Documentation extracted from: (module=parameter, header=Parameter.h)
 %feature("docstring")  dolfin::Parameter "
 Base class for parameters.
