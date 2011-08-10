@@ -8868,81 +8868,68 @@ Snap boundary vertices of mesh to match given sub domain.
           The colors as a mesh function over entities of the mesh.
 ";
 
-%feature("docstring")  dolfin::Mesh::all_intersected_entities "
+%feature("docstring")  dolfin::Mesh::intersected_cells "
 **Overloaded versions**
 
-* all_intersected_entities\ (point, ids_result)
+* intersected_cells\ (point, cells)
 
-  Compute all ids of all cells which are intersected by the
-  given point.
+  Compute all cells which are intersected by the given point.
   
   *Arguments*
       point (:py:class:`Point`)
           A :py:class:`Point` object.
   
-      ids_result (set of int)
-          The cell ids which are intersected are stored in a set for
-          efficiency reasons, to avoid to sort out duplicates later on.
+      cells (set of int)
+          A set of indices of all intersected cells.
 
-* all_intersected_entities\ (points, ids_result)
+* intersected_cells\ (points, cells)
 
-  Compute all ids of all cells which are intersected by any
-  point in points.
+  Compute all cells which are intersected by any of a vector of points.
   
   *Arguments*
       points (list of :py:class:`Point`)
           A vector of :py:class:`Point` objects.
   
-      ids_result (set of int)
-          The cell ids which are intersected are stored in a set
-          for efficiency reasons, to avoid to sort out
-          duplicates later on.
+      cells (set of int)
+          A set of indices of all intersected cells.
 
-* all_intersected_entities\ (entity, ids_result)
+* intersected_cells\ (entity, cells)
 
-  Compute all ids of all cells which are intersected by the given
-  entity.
+  Compute all cells which are intersected by the given entity.
   
   *Arguments*
       entity (:py:class:`MeshEntity`)
           A :py:class:`MeshEntity` object.
   
-      ids_result (numpy.array(int))
-          The ids of the intersected cells are saved in a list.
-          This is more efficent than using a set and allows a
-          map between the (external) cell and the intersected
-          cell of the mesh.
+      cells (numpy.array(int))
+          A vector of indices of all intersected cells.
 
-* all_intersected_entities\ (entities, ids_result)
+* intersected_cells\ (entities, ids_result)
 
-  Compute all id of all cells which are intersected by any entity in the
-  vector entities.
+  Compute all cells which are intersected by any of a vector of entities.
   
   *Arguments*
       entities (list of :py:class:`MeshEntity`)
           A vector of :py:class:`MeshEntity` objects.
   
-      ids_result (set of int)
-          The cell ids which are intersected are stored in a set for
-          efficiency reasons, to avoid to sort out duplicates later on.
+      cells (set of int)
+          A vector of indices of all intersected cells.
 
-* all_intersected_entities\ (another_mesh, ids_result)
+* intersected_cells\ (mesh, cells)
 
-  Compute all ids of all cells which are intersected by
-  another_mesh.
+  Compute all cells which are intersected by the given mesh.
   
   *Arguments*
-      another_mesh (:py:class:`Mesh`)
+      mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
   
-      ids_result (set of int)
-          The cell ids which are intersected are stored in a set for
-          efficiency reasons, to avoid to sort out duplicates later on.
+      cells (set of int)
+          A set of indices of all intersected cells.
 ";
 
-%feature("docstring")  dolfin::Mesh::any_intersected_entity "
-Computes only the first id of the entity, which contains the
-point.
+%feature("docstring")  dolfin::Mesh::intersected_cell "
+Find the cell (if any) containing the given point. If the point
+is contained in several cells, the first cell is returned.
 
 *Arguments*
     point (:py:class:`Point`)
@@ -8950,13 +8937,12 @@ point.
 
 *Returns*
     int
-        The first id of the cell, which contains the point,
-        returns -1 if no cell is intersected.
+        The index of the cell containing the point. If no cell
+        is found, the return value is -1.
 ";
 
 %feature("docstring")  dolfin::Mesh::closest_point "
-Computes the point inside the mesh and the corresponding cell
-index which are closest to the point query.
+Find the point in the mesh closest to the given point.
 
 *Arguments*
     point (:py:class:`Point`)
@@ -8964,13 +8950,11 @@ index which are closest to the point query.
 
 *Returns*
     :py:class:`Point`
-        The point inside the mesh which is closest to the
-        point.
+        The closest point.
 ";
 
 %feature("docstring")  dolfin::Mesh::closest_cell "
-Computes the index of the cell in the mesh which is closest to the
-point query.
+Find the cell in the mesh closest to the given point.
 
 *Arguments*
     point (:py:class:`Point`)
@@ -8978,7 +8962,7 @@ point query.
 
 *Returns*
     int
-        The index of the cell in the mesh which is closest to point.
+        The index of the closest cell.
 
 *Example*
     .. code-block:: python
@@ -8990,8 +8974,7 @@ point query.
 ";
 
 %feature("docstring")  dolfin::Mesh::closest_point_and_cell "
-Computes the point inside the mesh and the corresponding cell
-index which are closest to the point query.
+Find the point and corresponding cell closest to the given point.
 
 *Arguments*
     point (:py:class:`Point`)
@@ -8999,8 +8982,7 @@ index which are closest to the point query.
 
 *Returns*
     Swig Object< std::pair<:py:class:`Point`, int> >
-        The point inside the mesh and the corresponding cell
-        index which is closest to the point query.
+        A pair consisting of the closest point and corresponding cell index.
 ";
 
 %feature("docstring")  dolfin::Mesh::hmin "
@@ -12815,7 +12797,7 @@ intersections and such. Depending on this choice the kernel
   the (external) cell and the intersected cell of the mesh. If you
   are only interested in intersection with a list of cells without caring about which
   cell what intersected by which one, use
-  void IntersectionOperator::all_intersected_entities(const std::vector<Cell> &, uint_set &) const;
+  void IntersectionOperator::all_intersected_entities(const std::vector<Cell> &, std::set<uint> &) const;
   @internal
   @todo This function has to improved: 1) it requires the object the
   mesh is to be cut with to be another mesh entitiy instead of being just a
