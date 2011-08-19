@@ -11987,8 +11987,16 @@ Default parameter values:
     \"marking_fraction\"   (double)
 ";
 
-%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::stop "
-Check if stopping criterion is satisfied
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
+Present summary of all adaptive data and parameters
+";
+
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::num_dofs_primal "
+Return the number of degrees of freedom for primal problem
+
+*Returns*
+    _uint_
+        The number of degrees of freedom
 ";
 
 // Documentation extracted from: (module=adaptivity, header=AdaptiveLinearVariationalSolver.h)
@@ -12087,6 +12095,14 @@ Adapt the problem to other mesh.
        The other mesh
 ";
 
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::num_dofs_primal "
+Return the number of degrees of freedom for primal problem
+
+*Returns*
+    _uint_
+        The number of degrees of freedom
+";
+
 // Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver "
 A class for goal-oriented adaptive solution of nonlinear
@@ -12181,6 +12197,14 @@ Adapt the problem to other mesh.
 *Arguments*
    mesh (:py:class:`Mesh`)
        The other mesh
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::num_dofs_primal "
+Return the number of degrees of freedom for primal problem
+
+*Returns*
+    _uint_
+        The number of degrees of freedom
 ";
 
 // Documentation extracted from: (module=adaptivity, header=GoalFunctional.h)
