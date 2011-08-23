@@ -876,18 +876,6 @@ Constructor
 Evaluate function
 ";
 
-%feature("docstring")  dolfin::CellSize "
-This Function represents the local cell size on a given mesh.
-";
-
-%feature("docstring")  dolfin::CellSize::CellSize "
-Constructor
-";
-
-%feature("docstring")  dolfin::CellSize::eval "
-Evaluate function
-";
-
 %feature("docstring")  dolfin::FacetArea "
 This function represents the area/length of a cell facet on a given mesh.
 ";
@@ -8103,7 +8091,10 @@ entities, arrays or maps. Each dataset is identified by a unique
 user-specified string. Only uint-valued data are currently
 supported.
 
-The following named mesh data are recognized by DOLFIN:
+Auxiliary mesh data may be attached to a mesh by users as a
+convenient way to store data associated with a mesh. It is also
+used internally by DOLFIN to communicate data associated with
+meshes. The following named mesh data are recognized by DOLFIN:
 
 Boundary indicators
 
@@ -8112,43 +8103,21 @@ Boundary indicators
   * \"boundary_indicators\"    -  :py:class:`Array` <uint> of size num_facets
   * \"material_indicators\"    -  :py:class:`MeshFunction` <uint> of dimension D
 
-
 Subdomain indicators
 
   * \"cell_domains\"           - :py:class:`MeshFunction` <uint> of dimension D
   * \"interior_facet_domains\" - :py:class:`MeshFunction` <uint> of dimension D - 1
   * \"exterior_facet_domains\" - :py:class:`MeshFunction` <uint> of dimension D - 1
 
-
 Facet orientation (used for assembly over interior facets)
 
-  * \"facet orientation\" - :py:class:`MeshFunction` <uint> of dimension D - 1
+  * \"facet_orientation\"      - :py:class:`MeshFunction` <uint> of dimension D - 1
 
+Sub meshes (used by the class SubMesh)
 
-Boundary extraction
+  * \"global_vertex_indices\"  - :py:class:`MeshFunction` <uint> of dimension 0
 
-  * (removed, is now a member function of BoundaryMesh) \"vertex map\" - :py:class:`MeshFunction` <uint> of dimension 0
-  * (removed, is now a member function of BoundaryMesh) \"cell map\"   - :py:class:`MeshFunction` <uint> of dimension D
-
-
-Mesh partitioning
-
-  * (moved to ParallelData) \"global entity indices %d\" - :py:class:`MeshFunction` <uint> of dimension 0, 1, ..., D
-  * (moved to ParallelData) \"exterior facets\"          - :py:class:`MeshFunction` <uint> of dimension D - 1
-  * (moved to ParallelData) \"num global entities\"      - :py:class:`Array` <uint> of size D + 1
-  * (moved to ParallelData) \"overlap\"                  - vector mapping
-
-
-Sub meshes
-
-  * \"global vertex indices\" - :py:class:`MeshFunction` <uint> of dimension 0
-
-
-Mesh
-
-  * \"colors-%D-%d-%1\"   - :py:class:`MeshFunction` <uint> of dimension D with colors based on connectivity %d
-  * \"num colored cells\" - :py:class:`Array` <uint> listing the number of cells of each color
-  * \"colored cells %d\"  - :py:class:`Array` <uint> of cell indices with colors 0, 1, 2, ...
+Note to developers: use underscore in names in place of spaces.
 ";
 
 %feature("docstring")  dolfin::MeshData::MeshData "
@@ -8904,7 +8873,7 @@ Snap boundary vertices of mesh to match given sub domain.
       cells (numpy.array(int))
           A vector of indices of all intersected cells.
 
-* intersected_cells\ (entities, ids_result)
+* intersected_cells\ (entities, cells)
 
   Compute all cells which are intersected by any of a vector of entities.
   
@@ -11922,56 +11891,6 @@ Check if file exists
         True if the file exists.
 ";
 
-// Documentation extracted from: (module=adaptivity, header=AdaptiveDatum.h)
-%feature("docstring")  dolfin::AdaptiveDatum "
-An :py:class:`AdaptiveDatum` is a storage unit for data created in an
-adaptive process.
-";
-
-%feature("docstring")  dolfin::AdaptiveDatum::AdaptiveDatum "
-Create adaptive datum
-
-*Arguments*
-    refinement_level (int)
-        the number of refinements relative to coarset mesh
-    num_dofs (int)
-        dimension of discrete solution space
-    num_cells (int)
-        number of cells in mesh
-    error_estimate (float)
-        error estimate
-    tolerance (float)
-        error (or num_dofs) tolerance
-";
-
-%feature("docstring")  dolfin::AdaptiveDatum::store "
-**Overloaded versions**
-
-* store\ (filename)
-
-  Store adaptive datum to file
-  
-  *Arguments*
-      filename (str)
-          Name of file to store in
-
-* store\ (table)
-
-  Store adaptive datum to :py:class:`Table`.
-  
-  *Arguments*
-      table (:py:class:`Table`)
-          Table to store in
-";
-
-%feature("docstring")  dolfin::AdaptiveDatum::set_reference_value "
-Set reference value for goal functional
-
-*Arguments*
-    reference (float)
-        The value.
-";
-
 // Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver "
 An abstract class for goal-oriented adaptive solution of
@@ -12051,7 +11970,7 @@ Adapt the problem to other mesh. Must be overloaded in subclass.
 Return stored adaptive data
 
 *Returns*
-   list of :py:class:`AdaptiveDatum`
+   list of :py:class:`Parameters`
        The data stored in the adaptive loop
 ";
 
@@ -12068,20 +11987,16 @@ Default parameter values:
     \"marking_fraction\"   (double)
 ";
 
-%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::stop "
-Check if stopping criterion is satisfied
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
+Present summary of all adaptive data and parameters
 ";
 
-%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::summary "
-**Overloaded versions**
+%feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::num_dofs_primal "
+Return the number of degrees of freedom for primal problem
 
-* summary\ ()
-
-  Present summary of all adaptive data and parameters
-
-* summary\ (data)
-
-  Present summary of single adaptive datum
+*Returns*
+    _uint_
+        The number of degrees of freedom
 ";
 
 // Documentation extracted from: (module=adaptivity, header=AdaptiveLinearVariationalSolver.h)
@@ -12180,6 +12095,14 @@ Adapt the problem to other mesh.
        The other mesh
 ";
 
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::num_dofs_primal "
+Return the number of degrees of freedom for primal problem
+
+*Returns*
+    _uint_
+        The number of degrees of freedom
+";
+
 // Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver "
 A class for goal-oriented adaptive solution of nonlinear
@@ -12274,6 +12197,14 @@ Adapt the problem to other mesh.
 *Arguments*
    mesh (:py:class:`Mesh`)
        The other mesh
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::num_dofs_primal "
+Return the number of degrees of freedom for primal problem
+
+*Returns*
+    _uint_
+        The number of degrees of freedom
 ";
 
 // Documentation extracted from: (module=adaptivity, header=GoalFunctional.h)
