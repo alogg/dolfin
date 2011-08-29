@@ -2846,6 +2846,11 @@ This class implements a solver for nonlinear variational problems.
 
 %feature("docstring")  dolfin::NonlinearVariationalSolver::solve "
 Solve variational problem
+
+*Returns*
+    (int, bool)
+        Pair of number of Newton iterations, and whether
+        iteration converged)
 ";
 
 %feature("docstring")  dolfin::NonlinearVariationalSolver::default_parameters "
@@ -3331,6 +3336,10 @@ Set operator (matrix)
 // Documentation extracted from: (module=la, header=GenericTensor.h)
 %feature("docstring")  dolfin::GenericTensor "
 This class defines a common interface for arbitrary rank tensors.
+";
+
+%feature("docstring")  dolfin::GenericTensor::distributed "
+Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::GenericTensor::init "
@@ -4093,6 +4102,10 @@ inlined to avoid link errors.
   Create matrix from given uBLAS matrix expression
 ";
 
+%feature("docstring")  dolfin::uBLASMatrix::distributed "
+Return true if tensor is distributed
+";
+
 %feature("docstring")  dolfin::uBLASMatrix::init "
 Initialize zero tensor using sparsity pattern
 ";
@@ -4310,6 +4323,10 @@ use the standard PETSc interface.
 * PETScMatrix\ (A)
 
   Create matrix from given PETSc Mat pointer
+";
+
+%feature("docstring")  dolfin::PETScMatrix::distributed "
+Return true if matrix is distributed
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::init "
@@ -4630,6 +4647,10 @@ use the standard Epetra interface.
   Create matrix from given Epetra_CrsGraph
 ";
 
+%feature("docstring")  dolfin::EpetraMatrix::distributed "
+Return true if matrix is distributed
+";
+
 %feature("docstring")  dolfin::EpetraMatrix::init "
 **Overloaded versions**
 
@@ -4773,6 +4794,10 @@ and use the standard Epetra interface.
 * EpetraVector\ (map)
 
   Create vector from given Epetra_BlockMap
+";
+
+%feature("docstring")  dolfin::EpetraVector::distributed "
+Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::EpetraVector::copy "
@@ -5296,6 +5321,10 @@ Default parameter values
   Create M x N matrix with estimate of nonzeroes per row
 ";
 
+%feature("docstring")  dolfin::MTL4Matrix::distributed "
+Return true if matrix is distributed
+";
+
 %feature("docstring")  dolfin::MTL4Matrix::init "
 Initialize zero tensor using sparsity pattern
 ";
@@ -5435,8 +5464,12 @@ be the fastest.
   Copy constructor
 ";
 
-%feature("docstring")  dolfin::STLMatrix::init "
+%feature("docstring")  dolfin::STLMatrix::distributed "
 --- Implementation of the GenericTensor interface ---
+Return true if matrix is distributed
+";
+
+%feature("docstring")  dolfin::STLMatrix::init "
 Initialize zero tensor using sparsity pattern
 ";
 
@@ -5569,6 +5602,10 @@ http://www.boost.org/libs/numeric/ublas/doc/index.htm.
 * uBLASVector\ (x)
 
   Construct vector from a ublas_vector
+";
+
+%feature("docstring")  dolfin::uBLASVector::distributed "
+Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::uBLASVector::copy "
@@ -5814,6 +5851,10 @@ use the standard PETSc interface.
   Create vector from given PETSc Vec pointer
 ";
 
+%feature("docstring")  dolfin::PETScVector::distributed "
+Return true if tensor is distributed
+";
+
 %feature("docstring")  dolfin::PETScVector::copy "
 Return copy of tensor
 ";
@@ -6009,6 +6050,10 @@ Return shared_ptr to PETSc Vec object
 * MTL4Vector\ (x)
 
   Copy constructor
+";
+
+%feature("docstring")  dolfin::MTL4Vector::distributed "
+Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::copy "
@@ -6847,6 +6892,10 @@ based on the default DOLFIN linear algebra backend.
   Create a Vector from a GenericVetor
 ";
 
+%feature("docstring")  dolfin::Vector::distributed "
+Return true if tensor is distributed
+";
+
 %feature("docstring")  dolfin::Vector::copy "
 Return copy of tensor
 ";
@@ -7053,6 +7102,10 @@ based on the default DOLFIN linear algebra backend.
   Copy constructor
 ";
 
+%feature("docstring")  dolfin::Matrix::distributed "
+Return true if matrix is distributed
+";
+
 %feature("docstring")  dolfin::Matrix::init "
 Initialize zero tensor using sparsity pattern
 ";
@@ -7176,6 +7229,10 @@ implements the GenericTensor interface for scalars.
 
 %feature("docstring")  dolfin::Scalar::Scalar "
 Create zero scalar
+";
+
+%feature("docstring")  dolfin::Scalar::distributed "
+Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::Scalar::resize "
@@ -8115,7 +8172,7 @@ Facet orientation (used for assembly over interior facets)
 
 Sub meshes (used by the class SubMesh)
 
-  * \"global_vertex_indices\"  - :py:class:`MeshFunction` <uint> of dimension 0
+  * \"parent_vertex_indices\"  - :py:class:`MeshFunction` <uint> of dimension 0
 
 Note to developers: use underscore in names in place of spaces.
 ";
@@ -8196,30 +8253,6 @@ Clear all data
           The array.
 ";
 
-%feature("docstring")  dolfin::MeshData::create_mapping "
-Create mapping from uint to uint with given name
-
-*Arguments*
-    name (str)
-        The name of the map.
-
-*Returns*
-    std::map<uint, uint>
-        The map.
-";
-
-%feature("docstring")  dolfin::MeshData::create_vector_mapping "
-Create mapping from uint to vector of uint with given name
-
-*Arguments*
-    name (str)
-        The name of the map.
-
-*Returns*
-    std::map<uint, std::vector<uint> >
-        The map.
-";
-
 %feature("docstring")  dolfin::MeshData::mesh_function "
 Return MeshFunction with given name (returning zero if data is
 not available)
@@ -8234,61 +8267,16 @@ not available)
 ";
 
 %feature("docstring")  dolfin::MeshData::array "
-**Overloaded versions**
-
-* array\ (name)
-
-  Return array with given name (returning zero if data is not
-  available)
-  
-  *Arguments*
-      name (str)
-          The name of the array.
-  
-  *Returns*
-      numpy.array(int)
-          The array.
-
-* array\ (name, number)
-
-  Return array with given name postfixed by \" %d\" (returning zero
-  if data is not available)
-  
-  *Arguments*
-      name (str)
-          The name.
-      number (int)
-          The number.
-  
-  *Returns*
-      numpy.array(int)
-          The array.
-";
-
-%feature("docstring")  dolfin::MeshData::mapping "
-Return mapping with given name (returning zero if data is not
+Return array with given name (returning zero if data is not
 available)
 
 *Arguments*
     name (str)
-        The name of the map.
+        The name of the array.
 
 *Returns*
-    std::map<uint, uint>
-        The map.
-";
-
-%feature("docstring")  dolfin::MeshData::vector_mapping "
-Return vector mapping with given name (returning zero if data
-is not available)
-
-*Arguments*
-    name (str)
-        The name of the map
-
-*Returns*
-    std::map<uint, std::vector<uint> >
-        The vector mapping.
+    numpy.array(int)
+        The array.
 ";
 
 %feature("docstring")  dolfin::MeshData::erase_mesh_function "
@@ -8305,22 +8293,6 @@ Erase array with given name
 *Arguments*
     name (str)
         The name of the array.
-";
-
-%feature("docstring")  dolfin::MeshData::erase_mapping "
-Erase mapping with given name
-
-*Arguments*
-    name (str)
-        The name of the mapping.
-";
-
-%feature("docstring")  dolfin::MeshData::erase_vector_mapping "
-Erase vector mapping with given name
-
-*Arguments*
-    name (str)
-        The name of the vector mapping.
 ";
 
 %feature("docstring")  dolfin::MeshData::str "
@@ -10863,7 +10835,9 @@ Set sub domain markers for given subdomain
 A SubMesh is a mesh defined as a subset of a given mesh. It
 provides a convenient way to create matching meshes for
 multiphysics applications by creating meshes for subdomains as
-subsets of a single global mesh.
+subsets of a single global mesh. A mapping from the vertices of
+the sub mesh to the vertices of the parent mesh is stored as the
+mesh data named \"parent_vertex_indices\".
 ";
 
 %feature("docstring")  dolfin::SubMesh::SubMesh "
