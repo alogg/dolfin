@@ -1234,7 +1234,7 @@
     </cells>
       <data>
         <data_entry name="global vertex indices">
-          <meshfunction type="uint" dim="0" size="446">
+          <mesh_function type="uint" dim="0" size="446">
             <entity index="0" value="0"/>
             <entity index="1" value="1"/>
             <entity index="2" value="42"/>
@@ -1681,7 +1681,7 @@
             <entity index="443" value="448"/>
             <entity index="444" value="449"/>
             <entity index="445" value="450"/>
-          </meshfunction>
+          </mesh_function>
         </data_entry>
       </data>
   </mesh>
