@@ -8160,6 +8160,18 @@ Create empty mesh domains
 Return number of marked entities of given dimension
 ";
 
+%feature("docstring")  dolfin::MeshDomains::markers "
+**Overloaded versions**
+
+* markers\ (dim)
+
+  Get subdomain markers for given dimension
+
+* markers\ (dim)
+
+  Get subdomain markers for given dimension (const version)
+";
+
 %feature("docstring")  dolfin::MeshDomains::clear "
 Clear all data
 ";
@@ -10427,24 +10439,24 @@ sub domains or boolean markers for mesh refinement.
 
 * MeshFunction\ (mesh, dim)
 
-  Create mesh function on given mesh of given dimension
+  Create mesh function of given dimension on given mesh
   
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
       dim (int)
-          The mesh entity dimension for the mesh function
+          The mesh entity dimension for the mesh function.
 
 * MeshFunction\ (mesh, dim, value)
 
-  Create mesh function on given mesh of given dimension and initialize
+  Create mesh of given dimension on given mesh and initialize
   to a value
   
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
       dim (int)
-          The mesh entity dimension
+          The mesh entity dimension.
       value (T)
           The value.
 
@@ -10621,6 +10633,24 @@ Return size (number of entities)
           The size.
 ";
 
+%feature("docstring")  dolfin::MeshFunction::set_value "
+Set value at given index
+
+*Arguments*
+    index (int)
+        The index.
+    value (T)
+        The value.
+";
+
+%feature("docstring")  dolfin::MeshFunction::set_values "
+Set values
+
+*Arguments*
+    values (std::vector<T>)
+        The values.
+";
+
 %feature("docstring")  dolfin::MeshFunction::set_all "
 Set all values to given value
 
@@ -10629,15 +10659,118 @@ Set all values to given value
         The value to set all values to.
 ";
 
-%feature("docstring")  dolfin::MeshFunction::set "
-Set values
+%feature("docstring")  dolfin::MeshFunction::str "
+Return informal string representation (pretty-print)
 
 *Arguments*
-    values (std::vector<T>)
-        The values.
+    verbose (bool)
+        Flag to turn on additional output.
+
+*Returns*
+    str
+        An informal representation.
 ";
 
-%feature("docstring")  dolfin::MeshFunction::str "
+// Documentation extracted from: (module=mesh, header=MeshMarkers.h)
+%feature("docstring")  dolfin::MeshMarkers "
+The MeshMarkers class can be used to store data associated with
+a subset of the entities of a mesh of a given topological
+dimension. It differs from the MeshFunction class in two ways.
+First, data does not need to be associated with all entities
+(only a subset). Second, data is associated with entities
+through the corresponding cell index and local entity number
+(relative to the cell), not by global entity index, which means
+that data may be stored robustly to file.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::MeshMarkers "
+**Overloaded versions**
+
+* MeshMarkers\ ()
+
+  Create empty mesh markers
+
+* MeshMarkers\ (mesh)
+
+  Create empty mesh markers on given mesh
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh markers on.
+
+* MeshMarkers\ (mesh, dim)
+
+  Create empty mesh markers of given dimension on given mesh
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh markers on.
+      dim (int)
+          The mesh entity dimension for the mesh markers.
+
+* MeshMarkers\ (mesh, dim)
+
+  Create empty mesh markers of given dimension on given mesh
+  (shared pointer version)
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh markers on.
+      dim (int)
+          The mesh entity dimension for the mesh markers.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::mesh "
+Return mesh associated with mesh markers
+
+*Returns*
+    :py:class:`Mesh`
+        The mesh.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::mesh_ptr "
+Return mesh associated with mesh markers (shared pointer version)
+
+*Returns*
+    :py:class:`Mesh`
+        The mesh.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::dim "
+Return topological dimension
+
+*Returns*
+    int
+        The dimension.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::size "
+Return size (number of entities in subset)
+
+*Returns*
+    int
+        The size.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::set_value "
+Set marker value for given entity index
+
+*Arguments*
+    entity_index (int)
+        Index of the entity.
+    marker_value (T)
+        The value of the marker.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::extract_mesh_function "
+Extract data for corresponding MeshFunction
+
+*Arguments*
+    mesh_function (:py:class:`MeshFunction`)
+        The MeshFunction to be computed.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::str "
 Return informal string representation (pretty-print)
 
 *Arguments*
@@ -10814,38 +10947,71 @@ Snap coordinate to boundary of subdomain
         The coordinates.
 ";
 
+%feature("docstring")  dolfin::SubDomain::mark_cells "
+Set subdomain markers (uint) on cells for given subdomain number
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh to be marked
+    sub_domain (int)
+        The subdomain number
+";
+
+%feature("docstring")  dolfin::SubDomain::mark_facets "
+Set subdomain markers (uint) on facets for given subdomain number
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh to be marked
+    sub_domain (int)
+        The subdomain number
+";
+
 %feature("docstring")  dolfin::SubDomain::mark "
 **Overloaded versions**
 
+* mark\ (mesh, dim, sub_domain)
+
+  Set subdomain markers (uint) for given topological dimension
+  and subdomain number
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to be marked
+      dim (int)
+          The topological dimension of entities to be marked
+      sub_domain (int)
+          The subdomain number
+
 * mark\ (sub_domains, sub_domain)
 
-  Set subdomain markers (uint) for given subdomain index
+  Set subdomain markers (uint) for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
           The subdomain markers
       sub_domain (int)
-          The index
+          The subdomain number
 
 * mark\ (sub_domains, sub_domain)
 
-  Set subdomain markers (int) for given subdomain index
+  Set subdomain markers (int) for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
           The subdomain markers
       sub_domain (int)
-          The index
+          The subdomain number
 
 * mark\ (sub_domains, sub_domain)
 
-  Set subdomain markers (double) for given subdomain index
+  Set subdomain markers (double) for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
           The subdomain markers.
       sub_domain (float)
-          The index
+          The subdomain number
 
 * mark\ (sub_domains, sub_domain)
 
@@ -10855,7 +11021,47 @@ Snap coordinate to boundary of subdomain
       sub_domains (:py:class:`MeshFunction`)
           The subdomain markers
       sub_domain (bool)
-          The index
+          The subdomain number
+
+* mark\ (sub_domains, sub_domain)
+
+  Set subdomain markers (uint) for given subdomain number
+  
+  *Arguments*
+      sub_domains (:py:class:`MeshMarkers`)
+          The subdomain markers
+      sub_domain (int)
+          The subdomain number
+
+* mark\ (sub_domains, sub_domain)
+
+  Set subdomain markers (int) for given subdomain number
+  
+  *Arguments*
+      sub_domains (:py:class:`MeshMarkers`)
+          The subdomain markers
+      sub_domain (int)
+          The subdomain number
+
+* mark\ (sub_domains, sub_domain)
+
+  Set subdomain markers (double) for given subdomain number
+  
+  *Arguments*
+      sub_domains (:py:class:`MeshMarkers`)
+          The subdomain markers.
+      sub_domain (float)
+          The subdomain number
+
+* mark\ (sub_domains, sub_domain)
+
+  Set subdomain markers (bool) for given subdomain
+  
+  *Arguments*
+      sub_domains (:py:class:`MeshMarkers`)
+          The subdomain markers
+      sub_domain (bool)
+          The subdomain number
 ";
 
 %feature("docstring")  dolfin::SubDomain::geometric_dimension "
@@ -10866,8 +11072,9 @@ Return geometric dimension
         The geometric dimension.
 ";
 
-%feature("docstring")  dolfin::SubDomain::mark_meshfunction "
-Set sub domain markers for given subdomain
+%feature("docstring")  dolfin::SubDomain::apply_markers "
+Apply marker of type T (most likely an uint) to object of class
+S (most likely MeshFunction or MeshMarkers)
 ";
 
 // Documentation extracted from: (module=mesh, header=SubMesh.h)
@@ -12611,7 +12818,11 @@ Default parameter values
 
 * adapt\ (function, refined_mesh)
 
-  Refine coefficient based on refined mesh
+  Refine Function based on refined mesh
+
+* adapt\ (function, refined_mesh)
+
+  Refine GenericFunction based on refined mesh
 
 * adapt\ (mesh_function, refined_mesh)
 
