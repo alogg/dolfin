@@ -8140,6 +8140,30 @@ Set higher order cell data for cell # N in direction i
 Return informal string representation (pretty-print)
 ";
 
+// Documentation extracted from: (module=mesh, header=MeshDomains.h)
+%feature("docstring")  dolfin::MeshDomains "
+The class :py:class:`MeshDomains` stores the division of a :py:class:`Mesh` into
+subdomains. For each topological dimension 0 <= d <= D, where D
+is the topological dimension of the :py:class:`Mesh`, a set of integer
+markers are stored for a subset of the entities of dimension d,
+indicating for each entity in the subset the number of the
+subdomain. It should be noted that the subset does not need to
+contain all entities of any given dimension; entities not
+contained in the subset are \"unmarked\".
+";
+
+%feature("docstring")  dolfin::MeshDomains::MeshDomains "
+Create empty mesh domains
+";
+
+%feature("docstring")  dolfin::MeshDomains::num_marked "
+Return number of marked entities of given dimension
+";
+
+%feature("docstring")  dolfin::MeshDomains::clear "
+Clear all data
+";
+
 // Documentation extracted from: (module=mesh, header=MeshData.h)
 %feature("docstring")  dolfin::MeshData "
 The class MeshData is a container for auxiliary mesh data,
@@ -8553,7 +8577,7 @@ Get number of entities of given topological dimension.
 
 * topology\ ()
 
-  Get topology associated with mesh.
+  Get mesh topology.
   
   *Returns*
       :py:class:`MeshTopology`
@@ -8578,6 +8602,22 @@ Get number of entities of given topological dimension.
 * geometry\ ()
 
   Get mesh geometry (const version).
+";
+
+%feature("docstring")  dolfin::Mesh::domains "
+**Overloaded versions**
+
+* domains\ ()
+
+  Get mesh (sub)domains.
+  
+  *Returns*
+      :py:class:`MeshDomains`
+          The (sub)domains associated with the mesh.
+
+* domains\ ()
+
+  Get mesh (sub)domains.
 ";
 
 %feature("docstring")  dolfin::Mesh::id "
