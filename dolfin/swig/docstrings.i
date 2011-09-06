@@ -12816,9 +12816,23 @@ Default parameter values
 
   Refine function space based on refined mesh
 
-* adapt\ (function, refined_mesh)
+* adapt\ (function, refined_mesh, interpolate=true)
 
-  Refine Function based on refined mesh
+  Adapt Function based on adapted mesh
+  
+  *Arguments*
+      function (:py:class:`Function`)
+          The function that should be adapted
+      refined_mesh (:py:class:`Mesh`)
+          The new mesh
+      interpolate (bool)
+          Optional argument, default is true. If false, the
+          function's function space is adapted, but the values are
+          not interpolated.
+  
+  *Returns*
+      :py:class:`Function`
+          The adapted function
 
 * adapt\ (function, refined_mesh)
 
@@ -12832,9 +12846,23 @@ Default parameter values
 
   Refine Dirichlet bc based on refined mesh
 
-* adapt\ (form, refined_mesh)
+* adapt\ (form, refined_mesh, adapt_coefficients=true)
 
-  Refine form based on refined mesh
+  Adapt form based on adapted mesh
+  
+  *Arguments*
+      form (:py:class:`Form`)
+          The form that should be adapted
+      refined_mesh (:py:class:`Mesh`)
+          The new mesh
+      adapt_coefficients (bool)
+          Optional argument, default is true. If false, the form
+          coefficients are not explictly adapted, but pre-adapted
+          coefficients will be transferred.
+  
+  *Returns*
+      :py:class:`Form`
+          The adapted form
 
 * adapt\ (problem, refined_mesh)
 
@@ -12844,9 +12872,23 @@ Default parameter values
 
   Refine nonlinear variational problem based on mesh
 
-* adapt\ (ec, refined_mesh)
+* adapt\ (ec, refined_mesh, adapt_coefficients=true)
 
-  Refine error control object based on mesh
+  Adapt error control object based on adapted mesh
+  
+  *Arguments*
+      ec (:py:class:`ErrorControl`)
+          The error control object to be adapted
+      refined_mesh (:py:class:`Mesh`)
+          The new mesh
+      adapt_coefficients (bool)
+          Optional argument, default is true. If false, any form
+          coefficients are not explictly adapted, but pre-adapted
+          coefficients will be transferred.
+  
+  *Returns*
+      :py:class:`ErrorControl`
+          The adapted error control object
 ";
 
 %feature("docstring")  dolfin::adapt_markers "
