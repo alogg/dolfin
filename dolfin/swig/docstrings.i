@@ -8156,6 +8156,10 @@ contained in the subset are \"unmarked\".
 Create empty mesh domains
 ";
 
+%feature("docstring")  dolfin::MeshDomains::dim "
+Return maximal topological dimension of stored markers
+";
+
 %feature("docstring")  dolfin::MeshDomains::num_marked "
 Return number of marked entities of given dimension
 ";
@@ -10699,10 +10703,6 @@ that data may be stored robustly to file.
 %feature("docstring")  dolfin::MeshMarkers::MeshMarkers "
 **Overloaded versions**
 
-* MeshMarkers\ ()
-
-  Create empty mesh markers
-
 * MeshMarkers\ (mesh, dim)
 
   Create empty mesh markers of given dimension on given mesh
@@ -10757,6 +10757,33 @@ Return size (number of entities in subset)
         The size.
 ";
 
+%feature("docstring")  dolfin::MeshMarkers::get_marker "
+Get entity index and value for given marker
+
+*Arguments*
+    i (int)
+        The number of the marker.
+
+*Returns*
+    ((cell_index, local_entity), marker_value)
+        A pair of (cell_index, local_entity) and the value
+        of the marker at the given local_entity of the cell
+        with index cell_index.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::set_marker "
+Set marker value for given entity defined by a cell index and
+a local entity index
+
+*Arguments*
+    cell_index (int)
+        The index of the cell.
+    local_entity (int)
+        The local index of the entity relative to the cell.
+    marker_value (T)
+        The value of the marker.
+";
+
 %feature("docstring")  dolfin::MeshMarkers::set_value "
 Set marker value for given entity index
 
@@ -10765,6 +10792,10 @@ Set marker value for given entity index
         Index of the entity.
     marker_value (T)
         The value of the marker.
+";
+
+%feature("docstring")  dolfin::MeshMarkers::clear "
+Clear all markers
 ";
 
 %feature("docstring")  dolfin::MeshMarkers::extract_mesh_function "
@@ -12821,9 +12852,27 @@ Default parameter values
 
   Refine function space based on refined mesh
 
+* adapt\ (function, refined_mesh, interpolate=true)
+
+  Adapt Function based on adapted mesh
+  
+  *Arguments*
+      function (:py:class:`Function`)
+          The function that should be adapted
+      refined_mesh (:py:class:`Mesh`)
+          The new mesh
+      interpolate (bool)
+          Optional argument, default is true. If false, the
+          function's function space is adapted, but the values are
+          not interpolated.
+  
+  *Returns*
+      :py:class:`Function`
+          The adapted function
+
 * adapt\ (function, refined_mesh)
 
-  Refine coefficient based on refined mesh
+  Refine GenericFunction based on refined mesh
 
 * adapt\ (mesh_function, refined_mesh)
 
@@ -12833,9 +12882,23 @@ Default parameter values
 
   Refine Dirichlet bc based on refined mesh
 
-* adapt\ (form, refined_mesh)
+* adapt\ (form, refined_mesh, adapt_coefficients=true)
 
-  Refine form based on refined mesh
+  Adapt form based on adapted mesh
+  
+  *Arguments*
+      form (:py:class:`Form`)
+          The form that should be adapted
+      refined_mesh (:py:class:`Mesh`)
+          The new mesh
+      adapt_coefficients (bool)
+          Optional argument, default is true. If false, the form
+          coefficients are not explictly adapted, but pre-adapted
+          coefficients will be transferred.
+  
+  *Returns*
+      :py:class:`Form`
+          The adapted form
 
 * adapt\ (problem, refined_mesh)
 
@@ -12845,9 +12908,23 @@ Default parameter values
 
   Refine nonlinear variational problem based on mesh
 
-* adapt\ (ec, refined_mesh)
+* adapt\ (ec, refined_mesh, adapt_coefficients=true)
 
-  Refine error control object based on mesh
+  Adapt error control object based on adapted mesh
+  
+  *Arguments*
+      ec (:py:class:`ErrorControl`)
+          The error control object to be adapted
+      refined_mesh (:py:class:`Mesh`)
+          The new mesh
+      adapt_coefficients (bool)
+          Optional argument, default is true. If false, any form
+          coefficients are not explictly adapted, but pre-adapted
+          coefficients will be transferred.
+  
+  *Returns*
+      :py:class:`ErrorControl`
+          The adapted error control object
 ";
 
 %feature("docstring")  dolfin::adapt_markers "
