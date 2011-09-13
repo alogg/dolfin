@@ -2483,14 +2483,6 @@ Set interior facet domains
 ";
 
 %feature("docstring")  dolfin::Form::ufc_form "
-Return UFC form
-
-*Returns*
-    ufc::form
-        The UFC form.
-";
-
-%feature("docstring")  dolfin::Form::ufc_form_shared_ptr "
 Return UFC form shared pointer
 
 *Returns*
@@ -8156,6 +8148,10 @@ contained in the subset are \"unmarked\".
 Create empty mesh domains
 ";
 
+%feature("docstring")  dolfin::MeshDomains::dim "
+Return maximal topological dimension of stored markers
+";
+
 %feature("docstring")  dolfin::MeshDomains::num_marked "
 Return number of marked entities of given dimension
 ";
@@ -8170,6 +8166,19 @@ Return number of marked entities of given dimension
 * markers\ (dim)
 
   Get subdomain markers for given dimension (const version)
+";
+
+%feature("docstring")  dolfin::MeshDomains::init "
+**Overloaded versions**
+
+* init\ (mesh, dim)
+
+  Initialize mesh domains for given topological dimension
+
+* init\ (mesh, dim)
+
+  Initialize mesh domains for given topological dimension
+  (shared pointer version)
 ";
 
 %feature("docstring")  dolfin::MeshDomains::clear "
@@ -10671,34 +10680,22 @@ Return informal string representation (pretty-print)
         An informal representation.
 ";
 
-// Documentation extracted from: (module=mesh, header=MeshMarkers.h)
-%feature("docstring")  dolfin::MeshMarkers "
-The MeshMarkers class can be used to store data associated with
-a subset of the entities of a mesh of a given topological
-dimension. It differs from the MeshFunction class in two ways.
-First, data does not need to be associated with all entities
-(only a subset). Second, data is associated with entities
-through the corresponding cell index and local entity number
-(relative to the cell), not by global entity index, which means
-that data may be stored robustly to file.
+// Documentation extracted from: (module=mesh, header=MeshValueCollection.h)
+%feature("docstring")  dolfin::MeshValueCollection "
+The MeshValueCollection class can be used to store data
+associated with a subset of the entities of a mesh of a given
+topological dimension. It differs from the MeshFunction class in
+two ways. First, data does not need to be associated with all
+entities (only a subset). Second, data is associated with
+entities through the corresponding cell index and local entity
+number (relative to the cell), not by global entity index, which
+means that data may be stored robustly to file.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::MeshMarkers "
+%feature("docstring")  dolfin::MeshValueCollection::MeshValueCollection "
 **Overloaded versions**
 
-* MeshMarkers\ ()
-
-  Create empty mesh markers
-
-* MeshMarkers\ (mesh)
-
-  Create empty mesh markers on given mesh
-  
-  *Arguments*
-      mesh (:py:class:`Mesh`)
-          The mesh to create mesh markers on.
-
-* MeshMarkers\ (mesh, dim)
+* MeshValueCollection\ (mesh, dim)
 
   Create empty mesh markers of given dimension on given mesh
   
@@ -10708,7 +10705,7 @@ that data may be stored robustly to file.
       dim (int)
           The mesh entity dimension for the mesh markers.
 
-* MeshMarkers\ (mesh, dim)
+* MeshValueCollection\ (mesh, dim)
 
   Create empty mesh markers of given dimension on given mesh
   (shared pointer version)
@@ -10720,7 +10717,7 @@ that data may be stored robustly to file.
           The mesh entity dimension for the mesh markers.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::mesh "
+%feature("docstring")  dolfin::MeshValueCollection::mesh "
 Return mesh associated with mesh markers
 
 *Returns*
@@ -10728,7 +10725,7 @@ Return mesh associated with mesh markers
         The mesh.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::mesh_ptr "
+%feature("docstring")  dolfin::MeshValueCollection::mesh_ptr "
 Return mesh associated with mesh markers (shared pointer version)
 
 *Returns*
@@ -10736,7 +10733,7 @@ Return mesh associated with mesh markers (shared pointer version)
         The mesh.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::dim "
+%feature("docstring")  dolfin::MeshValueCollection::dim "
 Return topological dimension
 
 *Returns*
@@ -10744,7 +10741,7 @@ Return topological dimension
         The dimension.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::size "
+%feature("docstring")  dolfin::MeshValueCollection::size "
 Return size (number of entities in subset)
 
 *Returns*
@@ -10752,7 +10749,34 @@ Return size (number of entities in subset)
         The size.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::set_value "
+%feature("docstring")  dolfin::MeshValueCollection::get_marker "
+Get entity index and value for given marker
+
+*Arguments*
+    i (int)
+        The number of the marker.
+
+*Returns*
+    ((cell_index, local_entity), marker_value)
+        A pair of (cell_index, local_entity) and the value
+        of the marker at the given local_entity of the cell
+        with index cell_index.
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::set_marker "
+Set marker value for given entity defined by a cell index and
+a local entity index
+
+*Arguments*
+    cell_index (int)
+        The index of the cell.
+    local_entity (int)
+        The local index of the entity relative to the cell.
+    marker_value (T)
+        The value of the marker.
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::set_value "
 Set marker value for given entity index
 
 *Arguments*
@@ -10762,7 +10786,11 @@ Set marker value for given entity index
         The value of the marker.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::extract_mesh_function "
+%feature("docstring")  dolfin::MeshValueCollection::clear "
+Clear all markers
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::extract_mesh_function "
 Extract data for corresponding MeshFunction
 
 *Arguments*
@@ -10770,7 +10798,7 @@ Extract data for corresponding MeshFunction
         The MeshFunction to be computed.
 ";
 
-%feature("docstring")  dolfin::MeshMarkers::str "
+%feature("docstring")  dolfin::MeshValueCollection::str "
 Return informal string representation (pretty-print)
 
 *Arguments*
@@ -11028,7 +11056,7 @@ Set subdomain markers (uint) on facets for given subdomain number
   Set subdomain markers (uint) for given subdomain number
   
   *Arguments*
-      sub_domains (:py:class:`MeshMarkers`)
+      sub_domains (:py:class:`MeshValueCollection`)
           The subdomain markers
       sub_domain (int)
           The subdomain number
@@ -11038,7 +11066,7 @@ Set subdomain markers (uint) on facets for given subdomain number
   Set subdomain markers (int) for given subdomain number
   
   *Arguments*
-      sub_domains (:py:class:`MeshMarkers`)
+      sub_domains (:py:class:`MeshValueCollection`)
           The subdomain markers
       sub_domain (int)
           The subdomain number
@@ -11048,7 +11076,7 @@ Set subdomain markers (uint) on facets for given subdomain number
   Set subdomain markers (double) for given subdomain number
   
   *Arguments*
-      sub_domains (:py:class:`MeshMarkers`)
+      sub_domains (:py:class:`MeshValueCollection`)
           The subdomain markers.
       sub_domain (float)
           The subdomain number
@@ -11058,7 +11086,7 @@ Set subdomain markers (uint) on facets for given subdomain number
   Set subdomain markers (bool) for given subdomain
   
   *Arguments*
-      sub_domains (:py:class:`MeshMarkers`)
+      sub_domains (:py:class:`MeshValueCollection`)
           The subdomain markers
       sub_domain (bool)
           The subdomain number
@@ -11074,7 +11102,7 @@ Return geometric dimension
 
 %feature("docstring")  dolfin::SubDomain::apply_markers "
 Apply marker of type T (most likely an uint) to object of class
-S (most likely MeshFunction or MeshMarkers)
+S (most likely MeshFunction or MeshValueCollection)
 ";
 
 // Documentation extracted from: (module=mesh, header=SubMesh.h)
