@@ -2989,11 +2989,7 @@ End task (decrease indentation level)
 ";
 
 %feature("docstring")  dolfin::set_log_active "
-Turn logging on or off (deprecated)
-";
-
-%feature("docstring")  dolfin::logging "
-Turn logging on or off (deprecated, will be removed)
+Turn logging on or off
 ";
 
 %feature("docstring")  dolfin::set_log_level "
@@ -8156,6 +8152,10 @@ Return maximal topological dimension of stored markers
 Return number of marked entities of given dimension
 ";
 
+%feature("docstring")  dolfin::MeshDomains::is_empty "
+Check whether domain data is empty
+";
+
 %feature("docstring")  dolfin::MeshDomains::markers "
 **Overloaded versions**
 
@@ -8168,17 +8168,34 @@ Return number of marked entities of given dimension
   Get subdomain markers for given dimension (const version)
 ";
 
-%feature("docstring")  dolfin::MeshDomains::init "
+%feature("docstring")  dolfin::MeshDomains::markers_shared_ptr "
 **Overloaded versions**
 
-* init\ (mesh, dim)
+* markers_shared_ptr\ (dim)
 
-  Initialize mesh domains for given topological dimension
+  Get subdomain markers for given dimension (shared pointer version)
 
-* init\ (mesh, dim)
+* markers_shared_ptr\ (dim)
 
-  Initialize mesh domains for given topological dimension
-  (shared pointer version)
+  Get subdomain markers for given dimension (const shared pointer version)
+";
+
+%feature("docstring")  dolfin::MeshDomains::cell_domains "
+Get cell domains. This function computes the mesh function
+corresponding to markers of dimension D. The mesh function is
+cached for later access and will be computed on the first call
+to this function.
+";
+
+%feature("docstring")  dolfin::MeshDomains::facet_domains "
+Get facet domains. This function computes the mesh function
+corresponding to markers of dimension D-1. The mesh function
+is cached for later access and will be computed on the first
+call to this function.
+";
+
+%feature("docstring")  dolfin::MeshDomains::init "
+Initialize mesh domains for given topological dimension
 ";
 
 %feature("docstring")  dolfin::MeshDomains::clear "
@@ -8198,26 +8215,13 @@ convenient way to store data associated with a mesh. It is also
 used internally by DOLFIN to communicate data associated with
 meshes. The following named mesh data are recognized by DOLFIN:
 
-Boundary indicators
-
-  * \"boundary_facet_cells\"   -  :py:class:`Array` <uint> of size num_facets
-  * \"boundary_facet_numbers\" -  :py:class:`Array` <uint> of size num_facets
-  * \"boundary_indicators\"    -  :py:class:`Array` <uint> of size num_facets
-  * \"material_indicators\"    -  :py:class:`MeshFunction` <uint> of dimension D
-
-Subdomain indicators
-
-  * \"cell_domains\"           - :py:class:`MeshFunction` <uint> of dimension D
-  * \"interior_facet_domains\" - :py:class:`MeshFunction` <uint> of dimension D - 1
-  * \"exterior_facet_domains\" - :py:class:`MeshFunction` <uint> of dimension D - 1
-
 Facet orientation (used for assembly over interior facets)
 
-  * \"facet_orientation\"      - :py:class:`MeshFunction` <uint> of dimension D - 1
+  * \"facet_orientation\"     - :py:class:`MeshFunction` <uint> of dimension D - 1
 
 Sub meshes (used by the class SubMesh)
 
-  * \"parent_vertex_indices\"  - :py:class:`MeshFunction` <uint> of dimension 0
+  * \"parent_vertex_indices\" - :py:class:`MeshFunction` <uint> of dimension 0
 
 Note to developers: use underscore in names in place of spaces.
 ";
@@ -8411,6 +8415,14 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   *Arguments*
       filename (str)
           Name of file to load.
+
+* Mesh\ (local_mesh_data)
+
+  Create a distributed mesh from local (per process) data.
+  
+  *Arguments*
+      local_mesh_data (LocalMeshData)
+          Data from which to build the mesh.
 ";
 
 %feature("docstring")  dolfin::Mesh::operator= "
@@ -10479,6 +10491,16 @@ sub domains or boolean markers for mesh refinement.
       filename (str)
           The filename to create mesh function from.
 
+* MeshFunction\ (mesh, value_collection)
+
+  Create function from a MeshValueCollecion
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh to create mesh function on.
+      value_collection (:py:class:`MeshValueCollection`)
+          The mesh value collection for the mesh function data.
+
 * MeshFunction\ (f)
 
   Copy constructor
@@ -10643,13 +10665,21 @@ Return size (number of entities)
 ";
 
 %feature("docstring")  dolfin::MeshFunction::set_value "
-Set value at given index
+**Overloaded versions**
 
-*Arguments*
-    index (int)
-        The index.
-    value (T)
-        The value.
+* set_value\ (index, value)
+
+  Set value at given index
+  
+  *Arguments*
+      index (int)
+          The index.
+      value (T)
+          The value.
+
+* set_value\ (index, value, mesh)
+
+  Compatibility function for use in SubDomains
 ";
 
 %feature("docstring")  dolfin::MeshFunction::set_values "
@@ -10695,42 +10725,21 @@ means that data may be stored robustly to file.
 %feature("docstring")  dolfin::MeshValueCollection::MeshValueCollection "
 **Overloaded versions**
 
-* MeshValueCollection\ (mesh, dim)
+* MeshValueCollection\ (dim)
 
-  Create empty mesh markers of given dimension on given mesh
+  Create empty mesh value collection of given dimension on given mesh
   
   *Arguments*
-      mesh (:py:class:`Mesh`)
-          The mesh to create mesh markers on.
       dim (int)
-          The mesh entity dimension for the mesh markers.
+          The mesh entity dimension for the mesh value collection.
 
-* MeshValueCollection\ (mesh, dim)
+* MeshValueCollection\ (mesh_function)
 
-  Create empty mesh markers of given dimension on given mesh
-  (shared pointer version)
+  Create a mesh value collection from a MeshFunction
   
   *Arguments*
-      mesh (:py:class:`Mesh`)
-          The mesh to create mesh markers on.
-      dim (int)
-          The mesh entity dimension for the mesh markers.
-";
-
-%feature("docstring")  dolfin::MeshValueCollection::mesh "
-Return mesh associated with mesh markers
-
-*Returns*
-    :py:class:`Mesh`
-        The mesh.
-";
-
-%feature("docstring")  dolfin::MeshValueCollection::mesh_ptr "
-Return mesh associated with mesh markers (shared pointer version)
-
-*Returns*
-    :py:class:`Mesh`
-        The mesh.
+      mesh_function (:py:class:`MeshFunction`)
+          The mesh function for creating a MeshValueCollection.
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::dim "
@@ -10749,53 +10758,67 @@ Return size (number of entities in subset)
         The size.
 ";
 
-%feature("docstring")  dolfin::MeshValueCollection::get_marker "
-Get entity index and value for given marker
-
-*Arguments*
-    i (int)
-        The number of the marker.
-
-*Returns*
-    ((cell_index, local_entity), marker_value)
-        A pair of (cell_index, local_entity) and the value
-        of the marker at the given local_entity of the cell
-        with index cell_index.
-";
-
-%feature("docstring")  dolfin::MeshValueCollection::set_marker "
-Set marker value for given entity defined by a cell index and
-a local entity index
-
-*Arguments*
-    cell_index (int)
-        The index of the cell.
-    local_entity (int)
-        The local index of the entity relative to the cell.
-    marker_value (T)
-        The value of the marker.
-";
-
 %feature("docstring")  dolfin::MeshValueCollection::set_value "
-Set marker value for given entity index
+**Overloaded versions**
 
-*Arguments*
-    entity_index (int)
-        Index of the entity.
-    marker_value (T)
-        The value of the marker.
+* set_value\ (cell_index, local_entity, value)
+
+  Set marker value for given entity defined by a cell index and
+  a local entity index
+  
+  *Arguments*
+      cell_index (int)
+          The index of the cell.
+      local_entity (int)
+          The local index of the entity relative to the cell.
+      marker_value (T)
+          The value of the marker.
+  
+  *Returns*
+      bool
+          True is a new value is inserted, false if overwriting
+          an existing value.
+
+* set_value\ (entity_index, value, mesh)
+
+  Set value for given entity index
+  
+  *Arguments*
+      entity_index (int)
+          Index of the entity.
+      value (T)
+          The value of the marker.
+      mesh (:py:class:`Mesh`)
+          The mesh.
+  
+  *Returns*
+      bool
+          True is a new value is inserted, false if overwriting
+          an existing value.
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::values "
+**Overloaded versions**
+
+* values\ ()
+
+  Get all values
+  
+  *Returns*
+      std::map<std::pair<uint, uint>, T>
+          A map from positions to values.
+
+* values\ ()
+
+  Get all values (const version)
+  
+  *Returns*
+      std::map<std::pair<uint, uint>, T>
+          A map from positions to values.
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::clear "
-Clear all markers
-";
-
-%feature("docstring")  dolfin::MeshValueCollection::extract_mesh_function "
-Extract data for corresponding MeshFunction
-
-*Arguments*
-    mesh_function (:py:class:`MeshFunction`)
-        The MeshFunction to be computed.
+Clear all values
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::str "
@@ -10852,20 +10875,33 @@ initially created by the mesh and then contains only the number
 entities of dimension 0 (vertices) and dimension D (cells).
 ";
 
-%feature("docstring")  dolfin::MeshPartitioning::partition "
+%feature("docstring")  dolfin::MeshPartitioning::build_distributed_mesh "
 **Overloaded versions**
 
-* partition\ (mesh)
+* build_distributed_mesh\ (mesh)
 
-  Create a partitioned mesh based on local meshes
+  Build a partitioned mesh based on local meshes
 
-* partition\ (mesh, data)
+* build_distributed_mesh\ (mesh, data)
 
-  Create a partitioned mesh based on local mesh data
+  Build a partitioned mesh based on local mesh data
 ";
 
 %feature("docstring")  dolfin::MeshPartitioning::number_entities "
 Create global entity indices for entities of dimension d
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::partition "
+Create a partitioned mesh based on local mesh data
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::build_mesh_domains "
+Create and attach distributed MeshDomains from local_data
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::build_mesh_value_collection "
+Create and attach distributed MeshDomains from local_data
+[entry, (cell_index, local_index, value)]
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshColoring.h)
@@ -10980,9 +11016,9 @@ Set subdomain markers (uint) on cells for given subdomain number
 
 *Arguments*
     mesh (:py:class:`Mesh`)
-        The mesh to be marked
+        The mesh to be marked.
     sub_domain (int)
-        The subdomain number
+        The subdomain number.
 ";
 
 %feature("docstring")  dolfin::SubDomain::mark_facets "
@@ -10990,9 +11026,9 @@ Set subdomain markers (uint) on facets for given subdomain number
 
 *Arguments*
     mesh (:py:class:`Mesh`)
-        The mesh to be marked
+        The mesh to be marked.
     sub_domain (int)
-        The subdomain number
+        The subdomain number.
 ";
 
 %feature("docstring")  dolfin::SubDomain::mark "
@@ -11005,11 +11041,11 @@ Set subdomain markers (uint) on facets for given subdomain number
   
   *Arguments*
       mesh (:py:class:`Mesh`)
-          The mesh to be marked
+          The mesh to be marked.
       dim (int)
-          The topological dimension of entities to be marked
+          The topological dimension of entities to be marked.
       sub_domain (int)
-          The subdomain number
+          The subdomain number.
 
 * mark\ (sub_domains, sub_domain)
 
@@ -11017,9 +11053,9 @@ Set subdomain markers (uint) on facets for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          The subdomain markers
+          The subdomain markers.
       sub_domain (int)
-          The subdomain number
+          The subdomain number.
 
 * mark\ (sub_domains, sub_domain)
 
@@ -11027,9 +11063,9 @@ Set subdomain markers (uint) on facets for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          The subdomain markers
+          The subdomain markers.
       sub_domain (int)
-          The subdomain number
+          The subdomain number.
 
 * mark\ (sub_domains, sub_domain)
 
@@ -11039,7 +11075,7 @@ Set subdomain markers (uint) on facets for given subdomain number
       sub_domains (:py:class:`MeshFunction`)
           The subdomain markers.
       sub_domain (float)
-          The subdomain number
+          The subdomain number.
 
 * mark\ (sub_domains, sub_domain)
 
@@ -11047,21 +11083,23 @@ Set subdomain markers (uint) on facets for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
-          The subdomain markers
+          The subdomain markers.
       sub_domain (bool)
-          The subdomain number
+          The subdomain number.
 
-* mark\ (sub_domains, sub_domain)
+* mark\ (sub_domains, sub_domain, mesh)
 
   Set subdomain markers (uint) for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshValueCollection`)
-          The subdomain markers
+          The subdomain markers.
       sub_domain (int)
-          The subdomain number
+          The subdomain number.
+      mesn (:py:class:`Mesh`)
+          The mesh.
 
-* mark\ (sub_domains, sub_domain)
+* mark\ (sub_domains, sub_domain, mesh)
 
   Set subdomain markers (int) for given subdomain number
   
@@ -11071,7 +11109,7 @@ Set subdomain markers (uint) on facets for given subdomain number
       sub_domain (int)
           The subdomain number
 
-* mark\ (sub_domains, sub_domain)
+* mark\ (sub_domains, sub_domain, mesh)
 
   Set subdomain markers (double) for given subdomain number
   
@@ -11081,7 +11119,7 @@ Set subdomain markers (uint) on facets for given subdomain number
       sub_domain (float)
           The subdomain number
 
-* mark\ (sub_domains, sub_domain)
+* mark\ (sub_domains, sub_domain, mesh)
 
   Set subdomain markers (bool) for given subdomain
   
@@ -11682,10 +11720,6 @@ Return label (description)
 
 %feature("docstring")  dolfin::Variable::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::Variable::disp "
-Deprecated, to be removed
 ";
 
 // Documentation extracted from: (module=common, header=Hierarchical.h)
@@ -12928,7 +12962,7 @@ Helper function for refinement of boundary conditions
 Mark cells based on indicators and given marking strategy
 
 *Arguments*
-    markers (_MeshFunction<bool>_)
+    markers (:py:class:`MeshFunction`)
         the cell markers (to be computed)
 
     indicators (:py:class:`Vector`)
@@ -12945,7 +12979,7 @@ Mark cells based on indicators and given marking strategy
 Mark cells using Dorfler marking
 
 *Arguments*
-    markers (_MeshFunction<bool>_)
+    markers (:py:class:`MeshFunction`)
         the cell markers (to be computed)
 
     indicators (:py:class:`Vector`)
