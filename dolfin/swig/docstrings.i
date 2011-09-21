@@ -10710,6 +10710,95 @@ Return informal string representation (pretty-print)
         An informal representation.
 ";
 
+// Documentation extracted from: (module=mesh, header=LocalMeshValueCollection.h)
+%feature("docstring")  dolfin::LocalMeshValueCollection "
+This class stores mesh data on a local processor corresponding
+to a portion of a MeshValueCollection.
+";
+
+%feature("docstring")  dolfin::LocalMeshValueCollection::LocalMeshValueCollection "
+Create local mesh data for given LocalMeshValueCollection
+";
+
+%feature("docstring")  dolfin::LocalMeshValueCollection::dim "
+Return dimension of cell entity
+";
+
+%feature("docstring")  dolfin::LocalMeshValueCollection::values "
+Return data
+";
+
+// Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
+%feature("docstring")  dolfin::MeshPartitioning "
+This class partitions and distributes a mesh based on
+partitioned local mesh data. Note that the local mesh data will
+also be repartitioned and redistributed during the computation
+of the mesh partitioning.
+
+After partitioning, each process has a local mesh and set of
+mesh data that couples the meshes together.
+
+The following mesh data is created:
+
+1. \"global entity indices 0\" (MeshFunction<uint>)
+
+This maps each local vertex to its global index.
+
+2. \"overlap\" (std::map<uint, std::vector<uint> >)
+
+This maps each shared vertex to a list of the processes sharing
+the vertex.
+
+3. \"global entity indices %d\" (MeshFunction<uint>)
+
+After partitioning, the function number_entities() may be called
+to create global indices for all entities of a given topological
+dimension. These are stored as mesh data (MeshFunction<uint>)
+named
+
+   \"global entity indices 1\"
+   \"global entity indices 2\"
+   etc
+
+4. \"num global entities\" (std::vector<uint>)
+
+The function number_entities also records the number of global
+entities for the dimension of the numbered entities in the array
+named \"num global entities\". This array has size D + 1, where D
+is the topological dimension of the mesh. This array is
+initially created by the mesh and then contains only the number
+entities of dimension 0 (vertices) and dimension D (cells).
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::build_distributed_mesh "
+**Overloaded versions**
+
+* build_distributed_mesh\ (mesh)
+
+  Build a partitioned mesh based on local meshes
+
+* build_distributed_mesh\ (mesh, data)
+
+  Build a partitioned mesh based on local mesh data
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::number_entities "
+Create global entity indices for entities of dimension d
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::partition "
+Create a partitioned mesh based on local mesh data
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::build_mesh_domains "
+Create and attach distributed MeshDomains from local_data
+";
+
+%feature("docstring")  dolfin::MeshPartitioning::build_mesh_value_collection "
+Create and attach distributed MeshDomains from local_data
+[entry, (cell_index, local_index, value)]
+";
+
 // Documentation extracted from: (module=mesh, header=MeshValueCollection.h)
 %feature("docstring")  dolfin::MeshValueCollection "
 The MeshValueCollection class can be used to store data
@@ -10740,6 +10829,19 @@ means that data may be stored robustly to file.
   *Arguments*
       mesh_function (:py:class:`MeshFunction`)
           The mesh function for creating a MeshValueCollection.
+
+* MeshValueCollection\ (mesh, filename, dim)
+
+  Create a mesh value collection from a file.
+  
+  *Arguments*
+      mesh (Mesh)
+          A mesh associated with the collection. The mesh is used to
+          map collection values to the appropriate process.
+      filename (str)
+          The XML file name.
+      dim (int)
+          The mesh entity dimension for the mesh value collection.
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::dim "
@@ -10831,77 +10933,6 @@ Return informal string representation (pretty-print)
 *Returns*
     str
         An informal representation.
-";
-
-// Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
-%feature("docstring")  dolfin::MeshPartitioning "
-This class partitions and distributes a mesh based on
-partitioned local mesh data. Note that the local mesh data will
-also be repartitioned and redistributed during the computation
-of the mesh partitioning.
-
-After partitioning, each process has a local mesh and set of
-mesh data that couples the meshes together.
-
-The following mesh data is created:
-
-1. \"global entity indices 0\" (MeshFunction<uint>)
-
-This maps each local vertex to its global index.
-
-2. \"overlap\" (std::map<uint, std::vector<uint> >)
-
-This maps each shared vertex to a list of the processes sharing
-the vertex.
-
-3. \"global entity indices %d\" (MeshFunction<uint>)
-
-After partitioning, the function number_entities() may be called
-to create global indices for all entities of a given topological
-dimension. These are stored as mesh data (MeshFunction<uint>)
-named
-
-   \"global entity indices 1\"
-   \"global entity indices 2\"
-   etc
-
-4. \"num global entities\" (std::vector<uint>)
-
-The function number_entities also records the number of global
-entities for the dimension of the numbered entities in the array
-named \"num global entities\". This array has size D + 1, where D
-is the topological dimension of the mesh. This array is
-initially created by the mesh and then contains only the number
-entities of dimension 0 (vertices) and dimension D (cells).
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::build_distributed_mesh "
-**Overloaded versions**
-
-* build_distributed_mesh\ (mesh)
-
-  Build a partitioned mesh based on local meshes
-
-* build_distributed_mesh\ (mesh, data)
-
-  Build a partitioned mesh based on local mesh data
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::number_entities "
-Create global entity indices for entities of dimension d
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::partition "
-Create a partitioned mesh based on local mesh data
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::build_mesh_domains "
-Create and attach distributed MeshDomains from local_data
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::build_mesh_value_collection "
-Create and attach distributed MeshDomains from local_data
-[entry, (cell_index, local_index, value)]
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshColoring.h)
@@ -11975,6 +12006,14 @@ Set a barrier (synchronization point)
 * scatter\ (values, sending_process=0)
 
   Scatter values, one to each process
+
+* scatter\ (values, sending_process=0)
+
+  Scatter values (wrapper for MPI_Scatterv)
+
+* scatter\ (values, sending_process=0)
+
+  Scatter values (wrapper for MPI_Scatterv)
 
 * scatter\ (values, sending_process=0)
 
