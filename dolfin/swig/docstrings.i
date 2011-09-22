@@ -10510,6 +10510,26 @@ sub domains or boolean markers for mesh refinement.
           The object to be copied.
 ";
 
+%feature("docstring")  dolfin::MeshFunction::operator= "
+**Overloaded versions**
+
+* operator=\ (mesh)
+
+  Assignment operator
+  
+  *Arguments*
+      mesh (:py:class:`MeshValueCollection`)
+          A :py:class:`MeshValueCollection` object used to construct a MeshFunction.
+
+* operator=\ (f)
+
+  Assign mesh function to other mesh function
+
+* operator=\ (value)
+
+  Set all values to given value
+";
+
 %feature("docstring")  dolfin::MeshFunction::mesh "
 Return mesh associated with mesh function
 
@@ -10606,18 +10626,6 @@ Return size (number of entities)
           The value at the given index.
 ";
 
-%feature("docstring")  dolfin::MeshFunction::operator= "
-**Overloaded versions**
-
-* operator=\ (f)
-
-  Assign mesh function to other mesh function
-
-* operator=\ (value)
-
-  Set all values to given value
-";
-
 %feature("docstring")  dolfin::MeshFunction::init "
 **Overloaded versions**
 
@@ -10708,24 +10716,6 @@ Return informal string representation (pretty-print)
 *Returns*
     str
         An informal representation.
-";
-
-// Documentation extracted from: (module=mesh, header=LocalMeshValueCollection.h)
-%feature("docstring")  dolfin::LocalMeshValueCollection "
-This class stores mesh data on a local processor corresponding
-to a portion of a MeshValueCollection.
-";
-
-%feature("docstring")  dolfin::LocalMeshValueCollection::LocalMeshValueCollection "
-Create local mesh data for given LocalMeshValueCollection
-";
-
-%feature("docstring")  dolfin::LocalMeshValueCollection::dim "
-Return dimension of cell entity
-";
-
-%feature("docstring")  dolfin::LocalMeshValueCollection::values "
-Return data
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
@@ -12126,7 +12116,6 @@ A list of objects that can be read/written to file can be found in
 GenericFile.h. Compatible file formats include:
     * XML (.xml)
     * VTK (.pvd)
-    * Python (.py)
     * RAW (.raw)
     * XYZ (.xyz)
     * Binary (.bin)
