@@ -10433,6 +10433,24 @@ Constructor
 Close mesh, finish editing, and order entities locally
 ";
 
+// Documentation extracted from: (module=mesh, header=LocalMeshValueCollection.h)
+%feature("docstring")  dolfin::LocalMeshValueCollection "
+This class stores mesh data on a local processor corresponding
+to a portion of a MeshValueCollection.
+";
+
+%feature("docstring")  dolfin::LocalMeshValueCollection::LocalMeshValueCollection "
+Create local mesh data for given LocalMeshValueCollection
+";
+
+%feature("docstring")  dolfin::LocalMeshValueCollection::dim "
+Return dimension of cell entity
+";
+
+%feature("docstring")  dolfin::LocalMeshValueCollection::values "
+Return data
+";
+
 // Documentation extracted from: (module=mesh, header=MeshFunction.h)
 %feature("docstring")  dolfin::MeshFunction "
 A MeshFunction is a function that can be evaluated at a set of
