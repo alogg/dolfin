@@ -2167,38 +2167,47 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::solve "
 **Overloaded versions**
 
-* solve\ (equation, u)
+* solve\ (equation, u, params=empty_parameters)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
   variational problem F(u; v) = 0 without boundary conditions
+  Parameters to the Linear/Nonlinear VariationalSolver can be passed
+  using params
 
-* solve\ (equation, u, bc)
+* solve\ (equation, u, bc, params=empty_parameters)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
   variational problem F(u; v) = 0 with a single boundary condition
+  Parameters to the Linear/Nonlinear VariationalSolver can be passed
+  using params
 
-* solve\ (equation, u, bcs)
+* solve\ (equation, u, bcs, params=empty_parameters)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
   variational problem F(u; v) = 0 with a list of boundary conditions
+  Parameters to the Linear/Nonlinear VariationalSolver can be passed
+  using params
 
-* solve\ (equation, u, J)
+* solve\ (equation, u, J, params=empty_parameters)
 
   Solve nonlinear variational problem F(u; v) == 0 without boundary
   conditions. The argument J should provide the Jacobian bilinear
-  form J = dF/du.
+  form J = dF/du. Parameters to the Nonlinear VariationalSolver
+  can be passed using params
 
-* solve\ (equation, u, bc, J)
+* solve\ (equation, u, bc, J, params=empty_parameters)
 
   Solve nonlinear variational problem F(u; v) == 0 with a single
   boundary condition. The argument J should provide the Jacobian
-  bilinear form J = dF/du.
+  bilinear form J = dF/du. Parameters to the Nonlinear
+  VariationalSolver can be passed using params
 
-* solve\ (equation, u, bcs, J)
+* solve\ (equation, u, bcs, J, params=empty_parameters)
 
   Solve nonlinear variational problem F(u; v) == 0 with a list of
   boundary conditions. The argument J should provide the Jacobian
-  bilinear form J = dF/du.
+  bilinear form J = dF/du. Parameters to the Nonlinear
+  VariationalSolver can be passed using params
 ";
 
 // Documentation extracted from: (module=fem, header=Form.h)
@@ -10822,9 +10831,14 @@ means that data may be stored robustly to file.
 %feature("docstring")  dolfin::MeshValueCollection::MeshValueCollection "
 **Overloaded versions**
 
+* MeshValueCollection\ ()
+
+  Create empty mesh value collection
+  
+
 * MeshValueCollection\ (dim)
 
-  Create empty mesh value collection of given dimension on given mesh
+  Create empty mesh value collection of given dimension
   
   *Arguments*
       dim (int)
@@ -10850,6 +10864,14 @@ means that data may be stored robustly to file.
           The XML file name.
       dim (int)
           The mesh entity dimension for the mesh value collection.
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::set_dim "
+Set the topological dimension
+
+*Arguments*
+    dim (int)
+        The mesh entity dimension for the mesh value collection.
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::dim "
@@ -11994,6 +12016,14 @@ Set a barrier (synchronization point)
 * distribute\ (values, partition)
 
   Distribute local arrays on all processors according to given partition
+
+* distribute\ (values, partition)
+
+  Distribute local arrays on all processors according to given partition
+
+* distribute\ (values, partition)
+
+  Distribute local arrays on all processors according to given partition
 ";
 
 %feature("docstring")  dolfin::MPI::broadcast "
@@ -12063,6 +12093,14 @@ reduction op)
 
 %feature("docstring")  dolfin::MPI::send_recv "
 **Overloaded versions**
+
+* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
+
+  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
+
+* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
+
+  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
 
 * send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
 
