@@ -1374,6 +1374,15 @@ Return the set of dof indices
         The set of dof indices.
 ";
 
+%feature("docstring")  dolfin::DofMap::data "
+Return the underlying dof map data. Intended for internal library
+use only.
+
+*Returns*
+    std::vector<std::vector<dolfin::uint> >
+        The local-to-global map for each cell.
+";
+
 %feature("docstring")  dolfin::DofMap::str "
 Return informal string representation (pretty-print)
 
@@ -8365,6 +8374,82 @@ Return informal string representation (pretty-print)
         An informal representation.
 ";
 
+// Documentation extracted from: (module=mesh, header=ParallelData.h)
+%feature("docstring")  dolfin::ParallelData "
+This class stores auxiliary mesh data for parallel computing.
+";
+
+%feature("docstring")  dolfin::ParallelData::ParallelData "
+**Overloaded versions**
+
+* ParallelData\ (mesh)
+
+  Constructor
+
+* ParallelData\ (data)
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::ParallelData::have_global_entity_indices "
+Return true if global indices have been computed for entity of
+dimension d
+";
+
+%feature("docstring")  dolfin::ParallelData::global_entity_indices "
+**Overloaded versions**
+
+* global_entity_indices\ (d)
+
+  Return global indices (local-to-global) for entity of dimension d
+
+* global_entity_indices\ (d)
+
+  Return global indices (local-to-global) for entity of dimension d (const version)
+";
+
+%feature("docstring")  dolfin::ParallelData::global_entity_indices_as_vector "
+Return global indices (local-to-global) for entity of dimension d in a vector
+";
+
+%feature("docstring")  dolfin::ParallelData::global_to_local_entity_indices "
+**Overloaded versions**
+
+* global_to_local_entity_indices\ (d)
+
+  Return global-to-local indices for entity of dimension d
+
+* global_to_local_entity_indices\ (d)
+
+  Return global-to-local indices for entity of dimension d (const version)
+";
+
+%feature("docstring")  dolfin::ParallelData::shared_vertices "
+**Overloaded versions**
+
+* shared_vertices\ ()
+
+  FIXME: Add description and use better name
+
+* shared_vertices\ ()
+
+  FIXME: Add description and use better name
+";
+
+%feature("docstring")  dolfin::ParallelData::exterior_facet "
+**Overloaded versions**
+
+* exterior_facet\ ()
+
+  Return MeshFunction that is true for globally exterior facets,
+  false otherwise
+
+* exterior_facet\ ()
+
+  Return MeshFunction that is true for globally exterior facets,
+  false otherwise (const version)
+";
+
 // Documentation extracted from: (module=mesh, header=Mesh.h)
 %feature("docstring")  dolfin::Mesh "
 A :py:class:`Mesh` consists of a set of connected and numbered mesh entities.
@@ -8662,14 +8747,6 @@ Get number of entities of given topological dimension.
   Get mesh (sub)domains.
 ";
 
-%feature("docstring")  dolfin::Mesh::id "
-Get unique mesh identifier.
-
-*Returns*
-    _uint_
-        The unique integer identifier associated with the mesh.
-";
-
 %feature("docstring")  dolfin::Mesh::intersection_operator "
 **Overloaded versions**
 
@@ -8710,7 +8787,7 @@ Get unique mesh identifier.
   Get parallel mesh data.
   
   *Returns*
-      _ParallelData_
+      :py:class:`ParallelData`
           The parallel data object associated with the mesh.
 
 * parallel_data\ ()
@@ -11765,6 +11842,10 @@ Common base class for DOLFIN variables.
 * Variable\ (name, label)
 
   Create variable with given name and label
+
+* Variable\ (variable)
+
+  Copy constructor
 ";
 
 %feature("docstring")  dolfin::Variable::rename "
@@ -11777,6 +11858,14 @@ Return name
 
 %feature("docstring")  dolfin::Variable::label "
 Return label (description)
+";
+
+%feature("docstring")  dolfin::Variable::id "
+Get unique identifier.
+
+*Returns*
+    _uint_
+        The unique integer identifier associated with the object.
 ";
 
 %feature("docstring")  dolfin::Variable::str "
@@ -12007,83 +12096,11 @@ Set a barrier (synchronization point)
 ";
 
 %feature("docstring")  dolfin::MPI::distribute "
-**Overloaded versions**
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-";
-
-%feature("docstring")  dolfin::MPI::broadcast "
-**Overloaded versions**
-
-* broadcast\ (value, broadcaster=0)
-
-  Broadcast value from broadcaster process to all processes
-
-* broadcast\ (values, broadcaster=0)
-
-  Broadcast value from broadcaster process to all processes
+Distribute local arrays on all processors according to given partition
 ";
 
 %feature("docstring")  dolfin::MPI::scatter "
-**Overloaded versions**
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values, one to each process
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-";
-
-%feature("docstring")  dolfin::MPI::gather "
-**Overloaded versions**
-
-* gather\ (value)
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-
-* gather\ (values)
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-";
-
-%feature("docstring")  dolfin::MPI::max "
-Return  maximum value
-";
-
-%feature("docstring")  dolfin::MPI::min "
-Return minimum value
-";
-
-%feature("docstring")  dolfin::MPI::sum "
-Return sum across all processes
+Scatter in_values[i] to process i
 ";
 
 %feature("docstring")  dolfin::MPI::global_offset "
@@ -12092,23 +12109,7 @@ reduction op)
 ";
 
 %feature("docstring")  dolfin::MPI::send_recv "
-**Overloaded versions**
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
+Send-receive and data
 ";
 
 %feature("docstring")  dolfin::MPI::local_range "
