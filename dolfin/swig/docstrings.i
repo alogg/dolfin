@@ -2157,19 +2157,19 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ (A, b, a, L, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b)
 
-* assemble_system\ (A, b, a, L, bc, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ (A, b, a, L, bcs, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
