@@ -283,17 +283,19 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ (V, filename)
+* Function\ (V, filename_vector)
 
   Create function from vector of dofs stored to file
   
   *Arguments*
       V (:py:class:`FunctionSpace`)
           The function space.
-      filename (str)
+      filename_vector (str)
           The name of the file containing the vector.
+      filename_dofdata (str)
+          The name of the file containing the dofmap data.
 
-* Function\ (V, filename)
+* Function\ (V, filename_vector)
 
   Create function from vector of dofs stored to file (shared data)
   
@@ -6431,6 +6433,10 @@ Create LU solver
 Create Krylov solver
 ";
 
+%feature("docstring")  dolfin::DefaultFactory::factory "
+Return instance of default backend
+";
+
 // Documentation extracted from: (module=la, header=PETScUserPreconditioner.h)
 %feature("docstring")  dolfin::PETScUserPreconditioner "
 This class specifies the interface for user-defined Krylov
@@ -7584,29 +7590,6 @@ Matrix-vector product, y = Ax
 %feature("docstring")  dolfin::BlockMatrix::schur_approximation "
 Create a crude explicit Schur approximation of S = D - C A^-1 B of (A B; C D)
 If symmetry != 0, then the caller promises that B = symmetry * transpose(C).
-";
-
-// Documentation extracted from: (module=graph, header=MatrixRenumbering.h)
-%feature("docstring")  dolfin::MatrixRenumbering "
-This class computes re-ordering based on a SparsityPattern graph
-representation of a sparse matrix. It uses Zoltan, which is part of
-Trilinos.
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::num_global_objects "
-Number of global graph vertices
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::num_local_objects "
-Number of local graph vertices
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::num_edges_per_vertex "
-Number of edges per vertex
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::edges "
-Vertex edges
 ";
 
 // Documentation extracted from: (module=ale, header=ALE.h)
@@ -12229,13 +12212,9 @@ Read from file
 %feature("docstring")  dolfin::File::operator<< "
 **Overloaded versions**
 
-* operator<<\ (u)
-
-  Write Function to file
-
 * operator<<\ (Function*, u)
 
-  Write Function to file (with, for instance, time)
+  Write Function to file with time
   
   *Example*
       .. note::
