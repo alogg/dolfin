@@ -283,17 +283,19 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ (V, filename)
+* Function\ (V, filename_vector)
 
   Create function from vector of dofs stored to file
   
   *Arguments*
       V (:py:class:`FunctionSpace`)
           The function space.
-      filename (str)
+      filename_vector (str)
           The name of the file containing the vector.
+      filename_dofdata (str)
+          The name of the file containing the dofmap data.
 
-* Function\ (V, filename)
+* Function\ (V, filename_vector)
 
   Create function from vector of dofs stored to file (shared data)
   
@@ -1374,6 +1376,15 @@ Return the set of dof indices
         The set of dof indices.
 ";
 
+%feature("docstring")  dolfin::DofMap::data "
+Return the underlying dof map data. Intended for internal library
+use only.
+
+*Returns*
+    std::vector<std::vector<dolfin::uint> >
+        The local-to-global map for each cell.
+";
+
 %feature("docstring")  dolfin::DofMap::str "
 Return informal string representation (pretty-print)
 
@@ -2146,19 +2157,19 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ (A, b, a, L, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b)
 
-* assemble_system\ (A, b, a, L, bc, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ (A, b, a, L, bcs, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsities=true, add_values=false)
+* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
@@ -6422,6 +6433,10 @@ Create LU solver
 Create Krylov solver
 ";
 
+%feature("docstring")  dolfin::DefaultFactory::factory "
+Return instance of default backend
+";
+
 // Documentation extracted from: (module=la, header=PETScUserPreconditioner.h)
 %feature("docstring")  dolfin::PETScUserPreconditioner "
 This class specifies the interface for user-defined Krylov
@@ -7577,29 +7592,6 @@ Create a crude explicit Schur approximation of S = D - C A^-1 B of (A B; C D)
 If symmetry != 0, then the caller promises that B = symmetry * transpose(C).
 ";
 
-// Documentation extracted from: (module=graph, header=MatrixRenumbering.h)
-%feature("docstring")  dolfin::MatrixRenumbering "
-This class computes re-ordering based on a SparsityPattern graph
-representation of a sparse matrix. It uses Zoltan, which is part of
-Trilinos.
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::num_global_objects "
-Number of global graph vertices
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::num_local_objects "
-Number of local graph vertices
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::num_edges_per_vertex "
-Number of edges per vertex
-";
-
-%feature("docstring")  dolfin::MatrixRenumbering::edges "
-Vertex edges
-";
-
 // Documentation extracted from: (module=ale, header=ALE.h)
 %feature("docstring")  dolfin::ALE "
 This class provides functionality useful for implementation of
@@ -8365,6 +8357,82 @@ Return informal string representation (pretty-print)
         An informal representation.
 ";
 
+// Documentation extracted from: (module=mesh, header=ParallelData.h)
+%feature("docstring")  dolfin::ParallelData "
+This class stores auxiliary mesh data for parallel computing.
+";
+
+%feature("docstring")  dolfin::ParallelData::ParallelData "
+**Overloaded versions**
+
+* ParallelData\ (mesh)
+
+  Constructor
+
+* ParallelData\ (data)
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::ParallelData::have_global_entity_indices "
+Return true if global indices have been computed for entity of
+dimension d
+";
+
+%feature("docstring")  dolfin::ParallelData::global_entity_indices "
+**Overloaded versions**
+
+* global_entity_indices\ (d)
+
+  Return global indices (local-to-global) for entity of dimension d
+
+* global_entity_indices\ (d)
+
+  Return global indices (local-to-global) for entity of dimension d (const version)
+";
+
+%feature("docstring")  dolfin::ParallelData::global_entity_indices_as_vector "
+Return global indices (local-to-global) for entity of dimension d in a vector
+";
+
+%feature("docstring")  dolfin::ParallelData::global_to_local_entity_indices "
+**Overloaded versions**
+
+* global_to_local_entity_indices\ (d)
+
+  Return global-to-local indices for entity of dimension d
+
+* global_to_local_entity_indices\ (d)
+
+  Return global-to-local indices for entity of dimension d (const version)
+";
+
+%feature("docstring")  dolfin::ParallelData::shared_vertices "
+**Overloaded versions**
+
+* shared_vertices\ ()
+
+  FIXME: Add description and use better name
+
+* shared_vertices\ ()
+
+  FIXME: Add description and use better name
+";
+
+%feature("docstring")  dolfin::ParallelData::exterior_facet "
+**Overloaded versions**
+
+* exterior_facet\ ()
+
+  Return MeshFunction that is true for globally exterior facets,
+  false otherwise
+
+* exterior_facet\ ()
+
+  Return MeshFunction that is true for globally exterior facets,
+  false otherwise (const version)
+";
+
 // Documentation extracted from: (module=mesh, header=Mesh.h)
 %feature("docstring")  dolfin::Mesh "
 A :py:class:`Mesh` consists of a set of connected and numbered mesh entities.
@@ -8662,14 +8730,6 @@ Get number of entities of given topological dimension.
   Get mesh (sub)domains.
 ";
 
-%feature("docstring")  dolfin::Mesh::id "
-Get unique mesh identifier.
-
-*Returns*
-    _uint_
-        The unique integer identifier associated with the mesh.
-";
-
 %feature("docstring")  dolfin::Mesh::intersection_operator "
 **Overloaded versions**
 
@@ -8710,7 +8770,7 @@ Get unique mesh identifier.
   Get parallel mesh data.
   
   *Returns*
-      _ParallelData_
+      :py:class:`ParallelData`
           The parallel data object associated with the mesh.
 
 * parallel_data\ ()
@@ -11765,6 +11825,10 @@ Common base class for DOLFIN variables.
 * Variable\ (name, label)
 
   Create variable with given name and label
+
+* Variable\ (variable)
+
+  Copy constructor
 ";
 
 %feature("docstring")  dolfin::Variable::rename "
@@ -11777,6 +11841,14 @@ Return name
 
 %feature("docstring")  dolfin::Variable::label "
 Return label (description)
+";
+
+%feature("docstring")  dolfin::Variable::id "
+Get unique identifier.
+
+*Returns*
+    _uint_
+        The unique integer identifier associated with the object.
 ";
 
 %feature("docstring")  dolfin::Variable::str "
@@ -12007,83 +12079,11 @@ Set a barrier (synchronization point)
 ";
 
 %feature("docstring")  dolfin::MPI::distribute "
-**Overloaded versions**
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-
-* distribute\ (values, partition)
-
-  Distribute local arrays on all processors according to given partition
-";
-
-%feature("docstring")  dolfin::MPI::broadcast "
-**Overloaded versions**
-
-* broadcast\ (value, broadcaster=0)
-
-  Broadcast value from broadcaster process to all processes
-
-* broadcast\ (values, broadcaster=0)
-
-  Broadcast value from broadcaster process to all processes
+Distribute local arrays on all processors according to given partition
 ";
 
 %feature("docstring")  dolfin::MPI::scatter "
-**Overloaded versions**
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values, one to each process
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-
-* scatter\ (values, sending_process=0)
-
-  Scatter values (wrapper for MPI_Scatterv)
-";
-
-%feature("docstring")  dolfin::MPI::gather "
-**Overloaded versions**
-
-* gather\ (value)
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-
-* gather\ (values)
-
-  Gather values, one from each process (wrapper for MPI_Allgather)
-";
-
-%feature("docstring")  dolfin::MPI::max "
-Return  maximum value
-";
-
-%feature("docstring")  dolfin::MPI::min "
-Return minimum value
-";
-
-%feature("docstring")  dolfin::MPI::sum "
-Return sum across all processes
+Scatter in_values[i] to process i
 ";
 
 %feature("docstring")  dolfin::MPI::global_offset "
@@ -12092,23 +12092,7 @@ reduction op)
 ";
 
 %feature("docstring")  dolfin::MPI::send_recv "
-**Overloaded versions**
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
-
-* send_recv\ (send_buffer, send_size, dest, recv_buffer, recv_size, source)
-
-  Send-receive and return number of received values (wrapper for MPI_Sendrecv)
+Send-receive and data
 ";
 
 %feature("docstring")  dolfin::MPI::local_range "
@@ -12228,13 +12212,9 @@ Read from file
 %feature("docstring")  dolfin::File::operator<< "
 **Overloaded versions**
 
-* operator<<\ (u)
-
-  Write Function to file
-
 * operator<<\ (Function*, u)
 
-  Write Function to file (with, for instance, time)
+  Write Function to file with time
   
   *Example*
       .. note::

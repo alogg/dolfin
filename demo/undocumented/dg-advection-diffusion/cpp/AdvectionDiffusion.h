@@ -14,9 +14,8 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
-//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -586,7 +585,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -622,7 +621,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -921,7 +920,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -936,8 +935,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1087,7 +1086,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -1102,8 +1101,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1268,8 +1267,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1434,8 +1433,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1600,8 +1599,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1766,8 +1765,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2207,7 +2206,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -2243,7 +2242,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -2423,7 +2422,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -2459,7 +2458,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -2761,7 +2760,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -2776,8 +2775,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2927,7 +2926,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -2942,8 +2941,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3108,8 +3107,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3274,8 +3273,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3440,8 +3439,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3606,8 +3605,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3757,7 +3756,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -3772,8 +3771,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3923,7 +3922,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -3938,8 +3937,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4104,8 +4103,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4270,8 +4269,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4436,8 +4435,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4602,8 +4601,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -7056,10 +7055,10 @@ public:
     const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_0_0_0 = det*(w[2][0]*((K_00*K_00 + K_01*K_01)));
-    const double G0_0_0_1 = det*(w[2][0]*((K_00*K_10 + K_01*K_11)));
-    const double G0_1_0_0 = det*(w[2][0]*((K_10*K_00 + K_11*K_01)));
-    const double G0_1_0_1 = det*(w[2][0]*((K_10*K_10 + K_11*K_11)));
+    const double G0_0_0_0 = det*(w[1][0]*((K_00*K_00 + K_01*K_01)));
+    const double G0_0_0_1 = det*(w[1][0]*((K_00*K_10 + K_01*K_11)));
+    const double G0_1_0_0 = det*(w[1][0]*((K_10*K_00 + K_11*K_01)));
+    const double G0_1_0_1 = det*(w[1][0]*((K_10*K_10 + K_11*K_11)));
     const double G1_0_0_0 = det*w[0][0]*K_00*(1.0);
     const double G1_0_1_0 = det*w[0][1]*K_00*(1.0);
     const double G1_0_2_0 = det*w[0][2]*K_00*(1.0);
@@ -7086,15 +7085,15 @@ public:
     const double G1_1_11_1 = det*w[0][11]*K_11*(1.0);
     
     // Compute element tensor
-    A[0] = 0.5*G0_0_0_0 + 0.5*G0_0_0_1 + 0.5*G0_1_0_0 + 0.5*G0_1_0_1 + 0.0166666666666666*G1_0_0_0 - 0.00833333333333333*G1_0_1_0 - 0.00833333333333332*G1_0_2_0 + 0.0333333333333333*G1_0_3_0 + 0.0666666666666667*G1_0_4_0 + 0.0666666666666667*G1_0_5_0 + 0.0166666666666666*G1_0_6_1 - 0.00833333333333333*G1_0_7_1 - 0.00833333333333332*G1_0_8_1 + 0.0333333333333333*G1_0_9_1 + 0.0666666666666667*G1_0_10_1 + 0.0666666666666667*G1_0_11_1 + 0.0166666666666666*G1_1_0_0 - 0.00833333333333333*G1_1_1_0 - 0.00833333333333332*G1_1_2_0 + 0.0333333333333333*G1_1_3_0 + 0.0666666666666667*G1_1_4_0 + 0.0666666666666667*G1_1_5_0 + 0.0166666666666666*G1_1_6_1 - 0.00833333333333333*G1_1_7_1 - 0.00833333333333332*G1_1_8_1 + 0.0333333333333333*G1_1_9_1 + 0.0666666666666667*G1_1_10_1 + 0.0666666666666667*G1_1_11_1;
-    A[1] = -0.5*G0_0_0_0 - 0.5*G0_1_0_0 - 0.00833333333333332*G1_0_0_0 + 0.0166666666666666*G1_0_1_0 - 0.00833333333333332*G1_0_2_0 + 0.0666666666666667*G1_0_3_0 + 0.0333333333333333*G1_0_4_0 + 0.0666666666666667*G1_0_5_0 - 0.00833333333333332*G1_0_6_1 + 0.0166666666666666*G1_0_7_1 - 0.00833333333333332*G1_0_8_1 + 0.0666666666666667*G1_0_9_1 + 0.0333333333333333*G1_0_10_1 + 0.0666666666666667*G1_0_11_1 - 0.00833333333333332*G1_1_0_0 + 0.0166666666666666*G1_1_1_0 - 0.00833333333333332*G1_1_2_0 + 0.0666666666666667*G1_1_3_0 + 0.0333333333333333*G1_1_4_0 + 0.0666666666666667*G1_1_5_0 - 0.00833333333333332*G1_1_6_1 + 0.0166666666666666*G1_1_7_1 - 0.00833333333333332*G1_1_8_1 + 0.0666666666666667*G1_1_9_1 + 0.0333333333333333*G1_1_10_1 + 0.0666666666666667*G1_1_11_1;
-    A[2] = -0.5*G0_0_0_1 - 0.5*G0_1_0_1 - 0.00833333333333332*G1_0_0_0 - 0.00833333333333333*G1_0_1_0 + 0.0166666666666666*G1_0_2_0 + 0.0666666666666667*G1_0_3_0 + 0.0666666666666667*G1_0_4_0 + 0.0333333333333333*G1_0_5_0 - 0.00833333333333332*G1_0_6_1 - 0.00833333333333333*G1_0_7_1 + 0.0166666666666666*G1_0_8_1 + 0.0666666666666667*G1_0_9_1 + 0.0666666666666667*G1_0_10_1 + 0.0333333333333333*G1_0_11_1 - 0.00833333333333332*G1_1_0_0 - 0.00833333333333333*G1_1_1_0 + 0.0166666666666666*G1_1_2_0 + 0.0666666666666667*G1_1_3_0 + 0.0666666666666667*G1_1_4_0 + 0.0333333333333333*G1_1_5_0 - 0.00833333333333332*G1_1_6_1 - 0.00833333333333333*G1_1_7_1 + 0.0166666666666666*G1_1_8_1 + 0.0666666666666667*G1_1_9_1 + 0.0666666666666667*G1_1_10_1 + 0.0333333333333333*G1_1_11_1;
+    A[0] = 0.5*G0_0_0_0 + 0.5*G0_0_0_1 + 0.5*G0_1_0_0 + 0.5*G0_1_0_1 + 0.0166666666666666*G1_0_0_0 - 0.00833333333333333*G1_0_1_0 - 0.00833333333333332*G1_0_2_0 + 0.0333333333333333*G1_0_3_0 + 0.0666666666666667*G1_0_4_0 + 0.0666666666666667*G1_0_5_0 + 0.0166666666666666*G1_0_6_1 - 0.00833333333333333*G1_0_7_1 - 0.00833333333333332*G1_0_8_1 + 0.0333333333333333*G1_0_9_1 + 0.0666666666666667*G1_0_10_1 + 0.0666666666666667*G1_0_11_1 + 0.0166666666666666*G1_1_0_0 - 0.00833333333333332*G1_1_1_0 - 0.00833333333333332*G1_1_2_0 + 0.0333333333333333*G1_1_3_0 + 0.0666666666666667*G1_1_4_0 + 0.0666666666666667*G1_1_5_0 + 0.0166666666666666*G1_1_6_1 - 0.00833333333333332*G1_1_7_1 - 0.00833333333333332*G1_1_8_1 + 0.0333333333333333*G1_1_9_1 + 0.0666666666666667*G1_1_10_1 + 0.0666666666666667*G1_1_11_1;
+    A[1] = -0.5*G0_0_0_0 - 0.5*G0_1_0_0 - 0.00833333333333331*G1_0_0_0 + 0.0166666666666666*G1_0_1_0 - 0.00833333333333332*G1_0_2_0 + 0.0666666666666667*G1_0_3_0 + 0.0333333333333333*G1_0_4_0 + 0.0666666666666667*G1_0_5_0 - 0.00833333333333331*G1_0_6_1 + 0.0166666666666666*G1_0_7_1 - 0.00833333333333332*G1_0_8_1 + 0.0666666666666667*G1_0_9_1 + 0.0333333333333333*G1_0_10_1 + 0.0666666666666667*G1_0_11_1 - 0.00833333333333331*G1_1_0_0 + 0.0166666666666666*G1_1_1_0 - 0.00833333333333332*G1_1_2_0 + 0.0666666666666667*G1_1_3_0 + 0.0333333333333333*G1_1_4_0 + 0.0666666666666667*G1_1_5_0 - 0.00833333333333331*G1_1_6_1 + 0.0166666666666666*G1_1_7_1 - 0.00833333333333332*G1_1_8_1 + 0.0666666666666667*G1_1_9_1 + 0.0333333333333333*G1_1_10_1 + 0.0666666666666667*G1_1_11_1;
+    A[2] = -0.5*G0_0_0_1 - 0.5*G0_1_0_1 - 0.00833333333333331*G1_0_0_0 - 0.00833333333333332*G1_0_1_0 + 0.0166666666666666*G1_0_2_0 + 0.0666666666666667*G1_0_3_0 + 0.0666666666666667*G1_0_4_0 + 0.0333333333333333*G1_0_5_0 - 0.00833333333333331*G1_0_6_1 - 0.00833333333333332*G1_0_7_1 + 0.0166666666666666*G1_0_8_1 + 0.0666666666666667*G1_0_9_1 + 0.0666666666666667*G1_0_10_1 + 0.0333333333333333*G1_0_11_1 - 0.00833333333333331*G1_1_0_0 - 0.00833333333333332*G1_1_1_0 + 0.0166666666666666*G1_1_2_0 + 0.0666666666666667*G1_1_3_0 + 0.0666666666666667*G1_1_4_0 + 0.0333333333333333*G1_1_5_0 - 0.00833333333333331*G1_1_6_1 - 0.00833333333333332*G1_1_7_1 + 0.0166666666666666*G1_1_8_1 + 0.0666666666666667*G1_1_9_1 + 0.0666666666666667*G1_1_10_1 + 0.0333333333333333*G1_1_11_1;
     A[3] = -0.5*G0_0_0_0 - 0.5*G0_0_0_1 - 0.0166666666666666*G1_0_0_0 + 0.00833333333333333*G1_0_1_0 + 0.00833333333333332*G1_0_2_0 - 0.0333333333333333*G1_0_3_0 - 0.0666666666666667*G1_0_4_0 - 0.0666666666666667*G1_0_5_0 - 0.0166666666666666*G1_0_6_1 + 0.00833333333333333*G1_0_7_1 + 0.00833333333333332*G1_0_8_1 - 0.0333333333333333*G1_0_9_1 - 0.0666666666666667*G1_0_10_1 - 0.0666666666666667*G1_0_11_1;
-    A[4] = 0.5*G0_0_0_0 + 0.00833333333333332*G1_0_0_0 - 0.0166666666666666*G1_0_1_0 + 0.00833333333333332*G1_0_2_0 - 0.0666666666666667*G1_0_3_0 - 0.0333333333333333*G1_0_4_0 - 0.0666666666666667*G1_0_5_0 + 0.00833333333333332*G1_0_6_1 - 0.0166666666666666*G1_0_7_1 + 0.00833333333333332*G1_0_8_1 - 0.0666666666666667*G1_0_9_1 - 0.0333333333333333*G1_0_10_1 - 0.0666666666666667*G1_0_11_1;
-    A[5] = 0.5*G0_0_0_1 + 0.00833333333333332*G1_0_0_0 + 0.00833333333333333*G1_0_1_0 - 0.0166666666666666*G1_0_2_0 - 0.0666666666666667*G1_0_3_0 - 0.0666666666666667*G1_0_4_0 - 0.0333333333333333*G1_0_5_0 + 0.00833333333333332*G1_0_6_1 + 0.00833333333333333*G1_0_7_1 - 0.0166666666666666*G1_0_8_1 - 0.0666666666666667*G1_0_9_1 - 0.0666666666666667*G1_0_10_1 - 0.0333333333333333*G1_0_11_1;
-    A[6] = -0.5*G0_1_0_0 - 0.5*G0_1_0_1 - 0.0166666666666666*G1_1_0_0 + 0.00833333333333333*G1_1_1_0 + 0.00833333333333332*G1_1_2_0 - 0.0333333333333333*G1_1_3_0 - 0.0666666666666667*G1_1_4_0 - 0.0666666666666667*G1_1_5_0 - 0.0166666666666666*G1_1_6_1 + 0.00833333333333333*G1_1_7_1 + 0.00833333333333332*G1_1_8_1 - 0.0333333333333333*G1_1_9_1 - 0.0666666666666667*G1_1_10_1 - 0.0666666666666667*G1_1_11_1;
-    A[7] = 0.5*G0_1_0_0 + 0.00833333333333332*G1_1_0_0 - 0.0166666666666666*G1_1_1_0 + 0.00833333333333332*G1_1_2_0 - 0.0666666666666667*G1_1_3_0 - 0.0333333333333333*G1_1_4_0 - 0.0666666666666667*G1_1_5_0 + 0.00833333333333332*G1_1_6_1 - 0.0166666666666666*G1_1_7_1 + 0.00833333333333332*G1_1_8_1 - 0.0666666666666667*G1_1_9_1 - 0.0333333333333333*G1_1_10_1 - 0.0666666666666667*G1_1_11_1;
-    A[8] = 0.5*G0_1_0_1 + 0.00833333333333332*G1_1_0_0 + 0.00833333333333333*G1_1_1_0 - 0.0166666666666666*G1_1_2_0 - 0.0666666666666667*G1_1_3_0 - 0.0666666666666667*G1_1_4_0 - 0.0333333333333333*G1_1_5_0 + 0.00833333333333332*G1_1_6_1 + 0.00833333333333333*G1_1_7_1 - 0.0166666666666666*G1_1_8_1 - 0.0666666666666667*G1_1_9_1 - 0.0666666666666667*G1_1_10_1 - 0.0333333333333333*G1_1_11_1;
+    A[4] = 0.5*G0_0_0_0 + 0.00833333333333331*G1_0_0_0 - 0.0166666666666666*G1_0_1_0 + 0.00833333333333332*G1_0_2_0 - 0.0666666666666667*G1_0_3_0 - 0.0333333333333333*G1_0_4_0 - 0.0666666666666667*G1_0_5_0 + 0.00833333333333331*G1_0_6_1 - 0.0166666666666666*G1_0_7_1 + 0.00833333333333332*G1_0_8_1 - 0.0666666666666667*G1_0_9_1 - 0.0333333333333333*G1_0_10_1 - 0.0666666666666667*G1_0_11_1;
+    A[5] = 0.5*G0_0_0_1 + 0.00833333333333331*G1_0_0_0 + 0.00833333333333332*G1_0_1_0 - 0.0166666666666666*G1_0_2_0 - 0.0666666666666667*G1_0_3_0 - 0.0666666666666667*G1_0_4_0 - 0.0333333333333333*G1_0_5_0 + 0.00833333333333331*G1_0_6_1 + 0.00833333333333332*G1_0_7_1 - 0.0166666666666666*G1_0_8_1 - 0.0666666666666667*G1_0_9_1 - 0.0666666666666667*G1_0_10_1 - 0.0333333333333333*G1_0_11_1;
+    A[6] = -0.5*G0_1_0_0 - 0.5*G0_1_0_1 - 0.0166666666666666*G1_1_0_0 + 0.00833333333333332*G1_1_1_0 + 0.00833333333333332*G1_1_2_0 - 0.0333333333333333*G1_1_3_0 - 0.0666666666666667*G1_1_4_0 - 0.0666666666666667*G1_1_5_0 - 0.0166666666666666*G1_1_6_1 + 0.00833333333333332*G1_1_7_1 + 0.00833333333333332*G1_1_8_1 - 0.0333333333333333*G1_1_9_1 - 0.0666666666666667*G1_1_10_1 - 0.0666666666666667*G1_1_11_1;
+    A[7] = 0.5*G0_1_0_0 + 0.00833333333333331*G1_1_0_0 - 0.0166666666666666*G1_1_1_0 + 0.00833333333333332*G1_1_2_0 - 0.0666666666666667*G1_1_3_0 - 0.0333333333333333*G1_1_4_0 - 0.0666666666666667*G1_1_5_0 + 0.00833333333333331*G1_1_6_1 - 0.0166666666666666*G1_1_7_1 + 0.00833333333333332*G1_1_8_1 - 0.0666666666666667*G1_1_9_1 - 0.0333333333333333*G1_1_10_1 - 0.0666666666666667*G1_1_11_1;
+    A[8] = 0.5*G0_1_0_1 + 0.00833333333333331*G1_1_0_0 + 0.00833333333333332*G1_1_1_0 - 0.0166666666666666*G1_1_2_0 - 0.0666666666666667*G1_1_3_0 - 0.0666666666666667*G1_1_4_0 - 0.0333333333333333*G1_1_5_0 + 0.00833333333333331*G1_1_6_1 + 0.00833333333333332*G1_1_7_1 - 0.0166666666666666*G1_1_8_1 - 0.0666666666666667*G1_1_9_1 - 0.0666666666666667*G1_1_10_1 - 0.0333333333333333*G1_1_11_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -7435,10 +7434,20 @@ public:
     const double n11 = !direction ? -dx0 / det : dx0 / det;
     
     // Cell Volume.
+    const double volume0 = std::abs(detJ0)/2.0;// Cell Volume.
+    const double volume1 = std::abs(detJ1)/2.0;
     
     // Compute circumradius, assuming triangle is embedded in 2D.
+    const double v1v20  = std::sqrt( (x0[2][0] - x0[1][0])*(x0[2][0] - x0[1][0]) + (x0[2][1] - x0[1][1])*(x0[2][1] - x0[1][1]) );
+    const double v0v20  = std::sqrt( J0_11*J0_11 + J0_01*J0_01 );
+    const double v0v10  = std::sqrt( J0_00*J0_00 + J0_10*J0_10 );
     
+    const double circumradius0 = 0.25*(v1v20*v0v20*v0v10)/(volume0);// Compute circumradius, assuming triangle is embedded in 2D.
+    const double v1v21  = std::sqrt( (x1[2][0] - x1[1][0])*(x1[2][0] - x1[1][0]) + (x1[2][1] - x1[1][1])*(x1[2][1] - x1[1][1]) );
+    const double v0v21  = std::sqrt( J1_11*J1_11 + J1_01*J1_01 );
+    const double v0v11  = std::sqrt( J1_00*J1_00 + J1_10*J1_10 );
     
+    const double circumradius1 = 0.25*(v1v21*v0v21*v0v11)/(volume1);
     
     // Array of quadrature weights.
     static const double W3[3] = {0.277777777777778, 0.444444444444444, 0.277777777777778};
@@ -7498,29 +7507,29 @@ public:
     {
       A[r] = 0.0;
     }// end loop over 'r'
-    // Number of operations to compute geometry constants: 93.
+    // Number of operations to compute geometry constants: 90.
     double G[21];
-    G[0] = -0.5*det*w[2][0]*(K0_10*n10 + K0_11*n11);
-    G[1] = -0.5*det*w[2][0]*(K0_00*n10 + K0_01*n11);
-    G[2] = -0.5*det*w[2][0]*(K1_10*n00 + K1_11*n01);
-    G[3] = -0.5*det*w[2][0]*(K0_10*n00 + K0_11*n01);
-    G[4] = -0.5*det*w[2][0]*(K1_10*n10 + K1_11*n11);
-    G[5] = det*w[2][0]*w[3][0]*(n10*n10 + n11*n11)/(0.5*(w[1][0] + w[1][1]));
+    G[0] = -0.5*det*w[1][0]*(K0_10*n10 + K0_11*n11);
+    G[1] = -0.5*det*w[1][0]*(K0_00*n10 + K0_01*n11);
+    G[2] = -0.5*det*w[1][0]*(K1_10*n00 + K1_11*n01);
+    G[3] = -0.5*det*w[1][0]*(K0_10*n00 + K0_11*n01);
+    G[4] = -0.5*det*w[1][0]*(K1_10*n10 + K1_11*n11);
+    G[5] = det*w[1][0]*w[2][0]*(n10*n10 + n11*n11)/(circumradius0 + circumradius1);
     G[6] = 0.5*det;
     G[7] = 0.5*det*n10;
     G[8] = 0.5*det*n11;
-    G[9] = -0.5*det*w[2][0]*(K0_00*n00 + K0_01*n01);
-    G[10] = -0.5*det*w[2][0]*(K1_00*n10 + K1_01*n11);
-    G[11] = det*w[2][0]*w[3][0]*(n00*n10 + n01*n11)/(0.5*(w[1][0] + w[1][1]));
+    G[9] = -0.5*det*w[1][0]*(K0_00*n00 + K0_01*n01);
+    G[10] = -0.5*det*w[1][0]*(K1_00*n10 + K1_01*n11);
+    G[11] = det*w[1][0]*w[2][0]*(n00*n10 + n01*n11)/(circumradius0 + circumradius1);
     G[12] = -0.5*det;
     G[13] = -0.5*det*n00;
     G[14] = -0.5*det*n01;
     G[15] = -0.5*det*n10;
     G[16] = -0.5*det*n11;
-    G[17] = det*w[2][0]*w[3][0]*(n00*n00 + n01*n01)/(0.5*(w[1][0] + w[1][1]));
+    G[17] = det*w[1][0]*w[2][0]*(n00*n00 + n01*n01)/(circumradius0 + circumradius1);
     G[18] = 0.5*det*n00;
     G[19] = 0.5*det*n01;
-    G[20] = -0.5*det*w[2][0]*(K1_00*n00 + K1_01*n01);
+    G[20] = -0.5*det*w[1][0]*(K1_00*n00 + K1_01*n01);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -8691,7 +8700,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(Sum(ComponentTensor(Product(Constant(Cell('triangle', Space(2)), 2), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(IntValue(-1, (), (), {}), Indexed(ComponentTensor(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Sum(PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0)), Product(IntValue(-1, (), (), {}), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0)))), Sum(Product(IntValue(-1, (), (), {}), Product(NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1)), NegativeRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(7),), {Index(7): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(7),), {Index(7): 2}))), FloatValue(2, (), (), {}))))), Product(PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1)), PositiveRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(8),), {Index(8): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(8),), {Index(8): 2}))), MultiIndex((Index(8),), {Index(8): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(9),), {Index(9): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(9),), {Index(9): 2}))), MultiIndex((Index(9),), {Index(9): 2}))), FloatValue(2, (), (), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(11),), {Index(11): 2})), MultiIndex((Index(11),), {Index(11): 2})))), MultiIndex((Index(12),), {Index(12): 2}))), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(14),), {Index(14): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(14),), {Index(14): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(15),), {Index(15): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(15),), {Index(15): 2}))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(Constant(Cell('triangle', Space(2)), 2)))), Sum(Product(IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(16),), {Index(16): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(16),), {Index(16): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(17),), {Index(17): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(19),), {Index(19): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(19),), {Index(19): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(20),), {Index(20): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Product(Division(PositiveRestricted(Constant(Cell('triangle', Space(2)), 3)), Division(Sum(NegativeRestricted(Constant(Cell('triangle', Space(2)), 1)), PositiveRestricted(Constant(Cell('triangle', Space(2)), 1))), IntValue(2, (), (), {}))), PositiveRestricted(Constant(Cell('triangle', Space(2)), 2)))), Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21),), {Index(21): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})))), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(25),), {Index(25): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(25),), {Index(25): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(26),), {Index(26): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2})), PositiveRestricted(Constant(Cell('triangle', Space(2)), 2))))))), Measure('interior_facet', 0, None)), Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(27),), {Index(27): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(28),), {Index(28): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2}))), FloatValue(2, (), (), {})))), Measure('exterior_facet', 0, None))])";
+    return "Form([Integral(IndexSum(Product(Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(0),), {Index(0): 2})), MultiIndex((Index(1),), {Index(1): 2})), Indexed(Sum(ComponentTensor(Product(Constant(Cell('triangle', Space(2)), 1), Indexed(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(2),), {Index(2): 2})), MultiIndex((Index(3),), {Index(3): 2}))), MultiIndex((Index(3),), {Index(3): 2})), ComponentTensor(Product(IntValue(-1, (), (), {}), Indexed(ComponentTensor(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(4),), {Index(4): 2}))), MultiIndex((Index(4),), {Index(4): 2})), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(5),), {Index(5): 2}))), MultiIndex((Index(1),), {Index(1): 2}))), MultiIndex((Index(1),), {Index(1): 2})), Measure('cell', 0, None)), Integral(Sum(Product(Sum(PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0)), Product(IntValue(-1, (), (), {}), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0)))), Sum(Product(IntValue(-1, (), (), {}), Product(NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1)), NegativeRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(6),), {Index(6): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(6),), {Index(6): 2}))), MultiIndex((Index(6),), {Index(6): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(7),), {Index(7): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(7),), {Index(7): 2}))), MultiIndex((Index(7),), {Index(7): 2}))), FloatValue(2, (), (), {}))))), Product(PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1)), PositiveRestricted(Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(8),), {Index(8): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(8),), {Index(8): 2}))), MultiIndex((Index(8),), {Index(8): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(9),), {Index(9): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(9),), {Index(9): 2}))), MultiIndex((Index(9),), {Index(9): 2}))), FloatValue(2, (), (), {})))))), Sum(Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(10),), {Index(10): 2})), MultiIndex((Index(10),), {Index(10): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), MultiIndex((Index(11),), {Index(11): 2})), MultiIndex((Index(11),), {Index(11): 2})))), MultiIndex((Index(12),), {Index(12): 2}))), MultiIndex((Index(12),), {Index(12): 2})), MultiIndex((Index(13),), {Index(13): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(14),), {Index(14): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(14),), {Index(14): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(15),), {Index(15): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(15),), {Index(15): 2}))), MultiIndex((Index(13),), {Index(13): 2}))), MultiIndex((Index(13),), {Index(13): 2})), PositiveRestricted(Constant(Cell('triangle', Space(2)), 1)))), Sum(Product(IndexSum(Product(Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(16),), {Index(16): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(16),), {Index(16): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(17),), {Index(17): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0))), MultiIndex((Index(17),), {Index(17): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(19),), {Index(19): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(19),), {Index(19): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(20),), {Index(20): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(20),), {Index(20): 2}))), MultiIndex((Index(18),), {Index(18): 2}))), MultiIndex((Index(18),), {Index(18): 2})), Product(Division(PositiveRestricted(Constant(Cell('triangle', Space(2)), 2)), Division(Sum(NegativeRestricted(Product(FloatValue(2, (), (), {}), Circumradius(Cell('triangle', Space(2))))), PositiveRestricted(Product(FloatValue(2, (), (), {}), Circumradius(Cell('triangle', Space(2)))))), IntValue(2, (), (), {}))), PositiveRestricted(Constant(Cell('triangle', Space(2)), 1)))), Product(IntValue(-1, (), (), {}), Product(IndexSum(Product(Indexed(ComponentTensor(Product(FloatValue(0.5, (), (), {}), Indexed(Sum(NegativeRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(21),), {Index(21): 2})), MultiIndex((Index(21),), {Index(21): 2}))), PositiveRestricted(ComponentTensor(SpatialDerivative(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), MultiIndex((Index(22),), {Index(22): 2})), MultiIndex((Index(22),), {Index(22): 2})))), MultiIndex((Index(23),), {Index(23): 2}))), MultiIndex((Index(23),), {Index(23): 2})), MultiIndex((Index(24),), {Index(24): 2})), Indexed(Sum(ComponentTensor(Product(Indexed(NegativeRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(25),), {Index(25): 2})), NegativeRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(25),), {Index(25): 2})), ComponentTensor(Product(Indexed(PositiveRestricted(FacetNormal(Cell('triangle', Space(2)))), MultiIndex((Index(26),), {Index(26): 2})), PositiveRestricted(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1))), MultiIndex((Index(26),), {Index(26): 2}))), MultiIndex((Index(24),), {Index(24): 2}))), MultiIndex((Index(24),), {Index(24): 2})), PositiveRestricted(Constant(Cell('triangle', Space(2)), 1))))))), Measure('interior_facet', 0, None)), Integral(Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 0), Product(Argument(FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 1, None), 1), Division(Sum(Abs(IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(27),), {Index(27): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(27),), {Index(27): 2}))), MultiIndex((Index(27),), {Index(27): 2}))), IndexSum(Product(Indexed(Coefficient(VectorElement('Lagrange', Cell('triangle', Space(2)), 2, 2, None), 0), MultiIndex((Index(28),), {Index(28): 2})), Indexed(FacetNormal(Cell('triangle', Space(2))), MultiIndex((Index(28),), {Index(28): 2}))), MultiIndex((Index(28),), {Index(28): 2}))), FloatValue(2, (), (), {})))), Measure('exterior_facet', 0, None))])";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8703,7 +8712,7 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 4;
+    return 3;
   }
 
   /// Return the number of cell domains
@@ -8754,11 +8763,6 @@ public:
         return new advectiondiffusion_finite_element_0();
         break;
       }
-    case 5:
-      {
-        return new advectiondiffusion_finite_element_0();
-        break;
-      }
     }
     
     return 0;
@@ -8790,11 +8794,6 @@ public:
         break;
       }
     case 4:
-      {
-        return new advectiondiffusion_dofmap_0();
-        break;
-      }
-    case 5:
       {
         return new advectiondiffusion_dofmap_0();
         break;
@@ -9090,48 +9089,6 @@ public:
 
 };
 
-class CoefficientSpace_h: public dolfin::FunctionSpace
-{
-public:
-
-  CoefficientSpace_h(const dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_h(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_h(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
-  CoefficientSpace_h(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new advectiondiffusion_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new advectiondiffusion_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
-  ~CoefficientSpace_h()
-  {
-  }
-
-};
-
 class CoefficientSpace_kappa: public dolfin::FunctionSpace
 {
 public:
@@ -9302,11 +9259,9 @@ public:
 
 typedef CoefficientSpace_u Form_0_FunctionSpace_2;
 
-typedef CoefficientSpace_h Form_0_FunctionSpace_3;
+typedef CoefficientSpace_kappa Form_0_FunctionSpace_3;
 
-typedef CoefficientSpace_kappa Form_0_FunctionSpace_4;
-
-typedef CoefficientSpace_alpha Form_0_FunctionSpace_5;
+typedef CoefficientSpace_alpha Form_0_FunctionSpace_4;
 
 class Form_0: public dolfin::Form
 {
@@ -9314,7 +9269,7 @@ public:
 
   // Constructor
   Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
-    dolfin::Form(2, 4), u(*this, 0), h(*this, 1), kappa(*this, 2), alpha(*this, 3)
+    dolfin::Form(2, 3), u(*this, 0), kappa(*this, 1), alpha(*this, 2)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
@@ -9323,14 +9278,13 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& u, const dolfin::GenericFunction& h, const dolfin::GenericFunction& kappa, const dolfin::GenericFunction& alpha):
-    dolfin::Form(2, 4), u(*this, 0), h(*this, 1), kappa(*this, 2), alpha(*this, 3)
+  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& u, const dolfin::GenericFunction& kappa, const dolfin::GenericFunction& alpha):
+    dolfin::Form(2, 3), u(*this, 0), kappa(*this, 1), alpha(*this, 2)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     this->u = u;
-    this->h = h;
     this->kappa = kappa;
     this->alpha = alpha;
 
@@ -9338,14 +9292,13 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> h, boost::shared_ptr<const dolfin::GenericFunction> kappa, boost::shared_ptr<const dolfin::GenericFunction> alpha):
-    dolfin::Form(2, 4), u(*this, 0), h(*this, 1), kappa(*this, 2), alpha(*this, 3)
+  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> kappa, boost::shared_ptr<const dolfin::GenericFunction> alpha):
+    dolfin::Form(2, 3), u(*this, 0), kappa(*this, 1), alpha(*this, 2)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
     this->u = *u;
-    this->h = *h;
     this->kappa = *kappa;
     this->alpha = *alpha;
 
@@ -9354,7 +9307,7 @@ public:
 
   // Constructor
   Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(2, 4), u(*this, 0), h(*this, 1), kappa(*this, 2), alpha(*this, 3)
+    dolfin::Form(2, 3), u(*this, 0), kappa(*this, 1), alpha(*this, 2)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
@@ -9363,14 +9316,13 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& u, const dolfin::GenericFunction& h, const dolfin::GenericFunction& kappa, const dolfin::GenericFunction& alpha):
-    dolfin::Form(2, 4), u(*this, 0), h(*this, 1), kappa(*this, 2), alpha(*this, 3)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& u, const dolfin::GenericFunction& kappa, const dolfin::GenericFunction& alpha):
+    dolfin::Form(2, 3), u(*this, 0), kappa(*this, 1), alpha(*this, 2)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
     this->u = u;
-    this->h = h;
     this->kappa = kappa;
     this->alpha = alpha;
 
@@ -9378,14 +9330,13 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> h, boost::shared_ptr<const dolfin::GenericFunction> kappa, boost::shared_ptr<const dolfin::GenericFunction> alpha):
-    dolfin::Form(2, 4), u(*this, 0), h(*this, 1), kappa(*this, 2), alpha(*this, 3)
+  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> u, boost::shared_ptr<const dolfin::GenericFunction> kappa, boost::shared_ptr<const dolfin::GenericFunction> alpha):
+    dolfin::Form(2, 3), u(*this, 0), kappa(*this, 1), alpha(*this, 2)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
     this->u = *u;
-    this->h = *h;
     this->kappa = *kappa;
     this->alpha = *alpha;
 
@@ -9401,12 +9352,10 @@ public:
   {
     if (name == "u")
       return 0;
-    else if (name == "h")
-      return 1;
     else if (name == "kappa")
-      return 2;
+      return 1;
     else if (name == "alpha")
-      return 3;
+      return 2;
 
     dolfin::error("Invalid coefficient.");
     return 0;
@@ -9420,10 +9369,8 @@ public:
     case 0:
       return "u";
     case 1:
-      return "h";
-    case 2:
       return "kappa";
-    case 3:
+    case 2:
       return "alpha";
     }
 
@@ -9435,13 +9382,11 @@ public:
   typedef Form_0_FunctionSpace_0 TestSpace;
   typedef Form_0_FunctionSpace_1 TrialSpace;
   typedef Form_0_FunctionSpace_2 CoefficientSpace_u;
-  typedef Form_0_FunctionSpace_3 CoefficientSpace_h;
-  typedef Form_0_FunctionSpace_4 CoefficientSpace_kappa;
-  typedef Form_0_FunctionSpace_5 CoefficientSpace_alpha;
+  typedef Form_0_FunctionSpace_3 CoefficientSpace_kappa;
+  typedef Form_0_FunctionSpace_4 CoefficientSpace_alpha;
 
   // Coefficients
   dolfin::CoefficientAssigner u;
-  dolfin::CoefficientAssigner h;
   dolfin::CoefficientAssigner kappa;
   dolfin::CoefficientAssigner alpha;
 };
