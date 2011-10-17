@@ -2129,27 +2129,27 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor
 
-* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor on sub domain
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor on sub domains
 
-* assemble\ (a, reset_sparsity=true, add_values=false)
+* assemble\ (a, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble scalar
 
-* assemble\ (a, sub_domain, reset_sparsity=true, add_values=false)
+* assemble\ (a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble scalar on sub domain
 
-* assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
+* assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble scalar on sub domains
 ";
@@ -2157,19 +2157,19 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false)
+* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b)
 
-* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false)
+* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false)
+* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)
+* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
@@ -2547,11 +2547,7 @@ different ways:
        form.ds = exterior_facet_domains
        form.dS = interior_facet_domains
 
-3. By :py:class:`MeshFunction` stored in :py:class:`MeshData` as
-
-   * \"cell_domains\"
-   * \"exterior_facet_domains\"
-   * \"interior_facet_domains\"
+3. By markers stored as part of the :py:class:`Mesh` (in :py:class:`MeshDomains`)
 
 4. By specifying a :py:class:`SubDomain` which specifies the domain numbered
    as 0 (with the rest treated as domain number 1)
@@ -2562,7 +2558,7 @@ Note that (1) overrides (2), which overrides (3).
 %feature("docstring")  dolfin::Assembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor from given form
   
@@ -2573,10 +2569,19 @@ Note that (1) overrides (2), which overrides (3).
           The form to assemble the tensor from.
       reset_sparsity (bool)
           Optional argument: Default value is true.
+          This controls whether the sparsity pattern of the
+          given tensor is reset prior to assembly.
       add_values (bool)
           Optional argument: Default value is false.
+          This controls whether values are added to the given
+          tensor or if it is zeroed prior to assembly.
+      finalize_tensor (bool)
+          Optional argument: Default value is true.
+          This controls whether the assembler finalizes the
+          given tensor after assembly is completed by calling
+          A.apply().
 
-* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor from given form on subdomain
   
@@ -2589,10 +2594,19 @@ Note that (1) overrides (2), which overrides (3).
           The subdomain to assemble on.
       reset_sparsity (bool)
           Optional argument: Default value is true.
+          This controls whether the sparsity pattern of the
+          given tensor is reset prior to assembly.
       add_values (bool)
           Optional argument: Default value is false.
+          This controls whether values are added to the given
+          tensor or if it is zeroed prior to assembly.
+      finalize_tensor (bool)
+          Optional argument: Default value is true.
+          This controls whether the assembler finalizes the
+          given tensor after assembly is completed by calling
+          A.apply().
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor from given form on subdomains
   
@@ -2609,8 +2623,34 @@ Note that (1) overrides (2), which overrides (3).
           The interior facet domains.
       reset_sparsity (bool)
           Optional argument: Default value is true.
+          This controls whether the sparsity pattern of the
+          given tensor is reset prior to assembly.
       add_values (bool)
           Optional argument: Default value is false.
+          This controls whether values are added to the given
+          tensor or if it is zeroed prior to assembly.
+      finalize_tensor (bool)
+          Optional argument: Default value is true.
+          This controls whether the assembler finalizes the
+          given tensor after assembly is completed by calling
+          A.apply().
+";
+
+%feature("docstring")  dolfin::Assembler::assemble_cells "
+Assemble tensor from given form over cells. This function is
+provided for users who wish to build a customized assembler.
+";
+
+%feature("docstring")  dolfin::Assembler::assemble_exterior_facets "
+Assemble tensor from given form over exterior facets. This
+function is provided for users who wish to build a customized
+assembler.
+";
+
+%feature("docstring")  dolfin::Assembler::assemble_interior_facets "
+Assemble tensor from given form over interior facets. This
+function is provided for users who wish to build a customized
+assembler.
 ";
 
 // Documentation extracted from: (module=fem, header=SparsityPatternBuilder.h)
@@ -2634,19 +2674,19 @@ boundary conditions at the time of assembly.
 %feature("docstring")  dolfin::SystemAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, b, a, L, reset_sparsity=true, add_values=false)
+* assemble\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b)
 
-* assemble\ (A, b, a, L, bc, reset_sparsity=true, add_values=true)
+* assemble\ (A, b, a, L, bc, reset_sparsity=true, add_values=true, finalize_tensor=true)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false)
+* assemble\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false)
+* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
@@ -2885,11 +2925,11 @@ entire set of cells or facets.
 %feature("docstring")  dolfin::OpenMpAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor from given form
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble tensor from given form on sub domains
 ";
@@ -4366,7 +4406,12 @@ Return local ownership range
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::apply "
-Finalize assembly of tensor
+Finalize assembly of tensor. The following values are recognized
+for the mode parameter:
+
+  add    - corresponding to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
+  insert - corresponding to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
+  flush  - corresponding to PETSc MatAssemblyBegin+End(MAT_FLUSH_ASSEMBLY)
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::str "
@@ -4696,7 +4741,11 @@ Return local ownership range
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::apply "
-Finalize assembly of tensor
+Finalize assembly of tensor. The following values are recognized
+for the mode parameter:
+
+  add    - corresponding to Epetra GlobalAssemble(Add)
+  insert - corresponding to Epetra GlobalAssemble(Insert)
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::str "
@@ -11536,6 +11585,7 @@ should not be needed in most cases since the initialization is
 otherwise handled automatically.
 ";
 
+// Documentation extracted from: (module=common, header=defines.h)
 // Documentation extracted from: (module=common, header=types.h)
 // Documentation extracted from: (module=common, header=constants.h)
 // Documentation extracted from: (module=common, header=timing.h)
@@ -11965,68 +12015,68 @@ Check if the object has a child.
   Return shared pointer to child (const version).
 ";
 
-%feature("docstring")  dolfin::Hierarchical::coarse "
+%feature("docstring")  dolfin::Hierarchical::root_node "
 **Overloaded versions**
 
-* coarse\ ()
+* root_node\ ()
 
-  Return coarsest object in hierarchy.
+  Return root node object in hierarchy.
   
   *Returns*
       _T_
-          The coarse object.
+          The root node object.
 
-* coarse\ ()
+* root_node\ ()
 
-  Return coarsest object in hierarchy (const version).
+  Return root node object in hierarchy (const version).
 ";
 
-%feature("docstring")  dolfin::Hierarchical::coarse_shared_ptr "
+%feature("docstring")  dolfin::Hierarchical::root_node_shared_ptr "
 **Overloaded versions**
 
-* coarse_shared_ptr\ ()
+* root_node_shared_ptr\ ()
 
-  Return shared pointer to coarsest object in hierarchy.
+  Return shared pointer to root node object in hierarchy.
   
   *Returns*
       _T_
-          The coarse object.
+          The root node object.
 
-* coarse_shared_ptr\ ()
+* root_node_shared_ptr\ ()
 
-  Return shared pointer to coarsest object in hierarchy (const version).
+  Return shared pointer to root node object in hierarchy (const version).
 ";
 
-%feature("docstring")  dolfin::Hierarchical::fine "
+%feature("docstring")  dolfin::Hierarchical::leaf_node "
 **Overloaded versions**
 
-* fine\ ()
+* leaf_node\ ()
 
-  Return finest object in hierarchy.
+  Return leaf node object in hierarchy.
   
   *Returns*
       _T_
-          The fine object.
+          The leaf node object.
 
-* fine\ ()
+* leaf_node\ ()
 
-  Return finest object in hierarchy (const version).
+  Return leaf node object in hierarchy (const version).
 ";
 
-%feature("docstring")  dolfin::Hierarchical::fine_shared_ptr "
+%feature("docstring")  dolfin::Hierarchical::leaf_node_shared_ptr "
 **Overloaded versions**
 
-* fine_shared_ptr\ ()
+* leaf_node_shared_ptr\ ()
 
-  Return shared pointer to finest object in hierarchy.
+  Return shared pointer to leaf node object in hierarchy.
   
   *Returns*
       _T_
-          The fine object.
+          The leaf node object.
 
-* fine_shared_ptr\ ()
+* leaf_node_shared_ptr\ ()
 
-  Return shared pointer to finest object in hierarchy (const version).
+  Return shared pointer to leaf node object in hierarchy (const version).
 ";
 
 %feature("docstring")  dolfin::Hierarchical::set_parent "
@@ -12938,18 +12988,18 @@ Default parameter values
 
   Refine function space based on cell markers
 
-* adapt\ (space, refined_mesh)
+* adapt\ (space, adapted_mesh)
 
   Refine function space based on refined mesh
 
-* adapt\ (function, refined_mesh, interpolate=true)
+* adapt\ (function, adapted_mesh, interpolate=true)
 
   Adapt Function based on adapted mesh
   
   *Arguments*
       function (:py:class:`Function`)
           The function that should be adapted
-      refined_mesh (:py:class:`Mesh`)
+      adapted_mesh (:py:class:`Mesh`)
           The new mesh
       interpolate (bool)
           Optional argument, default is true. If false, the
@@ -12960,26 +13010,26 @@ Default parameter values
       :py:class:`Function`
           The adapted function
 
-* adapt\ (function, refined_mesh)
+* adapt\ (function, adapted_mesh)
 
   Refine GenericFunction based on refined mesh
 
-* adapt\ (mesh_function, refined_mesh)
+* adapt\ (mesh_function, adapted_mesh)
 
   Refine mesh function<uint> based on mesh
 
-* adapt\ (bc, refined_mesh, S)
+* adapt\ (bc, adapted_mesh, S)
 
   Refine Dirichlet bc based on refined mesh
 
-* adapt\ (form, refined_mesh, adapt_coefficients=true)
+* adapt\ (form, adapted_mesh, adapt_coefficients=true)
 
   Adapt form based on adapted mesh
   
   *Arguments*
       form (:py:class:`Form`)
           The form that should be adapted
-      refined_mesh (:py:class:`Mesh`)
+      adapted_mesh (:py:class:`Mesh`)
           The new mesh
       adapt_coefficients (bool)
           Optional argument, default is true. If false, the form
@@ -12990,22 +13040,22 @@ Default parameter values
       :py:class:`Form`
           The adapted form
 
-* adapt\ (problem, refined_mesh)
+* adapt\ (problem, adapted_mesh)
 
   Refine linear variational problem based on mesh
 
-* adapt\ (problem, refined_mesh)
+* adapt\ (problem, adapted_mesh)
 
   Refine nonlinear variational problem based on mesh
 
-* adapt\ (ec, refined_mesh, adapt_coefficients=true)
+* adapt\ (ec, adapted_mesh, adapt_coefficients=true)
 
   Adapt error control object based on adapted mesh
   
   *Arguments*
       ec (:py:class:`ErrorControl`)
           The error control object to be adapted
-      refined_mesh (:py:class:`Mesh`)
+      adapted_mesh (:py:class:`Mesh`)
           The new mesh
       adapt_coefficients (bool)
           Optional argument, default is true. If false, any form
