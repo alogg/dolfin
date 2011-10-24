@@ -3064,8 +3064,12 @@ Set output stream
 Get log level
 ";
 
+%feature("docstring")  dolfin::list_timings "
+List a summary of timings and tasks, optionally clearing stored timings
+";
+
 %feature("docstring")  dolfin::summary "
-Print summary of timings and tasks, optionally clearing stored timings
+This function is deprecated, use list_timings
 ";
 
 %feature("docstring")  dolfin::timing "
@@ -4115,6 +4119,26 @@ Create empty sparsity pattern
 Create LU solver
 ";
 
+%feature("docstring")  dolfin::uBLASFactory::create_krylov_solver "
+Create Krylov solver
+";
+
+%feature("docstring")  dolfin::uBLASFactory::lu_solver_methods "
+Return a list of available LU solver methods
+";
+
+%feature("docstring")  dolfin::uBLASFactory::krylov_solver_methods "
+Return a list of available Krylov solver methods
+";
+
+%feature("docstring")  dolfin::uBLASFactory::krylov_solver_preconditioners "
+Return a list of available preconditioners
+";
+
+%feature("docstring")  dolfin::uBLASFactory::instance "
+Return singleton instance
+";
+
 // Documentation extracted from: (module=la, header=uBLASMatrix.h)
 %feature("docstring")  dolfin::uBLASMatrix "
 This class provides a simple matrix class based on uBLAS.
@@ -4565,11 +4589,11 @@ solver of Epetra.
 %feature("docstring")  dolfin::EpetraLUSolver::EpetraLUSolver "
 **Overloaded versions**
 
-* EpetraLUSolver\ ()
+* EpetraLUSolver\ (method=\"default\")
 
   Constructor
 
-* EpetraLUSolver\ (A)
+* EpetraLUSolver\ (A, method=\"default\")
 
   Constructor
 ";
@@ -4596,6 +4620,10 @@ Get operator (matrix)
 * solve\ (A, x, b)
 
   Solve linear system Ax = b
+";
+
+%feature("docstring")  dolfin::EpetraLUSolver::methods "
+Return a list of available solver methods
 ";
 
 %feature("docstring")  dolfin::EpetraLUSolver::default_parameters "
@@ -4655,6 +4683,14 @@ Get the operator (matrix)
 * solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations
+";
+
+%feature("docstring")  dolfin::EpetraKrylovSolver::methods "
+Return a list of available solver methods
+";
+
+%feature("docstring")  dolfin::EpetraKrylovSolver::preconditioners "
+Return a list of available preconditioners
 ";
 
 %feature("docstring")  dolfin::EpetraKrylovSolver::default_parameters "
@@ -5112,6 +5148,14 @@ Return informal string representation (pretty-print)
 Return PETSc KSP pointer
 ";
 
+%feature("docstring")  dolfin::PETScKrylovSolver::methods "
+Return a list of available solver methods
+";
+
+%feature("docstring")  dolfin::PETScKrylovSolver::preconditioners "
+Return a list of available preconditioners
+";
+
 %feature("docstring")  dolfin::PETScKrylovSolver::default_parameters "
 Default parameter values
 ";
@@ -5134,11 +5178,11 @@ solver of PETSc.
 %feature("docstring")  dolfin::PETScLUSolver::PETScLUSolver "
 **Overloaded versions**
 
-* PETScLUSolver\ (lu_package=\"default\")
+* PETScLUSolver\ (method=\"default\")
 
   Constructor
 
-* PETScLUSolver\ (A, lu_package=\"default\")
+* PETScLUSolver\ (A, method=\"default\")
 
   Constructor
 ";
@@ -5183,16 +5227,20 @@ Return informal string representation (pretty-print)
 Return PETSc KSP pointer
 ";
 
+%feature("docstring")  dolfin::PETScLUSolver::methods "
+Return a list of available solver methods
+";
+
 %feature("docstring")  dolfin::PETScLUSolver::default_parameters "
 Default parameter values
 ";
 
 // Documentation extracted from: (module=la, header=CholmodCholeskySolver.h)
 %feature("docstring")  dolfin::CholmodCholeskySolver "
-This class implements the direct solution (Cholesky factorization) of
-linear systems of the form Ax = b. Sparse matrices
-are solved using CHOLMOD http://www.cise.ufl.edu/research/sparse/cholmod/
-if installed.
+This class implements the direct solution (Cholesky
+factorization) of linear systems of the form Ax = b. Sparse
+matrices are solved using CHOLMOD
+http://www.cise.ufl.edu/research/sparse/cholmod/ if installed.
 ";
 
 %feature("docstring")  dolfin::CholmodCholeskySolver::CholmodCholeskySolver "
@@ -5355,6 +5403,14 @@ Get operator (matrix)
 
 %feature("docstring")  dolfin::ITLKrylovSolver::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::ITLKrylovSolver::methods "
+Return a list of available methods
+";
+
+%feature("docstring")  dolfin::ITLKrylovSolver::preconditioners "
+Return a list available preconditioners
 ";
 
 %feature("docstring")  dolfin::ITLKrylovSolver::default_parameters "
@@ -6453,6 +6509,21 @@ Create LU solver
 Create Krylov solver
 ";
 
+%feature("docstring")  dolfin::LinearAlgebraFactory::lu_solver_methods "
+Return a list of available LU solver methods.
+This function should be overloaded by subclass if non-empty.
+";
+
+%feature("docstring")  dolfin::LinearAlgebraFactory::krylov_solver_methods "
+Return a list of available Krylov solver methods.
+This function should be overloaded by subclass if non-empty.
+";
+
+%feature("docstring")  dolfin::LinearAlgebraFactory::krylov_solver_preconditioners "
+Return a list of available preconditioners.
+This function should be overloaded by subclass if non-empty.
+";
+
 // Documentation extracted from: (module=la, header=DefaultFactory.h)
 %feature("docstring")  dolfin::DefaultFactory::DefaultFactory "
 Constructor
@@ -6480,6 +6551,18 @@ Create LU solver
 
 %feature("docstring")  dolfin::DefaultFactory::create_krylov_solver "
 Create Krylov solver
+";
+
+%feature("docstring")  dolfin::DefaultFactory::lu_solver_methods "
+Return a list of available LU solver methods
+";
+
+%feature("docstring")  dolfin::DefaultFactory::krylov_solver_methods "
+Return a list of available Krylov solver methods
+";
+
+%feature("docstring")  dolfin::DefaultFactory::krylov_solver_preconditioners "
+Return a list of available preconditioners
 ";
 
 %feature("docstring")  dolfin::DefaultFactory::factory "
@@ -6527,6 +6610,18 @@ Create LU solver
 Create Krylov solver
 ";
 
+%feature("docstring")  dolfin::PETScFactory::lu_solver_methods "
+Return a list of available LU solver methods
+";
+
+%feature("docstring")  dolfin::PETScFactory::krylov_solver_methods "
+Return a list of available Krylov solver methods
+";
+
+%feature("docstring")  dolfin::PETScFactory::krylov_solver_preconditioners "
+Return a list of available preconditioners
+";
+
 %feature("docstring")  dolfin::PETScFactory::instance "
 Return singleton instance
 ";
@@ -6561,6 +6656,18 @@ Create LU solver
 Create Krylov solver
 ";
 
+%feature("docstring")  dolfin::EpetraFactory::lu_solver_methods "
+Return a list of available LU solver methods
+";
+
+%feature("docstring")  dolfin::EpetraFactory::krylov_solver_methods "
+Return a list of available Krylov solver methods
+";
+
+%feature("docstring")  dolfin::EpetraFactory::krylov_solver_preconditioners "
+Return a list of available preconditioners
+";
+
 // Documentation extracted from: (module=la, header=MTL4Factory.h)
 %feature("docstring")  dolfin::MTL4Factory::create_matrix "
 Create empty matrix
@@ -6584,6 +6691,18 @@ Create LU solver
 
 %feature("docstring")  dolfin::MTL4Factory::create_krylov_solver "
 Create Krylov solver
+";
+
+%feature("docstring")  dolfin::MTL4Factory::lu_solver_methods "
+Return a list of available LU solver methods
+";
+
+%feature("docstring")  dolfin::MTL4Factory::krylov_solver_methods "
+Return a list of available Krylov solver methods
+";
+
+%feature("docstring")  dolfin::MTL4Factory::krylov_solver_preconditioners "
+Return a list of available preconditioners
 ";
 
 // Documentation extracted from: (module=la, header=STLFactory.h)
@@ -6795,6 +6914,10 @@ Return preconditioner name
 Return informal string representation (pretty-print)
 ";
 
+%feature("docstring")  dolfin::TrilinosPreconditioner::preconditioners "
+Return a list of available preconditioners
+";
+
 %feature("docstring")  dolfin::TrilinosPreconditioner::default_parameters "
 Default parameter values
 ";
@@ -6844,7 +6967,7 @@ of the form Ax = b using uBLAS data types.
 %feature("docstring")  dolfin::uBLASKrylovSolver::uBLASKrylovSolver "
 **Overloaded versions**
 
-* uBLASKrylovSolver\ (solver_type=\"default\", pc_type=\"default\")
+* uBLASKrylovSolver\ (method=\"default\", preconditioner=\"default\")
 
   Create Krylov solver for a particular method and preconditioner
 
@@ -6852,7 +6975,7 @@ of the form Ax = b using uBLAS data types.
 
   Create Krylov solver for a particular uBLASPreconditioner
 
-* uBLASKrylovSolver\ (solver_type, preconditioner)
+* uBLASKrylovSolver\ (method, pc)
 
   Create Krylov solver for a particular method and uBLASPreconditioner
 ";
@@ -6883,6 +7006,14 @@ Return the operator (matrix)
 * solve\ (A, x, b)
 
   Solve linear system Ax = b and return number of iterations (virtual matrix)
+";
+
+%feature("docstring")  dolfin::uBLASKrylovSolver::methods "
+Return a list of available solver methods
+";
+
+%feature("docstring")  dolfin::uBLASKrylovSolver::preconditioners "
+Return a list of available preconditioners
 ";
 
 %feature("docstring")  dolfin::uBLASKrylovSolver::default_parameters "
@@ -7412,7 +7543,15 @@ is chosen on the basis of the matrix/vector type.
 ";
 
 %feature("docstring")  dolfin::KrylovSolver::KrylovSolver "
-Create Krylov solver
+**Overloaded versions**
+
+* KrylovSolver\ (method=\"default\", preconditioner=\"default\")
+
+  Constructor
+
+* KrylovSolver\ (A, method=\"default\", preconditioner=\"default\")
+
+  Constructor
 ";
 
 %feature("docstring")  dolfin::KrylovSolver::set_operator "
@@ -7440,8 +7579,20 @@ Default parameter values
 ";
 
 // Documentation extracted from: (module=la, header=LUSolver.h)
+%feature("docstring")  dolfin::LUSolver "
+LU solver for the built-in LA backends.
+";
+
 %feature("docstring")  dolfin::LUSolver::LUSolver "
-Constructor
+**Overloaded versions**
+
+* LUSolver\ (\"default\")
+
+  Constructor
+
+* LUSolver\ (A, method=\"default\")
+
+  Constructor
 ";
 
 %feature("docstring")  dolfin::LUSolver::set_operator "
@@ -7508,6 +7659,38 @@ Default parameter values
 // Documentation extracted from: (module=la, header=solve.h)
 %feature("docstring")  dolfin::solve "
 Solve linear system Ax = b
+";
+
+%feature("docstring")  dolfin::list_linear_solver_methods "
+List available solver methods for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::list_lu_solver_methods "
+List available LU methods for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::list_krylov_solver_methods "
+List available Krylov methods for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::list_krylov_solver_preconditioners "
+List available preconditioners for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::linear_solver_methods "
+Return a list of available solver methods for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::lu_solver_methods "
+Return a list of available LU methods for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::krylov_solver_methods "
+Return a list of available Krylov methods for current linear algebra backend
+";
+
+%feature("docstring")  dolfin::krylov_solver_preconditioners "
+Return a list of available preconditioners for current linear algebra backend
 ";
 
 %feature("docstring")  dolfin::residual "
@@ -12857,6 +13040,8 @@ Create empty time series
 *Arguments*
     name (str)
         The time series name
+    compressed (bool)
+        Use compressed file format (default false)
 ";
 
 %feature("docstring")  dolfin::TimeSeries::store "
@@ -12940,6 +13125,8 @@ Return filename for data
         The type of data
     index (int)
         The index
+    compressed (bool)
+        True if compressed file format
 
 *Returns*
     str
@@ -12954,6 +13141,8 @@ Return filename for times
         The time series name
     type_name (str)
         The type of data
+    compressed (bool)
+        True if compressed file format
 
 *Returns*
     str
