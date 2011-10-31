@@ -1882,7 +1882,7 @@ Get Dirichlet dofs and values
 
 *Arguments*
     boundary_values (boost::unordered_map<uint, double>)
-        The boundary values.
+        Map from dof to boundary value.
     method (str)
         Optional argument: A string specifying which
         method to use.
@@ -10832,6 +10832,15 @@ sub domains or boolean markers for mesh refinement.
 %feature("docstring")  dolfin::MeshFunction::operator= "
 **Overloaded versions**
 
+* operator=\ (f)
+
+  Assign mesh function to other mesh function
+  Assignment operator
+  
+  *Arguments*
+      f (:py:class:`MeshFunction`)
+          A :py:class:`MeshFunction` object to asssign to another MeshFunction.
+
 * operator=\ (mesh)
 
   Assignment operator
@@ -10839,10 +10848,6 @@ sub domains or boolean markers for mesh refinement.
   *Arguments*
       mesh (:py:class:`MeshValueCollection`)
           A :py:class:`MeshValueCollection` object used to construct a MeshFunction.
-
-* operator=\ (f)
-
-  Assign mesh function to other mesh function
 
 * operator=\ (value)
 
@@ -11158,6 +11163,26 @@ means that data may be stored robustly to file.
           The mesh entity dimension for the mesh value collection.
 ";
 
+%feature("docstring")  dolfin::MeshValueCollection::operator= "
+**Overloaded versions**
+
+* operator=\ (mesh_function)
+
+  Assignment operator
+  
+  *Arguments*
+      mesh_function (:py:class:`MeshFunction`)
+          A :py:class:`MeshFunction` object used to construct a MeshValueCollection.
+
+* operator=\ (mesh_value_collection)
+
+  Assignment operator
+  
+  *Arguments*
+      mesh_value_collection (:py:class:`MeshValueCollection`)
+          A :py:class:`MeshValueCollection` object used to construct a MeshValueCollection.
+";
+
 %feature("docstring")  dolfin::MeshValueCollection::set_dim "
 Set the topological dimension
 
@@ -11219,6 +11244,21 @@ Return size (number of entities in subset)
       bool
           True is a new value is inserted, false if overwriting
           an existing value.
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::get_value "
+Get marker value for given entity defined by a cell index and
+a local entity index
+
+*Arguments*
+    cell_index (int)
+        The index of the cell.
+    local_entity (int)
+        The local index of the entity relative to the cell.
+
+*Returns*
+    marker_value (T)
+        The value of the marker.
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::values "
@@ -12312,7 +12352,15 @@ Set a barrier (synchronization point)
 ";
 
 %feature("docstring")  dolfin::MPI::distribute "
-Distribute local arrays on all processors according to given partition
+**Overloaded versions**
+
+* distribute\ (in_values, destinations, out_values, sources)
+
+  Distribute local arrays on all processors according to given partition
+
+* distribute\ (in_values, destinations, out_values)
+
+  Distribute local arrays on all processors according to given partition
 ";
 
 %feature("docstring")  dolfin::MPI::scatter "
@@ -13042,6 +13090,8 @@ Create empty time series
         The time series name
     compressed (bool)
         Use compressed file format (default false)
+    store_connectivity (bool)
+        Store all computed connectivity (default false)
 ";
 
 %feature("docstring")  dolfin::TimeSeries::store "
@@ -13921,7 +13971,15 @@ Assignment operator
 ";
 
 %feature("docstring")  dolfin::Parameters::has_key "
-Check if parameter set has given key
+Check if parameter set has key (parameter or nested parameter set)
+";
+
+%feature("docstring")  dolfin::Parameters::has_parameter "
+Check if parameter set has given parameter
+";
+
+%feature("docstring")  dolfin::Parameters::has_parameter_set "
+Check if parameter set has given nested parameter set
 ";
 
 %feature("docstring")  dolfin::Parameters::get_parameter_keys "
