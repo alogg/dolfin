@@ -12364,11 +12364,6 @@ Send-receive and data
 Return which process owns index (inverse of local_range)
 ";
 
-// Documentation extracted from: (module=common, header=MPIObject.h)
-%feature("docstring")  dolfin::MPIObject "
-This class initialises MPI is not already initialised.
-";
-
 // Documentation extracted from: (module=common, header=SubSystemsManager.h)
 %feature("docstring")  dolfin::SubSystemsManager "
 This is a singleton class which manages the initialisation and
