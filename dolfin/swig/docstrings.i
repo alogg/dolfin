@@ -1882,7 +1882,7 @@ Get Dirichlet dofs and values
 
 *Arguments*
     boundary_values (boost::unordered_map<uint, double>)
-        The boundary values.
+        Map from dof to boundary value.
     method (str)
         Optional argument: A string specifying which
         method to use.
@@ -10832,6 +10832,15 @@ sub domains or boolean markers for mesh refinement.
 %feature("docstring")  dolfin::MeshFunction::operator= "
 **Overloaded versions**
 
+* operator=\ (f)
+
+  Assign mesh function to other mesh function
+  Assignment operator
+  
+  *Arguments*
+      f (:py:class:`MeshFunction`)
+          A :py:class:`MeshFunction` object to asssign to another MeshFunction.
+
 * operator=\ (mesh)
 
   Assignment operator
@@ -10839,10 +10848,6 @@ sub domains or boolean markers for mesh refinement.
   *Arguments*
       mesh (:py:class:`MeshValueCollection`)
           A :py:class:`MeshValueCollection` object used to construct a MeshFunction.
-
-* operator=\ (f)
-
-  Assign mesh function to other mesh function
 
 * operator=\ (value)
 
@@ -12312,7 +12317,15 @@ Set a barrier (synchronization point)
 ";
 
 %feature("docstring")  dolfin::MPI::distribute "
-Distribute local arrays on all processors according to given partition
+**Overloaded versions**
+
+* distribute\ (in_values, destinations, out_values, sources)
+
+  Distribute local arrays on all processors according to given partition
+
+* distribute\ (in_values, destinations, out_values)
+
+  Distribute local arrays on all processors according to given partition
 ";
 
 %feature("docstring")  dolfin::MPI::scatter "
@@ -12349,6 +12362,11 @@ Send-receive and data
 
 %feature("docstring")  dolfin::MPI::index_owner "
 Return which process owns index (inverse of local_range)
+";
+
+// Documentation extracted from: (module=common, header=MPIObject.h)
+%feature("docstring")  dolfin::MPIObject "
+This class initialises MPI is not already initialised.
 ";
 
 // Documentation extracted from: (module=common, header=SubSystemsManager.h)
@@ -13042,6 +13060,8 @@ Create empty time series
         The time series name
     compressed (bool)
         Use compressed file format (default false)
+    store_connectivity (bool)
+        Store all computed connectivity (default false)
 ";
 
 %feature("docstring")  dolfin::TimeSeries::store "
@@ -13921,7 +13941,15 @@ Assignment operator
 ";
 
 %feature("docstring")  dolfin::Parameters::has_key "
-Check if parameter set has given key
+Check if parameter set has key (parameter or nested parameter set)
+";
+
+%feature("docstring")  dolfin::Parameters::has_parameter "
+Check if parameter set has given parameter
+";
+
+%feature("docstring")  dolfin::Parameters::has_parameter_set "
+Check if parameter set has given nested parameter set
 ";
 
 %feature("docstring")  dolfin::Parameters::get_parameter_keys "
