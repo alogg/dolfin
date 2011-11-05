@@ -11163,6 +11163,26 @@ means that data may be stored robustly to file.
           The mesh entity dimension for the mesh value collection.
 ";
 
+%feature("docstring")  dolfin::MeshValueCollection::operator= "
+**Overloaded versions**
+
+* operator=\ (mesh_function)
+
+  Assignment operator
+  
+  *Arguments*
+      mesh_function (:py:class:`MeshFunction`)
+          A :py:class:`MeshFunction` object used to construct a MeshValueCollection.
+
+* operator=\ (mesh_value_collection)
+
+  Assignment operator
+  
+  *Arguments*
+      mesh_value_collection (:py:class:`MeshValueCollection`)
+          A :py:class:`MeshValueCollection` object used to construct a MeshValueCollection.
+";
+
 %feature("docstring")  dolfin::MeshValueCollection::set_dim "
 Set the topological dimension
 
@@ -11224,6 +11244,21 @@ Return size (number of entities in subset)
       bool
           True is a new value is inserted, false if overwriting
           an existing value.
+";
+
+%feature("docstring")  dolfin::MeshValueCollection::get_value "
+Get marker value for given entity defined by a cell index and
+a local entity index
+
+*Arguments*
+    cell_index (int)
+        The index of the cell.
+    local_entity (int)
+        The local index of the entity relative to the cell.
+
+*Returns*
+    marker_value (T)
+        The value of the marker.
 ";
 
 %feature("docstring")  dolfin::MeshValueCollection::values "
