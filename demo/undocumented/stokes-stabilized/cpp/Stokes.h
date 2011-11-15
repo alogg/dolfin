@@ -6111,7 +6111,9 @@ public:
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return 0;
   }
 
@@ -6119,7 +6121,9 @@ public:
   virtual std::string coefficient_name(dolfin::uint i) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return "unnamed";
   }
 
@@ -6250,7 +6254,9 @@ public:
     if (name == "f")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -6263,7 +6269,9 @@ public:
       return "f";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
