@@ -12160,7 +12160,9 @@ public:
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return 0;
   }
 
@@ -12168,7 +12170,9 @@ public:
   virtual std::string coefficient_name(dolfin::uint i) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return "unnamed";
   }
 
@@ -12251,7 +12255,9 @@ public:
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return 0;
   }
 
@@ -12259,7 +12265,9 @@ public:
   virtual std::string coefficient_name(dolfin::uint i) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return "unnamed";
   }
 
@@ -12365,7 +12373,9 @@ public:
     else if (name == "__improved_dual")
       return 3;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -12384,7 +12394,9 @@ public:
       return "__improved_dual";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -12569,7 +12581,9 @@ public:
     if (name == "__cell_bubble")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -12582,7 +12596,9 @@ public:
       return "__cell_bubble";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -12739,7 +12755,9 @@ public:
     else if (name == "__cell_bubble")
       return 3;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -12758,7 +12776,9 @@ public:
       return "__cell_bubble";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -12944,7 +12964,9 @@ public:
     if (name == "__cell_cone")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -12957,7 +12979,9 @@ public:
       return "__cell_cone";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -13122,7 +13146,9 @@ public:
     else if (name == "__cell_cone")
       return 4;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -13143,7 +13169,9 @@ public:
       return "__cell_cone";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -13307,7 +13335,9 @@ public:
     else if (name == "__discrete_dual_solution")
       return 3;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -13326,7 +13356,9 @@ public:
       return "__discrete_dual_solution";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -13460,7 +13492,9 @@ public:
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return 0;
   }
 
@@ -13468,7 +13502,9 @@ public:
   virtual std::string coefficient_name(dolfin::uint i) const
   {
 
-    dolfin::error("No coefficients.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "There are no coefficients");
     return "unnamed";
   }
 
@@ -13607,7 +13643,9 @@ public:
     else if (name == "g")
       return 1;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -13622,7 +13660,9 @@ public:
       return "g";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -13708,7 +13748,9 @@ public:
     if (name == "__discrete_primal_solution")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class GoalFunctional",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -13721,7 +13763,9 @@ public:
       return "__discrete_primal_solution";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class GoalFunctional",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
