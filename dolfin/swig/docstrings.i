@@ -355,14 +355,6 @@ Extract subfunction
 ";
 
 %feature("docstring")  dolfin::Function::function_space "
-Return function space
-
-*Returns*
-    :py:class:`FunctionSpace`
-        Return the function space.
-";
-
-%feature("docstring")  dolfin::Function::function_space_ptr "
 Return shared pointer to function space
 
 *Returns*
@@ -582,6 +574,22 @@ Attach data to an empty function space
 
 %feature("docstring")  dolfin::FunctionSpace::operator= "
 Assignment operator
+
+*Arguments*
+    V (:py:class:`FunctionSpace`)
+        Another function space.
+";
+
+%feature("docstring")  dolfin::FunctionSpace::operator== "
+Equality operator
+
+*Arguments*
+    V (:py:class:`FunctionSpace`)
+        Another function space.
+";
+
+%feature("docstring")  dolfin::FunctionSpace::operator!= "
+Unequality operator
 
 *Arguments*
     V (:py:class:`FunctionSpace`)
@@ -1639,10 +1647,6 @@ Common base class for boundary conditions
 ";
 
 %feature("docstring")  dolfin::BoundaryCondition::function_space "
-Return function space
-";
-
-%feature("docstring")  dolfin::BoundaryCondition::function_space_ptr "
 Return shared pointer to function space
 ";
 
@@ -3021,11 +3025,40 @@ Print warning
 ";
 
 %feature("docstring")  dolfin::error "
-Print error message and throw an exception
+Print error message and throw an exception.
+Note to developers: this function should not be used internally
+in DOLFIN. Use the more informative dolfin_error instead.
 ";
 
 %feature("docstring")  dolfin::dolfin_error "
-Print error message, prefer this to the above generic error message
+Print error message. Prefer this to the above generic error message.
+
+*Arguments*
+    location (str)
+        Name of the file from which the error message was generated.
+    task (str)
+        Name of the task that failed.
+        Note that this string should begin with lowercase.
+        Note that this string should not be punctuated.
+    reason (str)
+        A format string explaining the reason for the failure.
+        Note that this string should begin with uppercase.
+        Note that this string should not be punctuated.
+        Note that this string may contain printf style formatting.
+    ... (primitive types like int, uint, double, bool)
+        Optional arguments for the format string.
+
+Some rules of thumb:
+
+* The 'task' string should be sufficiently high level (\"assemble form\")
+  to make sense to a user.
+* Use the same 'task' string from all errors originating from the same
+  function.
+* The 'task' string should provide details of which particular algorithm
+  or method that was used (\"assemble form using OpenMP assembler\").
+* The 'reason' string should try to explain why the task failed in the
+  context of the task that failed (\"subdomains are not yet handled\").
+* Write \"initialize mesh function\" rather than \"initialize MeshFunction\".
 ";
 
 %feature("docstring")  dolfin::log "
@@ -3078,10 +3111,6 @@ Return timing (average) for given task, optionally clearing timing for task
 
 %feature("docstring")  dolfin::not_working_in_parallel "
 Report that functionality has not (yet) been implemented to work in parallel
-";
-
-%feature("docstring")  dolfin::check_equal "
-Check value and print an informative error message if invalid
 ";
 
 // Documentation extracted from: (module=log, header=Event.h)
@@ -6984,6 +7013,10 @@ of the form Ax = b using uBLAS data types.
 Solve the operator (matrix)
 ";
 
+%feature("docstring")  dolfin::uBLASKrylovSolver::set_operators "
+Set operator (matrix) and preconditioner matrix
+";
+
 %feature("docstring")  dolfin::uBLASKrylovSolver::get_operator "
 Return the operator (matrix)
 ";
@@ -6991,17 +7024,13 @@ Return the operator (matrix)
 %feature("docstring")  dolfin::uBLASKrylovSolver::solve "
 **Overloaded versions**
 
-* solve\ (A, x, b)
+* solve\ (x, b)
 
   Solve linear system Ax = b and return number of iterations
 
 * solve\ (A, x, b)
 
-  Solve linear system Ax = b and return number of iterations (dense matrix)
-
-* solve\ (A, x, b)
-
-  Solve linear system Ax = b and return number of iterations (sparse matrix)
+  Solve linear system Ax = b and return number of iterations
 
 * solve\ (A, x, b)
 
@@ -9300,6 +9329,18 @@ Find the point and corresponding cell closest to the given point.
         A pair consisting of the closest point and corresponding cell index.
 ";
 
+%feature("docstring")  dolfin::Mesh::distance "
+Computes the distance between a given point and the mesh
+
+*Arguments*
+    point (:py:class:`Point`)
+        A :py:class:`Point` object.
+
+*Returns*
+    float
+        The distance to the mesh.
+";
+
 %feature("docstring")  dolfin::Mesh::hmin "
 Compute minimum cell diameter.
 
@@ -9676,12 +9717,28 @@ specified by a :py:class:`MeshFunction` that labels the entites.
 ";
 
 %feature("docstring")  dolfin::SubsetIterator::SubsetIterator "
-Create iterator for given mesh function. The iterator visits
-all entities that match the given label.
+**Overloaded versions**
+
+* SubsetIterator\ (labels, label)
+
+  Create iterator for given mesh function. The iterator visits
+  all entities that match the given label.
+
+* SubsetIterator\ (subset_iter)
+
+  Copy Constructor
 ";
 
 %feature("docstring")  dolfin::SubsetIterator::operator++ "
 Step to next mesh entity (prefix increment)
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator== "
+Comparison operator
+";
+
+%feature("docstring")  dolfin::SubsetIterator::operator!= "
+Comparison operator
 ";
 
 %feature("docstring")  dolfin::SubsetIterator::operator* "
@@ -9694,6 +9751,10 @@ Member access operator
 
 %feature("docstring")  dolfin::SubsetIterator::end "
 Check if iterator has reached the end
+";
+
+%feature("docstring")  dolfin::SubsetIterator::set_end "
+Set pos to end position. To create a kind of mesh.end() iterator.
 ";
 
 // Documentation extracted from: (module=mesh, header=Point.h)
@@ -12893,6 +12954,10 @@ Create error control object
        true iff primal problem is linear
 ";
 
+%feature("docstring")  dolfin::ErrorControl::default_parameters "
+Default parameter values:
+";
+
 %feature("docstring")  dolfin::ErrorControl::estimate_error "
 Estimate the error relative to the goal M of the discrete
 approximation 'u' relative to the variational formulation by
@@ -13379,12 +13444,58 @@ Mark cells using Dorfler marking
 
 // Documentation extracted from: (module=intersection, header=IntersectionOperator.h)
 %feature("docstring")  dolfin::IntersectionOperator::IntersectionOperator "
-Create intersection detector for the mesh \em mesh.
-@param kernel_type The CGAL geometric kernel is used to compute predicates,
-intersections and such. Depending on this choice the kernel
-(kernel_type = \"ExcactPredicates\") can compute predicates excactly
-(without roundoff error) or only approximately (default, kernel_type =
-\"SimpleCartesian\").
+**Overloaded versions**
+
+* IntersectionOperator\ (_mesh, \"SimpleCartesian\")
+
+  Create intersection detector for a given mesh
+  
+  
+  @param kernel_type The CGAL geometric kernel is used to compute predicates,
+  intersections and such. Depending on this choice the kernel
+  (kernel_type = \"ExcactPredicates\") can compute predicates excactly
+  (without roundoff error) or only approximately (default, kernel_type =
+  \"SimpleCartesian\").
+
+* IntersectionOperator\ (labels, label, \"SimpleCartesian\")
+
+  Create  IntersectionOperator for a given mesh
+  
+  *Arguments*
+      labels (_MeshFunction<unsigned int>_)
+          A MeshFunction over entities labeling the part of the Mesh
+          for which the distance will be measured to
+  
+      label (int)
+          The label determining the part of the mesh for which
+          the distance will be measured to
+  
+      kernel_type (str)
+          The CGAL geometric kernel which is used to compute predicates,
+          intersections and such. Depending on this choice the kernel
+          (kernel_type = \"ExcactPredicates\") can compute predicates
+          excactly (without roundoff error) or only approximately
+          default value is \"SimpleCartesian\".
+
+* IntersectionOperator\ (labels, label, kernel_type=\"SimpleCartesian\")
+
+  Create IntersectionOperator for a given mesh (shared data)
+  
+  *Arguments*
+      labels (_MeshFunction<unsigned int>_)
+          A MeshFunction over facets labeling the part of the Boundary
+          for which the distance will be measured to
+  
+      label (int)
+          The label determining the part of the mesh for which
+          the distance will be measured to
+  
+      kernel_type (str)
+          The CGAL geometric kernel which is used to compute predicates,
+          intersections and such. Depending on this choice the kernel
+          (kernel_type = \"ExcactPredicates\") can compute predicates
+          excactly (without roundoff error) or only approximately
+          default value is \"SimpleCartesian\".
 ";
 
 %feature("docstring")  dolfin::IntersectionOperator::all_intersected_entities "
@@ -13449,6 +13560,10 @@ Computes the point inside the mesh and the corresponding cell index
 that are closest to the point query.
 ";
 
+%feature("docstring")  dolfin::IntersectionOperator::distance "
+Computes the distance between the given point and the nearest entity
+";
+
 %feature("docstring")  dolfin::IntersectionOperator::reset_kernel "
 Rebuilds the underlying search structure from scratch and uses
 the kernel kernel_type underlying CGAL Geometry kernel.
@@ -13496,6 +13611,22 @@ whether two given (arbitrary) meshentities intersect.
 
 // Documentation extracted from: (module=intersection, header=PrimitiveTraits.h)
 // Documentation extracted from: (module=intersection, header=MeshPrimitive.h)
+%feature("docstring")  dolfin::getEntity "
+Static, so only reference to a mesh and entity index have to be saved
+";
+
+%feature("docstring")  dolfin::MeshPrimitive "
+**Overloaded versions**
+
+* MeshPrimitive\ (entity)
+
+  Create a MeshPrimitive from a given MeshEntityIterator
+
+* MeshPrimitive\ (entity)
+
+  Create a MeshPrimitive from a given SubsetIterator
+";
+
 // Documentation extracted from: (module=parameter, header=Parameter.h)
 %feature("docstring")  dolfin::Parameter "
 Base class for parameters.

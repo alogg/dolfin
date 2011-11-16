@@ -2348,7 +2348,9 @@ public:
     if (name == "v")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -2361,7 +2363,9 @@ public:
       return "v";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
