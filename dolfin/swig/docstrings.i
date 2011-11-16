@@ -580,6 +580,22 @@ Assignment operator
         Another function space.
 ";
 
+%feature("docstring")  dolfin::FunctionSpace::operator== "
+Equality operator
+
+*Arguments*
+    V (:py:class:`FunctionSpace`)
+        Another function space.
+";
+
+%feature("docstring")  dolfin::FunctionSpace::operator!= "
+Unequality operator
+
+*Arguments*
+    V (:py:class:`FunctionSpace`)
+        Another function space.
+";
+
 %feature("docstring")  dolfin::FunctionSpace::mesh "
 Return mesh
 
@@ -3009,11 +3025,70 @@ Print warning
 ";
 
 %feature("docstring")  dolfin::error "
-Print error message and throw an exception
+Print error message and throw an exception.
+Note to developers: this function should not be used internally
+in DOLFIN. Use the more informative dolfin_error instead.
 ";
 
 %feature("docstring")  dolfin::dolfin_error "
-Print error message, prefer this to the above generic error message
+Print error message. Prefer this to the above generic error message.
+
+*Arguments*
+    location (str)
+        Name of the file from which the error message was generated.
+    task (str)
+        Name of the task that failed.
+        Note that this string should begin with lowercase.
+        Note that this string should not be punctuated.
+    reason (str)
+        A format string explaining the reason for the failure.
+        Note that this string should begin with uppercase.
+        Note that this string should not be punctuated.
+        Note that this string may contain printf style formatting.
+    ... (primitive types like int, uint, double, bool)
+        Optional arguments for the format string.
+
+Some rules of thumb:
+
+* The 'task' string should be sufficiently high level (\"assemble form\")
+  to make sense to a user.
+* Use the same 'task' string from all errors originating from the same
+  function.
+* The 'task' string should provide details of which particular algorithm
+  or method that was used (\"assemble form using OpenMP assembler\").
+* The 'reason' string should try to explain why the task failed in the
+  context of the task that failed (\"subdomains are not yet handled\").
+* Write \"initialize mesh function\" rather than \"initialize MeshFunction\".
+
+Some examples:
+
+dolfin_error(\"DofMap.cpp\",
+             \"create mapping of degrees of freedom\",
+             \"Mesh is not ordered according to the UFC numbering convention. \"
+             \"Consider calling mesh.order()\");
+
+dolfin_error(\"File.cpp\",
+             \"open file\",
+             \"Could not create directory \\"%s\\"\",
+             path.parent_path().string().c_str());
+
+dolfin_error(\"TriangleCell.cpp\",
+             \"access number of entities of triangle cell\",
+             \"Illegal topological dimension (%d)\", dim);
+
+dolfin_error(\"VTKFile.cpp\",
+             \"Create VTK file\",
+             \"Unknown encoding (\\"%s\\"). \"
+             \"Known encodings are \\"ascii\\", \\"base64\\" and \\"compressed\\"\",
+             encoding.c_str());
+
+dolfin_error(\"SubSystemsManager.cpp\",
+             \"initialize PETSc subsystem\",
+             \"DOLFIN has not been configured with PETSc support\");
+
+dolfin_error(\"PETScKrylovSolver.cpp\",
+             \"solve linear system with PETSc Krylov solver\",
+             \"Matrix does not have a nonzero number of rows and columns\");
 ";
 
 %feature("docstring")  dolfin::log "
@@ -3066,10 +3141,6 @@ Return timing (average) for given task, optionally clearing timing for task
 
 %feature("docstring")  dolfin::not_working_in_parallel "
 Report that functionality has not (yet) been implemented to work in parallel
-";
-
-%feature("docstring")  dolfin::check_equal "
-Check value and print an informative error message if invalid
 ";
 
 // Documentation extracted from: (module=log, header=Event.h)
