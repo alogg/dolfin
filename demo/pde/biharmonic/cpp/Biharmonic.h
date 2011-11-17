@@ -6396,7 +6396,9 @@ public:
     if (name == "alpha")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -6409,7 +6411,9 @@ public:
       return "alpha";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
@@ -6542,7 +6546,9 @@ public:
     if (name == "f")
       return 0;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -6555,7 +6561,9 @@ public:
       return "f";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 

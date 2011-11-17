@@ -6920,7 +6920,9 @@ public:
     else if (name == "nu")
       return 4;
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return 0;
   }
 
@@ -6941,7 +6943,9 @@ public:
       return "nu";
     }
 
-    dolfin::error("Invalid coefficient.");
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coeficient data",
+                         "Invalid coeficient");
     return "unnamed";
   }
 
