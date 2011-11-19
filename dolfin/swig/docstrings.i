@@ -2996,7 +2996,7 @@ message to users about the new interface.
 
   The DOLFIN log system provides the following set of functions for
   uniform handling of log messages, warnings and errors. In addition,
-  macros are provided for debug messages and assertions.
+  macros are provided for debug messages and dolfin_assertions.
   
   Only messages with a debug level higher than or equal to the current
   log level are printed (the default being zero). Logging may also be

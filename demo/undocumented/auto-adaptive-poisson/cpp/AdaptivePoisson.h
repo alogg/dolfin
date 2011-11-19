@@ -13801,7 +13801,7 @@ public:
     // Some handy views
     const dolfin::FunctionSpace& Vhat(*(a.function_space(0))); // Primal test
     const dolfin::FunctionSpace& V(*(a.function_space(1)));    // Primal trial
-    assert(V.mesh());
+    dolfin_assert(V.mesh());
     const dolfin::Mesh& mesh(*V.mesh());
     std::string name;
 
