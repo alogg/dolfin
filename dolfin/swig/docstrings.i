@@ -265,25 +265,17 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
 * Function\ (V, x)
 
   Create function on given function space with a given vector
-  
-  *Arguments*
-      V (:py:class:`FunctionSpace`)
-          The function space.
-      x (:py:class:`GenericVector`)
-          The vector.
-
-* Function\ (V, x)
-
-  Create function on given function space with a given vector
   (shared data)
   
+  *Warning: This constructor is intended for internal library use only*
+  
   *Arguments*
       V (:py:class:`FunctionSpace`)
           The function space.
       x (:py:class:`GenericVector`)
           The vector.
 
-* Function\ (V, filename_vector)
+* Function\ (V, filename)
 
   Create function from vector of dofs stored to file
   
@@ -295,15 +287,15 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
       filename_dofdata (str)
           The name of the file containing the dofmap data.
 
-* Function\ (V, filename_vector)
+* Function\ (V, filename)
 
   Create function from vector of dofs stored to file (shared data)
   
   *Arguments*
       V (:py:class:`FunctionSpace`)
           The function space.
-      filename (str)
-          The name of the file containing the vector.
+      filename_dofdata (str)
+          The name of the file containing the dofmap data.
 
 * Function\ (v)
 
@@ -3048,17 +3040,8 @@ Print error message. Prefer this to the above generic error message.
     ... (primitive types like int, uint, double, bool)
         Optional arguments for the format string.
 
-Some rules of thumb:
-
-* The 'task' string should be sufficiently high level (\"assemble form\")
-  to make sense to a user.
-* Use the same 'task' string from all errors originating from the same
-  function.
-* The 'task' string should provide details of which particular algorithm
-  or method that was used (\"assemble form using OpenMP assembler\").
-* The 'reason' string should try to explain why the task failed in the
-  context of the task that failed (\"subdomains are not yet handled\").
-* Write \"initialize mesh function\" rather than \"initialize MeshFunction\".
+Developers should read the file dolfin/log/README in the DOLFIN
+source tree for further notes about the use of this function.
 ";
 
 %feature("docstring")  dolfin::log "
@@ -6907,6 +6890,14 @@ possible values are real numbers.
 
   Get the first eigenpair
 
+* get_eigenpair\ (lr, lc, r, c)
+
+  Get the first eigenpair
+
+* get_eigenpair\ (lr, lc, r, c, i)
+
+  Get eigenpair i
+
 * get_eigenpair\ (lr, lc, r, c, i)
 
   Get eigenpair i
@@ -9418,6 +9409,18 @@ a specific topological dimension of some :py:class:`Mesh`.
           The topological dimension.
       index (int)
           The index.
+";
+
+%feature("docstring")  dolfin::MeshEntity::init "
+Initialize mesh entity with given data
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh.
+    dim (int)
+        The topological dimension.
+    index (int)
+        The index.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::operator== "
@@ -11939,6 +11942,10 @@ Return informal string representation (pretty-print).
 Note that the Array class is not a subclass of Variable (for
 efficiency) which means that one needs to call str() directly
 instead of using the info() function on Array objects.
+";
+
+%feature("docstring")  dolfin::Array::clear "
+Clear array
 ";
 
 %feature("docstring")  dolfin::Array::resize "
