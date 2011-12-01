@@ -3410,10 +3410,6 @@ Return true if tensor is distributed
 Initialize zero tensor using sparsity pattern
 ";
 
-%feature("docstring")  dolfin::GenericTensor::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::GenericTensor::rank "
 Return tensor rank (number of dimensions)
 ";
@@ -3524,10 +3520,6 @@ This class defines a common interface for matrices.
 Initialize zero tensor using sparsity pattern
 ";
 
-%feature("docstring")  dolfin::GenericMatrix::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::GenericMatrix::rank "
 Return tensor rank (number of dimensions)
 ";
@@ -3602,6 +3594,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::GenericMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::GenericMatrix::copy "
+Return copy of matrix
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::resize "
@@ -3712,7 +3708,7 @@ Return local range for dimension dim
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros "
-Return total number of nonzeros in local_range for dimension 0
+Return total number of nonzeros in local_range
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
@@ -3764,10 +3760,6 @@ This class defines a common interface for vectors.
 
 %feature("docstring")  dolfin::GenericVector::init "
 Initialize zero tensor using sparsity pattern
-";
-
-%feature("docstring")  dolfin::GenericVector::copy "
-Return copy of tensor
 ";
 
 %feature("docstring")  dolfin::GenericVector::rank "
@@ -3852,6 +3844,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::GenericVector::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::GenericVector::copy "
+Return copy of vector
 ";
 
 %feature("docstring")  dolfin::GenericVector::local_size "
@@ -4030,7 +4026,7 @@ Return local range for dimension dim
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros "
-Return total number of nonzeros in local_range for dimension 0
+Return total number of nonzeros in local_range
 ";
 
 %feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
@@ -4194,10 +4190,6 @@ Return true if tensor is distributed
 Initialize zero tensor using sparsity pattern
 ";
 
-%feature("docstring")  dolfin::uBLASMatrix::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::uBLASMatrix::size "
 Return size of given dimension
 ";
@@ -4224,6 +4216,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::uBLASMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::uBLASMatrix::copy "
+Return copy of matrix
 ";
 
 %feature("docstring")  dolfin::uBLASMatrix::resize "
@@ -4417,10 +4413,6 @@ Return true if matrix is distributed
 Initialize zero tensor using sparsity pattern
 ";
 
-%feature("docstring")  dolfin::PETScMatrix::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::PETScMatrix::size "
 Return size of given dimension
 ";
@@ -4452,6 +4444,10 @@ for the mode parameter:
 
 %feature("docstring")  dolfin::PETScMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::PETScMatrix::copy "
+Return copy of matrix
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::resize "
@@ -4764,10 +4760,6 @@ Return true if matrix is distributed
   Initialize zero tensor using sparsity pattern
 ";
 
-%feature("docstring")  dolfin::EpetraMatrix::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::EpetraMatrix::size "
 Return size of given dimension
 ";
@@ -4798,6 +4790,10 @@ for the mode parameter:
 
 %feature("docstring")  dolfin::EpetraMatrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::EpetraMatrix::copy "
+Return copy of matrix
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::resize "
@@ -4905,10 +4901,6 @@ and use the standard Epetra interface.
 Return true if tensor is distributed
 ";
 
-%feature("docstring")  dolfin::EpetraVector::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::EpetraVector::zero "
 Set all entries to zero and keep any sparse structure
 ";
@@ -4919,6 +4911,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::EpetraVector::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::EpetraVector::copy "
+Return copy of vector
 ";
 
 %feature("docstring")  dolfin::EpetraVector::resize "
@@ -5429,6 +5425,54 @@ Return a list available preconditioners
 Default parameter values
 ";
 
+// Documentation extracted from: (module=la, header=MUMPSLUSolver.h)
+%feature("docstring")  dolfin::MUMPSLUSolver "
+This class implements the direct solution (LU factorization) for
+linear systems of the form Ax = b. It is a wrapper for the MUMPS
+LU solver.
+";
+
+%feature("docstring")  dolfin::MUMPSLUSolver::MUMPSLUSolver "
+**Overloaded versions**
+
+* MUMPSLUSolver\ (A)
+
+  Constructor
+
+* MUMPSLUSolver\ (A)
+
+  Constructor
+";
+
+%feature("docstring")  dolfin::MUMPSLUSolver::solve "
+Solve linear system Ax = b
+";
+
+%feature("docstring")  dolfin::MUMPSLUSolver::default_parameters "
+Default parameter values
+";
+
+// Documentation extracted from: (module=la, header=PaStiXLUSolver.h)
+%feature("docstring")  dolfin::PaStiXLUSolver::PaStiXLUSolver "
+**Overloaded versions**
+
+* PaStiXLUSolver\ (A)
+
+  Constructor
+
+* PaStiXLUSolver\ (A)
+
+  Constructor
+";
+
+%feature("docstring")  dolfin::PaStiXLUSolver::solve "
+Constructor
+";
+
+%feature("docstring")  dolfin::PaStiXLUSolver::default_parameters "
+Default parameter values
+";
+
 // Documentation extracted from: (module=la, header=MTL4Matrix.h)
 %feature("docstring")  dolfin::MTL4Matrix::MTL4Matrix "
 **Overloaded versions**
@@ -5452,10 +5496,6 @@ Return true if matrix is distributed
 
 %feature("docstring")  dolfin::MTL4Matrix::init "
 Initialize zero tensor using sparsity pattern
-";
-
-%feature("docstring")  dolfin::MTL4Matrix::copy "
-Return copy of tensor
 ";
 
 %feature("docstring")  dolfin::MTL4Matrix::size "
@@ -5484,6 +5524,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::MTL4Matrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::MTL4Matrix::copy "
+Return copy of matrix
 ";
 
 %feature("docstring")  dolfin::MTL4Matrix::resize "
@@ -5580,10 +5624,6 @@ be the fastest.
 
   Create empty matrix
 
-* STLMatrix\ (M, N)
-
-  Create M x N matrix
-
 * STLMatrix\ (A)
 
   Copy constructor
@@ -5596,10 +5636,6 @@ Return true if matrix is distributed
 
 %feature("docstring")  dolfin::STLMatrix::init "
 Initialize zero tensor using sparsity pattern
-";
-
-%feature("docstring")  dolfin::STLMatrix::copy "
-Return copy of tensor
 ";
 
 %feature("docstring")  dolfin::STLMatrix::size "
@@ -5630,22 +5666,14 @@ Finalize assembly of tensor
 Return informal string representation (pretty-print)
 ";
 
+%feature("docstring")  dolfin::STLMatrix::copy "
+Return copy of matrix
+";
+
 %feature("docstring")  dolfin::STLMatrix::resize "
-**Overloaded versions**
-
-* resize\ (M, N)
-
-  Initialize M x N matrix
-
-* resize\ (y, dim)
-
-  Resize vector y such that is it compatible with matrix for
-  multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
-  case, size and layout are important.
-
-* resize\ (rank, dims, reset)
-
-  Resize tensor of given rank and dimensions
+Resize vector y such that is it compatible with matrix for
+multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+case, size and layout are important.
 ";
 
 %feature("docstring")  dolfin::STLMatrix::get "
@@ -5697,6 +5725,32 @@ Assignment operator
 Return linear algebra backend factory
 ";
 
+%feature("docstring")  dolfin::STLMatrix::csr "
+--- STLMatrix interface ---
+Return matrix in CSR format
+";
+
+%feature("docstring")  dolfin::STLMatrix::nnz "
+Return number of global non-zero entries
+";
+
+%feature("docstring")  dolfin::STLMatrix::local_nnz "
+Return number of local non-zero entries
+";
+
+// Documentation extracted from: (module=la, header=CoordinateMatrix.h)
+%feature("docstring")  dolfin::CoordinateMatrix "
+Coordinate sparse matrix.
+";
+
+%feature("docstring")  dolfin::CoordinateMatrix::CoordinateMatrix "
+Constructor
+";
+
+%feature("docstring")  dolfin::CoordinateMatrix::norm "
+Return norm of matrix
+";
+
 // Documentation extracted from: (module=la, header=uBLASVector.h)
 %feature("docstring")  dolfin::uBLASVector "
 This class provides a simple vector class based on uBLAS.
@@ -5733,10 +5787,6 @@ http://www.boost.org/libs/numeric/ublas/doc/index.htm.
 Return true if tensor is distributed
 ";
 
-%feature("docstring")  dolfin::uBLASVector::copy "
-Create copy of tensor
-";
-
 %feature("docstring")  dolfin::uBLASVector::zero "
 Set all entries to zero and keep any sparse structure
 ";
@@ -5747,6 +5797,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::uBLASVector::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::uBLASVector::copy "
+Create copy of tensor
 ";
 
 %feature("docstring")  dolfin::uBLASVector::resize "
@@ -5980,10 +6034,6 @@ use the standard PETSc interface.
 Return true if tensor is distributed
 ";
 
-%feature("docstring")  dolfin::PETScVector::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::PETScVector::zero "
 Set all entries to zero and keep any sparse structure
 ";
@@ -5994,6 +6044,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::PETScVector::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::PETScVector::copy "
+Return copy of vector
 ";
 
 %feature("docstring")  dolfin::PETScVector::resize "
@@ -6181,10 +6235,6 @@ Return shared_ptr to PETSc Vec object
 Return true if tensor is distributed
 ";
 
-%feature("docstring")  dolfin::MTL4Vector::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::MTL4Vector::zero "
 Set all entries to zero and keep any sparse structure
 ";
@@ -6195,6 +6245,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::MTL4Vector::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::MTL4Vector::copy "
+Return copy of vector
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::resize "
@@ -6396,7 +6450,7 @@ Return local range for dimension dim
 ";
 
 %feature("docstring")  dolfin::SparsityPattern::num_nonzeros "
-Return total number of nonzeros in local_range for dimension 0
+Return number of local nonzeros
 ";
 
 %feature("docstring")  dolfin::SparsityPattern::num_nonzeros_diagonal "
@@ -7109,7 +7163,7 @@ Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::Vector::copy "
-Return copy of tensor
+Return copy of vector
 ";
 
 %feature("docstring")  dolfin::Vector::zero "
@@ -7312,6 +7366,10 @@ based on the default DOLFIN linear algebra backend.
 * Matrix\ (A)
 
   Copy constructor
+
+* Matrix\ (A)
+
+  Create a Vector from a GenericVetor
 ";
 
 %feature("docstring")  dolfin::Matrix::distributed "
@@ -7320,10 +7378,6 @@ Return true if matrix is distributed
 
 %feature("docstring")  dolfin::Matrix::init "
 Initialize zero tensor using sparsity pattern
-";
-
-%feature("docstring")  dolfin::Matrix::copy "
-Return copy of tensor
 ";
 
 %feature("docstring")  dolfin::Matrix::size "
@@ -7352,6 +7406,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::Matrix::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::Matrix::copy "
+Return copy of matrix
 ";
 
 %feature("docstring")  dolfin::Matrix::resize "
@@ -7455,10 +7513,6 @@ Resize tensor to given dimensions
 Initialize zero tensor using sparsity pattern
 ";
 
-%feature("docstring")  dolfin::Scalar::copy "
-Return copy of tensor
-";
-
 %feature("docstring")  dolfin::Scalar::rank "
 Return tensor rank (number of dimensions)
 ";
@@ -7505,6 +7559,10 @@ Finalize assembly of tensor
 
 %feature("docstring")  dolfin::Scalar::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::Scalar::copy "
+Return copy of scalar
 ";
 
 %feature("docstring")  dolfin::Scalar::operator double "
@@ -12477,6 +12535,10 @@ finalisation of various sub systems, such as MPI and PETSc.
 Initialise MPI
 ";
 
+%feature("docstring")  dolfin::SubSystemsManager::init_mpi_threaded "
+Initialise threaded version of MPI
+";
+
 %feature("docstring")  dolfin::SubSystemsManager::init_petsc "
 **Overloaded versions**
 
@@ -12585,6 +12647,13 @@ Check if file exists
 *Returns*
     bool
         True if the file exists.
+";
+
+%feature("docstring")  dolfin::File::create_parent_path "
+
+*Arguments*
+    filename (str)
+        Name of file / path.
 ";
 
 // Documentation extracted from: (module=adaptivity, header=GenericAdaptiveVariationalSolver.h)
