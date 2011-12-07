@@ -11880,14 +11880,14 @@ Define a uniform finite element :py:class:`Mesh` over the rectangular prism
 *Arguments*
     x0 (float)
         :math:`x`-min.
-    x1 (float)
-        :math:`x`-max.
     y0 (float)
         :math:`y`-min.
-    y1 (float)
-        :math:`y`-max.
     z0 (float)
         :math:`z`-min.
+    x1 (float)
+        :math:`x`-max.
+    y1 (float)
+        :math:`y`-max.
     z1 (float)
         :math:`z`-max.
     xn (float)
@@ -11910,8 +11910,26 @@ Given the number of cells (nx, ny) in each direction,
 the total number of triangles will be 2*nx*ny and the
 total number of vertices will be (nx + 1)*(ny + 1).
 
-std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\", or \"crossed\")
-indicates the direction of the diagonals.
+*Arguments*
+    x0 (float)
+        :math:`x`-min.
+    y0 (float)
+        :math:`y`-min.
+    x1 (float)
+        :math:`x`-max.
+    y1 (float)
+        :math:`y`-max.
+    xn (float)
+        Number of cells in :math:`x`-direction.
+    yn (float)
+        Number of cells in :math:`y`-direction.
+    diagonal (str)
+        Direction of diagonals: \"left\", \"right\", \"left/right\", \"crossed\"
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=mesh, header=UnitSphere.h)
