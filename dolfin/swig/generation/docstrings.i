@@ -31,6 +31,27 @@ Polygonal mesh generator that uses CGAL
 Generate mesh of a polygonal domain described by domain vertices
 ";
 
+// Documentation extracted from: (module=generation, header=PolyhedralMeshGenerator.h)
+%feature("docstring")  dolfin::PolyhedralMeshGenerator "
+Polyhedral mesh generator that uses CGAL
+";
+
+%feature("docstring")  dolfin::PolyhedralMeshGenerator::generate "
+**Overloaded versions**
+
+* generate\ (mesh, off_file, cell_size)
+
+  Create mesh from Object File Format (.off) file
+
+* generate\ (mesh, vertices, facets, cell_size)
+
+  Create mesh from a collection of facets
+";
+
+%feature("docstring")  dolfin::PolyhedralMeshGenerator::cgal_generate "
+Create mesh from a CGAL mesh domain
+";
+
 // Documentation extracted from: (module=generation, header=Triangulate.h)
 %feature("docstring")  dolfin::Triangulate "
 Create mesh from a triangulation of points
