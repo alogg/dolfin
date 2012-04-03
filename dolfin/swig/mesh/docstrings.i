@@ -378,21 +378,9 @@ Check whether domain data is empty
 
 * markers\ (dim)
 
-  Get subdomain markers for given dimension
-
-* markers\ (dim)
-
-  Get subdomain markers for given dimension (const version)
-";
-
-%feature("docstring")  dolfin::MeshDomains::markers_shared_ptr "
-**Overloaded versions**
-
-* markers_shared_ptr\ (dim)
-
   Get subdomain markers for given dimension (shared pointer version)
 
-* markers_shared_ptr\ (dim)
+* markers\ (dim)
 
   Get subdomain markers for given dimension (const shared pointer version)
 ";

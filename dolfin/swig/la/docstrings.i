@@ -72,10 +72,6 @@ Set operator (matrix)
 This class defines a common interface for arbitrary rank tensors.
 ";
 
-%feature("docstring")  dolfin::GenericTensor::distributed "
-Return true if tensor is distributed
-";
-
 %feature("docstring")  dolfin::GenericTensor::init "
 Initialize zero tensor using tensor layout
 ";
@@ -892,10 +888,6 @@ inlined to avoid link errors.
   Create matrix from given uBLAS matrix expression
 ";
 
-%feature("docstring")  dolfin::uBLASMatrix::distributed "
-Return true if tensor is distributed
-";
-
 %feature("docstring")  dolfin::uBLASMatrix::init "
 Initialize zero tensor using tenor layout
 ";
@@ -1113,10 +1105,6 @@ use the standard PETSc interface.
 * PETScMatrix\ (A)
 
   Create matrix from given PETSc Mat pointer
-";
-
-%feature("docstring")  dolfin::PETScMatrix::distributed "
-Return true if matrix is distributed
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::init "
@@ -1458,10 +1446,6 @@ use the standard Epetra interface.
   Create matrix from given Epetra_CrsGraph
 ";
 
-%feature("docstring")  dolfin::EpetraMatrix::distributed "
-Return true if matrix is distributed
-";
-
 %feature("docstring")  dolfin::EpetraMatrix::init "
 **Overloaded versions**
 
@@ -1609,10 +1593,6 @@ and use the standard Epetra interface.
 * EpetraVector\ (map)
 
   Create vector from given Epetra_BlockMap
-";
-
-%feature("docstring")  dolfin::EpetraVector::distributed "
-Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::EpetraVector::zero "
@@ -2234,10 +2214,6 @@ Default parameter values
   Create M x N matrix with estimate of nonzeroes per row
 ";
 
-%feature("docstring")  dolfin::MTL4Matrix::distributed "
-Return true if matrix is distributed
-";
-
 %feature("docstring")  dolfin::MTL4Matrix::init "
 Initialize zero tensor using tensor layout
 ";
@@ -2362,23 +2338,11 @@ be the fastest.
 ";
 
 %feature("docstring")  dolfin::STLMatrix::STLMatrix "
-**Overloaded versions**
-
-* STLMatrix\ (primary_dim=0)
-
-  Create empty matrix
-
-* STLMatrix\ (A)
-
-  Copy constructor
-";
-
-%feature("docstring")  dolfin::STLMatrix::distributed "
---- Implementation of the GenericTensor interface ---
-Return true if matrix is distributed
+Create empty matrix
 ";
 
 %feature("docstring")  dolfin::STLMatrix::init "
+--- Implementation of the GenericTensor interface ---
 Initialize zero tensor using sparsity pattern
 ";
 
@@ -2518,11 +2482,11 @@ http://www.boost.org/libs/numeric/ublas/doc/index.htm.
 %feature("docstring")  dolfin::uBLASVector::uBLASVector "
 **Overloaded versions**
 
-* uBLASVector\ ()
+* uBLASVector\ (type=\"global\")
 
   Create empty vector
 
-* uBLASVector\ (N)
+* uBLASVector\ (N, type=\"global\")
 
   Create vector of size N
 
@@ -2533,10 +2497,6 @@ http://www.boost.org/libs/numeric/ublas/doc/index.htm.
 * uBLASVector\ (x)
 
   Construct vector from a ublas_vector
-";
-
-%feature("docstring")  dolfin::uBLASVector::distributed "
-Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::uBLASVector::zero "
@@ -2802,10 +2762,6 @@ use the standard PETSc interface.
   Create vector from given PETSc Vec pointer
 ";
 
-%feature("docstring")  dolfin::PETScVector::distributed "
-Return true if tensor is distributed
-";
-
 %feature("docstring")  dolfin::PETScVector::zero "
 Set all entries to zero and keep any sparse structure
 ";
@@ -3021,10 +2977,6 @@ Return shared_ptr to PETSc Vec object
 * MTL4Vector\ (x)
 
   Copy constructor
-";
-
-%feature("docstring")  dolfin::MTL4Vector::distributed "
-Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::MTL4Vector::zero "
@@ -3992,10 +3944,6 @@ based on the default DOLFIN linear algebra backend.
   Create a Vector from a GenericVetor
 ";
 
-%feature("docstring")  dolfin::Vector::distributed "
-Return true if tensor is distributed
-";
-
 %feature("docstring")  dolfin::Vector::copy "
 Return copy of vector
 ";
@@ -4226,10 +4174,6 @@ based on the default DOLFIN linear algebra backend.
   Create a Vector from a GenericVetor
 ";
 
-%feature("docstring")  dolfin::Matrix::distributed "
-Return true if matrix is distributed
-";
-
 %feature("docstring")  dolfin::Matrix::init "
 Initialize zero tensor using tensor layout
 ";
@@ -4353,10 +4297,6 @@ implements the GenericTensor interface for scalars.
 
 %feature("docstring")  dolfin::Scalar::Scalar "
 Create zero scalar
-";
-
-%feature("docstring")  dolfin::Scalar::distributed "
-Return true if tensor is distributed
 ";
 
 %feature("docstring")  dolfin::Scalar::resize "
