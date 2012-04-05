@@ -2195,7 +2195,7 @@ Return type of cell
 Compute orientation of cell
 
 *Returns*
-    float
+    int
         Orientation of the cell (0 is right, 1 is left).
 ";
 
