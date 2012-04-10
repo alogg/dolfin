@@ -5274,7 +5274,7 @@ cahnhilliard3d_form_0::~cahnhilliard3d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_0::signature() const
 {
-    return "9d80abb5f44b035b804834e02e4fd6bd615701b99419b5494c7e40884d3ae654137e585247d05f5ed5bfcda6d30cec3f2a589ad6f5735f56f271f06db00715e5";
+    return "6039020949b90b30ef427ed5511bb6b571a3e1299fd0cd5bcec14f17eb7ceb0bf85e673eb8c2803a1e104226dd26cacca7e3fe87e3c50c81f447af643d3692fe";
 }
 
 /// Return the rank of the global tensor (r)
@@ -5429,7 +5429,7 @@ cahnhilliard3d_form_1::~cahnhilliard3d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_1::signature() const
 {
-    return "eb6e68d4b980c2b15fa75444f166cbd7f2234c6330134c69572f934bbbdf513d190414f773b54f08b17f8163559a9356ac136c1103f999572543443b53565b38";
+    return "948158e75342ed853d24da66d9c450f51c0082a241527f2b1c70fc35ffee99758a7282203a932f8d68f4e8250434f20a7dd784607056c6bc6be75ee700a1a446";
 }
 
 /// Return the rank of the global tensor (r)
