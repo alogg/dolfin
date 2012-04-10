@@ -1005,8 +1005,8 @@ public:
     const double G0_1 = det*w[0][1]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.333333333333333*G0_0 + 0.166666666666666*G0_1;
-    A[1] = 0.166666666666666*G0_0 + 0.333333333333333*G0_1;
+    A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
+    A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
