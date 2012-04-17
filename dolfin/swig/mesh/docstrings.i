@@ -361,8 +361,8 @@ contained in the subset are \"unmarked\".
 Create empty mesh domains
 ";
 
-%feature("docstring")  dolfin::MeshDomains::dim "
-Return maximal topological dimension of stored markers
+%feature("docstring")  dolfin::MeshDomains::max_dim "
+Return maximum topological dimension of stored markers
 ";
 
 %feature("docstring")  dolfin::MeshDomains::num_marked "
@@ -385,6 +385,10 @@ Check whether domain data is empty
   Get subdomain markers for given dimension (const shared pointer version)
 ";
 
+%feature("docstring")  dolfin::MeshDomains::marker_names "
+Return names of markers of a given dimension
+";
+
 %feature("docstring")  dolfin::MeshDomains::cell_domains "
 Get cell domains. This function computes the mesh function
 corresponding to markers of dimension D. The mesh function is
@@ -397,6 +401,10 @@ Get facet domains. This function computes the mesh function
 corresponding to markers of dimension D-1. The mesh function
 is cached for later access and will be computed on the first
 call to this function.
+";
+
+%feature("docstring")  dolfin::MeshDomains::mesh_function "
+Create a mesh function corresponding to the MeshCollection 'collection'
 ";
 
 %feature("docstring")  dolfin::MeshDomains::init "

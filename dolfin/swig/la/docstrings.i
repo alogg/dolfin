@@ -1447,15 +1447,7 @@ use the standard Epetra interface.
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::init "
-**Overloaded versions**
-
-* init\ (tensor_layout)
-
-  Initialize zero tensor using tensor layout
-
-* init\ (sparsity_pattern)
-
-  Initialize zero tensor using sparsity pattern
+Initialize zero tensor using tensor layout
 ";
 
 %feature("docstring")  dolfin::EpetraMatrix::size "
@@ -3261,75 +3253,6 @@ Return underlying sparsity pattern (diagonal). Options are
 %feature("docstring")  dolfin::SparsityPattern::off_diagonal_pattern "
 Return underlying sparsity pattern (off-diagional). Options are
 'sorted' and 'unsorted'.
-";
-
-// Documentation extracted from: (module=la, header=EpetraSparsityPattern.h)
-%feature("docstring")  dolfin::EpetraSparsityPattern "
-This class implements the GenericSparsityPattern interface for
-the Epetra backend. The common interface is mostly
-ignored. Instead, the sparsity pattern is represented as an
-Epetra_FECrsGraph and a dynamic_cast is used to retrieve the
-underlying representation when creating Epetra matrices.
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::EpetraSparsityPattern "
-Constructor
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::init "
-Initialize sparsity pattern for a generic tensor
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::insert "
-Insert non-zero entries
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::rank "
-Return rank
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::primary_dim "
-Return primary dimension (e.g., 0=row parition, 1=column partition)
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::size "
-Return global size for dimension i
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::local_range "
-Return local range for dimension dim
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::num_nonzeros "
-Return total number of nonzeros in local rows
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::num_nonzeros_diagonal "
-Fill array with number of nonzeros for diagonal block in local_range for dimension 0
-For matrices, fill array with number of nonzeros per local row for diagonal block
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::num_nonzeros_off_diagonal "
-Fill array with number of nonzeros for off-diagonal block in local_range for dimension 0
-For matrices, fill array with number of nonzeros per local row for off-diagonal block
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::diagonal_pattern "
-Return underlying sparsity pattern (diagonal). Options are
-'sorted' and 'unsorted'.
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::off_diagonal_pattern "
-Return underlying sparsity pattern (off-diagional). Options are
-'sorted' and 'unsorted'.
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::apply "
-Finalize sparsity pattern
-";
-
-%feature("docstring")  dolfin::EpetraSparsityPattern::pattern "
-Return Epetra CRS graph
 ";
 
 // Documentation extracted from: (module=la, header=LinearAlgebraFactory.h)
