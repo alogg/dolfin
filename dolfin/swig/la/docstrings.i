@@ -1094,17 +1094,17 @@ use the standard PETSc interface.
 %feature("docstring")  dolfin::PETScMatrix::PETScMatrix "
 **Overloaded versions**
 
-* PETScMatrix\ ()
+* PETScMatrix\ (use_gpu=false)
 
   Create empty matrix
+
+* PETScMatrix\ (A, use_gpu=false)
+
+  Create matrix from given PETSc Mat pointer
 
 * PETScMatrix\ (A)
 
   Copy constructor
-
-* PETScMatrix\ (A)
-
-  Create matrix from given PETSc Mat pointer
 ";
 
 %feature("docstring")  dolfin::PETScMatrix::init "
@@ -2733,11 +2733,11 @@ use the standard PETSc interface.
 %feature("docstring")  dolfin::PETScVector::PETScVector "
 **Overloaded versions**
 
-* PETScVector\ (type=\"global\")
+* PETScVector\ (type=\"global\", use_gpu=false)
 
   Create empty vector
 
-* PETScVector\ (N, type=\"global\")
+* PETScVector\ (N, type=\"global\", use_gpu=false)
 
   Create vector of size N
 
@@ -3402,6 +3402,51 @@ Return singleton instance
 ";
 
 %feature("docstring")  dolfin::PETScFactory::PETScFactory "
+Private constructor
+";
+
+// Documentation extracted from: (module=la, header=PETScCuspFactory.h)
+%feature("docstring")  dolfin::PETScCuspFactory::create_matrix "
+Create empty matrix
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::create_vector "
+Create empty vector (global)
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::create_local_vector "
+Create empty vector (local)
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::create_layout "
+Create empty tensor layout
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::create_lu_solver "
+Create LU solver
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::create_krylov_solver "
+Create Krylov solver
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::lu_solver_methods "
+Return a list of available LU solver methods
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::krylov_solver_methods "
+Return a list of available Krylov solver methods
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::krylov_solver_preconditioners "
+Return a list of available preconditioners
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::instance "
+Return singleton instance
+";
+
+%feature("docstring")  dolfin::PETScCuspFactory::PETScCuspFactory "
 Private constructor
 ";
 
