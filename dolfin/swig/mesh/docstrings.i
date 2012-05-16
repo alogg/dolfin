@@ -1681,7 +1681,7 @@ Member access operator
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::operator[] "
-Random access operator.
+Random access operator
 ";
 
 %feature("docstring")  dolfin::MeshEntityIterator::end "
@@ -2025,6 +2025,10 @@ Return vertex coordinates as a 3D point value
 
 %feature("docstring")  dolfin::VertexIterator "
 A VertexIterator is a MeshEntityIterator of topological dimension 0.
+";
+
+%feature("docstring")  dolfin::VertexIterator "
+Test
 ";
 
 %feature("docstring")  dolfin::VertexFunction "
