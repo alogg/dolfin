@@ -99,27 +99,3 @@ Default parameter values
 Default parameter values for mesh plotting
 ";
 
-// Documentation extracted from: (module=plot, header=FunctionPlotData.h)
-%feature("docstring")  dolfin::FunctionPlotData "
-This class is used for communicating plot data for functions
-to and from (XML) files. It is used by DOLFIN for plotting
-Function objects. The data is stored as a mesh and a vector
-of interpolated vertex values.
-";
-
-%feature("docstring")  dolfin::FunctionPlotData::FunctionPlotData "
-**Overloaded versions**
-
-* FunctionPlotData\ (v, mesh)
-
-  Create plot data for given function
-
-* FunctionPlotData\ ()
-
-  Create empty data to be read from file
-";
-
-%feature("docstring")  dolfin::FunctionPlotData::vertex_values "
-Return vertex values
-";
-
