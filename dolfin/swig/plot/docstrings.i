@@ -26,8 +26,6 @@
 
 * plot\ (v, title=\"Function\", mode=\"auto\")
 
-  Simple built-in plot commands for plotting functions and meshes.
-  For plotting to work, PyDOLFIN and Viper must be installed.
   Plot function
 
 * plot\ (v, mesh, title=\"Expression\", mode=\"auto\")
@@ -49,6 +47,56 @@
 * plot\ (f, title=\"MeshFunction<bool>\")
 
   Plot mesh function
+";
+
+// Documentation extracted from: (module=plot, header=VTKPlotter.h)
+%feature("docstring")  dolfin::VTKPlotter "
+This is a class for visualizing of DOLFIN meshes, functions,
+expressions and mesh functions.
+The plotter has several parameters that the user can change to control
+the appearance and behavior of the plot.
+
+TODO: Add documentation for all parameters?
+";
+
+%feature("docstring")  dolfin::VTKPlotter::VTKPlotter "
+**Overloaded versions**
+
+* VTKPlotter\ (mesh)
+
+  Create plotter for a mesh
+
+* VTKPlotter\ (function)
+
+  Create plotter for a function
+
+* VTKPlotter\ (expression, mesh)
+
+  Create plotter for an expression
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for an integer valued mesh function
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for a double valued mesh function
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for a boolean valued mesh function
+";
+
+%feature("docstring")  dolfin::VTKPlotter::plot "
+Plot the object
+";
+
+%feature("docstring")  dolfin::VTKPlotter::default_parameters "
+Default parameter values
+";
+
+%feature("docstring")  dolfin::VTKPlotter::default_mesh_parameters "
+Default parameter values for mesh plotting
 ";
 
 // Documentation extracted from: (module=plot, header=FunctionPlotData.h)
