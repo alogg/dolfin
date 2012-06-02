@@ -49,6 +49,28 @@
   Plot mesh function
 ";
 
+// Documentation extracted from: (module=plot, header=PlotableExpression.h)
+%feature("docstring")  dolfin::PlotableExpression "
+A light wrapper class to hold an expression to plot, along with the mesh
+to plot it on. Allows for clean, templated plotter code in plot.cpp
+";
+
+%feature("docstring")  dolfin::PlotableExpression::PlotableExpression "
+Create plotable expression object
+";
+
+%feature("docstring")  dolfin::PlotableExpression::id "
+Return unique ID of the expression
+";
+
+%feature("docstring")  dolfin::PlotableExpression::expression "
+Get the expression
+";
+
+%feature("docstring")  dolfin::PlotableExpression::mesh "
+Get the mesh
+";
+
 // Documentation extracted from: (module=plot, header=VTKPlotter.h)
 %feature("docstring")  dolfin::VTKPlotter "
 This is a class for visualizing of DOLFIN meshes, functions,
@@ -69,6 +91,10 @@ TODO: Add documentation for all parameters?
 * VTKPlotter\ (function)
 
   Create plotter for a function
+
+* VTKPlotter\ (plotable)
+
+  Create plotter for an expression
 
 * VTKPlotter\ (expression, mesh)
 
