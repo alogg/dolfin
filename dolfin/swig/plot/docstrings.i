@@ -49,6 +49,10 @@
   Plot mesh function
 ";
 
+%feature("docstring")  dolfin::interactive "
+Make the current plot interactive
+";
+
 // Documentation extracted from: (module=plot, header=PlotableExpression.h)
 %feature("docstring")  dolfin::PlotableExpression "
 A light wrapper class to hold an expression to plot, along with the mesh
@@ -84,6 +88,10 @@ TODO: Add documentation for all parameters?
 %feature("docstring")  dolfin::VTKPlotter::VTKPlotter "
 **Overloaded versions**
 
+* VTKPlotter\ (plotter)
+
+  Copy constructor
+
 * VTKPlotter\ (mesh)
 
   Create plotter for a mesh
@@ -113,6 +121,10 @@ TODO: Add documentation for all parameters?
   Create plotter for a boolean valued mesh function
 ";
 
+%feature("docstring")  dolfin::VTKPlotter::operator= "
+Assignment operator
+";
+
 %feature("docstring")  dolfin::VTKPlotter::plot "
 Plot the object
 ";
@@ -123,5 +135,13 @@ Default parameter values
 
 %feature("docstring")  dolfin::VTKPlotter::default_mesh_parameters "
 Default parameter values for mesh plotting
+";
+
+%feature("docstring")  dolfin::VTKPlotter::interactive "
+Set up help text and start interaction loop
+";
+
+%feature("docstring")  dolfin::VTKPlotter::id "
+Return unique ID of the object to plot
 ";
 
