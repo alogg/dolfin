@@ -36,6 +36,10 @@
 
   Plot mesh
 
+* plot\ (bc, B.C.\")
+
+  Plot Dirichlet B.C.
+
 * plot\ (f, MeshFunction<uint>\")
 
   Plot mesh function
@@ -107,6 +111,10 @@ TODO: Add documentation for all parameters?
 * VTKPlotter\ (expression, mesh)
 
   Create plotter for an expression
+
+* VTKPlotter\ (bc)
+
+  Create plotter for Dirichlet B.C.
 
 * VTKPlotter\ (mesh_function)
 
