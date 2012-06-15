@@ -204,6 +204,11 @@ call to the plot() method. The following parameters exist:
  scalarbar      Boolean     False for       Hide/show the colormapping bar
                             meshes, else
                             true
+ hardcopy_prefix string     \"dolfin_plot_\"  Filename prefix used when
+                                            saving plots to file in
+                                            interactive mode. An integer
+                                            counter is appended after the
+                                            prefix.
 ============= ============ =============== =================================
 
 The default visualization mode for the different plot types are as follows:
@@ -223,10 +228,6 @@ above table.
 
 %feature("docstring")  dolfin::VTKPlotter::VTKPlotter "
 **Overloaded versions**
-
-* VTKPlotter\ (plotter)
-
-  Copy constructor
 
 * VTKPlotter\ (mesh)
 
@@ -259,10 +260,6 @@ above table.
 * VTKPlotter\ (mesh_function)
 
   Create plotter for a boolean valued mesh function
-";
-
-%feature("docstring")  dolfin::VTKPlotter::operator= "
-Assignment operator
 ";
 
 %feature("docstring")  dolfin::VTKPlotter::default_parameters "
