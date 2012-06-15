@@ -24,58 +24,86 @@
 %feature("docstring")  dolfin::plot "
 **Overloaded versions**
 
-* plot\ (v, title=\"Function\", mode=\"auto\")
+* plot\ (function, title=\"Function\", mode=\"auto\")
 
   Plot function
 
-* plot\ (v, mesh, title=\"Expression\", mode=\"auto\")
+* plot\ (function, title=\"Function\", mode=\"auto\")
 
-  Plot function
+  Plot function (shared_ptr version)
+
+* plot\ (expression, mesh, title=\"Expression\", mode=\"auto\")
+
+  Plot expression
+
+* plot\ (expression, mesh, title=\"Expression\", mode=\"auto\")
+
+  Plot expression (shared_ptr version)
 
 * plot\ (mesh, title=\"Mesh\")
 
   Plot mesh
 
+* plot\ (mesh, title=\"Mesh\")
+
+  Plot mesh (shared_ptr version)
+
 * plot\ (bc, B.C.\")
 
-  Plot Dirichlet B.C.
+  Plot Dirichlet BC
 
-* plot\ (f, MeshFunction<uint>\")
+* plot\ (bc, B.C.\")
 
-  Plot mesh function
+  Plot Dirichlet BC (shared_ptr version)
 
-* plot\ (f, title=\"MeshFunction<double>\")
+* plot\ (mesh_function, MeshFunction<uint>\")
 
-  Plot mesh function
+  Plot uint-valued mesh function
 
-* plot\ (f, title=\"MeshFunction<bool>\")
+* plot\ (mesh_function, MeshFunction<uint>\")
 
-  Plot mesh function
+  Plot uint-valued mesh function (shared_ptr version)
+
+* plot\ (mesh_function, title=\"MeshFunction<double>\")
+
+  Plot double-valued mesh function
+
+* plot\ (mesh_function, title=\"MeshFunction<double>\")
+
+  Plot double-valued mesh function  (shared_ptr version)
+
+* plot\ (mesh_function, title=\"MeshFunction<bool>\")
+
+  Plot boolean-valued mesh function
+
+* plot\ (mesh_function, title=\"MeshFunction<bool>\")
+
+  Plot boolean-valued mesh function (shared_ptr version)
 ";
 
 %feature("docstring")  dolfin::interactive "
 Make the current plot interactive
 ";
 
-// Documentation extracted from: (module=plot, header=PlotableExpression.h)
-%feature("docstring")  dolfin::PlotableExpression "
+// Documentation extracted from: (module=plot, header=PlottableExpression.h)
+%feature("docstring")  dolfin::PlottableExpression "
 A light wrapper class to hold an expression to plot, along with the mesh
 to plot it on. Allows for clean, templated plotter code in plot.cpp
 ";
 
-%feature("docstring")  dolfin::PlotableExpression::PlotableExpression "
+%feature("docstring")  dolfin::PlottableExpression::PlottableExpression "
 Create plotable expression object
 ";
 
-%feature("docstring")  dolfin::PlotableExpression::id "
+%feature("docstring")  dolfin::PlottableExpression::id "
 Return unique ID of the expression
 ";
 
-%feature("docstring")  dolfin::PlotableExpression::expression "
+%feature("docstring")  dolfin::PlottableExpression::expression "
 Get the expression
 ";
 
-%feature("docstring")  dolfin::PlotableExpression::mesh "
+%feature("docstring")  dolfin::PlottableExpression::mesh "
 Get the mesh
 ";
 
@@ -152,7 +180,7 @@ above table.
 
   Create plotter for a function
 
-* VTKPlotter\ (plotable)
+* VTKPlotter\ (expression)
 
   Create plotter for an expression
 
@@ -181,16 +209,16 @@ above table.
 Assignment operator
 ";
 
-%feature("docstring")  dolfin::VTKPlotter::plot "
-Plot the object
-";
-
 %feature("docstring")  dolfin::VTKPlotter::default_parameters "
 Default parameter values
 ";
 
 %feature("docstring")  dolfin::VTKPlotter::default_mesh_parameters "
 Default parameter values for mesh plotting
+";
+
+%feature("docstring")  dolfin::VTKPlotter::plot "
+Plot the object
 ";
 
 %feature("docstring")  dolfin::VTKPlotter::interactive "
