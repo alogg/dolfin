@@ -32,6 +32,14 @@
 
   Plot function (shared_ptr version)
 
+* plot\ (function, parameters)
+
+  Plot function (parameter version)
+
+* plot\ (function, parameters)
+
+  Plot function (parameter, shared_ptr version)
+
 * plot\ (expression, mesh, title=\"Expression\", mode=\"auto\")
 
   Plot expression
@@ -39,6 +47,14 @@
 * plot\ (expression, mesh, title=\"Expression\", mode=\"auto\")
 
   Plot expression (shared_ptr version)
+
+* plot\ (expression, mesh, parameters)
+
+  Plot expression (parameter version)
+
+* plot\ (expression, mesh, parameters)
+
+  Plot expression (parameter, shared_ptr version)
 
 * plot\ (mesh, title=\"Mesh\")
 
@@ -48,6 +64,14 @@
 
   Plot mesh (shared_ptr version)
 
+* plot\ (mesh, parameters)
+
+  Plot mesh (parameter version)
+
+* plot\ (mesh, parameters)
+
+  Plot mesh (parameter, shared_ptr version)
+
 * plot\ (bc, B.C.\")
 
   Plot Dirichlet BC
@@ -55,6 +79,14 @@
 * plot\ (bc, B.C.\")
 
   Plot Dirichlet BC (shared_ptr version)
+
+* plot\ (bc, parameters)
+
+  Plot Dirichlet BC (parameter version)
+
+* plot\ (bc, parameters)
+
+  Plot Dirichlet BC (parameter, shared_ptr version)
 
 * plot\ (mesh_function, MeshFunction<uint>\")
 
@@ -64,6 +96,14 @@
 
   Plot uint-valued mesh function (shared_ptr version)
 
+* plot\ (mesh_function, parameters)
+
+  Plot uint-valued mesh function (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot uint-valued mesh function (parameter, shared_ptr version)
+
 * plot\ (mesh_function, title=\"MeshFunction<double>\")
 
   Plot double-valued mesh function
@@ -72,6 +112,14 @@
 
   Plot double-valued mesh function  (shared_ptr version)
 
+* plot\ (mesh_function, parameters)
+
+  Plot double-valued mesh function  (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot double-valued mesh function  (parameter, shared_ptr version)
+
 * plot\ (mesh_function, title=\"MeshFunction<bool>\")
 
   Plot boolean-valued mesh function
@@ -79,6 +127,14 @@
 * plot\ (mesh_function, title=\"MeshFunction<bool>\")
 
   Plot boolean-valued mesh function (shared_ptr version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot boolean-valued mesh function (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot boolean-valued mesh function (parameter, shared_ptr version)
 ";
 
 %feature("docstring")  dolfin::interactive "
@@ -223,6 +279,10 @@ Plot the object
 
 %feature("docstring")  dolfin::VTKPlotter::interactive "
 Make the current plot interactive
+";
+
+%feature("docstring")  dolfin::VTKPlotter::hardcopy "
+Save plot to PNG file (file suffix appended automatically)
 ";
 
 %feature("docstring")  dolfin::VTKPlotter::id "
