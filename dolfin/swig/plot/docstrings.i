@@ -204,11 +204,14 @@ call to the plot() method. The following parameters exist:
  scalarbar      Boolean     False for       Hide/show the colormapping bar
                             meshes, else
                             true
- hardcopy_prefix string     \"dolfin_plot_\"  Filename prefix used when
+ prefix         String      \"dolfin_plot_\"  Filename prefix used when
                                             saving plots to file in
                                             interactive mode. An integer
                                             counter is appended after the
                                             prefix.
+ helptext       Boolean     True            Enable/disable the hover-over
+                                            help-text in interactive
+                                            mode
 ============= ============ =============== =================================
 
 The default visualization mode for the different plot types are as follows:
@@ -280,6 +283,14 @@ Make the current plot interactive
 
 %feature("docstring")  dolfin::VTKPlotter::hardcopy "
 Save plot to PNG file (file suffix appended automatically)
+";
+
+%feature("docstring")  dolfin::VTKPlotter::get_window_size "
+Get size of the plot window
+";
+
+%feature("docstring")  dolfin::VTKPlotter::set_window_position "
+Set the position of the plot window on the screen
 ";
 
 %feature("docstring")  dolfin::VTKPlotter::id "
