@@ -141,25 +141,25 @@
 Make the current plot interactive
 ";
 
-// Documentation extracted from: (module=plot, header=PlottableExpression.h)
-%feature("docstring")  dolfin::PlottableExpression "
+// Documentation extracted from: (module=plot, header=ExpressionWrapper.h)
+%feature("docstring")  dolfin::ExpressionWrapper "
 A light wrapper class to hold an expression to plot, along with the mesh
 to plot it on. Allows for clean, templated plotter code in plot.cpp
 ";
 
-%feature("docstring")  dolfin::PlottableExpression::PlottableExpression "
+%feature("docstring")  dolfin::ExpressionWrapper::ExpressionWrapper "
 Create plotable expression object
 ";
 
-%feature("docstring")  dolfin::PlottableExpression::id "
+%feature("docstring")  dolfin::ExpressionWrapper::id "
 Return unique ID of the expression
 ";
 
-%feature("docstring")  dolfin::PlottableExpression::expression "
+%feature("docstring")  dolfin::ExpressionWrapper::expression "
 Get the expression
 ";
 
-%feature("docstring")  dolfin::PlottableExpression::mesh "
+%feature("docstring")  dolfin::ExpressionWrapper::mesh "
 Get the mesh
 ";
 
