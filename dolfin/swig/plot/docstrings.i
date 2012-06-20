@@ -163,6 +163,11 @@ Get the expression
 Get the mesh
 ";
 
+// Documentation extracted from: (module=plot, header=VTKPlottableMesh.h)
+%feature("docstring")  dolfin::VTKPlottableMesh::update "
+Update the VTK grid. Should be called after every update to the mesh
+";
+
 // Documentation extracted from: (module=plot, header=VTKPlotter.h)
 %feature("docstring")  dolfin::VTKPlotter "
 This class enables visualization of various DOLFIN entities.
