@@ -163,9 +163,55 @@ Get the expression
 Get the mesh
 ";
 
+// Documentation extracted from: (module=plot, header=GenericVTKPlottable.h)
+%feature("docstring")  dolfin::GenericVTKPlottable::init_pipeline "
+Initialize the parts of the pipeline that this class controls
+";
+
+%feature("docstring")  dolfin::GenericVTKPlottable::update "
+Update the plottable data
+";
+
+%feature("docstring")  dolfin::GenericVTKPlottable::update_range "
+Update the scalar range of the plottable data
+";
+
+%feature("docstring")  dolfin::GenericVTKPlottable::get_output "
+Return data to visualize
+";
+
 // Documentation extracted from: (module=plot, header=VTKPlottableMesh.h)
+%feature("docstring")  dolfin::VTKPlottableMesh::init_pipeline "
+Initialize the parts of the pipeline that this class controls
+";
+
 %feature("docstring")  dolfin::VTKPlottableMesh::update "
-Update the VTK grid. Should be called after every update to the mesh
+Update the plottable data
+";
+
+%feature("docstring")  dolfin::VTKPlottableMesh::update_range "
+Update the scalar range of the plottable data
+";
+
+%feature("docstring")  dolfin::VTKPlottableMesh::get_output "
+Return data to visualize
+";
+
+// Documentation extracted from: (module=plot, header=VTKPlottableGenericFunction.h)
+%feature("docstring")  dolfin::VTKPlottableGenericFunction::init_pipeline "
+Initialize the parts of the pipeline that this class controls
+";
+
+%feature("docstring")  dolfin::VTKPlottableGenericFunction::update "
+Update the plottable data
+";
+
+%feature("docstring")  dolfin::VTKPlottableGenericFunction::update_range "
+Update the scalar range of the plottable data
+";
+
+%feature("docstring")  dolfin::VTKPlottableGenericFunction::get_output "
+Return data to visualize
 ";
 
 // Documentation extracted from: (module=plot, header=VTKPlotter.h)
