@@ -180,6 +180,10 @@ Update the scalar range of the plottable data
 Return data to visualize
 ";
 
+%feature("docstring")  dolfin::GenericVTKPlottable::get_vertex_label_actor "
+Get an actor for showing vertex labels
+";
+
 // Documentation extracted from: (module=plot, header=VTKPlottableMesh.h)
 %feature("docstring")  dolfin::VTKPlottableMesh::init_pipeline "
 Initialize the parts of the pipeline that this class controls
@@ -195,6 +199,10 @@ Update the scalar range of the plottable data
 
 %feature("docstring")  dolfin::VTKPlottableMesh::get_output "
 Return data to visualize
+";
+
+%feature("docstring")  dolfin::VTKPlottableMesh::get_vertex_label_actor "
+Get an actor for showing vertex labels
 ";
 
 // Documentation extracted from: (module=plot, header=VTKPlottableGenericFunction.h)
