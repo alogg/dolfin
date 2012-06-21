@@ -694,69 +694,6 @@ Set given entry to value. apply(\"insert\") should be called before using
 using the object.
 ";
 
-// Documentation extracted from: (module=la, header=GenericSparsityPattern.h)
-%feature("docstring")  dolfin::GenericSparsityPattern "
-Base class (interface) for generic tensor sparsity patterns.
-Currently, this interface is mostly limited to matrices.
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::GenericSparsityPattern "
-Create empty sparsity pattern
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::init "
-Initialize sparsity pattern for a generic tensor
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::insert "
-Insert non-zero entries
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::rank "
-Return rank
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::primary_dim "
-Return primary dimension (e.g., 0=row partition, 1=column partition)
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::local_range "
-Return local range for dimension dim
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros "
-Return total number of nonzeros in local_range
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_diagonal "
-Fill vector with number of nonzeros for diagonal block in
-local_range for primary dimemsion
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::num_nonzeros_off_diagonal "
-Fill vector with number of nonzeros for off-diagonal block in
-local_range for primary dimemsion
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::num_local_nonzeros "
-Fill vector with number of nonzeros in local_range for
-primary dimemsion
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::diagonal_pattern "
-Return underlying sparsity pattern (diagonal). Options are
-'sorted' and 'unsorted'.
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::off_diagonal_pattern "
-Return underlying sparsity pattern (off-diagional). Options are
-'sorted' and 'unsorted'.
-";
-
-%feature("docstring")  dolfin::GenericSparsityPattern::apply "
-Finalize sparsity pattern
-";
-
 // Documentation extracted from: (module=la, header=PETScObject.h)
 %feature("docstring")  dolfin::PETScObject "
 This class calls SubSystemsManager to initialise PETSc.
