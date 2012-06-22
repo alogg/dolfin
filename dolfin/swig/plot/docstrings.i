@@ -222,6 +222,23 @@ Update the scalar range of the plottable data
 Return data to visualize
 ";
 
+// Documentation extracted from: (module=plot, header=VTKPlottableMeshFunction.h)
+%feature("docstring")  dolfin::VTKPlottableMeshFunction::init_pipeline "
+Initialize the parts of the pipeline that this class controls
+";
+
+%feature("docstring")  dolfin::VTKPlottableMeshFunction::update "
+Update the plottable data
+";
+
+%feature("docstring")  dolfin::VTKPlottableMeshFunction::update_range "
+Update the scalar range of the plottable data
+";
+
+%feature("docstring")  dolfin::VTKPlottableMeshFunction::get_output "
+Return data to visualize
+";
+
 // Documentation extracted from: (module=plot, header=VTKPlotter.h)
 %feature("docstring")  dolfin::VTKPlotter "
 This class enables visualization of various DOLFIN entities.
