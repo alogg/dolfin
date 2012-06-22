@@ -104,6 +104,22 @@
 
   Plot uint-valued mesh function (parameter, shared_ptr version)
 
+* plot\ (mesh_function, MeshFunction<int>\")
+
+  Plot int-valued mesh function
+
+* plot\ (mesh_function, MeshFunction<int>\")
+
+  Plot int-valued mesh function (shared_ptr version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot int-valued mesh function (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot int-valued mesh function (parameter, shared_ptr version)
+
 * plot\ (mesh_function, title=\"MeshFunction<double>\")
 
   Plot double-valued mesh function
@@ -231,14 +247,6 @@ Initialize the parts of the pipeline that this class controls
 Update the plottable data
 ";
 
-%feature("docstring")  dolfin::VTKPlottableMeshFunction::update_range "
-Update the scalar range of the plottable data
-";
-
-%feature("docstring")  dolfin::VTKPlottableMeshFunction::get_output "
-Return data to visualize
-";
-
 // Documentation extracted from: (module=plot, header=VTKPlotter.h)
 %feature("docstring")  dolfin::VTKPlotter "
 This class enables visualization of various DOLFIN entities.
@@ -330,7 +338,11 @@ above table.
 
 * VTKPlotter\ (mesh_function)
 
-  Create plotter for an integer valued mesh function
+  Create plotter for an uint valued mesh function
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for an intr valued mesh function
 
 * VTKPlotter\ (mesh_function)
 
