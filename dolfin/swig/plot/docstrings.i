@@ -239,10 +239,6 @@ Return data to visualize
 ";
 
 // Documentation extracted from: (module=plot, header=VTKPlottableMeshFunction.h)
-%feature("docstring")  dolfin::VTKPlottableMeshFunction::init_pipeline "
-Initialize the parts of the pipeline that this class controls
-";
-
 %feature("docstring")  dolfin::VTKPlottableMeshFunction::update "
 Update the plottable data
 ";
