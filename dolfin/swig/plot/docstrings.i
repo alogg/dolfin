@@ -89,11 +89,11 @@
 
   Plot Dirichlet BC (parameter, shared_ptr version)
 
-* plot\ (mesh_function, MeshFunction<uint>\")
+* plot\ (mesh_function, int>\")
 
   Plot uint-valued mesh function
 
-* plot\ (mesh_function, MeshFunction<uint>\")
+* plot\ (mesh_function, int>\")
 
   Plot uint-valued mesh function (shared_ptr version)
 
