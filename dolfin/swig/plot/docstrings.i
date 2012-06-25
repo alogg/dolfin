@@ -157,92 +157,6 @@
 Make the current plot interactive
 ";
 
-// Documentation extracted from: (module=plot, header=ExpressionWrapper.h)
-%feature("docstring")  dolfin::ExpressionWrapper "
-A light wrapper class to hold an expression to plot, along with the mesh
-to plot it on. Allows for clean, templated plotter code in plot.cpp
-";
-
-%feature("docstring")  dolfin::ExpressionWrapper::ExpressionWrapper "
-Create plotable expression object
-";
-
-%feature("docstring")  dolfin::ExpressionWrapper::id "
-Return unique ID of the expression
-";
-
-%feature("docstring")  dolfin::ExpressionWrapper::expression "
-Get the expression
-";
-
-%feature("docstring")  dolfin::ExpressionWrapper::mesh "
-Get the mesh
-";
-
-// Documentation extracted from: (module=plot, header=GenericVTKPlottable.h)
-%feature("docstring")  dolfin::GenericVTKPlottable::init_pipeline "
-Initialize the parts of the pipeline that this class controls
-";
-
-%feature("docstring")  dolfin::GenericVTKPlottable::update "
-Update the plottable data
-";
-
-%feature("docstring")  dolfin::GenericVTKPlottable::update_range "
-Update the scalar range of the plottable data
-";
-
-%feature("docstring")  dolfin::GenericVTKPlottable::get_output "
-Return data to visualize
-";
-
-%feature("docstring")  dolfin::GenericVTKPlottable::get_vertex_label_actor "
-Get an actor for showing vertex labels
-";
-
-// Documentation extracted from: (module=plot, header=VTKPlottableMesh.h)
-%feature("docstring")  dolfin::VTKPlottableMesh::init_pipeline "
-Initialize the parts of the pipeline that this class controls
-";
-
-%feature("docstring")  dolfin::VTKPlottableMesh::update "
-Update the plottable data
-";
-
-%feature("docstring")  dolfin::VTKPlottableMesh::update_range "
-Update the scalar range of the plottable data
-";
-
-%feature("docstring")  dolfin::VTKPlottableMesh::get_output "
-Return data to visualize
-";
-
-%feature("docstring")  dolfin::VTKPlottableMesh::get_vertex_label_actor "
-Get an actor for showing vertex labels
-";
-
-// Documentation extracted from: (module=plot, header=VTKPlottableGenericFunction.h)
-%feature("docstring")  dolfin::VTKPlottableGenericFunction::init_pipeline "
-Initialize the parts of the pipeline that this class controls
-";
-
-%feature("docstring")  dolfin::VTKPlottableGenericFunction::update "
-Update the plottable data
-";
-
-%feature("docstring")  dolfin::VTKPlottableGenericFunction::update_range "
-Update the scalar range of the plottable data
-";
-
-%feature("docstring")  dolfin::VTKPlottableGenericFunction::get_output "
-Return data to visualize
-";
-
-// Documentation extracted from: (module=plot, header=VTKPlottableMeshFunction.h)
-%feature("docstring")  dolfin::VTKPlottableMeshFunction::update "
-Update the plottable data
-";
-
 // Documentation extracted from: (module=plot, header=VTKPlotter.h)
 %feature("docstring")  dolfin::VTKPlotter "
 This class enables visualization of various DOLFIN entities.
@@ -267,7 +181,7 @@ call to the plot() method. The following parameters exist:
                                             this parameter may be set to
                                             \"warp\" to enable vector warping
                                             visualization
- interactive    Boolean         True        Enable/disable interactive mode
+ interactive    Boolean         False       Enable/disable interactive mode
                                             for the rendering window.
                                             For repeated plots of the same
                                             object (animated plots), this
