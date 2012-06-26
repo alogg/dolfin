@@ -1699,6 +1699,70 @@ beyond iterator.
 Set pos to end position. To create a kind of mesh.end() iterator.
 ";
 
+// Documentation extracted from: (module=mesh, header=MeshEntityIteratorBase.h)
+%feature("docstring")  dolfin::MeshEntityIteratorBase::MeshEntityIteratorBase "
+**Overloaded versions**
+
+* MeshEntityIteratorBase\ (mesh)
+
+  Create iterator for mesh entities over given topological dimension
+
+* MeshEntityIteratorBase\ (entity)
+
+  Create iterator for entities of given dimension connected to given entity
+
+* MeshEntityIteratorBase\ (it)
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator++ "
+Step to next mesh entity (prefix increment)
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator-- "
+Step to the previous mesh entity (prefix decrease)
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::pos "
+Return current position
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator== "
+Comparison operator.
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator!= "
+Comparison operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator* "
+Dereference operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator-> "
+Member access operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::operator[] "
+Random access operator
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::end "
+Check if iterator has reached the end
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::end_iterator "
+Provide a safeguard iterator pointing beyond the end of an iteration
+process, either iterating over the mesh /or incident entities. Added to
+be bit more like STL iterators, since many algorithms rely on a kind of
+beyond iterator.
+";
+
+%feature("docstring")  dolfin::MeshEntityIteratorBase::set_end "
+Set pos to end position. To create a kind of mesh.end() iterator.
+";
+
 // Documentation extracted from: (module=mesh, header=SubsetIterator.h)
 %feature("docstring")  dolfin::SubsetIterator "
 A :py:class:`SubsetIterator` is similar to a :py:class:`MeshEntityIterator` but
@@ -2023,14 +2087,6 @@ A Vertex is a MeshEntity of topological dimension 0.
 Return vertex coordinates as a 3D point value
 ";
 
-%feature("docstring")  dolfin::VertexIterator "
-A VertexIterator is a MeshEntityIterator of topological dimension 0.
-";
-
-%feature("docstring")  dolfin::VertexIterator "
-Test
-";
-
 %feature("docstring")  dolfin::VertexFunction "
 A VertexFunction is a MeshFunction of topological dimension 0.
 ";
@@ -2092,10 +2148,6 @@ Compute dot product between edge and other edge
         No example code available for this function.
 ";
 
-%feature("docstring")  dolfin::EdgeIterator "
-An EdgeIterator is a :py:class:`MeshEntityIterator` of topological dimension 1.
-";
-
 %feature("docstring")  dolfin::EdgeFunction "
 An EdgeFunction is a :py:class:`MeshFunction` of topological dimension 1.
 ";
@@ -2123,10 +2175,6 @@ Calculate the area of the face (triangle)
 * normal\ ()
 
   Compute normal to the face
-";
-
-%feature("docstring")  dolfin::FaceIterator "
-A FaceIterator is a MeshEntityIterator of topological dimension 2.
 ";
 
 %feature("docstring")  dolfin::FaceFunction "
@@ -2166,10 +2214,6 @@ each facet the index of the first cell may be given to specify
 the ordering of the two cells. If not specified, the ordering
 will depend on the (arbitrary) ordering of the mesh
 connectivity.
-";
-
-%feature("docstring")  dolfin::FacetIterator "
-A FacetIterator is a MeshEntityIterator of topological codimension 1.
 ";
 
 %feature("docstring")  dolfin::FacetFunction "
@@ -2297,10 +2341,6 @@ Check if entities are ordered
 *Returns*
     bool
         True if ordered.
-";
-
-%feature("docstring")  dolfin::CellIterator "
-A CellIterator is a MeshEntityIterator of topological codimension 0.
 ";
 
 %feature("docstring")  dolfin::CellFunction "

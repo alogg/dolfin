@@ -24,54 +24,285 @@
 %feature("docstring")  dolfin::plot "
 **Overloaded versions**
 
-* plot\ (v, title=\"Function\", mode=\"auto\")
+* plot\ (function, title=\"Function\", mode=\"auto\")
 
   Simple built-in plot commands for plotting functions and meshes.
-  For plotting to work, PyDOLFIN and Viper must be installed.
   Plot function
 
-* plot\ (v, mesh, title=\"Expression\", mode=\"auto\")
+* plot\ (function, title=\"Function\", mode=\"auto\")
 
-  Plot function
+  Plot function (shared_ptr version)
+
+* plot\ (function, parameters)
+
+  Plot function (parameter version)
+
+* plot\ (function, parameters)
+
+  Plot function (parameter, shared_ptr version)
+
+* plot\ (expression, mesh, title=\"Expression\", mode=\"auto\")
+
+  Plot expression
+
+* plot\ (expression, mesh, title=\"Expression\", mode=\"auto\")
+
+  Plot expression (shared_ptr version)
+
+* plot\ (expression, mesh, parameters)
+
+  Plot expression (parameter version)
+
+* plot\ (expression, mesh, parameters)
+
+  Plot expression (parameter, shared_ptr version)
 
 * plot\ (mesh, title=\"Mesh\")
 
   Plot mesh
 
-* plot\ (f, MeshFunction<uint>\")
+* plot\ (mesh, title=\"Mesh\")
 
-  Plot mesh function
+  Plot mesh (shared_ptr version)
 
-* plot\ (f, title=\"MeshFunction<double>\")
+* plot\ (mesh, parameters)
 
-  Plot mesh function
+  Plot mesh (parameter version)
 
-* plot\ (f, title=\"MeshFunction<bool>\")
+* plot\ (mesh, parameters)
 
-  Plot mesh function
+  Plot mesh (parameter, shared_ptr version)
+
+* plot\ (bc, B.C.\")
+
+  Plot Dirichlet BC
+
+* plot\ (bc, B.C.\")
+
+  Plot Dirichlet BC (shared_ptr version)
+
+* plot\ (bc, parameters)
+
+  Plot Dirichlet BC (parameter version)
+
+* plot\ (bc, parameters)
+
+  Plot Dirichlet BC (parameter, shared_ptr version)
+
+* plot\ (mesh_function, int>\")
+
+  Plot uint-valued mesh function
+
+* plot\ (mesh_function, int>\")
+
+  Plot uint-valued mesh function (shared_ptr version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot uint-valued mesh function (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot uint-valued mesh function (parameter, shared_ptr version)
+
+* plot\ (mesh_function, MeshFunction<int>\")
+
+  Plot int-valued mesh function
+
+* plot\ (mesh_function, MeshFunction<int>\")
+
+  Plot int-valued mesh function (shared_ptr version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot int-valued mesh function (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot int-valued mesh function (parameter, shared_ptr version)
+
+* plot\ (mesh_function, title=\"MeshFunction<double>\")
+
+  Plot double-valued mesh function
+
+* plot\ (mesh_function, title=\"MeshFunction<double>\")
+
+  Plot double-valued mesh function  (shared_ptr version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot double-valued mesh function  (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot double-valued mesh function  (parameter, shared_ptr version)
+
+* plot\ (mesh_function, title=\"MeshFunction<bool>\")
+
+  Plot boolean-valued mesh function
+
+* plot\ (mesh_function, title=\"MeshFunction<bool>\")
+
+  Plot boolean-valued mesh function (shared_ptr version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot boolean-valued mesh function (parameter version)
+
+* plot\ (mesh_function, parameters)
+
+  Plot boolean-valued mesh function (parameter, shared_ptr version)
 ";
 
-// Documentation extracted from: (module=plot, header=FunctionPlotData.h)
-%feature("docstring")  dolfin::FunctionPlotData "
-This class is used for communicating plot data for functions
-to and from (XML) files. It is used by DOLFIN for plotting
-Function objects. The data is stored as a mesh and a vector
-of interpolated vertex values.
+%feature("docstring")  dolfin::interactive "
+Make the current plot interactive
 ";
 
-%feature("docstring")  dolfin::FunctionPlotData::FunctionPlotData "
+// Documentation extracted from: (module=plot, header=VTKPlotter.h)
+%feature("docstring")  dolfin::VTKPlotter "
+This class enables visualization of various DOLFIN entities.
+It supports visualization of meshes, functions, expressions, boundary
+conditions and mesh functions. It can plot data wrapped in classes
+conforming to the GenericVTKPlottable interface.
+The plotter has several parameters that the user can set and adjust to
+affect the appearance and behavior of the plot.
+
+A plotter can be created and used in the following way:
+
+  Mesh mesh = ...;
+  VTKPlotter plotter(mesh);
+  plotter.plot();
+
+Parameters can be adjusted at any time and will take effect on the next
+call to the plot() method. The following parameters exist:
+
+============= ============ =============== =================================
+ Name          Value type   Default value              Description
+============= ============ =============== =================================
+ mode           String        \"auto\"        For vector valued functions,
+                                            this parameter may be set to
+                                            \"warp\" to enable vector warping
+                                            visualization
+ interactive    Boolean     False           Enable/disable interactive mode
+                                            for the rendering window.
+                                            For repeated plots of the same
+                                            object (animated plots), this
+                                            parameter must be set to false
+ wireframe      Boolean     True for        Enable/disable wireframe
+                            meshes, else    rendering of the object
+                            false
+ title          String      Inherited       The title of the rendering
+                            from the        window
+                            name/label of
+                            the object
+ scale          Double      1.0             Adjusts the scaling of the
+                                            warping and glyphs
+ scalarbar      Boolean     False for       Hide/show the colormapping bar
+                            meshes, else
+                            true
+ rescale        Boolean     False           Enable/disable recomputation
+                                            of the scalar to color mapping
+                                            on every iteration when performing
+                                            repeated/animated plots of the same
+                                            data
+ prefix         String      \"dolfin_plot_\"  Filename prefix used when
+                                            saving plots to file in
+                                            interactive mode. An integer
+                                            counter is appended after the
+                                            prefix.
+ helptext       Boolean     True            Enable/disable the hover-over
+                                            help-text in interactive
+                                            mode
+ window_width   Integer     600             The width of the plotting window
+                                            in pixels
+ window_height  Integer     400             The height of the plotting window
+                                            in pixels
+============= ============ =============== =================================
+
+The default visualization mode for the different plot types are as follows:
+
+=========================  ============================ ===================
+ Plot type                  Default visualization mode   Alternatives
+=========================  ============================ ===================
+ Meshes                     Wireframe rendering           None
+ 2D scalar functions        Scalar warping                None
+ 3D scalar functions        Color mapping                 None
+ 2D/3D vector functions     Glyphs (vector arrows)        Vector warping
+=========================  ============================ ===================
+
+Expressions and boundary conditions are also visualized according to the
+above table.
+";
+
+%feature("docstring")  dolfin::VTKPlotter::VTKPlotter "
 **Overloaded versions**
 
-* FunctionPlotData\ (v, mesh)
+* VTKPlotter\ (mesh)
 
-  Create plot data for given function
+  Create plotter for a mesh
 
-* FunctionPlotData\ ()
+* VTKPlotter\ (function)
 
-  Create empty data to be read from file
+  Create plotter for a function
+
+* VTKPlotter\ (expression)
+
+  Create plotter for an expression
+
+* VTKPlotter\ (expression, mesh)
+
+  Create plotter for an expression
+
+* VTKPlotter\ (bc)
+
+  Create plotter for Dirichlet B.C.
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for an uint valued mesh function
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for an intr valued mesh function
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for a double valued mesh function
+
+* VTKPlotter\ (mesh_function)
+
+  Create plotter for a boolean valued mesh function
 ";
 
-%feature("docstring")  dolfin::FunctionPlotData::vertex_values "
-Return vertex values
+%feature("docstring")  dolfin::VTKPlotter::default_parameters "
+Default parameter values
+";
+
+%feature("docstring")  dolfin::VTKPlotter::default_mesh_parameters "
+Default parameter values for mesh plotting
+";
+
+%feature("docstring")  dolfin::VTKPlotter::plot "
+Plot the object
+";
+
+%feature("docstring")  dolfin::VTKPlotter::interactive "
+Make the current plot interactive
+";
+
+%feature("docstring")  dolfin::VTKPlotter::hardcopy "
+Save plot to PNG file (file suffix appended automatically)
+";
+
+%feature("docstring")  dolfin::VTKPlotter::get_window_size "
+Get size of the plot window
+";
+
+%feature("docstring")  dolfin::VTKPlotter::set_window_position "
+Set the position of the plot window on the screen
+";
+
+%feature("docstring")  dolfin::VTKPlotter::id "
+Return unique ID of the object to plot
 ";
 
