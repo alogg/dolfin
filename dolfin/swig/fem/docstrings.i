@@ -1082,6 +1082,10 @@ by calling the ``rebuild()`` function.
 Rebuild mapping between dofs
 ";
 
+%feature("docstring")  dolfin::PeriodicBC::compute_dof_pairs "
+Compute dof pairs (master dof, slave dof)
+";
+
 // Documentation extracted from: (module=fem, header=PointSource.h)
 %feature("docstring")  dolfin::PointSource "
 This class provides an easy mechanism for adding a point source
