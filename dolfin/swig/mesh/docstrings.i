@@ -3728,6 +3728,9 @@ Return true for points on the boundary
 // Documentation extracted from: (module=mesh, header=BoundaryMesh.h)
 %feature("docstring")  dolfin::BoundaryMesh "
 A BoundaryMesh is a mesh over the boundary of some given mesh.
+The cells of the boundary mesh (facets of the original mesh) are
+oriented to produce outward pointing normals relative to the
+original mesh.
 ";
 
 %feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
@@ -3737,9 +3740,20 @@ A BoundaryMesh is a mesh over the boundary of some given mesh.
 
   Create an empty boundary mesh
 
-* BoundaryMesh\ (mesh)
+* BoundaryMesh\ (mesh, order=true)
 
-  Create boundary mesh from given mesh
+  Create boundary mesh from given mesh.
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          Another :py:class:`Mesh` object.
+      order (bool)
+          Optional argument which can be used to control whether
+          or not the boundary mesh should be ordered according
+          to the UFC ordering convention. If set to false, the
+          boundary mesh will be ordered with right-oriented
+          facets (outward-pointing unit normals). The default
+          value is true.
 ";
 
 %feature("docstring")  dolfin::BoundaryMesh::init_exterior_boundary "
