@@ -1163,13 +1163,13 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::symmetric_assemble "
 **Overloaded versions**
 
-* symmetric_assemble\ (As, An, a, bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* symmetric_assemble\ (As, An, a, bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Symmetric assembly of As, storing the modifications in An. To create
   matching RHS, assemble and apply bcs normally, then subtract An*b.
   In this variant of symmetric_assemble, rows and columns use the same BCs.
 
-* symmetric_assemble\ (As, An, a, row_bcs, col_bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* symmetric_assemble\ (As, An, a, row_bcs, col_bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Symmetric assembly of As, storing the modifications in An. To create
   matching RHS, assemble and apply bcs normally, then subtract An*b.
@@ -1562,7 +1562,7 @@ Note that (1) overrides (2), which overrides (3).
 %feature("docstring")  dolfin::Assembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor from given form
   
@@ -1585,7 +1585,7 @@ Note that (1) overrides (2), which overrides (3).
           given tensor after assembly is completed by calling
           A.apply().
 
-* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor from given form on subdomain
   
@@ -1610,7 +1610,7 @@ Note that (1) overrides (2), which overrides (3).
           given tensor after assembly is completed by calling
           A.apply().
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor from given form on subdomains
   
@@ -1706,19 +1706,19 @@ boundary conditions at the time of assembly.
 %feature("docstring")  dolfin::SystemAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b)
 
-* assemble\ (A, b, a, L, bc, reset_sparsity=true, add_values=true, finalize_tensor=true)
+* assemble\ (A, b, a, L, bc, reset_sparsity=true, add_values=true, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
@@ -1957,11 +1957,11 @@ entire set of cells or facets.
 %feature("docstring")  dolfin::OpenMpAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor from given form
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor from given form on sub domains
 ";
