@@ -94,6 +94,11 @@ Extract sub dofmap component
 Create a \"collapsed\" a dofmap (collapses from a sub-dofmap view)
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::set "
+Set dof values in vector to a specified value. Parallel layout of
+vector must be consistent with dof map range
+";
+
 %feature("docstring")  dolfin::GenericDofMap::dofs "
 Return the set of dof indices
 ";
@@ -339,6 +344,17 @@ Create a \"collapsed\" dofmap (collapses a sub-dofmap)
 *Returns*
     DofMap
         The collapsed dofmap.
+";
+
+%feature("docstring")  dolfin::DofMap::set "
+Set dof values in vector to a specified value. Parallel layout
+of vector must be consistent with dof map range
+
+*Arguments*
+    vector (:py:class:`GenericVector`)
+        The vector to set.
+    value (float)
+        The value to set.
 ";
 
 %feature("docstring")  dolfin::DofMap::dofs "
@@ -1115,15 +1131,15 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor
 
-* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor on sub domain
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor on sub domains
 
@@ -1143,19 +1159,19 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b)
 
-* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
