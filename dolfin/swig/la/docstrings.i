@@ -988,8 +988,8 @@ Compress matrix (eliminate all non-zeros from a sparse matrix)
 Access value of given entry
 ";
 
-// Documentation extracted from: (module=la, header=uBLASKrylovMatrix.h)
-%feature("docstring")  dolfin::uBLASKrylovMatrix "
+// Documentation extracted from: (module=la, header=uBLASLinearOperator.h)
+%feature("docstring")  dolfin::uBLASLinearOperator "
 This class provides an interface for matrices that define linear
 systems for the uBLASKrylovSolver. This interface is implemented
 by the classes uBLASSparseMatrix and DenseMatrix. Users may also
@@ -997,23 +997,23 @@ overload the mult() function to specify a linear system only in
 terms of its action.
 ";
 
-%feature("docstring")  dolfin::uBLASKrylovMatrix::uBLASKrylovMatrix "
+%feature("docstring")  dolfin::uBLASLinearOperator::uBLASLinearOperator "
 Constructor
 ";
 
-%feature("docstring")  dolfin::uBLASKrylovMatrix::size "
+%feature("docstring")  dolfin::uBLASLinearOperator::size "
 Return number of rows (dim = 0) or columns (dim = 1)
 ";
 
-%feature("docstring")  dolfin::uBLASKrylovMatrix::mult "
+%feature("docstring")  dolfin::uBLASLinearOperator::mult "
 Compute product y = Ax
 ";
 
-%feature("docstring")  dolfin::uBLASKrylovMatrix::solve "
+%feature("docstring")  dolfin::uBLASLinearOperator::solve "
 Solve linear system Ax = b for a Krylov matrix using uBLAS and dense matrices
 ";
 
-%feature("docstring")  dolfin::uBLASKrylovMatrix::str "
+%feature("docstring")  dolfin::uBLASLinearOperator::str "
 Return informal string representation (pretty-print)
 ";
 
@@ -1151,43 +1151,43 @@ Return norm of matrix
 Dump matrix to PETSc binary format
 ";
 
-// Documentation extracted from: (module=la, header=PETScKrylovMatrix.h)
-%feature("docstring")  dolfin::PETScKrylovMatrix "
+// Documentation extracted from: (module=la, header=PETScLinearOperator.h)
+%feature("docstring")  dolfin::PETScLinearOperator "
 This class represents a matrix-free matrix of dimension m x m.
 It is a simple wrapper for a PETSc shell matrix. The interface
 is intentionally simple. For advanced usage, access the PETSc
 Mat pointer using the function mat() and use the standard PETSc
 interface.
 
-The class PETScKrylovMatrix enables the use of Krylov subspace
+The class PETScLinearOperator enables the use of Krylov subspace
 methods for linear systems Ax = b, without having to explicitly
 store the matrix A. All that is needed is that the user-defined
-PETScKrylovMatrix implements multiplication with vectors. Note that
+PETScLinearOperator implements multiplication with vectors. Note that
 the multiplication operator needs to be defined in terms of
 PETSc data structures (Vec), since it will be called from PETSc.
 ";
 
-%feature("docstring")  dolfin::PETScKrylovMatrix::PETScKrylovMatrix "
+%feature("docstring")  dolfin::PETScLinearOperator::PETScLinearOperator "
 **Overloaded versions**
 
-* PETScKrylovMatrix\ ()
+* PETScLinearOperator\ ()
 
   Constructor
 
-* PETScKrylovMatrix\ (m, n)
+* PETScLinearOperator\ (m, n)
 
   Create a virtual matrix matching the given vectors
 ";
 
-%feature("docstring")  dolfin::PETScKrylovMatrix::resize "
+%feature("docstring")  dolfin::PETScLinearOperator::resize "
 Resize virtual matrix
 ";
 
-%feature("docstring")  dolfin::PETScKrylovMatrix::mult "
+%feature("docstring")  dolfin::PETScLinearOperator::mult "
 Compute product y = Ax
 ";
 
-%feature("docstring")  dolfin::PETScKrylovMatrix::str "
+%feature("docstring")  dolfin::PETScLinearOperator::str "
 Return informal string representation (pretty-print)
 ";
 
