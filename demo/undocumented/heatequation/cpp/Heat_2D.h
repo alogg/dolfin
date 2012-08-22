@@ -941,7 +941,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('interval', Space(1)), 1, None)";
+    return "FiniteElement('Lobatto', Cell('interval', Space(1)), 1, None)";
   }
 
   /// Return the cell shape
@@ -1567,7 +1567,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', Cell('interval', Space(1)), 0, None)";
+    return "FiniteElement('Radau', Cell('interval', Space(1)), 0, None)";
   }
 
   /// Return the cell shape
@@ -1884,7 +1884,7 @@ public:
     {
     case 0:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+        y[0] = x[1][0];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -1905,7 +1905,7 @@ public:
     // Declare variable for physical coordinates.
     double y[1];
     const double * const * x = c.coordinates;
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
+    y[0] = x[1][0];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
   }
@@ -2240,7 +2240,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('interval', Space(1)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lobatto', Cell('interval', Space(1)), 1, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2466,7 +2466,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('interval', Space(1)), 0, None)";
+    return "FFC dofmap for FiniteElement('Radau', Cell('interval', Space(1)), 0, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2476,12 +2476,12 @@ public:
     {
     case 0:
       {
-        return false;
+        return true;
         break;
       }
     case 1:
       {
-        return true;
+        return false;
         break;
       }
     }
@@ -2492,7 +2492,7 @@ public:
   /// Initialize dofmap for mesh (return true iff init_cell() is needed)
   virtual bool init_mesh(const ufc::mesh& m)
   {
-    _global_dimension = m.num_entities[1];
+    _global_dimension = m.num_entities[0];
     return false;
   }
 
@@ -2542,7 +2542,7 @@ public:
   /// Return the number of dofs on each cell facet
   virtual unsigned int num_facet_dofs() const
   {
-    return 0;
+    return 1;
   }
 
   /// Return the number of dofs associated with each cell entity of dimension d
@@ -2552,12 +2552,12 @@ public:
     {
     case 0:
       {
-        return 0;
+        return 1;
         break;
       }
     case 1:
       {
-        return 1;
+        return 0;
         break;
       }
     }
@@ -2570,7 +2570,8 @@ public:
                              const ufc::mesh& m,
                              const ufc::cell& c) const
   {
-    dofs[0] = c.entity_indices[1][0];
+    dofs[0] = c.entity_indices[0][0];
+    dofs[0] = c.entity_indices[0][1];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -2581,12 +2582,12 @@ public:
     {
     case 0:
       {
-        
+        dofs[0] = 0;
         break;
       }
     case 1:
       {
-        
+        dofs[0] = 0;
         break;
       }
     }
@@ -2606,17 +2607,30 @@ public:
     {
     case 0:
       {
-        
+        if (i > 1)
+      {
+      throw std::runtime_error("i is larger than number of entities (1)");
+      }
+      
+      switch (i)
+      {
+      case 0:
+        {
+          dofs[0] = 0;
+          break;
+        }
+      case 1:
+        {
+          dofs[0] = 0;
+          break;
+        }
+      }
+      
         break;
       }
     case 1:
       {
-        if (i > 0)
-      {
-      throw std::runtime_error("i is larger than number of entities (0)");
-      }
-      
-      dofs[0] = 0;
+        
         break;
       }
     }
@@ -2629,7 +2643,7 @@ public:
   {
     const double * const * x = c.coordinates;
     
-    coordinates[0][0] = 0.5*x[0][0] + 0.5*x[1][0];
+    coordinates[0][0] = x[1][0];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -2821,9 +2835,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      6
-    // Number of operations (multiply-add pairs) for geometry tensor:    2
-    // Number of operations (multiply-add pairs) for tensor contraction: 3
-    // Total number of operations (multiply-add pairs):                  11
+    // Number of operations (multiply-add pairs) for geometry tensor:    0
+    // Number of operations (multiply-add pairs) for tensor contraction: 1
+    // Total number of operations (multiply-add pairs):                  7
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -2840,12 +2854,11 @@ public:
     const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_0 = det*w[0][0]*(1.0);
-    const double G0_1 = det*w[0][1]*(1.0);
+    const double G0_ = det;
     
     // Compute element tensor
-    A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
-    A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
+    A[0] = 0.5*G0_;
+    A[1] = 0.5*G0_;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -2951,6 +2964,161 @@ public:
 
 };
 
+/// This class defines the interface for the tabulation of the cell
+/// tensor corresponding to the local contribution to a form from
+/// the integral over a cell.
+
+class heat_2d_cell_integral_4_0: public ufc::cell_integral
+{
+public:
+
+  /// Constructor
+  heat_2d_cell_integral_4_0() : ufc::cell_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~heat_2d_cell_integral_4_0()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c) const
+  {
+    // Number of operations (multiply-add pairs) for Jacobian data:      6
+    // Number of operations (multiply-add pairs) for geometry tensor:    0
+    // Number of operations (multiply-add pairs) for tensor contraction: 1
+    // Total number of operations (multiply-add pairs):                  7
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    
+    // Compute determinant of Jacobian
+    const double detJ =  J_00;
+    
+    // Compute inverse of Jacobian
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Compute geometry tensor
+    const double G0_ = det;
+    
+    // Compute element tensor
+    A[0] = 0.5*G0_;
+    A[1] = 0.5*G0_;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
+};
+
+/// This class defines the interface for the tabulation of the cell
+/// tensor corresponding to the local contribution to a form from
+/// the integral over a cell.
+
+class heat_2d_cell_integral_5_0: public ufc::cell_integral
+{
+public:
+
+  /// Constructor
+  heat_2d_cell_integral_5_0() : ufc::cell_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~heat_2d_cell_integral_5_0()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c) const
+  {
+    // Number of operations (multiply-add pairs) for Jacobian data:      10
+    // Number of operations (multiply-add pairs) for geometry tensor:    24
+    // Number of operations (multiply-add pairs) for tensor contraction: 43
+    // Total number of operations (multiply-add pairs):                  77
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    
+    // Compute determinant of Jacobian
+    double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    const double K_01 = -J_01 / detJ;
+    const double K_11 =  J_00 / detJ;
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Compute geometry tensor
+    const double G0_0_0_0 = det*w[0][0]*K_01*K_01*(1.0);
+    const double G0_0_0_1 = det*w[0][0]*K_01*K_11*(1.0);
+    const double G0_0_1_0 = det*w[0][0]*K_11*K_01*(1.0);
+    const double G0_0_1_1 = det*w[0][0]*K_11*K_11*(1.0);
+    const double G0_1_0_0 = det*w[0][1]*K_01*K_01*(1.0);
+    const double G0_1_0_1 = det*w[0][1]*K_01*K_11*(1.0);
+    const double G0_1_1_0 = det*w[0][1]*K_11*K_01*(1.0);
+    const double G0_1_1_1 = det*w[0][1]*K_11*K_11*(1.0);
+    const double G0_2_0_0 = det*w[0][2]*K_01*K_01*(1.0);
+    const double G0_2_0_1 = det*w[0][2]*K_01*K_11*(1.0);
+    const double G0_2_1_0 = det*w[0][2]*K_11*K_01*(1.0);
+    const double G0_2_1_1 = det*w[0][2]*K_11*K_11*(1.0);
+    
+    // Compute element tensor
+    A[0] = 0.166666666666667*G0_0_0_0 + 0.166666666666667*G0_0_0_1 + 0.166666666666667*G0_0_1_0 + 0.166666666666667*G0_0_1_1 + 0.166666666666667*G0_1_0_0 + 0.166666666666667*G0_1_0_1 + 0.166666666666667*G0_1_1_0 + 0.166666666666667*G0_1_1_1 + 0.166666666666667*G0_2_0_0 + 0.166666666666667*G0_2_0_1 + 0.166666666666667*G0_2_1_0 + 0.166666666666667*G0_2_1_1;
+    A[1] = -0.166666666666667*G0_0_0_0 - 0.166666666666667*G0_0_1_0 - 0.166666666666667*G0_1_0_0 - 0.166666666666667*G0_1_1_0 - 0.166666666666667*G0_2_0_0 - 0.166666666666667*G0_2_1_0;
+    A[2] = -0.166666666666667*G0_0_0_1 - 0.166666666666667*G0_0_1_1 - 0.166666666666667*G0_1_0_1 - 0.166666666666667*G0_1_1_1 - 0.166666666666667*G0_2_0_1 - 0.166666666666667*G0_2_1_1;
+    A[3] = -0.166666666666667*G0_0_0_0 - 0.166666666666667*G0_0_0_1 - 0.166666666666667*G0_1_0_0 - 0.166666666666667*G0_1_0_1 - 0.166666666666667*G0_2_0_0 - 0.166666666666667*G0_2_0_1;
+    A[4] = 0.166666666666667*G0_0_0_0 + 0.166666666666667*G0_1_0_0 + 0.166666666666667*G0_2_0_0;
+    A[5] = 0.166666666666667*G0_0_0_1 + 0.166666666666667*G0_1_0_1 + 0.166666666666667*G0_2_0_1;
+    A[6] = -0.166666666666667*G0_0_1_0 - 0.166666666666667*G0_0_1_1 - 0.166666666666667*G0_1_1_0 - 0.166666666666667*G0_1_1_1 - 0.166666666666667*G0_2_1_0 - 0.166666666666667*G0_2_1_1;
+    A[7] = 0.166666666666667*G0_0_1_0 + 0.166666666666667*G0_1_1_0 + 0.166666666666667*G0_2_1_0;
+    A[8] = 0.166666666666667*G0_0_1_1 + 0.166666666666667*G0_1_1_1 + 0.166666666666667*G0_2_1_1;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               unsigned int num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
+};
+
 /// This class defines the interface for the assembly of the global
 /// tensor corresponding to a form with r + n arguments, that is, a
 /// mapping
@@ -2985,7 +3153,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "600f2cebfd435a3f832b92c2801226d10bbff952407ad267c3b81774ac5fdb6163c81cab02712909b21e9936cd842ed17a207264ea2c12a5fdb913b062aa4c1c";
+    return "89f9579a4a7c7a90ca7b1c56647ac89704f6fcfdbe289b8cb3a9ded965c6720862334e5328ca6451488882d03604722d6779120dadbd0a116698ce939bb0d973";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3257,7 +3425,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "fc7d4512f9ae8c0cf202790a1ac8a4f1ad16ac20776e1e2d6e7dee437389615b8b16c5c2ea08b0765ce135c7f47e812f7b5c96cf07a6e7b253e560023ac8391f";
+    return "646b88dbd80e45900af8f4e1bddaa690bc050de72f3e2e45a33760fddb9a71ed257ceffbe5bb9ca153db5dee3eff4047a38215c03c435ce39c347f84a5f353f4";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3269,7 +3437,7 @@ public:
   /// Return the number of coefficients (n)
   virtual unsigned int num_coefficients() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of cell domains
@@ -3297,15 +3465,10 @@ public:
     {
     case 0:
       {
-        return new heat_2d_finite_element_1();
-        break;
-      }
-    case 1:
-      {
         return new heat_2d_finite_element_2();
         break;
       }
-    case 2:
+    case 1:
       {
         return new heat_2d_finite_element_1();
         break;
@@ -3322,15 +3485,10 @@ public:
     {
     case 0:
       {
-        return new heat_2d_dofmap_1();
-        break;
-      }
-    case 1:
-      {
         return new heat_2d_dofmap_2();
         break;
       }
-    case 2:
+    case 1:
       {
         return new heat_2d_dofmap_1();
         break;
@@ -3403,7 +3561,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "42d3268496d3ca8f69f36f06e538c398da1ac9f366aeecf4c4683ee3741d915b60a35ee8a2b54e840d35dcaba95727acd53a7f00301fbef65b41545f19cc051e";
+    return "3a6b4fac8d9138047e10438b93b2d3f0cb42831ab8fa62e563eb076e549ae2e1680d3ba09c1a9472dbfe701755228114a36619d614c27fb4b8407834093b69ff";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3515,6 +3673,288 @@ public:
 
 };
 
+/// This class defines the interface for the assembly of the global
+/// tensor corresponding to a form with r + n arguments, that is, a
+/// mapping
+///
+///     a : V1 x V2 x ... Vr x W1 x W2 x ... x Wn -> R
+///
+/// with arguments v1, v2, ..., vr, w1, w2, ..., wn. The rank r
+/// global tensor A is defined by
+///
+///     A = a(V1, V2, ..., Vr, w1, w2, ..., wn),
+///
+/// where each argument Vj represents the application to the
+/// sequence of basis functions of Vj and w1, w2, ..., wn are given
+/// fixed functions (coefficients).
+
+class heat_2d_form_4: public ufc::form
+{
+public:
+
+  /// Constructor
+  heat_2d_form_4() : ufc::form()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~heat_2d_form_4()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the form
+  virtual const char* signature() const
+  {
+    return "646b88dbd80e45900af8f4e1bddaa690bc050de72f3e2e45a33760fddb9a71ed257ceffbe5bb9ca153db5dee3eff4047a38215c03c435ce39c347f84a5f353f4";
+  }
+
+  /// Return the rank of the global tensor (r)
+  virtual unsigned int rank() const
+  {
+    return 2;
+  }
+
+  /// Return the number of coefficients (n)
+  virtual unsigned int num_coefficients() const
+  {
+    return 0;
+  }
+
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
+  {
+    return 1;
+  }
+
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Create a new finite element for argument function i
+  virtual ufc::finite_element* create_finite_element(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new heat_2d_finite_element_2();
+        break;
+      }
+    case 1:
+      {
+        return new heat_2d_finite_element_1();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new heat_2d_dofmap_2();
+        break;
+      }
+    case 1:
+      {
+        return new heat_2d_dofmap_1();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new cell integral on sub domain i
+  virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new heat_2d_cell_integral_4_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on sub domain i
+  virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on sub domain i
+  virtual ufc::interior_facet_integral* create_interior_facet_integral(unsigned int i) const
+  {
+    return 0;
+  }
+
+};
+
+/// This class defines the interface for the assembly of the global
+/// tensor corresponding to a form with r + n arguments, that is, a
+/// mapping
+///
+///     a : V1 x V2 x ... Vr x W1 x W2 x ... x Wn -> R
+///
+/// with arguments v1, v2, ..., vr, w1, w2, ..., wn. The rank r
+/// global tensor A is defined by
+///
+///     A = a(V1, V2, ..., Vr, w1, w2, ..., wn),
+///
+/// where each argument Vj represents the application to the
+/// sequence of basis functions of Vj and w1, w2, ..., wn are given
+/// fixed functions (coefficients).
+
+class heat_2d_form_5: public ufc::form
+{
+public:
+
+  /// Constructor
+  heat_2d_form_5() : ufc::form()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~heat_2d_form_5()
+  {
+    // Do nothing
+  }
+
+  /// Return a string identifying the form
+  virtual const char* signature() const
+  {
+    return "51ac6572345a363ddc8250a71acbe1ae53cfd0cb6e9554a98e9c33dfd746088503cb3f34718a49ccae65a8d9528fc3c430d73f320cf917bb9408e90b287f6611";
+  }
+
+  /// Return the rank of the global tensor (r)
+  virtual unsigned int rank() const
+  {
+    return 2;
+  }
+
+  /// Return the number of coefficients (n)
+  virtual unsigned int num_coefficients() const
+  {
+    return 1;
+  }
+
+  /// Return the number of cell domains
+  virtual unsigned int num_cell_domains() const
+  {
+    return 1;
+  }
+
+  /// Return the number of exterior facet domains
+  virtual unsigned int num_exterior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Return the number of interior facet domains
+  virtual unsigned int num_interior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Create a new finite element for argument function i
+  virtual ufc::finite_element* create_finite_element(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new heat_2d_finite_element_0();
+        break;
+      }
+    case 1:
+      {
+        return new heat_2d_finite_element_0();
+        break;
+      }
+    case 2:
+      {
+        return new heat_2d_finite_element_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new dofmap for argument function i
+  virtual ufc::dofmap* create_dofmap(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new heat_2d_dofmap_0();
+        break;
+      }
+    case 1:
+      {
+        return new heat_2d_dofmap_0();
+        break;
+      }
+    case 2:
+      {
+        return new heat_2d_dofmap_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new cell integral on sub domain i
+  virtual ufc::cell_integral* create_cell_integral(unsigned int i) const
+  {
+    switch (i)
+    {
+    case 0:
+      {
+        return new heat_2d_cell_integral_5_0();
+        break;
+      }
+    }
+    
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on sub domain i
+  virtual ufc::exterior_facet_integral* create_exterior_facet_integral(unsigned int i) const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on sub domain i
+  virtual ufc::interior_facet_integral* create_interior_facet_integral(unsigned int i) const
+  {
+    return 0;
+  }
+
+};
+
 // DOLFIN wrappers
 
 // Standard library includes
@@ -3540,32 +3980,32 @@ public:
 
   CoefficientSpace_w0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_w0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), mesh)))
   {
     // Do nothing
   }
 
   CoefficientSpace_w0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
 
   CoefficientSpace_w0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), *mesh)))
   {
       // Do nothing
   }
@@ -3860,32 +4300,32 @@ public:
 
   Form_2_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_0(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
 
   Form_2_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), *mesh)))
   {
       // Do nothing
   }
@@ -3902,32 +4342,32 @@ public:
 
   Form_2_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_1(dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
   {
     // Do nothing
   }
 
   Form_2_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
 
   Form_2_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), *mesh)))
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
   {
       // Do nothing
   }
@@ -3938,76 +4378,26 @@ public:
 
 };
 
-typedef CoefficientSpace_w0 Form_2_FunctionSpace_2;
-
 class Form_2: public dolfin::Form
 {
 public:
 
   // Constructor
   Form_2(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
-    dolfin::Form(2, 1), w0(*this, 0)
+    dolfin::Form(2, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_2());
-  }
-
-  // Constructor
-  Form_2(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& w0):
-    dolfin::Form(2, 1), w0(*this, 0)
-  {
-    _function_spaces[0] = reference_to_no_delete_pointer(V0);
-    _function_spaces[1] = reference_to_no_delete_pointer(V1);
-
-    this->w0 = w0;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_2());
-  }
-
-  // Constructor
-  Form_2(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> w0):
-    dolfin::Form(2, 1), w0(*this, 0)
-  {
-    _function_spaces[0] = reference_to_no_delete_pointer(V0);
-    _function_spaces[1] = reference_to_no_delete_pointer(V1);
-
-    this->w0 = *w0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_2());
   }
 
   // Constructor
   Form_2(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(2, 1), w0(*this, 0)
+    dolfin::Form(2, 0)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_2());
-  }
-
-  // Constructor
-  Form_2(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& w0):
-    dolfin::Form(2, 1), w0(*this, 0)
-  {
-    _function_spaces[0] = V0;
-    _function_spaces[1] = V1;
-
-    this->w0 = w0;
-
-    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_2());
-  }
-
-  // Constructor
-  Form_2(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> w0):
-    dolfin::Form(2, 1), w0(*this, 0)
-  {
-    _function_spaces[0] = V0;
-    _function_spaces[1] = V1;
-
-    this->w0 = *w0;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_2());
   }
@@ -4019,37 +4409,28 @@ public:
   /// Return the number of the coefficient with this name
   virtual dolfin::uint coefficient_number(const std::string& name) const
   {
-    if (name == "w0")
-      return 0;
 
     dolfin::dolfin_error("generated code for class Form",
                          "access coefficient data",
-                         "Invalid coefficient");
+                         "There are no coefficients");
     return 0;
   }
 
   /// Return the name of the coefficient with this number
   virtual std::string coefficient_name(dolfin::uint i) const
   {
-    switch (i)
-    {
-    case 0:
-      return "w0";
-    }
 
     dolfin::dolfin_error("generated code for class Form",
                          "access coefficient data",
-                         "Invalid coefficient");
+                         "There are no coefficients");
     return "unnamed";
   }
 
   // Typedefs
   typedef Form_2_FunctionSpace_0 TestSpace;
   typedef Form_2_FunctionSpace_1 TrialSpace;
-  typedef Form_2_FunctionSpace_2 CoefficientSpace_w0;
 
   // Coefficients
-  dolfin::CoefficientAssigner w0;
 };
 
 class Form_3_FunctionSpace_0: public dolfin::FunctionSpace
@@ -4245,6 +4626,343 @@ public:
   typedef Form_3_FunctionSpace_0 TestSpace;
   typedef Form_3_FunctionSpace_1 TrialSpace;
   typedef Form_3_FunctionSpace_2 CoefficientSpace_w0;
+
+  // Coefficients
+  dolfin::CoefficientAssigner w0;
+};
+
+class Form_4_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_4_FunctionSpace_0(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_4_FunctionSpace_0(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_4_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_4_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_2()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_2()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~Form_4_FunctionSpace_0()
+  {
+  }
+
+};
+
+class Form_4_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_4_FunctionSpace_1(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_4_FunctionSpace_1(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_4_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_4_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_1()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_1()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~Form_4_FunctionSpace_1()
+  {
+  }
+
+};
+
+class Form_4: public dolfin::Form
+{
+public:
+
+  // Constructor
+  Form_4(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_4());
+  }
+
+  // Constructor
+  Form_4(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(2, 0)
+  {
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_4());
+  }
+
+  // Destructor
+  ~Form_4()
+  {}
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string& name) const
+  {
+
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coefficient data",
+                         "There are no coefficients");
+    return 0;
+  }
+
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coefficient data",
+                         "There are no coefficients");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_4_FunctionSpace_0 TestSpace;
+  typedef Form_4_FunctionSpace_1 TrialSpace;
+
+  // Coefficients
+};
+
+class Form_5_FunctionSpace_0: public dolfin::FunctionSpace
+{
+public:
+
+  Form_5_FunctionSpace_0(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_5_FunctionSpace_0(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_5_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_5_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~Form_5_FunctionSpace_0()
+  {
+  }
+
+};
+
+class Form_5_FunctionSpace_1: public dolfin::FunctionSpace
+{
+public:
+
+  Form_5_FunctionSpace_1(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_5_FunctionSpace_1(dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  Form_5_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  Form_5_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new heat_2d_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new heat_2d_dofmap_0()), *mesh)))
+  {
+      // Do nothing
+  }
+
+  ~Form_5_FunctionSpace_1()
+  {
+  }
+
+};
+
+typedef CoefficientSpace_w0 Form_5_FunctionSpace_2;
+
+class Form_5: public dolfin::Form
+{
+public:
+
+  // Constructor
+  Form_5(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+    dolfin::Form(2, 1), w0(*this, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_5());
+  }
+
+  // Constructor
+  Form_5(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& w0):
+    dolfin::Form(2, 1), w0(*this, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
+
+    this->w0 = w0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_5());
+  }
+
+  // Constructor
+  Form_5(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> w0):
+    dolfin::Form(2, 1), w0(*this, 0)
+  {
+    _function_spaces[0] = reference_to_no_delete_pointer(V0);
+    _function_spaces[1] = reference_to_no_delete_pointer(V1);
+
+    this->w0 = *w0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_5());
+  }
+
+  // Constructor
+  Form_5(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+    dolfin::Form(2, 1), w0(*this, 0)
+  {
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_5());
+  }
+
+  // Constructor
+  Form_5(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& w0):
+    dolfin::Form(2, 1), w0(*this, 0)
+  {
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
+
+    this->w0 = w0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_5());
+  }
+
+  // Constructor
+  Form_5(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> w0):
+    dolfin::Form(2, 1), w0(*this, 0)
+  {
+    _function_spaces[0] = V0;
+    _function_spaces[1] = V1;
+
+    this->w0 = *w0;
+
+    _ufc_form = boost::shared_ptr<const ufc::form>(new heat_2d_form_5());
+  }
+
+  // Destructor
+  ~Form_5()
+  {}
+
+  /// Return the number of the coefficient with this name
+  virtual dolfin::uint coefficient_number(const std::string& name) const
+  {
+    if (name == "w0")
+      return 0;
+
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coefficient data",
+                         "Invalid coefficient");
+    return 0;
+  }
+
+  /// Return the name of the coefficient with this number
+  virtual std::string coefficient_name(dolfin::uint i) const
+  {
+    switch (i)
+    {
+    case 0:
+      return "w0";
+    }
+
+    dolfin::dolfin_error("generated code for class Form",
+                         "access coefficient data",
+                         "Invalid coefficient");
+    return "unnamed";
+  }
+
+  // Typedefs
+  typedef Form_5_FunctionSpace_0 TestSpace;
+  typedef Form_5_FunctionSpace_1 TrialSpace;
+  typedef Form_5_FunctionSpace_2 CoefficientSpace_w0;
 
   // Coefficients
   dolfin::CoefficientAssigner w0;
