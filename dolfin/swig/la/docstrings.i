@@ -3196,46 +3196,46 @@ Return underlying sparsity pattern (off-diagional). Options are
 'sorted' and 'unsorted'.
 ";
 
-// Documentation extracted from: (module=la, header=LinearAlgebraFactory.h)
-%feature("docstring")  dolfin::LinearAlgebraFactory::LinearAlgebraFactory "
+// Documentation extracted from: (module=la, header=GenericLinearAlgebraFactory.h)
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::GenericLinearAlgebraFactory "
 Constructor
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::create_matrix "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::create_matrix "
 Create empty matrix
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::create_vector "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::create_vector "
 Create empty vector (global)
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::create_local_vector "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::create_local_vector "
 Create empty vector (local)
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::create_layout "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::create_layout "
 Create empty tensor layout
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::create_lu_solver "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::create_lu_solver "
 Create LU solver
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::create_krylov_solver "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::create_krylov_solver "
 Create Krylov solver
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::lu_solver_methods "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::lu_solver_methods "
 Return a list of available LU solver methods.
 This function should be overloaded by subclass if non-empty.
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::krylov_solver_methods "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::krylov_solver_methods "
 Return a list of available Krylov solver methods.
 This function should be overloaded by subclass if non-empty.
 ";
 
-%feature("docstring")  dolfin::LinearAlgebraFactory::krylov_solver_preconditioners "
+%feature("docstring")  dolfin::GenericLinearAlgebraFactory::krylov_solver_preconditioners "
 Return a list of available preconditioners.
 This function should be overloaded by subclass if non-empty.
 ";
@@ -3393,7 +3393,7 @@ Private constructor
 
 // Documentation extracted from: (module=la, header=EpetraFactory.h)
 %feature("docstring")  dolfin::EpetraFactory::create_matrix "
---- LinearAlgebraFactory interface
+--- GenericLinearAlgebraFactory interface
 Create empty matrix
 ";
 
