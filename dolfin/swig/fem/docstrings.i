@@ -95,8 +95,14 @@ Create a \"collapsed\" a dofmap (collapses from a sub-dofmap view)
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::set "
-Set dof values in vector to a specified value. Parallel layout of
-vector must be consistent with dof map range
+Set dof entries in vector to a specified value. Parallel layout
+of vector must be consistent with dof map range.
+";
+
+%feature("docstring")  dolfin::GenericDofMap::set_x "
+Set dof entries in vector to the x[i] coordinate of the dof
+spatial coordinate. Parallel layout of vector must be consistent
+with dof map range.
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::dofs "
@@ -347,14 +353,28 @@ Create a \"collapsed\" dofmap (collapses a sub-dofmap)
 ";
 
 %feature("docstring")  dolfin::DofMap::set "
-Set dof values in vector to a specified value. Parallel layout
-of vector must be consistent with dof map range
+Set dof entries in vector to a specified value. Parallel layout
+of vector must be consistent with dof map range.
 
 *Arguments*
     vector (:py:class:`GenericVector`)
         The vector to set.
     value (float)
         The value to set.
+";
+
+%feature("docstring")  dolfin::DofMap::set_x "
+Set dof entries in vector to the x[i] coordinate of the dof
+spatial coordinate. Parallel layout of vector must be consistent
+with dof map range.
+
+*Arguments*
+    vector (:py:class:`GenericVector`)
+        The vector to set.
+    mesh (:py:class:`Mesh`)
+        The mesh.
+    component (int)
+        The coordinate index.
 ";
 
 %feature("docstring")  dolfin::DofMap::dofs "
@@ -1094,12 +1114,28 @@ by calling the ``rebuild()`` function.
           Another vector (nonlinear problem).
 ";
 
+%feature("docstring")  dolfin::PeriodicBC::sub_domain "
+Return shared pointer to subdomain
+
+*Returns*
+    :py:class:`SubDomain`
+        Shared pointer to subdomain.
+";
+
 %feature("docstring")  dolfin::PeriodicBC::rebuild "
 Rebuild mapping between dofs
 ";
 
 %feature("docstring")  dolfin::PeriodicBC::compute_dof_pairs "
-Compute dof pairs (master dof, slave dof)
+**Overloaded versions**
+
+* compute_dof_pairs\ ()
+
+  Compute dof pairs (master dof, slave dof)
+
+* compute_dof_pairs\ (uint>, dof_pairs)
+
+  Compute dof pairs (master dof, slave dof)
 ";
 
 // Documentation extracted from: (module=fem, header=PointSource.h)
