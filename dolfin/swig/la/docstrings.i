@@ -1017,6 +1017,145 @@ Solve linear system Ax = b for a Krylov matrix using uBLAS and dense matrices
 Return informal string representation (pretty-print)
 ";
 
+// Documentation extracted from: (module=la, header=PETScMatrix.h)
+%feature("docstring")  dolfin::PETScMatrix "
+This class provides a simple matrix class based on PETSc.
+It is a wrapper for a PETSc matrix pointer (Mat)
+implementing the GenericMatrix interface.
+
+The interface is intentionally simple. For advanced usage,
+access the PETSc Mat pointer using the function mat() and
+use the standard PETSc interface.
+";
+
+%feature("docstring")  dolfin::PETScMatrix::PETScMatrix "
+**Overloaded versions**
+
+* PETScMatrix\ (use_gpu=false)
+
+  Create empty matrix
+
+* PETScMatrix\ (A, use_gpu=false)
+
+  Create matrix from given PETSc Mat pointer
+
+* PETScMatrix\ (A)
+
+  Copy constructor
+";
+
+%feature("docstring")  dolfin::PETScMatrix::init "
+Initialize zero tensor using sparsity pattern
+";
+
+%feature("docstring")  dolfin::PETScMatrix::size "
+Return size of given dimension
+";
+
+%feature("docstring")  dolfin::PETScMatrix::local_range "
+Return local ownership range
+";
+
+%feature("docstring")  dolfin::PETScMatrix::zero "
+**Overloaded versions**
+
+* zero\ ()
+
+  Set all entries to zero and keep any sparse structure
+
+* zero\ (m, rows)
+
+  Set given rows to zero
+";
+
+%feature("docstring")  dolfin::PETScMatrix::apply "
+Finalize assembly of tensor. The following values are recognized
+for the mode parameter:
+
+  add    - corresponding to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
+  insert - corresponding to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
+  flush  - corresponding to PETSc MatAssemblyBegin+End(MAT_FLUSH_ASSEMBLY)
+";
+
+%feature("docstring")  dolfin::PETScMatrix::str "
+Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::PETScMatrix::copy "
+Return copy of matrix
+";
+
+%feature("docstring")  dolfin::PETScMatrix::resize "
+Resize vector y such that is it compatible with matrix for
+multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
+case, size and layout are important.
+";
+
+%feature("docstring")  dolfin::PETScMatrix::get "
+Get block of values
+";
+
+%feature("docstring")  dolfin::PETScMatrix::set "
+Set block of values
+";
+
+%feature("docstring")  dolfin::PETScMatrix::add "
+Add block of values
+";
+
+%feature("docstring")  dolfin::PETScMatrix::axpy "
+Add multiple of given matrix (AXPY operation)
+";
+
+%feature("docstring")  dolfin::PETScMatrix::getrow "
+Get non-zero values of given row
+";
+
+%feature("docstring")  dolfin::PETScMatrix::setrow "
+Set values for given row
+";
+
+%feature("docstring")  dolfin::PETScMatrix::ident "
+Set given rows to identity matrix
+";
+
+%feature("docstring")  dolfin::PETScMatrix::operator*= "
+Multiply matrix by given number
+";
+
+%feature("docstring")  dolfin::PETScMatrix::operator/= "
+Divide matrix by given number
+";
+
+%feature("docstring")  dolfin::PETScMatrix::operator= "
+**Overloaded versions**
+
+* operator=\ (A)
+
+  Assignment operator
+
+* operator=\ (A)
+
+  Assignment operator
+";
+
+%feature("docstring")  dolfin::PETScMatrix::factory "
+Return linear algebra backend factory
+";
+
+%feature("docstring")  dolfin::PETScMatrix::set_near_nullspace "
+Set (approximate) null space of the matrix. This is used by
+some preconditioners.
+";
+
+%feature("docstring")  dolfin::PETScMatrix::norm "
+Return norm of matrix
+";
+
+%feature("docstring")  dolfin::PETScMatrix::binary_dump "
+Dump matrix to PETSc binary format
+";
+
 // Documentation extracted from: (module=la, header=PETScKrylovMatrix.h)
 %feature("docstring")  dolfin::PETScKrylovMatrix "
 This class represents a matrix-free matrix of dimension m x m.
@@ -3577,145 +3716,6 @@ Default parameter values
 
 %feature("docstring")  dolfin::TrilinosPreconditioner::set_ml "
 Setup the ML precondtioner
-";
-
-// Documentation extracted from: (module=la, header=PETScMatrix.h)
-%feature("docstring")  dolfin::PETScMatrix "
-This class provides a simple matrix class based on PETSc.
-It is a wrapper for a PETSc matrix pointer (Mat)
-implementing the GenericMatrix interface.
-
-The interface is intentionally simple. For advanced usage,
-access the PETSc Mat pointer using the function mat() and
-use the standard PETSc interface.
-";
-
-%feature("docstring")  dolfin::PETScMatrix::PETScMatrix "
-**Overloaded versions**
-
-* PETScMatrix\ (use_gpu=false)
-
-  Create empty matrix
-
-* PETScMatrix\ (A, use_gpu=false)
-
-  Create matrix from given PETSc Mat pointer
-
-* PETScMatrix\ (A)
-
-  Copy constructor
-";
-
-%feature("docstring")  dolfin::PETScMatrix::init "
-Initialize zero tensor using sparsity pattern
-";
-
-%feature("docstring")  dolfin::PETScMatrix::size "
-Return size of given dimension
-";
-
-%feature("docstring")  dolfin::PETScMatrix::local_range "
-Return local ownership range
-";
-
-%feature("docstring")  dolfin::PETScMatrix::zero "
-**Overloaded versions**
-
-* zero\ ()
-
-  Set all entries to zero and keep any sparse structure
-
-* zero\ (m, rows)
-
-  Set given rows to zero
-";
-
-%feature("docstring")  dolfin::PETScMatrix::apply "
-Finalize assembly of tensor. The following values are recognized
-for the mode parameter:
-
-  add    - corresponding to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
-  insert - corresponding to PETSc MatAssemblyBegin+End(MAT_FINAL_ASSEMBLY)
-  flush  - corresponding to PETSc MatAssemblyBegin+End(MAT_FLUSH_ASSEMBLY)
-";
-
-%feature("docstring")  dolfin::PETScMatrix::str "
-Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::PETScMatrix::copy "
-Return copy of matrix
-";
-
-%feature("docstring")  dolfin::PETScMatrix::resize "
-Resize vector y such that is it compatible with matrix for
-multuplication Ax = b (dim = 0 -> b, dim = 1 -> x) In parallel
-case, size and layout are important.
-";
-
-%feature("docstring")  dolfin::PETScMatrix::get "
-Get block of values
-";
-
-%feature("docstring")  dolfin::PETScMatrix::set "
-Set block of values
-";
-
-%feature("docstring")  dolfin::PETScMatrix::add "
-Add block of values
-";
-
-%feature("docstring")  dolfin::PETScMatrix::axpy "
-Add multiple of given matrix (AXPY operation)
-";
-
-%feature("docstring")  dolfin::PETScMatrix::getrow "
-Get non-zero values of given row
-";
-
-%feature("docstring")  dolfin::PETScMatrix::setrow "
-Set values for given row
-";
-
-%feature("docstring")  dolfin::PETScMatrix::ident "
-Set given rows to identity matrix
-";
-
-%feature("docstring")  dolfin::PETScMatrix::operator*= "
-Multiply matrix by given number
-";
-
-%feature("docstring")  dolfin::PETScMatrix::operator/= "
-Divide matrix by given number
-";
-
-%feature("docstring")  dolfin::PETScMatrix::operator= "
-**Overloaded versions**
-
-* operator=\ (A)
-
-  Assignment operator
-
-* operator=\ (A)
-
-  Assignment operator
-";
-
-%feature("docstring")  dolfin::PETScMatrix::factory "
-Return linear algebra backend factory
-";
-
-%feature("docstring")  dolfin::PETScMatrix::set_near_nullspace "
-Set (approximate) null space of the matrix. This is used by
-some preconditioners.
-";
-
-%feature("docstring")  dolfin::PETScMatrix::norm "
-Return norm of matrix
-";
-
-%feature("docstring")  dolfin::PETScMatrix::binary_dump "
-Dump matrix to PETSc binary format
 ";
 
 // Documentation extracted from: (module=la, header=uBLASSparseMatrix.h)
