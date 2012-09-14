@@ -290,7 +290,7 @@ Plot the object
 Make the current plot interactive
 ";
 
-%feature("docstring")  dolfin::VTKPlotter::hardcopy "
+%feature("docstring")  dolfin::VTKPlotter::write_png "
 Save plot to PNG file (file suffix appended automatically)
 ";
 
@@ -304,5 +304,9 @@ Set the position of the plot window on the screen
 
 %feature("docstring")  dolfin::VTKPlotter::id "
 Return unique ID of the object to plot
+";
+
+%feature("docstring")  dolfin::VTKPlotter::azimuth "
+Camera control
 ";
 
