@@ -413,6 +413,12 @@ Clear parameter set
   Add an unset parameter of type T. For example, to create a unset
   parameter of type bool, do parameters.add<bool>(\"my_setting\")
 
+* add\ (key, valid_values)
+
+  Add an unset parameter of type T with allows parameters. For
+  example, to create a unset parameter of type bool, do
+  parameters.add<bool>(\"my_setting\")
+
 * add\ (key, value)
 
   Add int-valued parameter

@@ -62,10 +62,6 @@ Return map from nonlocal-dofs (that appear in local dof map) to owning process
 Local-to-global mapping of dofs on a cell
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::tabulate_dofs "
-Tabulate the local-to-global mapping of dofs on a cell
-";
-
 %feature("docstring")  dolfin::GenericDofMap::tabulate_facet_dofs "
 Tabulate local-local facet dofs
 ";
@@ -84,6 +80,10 @@ Tabulate local-local facet dofs
 
 %feature("docstring")  dolfin::GenericDofMap::copy "
 Create a copy of the dof map
+";
+
+%feature("docstring")  dolfin::GenericDofMap::build "
+Build a new dof map on new mesh
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::extract_sub_dofmap "
@@ -270,16 +270,6 @@ Local-to-global mapping of dofs on a cell
         Local-to-global mapping of dofs.
 ";
 
-%feature("docstring")  dolfin::DofMap::tabulate_dofs "
-Tabulate the local-to-global mapping of dofs on a cell
-
-*Arguments*
-    dofs (int)
-        Degrees of freedom on a cell.
-    cell (:py:class:`Cell`)
-        The cell.
-";
-
 %feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
 Tabulate local-local facet dofs
 
@@ -319,9 +309,21 @@ Tabulate local-local facet dofs
 %feature("docstring")  dolfin::DofMap::copy "
 Create a copy of the dof map
 
+*Returns*
+    DofMap
+        The Dofmap copy.
+";
+
+%feature("docstring")  dolfin::DofMap::build "
+Create a copy of the dof map
+
 *Arguments*
-    mesh (:py:class:`Mesh`)
-        The object to be copied.
+    new_mesh (:py:class:`Mesh`)
+        The new mesh to build the dof map on.
+
+*Returns*
+    DofMap
+        The new Dofmap copy.
 ";
 
 %feature("docstring")  dolfin::DofMap::extract_sub_dofmap "
@@ -1582,6 +1584,12 @@ Check function spaces and coefficients
   Comparison operator, returning equation lhs == 0
 ";
 
+// Documentation extracted from: (module=fem, header=AssemblerBase.h)
+%feature("docstring")  dolfin::AssemblerBase "
+This class provides some common functions used in
+assembler classes.
+";
+
 // Documentation extracted from: (module=fem, header=Assembler.h)
 %feature("docstring")  dolfin::Assembler "
 This class provides automated assembly of linear systems, or
@@ -1614,7 +1622,7 @@ Note that (1) overrides (2), which overrides (3).
 %feature("docstring")  dolfin::Assembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a)
 
   Assemble tensor from given form
   
@@ -1623,21 +1631,8 @@ Note that (1) overrides (2), which overrides (3).
           The tensor to assemble.
       a (:py:class:`Form`)
           The form to assemble the tensor from.
-      reset_sparsity (bool)
-          Optional argument: Default value is true.
-          This controls whether the sparsity pattern of the
-          given tensor is reset prior to assembly.
-      add_values (bool)
-          Optional argument: Default value is false.
-          This controls whether values are added to the given
-          tensor or if it is zeroed prior to assembly.
-      finalize_tensor (bool)
-          Optional argument: Default value is true.
-          This controls whether the assembler finalizes the
-          given tensor after assembly is completed by calling
-          A.apply().
 
-* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a, sub_domain)
 
   Assemble tensor from given form on subdomain
   
@@ -1648,21 +1643,8 @@ Note that (1) overrides (2), which overrides (3).
           The form to assemble the tensor from.
       sub_domain (:py:class:`SubDomain`)
           The subdomain to assemble on.
-      reset_sparsity (bool)
-          Optional argument: Default value is true.
-          This controls whether the sparsity pattern of the
-          given tensor is reset prior to assembly.
-      add_values (bool)
-          Optional argument: Default value is false.
-          This controls whether values are added to the given
-          tensor or if it is zeroed prior to assembly.
-      finalize_tensor (bool)
-          Optional argument: Default value is true.
-          This controls whether the assembler finalizes the
-          given tensor after assembly is completed by calling
-          A.apply().
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
 
   Assemble tensor from given form on subdomains
   
@@ -1677,19 +1659,6 @@ Note that (1) overrides (2), which overrides (3).
           The exterior facet domains.
       interior_facet_domains (:py:class:`MeshFunction`)
           The interior facet domains.
-      reset_sparsity (bool)
-          Optional argument: Default value is true.
-          This controls whether the sparsity pattern of the
-          given tensor is reset prior to assembly.
-      add_values (bool)
-          Optional argument: Default value is false.
-          This controls whether values are added to the given
-          tensor or if it is zeroed prior to assembly.
-      finalize_tensor (bool)
-          Optional argument: Default value is true.
-          This controls whether the assembler finalizes the
-          given tensor after assembly is completed by calling
-          A.apply().
 ";
 
 %feature("docstring")  dolfin::Assembler::assemble_cells "
@@ -1737,6 +1706,10 @@ changed.)
         No example code available for this function.
 ";
 
+%feature("docstring")  dolfin::SymmetricAssembler::SymmetricAssembler "
+Constructor
+";
+
 %feature("docstring")  dolfin::SymmetricAssembler::assemble "
 Assemble A and apply Dirichlet boundary conditions. Returns two
 matrices, where the second contains the symmetric modifications
@@ -1755,22 +1728,26 @@ time (leading to better performance) and in that it applies
 boundary conditions at the time of assembly.
 ";
 
+%feature("docstring")  dolfin::SystemAssembler::SystemAssembler "
+Constructor
+";
+
 %feature("docstring")  dolfin::SystemAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, b, a, L)
 
   Assemble system (A, b)
 
-* assemble\ (A, b, a, L, bc, reset_sparsity=true, add_values=true, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, b, a, L, bc)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, b, a, L, bcs)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
@@ -2006,14 +1983,18 @@ used to specify that the tensor should be assembled over the
 entire set of cells or facets.
 ";
 
+%feature("docstring")  dolfin::OpenMpAssembler::OpenMpAssembler "
+Constructor
+";
+
 %feature("docstring")  dolfin::OpenMpAssembler::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a)
 
   Assemble tensor from given form
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
 
   Assemble tensor from given form on sub domains
 ";

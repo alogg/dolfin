@@ -2219,8 +2219,11 @@ Assignment operator
 Return linear algebra backend factory
 ";
 
-%feature("docstring")  dolfin::STLMatrix::csr "
+%feature("docstring")  dolfin::STLMatrix::sort "
 --- STLMatrix interface ---
+";
+
+%feature("docstring")  dolfin::STLMatrix::csr "
 Return matrix in CSR format
 ";
 
