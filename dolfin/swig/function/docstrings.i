@@ -527,7 +527,7 @@ Compute values at all mesh vertices
 ";
 
 %feature("docstring")  dolfin::Function::update "
-U[date off-process ghost coefficients
+Update off-process ghost coefficients
 ";
 
 // Documentation extracted from: (module=function, header=FunctionSpace.h)
