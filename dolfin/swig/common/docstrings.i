@@ -619,7 +619,7 @@ finalisation of various sub systems, such as MPI and PETSc.
 
   Initialise MPI
 
-* init_mpi\ (argc, argv[], required_thread_level, verbose=true)
+* init_mpi\ (argc, argv[], required_thread_level)
 
   Initialise MPI with required level of thread support
 ";
