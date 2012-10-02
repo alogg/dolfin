@@ -221,24 +221,32 @@ Return Euclidean dimension of coordinate system
 Return number of coordinates
 ";
 
+%feature("docstring")  dolfin::MeshGeometry::global_index "
+Return global index associated with local coordinate
+";
+
+%feature("docstring")  dolfin::MeshGeometry::local_to_global_indices "
+Return local-to global indices for all local vertices
+";
+
 %feature("docstring")  dolfin::MeshGeometry::x "
 **Overloaded versions**
 
 * x\ (n, i)
 
-  Return value of coordinate n in direction i
+  Return value of coordinate with local index n in direction i
 
 * x\ (n, i)
 
-  Return value of coordinate n in direction i
+  Return value of coordinate with local index n in direction i
 
 * x\ (n)
 
-  Return array of values for coordinate n
+  Return array of values for coordinate with local index n
 
 * x\ (n)
 
-  Return array of values for coordinate n
+  Return array of values for coordinate with local index n
 
 * x\ ()
 
@@ -247,62 +255,10 @@ Return number of coordinates
 * x\ ()
 
   Return array of values for all coordinates
-";
-
-%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
-**Overloaded versions**
-
-* higher_order_x\ (n)
-
-  Return array of values for higher order coordinate n
-
-* higher_order_x\ (n)
-
-  Return array of values for higher order coordinate n
-
-* higher_order_x\ ()
-
-  Return array of values for all higher order coordinates
-
-* higher_order_x\ ()
-
-  Return array of values for all higher order coordinates
-";
-
-%feature("docstring")  dolfin::MeshGeometry::num_higher_order_vertices_per_cell "
-Return number of vertices used (per cell) to represent the higher order geometry
-";
-
-%feature("docstring")  dolfin::MeshGeometry::higher_order_cell "
-**Overloaded versions**
-
-* higher_order_cell\ (c)
-
-  Return array of higher order vertex indices for a specific higher order cell
-
-* higher_order_cell\ (c)
-
-  Return array of higher order vertex indices for a specific higher order cell
-";
-
-%feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
-**Overloaded versions**
-
-* higher_order_cells\ ()
-
-  Return array of values for all higher order cell data
-
-* higher_order_cells\ ()
-
-  Return array of values for all higher order cell data
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::point "
-Return coordinate n as a 3D point value
-";
-
-%feature("docstring")  dolfin::MeshGeometry::affine_cell_bool "
-Return pointer to boolean affine indicator array
+Return coordinate with local index n as a 3D point value
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::clear "
@@ -311,34 +267,6 @@ Clear all data
 
 %feature("docstring")  dolfin::MeshGeometry::init "
 Initialize coordinate list to given dimension and size
-";
-
-%feature("docstring")  dolfin::MeshGeometry::init_higher_order_vertices "
-Initialize higher order coordinate list to given dimension and size
-";
-
-%feature("docstring")  dolfin::MeshGeometry::init_higher_order_cells "
-Initialize higher order cell data list to given number of cells and dofs
-";
-
-%feature("docstring")  dolfin::MeshGeometry::init_affine_indicator "
-Initialize the affine indicator array
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set_affine_indicator "
-set affine indicator at index i
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set "
-Set value of coordinate n in direction i
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set_higher_order_coordinates "
-Set value of higher order coordinate N in direction i
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set_higher_order_cell_data "
-Set higher order cell data for cell # N in direction i
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::str "
@@ -2071,6 +1999,10 @@ A Vertex is a MeshEntity of topological dimension 0.
   Create vertex from mesh entity
 ";
 
+%feature("docstring")  dolfin::Vertex::global_index "
+Return global index of vertex
+";
+
 %feature("docstring")  dolfin::Vertex::x "
 **Overloaded versions**
 
@@ -2532,14 +2464,6 @@ Specify number of vertices
         No example code available for this function.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::init_higher_order_vertices "
-Specify number of vertices
-
-*Arguments*
-    num_higher_order_vertices (int)
-        The number of higher order vertices.
-";
-
 %feature("docstring")  dolfin::MeshEditor::init_cells "
 Specify number of cells
 
@@ -2553,66 +2477,57 @@ Specify number of cells
         No example code available for this function.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::init_higher_order_cells "
-Specify number of cells
-
-*Arguments*
-    num_higher_order_cells (int)
-        The number of higher order cells.
-    num_higher_order_cell_dof (int)
-        The number of cell dofs.
-";
-
-%feature("docstring")  dolfin::MeshEditor::set_affine_cell_indicator "
-Set boolean indicator inside MeshGeometry
-";
-
 %feature("docstring")  dolfin::MeshEditor::add_vertex "
 **Overloaded versions**
 
-* add_vertex\ (v, p)
+* add_vertex\ (index, p)
 
   Add vertex v at given point p
   
   *Arguments*
-      v (int)
+      index (int)
           The vertex (index).
       p (:py:class:`Point`)
           The point.
 
-* add_vertex\ (v, x)
+* add_vertex\ (index, x)
 
   Add vertex v at given coordinate x
   
   *Arguments*
-      v (int)
+      index (int)
+          The vertex (index).
+      x (numpy.array(float))
+          The x-coordinates.
+
+* add_vertex\ (index, x)
+
+  Add vertex v at given point x (for a 1D mesh)
+  
+  *Arguments*
+      index (int)
           The vertex (index).
       x (float)
           The x-coordinate.
 
-* add_vertex\ (v, x, y)
+* add_vertex\ (index, x, y)
 
-  Add vertex v at given coordinate (x, y)
+  Add vertex v at given point (x, y) (for a 2D mesh)
   
   *Arguments*
-      v (int)
+      index (int)
           The vertex (index).
       x (float)
           The x-coordinate.
       y (float)
           The y-coordinate.
-  
-  *Example*
-      .. note::
-      
-          No example code available for this function.
 
-* add_vertex\ (v, x, y, z)
+* add_vertex\ (index, x, y, z)
 
-  Add vertex v at given coordinate (x, y, z)
+  Add vertex v at given point (x, y, z) (for a 3D mesh)
   
   *Arguments*
-      v (int)
+      index (int)
           The vertex (index).
       x (float)
           The x-coordinate.
@@ -2622,58 +2537,78 @@ Set boolean indicator inside MeshGeometry
           The z-coordinate.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::add_higher_order_vertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex_global "
 **Overloaded versions**
 
-* add_higher_order_vertex\ (v, p)
+* add_vertex_global\ (local_index, global_index, p)
 
   Add vertex v at given point p
   
   *Arguments*
-      v (int)
-          The vertex (index).
+      local_index (int)
+          The vertex (local index).
+      global_index (int)
+          The vertex (global_index).
       p (:py:class:`Point`)
           The point.
 
-* add_higher_order_vertex\ (v, x)
+* add_vertex_global\ (local_index, global_index, x)
 
   Add vertex v at given coordinate x
   
   *Arguments*
-      v (int)
-          The vertex (index).
-      x (float)
-          The x-coordinate.
-
-* add_higher_order_vertex\ (v, x, y)
-
-  Add vertex v at given coordinate (x, y)
-  
-  *Arguments*
-      v (int)
-          The vertex (index).
-      x (float)
-          The x-coordinate.
-      y (float)
-          The y-coordinate.
-
-* add_higher_order_vertex\ (v, x, y, z)
-
-  Add vertex v at given coordinate (x, y, z)
-  
-  *Arguments*
-      v (int)
-          The vertex (index).
-      x (float)
-          The x-coordinate.
-      y (float)
-          The y-coordinate.
-      z (float)
-          The z-coordinate.
+      local_index (int)
+          The vertex (local index).
+      global_index (int)
+          The vertex (global_index).
+      x (numpy.array(float))
+          The x-coordinates.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::add_cell "
 **Overloaded versions**
+
+* add_cell\ (c, v0, v1)
+
+  Add cell with given vertices (1D)
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (numpy.array(int))
+          The first vertex (local index).
+      v1 (numpy.array(int))
+          The second vertex (local index).
+
+* add_cell\ (c, v0, v1, v2)
+
+  Add cell with given vertices (2D)
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (numpy.array(int))
+          The first vertex (local index).
+      v1 (numpy.array(int))
+          The second vertex (local index).
+      v2 (numpy.array(int))
+          The third vertex (local index).
+
+* add_cell\ (c, v0, v1, v2, v3)
+
+  Add cell with given vertices (3D)
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (numpy.array(int))
+          The first vertex (local index).
+      v1 (numpy.array(int))
+          The second vertex (local index).
+      v2 (numpy.array(int))
+          The third vertex (local index).
+      v3 (numpy.array(int))
+          The fourth vertex (local index).
 
 * add_cell\ (c, v)
 
@@ -2683,74 +2618,7 @@ Set boolean indicator inside MeshGeometry
       c (int)
           The cell (index).
       v (numpy.array(int))
-          The vertex indices
-
-* add_cell\ (c, v0, v1)
-
-  Add cell (interval) with given vertices
-  
-  *Arguments*
-      c (int)
-          The cell (index).
-      v0 (int)
-          Index of the first vertex.
-      v1 (int)
-          Index of the second vertex.
-
-* add_cell\ (c, v0, v1, v2)
-
-  Add cell (triangle) with given vertices
-  
-  *Arguments*
-      c (int)
-          The cell (index).
-      v0 (int)
-          Index of the first vertex.
-      v1 (int)
-          Index of the second vertex.
-      v2 (int)
-          Index of the third vertex.
-  
-  *Example*
-      .. note::
-      
-          No example code available for this function.
-
-* add_cell\ (c, v0, v1, v2, v3)
-
-  Add cell (tetrahedron) with given vertices
-  
-  *Arguments*
-      c (int)
-          The cell (index).
-      v0 (int)
-          Index of the first vertex.
-      v1 (int)
-          Index of the second vertex.
-      v2 (int)
-          Index of the third vertex.
-      v3 (int)
-          Index of the fourth vertex.
-";
-
-%feature("docstring")  dolfin::MeshEditor::add_higher_order_cell_data "
-Add higher order cell data (assume P2 triangle for now)
-
-*Arguments*
-    c (int)
-        The cell (index).
-    v0 (int)
-        Index of the first vertex.
-    v1 (int)
-        Index of the second vertex.
-    v2 (int)
-        Index of the third vertex.
-    v3 (int)
-        Index of the fourth vertex.
-    v4 (int)
-        Index of the fifth vertex.
-    v5 (int)
-        Index of the sixth vertex.
+          The vertex indices (local indices)
 ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
