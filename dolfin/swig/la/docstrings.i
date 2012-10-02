@@ -101,6 +101,10 @@ Users should not interface to this class directly but instead
 use the :py:class:`LinearOperator` class.
 ";
 
+%feature("docstring")  dolfin::GenericLinearOperator::size "
+Return size of given dimension
+";
+
 %feature("docstring")  dolfin::GenericLinearOperator::mult "
 Compute matrix-vector product y = Ax
 ";
@@ -1205,6 +1209,10 @@ Dump matrix to PETSc binary format
 // Documentation extracted from: (module=la, header=PETScLinearOperator.h)
 %feature("docstring")  dolfin::PETScLinearOperator::PETScLinearOperator "
 Constructor
+";
+
+%feature("docstring")  dolfin::PETScLinearOperator::size "
+Return size of given dimension
 ";
 
 %feature("docstring")  dolfin::PETScLinearOperator::mult "
@@ -4308,7 +4316,11 @@ action of the matrix on the vector x as y = Ax.
 ";
 
 %feature("docstring")  dolfin::LinearOperator::LinearOperator "
-Create linear operator of dimensions M x N
+Create linear operator
+";
+
+%feature("docstring")  dolfin::LinearOperator::size "
+Return size of given dimension
 ";
 
 %feature("docstring")  dolfin::LinearOperator::mult "
@@ -4329,5 +4341,17 @@ Return informal string representation (pretty-print)
 * instance\ ()
 
   Return concrete instance / unwrap (non-const version)
+";
+
+%feature("docstring")  dolfin::LinearOperator::shared_instance "
+**Overloaded versions**
+
+* shared_instance\ ()
+
+  Return concrete instance / unwrap (const shared pointer version)
+
+* shared_instance\ ()
+
+  Return concrete instance / unwrap (shared pointer version)
 ";
 
