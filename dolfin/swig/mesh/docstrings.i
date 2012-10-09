@@ -3652,27 +3652,3 @@ Get cell mapping from the boundary mesh to the original full mesh
 Get vertex mapping from the boundary mesh to the original full mesh
 ";
 
-// Documentation extracted from: (module=mesh, header=Interval.h)
-%feature("docstring")  dolfin::Interval "
-Interval mesh of the 1D line [a,b].  Given the number of cells
-(nx) in the axial direction, the total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-";
-
-%feature("docstring")  dolfin::Interval::Interval "
-Constructor
-
-*Arguments*
-    nx (int)
-        The number of cells.
-    a (float)
-        The minimum point (inclusive).
-    b (float)
-        The maximum point (inclusive).
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
