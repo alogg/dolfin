@@ -156,6 +156,10 @@ Return topological dimension
 Return number of entities for given dimension
 ";
 
+%feature("docstring")  dolfin::MeshTopology::size_global "
+Return global number of entities for given dimension
+";
+
 %feature("docstring")  dolfin::MeshTopology::clear "
 **Overloaded versions**
 
@@ -175,9 +179,45 @@ Return number of entities for given dimension
 
   Initialize topology of given maximum dimension
 
-* init\ (dim, size)
+* init\ (dim, local_size)
 
-  Set number of entities (size) for given topological dimension
+  Set number of local entities (local_size) for given topological
+  dimension
+";
+
+%feature("docstring")  dolfin::MeshTopology::init_global "
+Set number of global entities (global_size) for given topological
+dimension
+";
+
+%feature("docstring")  dolfin::MeshTopology::init_global_indices "
+Initialize storage for global entity numbering for entities of
+dimension dim
+";
+
+%feature("docstring")  dolfin::MeshTopology::set_global_index "
+Set global index for entity of dimension dim and with local index
+";
+
+%feature("docstring")  dolfin::MeshTopology::global_indices "
+Get local-to-global index map for entities of topological dimension d
+";
+
+%feature("docstring")  dolfin::MeshTopology::have_global_indices "
+Check if global indices are available for entiries of dimension dim
+";
+
+%feature("docstring")  dolfin::MeshTopology::shared_entities "
+**Overloaded versions**
+
+* shared_entities\ (dim)
+
+  Return map from shared entiies to process that share the entity
+
+* shared_entities\ (dim)
+
+  Return map from shared entiies to process that share the entity
+  (const version)
 ";
 
 %feature("docstring")  dolfin::MeshTopology::operator "
@@ -219,14 +259,6 @@ Return Euclidean dimension of coordinate system
 
 %feature("docstring")  dolfin::MeshGeometry::size "
 Return number of coordinates
-";
-
-%feature("docstring")  dolfin::MeshGeometry::global_index "
-Return global index associated with local coordinate
-";
-
-%feature("docstring")  dolfin::MeshGeometry::local_to_global_indices "
-Return local-to global indices for all local vertices
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::x "
@@ -497,82 +529,6 @@ Return informal string representation (pretty-print)
         An informal representation.
 ";
 
-// Documentation extracted from: (module=mesh, header=ParallelData.h)
-%feature("docstring")  dolfin::ParallelData "
-This class stores auxiliary mesh data for parallel computing.
-";
-
-%feature("docstring")  dolfin::ParallelData::ParallelData "
-**Overloaded versions**
-
-* ParallelData\ (mesh)
-
-  Constructor
-
-* ParallelData\ (data)
-
-  Copy constructor
-";
-
-%feature("docstring")  dolfin::ParallelData::have_global_entity_indices "
-Return true if global indices have been computed for entity of
-dimension d
-";
-
-%feature("docstring")  dolfin::ParallelData::global_entity_indices "
-**Overloaded versions**
-
-* global_entity_indices\ (d)
-
-  Return global indices (local-to-global) for entity of dimension d
-
-* global_entity_indices\ (d)
-
-  Return global indices (local-to-global) for entity of dimension d (const version)
-";
-
-%feature("docstring")  dolfin::ParallelData::global_entity_indices_as_vector "
-Return global indices (local-to-global) for entity of dimension d in a vector
-";
-
-%feature("docstring")  dolfin::ParallelData::global_to_local_entity_indices "
-**Overloaded versions**
-
-* global_to_local_entity_indices\ (d)
-
-  Return global-to-local indices for entity of dimension d
-
-* global_to_local_entity_indices\ (d)
-
-  Return global-to-local indices for entity of dimension d (const version)
-";
-
-%feature("docstring")  dolfin::ParallelData::shared_vertices "
-**Overloaded versions**
-
-* shared_vertices\ ()
-
-  FIXME: Add description and use better name
-
-* shared_vertices\ ()
-
-  FIXME: Add description and use better name
-";
-
-%feature("docstring")  dolfin::ParallelData::exterior_facet "
-**Overloaded versions**
-
-* exterior_facet\ ()
-
-  Return MeshFunction that is true for globally exterior facets,
-  false otherwise
-
-* exterior_facet\ ()
-
-  Return MeshFunction that is true for globally exterior facets,
-  false otherwise (const version)
-";
-
 // Documentation extracted from: (module=mesh, header=Mesh.h)
 %feature("docstring")  dolfin::Mesh "
 A :py:class:`Mesh` consists of a set of connected and numbered mesh entities.
@@ -799,7 +755,7 @@ Get cell connectivity.
 ";
 
 %feature("docstring")  dolfin::Mesh::size "
-Get number of entities of given topological dimension.
+Get number of local entities of given topological dimension.
 
 *Arguments*
     dim (int)
@@ -807,7 +763,7 @@ Get number of entities of given topological dimension.
 
 *Returns*
     int
-        Number of entities of topological dimension d.
+        Number of local entities of topological dimension d.
 
 *Example*
     .. code-block:: python
@@ -820,6 +776,23 @@ Get number of entities of given topological dimension.
         16
         >>> mesh.size(2)
         8
+";
+
+%feature("docstring")  dolfin::Mesh::size_global "
+Get global number of entities of given topological dimension.
+
+*Arguments*
+    dim (int)
+        Topological dimension.
+
+*Returns*
+    int
+        Global number of entities of topological dimension d.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::topology "
@@ -900,22 +873,6 @@ Get number of entities of given topological dimension.
 * data\ ()
 
   Get mesh data (const version).
-";
-
-%feature("docstring")  dolfin::Mesh::parallel_data "
-**Overloaded versions**
-
-* parallel_data\ ()
-
-  Get parallel mesh data.
-  
-  *Returns*
-      :py:class:`ParallelData`
-          The parallel data object associated with the mesh.
-
-* parallel_data\ ()
-
-  Get parallel mesh data (const version).
 ";
 
 %feature("docstring")  dolfin::Mesh::type "
@@ -1300,6 +1257,24 @@ Informal string representation.
         '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
+%feature("docstring")  dolfin::Mesh::coordinates_hash "
+Hash of coordinate values
+
+*Returns*
+    int
+        A tree-hashed value of the coordinates over all MPI processes
+
+";
+
+%feature("docstring")  dolfin::Mesh::topology_hash "
+Hash of cell vertex indices
+
+*Returns*
+    int
+        A tree-hashed value of the topology over all MPI processes
+
+";
+
 // Documentation extracted from: (module=mesh, header=MeshEntity.h)
 %feature("docstring")  dolfin::MeshEntity "
 A MeshEntity represents a mesh entity associated with
@@ -1403,8 +1378,17 @@ Return topological dimension
           The local index of given entity.
 ";
 
+%feature("docstring")  dolfin::MeshEntity::global_index "
+Return global index of mesh entity
+
+*Returns*
+    int
+        The global index. Set to -1 if global index has not been
+        computed
+";
+
 %feature("docstring")  dolfin::MeshEntity::num_entities "
-Return number of incident mesh entities of given topological dimension
+Return local number of incident mesh entities of given topological dimension
 
 *Arguments*
     dim (int)
@@ -1412,7 +1396,19 @@ Return number of incident mesh entities of given topological dimension
 
 *Returns*
     int
-        The number of incident MeshEntity objects of given dimension.
+        The number of local incident MeshEntity objects of given dimension.
+";
+
+%feature("docstring")  dolfin::MeshEntity::num_global_entities "
+Return global number of incident mesh entities of given topological dimension
+
+*Arguments*
+    dim (int)
+        The topological dimension.
+
+*Returns*
+    int
+        The number of global incident MeshEntity objects of given dimension.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::entities "
@@ -1999,10 +1995,6 @@ A Vertex is a MeshEntity of topological dimension 0.
   Create vertex from mesh entity
 ";
 
-%feature("docstring")  dolfin::Vertex::global_index "
-Return global index of vertex
-";
-
 %feature("docstring")  dolfin::Vertex::x "
 **Overloaded versions**
 
@@ -2339,6 +2331,10 @@ Return true if the total number of connections is equal to zero
   Return number of connections for given entity
 ";
 
+%feature("docstring")  dolfin::MeshConnectivity::size_global "
+Return global number of connections for given entity
+";
+
 %feature("docstring")  dolfin::MeshConnectivity::operator "
 **Overloaded versions**
 
@@ -2360,11 +2356,13 @@ Clear all data
 
 * init\ (num_entities, num_connections)
 
-  Initialize number of entities and number of connections (equal for all)
+  Initialize number of entities and number of connections (equal
+  for all)
 
 * init\ (num_connections)
 
-  Initialize number of entities and number of connections (individually)
+  Initialize number of entities and number of connections
+  (individually)
 ";
 
 %feature("docstring")  dolfin::MeshConnectivity::set "
@@ -2386,6 +2384,10 @@ Clear all data
 
   Set all connections for all entities (T is a container, e.g.
   a std::vector<uint>, std::set<uint>, etc)
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::set_global_size "
+Set global number of connections for all local entities
 ";
 
 %feature("docstring")  dolfin::MeshConnectivity::str "
@@ -2617,6 +2619,18 @@ Specify number of cells
   *Arguments*
       c (int)
           The cell (index).
+      v (numpy.array(int))
+          The vertex indices (local indices)
+
+* add_cell\ (local_index, global_index, v)
+
+  Add cell with given vertices
+  
+  *Arguments*
+      local_index (int)
+          The cell (index).
+      global_index (int)
+          The global (user) cell index.
       v (numpy.array(int))
           The vertex indices (local indices)
 ";
@@ -3289,17 +3303,31 @@ vertex, edge, and facet-based colorings.
 
 %feature("docstring")  dolfin::MeshColoring::color_cells "
 Color the cells of a mesh for given coloring type, which can
-be one of \"vertex\", \"edge\" or \"facet\".
+be one of \"vertex\", \"edge\" or \"facet\". Coloring is saved in the
+mesh topology
 ";
 
 %feature("docstring")  dolfin::MeshColoring::color "
 Color the cells of a mesh for given coloring type specified by
-topological dimension, which can be one of 0, 1 or D - 1.
+topological dimension, which can be one of 0, 1 or D - 1. Coloring
+is saved in the mesh topology
 ";
 
 %feature("docstring")  dolfin::MeshColoring::compute_colors "
 Compute cell colors for given coloring type specified by
 topological dimension, which can be one of 0, 1 or D - 1.
+";
+
+%feature("docstring")  dolfin::MeshColoring::cell_colors "
+**Overloaded versions**
+
+* cell_colors\ (mesh, coloring_type)
+
+  Return a MeshFunction with the cell colors (used for visualisation)
+
+* cell_colors\ (mesh, coloring_type)
+
+  Return a MeshFunction with the cell colors (used for visualisation)
 ";
 
 %feature("docstring")  dolfin::MeshColoring::type_to_dim "
@@ -3358,22 +3386,6 @@ This class implements renumbering algorithms for meshes.
 
 %feature("docstring")  dolfin::LocalMeshData::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::LocalMeshData::clear "
-Clear all data
-";
-
-%feature("docstring")  dolfin::LocalMeshData::extract_mesh_data "
-Copy data from mesh
-";
-
-%feature("docstring")  dolfin::LocalMeshData::broadcast_mesh_data "
-Broadcast mesh data from main process
-";
-
-%feature("docstring")  dolfin::LocalMeshData::receive_mesh_data "
-Receive mesh data from main process
 ";
 
 // Documentation extracted from: (module=mesh, header=SubDomain.h)
