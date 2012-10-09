@@ -1678,6 +1678,11 @@ function is provided for users who wish to build a customized
 assembler.
 ";
 
+%feature("docstring")  dolfin::Assembler::add_to_global_tensor "
+Add cell tensor to global tensor. Hook to allow the SymmetricAssembler
+to split the cell tensor into symmetric/antisymmetric parts.
+";
+
 // Documentation extracted from: (module=fem, header=SparsityPatternBuilder.h)
 %feature("docstring")  dolfin::SparsityPatternBuilder "
 This class provides functions to compute the sparsity pattern.
@@ -1711,12 +1716,30 @@ Constructor
 ";
 
 %feature("docstring")  dolfin::SymmetricAssembler::assemble "
-Assemble A and apply Dirichlet boundary conditions. Returns two
-matrices, where the second contains the symmetric modifications
-suitable for modifying RHS vectors.
+**Overloaded versions**
 
-Note: row_bcs and col_bcs will normally be the same, but are different
-for e.g. off-diagonal block matrices in a mixed PDE.
+* assemble\ (A, B, a, row_bcs, col_bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL)
+
+  Assemble a and apply Dirichlet boundary conditions. Returns two
+  matrices, where the second contains the symmetric modifications
+  suitable for modifying RHS vectors.
+  
+  Note: row_bcs and col_bcs will normally be the same, but are different
+  for e.g. off-diagonal block matrices in a mixed PDE.
+
+* assemble\ (A, B, a, row_bcs, col_bcs, sub_domain)
+
+  Assemble a and apply Dirichlet boundary conditions. Returns two
+  matrices, where the second contains the symmetric modifications
+  suitable for modifying RHS vectors.
+  
+  Note: row_bcs and col_bcs will normally be the same, but are different
+  for e.g. off-diagonal block matrices in a mixed PDE.
+";
+
+%feature("docstring")  dolfin::SymmetricAssembler::add_to_global_tensor "
+Add cell tensor to global tensor. Hook to allow the SymmetricAssembler
+to split the cell tensor into symmetric/antisymmetric parts.
 ";
 
 // Documentation extracted from: (module=fem, header=SystemAssembler.h)
