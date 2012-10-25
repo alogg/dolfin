@@ -156,6 +156,10 @@ Return topological dimension
 Return number of entities for given dimension
 ";
 
+%feature("docstring")  dolfin::MeshTopology::size_global "
+Return global number of entities for given dimension
+";
+
 %feature("docstring")  dolfin::MeshTopology::clear "
 **Overloaded versions**
 
@@ -175,9 +179,45 @@ Return number of entities for given dimension
 
   Initialize topology of given maximum dimension
 
-* init\ (dim, size)
+* init\ (dim, local_size)
 
-  Set number of entities (size) for given topological dimension
+  Set number of local entities (local_size) for given topological
+  dimension
+";
+
+%feature("docstring")  dolfin::MeshTopology::init_global "
+Set number of global entities (global_size) for given topological
+dimension
+";
+
+%feature("docstring")  dolfin::MeshTopology::init_global_indices "
+Initialize storage for global entity numbering for entities of
+dimension dim
+";
+
+%feature("docstring")  dolfin::MeshTopology::set_global_index "
+Set global index for entity of dimension dim and with local index
+";
+
+%feature("docstring")  dolfin::MeshTopology::global_indices "
+Get local-to-global index map for entities of topological dimension d
+";
+
+%feature("docstring")  dolfin::MeshTopology::have_global_indices "
+Check if global indices are available for entiries of dimension dim
+";
+
+%feature("docstring")  dolfin::MeshTopology::shared_entities "
+**Overloaded versions**
+
+* shared_entities\ (dim)
+
+  Return map from shared entiies to process that share the entity
+
+* shared_entities\ (dim)
+
+  Return map from shared entiies to process that share the entity
+  (const version)
 ";
 
 %feature("docstring")  dolfin::MeshTopology::operator "
@@ -226,19 +266,19 @@ Return number of coordinates
 
 * x\ (n, i)
 
-  Return value of coordinate n in direction i
+  Return value of coordinate with local index n in direction i
 
 * x\ (n, i)
 
-  Return value of coordinate n in direction i
+  Return value of coordinate with local index n in direction i
 
 * x\ (n)
 
-  Return array of values for coordinate n
+  Return array of values for coordinate with local index n
 
 * x\ (n)
 
-  Return array of values for coordinate n
+  Return array of values for coordinate with local index n
 
 * x\ ()
 
@@ -247,62 +287,10 @@ Return number of coordinates
 * x\ ()
 
   Return array of values for all coordinates
-";
-
-%feature("docstring")  dolfin::MeshGeometry::higher_order_x "
-**Overloaded versions**
-
-* higher_order_x\ (n)
-
-  Return array of values for higher order coordinate n
-
-* higher_order_x\ (n)
-
-  Return array of values for higher order coordinate n
-
-* higher_order_x\ ()
-
-  Return array of values for all higher order coordinates
-
-* higher_order_x\ ()
-
-  Return array of values for all higher order coordinates
-";
-
-%feature("docstring")  dolfin::MeshGeometry::num_higher_order_vertices_per_cell "
-Return number of vertices used (per cell) to represent the higher order geometry
-";
-
-%feature("docstring")  dolfin::MeshGeometry::higher_order_cell "
-**Overloaded versions**
-
-* higher_order_cell\ (c)
-
-  Return array of higher order vertex indices for a specific higher order cell
-
-* higher_order_cell\ (c)
-
-  Return array of higher order vertex indices for a specific higher order cell
-";
-
-%feature("docstring")  dolfin::MeshGeometry::higher_order_cells "
-**Overloaded versions**
-
-* higher_order_cells\ ()
-
-  Return array of values for all higher order cell data
-
-* higher_order_cells\ ()
-
-  Return array of values for all higher order cell data
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::point "
-Return coordinate n as a 3D point value
-";
-
-%feature("docstring")  dolfin::MeshGeometry::affine_cell_bool "
-Return pointer to boolean affine indicator array
+Return coordinate with local index n as a 3D point value
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::clear "
@@ -311,34 +299,6 @@ Clear all data
 
 %feature("docstring")  dolfin::MeshGeometry::init "
 Initialize coordinate list to given dimension and size
-";
-
-%feature("docstring")  dolfin::MeshGeometry::init_higher_order_vertices "
-Initialize higher order coordinate list to given dimension and size
-";
-
-%feature("docstring")  dolfin::MeshGeometry::init_higher_order_cells "
-Initialize higher order cell data list to given number of cells and dofs
-";
-
-%feature("docstring")  dolfin::MeshGeometry::init_affine_indicator "
-Initialize the affine indicator array
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set_affine_indicator "
-set affine indicator at index i
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set "
-Set value of coordinate n in direction i
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set_higher_order_coordinates "
-Set value of higher order coordinate N in direction i
-";
-
-%feature("docstring")  dolfin::MeshGeometry::set_higher_order_cell_data "
-Set higher order cell data for cell # N in direction i
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::str "
@@ -569,82 +529,6 @@ Return informal string representation (pretty-print)
         An informal representation.
 ";
 
-// Documentation extracted from: (module=mesh, header=ParallelData.h)
-%feature("docstring")  dolfin::ParallelData "
-This class stores auxiliary mesh data for parallel computing.
-";
-
-%feature("docstring")  dolfin::ParallelData::ParallelData "
-**Overloaded versions**
-
-* ParallelData\ (mesh)
-
-  Constructor
-
-* ParallelData\ (data)
-
-  Copy constructor
-";
-
-%feature("docstring")  dolfin::ParallelData::have_global_entity_indices "
-Return true if global indices have been computed for entity of
-dimension d
-";
-
-%feature("docstring")  dolfin::ParallelData::global_entity_indices "
-**Overloaded versions**
-
-* global_entity_indices\ (d)
-
-  Return global indices (local-to-global) for entity of dimension d
-
-* global_entity_indices\ (d)
-
-  Return global indices (local-to-global) for entity of dimension d (const version)
-";
-
-%feature("docstring")  dolfin::ParallelData::global_entity_indices_as_vector "
-Return global indices (local-to-global) for entity of dimension d in a vector
-";
-
-%feature("docstring")  dolfin::ParallelData::global_to_local_entity_indices "
-**Overloaded versions**
-
-* global_to_local_entity_indices\ (d)
-
-  Return global-to-local indices for entity of dimension d
-
-* global_to_local_entity_indices\ (d)
-
-  Return global-to-local indices for entity of dimension d (const version)
-";
-
-%feature("docstring")  dolfin::ParallelData::shared_vertices "
-**Overloaded versions**
-
-* shared_vertices\ ()
-
-  FIXME: Add description and use better name
-
-* shared_vertices\ ()
-
-  FIXME: Add description and use better name
-";
-
-%feature("docstring")  dolfin::ParallelData::exterior_facet "
-**Overloaded versions**
-
-* exterior_facet\ ()
-
-  Return MeshFunction that is true for globally exterior facets,
-  false otherwise
-
-* exterior_facet\ ()
-
-  Return MeshFunction that is true for globally exterior facets,
-  false otherwise (const version)
-";
-
 // Documentation extracted from: (module=mesh, header=Mesh.h)
 %feature("docstring")  dolfin::Mesh "
 A :py:class:`Mesh` consists of a set of connected and numbered mesh entities.
@@ -871,7 +755,7 @@ Get cell connectivity.
 ";
 
 %feature("docstring")  dolfin::Mesh::size "
-Get number of entities of given topological dimension.
+Get number of local entities of given topological dimension.
 
 *Arguments*
     dim (int)
@@ -879,7 +763,7 @@ Get number of entities of given topological dimension.
 
 *Returns*
     int
-        Number of entities of topological dimension d.
+        Number of local entities of topological dimension d.
 
 *Example*
     .. code-block:: python
@@ -892,6 +776,23 @@ Get number of entities of given topological dimension.
         16
         >>> mesh.size(2)
         8
+";
+
+%feature("docstring")  dolfin::Mesh::size_global "
+Get global number of entities of given topological dimension.
+
+*Arguments*
+    dim (int)
+        Topological dimension.
+
+*Returns*
+    int
+        Global number of entities of topological dimension d.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::topology "
@@ -972,22 +873,6 @@ Get number of entities of given topological dimension.
 * data\ ()
 
   Get mesh data (const version).
-";
-
-%feature("docstring")  dolfin::Mesh::parallel_data "
-**Overloaded versions**
-
-* parallel_data\ ()
-
-  Get parallel mesh data.
-  
-  *Returns*
-      :py:class:`ParallelData`
-          The parallel data object associated with the mesh.
-
-* parallel_data\ ()
-
-  Get parallel mesh data (const version).
 ";
 
 %feature("docstring")  dolfin::Mesh::type "
@@ -1372,6 +1257,24 @@ Informal string representation.
         '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
+%feature("docstring")  dolfin::Mesh::coordinates_hash "
+Hash of coordinate values
+
+*Returns*
+    int
+        A tree-hashed value of the coordinates over all MPI processes
+
+";
+
+%feature("docstring")  dolfin::Mesh::topology_hash "
+Hash of cell vertex indices
+
+*Returns*
+    int
+        A tree-hashed value of the topology over all MPI processes
+
+";
+
 // Documentation extracted from: (module=mesh, header=MeshEntity.h)
 %feature("docstring")  dolfin::MeshEntity "
 A MeshEntity represents a mesh entity associated with
@@ -1475,8 +1378,17 @@ Return topological dimension
           The local index of given entity.
 ";
 
+%feature("docstring")  dolfin::MeshEntity::global_index "
+Return global index of mesh entity
+
+*Returns*
+    int
+        The global index. Set to -1 if global index has not been
+        computed
+";
+
 %feature("docstring")  dolfin::MeshEntity::num_entities "
-Return number of incident mesh entities of given topological dimension
+Return local number of incident mesh entities of given topological dimension
 
 *Arguments*
     dim (int)
@@ -1484,7 +1396,19 @@ Return number of incident mesh entities of given topological dimension
 
 *Returns*
     int
-        The number of incident MeshEntity objects of given dimension.
+        The number of local incident MeshEntity objects of given dimension.
+";
+
+%feature("docstring")  dolfin::MeshEntity::num_global_entities "
+Return global number of incident mesh entities of given topological dimension
+
+*Arguments*
+    dim (int)
+        The topological dimension.
+
+*Returns*
+    int
+        The number of global incident MeshEntity objects of given dimension.
 ";
 
 %feature("docstring")  dolfin::MeshEntity::entities "
@@ -2407,6 +2331,10 @@ Return true if the total number of connections is equal to zero
   Return number of connections for given entity
 ";
 
+%feature("docstring")  dolfin::MeshConnectivity::size_global "
+Return global number of connections for given entity
+";
+
 %feature("docstring")  dolfin::MeshConnectivity::operator "
 **Overloaded versions**
 
@@ -2428,11 +2356,13 @@ Clear all data
 
 * init\ (num_entities, num_connections)
 
-  Initialize number of entities and number of connections (equal for all)
+  Initialize number of entities and number of connections (equal
+  for all)
 
 * init\ (num_connections)
 
-  Initialize number of entities and number of connections (individually)
+  Initialize number of entities and number of connections
+  (individually)
 ";
 
 %feature("docstring")  dolfin::MeshConnectivity::set "
@@ -2454,6 +2384,10 @@ Clear all data
 
   Set all connections for all entities (T is a container, e.g.
   a std::vector<uint>, std::set<uint>, etc)
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::set_global_size "
+Set global number of connections for all local entities
 ";
 
 %feature("docstring")  dolfin::MeshConnectivity::str "
@@ -2532,14 +2466,6 @@ Specify number of vertices
         No example code available for this function.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::init_higher_order_vertices "
-Specify number of vertices
-
-*Arguments*
-    num_higher_order_vertices (int)
-        The number of higher order vertices.
-";
-
 %feature("docstring")  dolfin::MeshEditor::init_cells "
 Specify number of cells
 
@@ -2553,66 +2479,57 @@ Specify number of cells
         No example code available for this function.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::init_higher_order_cells "
-Specify number of cells
-
-*Arguments*
-    num_higher_order_cells (int)
-        The number of higher order cells.
-    num_higher_order_cell_dof (int)
-        The number of cell dofs.
-";
-
-%feature("docstring")  dolfin::MeshEditor::set_affine_cell_indicator "
-Set boolean indicator inside MeshGeometry
-";
-
 %feature("docstring")  dolfin::MeshEditor::add_vertex "
 **Overloaded versions**
 
-* add_vertex\ (v, p)
+* add_vertex\ (index, p)
 
   Add vertex v at given point p
   
   *Arguments*
-      v (int)
+      index (int)
           The vertex (index).
       p (:py:class:`Point`)
           The point.
 
-* add_vertex\ (v, x)
+* add_vertex\ (index, x)
 
   Add vertex v at given coordinate x
   
   *Arguments*
-      v (int)
+      index (int)
+          The vertex (index).
+      x (numpy.array(float))
+          The x-coordinates.
+
+* add_vertex\ (index, x)
+
+  Add vertex v at given point x (for a 1D mesh)
+  
+  *Arguments*
+      index (int)
           The vertex (index).
       x (float)
           The x-coordinate.
 
-* add_vertex\ (v, x, y)
+* add_vertex\ (index, x, y)
 
-  Add vertex v at given coordinate (x, y)
+  Add vertex v at given point (x, y) (for a 2D mesh)
   
   *Arguments*
-      v (int)
+      index (int)
           The vertex (index).
       x (float)
           The x-coordinate.
       y (float)
           The y-coordinate.
-  
-  *Example*
-      .. note::
-      
-          No example code available for this function.
 
-* add_vertex\ (v, x, y, z)
+* add_vertex\ (index, x, y, z)
 
-  Add vertex v at given coordinate (x, y, z)
+  Add vertex v at given point (x, y, z) (for a 3D mesh)
   
   *Arguments*
-      v (int)
+      index (int)
           The vertex (index).
       x (float)
           The x-coordinate.
@@ -2622,58 +2539,78 @@ Set boolean indicator inside MeshGeometry
           The z-coordinate.
 ";
 
-%feature("docstring")  dolfin::MeshEditor::add_higher_order_vertex "
+%feature("docstring")  dolfin::MeshEditor::add_vertex_global "
 **Overloaded versions**
 
-* add_higher_order_vertex\ (v, p)
+* add_vertex_global\ (local_index, global_index, p)
 
   Add vertex v at given point p
   
   *Arguments*
-      v (int)
-          The vertex (index).
+      local_index (int)
+          The vertex (local index).
+      global_index (int)
+          The vertex (global_index).
       p (:py:class:`Point`)
           The point.
 
-* add_higher_order_vertex\ (v, x)
+* add_vertex_global\ (local_index, global_index, x)
 
   Add vertex v at given coordinate x
   
   *Arguments*
-      v (int)
-          The vertex (index).
-      x (float)
-          The x-coordinate.
-
-* add_higher_order_vertex\ (v, x, y)
-
-  Add vertex v at given coordinate (x, y)
-  
-  *Arguments*
-      v (int)
-          The vertex (index).
-      x (float)
-          The x-coordinate.
-      y (float)
-          The y-coordinate.
-
-* add_higher_order_vertex\ (v, x, y, z)
-
-  Add vertex v at given coordinate (x, y, z)
-  
-  *Arguments*
-      v (int)
-          The vertex (index).
-      x (float)
-          The x-coordinate.
-      y (float)
-          The y-coordinate.
-      z (float)
-          The z-coordinate.
+      local_index (int)
+          The vertex (local index).
+      global_index (int)
+          The vertex (global_index).
+      x (numpy.array(float))
+          The x-coordinates.
 ";
 
 %feature("docstring")  dolfin::MeshEditor::add_cell "
 **Overloaded versions**
+
+* add_cell\ (c, v0, v1)
+
+  Add cell with given vertices (1D)
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (numpy.array(int))
+          The first vertex (local index).
+      v1 (numpy.array(int))
+          The second vertex (local index).
+
+* add_cell\ (c, v0, v1, v2)
+
+  Add cell with given vertices (2D)
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (numpy.array(int))
+          The first vertex (local index).
+      v1 (numpy.array(int))
+          The second vertex (local index).
+      v2 (numpy.array(int))
+          The third vertex (local index).
+
+* add_cell\ (c, v0, v1, v2, v3)
+
+  Add cell with given vertices (3D)
+  
+  *Arguments*
+      c (int)
+          The cell (index).
+      v0 (numpy.array(int))
+          The first vertex (local index).
+      v1 (numpy.array(int))
+          The second vertex (local index).
+      v2 (numpy.array(int))
+          The third vertex (local index).
+      v3 (numpy.array(int))
+          The fourth vertex (local index).
 
 * add_cell\ (c, v)
 
@@ -2683,74 +2620,19 @@ Set boolean indicator inside MeshGeometry
       c (int)
           The cell (index).
       v (numpy.array(int))
-          The vertex indices
+          The vertex indices (local indices)
 
-* add_cell\ (c, v0, v1)
+* add_cell\ (local_index, global_index, v)
 
-  Add cell (interval) with given vertices
+  Add cell with given vertices
   
   *Arguments*
-      c (int)
+      local_index (int)
           The cell (index).
-      v0 (int)
-          Index of the first vertex.
-      v1 (int)
-          Index of the second vertex.
-
-* add_cell\ (c, v0, v1, v2)
-
-  Add cell (triangle) with given vertices
-  
-  *Arguments*
-      c (int)
-          The cell (index).
-      v0 (int)
-          Index of the first vertex.
-      v1 (int)
-          Index of the second vertex.
-      v2 (int)
-          Index of the third vertex.
-  
-  *Example*
-      .. note::
-      
-          No example code available for this function.
-
-* add_cell\ (c, v0, v1, v2, v3)
-
-  Add cell (tetrahedron) with given vertices
-  
-  *Arguments*
-      c (int)
-          The cell (index).
-      v0 (int)
-          Index of the first vertex.
-      v1 (int)
-          Index of the second vertex.
-      v2 (int)
-          Index of the third vertex.
-      v3 (int)
-          Index of the fourth vertex.
-";
-
-%feature("docstring")  dolfin::MeshEditor::add_higher_order_cell_data "
-Add higher order cell data (assume P2 triangle for now)
-
-*Arguments*
-    c (int)
-        The cell (index).
-    v0 (int)
-        Index of the first vertex.
-    v1 (int)
-        Index of the second vertex.
-    v2 (int)
-        Index of the third vertex.
-    v3 (int)
-        Index of the fourth vertex.
-    v4 (int)
-        Index of the fifth vertex.
-    v5 (int)
-        Index of the sixth vertex.
+      global_index (int)
+          The global (user) cell index.
+      v (numpy.array(int))
+          The vertex indices (local indices)
 ";
 
 %feature("docstring")  dolfin::MeshEditor::close "
@@ -3421,17 +3303,31 @@ vertex, edge, and facet-based colorings.
 
 %feature("docstring")  dolfin::MeshColoring::color_cells "
 Color the cells of a mesh for given coloring type, which can
-be one of \"vertex\", \"edge\" or \"facet\".
+be one of \"vertex\", \"edge\" or \"facet\". Coloring is saved in the
+mesh topology
 ";
 
 %feature("docstring")  dolfin::MeshColoring::color "
 Color the cells of a mesh for given coloring type specified by
-topological dimension, which can be one of 0, 1 or D - 1.
+topological dimension, which can be one of 0, 1 or D - 1. Coloring
+is saved in the mesh topology
 ";
 
 %feature("docstring")  dolfin::MeshColoring::compute_colors "
 Compute cell colors for given coloring type specified by
 topological dimension, which can be one of 0, 1 or D - 1.
+";
+
+%feature("docstring")  dolfin::MeshColoring::cell_colors "
+**Overloaded versions**
+
+* cell_colors\ (mesh, coloring_type)
+
+  Return a MeshFunction with the cell colors (used for visualisation)
+
+* cell_colors\ (mesh, coloring_type)
+
+  Return a MeshFunction with the cell colors (used for visualisation)
 ";
 
 %feature("docstring")  dolfin::MeshColoring::type_to_dim "
@@ -3490,22 +3386,6 @@ This class implements renumbering algorithms for meshes.
 
 %feature("docstring")  dolfin::LocalMeshData::str "
 Return informal string representation (pretty-print)
-";
-
-%feature("docstring")  dolfin::LocalMeshData::clear "
-Clear all data
-";
-
-%feature("docstring")  dolfin::LocalMeshData::extract_mesh_data "
-Copy data from mesh
-";
-
-%feature("docstring")  dolfin::LocalMeshData::broadcast_mesh_data "
-Broadcast mesh data from main process
-";
-
-%feature("docstring")  dolfin::LocalMeshData::receive_mesh_data "
-Receive mesh data from main process
 ";
 
 // Documentation extracted from: (module=mesh, header=SubDomain.h)
@@ -3770,29 +3650,5 @@ Get cell mapping from the boundary mesh to the original full mesh
 
 %feature("docstring")  dolfin::BoundaryMesh::vertex_map "
 Get vertex mapping from the boundary mesh to the original full mesh
-";
-
-// Documentation extracted from: (module=mesh, header=Interval.h)
-%feature("docstring")  dolfin::Interval "
-Interval mesh of the 1D line [a,b].  Given the number of cells
-(nx) in the axial direction, the total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-";
-
-%feature("docstring")  dolfin::Interval::Interval "
-Constructor
-
-*Arguments*
-    nx (int)
-        The number of cells.
-    a (float)
-        The minimum point (inclusive).
-    b (float)
-        The maximum point (inclusive).
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
 ";
 

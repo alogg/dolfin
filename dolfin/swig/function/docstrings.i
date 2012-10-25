@@ -517,17 +517,29 @@ Restrict function to local cell (compute expansion coefficients w)
 ";
 
 %feature("docstring")  dolfin::Function::compute_vertex_values "
-Compute values at all mesh vertices
+**Overloaded versions**
 
-*Arguments*
-    vertex_values (numpy.array(float))
-        The values at all vertices.
-    mesh (:py:class:`Mesh`)
-        The mesh.
+* compute_vertex_values\ (vertex_values, mesh)
+
+  Compute values at all mesh vertices
+  
+  *Arguments*
+      vertex_values (numpy.array(float))
+          The values at all vertices.
+      mesh (:py:class:`Mesh`)
+          The mesh.
+
+* compute_vertex_values\ (vertex_values)
+
+  Compute values at all mesh vertices
+  
+  *Arguments*
+      vertex_values (numpy.array(float))
+          The values at all vertices.
 ";
 
 %feature("docstring")  dolfin::Function::update "
-U[date off-process ghost coefficients
+Update off-process ghost coefficients
 ";
 
 // Documentation extracted from: (module=function, header=FunctionSpace.h)

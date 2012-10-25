@@ -420,7 +420,7 @@ solution.
 Compute error indicators
 
 *Arguments*
-    indicators (:py:class:`Vector`)
+    indicators (:py:class:`MeshFunction`)
         the error indicators (to be computed)
 
     u (:py:class:`Function`)
@@ -783,7 +783,7 @@ Mark cells based on indicators and given marking strategy
     markers (:py:class:`MeshFunction`)
         the cell markers (to be computed)
 
-    indicators (:py:class:`Vector`)
+    indicators (:py:class:`MeshFunction`)
         error indicators (one per cell)
 
     strategy (str)
@@ -800,7 +800,7 @@ Mark cells using Dorfler marking
     markers (:py:class:`MeshFunction`)
         the cell markers (to be computed)
 
-    indicators (:py:class:`Vector`)
+    indicators (:py:class:`MeshFunction`)
         error indicators (one per cell)
 
     fraction (float)

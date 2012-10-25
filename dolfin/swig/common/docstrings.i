@@ -613,11 +613,15 @@ finalisation of various sub systems, such as MPI and PETSc.
 ";
 
 %feature("docstring")  dolfin::SubSystemsManager::init_mpi "
-Initialise MPI
-";
+**Overloaded versions**
 
-%feature("docstring")  dolfin::SubSystemsManager::init_mpi_threaded "
-Initialise threaded version of MPI
+* init_mpi\ ()
+
+  Initialise MPI
+
+* init_mpi\ (argc, argv[], required_thread_level)
+
+  Initialise MPI with required level of thread support
 ";
 
 %feature("docstring")  dolfin::SubSystemsManager::init_petsc "
