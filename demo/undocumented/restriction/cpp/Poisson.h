@@ -1656,7 +1656,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     mesh, domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1667,7 +1668,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(mesh,
                                boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh)))
+                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                          *mesh, *domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1711,7 +1713,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     mesh, domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1722,7 +1725,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(mesh,
                                boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh)))
+                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                          *mesh, *domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1766,7 +1770,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     mesh, domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1777,7 +1782,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(mesh,
                                boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh)))
+                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                          *mesh, *domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1876,7 +1882,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     mesh, domain_markers, domain)))
   {
     // Do nothing
   }
@@ -1887,7 +1894,8 @@ public:
                      dolfin::uint domain):
     dolfin::FunctionSpace(mesh,
                                boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh)))
+                               boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                          *mesh, *domain_markers, domain)))
   {
     // Do nothing
   }
