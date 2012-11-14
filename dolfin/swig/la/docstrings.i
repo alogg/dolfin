@@ -715,6 +715,11 @@ Set operator (matrix)
 Set operator (matrix) and preconditioner matrix
 ";
 
+%feature("docstring")  dolfin::GenericLinearSolver::set_nullspace "
+Set null space of the operator (matrix). This is used to solve
+singular systems
+";
+
 %feature("docstring")  dolfin::GenericLinearSolver::solve "
 **Overloaded versions**
 
@@ -746,6 +751,17 @@ Set operator (matrix)
 * solve\ (A, x, b)
 
   Solve linear system Ax = b
+";
+
+// Documentation extracted from: (module=la, header=GenericPreconditioner.h)
+%feature("docstring")  dolfin::GenericPreconditioner "
+This class provides a common base preconditioners.
+";
+
+%feature("docstring")  dolfin::GenericPreconditioner::set_nullspace "
+Set the (approximate) null space of the preconditioner operator
+(matrix). This is required for certain preconditioner types,
+e.g. smoothed aggregation multigrid
 ";
 
 // Documentation extracted from: (module=la, header=PETScObject.h)
@@ -1193,11 +1209,6 @@ Divide matrix by given number
 Return linear algebra backend factory
 ";
 
-%feature("docstring")  dolfin::PETScMatrix::set_near_nullspace "
-Set (approximate) null space of the matrix. This is used by
-some preconditioners.
-";
-
 %feature("docstring")  dolfin::PETScMatrix::norm "
 Return norm of matrix
 ";
@@ -1250,8 +1261,22 @@ Create a particular preconditioner object
 Set the precondtioner type and parameters
 ";
 
+%feature("docstring")  dolfin::PETScPreconditioner::set_nullspace "
+Set the (approximate) null space of the preconditioner operator
+(matrix). This is required for certain preconditioner types,
+e.g. smoothed aggregation multigrid
+";
+
+%feature("docstring")  dolfin::PETScPreconditioner::nullspace "
+Return the PETSc null space
+";
+
 %feature("docstring")  dolfin::PETScPreconditioner::str "
 Return informal string representation (pretty-print)
+";
+
+%feature("docstring")  dolfin::PETScPreconditioner::preconditioners "
+Rerturn a list of available preconditioners
 ";
 
 %feature("docstring")  dolfin::PETScPreconditioner::default_parameters "
@@ -1821,6 +1846,11 @@ of PETSc.
   Set operator (matrix) and preconditioner matrix
 ";
 
+%feature("docstring")  dolfin::PETScKrylovSolver::set_nullspace "
+Set null space of the operator (matrix). This is used to solve
+singular systems
+";
+
 %feature("docstring")  dolfin::PETScKrylovSolver::get_operator "
 Get operator (matrix)
 ";
@@ -1863,14 +1893,6 @@ Return a list of available preconditioners
 
 %feature("docstring")  dolfin::PETScKrylovSolver::default_parameters "
 Default parameter values
-";
-
-%feature("docstring")  dolfin::PETScKrylovSolver::init "
-Initialize KSP solver
-";
-
-%feature("docstring")  dolfin::PETScKrylovSolver::write_report "
-Report the number of iterations
 ";
 
 // Documentation extracted from: (module=la, header=PETScLUSolver.h)
@@ -3317,7 +3339,7 @@ Set the precondtioner and matrix used in preconditioner
   Set the Trilonos preconditioner parameters list (for use from Python)
 ";
 
-%feature("docstring")  dolfin::TrilinosPreconditioner::set_null_space "
+%feature("docstring")  dolfin::TrilinosPreconditioner::set_nullspace "
 Set basis for the null space of the operator. Setting this
 is critical to the performance of some preconditioners, e.g. ML.
 The vectors spanning the null space are copied.
@@ -3987,6 +4009,11 @@ Set operator (matrix)
 Set operator (matrix) and preconditioner matrix
 ";
 
+%feature("docstring")  dolfin::KrylovSolver::set_nullspace "
+Set null space of the operator (matrix). This is used to solve
+singular systems
+";
+
 %feature("docstring")  dolfin::KrylovSolver::solve "
 **Overloaded versions**
 
@@ -4037,47 +4064,6 @@ Set operator (matrix)
 ";
 
 %feature("docstring")  dolfin::LUSolver::default_parameters "
-Default parameter values
-";
-
-// Documentation extracted from: (module=la, header=SingularSolver.h)
-%feature("docstring")  dolfin::SingularSolver "
-This class provides a linear solver for singular linear systems
-Ax = b where A has a one-dimensional null-space (kernel). This
-may happen for example when solving Poisson's equation with
-pure Neumann boundary conditions.
-
-The solver attempts to create an extended non-singular system
-by adding the constraint [1, 1, 1, ...]^T x = 0.
-
-If an optional mass matrix M is supplied, the solver attempts
-to create an extended non-singular system by adding the
-constraint m^T x = 0 where m is the lumped mass matrix. This
-corresponds to setting the average (integral) of the finite
-element function with coefficients x to zero.
-
-The solver makes not attempt to check that the null-space is
-indeed one-dimensional. It is also assumed that the system
-Ax = b retains its sparsity pattern between calls to solve().
-";
-
-%feature("docstring")  dolfin::SingularSolver::SingularSolver "
-Create linear solver
-";
-
-%feature("docstring")  dolfin::SingularSolver::solve "
-**Overloaded versions**
-
-* solve\ (A, x, b)
-
-  Solve linear system Ax = b
-
-* solve\ (A, x, b, M)
-
-  Solve linear system Ax = b using mass matrix M for setting constraint
-";
-
-%feature("docstring")  dolfin::SingularSolver::default_parameters "
 Default parameter values
 ";
 
