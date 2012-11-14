@@ -45,6 +45,24 @@ Return elapsed CPU time (should not be used internally in DOLFIN!)
 Return current CPU time used by process
 ";
 
+%feature("docstring")  dolfin::timings "
+Return a summary of timings and tasks in a Table, optionally clearing
+stored timings
+";
+
+%feature("docstring")  dolfin::list_timings "
+List a summary of timings and tasks, optionally clearing stored timings
+";
+
+%feature("docstring")  dolfin::summary "
+This function is deprecated, use list_timings
+";
+
+%feature("docstring")  dolfin::timing "
+Return timing (average) for given task, optionally clearing timing
+for task
+";
+
 // Documentation extracted from: (module=common, header=Array.h)
 %feature("docstring")  dolfin::Array "
 This class provides a simple wrapper for a pointer to an array. A

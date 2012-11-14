@@ -100,9 +100,9 @@ of vector must be consistent with dof map range.
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::set_x "
-Set dof entries in vector to the x[i] coordinate of the dof
-spatial coordinate. Parallel layout of vector must be consistent
-with dof map range.
+Set dof entries in vector to the value*x[i], where x[i] is the
+spatial coordinate of the dof. Parallel layout of vector must
+be consistent with dof map range.
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::dofs "
@@ -373,10 +373,12 @@ with dof map range.
 *Arguments*
     vector (:py:class:`GenericVector`)
         The vector to set.
-    mesh (:py:class:`Mesh`)
-        The mesh.
+    value (float)
+        The value to multiply to coordinate by.
     component (int)
         The coordinate index.
+    mesh (:py:class:`Mesh`)
+        The mesh.
 ";
 
 %feature("docstring")  dolfin::DofMap::dofs "
