@@ -41,6 +41,10 @@ Return parameter description
 Return true if parameter is set, return false otherwise
 ";
 
+%feature("docstring")  dolfin::Parameter::reset "
+Reset the parameter to empty, so that is_set() returns false.
+";
+
 %feature("docstring")  dolfin::Parameter::access_count "
 Return access count (number of times parameter has been accessed)
 ";
@@ -412,6 +416,12 @@ Clear parameter set
 
   Add an unset parameter of type T. For example, to create a unset
   parameter of type bool, do parameters.add<bool>(\"my_setting\")
+
+* add\ (key, min, max)
+
+  Add an unset parameter of type T with allows parameters. For
+  example, to create a unset parameter of type bool, do
+  parameters.add<bool>(\"my_setting\")
 
 * add\ (key, valid_values)
 

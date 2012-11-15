@@ -232,6 +232,10 @@ Check if global indices are available for entiries of dimension dim
   Return connectivity for given pair of topological dimensions
 ";
 
+%feature("docstring")  dolfin::MeshTopology::hash "
+Return hash based on the hash of cell-vertex connectivity
+";
+
 %feature("docstring")  dolfin::MeshTopology::str "
 Return informal string representation (pretty-print)
 ";
@@ -299,6 +303,15 @@ Clear all data
 
 %feature("docstring")  dolfin::MeshGeometry::init "
 Initialize coordinate list to given dimension and size
+";
+
+%feature("docstring")  dolfin::MeshGeometry::hash "
+Hash of coordinate values
+
+*Returns*
+    int
+        A tree-hashed value of the coordinates over all MPI processes
+
 ";
 
 %feature("docstring")  dolfin::MeshGeometry::str "
@@ -596,6 +609,22 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   *Arguments*
       local_mesh_data (LocalMeshData)
           Data from which to build the mesh.
+
+* Mesh\ (geometry, mesh_resolution)
+
+  Create mesh defined by Constructive Solid Geometry (CSG)
+  
+  *Arguments*
+      geometry (CSGGeometry)
+          The CSG geometry
+
+* Mesh\ (geometry, resolution)
+
+  Create mesh defined by Constructive Solid Geometry (CSG)
+  
+  *Arguments*
+      geometry (CSGGeometry)
+          The CSG geometry
 ";
 
 %feature("docstring")  dolfin::Mesh::operator= "
@@ -724,14 +753,9 @@ Get number of entities of given topological dimension.
           Coordinates of all vertices.
   
   *Example*
-      .. code-block:: python
+      .. note::
       
-          >>> mesh = dolfin.UnitSquare(1,1)
-          >>> mesh.coordinates()
-          array([[ 0.,  0.],
-                 [ 1.,  0.],
-                 [ 0.,  1.],
-                 [ 1.,  1.]])
+          No example code available for this function.
 
 * coordinates\ ()
 
@@ -746,12 +770,9 @@ Get cell connectivity.
         Connectivity for all cells.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(1,1)
-        >>> mesh.cells()
-        array([[0, 1, 3],
-              [0, 2, 3]])
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::size "
@@ -1238,6 +1259,16 @@ Compute maximum cell diameter.
         0.70710678118654757
 ";
 
+%feature("docstring")  dolfin::Mesh::hash "
+Compute hash of mesh, currently based on the has of the mesh
+geometry and mesh topology.
+
+*Returns*
+    int
+        A tree-hashed value of the coordinates over all MPI processes
+
+";
+
 %feature("docstring")  dolfin::Mesh::str "
 Informal string representation.
 
@@ -1255,24 +1286,6 @@ Informal string representation.
         >>> mesh = dolfin.UnitSquare(2,2)
         >>> mesh.str(False)
         '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
-";
-
-%feature("docstring")  dolfin::Mesh::coordinates_hash "
-Hash of coordinate values
-
-*Returns*
-    int
-        A tree-hashed value of the coordinates over all MPI processes
-
-";
-
-%feature("docstring")  dolfin::Mesh::topology_hash "
-Hash of cell vertex indices
-
-*Returns*
-    int
-        A tree-hashed value of the topology over all MPI processes
-
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshEntity.h)
@@ -1966,6 +1979,20 @@ Compute dot product with given vector
         No example code available for this function.
 ";
 
+%feature("docstring")  dolfin::Point::rotate "
+Rotate around a given axis
+
+*Arguments*
+    a (:py:class:`Point`)
+        The axis to rotate around. Must be unit length.
+    theta (_double_)
+        The rotation angle.
+
+*Returns*
+    Point
+        The rotated point.
+";
+
 %feature("docstring")  dolfin::Point::str "
 Return informal string representation (pretty-print)
 
@@ -2388,6 +2415,10 @@ Clear all data
 
 %feature("docstring")  dolfin::MeshConnectivity::set_global_size "
 Set global number of connections for all local entities
+";
+
+%feature("docstring")  dolfin::MeshConnectivity::hash "
+Hash of connections
 ";
 
 %feature("docstring")  dolfin::MeshConnectivity::str "
@@ -3090,17 +3121,10 @@ entities of dimension 0 (vertices) and dimension D (cells).
 Create global entity indices for entities of dimension d
 ";
 
-%feature("docstring")  dolfin::MeshPartitioning::partition "
-Create a partitioned mesh based on local mesh data
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::build_mesh_domains "
-Create and attach distributed MeshDomains from local_data
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::build_mesh_value_collection "
-Create and attach distributed MeshDomains from local_data
-[entry, (cell_index, local_index, value)]
+%feature("docstring")  dolfin::MeshPartitioning::num_connected_cells "
+Compute number of cells connected to each facet (globally). Facets
+on internal boundaries will be connected to two cells (with the
+cells residing on neighboring processes)
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshValueCollection.h)
