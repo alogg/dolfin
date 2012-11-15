@@ -1655,7 +1655,8 @@ public:
   CoefficientSpace_f(const dolfin::Restriction& restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
     // Do nothing
   }
@@ -1664,7 +1665,8 @@ public:
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Restriction> restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     restriction)))
   {
     // Do nothing
   }
@@ -1706,7 +1708,8 @@ public:
   Form_a_FunctionSpace_0(const dolfin::Restriction& restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
     // Do nothing
   }
@@ -1715,7 +1718,8 @@ public:
   Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     restriction)))
   {
     // Do nothing
   }
@@ -1757,7 +1761,8 @@ public:
   Form_a_FunctionSpace_1(const dolfin::Restriction& restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
     // Do nothing
   }
@@ -1766,7 +1771,8 @@ public:
   Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Restriction> restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     restriction)))
   {
     // Do nothing
   }
@@ -1863,7 +1869,8 @@ public:
   Form_L_FunctionSpace_0(const dolfin::Restriction& restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
     // Do nothing
   }
@@ -1872,7 +1879,8 @@ public:
   Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *restriction)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()),
+                                                                                     restriction)))
   {
     // Do nothing
   }
