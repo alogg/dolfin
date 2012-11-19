@@ -24,36 +24,17 @@
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver "
 An abstract class for goal-oriented adaptive solution of
 variational problems.
+
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve "
-**Overloaded versions**
+Solve such that the functional error is less than the given
+tolerance. Note that each call to solve is based on the
+leaf-node of the variational problem
 
-* solve\ (tol, goal, control)
-
-  Solve such that the error measured in the functional 'goal' is
-  less than the given tolerance using the ErrorControl object
-  'control'
-  
-  *Arguments*
-      tol (float)
-          The error tolerance
-      goal (:py:class:`Form`)
-          The goal functional
-      control (:py:class:`ErrorControl`)
-          The error controller
-
-* solve\ (tol, M)
-
-  Solve such that the error measured in the goal functional 'M'
-  is less than the given tolerance using the GoalFunctional's
-  ErrorControl object. Must be overloaded in subclass.
-  
-  *Arguments*
-      tol (float)
-          The error tolerance
-      goal (:py:class:`GoalFunctional`)
-          The goal functional
+*Arguments*
+    tol (float)
+        The error tolerance
 ";
 
 %feature("docstring")  dolfin::GenericAdaptiveVariationalSolver::solve_primal "
@@ -157,33 +138,38 @@ problem and subsequent h-adaptivity.
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::AdaptiveLinearVariationalSolver "
 **Overloaded versions**
 
-* AdaptiveLinearVariationalSolver\ (problem)
+* AdaptiveLinearVariationalSolver\ (problem, goal)
 
   Create AdaptiveLinearVariationalSolver
   
   *Arguments*
       problem (:py:class:`LinearVariationalProblem`)
           The primal problem
+      goal (:py:class:`GoalFunctional`)
+          The goal functional
 
-* AdaptiveLinearVariationalSolver\ (problem)
+* AdaptiveLinearVariationalSolver\ (problem, goal)
 
-  Create AdaptiveLinearVariationalSolver
+  Create AdaptiveLinearVariationalSolver (shared ptr version)
   
   *Arguments*
       problem (:py:class:`LinearVariationalProblem`)
           The primal problem
-";
+      goal (:py:class:`GoalFunctional`)
+          The goal functional
 
-%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve "
-Solve problem such that the error measured in the goal
-functional 'M' is less than the given tolerance using the
-GoalFunctional's ErrorControl object.
+* AdaptiveLinearVariationalSolver\ (problem, goal, control)
 
-*Arguments*
-    tol (float)
-        The error tolerance
-    goal (:py:class:`GoalFunctional`)
-        The goal functional
+  Create AdaptiveLinearVariationalSolver from variational
+  problem, goal form and error control instance
+  
+  *Arguments*
+      problem (:py:class:`LinearVariationalProblem`)
+          The primal problem
+      goal (:py:class:`Form`)
+          The goal functional
+      control (:py:class:`ErrorControl`)
+          An error controller object
 ";
 
 %feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::solve_primal "
@@ -232,6 +218,16 @@ Return the number of degrees of freedom for primal problem
         The number of degrees of freedom
 ";
 
+%feature("docstring")  dolfin::AdaptiveLinearVariationalSolver::init "
+Helper function for instance initialization
+
+*Arguments*
+   problem (:py:class:`LinearVariationalProblem`)
+       The primal problem
+   u (:py:class:`GoalFunctional`)
+       The goal functional
+";
+
 // Documentation extracted from: (module=adaptivity, header=AdaptiveNonlinearVariationalSolver.h)
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver "
 A class for goal-oriented adaptive solution of nonlinear
@@ -261,33 +257,38 @@ problem and subsequent h-adaptivity.
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::AdaptiveNonlinearVariationalSolver "
 **Overloaded versions**
 
-* AdaptiveNonlinearVariationalSolver\ (problem)
+* AdaptiveNonlinearVariationalSolver\ (problem, goal)
 
   Create AdaptiveNonlinearVariationalSolver
   
   *Arguments*
       problem (:py:class:`NonlinearVariationalProblem`)
           The primal problem
+      goal (:py:class:`GoalFunctional`)
+          The goal functional
 
-* AdaptiveNonlinearVariationalSolver\ (problem)
+* AdaptiveNonlinearVariationalSolver\ (problem, goal)
 
-  Create AdaptiveNonlinearVariationalSolver
+  Create AdaptiveNonlinearVariationalSolver (shared ptr version)
   
   *Arguments*
       problem (:py:class:`NonlinearVariationalProblem`)
           The primal problem
-";
+      goal (:py:class:`GoalFunctional`)
+          The goal functional
 
-%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve "
-Solve problem such that the error measured in the goal
-functional 'M' is less than the given tolerance using the
-GoalFunctional's ErrorControl object.
+* AdaptiveNonlinearVariationalSolver\ (problem, goal, control)
 
-*Arguments*
-    tol (float)
-        The error tolerance
-    goal (:py:class:`GoalFunctional`)
-        The goal functional
+  Create AdaptiveLinearVariationalSolver from variational
+  problem, goal form and error control instance
+  
+  *Arguments*
+      problem (:py:class:`NonlinearVariationalProblem`)
+          The primal problem
+      goal (:py:class:`Form`)
+          The goal functional
+      control (:py:class:`ErrorControl`)
+          An error controller object
 ";
 
 %feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::solve_primal "
@@ -334,6 +335,16 @@ Return the number of degrees of freedom for primal problem
 *Returns*
     _uint_
         The number of degrees of freedom
+";
+
+%feature("docstring")  dolfin::AdaptiveNonlinearVariationalSolver::init "
+Helper function for instance initialization
+
+*Arguments*
+   problem (:py:class:`NonlinearVariationalProblem`)
+       The primal problem
+   u (:py:class:`GoalFunctional`)
+       The goal functional
 ";
 
 // Documentation extracted from: (module=adaptivity, header=GoalFunctional.h)
