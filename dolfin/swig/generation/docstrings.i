@@ -314,45 +314,6 @@ This class is deprecated. Use :py:class:`UnitCircleMesh`.
         the type of transformation used.
 ";
 
-// Documentation extracted from: (module=generation, header=UnitSphereMesh.h)
-%feature("docstring")  dolfin::UnitSphereMesh "
-Tetrahedral mesh of the unit sphere.
-";
-
-%feature("docstring")  dolfin::UnitSphereMesh::UnitSphereMesh "
-WARNING:
-
-The UnitSphereMesh class is broken and should not be used for computations.
-It generates meshes of very bad quality (very thin tetrahedra).
-
-Create a uniform finite element :py:class:`Mesh` over the unit sphere.
-
-*Arguments*
-    n (int)
-        Resolution of the mesh.
-";
-
-// Documentation extracted from: (module=generation, header=UnitSphere.h)
-%feature("docstring")  dolfin::UnitSphere "
-Tetrahedral mesh of the unit sphere.
-This class has been deprecated. Use :py:class:`UnitSphereMesh`.
-";
-
-%feature("docstring")  dolfin::UnitSphere::UnitSphere "
-WARNING:
-
-The UnitSphere class is broken and should not be used for computations.
-It generates meshes of very bad quality (very thin tetrahedra).
-
-Create a uniform finite element :py:class:`Mesh` over the unit sphere.
-
-*Arguments*
-    n (int)
-        Resolution of the mesh.
-
-This class is deprecated. Use :py:class:`UnitSquareMesh`.
-";
-
 // Documentation extracted from: (module=generation, header=BoxMesh.h)
 %feature("docstring")  dolfin::BoxMesh "
 Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
