@@ -150,6 +150,9 @@ call to the plot() method. The following parameters exist:
                                             For example: \"ww++m\" shows the data
                                             as large points on a wireframe
                                             mesh.
+ hide_above     Double                      If either of these are set, scalar
+ hide_below     Double                      values above or below will not be
+                                            shown in the plot.
 ============= ============ =============== =================================
 
 The default visualization mode for the different plot types are as follows:

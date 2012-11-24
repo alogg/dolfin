@@ -50,6 +50,11 @@ Return the maximum dimension of the local finite element function space
 Return number of facet dofs
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::restriction "
+Restriction if any. If the dofmap is not restricted, a null
+pointer is returned.
+";
+
 %feature("docstring")  dolfin::GenericDofMap::ownership_range "
 Return the ownership range (dofs in this range are owned by this process)
 ";
@@ -143,6 +148,16 @@ views and copies, are supported.
       mesh (:py:class:`Mesh`)
           The mesh.
 
+* DofMap\ (ufc_dofmap, restriction)
+
+  Create restricted dof map on mesh (data is not shared)
+  
+  *Arguments*
+      ufc_dofmap (ufc::dofmap)
+          The ufc::dofmap.
+      restriction (:py:class:`Restriction`)
+          The restriction.
+
 * DofMap\ (dofmap)
 
   Copy constructor
@@ -153,12 +168,20 @@ views and copies, are supported.
 ";
 
 %feature("docstring")  dolfin::DofMap::is_view "
-True if dof map is a view into another map
+True iff dof map is a view into another map
 
 *Returns*
     bool
         True if the dof map is a sub-dof map (a view into
         another map).
+";
+
+%feature("docstring")  dolfin::DofMap::is_restricted "
+True iff dof map is restricted
+
+*Returns*
+    bool
+        True iff dof map is restricted
 ";
 
 %feature("docstring")  dolfin::DofMap::needs_mesh_entities "
@@ -188,7 +211,7 @@ Return the dimension of the local finite element function
 space on a cell
 
 *Arguments*
-    cell_index (int)
+    cell_index (std::size_t)
         Index of cell
 
 *Returns*
@@ -246,7 +269,7 @@ Return map from all shared dofs to the processes (not including the current
 process) that share it.
 
 *Returns*
-    boost::unordered_map<uint, std::vector<uint> >
+    boost::unordered_map<std::size_t, std::vector<std::size_t> >
         The map from dofs to list of processes
 ";
 
@@ -254,7 +277,7 @@ process) that share it.
 Return set of all neighbouring processes.
 
 *Returns*
-    boost::unordered_set<uint>
+    set of int
         The set of processes
 ";
 
@@ -262,11 +285,11 @@ Return set of all neighbouring processes.
 Local-to-global mapping of dofs on a cell
 
 *Arguments*
-    cell_index (int)
+    cell_index (std::size_t)
         The cell index.
 
 *Returns*
-    numpy.array(int)
+    std::vector<std::size_t>
         Local-to-global mapping of dofs.
 ";
 
@@ -344,7 +367,7 @@ Extract subdofmap component
 Create a \"collapsed\" dofmap (collapses a sub-dofmap)
 
 *Arguments*
-    collapsed_map (boost::unordered_map<uint, uint>)
+    collapsed_map (boost::unordered_map<std::size_t, std::size_t>)
         The \"collapsed\" map.
     mesh (:py:class:`Mesh`)
         The mesh.
@@ -385,7 +408,7 @@ with dof map range.
 Return the set of dof indices
 
 *Returns*
-    boost::unordered_set<dolfin::uint>
+    boost::unordered_set<dolfin::std::size_t>
         The set of dof indices.
 ";
 
@@ -394,7 +417,7 @@ Return the underlying dof map data. Intended for internal library
 use only.
 
 *Returns*
-    std::vector<std::vector<dolfin::uint> >
+    std::vector<std::vector<dolfin::std::size_t> >
         The local-to-global map for each cell.
 ";
 
@@ -747,7 +770,7 @@ three possibilties are \"topological\", \"geometric\" and
           The value.
       sub_domains (:py:class:`MeshFunction`)
           Subdomain markers
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain index (number)
       method (str)
           Optional argument: A string specifying the
@@ -764,7 +787,7 @@ three possibilties are \"topological\", \"geometric\" and
           The value.
       sub_domains (:py:class:`MeshFunction`)
           Subdomain markers
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain index (number)
       method (str)
           Optional argument: A string specifying the
@@ -779,7 +802,7 @@ three possibilties are \"topological\", \"geometric\" and
           The function space.
       g (:py:class:`GenericFunction`)
           The value.
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain index (number)
       method (str)
           Optional argument: A string specifying the
@@ -794,7 +817,7 @@ three possibilties are \"topological\", \"geometric\" and
           The function space.
       g (:py:class:`GenericFunction`)
           The value.
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain index (number)
       method (str)
           Optional argument: A string specifying the
@@ -810,7 +833,7 @@ three possibilties are \"topological\", \"geometric\" and
           The function space.
       g (:py:class:`GenericFunction`)
           The value.
-      markers (numpy.array((int, int)))
+      markers (std::vector<std::pair<std::size_t, std::size_t> >)
           Subdomain markers (cells, local facet number)
       method (str)
           Optional argument: A string specifying the
@@ -893,7 +916,7 @@ facet on the boundary. To ensure all local boundary dofs are marked,
 it is necessary to call gather() on the returned boundary values.
 
 *Arguments*
-    boundary_values (boost::unordered_map<uint, double>)
+    boundary_values (boost::unordered_map<std::size_t, double>)
         Map from dof to boundary value.
     method (str)
         Optional argument: A string specifying which
@@ -906,7 +929,7 @@ Get boundary values from neighbour processes. If a method other than
 marked on all processes.
 
 *Arguments*
-    boundary_values (boost::unordered_map<uint, double>)
+    boundary_values (boost::unordered_map<std::size_t, double>)
         Map from dof to boundary value.
 ";
 
@@ -937,7 +960,7 @@ changes. Useful for non-diagonals.
 Return boundary markers
 
 *Returns*
-    numpy.array((int, int))
+    std::vector<std::pair<std::size_t, std::size_t> >
         Boundary markers (facets stored as pairs of cells and
         local facet numbers).
 ";
@@ -1137,7 +1160,7 @@ Rebuild mapping between dofs
 
   Compute dof pairs (master dof, slave dof)
 
-* compute_dof_pairs\ (uint>, dof_pairs)
+* compute_dof_pairs\ (dof_pairs)
 
   Compute dof pairs (master dof, slave dof)
 ";
@@ -1238,47 +1261,56 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::solve "
 **Overloaded versions**
 
-* solve\ (equation, u, params=empty_parameters)
+* solve\ (equation, u, parameters=empty_parameters)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
-  variational problem F(u; v) = 0 without boundary conditions
-  Parameters to the Linear/Nonlinear VariationalSolver can be passed
-  using params
+  variational problem F(u; v) = 0 without boundary conditions.
+  
+  Optional parameters can be passed to the LinearVariationalSolver
+  or NonlinearVariationalSolver classes.
 
-* solve\ (equation, u, bc, params=empty_parameters)
-
-  Solve linear variational problem a(u, v) == L(v) or nonlinear
-  variational problem F(u; v) = 0 with a single boundary condition
-  Parameters to the Linear/Nonlinear VariationalSolver can be passed
-  using params
-
-* solve\ (equation, u, bcs, params=empty_parameters)
+* solve\ (equation, u, bc, parameters=empty_parameters)
 
   Solve linear variational problem a(u, v) == L(v) or nonlinear
-  variational problem F(u; v) = 0 with a list of boundary conditions
-  Parameters to the Linear/Nonlinear VariationalSolver can be passed
-  using params
+  variational problem F(u; v) = 0 with a single boundary condition.
+  
+  Optional parameters can be passed to the LinearVariationalSolver
+  or NonlinearVariationalSolver classes.
 
-* solve\ (equation, u, J, params=empty_parameters)
+* solve\ (equation, u, bcs, parameters=empty_parameters)
+
+  Solve linear variational problem a(u, v) == L(v) or nonlinear
+  variational problem F(u; v) = 0 with a list of boundary conditions.
+  
+  Optional parameters can be passed to the LinearVariationalSolver
+  or NonlinearVariationalSolver classes.
+
+* solve\ (equation, u, J, parameters=empty_parameters)
 
   Solve nonlinear variational problem F(u; v) == 0 without boundary
   conditions. The argument J should provide the Jacobian bilinear
-  form J = dF/du. Parameters to the Nonlinear VariationalSolver
-  can be passed using params
+  form J = dF/du.
+  
+  Optional parameters can be passed to the LinearVariationalSolver
+  or NonlinearVariationalSolver classes.
 
-* solve\ (equation, u, bc, J, params=empty_parameters)
+* solve\ (equation, u, bc, J, parameters=empty_parameters)
 
   Solve nonlinear variational problem F(u; v) == 0 with a single
   boundary condition. The argument J should provide the Jacobian
-  bilinear form J = dF/du. Parameters to the Nonlinear
-  VariationalSolver can be passed using params
+  bilinear form J = dF/du.
+  
+  Optional parameters can be passed to the LinearVariationalSolver
+  or NonlinearVariationalSolver classes.
 
-* solve\ (equation, u, bcs, J, params=empty_parameters)
+* solve\ (equation, u, bcs, J, parameters=empty_parameters)
 
   Solve nonlinear variational problem F(u; v) == 0 with a list of
   boundary conditions. The argument J should provide the Jacobian
-  bilinear form J = dF/du. Parameters to the Nonlinear
-  VariationalSolver can be passed using params
+  bilinear form J = dF/du.
+  
+  Optional parameters can be passed to the LinearVariationalSolver
+  or NonlinearVariationalSolver classes.
 ";
 
 // Documentation extracted from: (module=fem, header=Form.h)
@@ -1366,11 +1398,11 @@ Return coloring type for colored (multi-threaded) assembly of form
 over a mesh entity of a given dimension
 
 *Arguments*
-    entity_dim (int)
+    entity_dim (std::size_t)
         Dimension.
 
 *Returns*
-    numpy.array(int)
+    std::vector<std::size_t>
         Coloring type.
 ";
 
