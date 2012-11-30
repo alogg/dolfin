@@ -486,7 +486,7 @@ Return value dimension for given axis
         The index of the axis.
 
 *Returns*
-    int
+    std::size_t
         The value dimension.
 ";
 
@@ -648,7 +648,7 @@ Return dofmap
 Return dimension of function space
 
 *Returns*
-    int
+    std::size_t
         The dimension of the function space.
 ";
 
@@ -703,7 +703,7 @@ Extract subspace for component
   from new to old dofs
   
   *Arguments*
-      collapsed_dofs (boost::unordered_map<uint, uint>)
+      collapsed_dofs (boost::unordered_map<std::size_t, std::size_t>)
           The map from new to old dofs.
   
   *Returns*

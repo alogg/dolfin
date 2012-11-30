@@ -526,14 +526,6 @@ Create communicator (copy of MPI_COMM_WORLD)
 Dereference operator
 ";
 
-%feature("docstring")  dolfin::MPINonblocking "
-This class provides stateful (single communicator) non-blocking MPI functionality.
-";
-
-%feature("docstring")  dolfin::MPINonblocking::MPINonblocking "
-Create instance with associated MPI_WORLD communicator
-";
-
 %feature("docstring")  dolfin::MPINonblocking::send_recv "
 Non-blocking send and receive
 ";
@@ -543,7 +535,8 @@ Wait for all requests to finish
 ";
 
 %feature("docstring")  dolfin::MPI "
-This class provides utility functions for easy communcation with MPI.
+This class provides utility functions for easy communcation
+with MPI.
 ";
 
 %feature("docstring")  dolfin::MPI::process_number "
@@ -555,11 +548,13 @@ Return number of processes
 ";
 
 %feature("docstring")  dolfin::MPI::is_broadcaster "
-Determine whether we should broadcast (based on current parallel policy)
+Determine whether we should broadcast (based on current parallel
+policy)
 ";
 
 %feature("docstring")  dolfin::MPI::is_receiver "
-Determine whether we should receive (based on current parallel policy)
+Determine whether we should receive (based on current parallel
+policy)
 ";
 
 %feature("docstring")  dolfin::MPI::barrier "
@@ -575,18 +570,47 @@ Set a barrier (synchronization point)
 
 * distribute\ (in_values, destinations, out_values)
 
-  Distribute local arrays on all processors according to given partition
+  Distribute local arrays on all processors according to given
+  partition
 
 * distribute\ (group, in_values_per_dest, out_values_per_src)
 
-  Distribute local arrays on a group of processes (typically neighbours
-  from GenericDofMap::neighbours()). It is important that each process'
-  group includes exactly the processes that has it in their groups,
-  otherwise it will deadlock.
+  Distribute local arrays on a group of processes (typically
+  neighbours from GenericDofMap::neighbours()). It is important
+  that each process' group includes exactly the processes that
+  has it in their groups, otherwise it will deadlock.
+";
+
+%feature("docstring")  dolfin::MPI::broadcast "
+Broadcast value from broadcaster process to all processes
 ";
 
 %feature("docstring")  dolfin::MPI::scatter "
 Scatter in_values[i] to process i
+";
+
+%feature("docstring")  dolfin::MPI::gather "
+Gather values on one process (wrapper for boost::mpi::gather)
+";
+
+%feature("docstring")  dolfin::MPI::all_gather "
+Gather values, one from each process (wrapper for boost::mpi::all_gather)
+";
+
+%feature("docstring")  dolfin::MPI::max "
+Return global max value
+";
+
+%feature("docstring")  dolfin::MPI::min "
+Return global min value
+";
+
+%feature("docstring")  dolfin::MPI::sum "
+Sum values and return sum
+";
+
+%feature("docstring")  dolfin::MPI::all_reduce "
+All reduce
 ";
 
 %feature("docstring")  dolfin::MPI::global_offset "
@@ -595,10 +619,10 @@ reduction op)
 ";
 
 %feature("docstring")  dolfin::MPI::send_recv "
-Send-receive data. Note that if the number of posted send-receives may
-differ between processes, another interface (such as MPINonblocking::send_recv)
-must be used since duplicating the communicator requires participation
-from all processes.
+Send-receive data. Note that if the number of posted send-receives
+may differ between processes, another interface (such as
+MPINonblocking::send_recv) must be used since duplicating the
+communicator requires participation from all processes.
 ";
 
 %feature("docstring")  dolfin::MPI::local_range "
@@ -659,5 +683,25 @@ finalisation of various sub systems, such as MPI and PETSc.
 %feature("docstring")  dolfin::SubSystemsManager::finalize "
 Finalize subsytems. This will be called by the destructor, but in
 special cases it may be necessary to call finalize() explicitly.
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::responsible_mpi "
+Return true if DOLFIN intialised MPI (and is therefore responsible
+for finalization)
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::responsible_petsc "
+Return true if DOLFIN intialised PETSc (and is therefore
+responsible for finalization)
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::mpi_initialized "
+Check if MPI has been initialised (returns true if MPI has been
+initialised, even if it is later finalised)
+";
+
+%feature("docstring")  dolfin::SubSystemsManager::mpi_finalized "
+Check if MPI has been finalized (returns true if MPI has been
+finalised)
 ";
 

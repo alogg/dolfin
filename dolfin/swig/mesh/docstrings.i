@@ -480,7 +480,7 @@ Clear all data
   *Arguments*
       name (str)
           The name of the array.
-      size (unit)
+      size (std::size_t)
           The size (length) of the array.
   
   *Returns*
@@ -639,106 +639,82 @@ Assignment operator
 Get number of vertices in mesh.
 
 *Returns*
-    int
+    std::size_t
         Number of vertices.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.num_vertices()
-        9
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::num_edges "
 Get number of edges in mesh.
 
 *Returns*
-    int
+    std::size_t
         Number of edges.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.num_edges()
-        0
-        >>> mesh.init(1)
-        16
-        >>> mesh.num_edges()
-        16
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::num_faces "
 Get number of faces in mesh.
 
 *Returns*
-    int
+    std::size_t
         Number of faces.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.num_faces()
-        8
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::num_facets "
 Get number of facets in mesh.
 
 *Returns*
-    int
+    std::size_t
         Number of facets.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.num_facets()
-        0
-        >>> mesh.init(0,1)
-        >>> mesh.num_facets()
-        16
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::num_cells "
 Get number of cells in mesh.
 
 *Returns*
-    int
+    std::size_t
         Number of cells.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.num_cells()
-        8
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::num_entities "
 Get number of entities of given topological dimension.
 
 *Arguments*
-    d (int)
+    d (std::size_t)
         Topological dimension.
 
 *Returns*
-    int
+    std::size_t
         Number of entities of topological dimension d.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.init(0,1)
-        >>> mesh.num_entities(0)
-        9
-        >>> mesh.num_entities(1)
-        16
-        >>> mesh.num_entities(2)
-        8
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::coordinates "
@@ -766,7 +742,7 @@ Get number of entities of given topological dimension.
 Get cell connectivity.
 
 *Returns*
-    numpy.array(int)
+    std::vector<std::size_t>
         Connectivity for all cells.
 
 *Example*
@@ -1066,7 +1042,7 @@ Snap boundary vertices of mesh to match given sub domain.
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
-  CellFunction<unsigned int> named \"cell colors\" as mesh data which
+  CellFunction<std::size_t> named \"cell colors\" as mesh data which
   holds the colors of the mesh.
   
   *Arguments*
@@ -1076,18 +1052,18 @@ Snap boundary vertices of mesh to match given sub domain.
           \"facet\".
   
   *Returns*
-      MeshFunction<unsigned int>
+      MeshFunction<std::size_t>
           The colors as a mesh function over the cells of the mesh.
 
 * color\ (coloring_type)
 
   Color the cells of the mesh such that no two neighboring cells
   share the same color. A colored mesh keeps a
-  CellFunction<unsigned int> named \"cell colors\" as mesh data which
+  CellFunction<std::size_t> named \"cell colors\" as mesh data which
   holds the colors of the mesh.
   
   *Arguments*
-      coloring_type (numpy.array(int))
+      coloring_type (std::vector<std::size_t>)
           Coloring type given as list of topological dimensions,
           specifying what relation makes two mesh entinties neighbors.
   
@@ -1107,7 +1083,7 @@ Snap boundary vertices of mesh to match given sub domain.
       point (:py:class:`Point`)
           A :py:class:`Point` object.
   
-      cells (set of int)
+      cells (std::set<std::size_t>)
           A set of indices of all intersected cells.
 
 * intersected_cells\ (points, cells)
@@ -1118,7 +1094,7 @@ Snap boundary vertices of mesh to match given sub domain.
       points (list of :py:class:`Point`)
           A vector of :py:class:`Point` objects.
   
-      cells (set of int)
+      cells (std::set<std::size_t>)
           A set of indices of all intersected cells.
 
 * intersected_cells\ (entity, cells)
@@ -1129,7 +1105,7 @@ Snap boundary vertices of mesh to match given sub domain.
       entity (:py:class:`MeshEntity`)
           A :py:class:`MeshEntity` object.
   
-      cells (numpy.array(int))
+      cells (std::vector<std::size_t>)
           A vector of indices of all intersected cells.
 
 * intersected_cells\ (entities, cells)
@@ -1140,7 +1116,7 @@ Snap boundary vertices of mesh to match given sub domain.
       entities (list of :py:class:`MeshEntity`)
           A vector of :py:class:`MeshEntity` objects.
   
-      cells (set of int)
+      cells (std::set<std::size_t>)
           A vector of indices of all intersected cells.
 
 * intersected_cells\ (mesh, cells)
@@ -1151,7 +1127,7 @@ Snap boundary vertices of mesh to match given sub domain.
       mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
   
-      cells (set of int)
+      cells (std::set<std::size_t>)
           A set of indices of all intersected cells.
 ";
 
@@ -1189,16 +1165,13 @@ Find the cell in the mesh closest to the given point.
         A :py:class:`Point` object.
 
 *Returns*
-    int
+    std::size_t
         The index of the closest cell.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(1, 1)
-        >>> point = dolfin.Point(0.0, 2.0)
-        >>> mesh.closest_cell(point)
-        1
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::closest_point_and_cell "
@@ -1209,7 +1182,7 @@ Find the point and corresponding cell closest to the given point.
         A :py:class:`Point` object.
 
 *Returns*
-    Swig Object< std::pair<:py:class:`Point`, int> >
+    std::pair<:py:class:`Point`, std::size_t>
         A pair consisting of the closest point and corresponding cell index.
 ";
 
@@ -1264,7 +1237,7 @@ Compute hash of mesh, currently based on the has of the mesh
 geometry and mesh topology.
 
 *Returns*
-    int
+    std::size_t
         A tree-hashed value of the coordinates over all MPI processes
 
 ";
@@ -2895,7 +2868,7 @@ Return true if empty
 Return size (number of entities)
 
 *Returns*
-    int
+    std::size_t
         The size.
 ";
 
@@ -2951,7 +2924,7 @@ Return size (number of entities)
   Return value at given index
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The index.
   
   *Returns*
@@ -2963,7 +2936,7 @@ Return size (number of entities)
   Return value at given index  (const version)
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The index.
   
   *Returns*
@@ -2990,7 +2963,7 @@ Return size (number of entities)
   *Arguments*
       dim (int)
           The dimension.
-      size (int)
+      size (std::size_t)
           The size.
 
 * init\ (mesh, dim)
@@ -3013,7 +2986,7 @@ Return size (number of entities)
           The mesh.
       dim (int)
           The dimension.
-      size (int)
+      size (std::size_t)
           The size.
 ";
 
@@ -3025,7 +2998,7 @@ Return size (number of entities)
   Set value at given index
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The index.
       value (T)
           The value.
@@ -3225,7 +3198,7 @@ Return true if the subset is empty
 Return size (number of entities in subset)
 
 *Returns*
-    int
+    std::size_t
         The size.
 ";
 
@@ -3238,7 +3211,7 @@ Return size (number of entities in subset)
   a local entity index
   
   *Arguments*
-      cell_index (int)
+      cell_index (std::size_t)
           The index of the cell.
       local_entity (int)
           The local index of the entity relative to the cell.
@@ -3255,7 +3228,7 @@ Return size (number of entities in subset)
   Set value for given entity index
   
   *Arguments*
-      entity_index (int)
+      entity_index (std::size_t)
           Index of the entity.
       value (T)
           The value of the marker.
@@ -3273,7 +3246,7 @@ Get marker value for given entity defined by a cell index and
 a local entity index
 
 *Arguments*
-    cell_index (int)
+    cell_index (std::size_t)
         The index of the cell.
     local_entity (int)
         The local index of the entity relative to the cell.
@@ -3291,7 +3264,7 @@ a local entity index
   Get all values
   
   *Returns*
-      std::map<std::pair<uint, uint>, T>
+      std::map<std::pair<std::size_t, std::size_t>, T>
           A map from positions to values.
 
 * values\ ()
@@ -3299,7 +3272,7 @@ a local entity index
   Get all values (const version)
   
   *Returns*
-      std::map<std::pair<uint, uint>, T>
+      std::map<std::pair<std::size_t, std::size_t>, T>
           A map from positions to values.
 ";
 
@@ -3416,7 +3389,7 @@ Return informal string representation (pretty-print)
 %feature("docstring")  dolfin::SubDomain "
 This class defines the interface for definition of subdomains.
 Alternatively, subdomains may be defined by a :py:class:`Mesh` and a
-:py:class:`MeshFunction` <uint> over the mesh.
+:py:class:`MeshFunction` <std::size_t> over the mesh.
 ";
 
 %feature("docstring")  dolfin::SubDomain::SubDomain "
@@ -3457,22 +3430,22 @@ Snap coordinate to boundary of subdomain
 ";
 
 %feature("docstring")  dolfin::SubDomain::mark_cells "
-Set subdomain markers (uint) on cells for given subdomain number
+Set subdomain markers (std::size_t) on cells for given subdomain number
 
 *Arguments*
     mesh (:py:class:`Mesh`)
         The mesh to be marked.
-    sub_domain (int)
+    sub_domain (std::size_t)
         The subdomain number.
 ";
 
 %feature("docstring")  dolfin::SubDomain::mark_facets "
-Set subdomain markers (uint) on facets for given subdomain number
+Set subdomain markers (std::size_t) on facets for given subdomain number
 
 *Arguments*
     mesh (:py:class:`Mesh`)
         The mesh to be marked.
-    sub_domain (int)
+    sub_domain (std::size_t)
         The subdomain number.
 ";
 
@@ -3481,7 +3454,7 @@ Set subdomain markers (uint) on facets for given subdomain number
 
 * mark\ (mesh, dim, sub_domain)
 
-  Set subdomain markers (uint) for given topological dimension
+  Set subdomain markers (std::size_t) for given topological dimension
   and subdomain number
   
   *Arguments*
@@ -3489,17 +3462,17 @@ Set subdomain markers (uint) on facets for given subdomain number
           The mesh to be marked.
       dim (int)
           The topological dimension of entities to be marked.
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain number.
 
 * mark\ (sub_domains, sub_domain)
 
-  Set subdomain markers (uint) for given subdomain number
+  Set subdomain markers (std::size_t) for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshFunction`)
           The subdomain markers.
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain number.
 
 * mark\ (sub_domains, sub_domain)
@@ -3534,12 +3507,12 @@ Set subdomain markers (uint) on facets for given subdomain number
 
 * mark\ (sub_domains, sub_domain, mesh)
 
-  Set subdomain markers (uint) for given subdomain number
+  Set subdomain markers (std::size_t) for given subdomain number
   
   *Arguments*
       sub_domains (:py:class:`MeshValueCollection`)
           The subdomain markers.
-      sub_domain (int)
+      sub_domain (std::size_t)
           The subdomain number.
       mesn (:py:class:`Mesh`)
           The mesh.
@@ -3584,7 +3557,7 @@ Return geometric dimension
 ";
 
 %feature("docstring")  dolfin::SubDomain::apply_markers "
-Apply marker of type T (most likely an uint) to object of class
+Apply marker of type T (most likely an std::size_t) to object of class
 S (most likely MeshFunction or MeshValueCollection)
 ";
 
@@ -3612,6 +3585,79 @@ mesh data named \"parent_vertex_indices\".
 
 %feature("docstring")  dolfin::SubMesh::init "
 Create sub mesh
+";
+
+// Documentation extracted from: (module=mesh, header=Restriction.h)
+%feature("docstring")  dolfin::Restriction "
+This class represents a restriction of a mesh to a subdomain,
+which can be defined as a subset of all the cells, the facets,
+or possibly lower dimensional entities of the mesh.
+";
+
+%feature("docstring")  dolfin::Restriction::Restriction "
+**Overloaded versions**
+
+* Restriction\ (mesh, sub_domain)
+
+  Create cell-based restriction from subdomain
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh
+      sub_domain (:py:class:`SubDomain`)
+          Sub domain defining the restriction
+
+* Restriction\ (mesh, sub_domain, dim)
+
+  Create restriction from subdomain to entities of arbitrary dimension
+  
+  *Arguments*
+      mesh (:py:class:`Mesh`)
+          The mesh
+      sub_domain (:py:class:`SubDomain`)
+          Sub domain defining the restriction
+      dim (int)
+          Dimension of restriction
+
+* Restriction\ (domain_markers, domain_number)
+
+  Create restriction from domain markers
+  
+  *Arguments*
+      domain_markers (:py:class:`MeshFunction`)
+          Domain markers for the cells of the mesh.
+      domain_number (int)
+          Identifier for domain.
+
+* Restriction\ (domain_markers, domain_number)
+
+  Create restriction from domain markers (shared pointer version)
+  
+  *Arguments*
+      domain_markers (:py:class:`MeshFunction`)
+          Domain markers for the cells of the mesh.
+      domain_number (int)
+          Identifier for domain.
+";
+
+%feature("docstring")  dolfin::Restriction::mesh "
+Return the full unrestricted mesh
+";
+
+%feature("docstring")  dolfin::Restriction::dim "
+Return topological dimension of restriction
+";
+
+%feature("docstring")  dolfin::Restriction::contains "
+**Overloaded versions**
+
+* contains\ (entity)
+
+  Check whether restriction contains entity
+
+* contains\ (d, i)
+
+  Check whether restriction contains entity (d, i)
 ";
 
 // Documentation extracted from: (module=mesh, header=DomainBoundary.h)

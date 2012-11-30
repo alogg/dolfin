@@ -4159,7 +4159,7 @@ Set function
 
   Get sub-vector (const)
 
-* get_block\ (uint)
+* get_block\ (int)
 
   Get sub-vector (non-const)
 ";
