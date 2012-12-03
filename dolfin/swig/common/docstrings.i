@@ -505,6 +505,10 @@ Check if the object has a child.
 Set parent
 ";
 
+%feature("docstring")  dolfin::Hierarchical::clear_child "
+Clear child
+";
+
 %feature("docstring")  dolfin::Hierarchical::set_child "
 Set child
 ";
