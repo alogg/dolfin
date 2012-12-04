@@ -990,7 +990,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "6b2308e31f40bfbd75cc5ffd9757e0749cfe0d047cb85b2a5456743e109fc0bcd5a7e8edea272238cf6acee9a512f020220d40eda44a926a282277250a0bf6d0";
+    return "40e7207a504542e88a38a6d0ad3084e1532131346c29471a366c9b4b68c4229d9d79b5bf58c6f9540b31fa2ff271d9431d31bd39bea8bd9d21e0b8f339e63c50";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1099,6 +1099,7 @@ public:
 
 // DOLFIN includes
 #include <dolfin/common/NoDeleter.h>
+#include <dolfin/mesh/Restriction.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
@@ -1111,11 +1112,14 @@ public:
 namespace Poisson1D
 {
 
-class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
@@ -1123,41 +1127,52 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_0()
+  // Copy constructor
+  ~Form_a_FunctionSpace_0()
   {
   }
 
 };
 
-class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
@@ -1165,42 +1180,50 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_1()
+  // Copy constructor
+  ~Form_a_FunctionSpace_1()
   {
   }
 
 };
 
-class Form_0: public dolfin::Form
+class Form_a: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -1210,7 +1233,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = V0;
@@ -1220,11 +1243,11 @@ public:
   }
 
   // Destructor
-  ~Form_0()
+  ~Form_a()
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -1234,7 +1257,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -1244,16 +1267,16 @@ public:
   }
 
   // Typedefs
-  typedef Form_0_FunctionSpace_0 TestSpace;
-  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_a_FunctionSpace_0 TestSpace;
+  typedef Form_a_FunctionSpace_1 TrialSpace;
 
   // Coefficients
 };
 
 // Class typedefs
-typedef Form_0 BilinearForm;
-typedef Form_0 JacobianForm;
-typedef Form_0::TestSpace FunctionSpace;
+typedef Form_a BilinearForm;
+typedef Form_a JacobianForm;
+typedef Form_a::TestSpace FunctionSpace;
 
 }
 

@@ -3599,7 +3599,7 @@ void cahnhilliard2d_cell_integral_0_0::tabulate_tensor(double* A,
     // Value of basis functions at quadrature points.
     static const double FE0_C0[6][3] = \
     {{0.09157621350977, 0.816847572980459, 0.091576213509771},
-    {0.09157621350977, 0.0915762135097711, 0.816847572980459},
+    {0.0915762135097701, 0.0915762135097711, 0.816847572980459},
     {0.816847572980458, 0.091576213509771, 0.091576213509771},
     {0.445948490915965, 0.10810301816807, 0.445948490915965},
     {0.445948490915965, 0.445948490915965, 0.10810301816807},
@@ -3798,7 +3798,7 @@ void cahnhilliard2d_cell_integral_1_0::tabulate_tensor(double* A,
     // Value of basis functions at quadrature points.
     static const double FE0_C0[6][3] = \
     {{0.09157621350977, 0.816847572980459, 0.091576213509771},
-    {0.09157621350977, 0.0915762135097711, 0.816847572980459},
+    {0.0915762135097701, 0.0915762135097711, 0.816847572980459},
     {0.816847572980458, 0.091576213509771, 0.091576213509771},
     {0.445948490915965, 0.10810301816807, 0.445948490915965},
     {0.445948490915965, 0.445948490915965, 0.10810301816807},
@@ -3958,7 +3958,7 @@ cahnhilliard2d_form_0::~cahnhilliard2d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard2d_form_0::signature() const
 {
-    return "1a2d2d395d62ea67a519c3c6fb7c97bb10595ad35778c139d1af7025ef0c57235507dce24bc8c6fbff57f9189b0f9de9bdb93594772ca22b13a58aa048a75097";
+    return "2d0c5aa6be819d5d1db7499c90b9b2654939f859ec425e7909bd9b259edb5afc4e6eecd23ea530495fe2f5860babcbcc712e245b5c94a872bddcf8d69ef6842b";
 }
 
 /// Return the rank of the global tensor (r)
@@ -4113,7 +4113,7 @@ cahnhilliard2d_form_1::~cahnhilliard2d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard2d_form_1::signature() const
 {
-    return "9a35a5b9f2a94491bf4798d24e04b00e3bc21a0d3b40b9f7577955b6d703b0943055c78dbbb1546f754e2a7cf657de99cf2ff675711e5651e742a771e2790fe7";
+    return "0b0f4db8e77e711d159f23e98882037f7834794c64cb8440c37aae312e7bb6a574655d7b779229b5f37aac163de3d0159fbd064dbb7159a016d5c71202747684";
 }
 
 /// Return the rank of the global tensor (r)
