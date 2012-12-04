@@ -1397,7 +1397,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "4daa7e7e1a9a0a6b187d7218e1aac4810a9a592e210325a136bfe9c483e2828b2b2b674e6dec9b3bda6787bf3c2c168f692f50d974aed738a882214b0c83c0b5";
+    return "b61aab2d15a1eedef933f9d8860e6a768bc2e921533f1be4bf71651032c9aa7a53a6d5aebea056dfd09286b0fe72ac9d25d282929859d5c6de19e2073acf18f1";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1496,6 +1496,7 @@ public:
 
 // DOLFIN includes
 #include <dolfin/common/NoDeleter.h>
+#include <dolfin/mesh/Restriction.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
@@ -1512,6 +1513,9 @@ class CoefficientSpace_p: public dolfin::FunctionSpace
 {
 public:
 
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
   CoefficientSpace_p(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
@@ -1520,44 +1524,52 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_p(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new lift_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new lift_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
+  // Create standard function space (shared pointer version)
   CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new lift_dofmap_0()), *mesh)))
   {
-      // Do nothing
+    // Do nothing
   }
 
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  CoefficientSpace_p(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new lift_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
+  {
+    // Do nothing
+  }
+
+  // Create restricted function space (shared pointer version)
+  CoefficientSpace_p(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new lift_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new lift_dofmap_0()),
+                                                                                     restriction)))
+  {
+    // Do nothing
+  }
+
+  // Copy constructor
   ~CoefficientSpace_p()
   {
   }
 
 };
 
-typedef CoefficientSpace_p Form_0_FunctionSpace_0;
+typedef CoefficientSpace_p Form_M_FunctionSpace_0;
 
-class Form_0: public dolfin::Form
+class Form_M: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::Mesh& mesh):
+  Form_M(const dolfin::Mesh& mesh):
     dolfin::Form(0, 1), p(*this, 0)
   {
     _mesh = reference_to_no_delete_pointer(mesh);
@@ -1565,7 +1577,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::Mesh& mesh, const dolfin::GenericFunction& p):
+  Form_M(const dolfin::Mesh& mesh, const dolfin::GenericFunction& p):
     dolfin::Form(0, 1), p(*this, 0)
   {
     _mesh = reference_to_no_delete_pointer(mesh);
@@ -1575,7 +1587,7 @@ public:
   }
 
   // Constructor
-  Form_0(const dolfin::Mesh& mesh, boost::shared_ptr<const dolfin::GenericFunction> p):
+  Form_M(const dolfin::Mesh& mesh, boost::shared_ptr<const dolfin::GenericFunction> p):
     dolfin::Form(0, 1), p(*this, 0)
   {
     _mesh = reference_to_no_delete_pointer(mesh);
@@ -1585,7 +1597,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+  Form_M(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::Form(0, 1), p(*this, 0)
   {
     _mesh = mesh;
@@ -1593,7 +1605,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::GenericFunction& p):
+  Form_M(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::GenericFunction& p):
     dolfin::Form(0, 1), p(*this, 0)
   {
     _mesh = mesh;
@@ -1603,7 +1615,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::GenericFunction> p):
+  Form_M(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::GenericFunction> p):
     dolfin::Form(0, 1), p(*this, 0)
   {
     _mesh = mesh;
@@ -1613,11 +1625,11 @@ public:
   }
 
   // Destructor
-  ~Form_0()
+  ~Form_M()
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
     if (name == "p")
       return 0;
@@ -1629,7 +1641,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
     switch (i)
     {
@@ -1644,14 +1656,14 @@ public:
   }
 
   // Typedefs
-  typedef Form_0_FunctionSpace_0 CoefficientSpace_p;
+  typedef Form_M_FunctionSpace_0 CoefficientSpace_p;
 
   // Coefficients
   dolfin::CoefficientAssigner p;
 };
 
 // Class typedefs
-typedef Form_0 Functional;
+typedef Form_M Functional;
 
 }
 

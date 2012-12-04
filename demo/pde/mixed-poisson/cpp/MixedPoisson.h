@@ -1082,7 +1082,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {0.942809041582064, 0.0, 0.666666666666667};
+      {0.942809041582063, 0.0, 0.666666666666667};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -1155,10 +1155,10 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.471404520791032, 0.288675134594813, 0.833333333333334};
+      {0.471404520791032, 0.288675134594813, 0.833333333333333};
       
       static const double coefficients1[3] = \
-      {-0.942809041582064, 0.0, -0.666666666666667};
+      {-0.942809041582063, 0.0, -0.666666666666667};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -1196,7 +1196,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667};
+      {-0.471404520791032, 0.866025403784438, 0.166666666666667};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -1231,7 +1231,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.942809041582064, 0.577350269189626, -0.333333333333333};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334};
       
       static const double coefficients1[3] = \
       {-0.471404520791032, -0.866025403784439, 0.166666666666667};
@@ -1551,7 +1551,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {0.942809041582064, 0.0, 0.666666666666667};
+      {0.942809041582063, 0.0, 0.666666666666667};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
@@ -1862,10 +1862,10 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.471404520791032, 0.288675134594813, 0.833333333333334};
+      {0.471404520791032, 0.288675134594813, 0.833333333333333};
       
       static const double coefficients1[3] = \
-      {-0.942809041582064, 0.0, -0.666666666666667};
+      {-0.942809041582063, 0.0, -0.666666666666667};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
@@ -2022,7 +2022,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667};
+      {-0.471404520791032, 0.866025403784438, 0.166666666666667};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
@@ -2176,7 +2176,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.942809041582064, 0.577350269189626, -0.333333333333333};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334};
       
       static const double coefficients1[3] = \
       {-0.471404520791032, -0.866025403784439, 0.166666666666667};
@@ -3157,7 +3157,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {0.942809041582064, 0.0, 0.666666666666667};
+      {0.942809041582063, 0.0, 0.666666666666667};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -3230,10 +3230,10 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.471404520791032, 0.288675134594813, 0.833333333333334};
+      {0.471404520791032, 0.288675134594813, 0.833333333333333};
       
       static const double coefficients1[3] = \
-      {-0.942809041582064, 0.0, -0.666666666666667};
+      {-0.942809041582063, 0.0, -0.666666666666667};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -3271,7 +3271,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667};
+      {-0.471404520791032, 0.866025403784438, 0.166666666666667};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 3; r++)
@@ -3306,7 +3306,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.942809041582064, 0.577350269189626, -0.333333333333333};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334};
       
       static const double coefficients1[3] = \
       {-0.471404520791032, -0.866025403784439, 0.166666666666667};
@@ -3648,7 +3648,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {0.942809041582064, 0.0, 0.666666666666667};
+      {0.942809041582063, 0.0, 0.666666666666667};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
@@ -3959,10 +3959,10 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.471404520791032, 0.288675134594813, 0.833333333333334};
+      {0.471404520791032, 0.288675134594813, 0.833333333333333};
       
       static const double coefficients1[3] = \
-      {-0.942809041582064, 0.0, -0.666666666666667};
+      {-0.942809041582063, 0.0, -0.666666666666667};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
@@ -4119,7 +4119,7 @@ public:
       {-0.471404520791032, -0.288675134594813, 0.166666666666667};
       
       static const double coefficients1[3] = \
-      {-0.471404520791032, 0.866025403784439, 0.166666666666667};
+      {-0.471404520791032, 0.866025403784438, 0.166666666666667};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[3][3] = \
@@ -4273,7 +4273,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[3] = \
-      {0.942809041582064, 0.577350269189626, -0.333333333333333};
+      {0.942809041582063, 0.577350269189626, -0.333333333333334};
       
       static const double coefficients1[3] = \
       {-0.471404520791032, -0.866025403784439, 0.166666666666667};
@@ -5957,45 +5957,45 @@ public:
     const double G5_1_1 = 1.0 / (detJ*detJ)*det*J_11*J_11*(1.0);
     
     // Compute element tensor
-    A[0] = 0.333333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0833333333333334*G4_1_1 + 0.333333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0833333333333334*G5_1_1;
-    A[1] = -0.166666666666667*G4_0_0 + 0.166666666666667*G4_0_1 + 0.0416666666666667*G4_1_0 - 0.166666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.166666666666667*G5_0_1 + 0.0416666666666667*G5_1_0 - 0.166666666666667*G5_1_1;
-    A[2] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_0_1 - 0.0833333333333334*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_0_1 - 0.0833333333333334*G5_1_1;
-    A[3] = 0.0833333333333333*G4_0_0 - 0.166666666666667*G4_0_1 - 0.125*G4_1_0 + 0.166666666666667*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.166666666666667*G5_0_1 - 0.125*G5_1_0 + 0.166666666666667*G5_1_1;
-    A[4] = -0.166666666666667*G4_0_0 + 0.0416666666666667*G4_1_0 + 0.0416666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666667*G5_1_0 + 0.0416666666666667*G5_1_1;
+    A[0] = 0.333333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0833333333333333*G4_1_1 + 0.333333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0833333333333333*G5_1_1;
+    A[1] = -0.166666666666667*G4_0_0 + 0.166666666666667*G4_0_1 + 0.0416666666666666*G4_1_0 - 0.166666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.166666666666667*G5_0_1 + 0.0416666666666666*G5_1_0 - 0.166666666666667*G5_1_1;
+    A[2] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_1;
+    A[3] = 0.0833333333333332*G4_0_0 - 0.166666666666667*G4_0_1 - 0.125*G4_1_0 + 0.166666666666667*G4_1_1 + 0.0833333333333332*G5_0_0 - 0.166666666666667*G5_0_1 - 0.125*G5_1_0 + 0.166666666666667*G5_1_1;
+    A[4] = -0.166666666666667*G4_0_0 + 0.0416666666666666*G4_1_0 + 0.0416666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666666*G5_1_0 + 0.0416666666666667*G5_1_1;
     A[5] = 0.333333333333333*G4_0_0 - 0.25*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0416666666666666*G4_1_1 + 0.333333333333333*G5_0_0 - 0.25*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0416666666666666*G5_1_1;
     A[6] = G2_0_0 - 0.5*G2_1_1 + G3_0_0 - 0.5*G3_1_1;
-    A[7] = -0.166666666666667*G4_0_0 + 0.0416666666666667*G4_0_1 + 0.166666666666667*G4_1_0 - 0.166666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666667*G5_0_1 + 0.166666666666667*G5_1_0 - 0.166666666666667*G5_1_1;
-    A[8] = 0.0833333333333334*G4_0_0 - 0.0833333333333334*G4_0_1 - 0.0833333333333334*G4_1_0 + 0.333333333333333*G4_1_1 + 0.0833333333333334*G5_0_0 - 0.0833333333333334*G5_0_1 - 0.0833333333333334*G5_1_0 + 0.333333333333333*G5_1_1;
-    A[9] = -0.0416666666666667*G4_0_0 - 0.0416666666666667*G4_0_1 + 0.166666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666667*G5_0_1 + 0.166666666666667*G5_1_1;
-    A[10] = -0.0416666666666667*G4_0_0 + 0.0833333333333334*G4_0_1 + 0.25*G4_1_0 - 0.333333333333333*G4_1_1 - 0.0416666666666667*G5_0_0 + 0.0833333333333334*G5_0_1 + 0.25*G5_1_0 - 0.333333333333333*G5_1_1;
+    A[7] = -0.166666666666667*G4_0_0 + 0.0416666666666666*G4_0_1 + 0.166666666666667*G4_1_0 - 0.166666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666666*G5_0_1 + 0.166666666666667*G5_1_0 - 0.166666666666667*G5_1_1;
+    A[8] = 0.0833333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.333333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.333333333333333*G5_1_1;
+    A[9] = -0.0416666666666667*G4_0_0 - 0.0416666666666666*G4_0_1 + 0.166666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666666*G5_0_1 + 0.166666666666667*G5_1_1;
+    A[10] = -0.0416666666666666*G4_0_0 + 0.0833333333333333*G4_0_1 + 0.25*G4_1_0 - 0.333333333333333*G4_1_1 - 0.0416666666666666*G5_0_0 + 0.0833333333333333*G5_0_1 + 0.25*G5_1_0 - 0.333333333333333*G5_1_1;
     A[11] = 0.0833333333333333*G4_0_0 - 0.0833333333333333*G4_1_0 - 0.0833333333333334*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333333*G5_1_0 - 0.0833333333333334*G5_1_1;
-    A[12] = -0.166666666666667*G4_0_0 + 0.125*G4_0_1 + 0.166666666666667*G4_1_0 - 0.0833333333333333*G4_1_1 - 0.166666666666667*G5_0_0 + 0.125*G5_0_1 + 0.166666666666667*G5_1_0 - 0.0833333333333333*G5_1_1;
+    A[12] = -0.166666666666667*G4_0_0 + 0.125*G4_0_1 + 0.166666666666667*G4_1_0 - 0.0833333333333332*G4_1_1 - 0.166666666666667*G5_0_0 + 0.125*G5_0_1 + 0.166666666666667*G5_1_0 - 0.0833333333333332*G5_1_1;
     A[13] = -0.5*G2_0_0 + G2_1_1 - 0.5*G3_0_0 + G3_1_1;
-    A[14] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_1_0 - 0.0833333333333334*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_1_0 - 0.0833333333333334*G5_1_1;
-    A[15] = -0.0416666666666667*G4_0_0 - 0.0416666666666667*G4_1_0 + 0.166666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666667*G5_1_0 + 0.166666666666667*G5_1_1;
-    A[16] = 0.25*G4_0_0 + 0.0833333333333334*G4_1_1 + 0.25*G5_0_0 + 0.0833333333333334*G5_1_1;
+    A[14] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_1_0 - 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_1_0 - 0.0833333333333333*G5_1_1;
+    A[15] = -0.0416666666666667*G4_0_0 - 0.0416666666666666*G4_1_0 + 0.166666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666666*G5_1_0 + 0.166666666666667*G5_1_1;
+    A[16] = 0.25*G4_0_0 + 0.0833333333333333*G4_1_1 + 0.25*G5_0_0 + 0.0833333333333333*G5_1_1;
     A[17] = -0.125*G4_0_0 + 0.125*G4_1_0 - 0.166666666666667*G4_1_1 - 0.125*G5_0_0 + 0.125*G5_1_0 - 0.166666666666667*G5_1_1;
-    A[18] = -0.0416666666666667*G4_0_0 - 0.208333333333333*G4_0_1 - 0.0416666666666667*G4_1_0 - 0.0416666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.208333333333333*G5_0_1 - 0.0416666666666667*G5_1_0 - 0.0416666666666667*G5_1_1;
+    A[18] = -0.0416666666666667*G4_0_0 - 0.208333333333333*G4_0_1 - 0.0416666666666666*G4_1_0 - 0.0416666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.208333333333333*G5_0_1 - 0.0416666666666666*G5_1_0 - 0.0416666666666667*G5_1_1;
     A[19] = 0.0833333333333334*G4_0_0 + 0.0416666666666667*G4_0_1 + 0.0833333333333333*G4_1_0 - 0.0416666666666666*G4_1_1 + 0.0833333333333334*G5_0_0 + 0.0416666666666667*G5_0_1 + 0.0833333333333333*G5_1_0 - 0.0416666666666666*G5_1_1;
     A[20] = -G2_0_0 - 1.5*G2_0_1 + 0.5*G2_1_1 - G3_0_0 - 1.5*G3_0_1 + 0.5*G3_1_1;
-    A[21] = 0.0833333333333333*G4_0_0 - 0.125*G4_0_1 - 0.166666666666667*G4_1_0 + 0.166666666666667*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.125*G5_0_1 - 0.166666666666667*G5_1_0 + 0.166666666666667*G5_1_1;
-    A[22] = -0.0416666666666667*G4_0_0 + 0.25*G4_0_1 + 0.0833333333333334*G4_1_0 - 0.333333333333333*G4_1_1 - 0.0416666666666667*G5_0_0 + 0.25*G5_0_1 + 0.0833333333333334*G5_1_0 - 0.333333333333333*G5_1_1;
+    A[21] = 0.0833333333333332*G4_0_0 - 0.125*G4_0_1 - 0.166666666666667*G4_1_0 + 0.166666666666667*G4_1_1 + 0.0833333333333332*G5_0_0 - 0.125*G5_0_1 - 0.166666666666667*G5_1_0 + 0.166666666666667*G5_1_1;
+    A[22] = -0.0416666666666666*G4_0_0 + 0.25*G4_0_1 + 0.0833333333333333*G4_1_0 - 0.333333333333333*G4_1_1 - 0.0416666666666666*G5_0_0 + 0.25*G5_0_1 + 0.0833333333333333*G5_1_0 - 0.333333333333333*G5_1_1;
     A[23] = -0.125*G4_0_0 + 0.125*G4_0_1 - 0.166666666666667*G4_1_1 - 0.125*G5_0_0 + 0.125*G5_0_1 - 0.166666666666667*G5_1_1;
     A[24] = 0.25*G4_0_0 - 0.25*G4_0_1 - 0.25*G4_1_0 + 0.333333333333333*G4_1_1 + 0.25*G5_0_0 - 0.25*G5_0_1 - 0.25*G5_1_0 + 0.333333333333333*G5_1_1;
-    A[25] = -0.0416666666666667*G4_0_0 + 0.0416666666666666*G4_0_1 + 0.0833333333333333*G4_1_0 + 0.0833333333333334*G4_1_1 - 0.0416666666666667*G5_0_0 + 0.0416666666666666*G5_0_1 + 0.0833333333333333*G5_1_0 + 0.0833333333333334*G5_1_1;
-    A[26] = 0.0833333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.166666666666667*G4_1_0 + 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.166666666666667*G5_1_0 + 0.0833333333333333*G5_1_1;
+    A[25] = -0.0416666666666666*G4_0_0 + 0.0416666666666666*G4_0_1 + 0.0833333333333333*G4_1_0 + 0.0833333333333334*G4_1_1 - 0.0416666666666666*G5_0_0 + 0.0416666666666666*G5_0_1 + 0.0833333333333333*G5_1_0 + 0.0833333333333334*G5_1_1;
+    A[26] = 0.0833333333333333*G4_0_0 - 0.0833333333333332*G4_0_1 - 0.166666666666667*G4_1_0 + 0.0833333333333332*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333332*G5_0_1 - 0.166666666666667*G5_1_0 + 0.0833333333333332*G5_1_1;
     A[27] = 0.5*G2_0_0 + 1.5*G2_0_1 - G2_1_1 + 0.5*G3_0_0 + 1.5*G3_0_1 - G3_1_1;
-    A[28] = -0.166666666666667*G4_0_0 + 0.0416666666666667*G4_0_1 + 0.0416666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666667*G5_0_1 + 0.0416666666666667*G5_1_1;
+    A[28] = -0.166666666666667*G4_0_0 + 0.0416666666666666*G4_0_1 + 0.0416666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666666*G5_0_1 + 0.0416666666666667*G5_1_1;
     A[29] = 0.0833333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333334*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333334*G5_1_1;
-    A[30] = -0.0416666666666667*G4_0_0 - 0.0416666666666667*G4_0_1 - 0.208333333333333*G4_1_0 - 0.0416666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666667*G5_0_1 - 0.208333333333333*G5_1_0 - 0.0416666666666667*G5_1_1;
-    A[31] = -0.0416666666666667*G4_0_0 + 0.0833333333333333*G4_0_1 + 0.0416666666666666*G4_1_0 + 0.0833333333333334*G4_1_1 - 0.0416666666666667*G5_0_0 + 0.0833333333333333*G5_0_1 + 0.0416666666666666*G5_1_0 + 0.0833333333333334*G5_1_1;
+    A[30] = -0.0416666666666667*G4_0_0 - 0.0416666666666666*G4_0_1 - 0.208333333333333*G4_1_0 - 0.0416666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666666*G5_0_1 - 0.208333333333333*G5_1_0 - 0.0416666666666667*G5_1_1;
+    A[31] = -0.0416666666666666*G4_0_0 + 0.0833333333333333*G4_0_1 + 0.0416666666666666*G4_1_0 + 0.0833333333333334*G4_1_1 - 0.0416666666666666*G5_0_0 + 0.0833333333333333*G5_0_1 + 0.0416666666666666*G5_1_0 + 0.0833333333333334*G5_1_1;
     A[32] = 0.0833333333333333*G4_0_0 + 0.25*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.25*G5_1_1;
     A[33] = -0.166666666666667*G4_0_0 + 0.125*G4_0_1 - 0.125*G4_1_1 - 0.166666666666667*G5_0_0 + 0.125*G5_0_1 - 0.125*G5_1_1;
     A[34] = -0.5*G2_0_0 + 1.5*G2_1_0 + G2_1_1 - 0.5*G3_0_0 + 1.5*G3_1_0 + G3_1_1;
     A[35] = 0.333333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.25*G4_1_0 + 0.0416666666666666*G4_1_1 + 0.333333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.25*G5_1_0 + 0.0416666666666666*G5_1_1;
-    A[36] = -0.166666666666667*G4_0_0 + 0.166666666666667*G4_0_1 + 0.125*G4_1_0 - 0.0833333333333333*G4_1_1 - 0.166666666666667*G5_0_0 + 0.166666666666667*G5_0_1 + 0.125*G5_1_0 - 0.0833333333333333*G5_1_1;
+    A[36] = -0.166666666666667*G4_0_0 + 0.166666666666667*G4_0_1 + 0.125*G4_1_0 - 0.0833333333333332*G4_1_1 - 0.166666666666667*G5_0_0 + 0.166666666666667*G5_0_1 + 0.125*G5_1_0 - 0.0833333333333332*G5_1_1;
     A[37] = 0.0833333333333334*G4_0_0 + 0.0833333333333333*G4_0_1 + 0.0416666666666667*G4_1_0 - 0.0416666666666666*G4_1_1 + 0.0833333333333334*G5_0_0 + 0.0833333333333333*G5_0_1 + 0.0416666666666667*G5_1_0 - 0.0416666666666666*G5_1_1;
-    A[38] = 0.0833333333333333*G4_0_0 - 0.166666666666667*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.166666666666667*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0833333333333333*G5_1_1;
+    A[38] = 0.0833333333333332*G4_0_0 - 0.166666666666667*G4_0_1 - 0.0833333333333332*G4_1_0 + 0.0833333333333332*G4_1_1 + 0.0833333333333332*G5_0_0 - 0.166666666666667*G5_0_1 - 0.0833333333333332*G5_1_0 + 0.0833333333333332*G5_1_1;
     A[39] = -0.166666666666667*G4_0_0 + 0.125*G4_1_0 - 0.125*G4_1_1 - 0.166666666666667*G5_0_0 + 0.125*G5_1_0 - 0.125*G5_1_1;
     A[40] = 0.333333333333333*G4_0_0 - 0.25*G4_0_1 - 0.25*G4_1_0 + 0.25*G4_1_1 + 0.333333333333333*G5_0_0 - 0.25*G5_0_1 - 0.25*G5_1_0 + 0.25*G5_1_1;
     A[41] = G2_0_0 - 1.5*G2_1_0 - 0.5*G2_1_1 + G3_0_0 - 1.5*G3_1_0 - 0.5*G3_1_1;
@@ -6132,7 +6132,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "e28060647684db199c467f3f4ed10b7221a8fa769cfa3d8eadfc46d65151236c826353613dff511cf9691a94fca39e382eb2a4ec78b715962d582191048ebfa4";
+    return "9cbd51ab03f174b7202f7cb64186dcba88b049798bc1520cad7cf026b93e24e3b1832664192fd95226778f6bdac2ab1d40e67b18be141635eaf1cc79a9e22161";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6268,7 +6268,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "658f5a107fc7621eb0568f6bd4092266ece31b2a5cdadb0c41ba341977d224c101770ce94770028de5d15a4858ab8a021e88a09e90a6f59a16b4b918d72a89a2";
+    return "11e3a730afd0583273f4513ef845082259515a7f2f8868217b8db3ab6bbf612e1456538aa297c9ae652f70cd6886d1a981881f60db5d0d14b687a5e7548132f8";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6377,6 +6377,7 @@ public:
 
 // DOLFIN includes
 #include <dolfin/common/NoDeleter.h>
+#include <dolfin/mesh/Restriction.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
@@ -6393,6 +6394,9 @@ class CoefficientSpace_f: public dolfin::FunctionSpace
 {
 public:
 
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
   CoefficientSpace_f(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
@@ -6401,41 +6405,52 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_f(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_f(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
+  // Create standard function space (shared pointer version)
   CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()), *mesh)))
   {
-      // Do nothing
+    // Do nothing
   }
 
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  CoefficientSpace_f(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
+  {
+    // Do nothing
+  }
+
+  // Create restricted function space (shared pointer version)
+  CoefficientSpace_f(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()),
+                                                                                     restriction)))
+  {
+    // Do nothing
+  }
+
+  // Copy constructor
   ~CoefficientSpace_f()
   {
   }
 
 };
 
-class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh)))
@@ -6443,41 +6458,52 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_0()
+  // Copy constructor
+  ~Form_a_FunctionSpace_0()
   {
   }
 
 };
 
-class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh)))
@@ -6485,42 +6511,50 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_1()
+  // Copy constructor
+  ~Form_a_FunctionSpace_1()
   {
   }
 
 };
 
-class Form_0: public dolfin::Form
+class Form_a: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -6530,7 +6564,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = V0;
@@ -6540,11 +6574,11 @@ public:
   }
 
   // Destructor
-  ~Form_0()
+  ~Form_a()
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -6554,7 +6588,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -6564,17 +6598,20 @@ public:
   }
 
   // Typedefs
-  typedef Form_0_FunctionSpace_0 TestSpace;
-  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_a_FunctionSpace_0 TestSpace;
+  typedef Form_a_FunctionSpace_1 TrialSpace;
 
   // Coefficients
 };
 
-class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+class Form_L_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_L_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh)))
@@ -6582,44 +6619,52 @@ public:
     // Do nothing
   }
 
-  Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_L_FunctionSpace_0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_1_FunctionSpace_0()
+  // Copy constructor
+  ~Form_L_FunctionSpace_0()
   {
   }
 
 };
 
-typedef CoefficientSpace_f Form_1_FunctionSpace_1;
+typedef CoefficientSpace_f Form_L_FunctionSpace_1;
 
-class Form_1: public dolfin::Form
+class Form_L: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0):
+  Form_L(const dolfin::FunctionSpace& V0):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -6628,7 +6673,7 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f):
+  Form_L(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -6639,7 +6684,7 @@ public:
   }
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f):
+  Form_L(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -6650,7 +6695,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = V0;
@@ -6659,7 +6704,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f):
+  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = V0;
@@ -6670,7 +6715,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f):
+  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f):
     dolfin::Form(1, 1), f(*this, 0)
   {
     _function_spaces[0] = V0;
@@ -6681,11 +6726,11 @@ public:
   }
 
   // Destructor
-  ~Form_1()
+  ~Form_L()
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
     if (name == "f")
       return 0;
@@ -6697,7 +6742,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
     switch (i)
     {
@@ -6712,19 +6757,19 @@ public:
   }
 
   // Typedefs
-  typedef Form_1_FunctionSpace_0 TestSpace;
-  typedef Form_1_FunctionSpace_1 CoefficientSpace_f;
+  typedef Form_L_FunctionSpace_0 TestSpace;
+  typedef Form_L_FunctionSpace_1 CoefficientSpace_f;
 
   // Coefficients
   dolfin::CoefficientAssigner f;
 };
 
 // Class typedefs
-typedef Form_0 BilinearForm;
-typedef Form_0 JacobianForm;
-typedef Form_1 LinearForm;
-typedef Form_1 ResidualForm;
-typedef Form_0::TestSpace FunctionSpace;
+typedef Form_a BilinearForm;
+typedef Form_a JacobianForm;
+typedef Form_L LinearForm;
+typedef Form_L ResidualForm;
+typedef Form_a::TestSpace FunctionSpace;
 
 }
 

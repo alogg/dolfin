@@ -3,9 +3,9 @@
 //
 // This code was generated with the option '-l dolfin' and
 // contains DOLFIN-specific wrappers that depend on DOLFIN.
-//
+// 
 // This code was generated with the following parameters:
-//
+// 
 //   cache_dir:                      ''
 //   convert_exceptions_to_warnings: False
 //   cpp_optimize:                   False
@@ -103,29 +103,29 @@ public:
   {
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
-
+    
     // Compute determinant of Jacobian
-
+    
     // Compute inverse of Jacobian
-
+    
     // Get coordinates and map to the reference (FIAT) element
     double X = (2.0*coordinates[0] - x[0][0] - x[1][0]) / J_00;
-
+    
     // Reset values.
     *values = 0.0;
     switch (i)
     {
     case 0:
       {
-
+        
       // Array of basisvalues.
       double basisvalues[2] = {0.0, 0.0};
-
+      
       // Declare helper variables.
-
+      
       // Compute basisvalues.
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
@@ -133,11 +133,11 @@ public:
       {
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
-
+      
       // Table(s) of coefficients.
       static const double coefficients0[2] = \
       {0.707106781186547, -0.408248290463863};
-
+      
       // Compute value(s).
       for (unsigned int r = 0; r < 2; r++)
       {
@@ -147,12 +147,12 @@ public:
       }
     case 1:
       {
-
+        
       // Array of basisvalues.
       double basisvalues[2] = {0.0, 0.0};
-
+      
       // Declare helper variables.
-
+      
       // Compute basisvalues.
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
@@ -160,11 +160,11 @@ public:
       {
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
-
+      
       // Table(s) of coefficients.
       static const double coefficients0[2] = \
       {0.707106781186547, 0.408248290463863};
-
+      
       // Compute value(s).
       for (unsigned int r = 0; r < 2; r++)
       {
@@ -173,7 +173,7 @@ public:
         break;
       }
     }
-
+    
   }
 
   /// Evaluate all basis functions at given point in cell
@@ -183,7 +183,7 @@ public:
   {
     // Helper variable to hold values of a single dof.
     double dof_values = 0.0;
-
+    
     // Loop dofs and call evaluate_basis.
     for (unsigned int r = 0; r < 2; r++)
     {
@@ -201,26 +201,26 @@ public:
   {
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
-
+    
     // Compute determinant of Jacobian
     const double detJ =  J_00;
-
+    
     // Compute inverse of Jacobian
     const double K_00 =  1.0 / detJ;
-
+    
     // Get coordinates and map to the reference (FIAT) element
     double X = (2.0*coordinates[0] - x[0][0] - x[1][0]) / J_00;
-
+    
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
     for (unsigned int r = 0; r < n; r++)
     {
       num_derivatives *= 1;
     }// end loop over 'r'
-
+    
     // Declare pointer to two dimensional array that holds combinations of derivatives and initialise
     unsigned int **combinations = new unsigned int *[num_derivatives];
     for (unsigned int row = 0; row < num_derivatives; row++)
@@ -229,7 +229,7 @@ public:
       for (unsigned int col = 0; col < n; col++)
         combinations[row][col] = 0;
     }
-
+    
     // Generate combinations of derivatives
     for (unsigned int row = 1; row < num_derivatives; row++)
     {
@@ -247,21 +247,21 @@ public:
         }
       }
     }
-
+    
     // Compute inverse of Jacobian
     const double Jinv[1][1] =  {{K_00}};
-
+    
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
     double **transform = new double *[num_derivatives];
-
+    
     for (unsigned int j = 0; j < num_derivatives; j++)
     {
       transform[j] = new double [num_derivatives];
       for (unsigned int k = 0; k < num_derivatives; k++)
         transform[j][k] = 1;
     }
-
+    
     // Construct transformation matrix
     for (unsigned int row = 0; row < num_derivatives; row++)
     {
@@ -271,23 +271,23 @@ public:
           transform[row][col] *= Jinv[combinations[col][k]][combinations[row][k]];
       }
     }
-
+    
     // Reset values. Assuming that values is always an array.
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
       values[r] = 0.0;
     }// end loop over 'r'
-
+    
     switch (i)
     {
     case 0:
       {
-
+        
       // Array of basisvalues.
       double basisvalues[2] = {0.0, 0.0};
-
+      
       // Declare helper variables.
-
+      
       // Compute basisvalues.
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
@@ -295,16 +295,16 @@ public:
       {
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
-
+      
       // Table(s) of coefficients.
       static const double coefficients0[2] = \
       {0.707106781186547, -0.408248290463863};
-
+      
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[2][2] = \
       {{0.0, 0.0},
       {3.46410161513775, 0.0}};
-
+      
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
@@ -312,17 +312,17 @@ public:
       {
         derivatives[r] = 0.0;
       }// end loop over 'r'
-
+      
       // Declare derivative matrix (of polynomial basis).
       double dmats[2][2] = \
       {{1.0, 0.0},
       {0.0, 1.0}};
-
+      
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[2][2] = \
       {{1.0, 0.0},
       {0.0, 1.0}};
-
+      
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
@@ -336,10 +336,10 @@ public:
             {
             dmats[t][u] = 1.0;
             }
-
+            
           }// end loop over 'u'
         }// end loop over 't'
-
+        
         // Looping derivative order to generate dmats.
         for (unsigned int s = 0; s < n; s++)
         {
@@ -352,7 +352,7 @@ public:
               dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
-
+          
           // Update dmats using an inner product.
           if (combinations[r][s] == 0)
           {
@@ -367,7 +367,7 @@ public:
             }// end loop over 'u'
           }// end loop over 't'
           }
-
+          
         }// end loop over 's'
         for (unsigned int s = 0; s < 2; s++)
         {
@@ -377,7 +377,7 @@ public:
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
-
+      
       // Transform derivatives back to physical element
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
@@ -386,10 +386,10 @@ public:
           values[r] += transform[r][s]*derivatives[s];
         }// end loop over 's'
       }// end loop over 'r'
-
+      
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+      
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
@@ -405,12 +405,12 @@ public:
       }
     case 1:
       {
-
+        
       // Array of basisvalues.
       double basisvalues[2] = {0.0, 0.0};
-
+      
       // Declare helper variables.
-
+      
       // Compute basisvalues.
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
@@ -418,16 +418,16 @@ public:
       {
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
-
+      
       // Table(s) of coefficients.
       static const double coefficients0[2] = \
       {0.707106781186547, 0.408248290463863};
-
+      
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[2][2] = \
       {{0.0, 0.0},
       {3.46410161513775, 0.0}};
-
+      
       // Compute reference derivatives.
       // Declare pointer to array of derivatives on FIAT element.
       double *derivatives = new double[num_derivatives];
@@ -435,17 +435,17 @@ public:
       {
         derivatives[r] = 0.0;
       }// end loop over 'r'
-
+      
       // Declare derivative matrix (of polynomial basis).
       double dmats[2][2] = \
       {{1.0, 0.0},
       {0.0, 1.0}};
-
+      
       // Declare (auxiliary) derivative matrix (of polynomial basis).
       double dmats_old[2][2] = \
       {{1.0, 0.0},
       {0.0, 1.0}};
-
+      
       // Loop possible derivatives.
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
@@ -459,10 +459,10 @@ public:
             {
             dmats[t][u] = 1.0;
             }
-
+            
           }// end loop over 'u'
         }// end loop over 't'
-
+        
         // Looping derivative order to generate dmats.
         for (unsigned int s = 0; s < n; s++)
         {
@@ -475,7 +475,7 @@ public:
               dmats[t][u] = 0.0;
             }// end loop over 'u'
           }// end loop over 't'
-
+          
           // Update dmats using an inner product.
           if (combinations[r][s] == 0)
           {
@@ -490,7 +490,7 @@ public:
             }// end loop over 'u'
           }// end loop over 't'
           }
-
+          
         }// end loop over 's'
         for (unsigned int s = 0; s < 2; s++)
         {
@@ -500,7 +500,7 @@ public:
           }// end loop over 't'
         }// end loop over 's'
       }// end loop over 'r'
-
+      
       // Transform derivatives back to physical element
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
@@ -509,10 +509,10 @@ public:
           values[r] += transform[r][s]*derivatives[s];
         }// end loop over 's'
       }// end loop over 'r'
-
+      
       // Delete pointer to array of derivatives on FIAT element
       delete [] derivatives;
-
+      
       // Delete pointer to array of combinations of derivatives and transform
       for (unsigned int r = 0; r < num_derivatives; r++)
       {
@@ -527,7 +527,7 @@ public:
         break;
       }
     }
-
+    
   }
 
   /// Evaluate order n derivatives of all basis functions at given point in cell
@@ -542,14 +542,14 @@ public:
     {
       num_derivatives *= 1;
     }// end loop over 'r'
-
+    
     // Helper variable to hold values of a single dof.
     double *dof_values = new double[num_derivatives];
     for (unsigned int r = 0; r < num_derivatives; r++)
     {
       dof_values[r] = 0.0;
     }// end loop over 'r'
-
+    
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 2; r++)
     {
@@ -559,7 +559,7 @@ public:
         values[r*num_derivatives + s] = dof_values[s];
       }// end loop over 's'
     }// end loop over 'r'
-
+    
     // Delete pointer.
     delete [] dof_values;
   }
@@ -571,7 +571,7 @@ public:
   {
     // Declare variables for result of evaluation.
     double vals[1];
-
+    
     // Declare variable for physical coordinates.
     double y[1];
     const double * const * x = c.coordinates;
@@ -592,7 +592,7 @@ public:
         break;
       }
     }
-
+    
     return 0.0;
   }
 
@@ -603,7 +603,7 @@ public:
   {
     // Declare variables for result of evaluation.
     double vals[1];
-
+    
     // Declare variable for physical coordinates.
     double y[1];
     const double * const * x = c.coordinates;
@@ -705,7 +705,7 @@ public:
         break;
       }
     }
-
+    
     return false;
   }
 
@@ -781,7 +781,7 @@ public:
         break;
       }
     }
-
+    
     return 0;
   }
 
@@ -811,7 +811,7 @@ public:
         break;
       }
     }
-
+    
   }
 
   /// Tabulate the local-to-local mapping of dofs on entity (d, i)
@@ -822,7 +822,7 @@ public:
     {
     throw std::runtime_error("d is larger than dimension (1)");
     }
-
+    
     switch (d)
     {
     case 0:
@@ -831,7 +831,7 @@ public:
       {
       throw std::runtime_error("i is larger than number of entities (1)");
       }
-
+      
       switch (i)
       {
       case 0:
@@ -845,16 +845,16 @@ public:
           break;
         }
       }
-
+      
         break;
       }
     case 1:
       {
-
+        
         break;
       }
     }
-
+    
   }
 
   /// Tabulate the coordinates of all dofs on a cell
@@ -862,7 +862,7 @@ public:
                                     const ufc::cell& c) const
   {
     const double * const * x = c.coordinates;
-
+    
     coordinates[0][0] = x[0][0];
     coordinates[1][0] = x[1][0];
   }
@@ -916,25 +916,25 @@ public:
     // Number of operations (multiply-add pairs) for geometry tensor:    1
     // Number of operations (multiply-add pairs) for tensor contraction: 0
     // Total number of operations (multiply-add pairs):                  8
-
+    
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
-
+    
     // Compute Jacobian of affine map from reference cell
     const double J_00 = x[1][0] - x[0][0];
-
+    
     // Compute determinant of Jacobian
     const double detJ =  J_00;
-
+    
     // Compute inverse of Jacobian
     const double K_00 =  1.0 / detJ;
-
+    
     // Set scale factor
     const double det = std::abs(detJ);
-
+    
     // Compute geometry tensor
     const double G0_0_0 = det*K_00*K_00*(1.0);
-
+    
     // Compute element tensor
     A[0] = G0_0_0;
     A[1] = -G0_0_0;
@@ -990,7 +990,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "6b2308e31f40bfbd75cc5ffd9757e0749cfe0d047cb85b2a5456743e109fc0bcd5a7e8edea272238cf6acee9a512f020220d40eda44a926a282277250a0bf6d0";
+    return "40e7207a504542e88a38a6d0ad3084e1532131346c29471a366c9b4b68c4229d9d79b5bf58c6f9540b31fa2ff271d9431d31bd39bea8bd9d21e0b8f339e63c50";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1039,7 +1039,7 @@ public:
         break;
       }
     }
-
+    
     return 0;
   }
 
@@ -1059,7 +1059,7 @@ public:
         break;
       }
     }
-
+    
     return 0;
   }
 
@@ -1074,7 +1074,7 @@ public:
         break;
       }
     }
-
+    
     return 0;
   }
 
@@ -1099,6 +1099,7 @@ public:
 
 // DOLFIN includes
 #include <dolfin/common/NoDeleter.h>
+#include <dolfin/mesh/Restriction.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
@@ -1111,11 +1112,14 @@ public:
 namespace Poisson1D
 {
 
-class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
@@ -1123,41 +1127,52 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_0()
+  // Copy constructor
+  ~Form_a_FunctionSpace_0()
   {
   }
 
 };
 
-class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
@@ -1165,42 +1180,50 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson1d_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson1d_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_1()
+  // Copy constructor
+  ~Form_a_FunctionSpace_1()
   {
   }
 
 };
 
-class Form_0: public dolfin::Form
+class Form_a: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -1210,7 +1233,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = V0;
@@ -1220,7 +1243,7 @@ public:
   }
 
   // Destructor
-  ~Form_0()
+  ~Form_a()
   {}
 
   /// Return the number of the coefficient with this name
@@ -1244,16 +1267,16 @@ public:
   }
 
   // Typedefs
-  typedef Form_0_FunctionSpace_0 TestSpace;
-  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_a_FunctionSpace_0 TestSpace;
+  typedef Form_a_FunctionSpace_1 TrialSpace;
 
   // Coefficients
 };
 
 // Class typedefs
-typedef Form_0 BilinearForm;
-typedef Form_0 JacobianForm;
-typedef Form_0::TestSpace FunctionSpace;
+typedef Form_a BilinearForm;
+typedef Form_a JacobianForm;
+typedef Form_a::TestSpace FunctionSpace;
 
 }
 
