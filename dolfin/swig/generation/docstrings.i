@@ -122,11 +122,11 @@ Create a uniform finite element :py:class:`Mesh` over the unit cube
 [0,1] x [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in :math:`x` direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in :math:`y` direction.
-    nz (int)
+    nz (std::size_t)
         Number of cells in :math:`z` direction.
 
 *Example*
@@ -150,11 +150,11 @@ Create a uniform finite element :py:class:`Mesh` over the unit cube
 [0,1] x [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in :math:`x` direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in :math:`y` direction.
-    nz (int)
+    nz (std::size_t)
         Number of cells in :math:`z` direction.
 
 *Example*
@@ -233,9 +233,9 @@ Create a uniform finite element :py:class:`Mesh` over the unit square
 [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in horizontal direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in vertical direction.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -265,9 +265,9 @@ Create a uniform finite element :py:class:`Mesh` over the unit square
 [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in horizontal direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in vertical direction.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -288,7 +288,7 @@ Tetrahedral mesh of the unit circle.
 Create a uniform finite element :py:class:`Mesh` over the unit circle.
 
 *Arguments*
-    n (int)
+    n (std::size_t)
         Resolution of the mesh.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -304,7 +304,7 @@ Create a uniform finite element :py:class:`Mesh` over the unit circle.
 This class is deprecated. Use :py:class:`UnitCircleMesh`.
 
 *Arguments*
-    n (int)
+    n (std::size_t)
         Resolution of the mesh.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -392,7 +392,7 @@ be nx and the total number of vertices will be (nx + 1).
 Constructor
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         The number of cells.
     a (float)
         The minimum point (inclusive).
@@ -418,7 +418,7 @@ This class is deprecated. Use :py:class:`IntervalMesh`.
 Constructor
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         The number of cells.
     a (float)
         The minimum point (inclusive).
@@ -623,7 +623,7 @@ Create circle at x = (x0, x1) with radius r.
         x1-coordinate of center.
     r (float)
         radius.
-    fragments (int)
+    fragments (std::size_t)
         number of fragments.
 ";
 
@@ -661,7 +661,7 @@ vertical semi-axis b.
         horizontal semi-axis.
     b (float)
         vertical semi-axis.
-    fragments (int)
+    fragments (std::size_t)
         number of fragments.
 ";
 
@@ -818,7 +818,7 @@ and radius respectively.
         Center at top of cone.
     bottom_radius (float)
         radius at top of cone.
-    slices (int)
+    slices (std::size_t)
         number of faces on the side when generating a
         polyhedral approximation.
 ";
