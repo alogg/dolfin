@@ -113,8 +113,8 @@ Return change count (number of times parameter has been changed)
 Cast parameter to int
 ";
 
-%feature("docstring")  dolfin::Parameter::operator dolfin::uint "
-Cast parameter to uint
+%feature("docstring")  dolfin::Parameter::operator std::size_t "
+Cast parameter to std::size_t
 ";
 
 %feature("docstring")  dolfin::Parameter::operator double "
@@ -177,8 +177,8 @@ Assignment
 Cast parameter to int
 ";
 
-%feature("docstring")  dolfin::IntParameter::operator dolfin::uint "
-Cast parameter to uint
+%feature("docstring")  dolfin::IntParameter::operator std::size_t "
+Cast parameter to std::size_t
 ";
 
 %feature("docstring")  dolfin::IntParameter::type_str "

@@ -319,7 +319,7 @@ Return label (description)
 Get unique identifier.
 
 *Returns*
-    _uint_
+    _std::size_t_
         The unique integer identifier associated with the object.
 ";
 
@@ -349,7 +349,7 @@ objects in the hierarchy linked to the current object via
 child-parent relationships, including the object itself.
 
 *Returns*
-    int
+    std::size_t
         The depth of the hierarchy.
 ";
 
