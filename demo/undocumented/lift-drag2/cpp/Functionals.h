@@ -14,9 +14,10 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
-//   optimize:                       False
+//   no_ferari:                      True
+//   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -1238,86 +1239,110 @@ public:
     // Quadrature points on the UFC reference element: (0.5)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[1][3] = \
-    {{0.0, 0.5, 0.5}};
+    static const double FE0_f0[1][2] = \
+    {{0.5, 0.5}};
     
-    static const double FE0_f1[1][3] = \
-    {{0.5, 0.0, 0.5}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE0_f2[1][3] = \
-    {{0.5, 0.5, 0.0}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Reset values in the element tensor.
     A[0] = 0.0;
+    // Number of operations to compute geometry constants: 2.
+    double G[1];
+    G[0] =  - W1*det*n0;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet)
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 11
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 11
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.0;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f0[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc0[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 5
-      // Number of operations to compute entry: 5
-      A[0] += n0*((-1.0)*F0)*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 11
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 11
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.0;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f1[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc1[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 5
-      // Number of operations to compute entry: 5
-      A[0] += n0*((-1.0)*F0)*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 11
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 11
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.0;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f2[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc2[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 5
-      // Number of operations to compute entry: 5
-      A[0] += n0*((-1.0)*F0)*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     }
@@ -1398,86 +1423,110 @@ public:
     // Quadrature points on the UFC reference element: (0.5)
     
     // Value of basis functions at quadrature points.
-    static const double FE0_f0[1][3] = \
-    {{0.0, 0.5, 0.5}};
+    static const double FE0_f0[1][2] = \
+    {{0.5, 0.5}};
     
-    static const double FE0_f1[1][3] = \
-    {{0.5, 0.0, 0.5}};
+    // Array of non-zero columns
+    static const unsigned int nzc0[2] = {1, 2};
     
-    static const double FE0_f2[1][3] = \
-    {{0.5, 0.5, 0.0}};
+    // Array of non-zero columns
+    static const unsigned int nzc1[2] = {0, 2};
+    
+    // Array of non-zero columns
+    static const unsigned int nzc2[2] = {0, 1};
     
     // Reset values in the element tensor.
     A[0] = 0.0;
+    // Number of operations to compute geometry constants: 2.
+    double G[1];
+    G[0] = W1*det*n1;
     
     // Compute element tensor using UFL quadrature representation
-    // Optimisations: ('eliminate zeros', False), ('ignore ones', False), ('ignore zero tables', False), ('optimisation', False), ('remove zero terms', False)
+    // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     switch (facet)
     {
     case 0:
       {
-        // Total number of operations to compute element tensor (from this point): 10
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 10
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.0;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f0[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc0[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 4
-      // Number of operations to compute entry: 4
-      A[0] += F0*n1*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     case 1:
       {
-        // Total number of operations to compute element tensor (from this point): 10
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 10
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.0;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f1[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc1[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 4
-      // Number of operations to compute entry: 4
-      A[0] += F0*n1*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     case 2:
       {
-        // Total number of operations to compute element tensor (from this point): 10
+        // Total number of operations to compute element tensor (from this point): 6
       
       // Loop quadrature points for integral.
-      // Number of operations to compute element tensor for following IP loop = 10
+      // Number of operations to compute element tensor for following IP loop = 6
       // Only 1 integration point, omitting IP loop.
       
       // Coefficient declarations.
       double F0 = 0.0;
       
-      // Total number of operations to compute function values = 6
-      for (unsigned int r = 0; r < 3; r++)
+      // Total number of operations to compute function values = 4
+      for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_f2[0][r]*w[0][r];
+        F0 += FE0_f0[0][r]*w[0][nzc2[r]];
       }// end loop over 'r'
       
-      // Number of operations for primary indices: 4
-      // Number of operations to compute entry: 4
-      A[0] += F0*n1*W1*det;
+      // Number of operations to compute ip constants: 1
+      double I[1];
+      // Number of operations: 1
+      I[0] = F0*G[0];
+      
+      
+      // Number of operations for primary indices: 1
+      // Number of operations to compute entry: 1
+      A[0] += I[0];
         break;
       }
     }
@@ -1532,7 +1581,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b11880762fe9ba0b869c8ba8bd3bbd78006b1a55a28e47666f01447ae1caabf6a4d966f9cf6305d62d9682c9b0dc1bcd7fc886e006829b8c3014f3d7fbaa62bb";
+    return "4b4142331df1e8998a3ccf552934c272015baeac44faaed738afdfb7d0561f2f988d1b337586394104296e8d3fa2ab16da3b17ce21b9fb421a8b2f7710c62c08";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1658,7 +1707,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "4daa7e7e1a9a0a6b187d7218e1aac4810a9a592e210325a136bfe9c483e2828b2b2b674e6dec9b3bda6787bf3c2c168f692f50d974aed738a882214b0c83c0b5";
+    return "b61aab2d15a1eedef933f9d8860e6a768bc2e921533f1be4bf71651032c9aa7a53a6d5aebea056dfd09286b0fe72ac9d25d282929859d5c6de19e2073acf18f1";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1757,6 +1806,7 @@ public:
 
 // DOLFIN includes
 #include <dolfin/common/NoDeleter.h>
+#include <dolfin/mesh/Restriction.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
@@ -1773,6 +1823,9 @@ class CoefficientSpace_p: public dolfin::FunctionSpace
 {
 public:
 
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
   CoefficientSpace_p(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new functionals_finite_element_0()))),
@@ -1781,30 +1834,38 @@ public:
     // Do nothing
   }
 
-  CoefficientSpace_p(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new functionals_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new functionals_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  CoefficientSpace_p(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new functionals_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new functionals_dofmap_0()), *mesh)))
-  {
-      // Do nothing
-  }
-
+  // Create standard function space (shared pointer version)
   CoefficientSpace_p(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new functionals_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new functionals_dofmap_0()), *mesh)))
   {
-      // Do nothing
+    // Do nothing
   }
 
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  CoefficientSpace_p(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new functionals_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new functionals_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
+  {
+    // Do nothing
+  }
+
+  // Create restricted function space (shared pointer version)
+  CoefficientSpace_p(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new functionals_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new functionals_dofmap_0()),
+                                                                                     restriction)))
+  {
+    // Do nothing
+  }
+
+  // Copy constructor
   ~CoefficientSpace_p()
   {
   }
@@ -1878,7 +1939,7 @@ public:
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
     if (name == "p")
       return 0;
@@ -1890,7 +1951,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
     switch (i)
     {
@@ -1978,7 +2039,7 @@ public:
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
     if (name == "p")
       return 0;
@@ -1990,7 +2051,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
     switch (i)
     {

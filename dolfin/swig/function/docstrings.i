@@ -144,7 +144,7 @@ constructor.
   Create vector-valued expression with given dimension.
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           Dimension of the vector-valued expression.
 
 * Expression\ (dim0, dim1)
@@ -152,9 +152,9 @@ constructor.
   Create matrix-valued expression with given dimensions.
   
   *Arguments*
-      dim0 (int)
+      dim0 (std::size_t)
           Dimension (rows).
-      dim1 (int)
+      dim1 (std::size_t)
           Dimension (columns).
 
 * Expression\ (value_shape)
@@ -162,7 +162,7 @@ constructor.
   Create tensor-valued expression with given shape.
   
   *Arguments*
-      value_shape (numpy.array(int))
+      value_shape (std::vector<std::size_t>)
           Shape of expression.
 
 * Expression\ (expression)
@@ -205,7 +205,7 @@ constructor.
 Return value rank.
 
 *Returns*
-    int
+    std::size_t
         The value rank.
 ";
 
@@ -213,11 +213,11 @@ Return value rank.
 Return value dimension for given axis.
 
 *Arguments*
-    i (int)
+    i (std::size_t)
         Integer denoting the axis to use.
 
 *Returns*
-    int
+    std::size_t
         The value dimension (for the given axis).
 ";
 
@@ -333,7 +333,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
   *Arguments*
       v (:py:class:`Function`)
           The function to be copied.
-      i (int)
+      i (std::size_t)
           Index of subfunction.
   
 ";
@@ -362,7 +362,7 @@ and :math:`U` is a vector of expansion coefficients for :math:`u_h`.
 Extract subfunction
 
 *Arguments*
-    i (int)
+    i (std::size_t)
         Index of subfunction.
 ";
 
@@ -410,7 +410,7 @@ Check if function is a member of the given function space
 Return geometric dimension
 
 *Returns*
-    int
+    std::size_t
         The geometric dimension.
 ";
 
@@ -474,7 +474,7 @@ Extrapolate function (from a possibly lower-degree function space)
 Return value rank
 
 *Returns*
-    int
+    std::size_t
         The value rank.
 ";
 
@@ -482,7 +482,7 @@ Return value rank
 Return value dimension for given axis
 
 *Arguments*
-    i (int)
+    i (std::size_t)
         The index of the axis.
 
 *Returns*
@@ -667,7 +667,7 @@ vector of expansion coefficients
 Extract subspace for component
 
 *Arguments*
-    i (int)
+    i (std::size_t)
         Index of the subspace.
 *Returns*
     :py:class:`FunctionSpace`
@@ -678,7 +678,7 @@ Extract subspace for component
 Extract subspace for component
 
 *Arguments*
-    component (numpy.array(int))
+    component (std::vector<std::size_t>)
         The component.
 
 *Returns*
@@ -739,7 +739,7 @@ Check if function space has given element
 Return component
 
 *Returns*
-    numpy.array(int)
+    std::vector<std::size_t>
         The component (relative to superspace).
 ";
 
@@ -855,7 +855,7 @@ This class represents a constant-valued expression.
   Create tensor-valued constant for flattened array of values
   
   *Arguments*
-      value_shape (numpy.array(int))
+      value_shape (std::vector<std::size_t>)
           Shape of tensor.
       values (numpy.array(float))
           Values to create tensor-valued constant from.

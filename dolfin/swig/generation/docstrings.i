@@ -75,245 +75,6 @@ Create mesh from a triangulation of points
 Create mesh from a triangulation of points
 ";
 
-// Documentation extracted from: (module=generation, header=UnitTetrahedronMesh.h)
-%feature("docstring")  dolfin::UnitTetrahedronMesh "
-A mesh consisting of a single tetrahedron with vertices at
-
-  (0, 0, 0)
-  (1, 0, 0)
-  (0, 1, 0)
-  (0, 0, 1)
-
-This class is useful for testing.
-";
-
-%feature("docstring")  dolfin::UnitTetrahedronMesh::UnitTetrahedronMesh "
-Create mesh of unit tetrahedron
-";
-
-// Documentation extracted from: (module=generation, header=UnitTetrahedron.h)
-%feature("docstring")  dolfin::UnitTetrahedron "
-A mesh consisting of a single tetrahedron with vertices at
-
-  (0, 0, 0)
-  (1, 0, 0)
-  (0, 1, 0)
-  (0, 0, 1)
-
-This class is useful for testing.
-
-This class has been deprecated. Use :py:class:`UnitTetrahedronMesh`.
-";
-
-%feature("docstring")  dolfin::UnitTetrahedron::UnitTetrahedron "
-Create mesh of unit tetrahedron
-";
-
-// Documentation extracted from: (module=generation, header=UnitCubeMesh.h)
-%feature("docstring")  dolfin::UnitCubeMesh "
-Tetrahedral mesh of the 3D unit cube [0,1] x [0,1] x [0,1].
-Given the number of cells (nx, ny, nz) in each direction,
-the total number of tetrahedra will be 6*nx*ny*nz and the
-total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
-";
-
-%feature("docstring")  dolfin::UnitCubeMesh::UnitCubeMesh "
-Create a uniform finite element :py:class:`Mesh` over the unit cube
-[0,1] x [0,1] x [0,1].
-
-*Arguments*
-    nx (int)
-        Number of cells in :math:`x` direction.
-    ny (int)
-        Number of cells in :math:`y` direction.
-    nz (int)
-        Number of cells in :math:`z` direction.
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=UnitCube.h)
-%feature("docstring")  dolfin::UnitCube "
-Tetrahedral mesh of the 3D unit cube [0,1] x [0,1] x [0,1].
-Given the number of cells (nx, ny, nz) in each direction,
-the total number of tetrahedra will be 6*nx*ny*nz and the
-total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
-
-This class has been deprecated. Unit :py:class:`UnitCubeMesh`.
-";
-
-%feature("docstring")  dolfin::UnitCube::UnitCube "
-Create a uniform finite element :py:class:`Mesh` over the unit cube
-[0,1] x [0,1] x [0,1].
-
-*Arguments*
-    nx (int)
-        Number of cells in :math:`x` direction.
-    ny (int)
-        Number of cells in :math:`y` direction.
-    nz (int)
-        Number of cells in :math:`z` direction.
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=UnitIntervalMesh.h)
-%feature("docstring")  dolfin::UnitIntervalMesh "
-A mesh of the unit interval (0, 1) with a given number of cells
-(nx) in the axial direction. The total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-";
-
-%feature("docstring")  dolfin::UnitIntervalMesh::UnitIntervalMesh "
-Create mesh of unit interval
-";
-
-// Documentation extracted from: (module=generation, header=UnitInterval.h)
-%feature("docstring")  dolfin::UnitInterval "
-A mesh of the unit interval (0, 1) with a given number of cells
-(nx) in the axial direction. The total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-
-This class has been deprecated. Use :py:class:`UnitIntervalMesh`.
-";
-
-%feature("docstring")  dolfin::UnitInterval::UnitInterval "
-Create mesh of unit interval
-";
-
-// Documentation extracted from: (module=generation, header=UnitTriangleMesh.h)
-%feature("docstring")  dolfin::UnitTriangleMesh "
-A mesh consisting of a single triangle with vertices at
-
-  (0, 0)
-  (1, 0)
-  (0, 1)
-
-This class is useful for testing.
-";
-
-%feature("docstring")  dolfin::UnitTriangleMesh::UnitTriangleMesh "
-Create mesh of unit triangle
-";
-
-// Documentation extracted from: (module=generation, header=UnitTriangle.h)
-%feature("docstring")  dolfin::UnitTriangle "
-A mesh consisting of a single triangle with vertices at
-
-  (0, 0)
-  (1, 0)
-  (0, 1)
-
-This class is useful for testing.
-";
-
-%feature("docstring")  dolfin::UnitTriangle::UnitTriangle "
-Create mesh of unit triangle
-";
-
-// Documentation extracted from: (module=generation, header=UnitSquareMesh.h)
-%feature("docstring")  dolfin::UnitSquareMesh "
-Triangular mesh of the 2D unit square [0,1] x [0,1].
-Given the number of cells (nx, ny) in each direction,
-the total number of triangles will be 2*nx*ny and the
-total number of vertices will be (nx + 1)*(ny + 1).
-
-std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\",
-or \"crossed\") indicates the direction of the diagonals.
-";
-
-%feature("docstring")  dolfin::UnitSquareMesh::UnitSquareMesh "
-Create a uniform finite element :py:class:`Mesh` over the unit square
-[0,1] x [0,1].
-
-*Arguments*
-    nx (int)
-        Number of cells in horizontal direction.
-    ny (int)
-        Number of cells in vertical direction.
-    diagonal (str)
-        Optional argument: A std::string indicating
-        the direction of the diagonals.
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=UnitSquare.h)
-%feature("docstring")  dolfin::UnitSquare "
-Triangular mesh of the 2D unit square [0,1] x [0,1].
-Given the number of cells (nx, ny) in each direction,
-the total number of triangles will be 2*nx*ny and the
-total number of vertices will be (nx + 1)*(ny + 1).
-
-std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\",
-or \"crossed\") indicates the direction of the diagonals.
-
-This class is deprecated. Use :py:class:`UnitSquareMesh`.
-";
-
-%feature("docstring")  dolfin::UnitSquare::UnitSquare "
-Create a uniform finite element :py:class:`Mesh` over the unit square
-[0,1] x [0,1].
-
-*Arguments*
-    nx (int)
-        Number of cells in horizontal direction.
-    ny (int)
-        Number of cells in vertical direction.
-    diagonal (str)
-        Optional argument: A std::string indicating
-        the direction of the diagonals.
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=UnitCircleMesh.h)
-%feature("docstring")  dolfin::UnitCircleMesh "
-Tetrahedral mesh of the unit circle.
-";
-
-%feature("docstring")  dolfin::UnitCircleMesh::UnitCircleMesh "
-Create a uniform finite element :py:class:`Mesh` over the unit circle.
-
-*Arguments*
-    n (int)
-        Resolution of the mesh.
-    diagonal (str)
-        Optional argument: A std::string indicating
-        the direction of the diagonals.
-    transformation (str)
-        Optional argument: A std::string indicating
-        the type of transformation used.
-";
-
-// Documentation extracted from: (module=generation, header=UnitCircle.h)
-%feature("docstring")  dolfin::UnitCircle::UnitCircle "
-Create a uniform finite element :py:class:`Mesh` over the unit circle.
-This class is deprecated. Use :py:class:`UnitCircleMesh`.
-
-*Arguments*
-    n (int)
-        Resolution of the mesh.
-    diagonal (str)
-        Optional argument: A std::string indicating
-        the direction of the diagonals.
-    transformation (str)
-        Optional argument: A std::string indicating
-        the type of transformation used.
-";
-
 // Documentation extracted from: (module=generation, header=BoxMesh.h)
 %feature("docstring")  dolfin::BoxMesh "
 Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
@@ -381,6 +142,212 @@ total number of vertices will be (nx + 1)*(ny + 1).
         No example code available for this function.
 ";
 
+// Documentation extracted from: (module=generation, header=UnitTetrahedronMesh.h)
+%feature("docstring")  dolfin::UnitTetrahedronMesh "
+A mesh consisting of a single tetrahedron with vertices at
+
+  (0, 0, 0)
+  (1, 0, 0)
+  (0, 1, 0)
+  (0, 0, 1)
+
+This class is useful for testing.
+";
+
+%feature("docstring")  dolfin::UnitTetrahedronMesh::UnitTetrahedronMesh "
+Create mesh of unit tetrahedron
+";
+
+// Documentation extracted from: (module=generation, header=UnitCubeMesh.h)
+%feature("docstring")  dolfin::UnitCubeMesh "
+Tetrahedral mesh of the 3D unit cube [0,1] x [0,1] x [0,1].
+Given the number of cells (nx, ny, nz) in each direction,
+the total number of tetrahedra will be 6*nx*ny*nz and the
+total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+";
+
+%feature("docstring")  dolfin::UnitCubeMesh::UnitCubeMesh "
+Create a uniform finite element :py:class:`Mesh` over the unit cube
+[0,1] x [0,1] x [0,1].
+
+*Arguments*
+    nx (std::size_t)
+        Number of cells in :math:`x` direction.
+    ny (std::size_t)
+        Number of cells in :math:`y` direction.
+    nz (std::size_t)
+        Number of cells in :math:`z` direction.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=UnitCube.h)
+%feature("docstring")  dolfin::UnitCube "
+Tetrahedral mesh of the 3D unit cube [0,1] x [0,1] x [0,1].
+Given the number of cells (nx, ny, nz) in each direction,
+the total number of tetrahedra will be 6*nx*ny*nz and the
+total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+
+This class has been deprecated. Unit :py:class:`UnitCubeMesh`.
+";
+
+%feature("docstring")  dolfin::UnitCube::UnitCube "
+Create a uniform finite element :py:class:`Mesh` over the unit cube
+[0,1] x [0,1] x [0,1].
+
+*Arguments*
+    nx (std::size_t)
+        Number of cells in :math:`x` direction.
+    ny (std::size_t)
+        Number of cells in :math:`y` direction.
+    nz (std::size_t)
+        Number of cells in :math:`z` direction.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=UnitIntervalMesh.h)
+%feature("docstring")  dolfin::UnitIntervalMesh "
+A mesh of the unit interval (0, 1) with a given number of cells
+(nx) in the axial direction. The total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+";
+
+%feature("docstring")  dolfin::UnitIntervalMesh::UnitIntervalMesh "
+Create mesh of unit interval
+";
+
+// Documentation extracted from: (module=generation, header=UnitInterval.h)
+%feature("docstring")  dolfin::UnitInterval "
+A mesh of the unit interval (0, 1) with a given number of cells
+(nx) in the axial direction. The total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+
+This class has been deprecated. Use :py:class:`UnitIntervalMesh`.
+";
+
+%feature("docstring")  dolfin::UnitInterval::UnitInterval "
+Create mesh of unit interval
+";
+
+// Documentation extracted from: (module=generation, header=UnitTriangleMesh.h)
+%feature("docstring")  dolfin::UnitTriangleMesh "
+A mesh consisting of a single triangle with vertices at
+
+  (0, 0)
+  (1, 0)
+  (0, 1)
+
+This class is useful for testing.
+";
+
+%feature("docstring")  dolfin::UnitTriangleMesh::UnitTriangleMesh "
+Create mesh of unit triangle
+";
+
+// Documentation extracted from: (module=generation, header=UnitSquareMesh.h)
+%feature("docstring")  dolfin::UnitSquareMesh "
+Triangular mesh of the 2D unit square [0,1] x [0,1].
+Given the number of cells (nx, ny) in each direction,
+the total number of triangles will be 2*nx*ny and the
+total number of vertices will be (nx + 1)*(ny + 1).
+
+std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\",
+or \"crossed\") indicates the direction of the diagonals.
+";
+
+%feature("docstring")  dolfin::UnitSquareMesh::UnitSquareMesh "
+Create a uniform finite element :py:class:`Mesh` over the unit square
+[0,1] x [0,1].
+
+*Arguments*
+    nx (std::size_t)
+        Number of cells in horizontal direction.
+    ny (std::size_t)
+        Number of cells in vertical direction.
+    diagonal (str)
+        Optional argument: A std::string indicating
+        the direction of the diagonals.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=UnitSquare.h)
+%feature("docstring")  dolfin::UnitSquare "
+Triangular mesh of the 2D unit square [0,1] x [0,1].
+Given the number of cells (nx, ny) in each direction,
+the total number of triangles will be 2*nx*ny and the
+total number of vertices will be (nx + 1)*(ny + 1).
+
+std::string diagonal (\"left\", \"right\", \"right/left\", \"left/right\",
+or \"crossed\") indicates the direction of the diagonals.
+
+This class is deprecated. Use :py:class:`UnitSquareMesh`.
+";
+
+%feature("docstring")  dolfin::UnitSquare::UnitSquare "
+Create a uniform finite element :py:class:`Mesh` over the unit square
+[0,1] x [0,1].
+
+*Arguments*
+    nx (std::size_t)
+        Number of cells in horizontal direction.
+    ny (std::size_t)
+        Number of cells in vertical direction.
+    diagonal (str)
+        Optional argument: A std::string indicating
+        the direction of the diagonals.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=UnitCircleMesh.h)
+%feature("docstring")  dolfin::UnitCircleMesh "
+Tetrahedral mesh of the unit circle.
+";
+
+%feature("docstring")  dolfin::UnitCircleMesh::UnitCircleMesh "
+Create a uniform finite element :py:class:`Mesh` over the unit circle.
+
+*Arguments*
+    n (std::size_t)
+        Resolution of the mesh.
+    diagonal (str)
+        Optional argument: A std::string indicating
+        the direction of the diagonals.
+    transformation (str)
+        Optional argument: A std::string indicating
+        the type of transformation used.
+";
+
+// Documentation extracted from: (module=generation, header=UnitCircle.h)
+%feature("docstring")  dolfin::UnitCircle::UnitCircle "
+Create a uniform finite element :py:class:`Mesh` over the unit circle.
+This class is deprecated. Use :py:class:`UnitCircleMesh`.
+
+*Arguments*
+    n (std::size_t)
+        Resolution of the mesh.
+    diagonal (str)
+        Optional argument: A std::string indicating
+        the direction of the diagonals.
+    transformation (str)
+        Optional argument: A std::string indicating
+        the type of transformation used.
+";
+
 // Documentation extracted from: (module=generation, header=IntervalMesh.h)
 %feature("docstring")  dolfin::IntervalMesh "
 Interval mesh of the 1D line [a,b].  Given the number of cells
@@ -392,7 +359,7 @@ be nx and the total number of vertices will be (nx + 1).
 Constructor
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         The number of cells.
     a (float)
         The minimum point (inclusive).
@@ -418,7 +385,7 @@ This class is deprecated. Use :py:class:`IntervalMesh`.
 Constructor
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         The number of cells.
     a (float)
         The minimum point (inclusive).
@@ -623,7 +590,7 @@ Create circle at x = (x0, x1) with radius r.
         x1-coordinate of center.
     r (float)
         radius.
-    fragments (int)
+    fragments (std::size_t)
         number of fragments.
 ";
 
@@ -661,7 +628,7 @@ vertical semi-axis b.
         horizontal semi-axis.
     b (float)
         vertical semi-axis.
-    fragments (int)
+    fragments (std::size_t)
         number of fragments.
 ";
 
@@ -818,7 +785,7 @@ and radius respectively.
         Center at top of cone.
     bottom_radius (float)
         radius at top of cone.
-    slices (int)
+    slices (std::size_t)
         number of faces on the side when generating a
         polyhedral approximation.
 ";

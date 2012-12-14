@@ -154,7 +154,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -190,7 +190,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -489,7 +489,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -497,7 +497,7 @@ public:
       {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
-      {4.0, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
@@ -505,7 +505,7 @@ public:
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -655,7 +655,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -663,7 +663,7 @@ public:
       {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
-      {4.0, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
@@ -671,7 +671,7 @@ public:
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -829,7 +829,7 @@ public:
       {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
-      {4.0, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
@@ -837,7 +837,7 @@ public:
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -995,7 +995,7 @@ public:
       {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
-      {4.0, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
@@ -1003,7 +1003,7 @@ public:
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1161,7 +1161,7 @@ public:
       {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
-      {4.0, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
@@ -1169,7 +1169,7 @@ public:
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1327,7 +1327,7 @@ public:
       {4.89897948556635, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 9.48683298050514, 0.0, 0.0, 0.0, 0.0},
-      {4.0, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
+      {4, 0.0, 7.07106781186548, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       static const double dmats1[6][6] = \
@@ -1335,7 +1335,7 @@ public:
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2017,26 +2017,26 @@ public:
     A[13] = -0.166666666666667*G0_1_0;
     A[14] = 0.5*G0_1_1;
     A[15] = 0.666666666666666*G0_1_0;
-    A[16] = -0.666666666666667*G0_1_0 - 0.666666666666666*G0_1_1;
+    A[16] = -0.666666666666666*G0_1_0 - 0.666666666666666*G0_1_1;
     A[17] = 0.0;
     A[18] = 0.0;
     A[19] = 0.666666666666666*G0_1_0;
     A[20] = 0.666666666666666*G0_0_1;
-    A[21] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
-    A[22] = -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_0;
-    A[23] = -0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[21] = 1.33333333333333*G0_0_0 + 0.666666666666665*G0_0_1 + 0.666666666666665*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[22] = -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666665*G0_1_0;
+    A[23] = -0.666666666666665*G0_0_1 - 0.666666666666667*G0_1_0 - 1.33333333333333*G0_1_1;
     A[24] = -0.666666666666667*G0_1_0 - 0.666666666666667*G0_1_1;
     A[25] = 0.0;
-    A[26] = -0.666666666666667*G0_0_1 - 0.666666666666666*G0_1_1;
-    A[27] = -1.33333333333333*G0_0_0 - 0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_0;
+    A[26] = -0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_1;
+    A[27] = -1.33333333333333*G0_0_0 - 0.666666666666665*G0_0_1 - 0.666666666666666*G0_1_0;
     A[28] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
-    A[29] = 0.666666666666666*G0_0_1 + 0.666666666666667*G0_1_0;
+    A[29] = 0.666666666666665*G0_0_1 + 0.666666666666667*G0_1_0;
     A[30] = -0.666666666666667*G0_0_0 - 0.666666666666667*G0_0_1;
     A[31] = -0.666666666666667*G0_0_0 - 0.666666666666666*G0_1_0;
     A[32] = 0.0;
-    A[33] = -0.666666666666666*G0_0_1 - 0.666666666666666*G0_1_0 - 1.33333333333333*G0_1_1;
-    A[34] = 0.666666666666667*G0_0_1 + 0.666666666666666*G0_1_0;
-    A[35] = 1.33333333333333*G0_0_0 + 0.666666666666666*G0_0_1 + 0.666666666666666*G0_1_0 + 1.33333333333333*G0_1_1;
+    A[33] = -0.666666666666667*G0_0_1 - 0.666666666666665*G0_1_0 - 1.33333333333333*G0_1_1;
+    A[34] = 0.666666666666667*G0_0_1 + 0.666666666666665*G0_1_0;
+    A[35] = 1.33333333333333*G0_0_0 + 0.666666666666667*G0_0_1 + 0.666666666666667*G0_1_0 + 1.33333333333333*G0_1_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -2103,25 +2103,19 @@ public:
     // Facet Area.
     
     // Array of quadrature weights.
-    static const double W6[6] = {0.054975871827661, 0.054975871827661, 0.054975871827661, 0.111690794839005, 0.111690794839005, 0.111690794839005};
-    // Quadrature points on the UFC reference element: (0.816847572980459, 0.091576213509771), (0.091576213509771, 0.816847572980459), (0.091576213509771, 0.091576213509771), (0.10810301816807, 0.445948490915965), (0.445948490915965, 0.10810301816807), (0.445948490915965, 0.445948490915965)
+    static const double W3[3] = {0.166666666666667, 0.166666666666667, 0.166666666666667};
+    // Quadrature points on the UFC reference element: (0.166666666666667, 0.166666666666667), (0.166666666666667, 0.666666666666667), (0.666666666666667, 0.166666666666667)
     
     // Value of basis functions at quadrature points.
-    static const double FE0[6][6] = \
-    {{-0.0748038077481961, 0.517632341987674, -0.0748038077481967, 0.299215230992787, 0.0335448115231483, 0.299215230992784},
-    {-0.074803807748196, -0.0748038077481966, 0.517632341987673, 0.299215230992787, 0.299215230992784, 0.0335448115231483},
-    {0.517632341987671, -0.0748038077481967, -0.0748038077481967, 0.0335448115231487, 0.299215230992787, 0.299215230992787},
-    {-0.048208377815512, -0.0847304930939778, -0.048208377815512, 0.192833511262048, 0.795480226200906, 0.192833511262048},
-    {-0.048208377815512, -0.0482083778155119, -0.0847304930939778, 0.192833511262048, 0.192833511262048, 0.795480226200906},
-    {-0.0847304930939778, -0.048208377815512, -0.048208377815512, 0.795480226200906, 0.192833511262048, 0.192833511262048}};
+    static const double FE0[3][6] = \
+    {{0.222222222222222, -0.111111111111111, -0.111111111111111, 0.111111111111111, 0.444444444444444, 0.444444444444444},
+    {-0.111111111111111, -0.111111111111111, 0.222222222222222, 0.444444444444444, 0.444444444444444, 0.111111111111111},
+    {-0.111111111111111, 0.222222222222222, -0.111111111111111, 0.444444444444444, 0.111111111111111, 0.444444444444444}};
     
-    static const double FEA6_f0[6][3] = \
-    {{0.09157621350977, 0.816847572980459, 0.091576213509771},
-    {0.0915762135097701, 0.091576213509771, 0.816847572980459},
-    {0.816847572980458, 0.091576213509771, 0.091576213509771},
-    {0.445948490915965, 0.10810301816807, 0.445948490915965},
-    {0.445948490915965, 0.445948490915965, 0.10810301816807},
-    {0.10810301816807, 0.445948490915965, 0.445948490915965}};
+    static const double FEA3_f0[3][3] = \
+    {{0.666666666666667, 0.166666666666667, 0.166666666666667},
+    {0.166666666666667, 0.166666666666667, 0.666666666666667},
+    {0.166666666666667, 0.666666666666667, 0.166666666666667}};
     
     // Reset values in the element tensor.
     for (unsigned int r = 0; r < 6; r++)
@@ -2135,34 +2129,34 @@ public:
     // Loop quadrature points for integral.
     
     // Declare array to hold physical coordinate of quadrature point.
-    double X6[2];
-    // Number of operations to compute element tensor for following IP loop = 288
-    for (unsigned int ip = 0; ip < 6; ip++)
+    double X3[2];
+    // Number of operations to compute element tensor for following IP loop = 144
+    for (unsigned int ip = 0; ip < 3; ip++)
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
-      X6[0] = FEA6_f0[ip][0]*x[0][0] + FEA6_f0[ip][1]*x[1][0] + FEA6_f0[ip][2]*x[2][0];
-      X6[1] = FEA6_f0[ip][0]*x[0][1] + FEA6_f0[ip][1]*x[1][1] + FEA6_f0[ip][2]*x[2][1];
+      X3[0] = FEA3_f0[ip][0]*x[0][0] + FEA3_f0[ip][1]*x[1][0] + FEA3_f0[ip][2]*x[2][0];
+      X3[1] = FEA3_f0[ip][0]*x[0][1] + FEA3_f0[ip][1]*x[1][1] + FEA3_f0[ip][2]*x[2][1];
       double C[7];
       // Compute conditional, operations: 1.
-      C[0] = (X6[0] >= 0.55) ? -1.0 : 0.0;
+      C[0] = ((X3[0] >= 0.55)) ? -1.0 : 0.0;
       // Compute conditional, operations: 1.
-      C[1] = (X6[0] <= 0.95) ? C[0] : 0.0;
+      C[1] = ((X3[0] <= 0.95)) ? C[0] : 0.0;
       // Compute conditional, operations: 1.
-      C[2] = (X6[1] >= 0.05) ? C[1] : 0.0;
+      C[2] = ((X3[1] >= 0.05)) ? C[1] : 0.0;
       // Compute conditional, operations: 1.
-      C[3] = (X6[1] <= 0.45) ? C[2] : 0.0;
+      C[3] = ((X3[1] <= 0.45)) ? C[2] : 0.0;
       // Compute conditional, operations: 3.
-      C[4] = ((0.5 + X6[1] - X6[0]) >= 0.0) ? C[3] : 0.0;
+      C[4] = (((0.5 + X3[1] - X3[0]) >= 0.0)) ? C[3] : 0.0;
       // Compute conditional, operations: 8.
-      C[5] = (((X6[0]-0.33)*(X6[0]-0.33) + (X6[1]-0.67)*(X6[1]-0.67)) <= 0.015) ? -1.0 : 5.0;
+      C[5] = ((((X3[0]-0.33)*(X3[0]-0.33) + (X3[1]-0.67)*(X3[1]-0.67)) <= 0.015)) ? -1.0 : 5.0;
       // Compute conditional, operations: 8.
-      C[6] = (((X6[0]-0.33)*(X6[0]-0.33) + (X6[1]-0.67)*(X6[1]-0.67)) <= 0.025) ? C[5] : 0.0;
+      C[6] = ((((X3[0]-0.33)*(X3[0]-0.33) + (X3[1]-0.67)*(X3[1]-0.67)) <= 0.025)) ? C[5] : 0.0;
       
       // Number of operations to compute ip constants: 3
       double I[1];
       // Number of operations: 3
-      I[0] = W6[ip]*det*(C[4] + C[6]);
+      I[0] = W3[ip]*det*(C[4] + C[6]);
       
       
       // Number of operations for primary indices: 12
@@ -2222,7 +2216,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "57d899d8c06d0d4b47c03204475c21f28f50e3584aa0d0a9dece49fb1df9de4c665b70719f04982edc55fc99fad31f1f7cdbd05acdc76e72c757c98f8f4588ba";
+    return "0405fe3e986154d2088a152dc481ee48713ec6f373235aea95a52c73546eb82333a9c7b59f759b190248ac466fddec3b048a330b402f1a04b1e3e697fd2e3f6a";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2358,7 +2352,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "e3da540bc0deb6689deb7a2fc9ecce9308c4a626311e761ca658a625819904ec98523907261c4b0cb01b2e2847234cbb5429f755583095ed054d9e462716a1cb";
+    return "730e7509ed99c678c3e623baa9d515fb6b3cbfbbbb079cd4b24a5bbf31f1bfac21eede84b98c35baae1335838f653d87598a407c1a031bc6c78641cee0d28eae";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2457,6 +2451,7 @@ public:
 
 // DOLFIN includes
 #include <dolfin/common/NoDeleter.h>
+#include <dolfin/mesh/Restriction.h>
 #include <dolfin/fem/FiniteElement.h>
 #include <dolfin/fem/DofMap.h>
 #include <dolfin/fem/Form.h>
@@ -2469,11 +2464,14 @@ public:
 namespace Conditional
 {
 
-class Form_0_FunctionSpace_0: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_0(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), mesh)))
@@ -2481,41 +2479,52 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_0()
+  // Copy constructor
+  ~Form_a_FunctionSpace_0()
   {
   }
 
 };
 
-class Form_0_FunctionSpace_1: public dolfin::FunctionSpace
+class Form_a_FunctionSpace_1: public dolfin::FunctionSpace
 {
 public:
 
-  Form_0_FunctionSpace_1(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), mesh)))
@@ -2523,42 +2532,50 @@ public:
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_0_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_0_FunctionSpace_1()
+  // Copy constructor
+  ~Form_a_FunctionSpace_1()
   {
   }
 
 };
 
-class Form_0: public dolfin::Form
+class Form_a: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_0(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
+  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -2568,7 +2585,7 @@ public:
   }
 
   // Constructor
-  Form_0(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
+  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
     dolfin::Form(2, 0)
   {
     _function_spaces[0] = V0;
@@ -2578,11 +2595,11 @@ public:
   }
 
   // Destructor
-  ~Form_0()
+  ~Form_a()
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -2592,7 +2609,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -2602,17 +2619,20 @@ public:
   }
 
   // Typedefs
-  typedef Form_0_FunctionSpace_0 TestSpace;
-  typedef Form_0_FunctionSpace_1 TrialSpace;
+  typedef Form_a_FunctionSpace_0 TestSpace;
+  typedef Form_a_FunctionSpace_1 TrialSpace;
 
   // Coefficients
 };
 
-class Form_1_FunctionSpace_0: public dolfin::FunctionSpace
+class Form_L_FunctionSpace_0: public dolfin::FunctionSpace
 {
 public:
 
-  Form_1_FunctionSpace_0(const dolfin::Mesh& mesh):
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_L_FunctionSpace_0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), mesh)))
@@ -2620,42 +2640,50 @@ public:
     // Do nothing
   }
 
-  Form_1_FunctionSpace_0(dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+  // Create standard function space (shared pointer version)
+  Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
   {
     // Do nothing
   }
 
-  Form_1_FunctionSpace_0(boost::shared_ptr<dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  Form_L_FunctionSpace_0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  Form_1_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
+  // Create restricted function space (shared pointer version)
+  Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new conditional_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()), *mesh)))
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new conditional_dofmap_0()),
+                                                                                     restriction)))
   {
-      // Do nothing
+    // Do nothing
   }
 
-  ~Form_1_FunctionSpace_0()
+  // Copy constructor
+  ~Form_L_FunctionSpace_0()
   {
   }
 
 };
 
-class Form_1: public dolfin::Form
+class Form_L: public dolfin::Form
 {
 public:
 
   // Constructor
-  Form_1(const dolfin::FunctionSpace& V0):
+  Form_L(const dolfin::FunctionSpace& V0):
     dolfin::Form(1, 0)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
@@ -2664,7 +2692,7 @@ public:
   }
 
   // Constructor
-  Form_1(boost::shared_ptr<const dolfin::FunctionSpace> V0):
+  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0):
     dolfin::Form(1, 0)
   {
     _function_spaces[0] = V0;
@@ -2673,11 +2701,11 @@ public:
   }
 
   // Destructor
-  ~Form_1()
+  ~Form_L()
   {}
 
   /// Return the number of the coefficient with this name
-  virtual dolfin::uint coefficient_number(const std::string& name) const
+  virtual std::size_t coefficient_number(const std::string& name) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -2687,7 +2715,7 @@ public:
   }
 
   /// Return the name of the coefficient with this number
-  virtual std::string coefficient_name(dolfin::uint i) const
+  virtual std::string coefficient_name(std::size_t i) const
   {
 
     dolfin::dolfin_error("generated code for class Form",
@@ -2697,17 +2725,17 @@ public:
   }
 
   // Typedefs
-  typedef Form_1_FunctionSpace_0 TestSpace;
+  typedef Form_L_FunctionSpace_0 TestSpace;
 
   // Coefficients
 };
 
 // Class typedefs
-typedef Form_0 BilinearForm;
-typedef Form_0 JacobianForm;
-typedef Form_1 LinearForm;
-typedef Form_1 ResidualForm;
-typedef Form_0::TestSpace FunctionSpace;
+typedef Form_a BilinearForm;
+typedef Form_a JacobianForm;
+typedef Form_L LinearForm;
+typedef Form_L ResidualForm;
+typedef Form_a::TestSpace FunctionSpace;
 
 }
 
