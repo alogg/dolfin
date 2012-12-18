@@ -75,6 +75,73 @@ Create mesh from a triangulation of points
 Create mesh from a triangulation of points
 ";
 
+// Documentation extracted from: (module=generation, header=BoxMesh.h)
+%feature("docstring")  dolfin::BoxMesh "
+Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
+x [z0, z1].  Given the number of cells (nx, ny, nz) in each
+direction, the total number of tetrahedra will be 6*nx*ny*nz and
+the total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+";
+
+%feature("docstring")  dolfin::BoxMesh::BoxMesh "
+Create a uniform finite element :py:class:`Mesh` over the rectangular prism
+[x0, x1] x [y0, y1] x [z0, z1].
+
+*Arguments*
+    x0 (float)
+        :math:`x`-min.
+    y0 (float)
+        :math:`y`-min.
+    z0 (float)
+        :math:`z`-min.
+    x1 (float)
+        :math:`x`-max.
+    y1 (float)
+        :math:`y`-max.
+    z1 (float)
+        :math:`z`-max.
+    xn (float)
+        Number of cells in :math:`x`-direction.
+    yn (float)
+        Number of cells in :math:`y`-direction.
+    zn (float)
+        Number of cells in :math:`z`-direction.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=RectangleMesh.h)
+%feature("docstring")  dolfin::RectangleMesh "
+Triangular mesh of the 2D rectangle (x0, y0) x (x1, y1).
+Given the number of cells (nx, ny) in each direction,
+the total number of triangles will be 2*nx*ny and the
+total number of vertices will be (nx + 1)*(ny + 1).
+
+*Arguments*
+    x0 (float)
+        :math:`x`-min.
+    y0 (float)
+        :math:`y`-min.
+    x1 (float)
+        :math:`x`-max.
+    y1 (float)
+        :math:`y`-max.
+    xn (float)
+        Number of cells in :math:`x`-direction.
+    yn (float)
+        Number of cells in :math:`y`-direction.
+    diagonal (str)
+        Direction of diagonals: \"left\", \"right\", \"left/right\", \"crossed\"
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
 // Documentation extracted from: (module=generation, header=UnitTetrahedronMesh.h)
 %feature("docstring")  dolfin::UnitTetrahedronMesh "
 A mesh consisting of a single tetrahedron with vertices at
@@ -88,24 +155,6 @@ This class is useful for testing.
 ";
 
 %feature("docstring")  dolfin::UnitTetrahedronMesh::UnitTetrahedronMesh "
-Create mesh of unit tetrahedron
-";
-
-// Documentation extracted from: (module=generation, header=UnitTetrahedron.h)
-%feature("docstring")  dolfin::UnitTetrahedron "
-A mesh consisting of a single tetrahedron with vertices at
-
-  (0, 0, 0)
-  (1, 0, 0)
-  (0, 1, 0)
-  (0, 0, 1)
-
-This class is useful for testing.
-
-This class has been deprecated. Use :py:class:`UnitTetrahedronMesh`.
-";
-
-%feature("docstring")  dolfin::UnitTetrahedron::UnitTetrahedron "
 Create mesh of unit tetrahedron
 ";
 
@@ -199,21 +248,6 @@ This class is useful for testing.
 ";
 
 %feature("docstring")  dolfin::UnitTriangleMesh::UnitTriangleMesh "
-Create mesh of unit triangle
-";
-
-// Documentation extracted from: (module=generation, header=UnitTriangle.h)
-%feature("docstring")  dolfin::UnitTriangle "
-A mesh consisting of a single triangle with vertices at
-
-  (0, 0)
-  (1, 0)
-  (0, 1)
-
-This class is useful for testing.
-";
-
-%feature("docstring")  dolfin::UnitTriangle::UnitTriangle "
 Create mesh of unit triangle
 ";
 
@@ -312,73 +346,6 @@ This class is deprecated. Use :py:class:`UnitCircleMesh`.
     transformation (str)
         Optional argument: A std::string indicating
         the type of transformation used.
-";
-
-// Documentation extracted from: (module=generation, header=BoxMesh.h)
-%feature("docstring")  dolfin::BoxMesh "
-Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
-x [z0, z1].  Given the number of cells (nx, ny, nz) in each
-direction, the total number of tetrahedra will be 6*nx*ny*nz and
-the total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
-";
-
-%feature("docstring")  dolfin::BoxMesh::BoxMesh "
-Create a uniform finite element :py:class:`Mesh` over the rectangular prism
-[x0, x1] x [y0, y1] x [z0, z1].
-
-*Arguments*
-    x0 (float)
-        :math:`x`-min.
-    y0 (float)
-        :math:`y`-min.
-    z0 (float)
-        :math:`z`-min.
-    x1 (float)
-        :math:`x`-max.
-    y1 (float)
-        :math:`y`-max.
-    z1 (float)
-        :math:`z`-max.
-    xn (float)
-        Number of cells in :math:`x`-direction.
-    yn (float)
-        Number of cells in :math:`y`-direction.
-    zn (float)
-        Number of cells in :math:`z`-direction.
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=RectangleMesh.h)
-%feature("docstring")  dolfin::RectangleMesh "
-Triangular mesh of the 2D rectangle (x0, y0) x (x1, y1).
-Given the number of cells (nx, ny) in each direction,
-the total number of triangles will be 2*nx*ny and the
-total number of vertices will be (nx + 1)*(ny + 1).
-
-*Arguments*
-    x0 (float)
-        :math:`x`-min.
-    y0 (float)
-        :math:`y`-min.
-    x1 (float)
-        :math:`x`-max.
-    y1 (float)
-        :math:`y`-max.
-    xn (float)
-        Number of cells in :math:`x`-direction.
-    yn (float)
-        Number of cells in :math:`y`-direction.
-    diagonal (str)
-        Direction of diagonals: \"left\", \"right\", \"left/right\", \"crossed\"
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=generation, header=IntervalMesh.h)
