@@ -531,7 +531,15 @@ Dereference operator
 ";
 
 %feature("docstring")  dolfin::MPINonblocking::send_recv "
-Non-blocking send and receive
+**Overloaded versions**
+
+* send_recv\ (send_value, dest, recv_value, source)
+
+  Non-blocking send and receive
+
+* send_recv\ (send_value, dest_tag, dest, recv_value, source_tag, source)
+
+  Non-blocking send and receive with tag
 ";
 
 %feature("docstring")  dolfin::MPINonblocking::wait_all "
@@ -570,7 +578,8 @@ Set a barrier (synchronization point)
 
 * distribute\ (in_values, destinations, out_values, sources)
 
-  Distribute local arrays on all processors according to given partition
+  Distribute local arrays on all processors according to given
+  partition
 
 * distribute\ (in_values, destinations, out_values)
 
