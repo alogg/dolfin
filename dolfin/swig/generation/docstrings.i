@@ -113,6 +113,56 @@ Create a uniform finite element :py:class:`Mesh` over the rectangular prism
         No example code available for this function.
 ";
 
+// Documentation extracted from: (module=generation, header=IntervalMesh.h)
+%feature("docstring")  dolfin::IntervalMesh "
+Interval mesh of the 1D line [a,b].  Given the number of cells
+(nx) in the axial direction, the total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+";
+
+%feature("docstring")  dolfin::IntervalMesh::IntervalMesh "
+Constructor
+
+*Arguments*
+    nx (std::size_t)
+        The number of cells.
+    a (float)
+        The minimum point (inclusive).
+    b (float)
+        The maximum point (inclusive).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=Interval.h)
+%feature("docstring")  dolfin::Interval "
+Interval mesh of the 1D line [a,b].  Given the number of cells
+(nx) in the axial direction, the total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+
+This class is deprecated. Use :py:class:`IntervalMesh`.
+";
+
+%feature("docstring")  dolfin::Interval::Interval "
+Constructor
+
+*Arguments*
+    nx (std::size_t)
+        The number of cells.
+    a (float)
+        The minimum point (inclusive).
+    b (float)
+        The maximum point (inclusive).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
 // Documentation extracted from: (module=generation, header=RectangleMesh.h)
 %feature("docstring")  dolfin::RectangleMesh "
 Triangular mesh of the 2D rectangle (x0, y0) x (x1, y1).
@@ -346,56 +396,6 @@ This class is deprecated. Use :py:class:`UnitCircleMesh`.
     transformation (str)
         Optional argument: A std::string indicating
         the type of transformation used.
-";
-
-// Documentation extracted from: (module=generation, header=IntervalMesh.h)
-%feature("docstring")  dolfin::IntervalMesh "
-Interval mesh of the 1D line [a,b].  Given the number of cells
-(nx) in the axial direction, the total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-";
-
-%feature("docstring")  dolfin::IntervalMesh::IntervalMesh "
-Constructor
-
-*Arguments*
-    nx (std::size_t)
-        The number of cells.
-    a (float)
-        The minimum point (inclusive).
-    b (float)
-        The maximum point (inclusive).
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=Interval.h)
-%feature("docstring")  dolfin::Interval "
-Interval mesh of the 1D line [a,b].  Given the number of cells
-(nx) in the axial direction, the total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-
-This class is deprecated. Use :py:class:`IntervalMesh`.
-";
-
-%feature("docstring")  dolfin::Interval::Interval "
-Constructor
-
-*Arguments*
-    nx (std::size_t)
-        The number of cells.
-    a (float)
-        The minimum point (inclusive).
-    b (float)
-        The maximum point (inclusive).
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=generation, header=CSGGeometry.h)
@@ -779,7 +779,7 @@ and radius respectively.
 *Arguments*
     top (Point)
         Center at top of cone.
-     top_radius(double)
+    top_radius (float)
         Radius bottom of cone.
     bottom (Point)
         Center at top of cone.
@@ -800,9 +800,39 @@ geometries using Constructive Solid Geometry (CSG). A cylinder
 is here just a special case of a cone.
 ";
 
+%feature("docstring")  dolfin::Cylinder::Cylinder "
+Create cylinder defined by upper and lower center
+and radius respectively.
+
+*Arguments*
+    top (Point)
+        Center at top of cylinder.
+    bottom (Point)
+        Center at top of cylinder.
+    r (float)
+        radius of cylinder.
+    slices (std::size_t)
+        number of faces on the side when generating a
+        polyhedral approximation.
+";
+
 %feature("docstring")  dolfin::Tetrahedron "
 This class describes a Tetrahedron which can be used to build
 geometries using Constructive Solid Geometry (CSG).
+";
+
+%feature("docstring")  dolfin::Tetrahedron::Tetrahedron "
+Create tetrahedron defined by four corner points.
+
+*Arguments*
+    x0 (Point)
+        Point.
+    x1 (Point)
+        Point.
+    x2 (Point)
+        Point.
+    x3 (Point)
+        Point.
 ";
 
 %feature("docstring")  dolfin::Tetrahedron::str "

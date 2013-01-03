@@ -212,12 +212,13 @@ Check if global indices are available for entiries of dimension dim
 
 * shared_entities\ (dim)
 
-  Return map from shared entiies to process that share the entity
+  Return map from shared entities (local index) to processes that
+  share the entity
 
 * shared_entities\ (dim)
 
-  Return map from shared entiies to process that share the entity
-  (const version)
+  Return map from shared entiies (local index) to process that
+  share the entity (const version)
 ";
 
 %feature("docstring")  dolfin::MeshTopology::operator "
@@ -1361,9 +1362,10 @@ Return topological dimension
 Return global index of mesh entity
 
 *Returns*
-    int
-        The global index. Set to -1 if global index has not been
-        computed
+    std::size_t
+        The global index. Set to
+        std::numerical_limits<std::size_t>::max() if global index
+        has not been computed
 ";
 
 %feature("docstring")  dolfin::MeshEntity::num_entities "
@@ -3032,23 +3034,12 @@ Return informal string representation (pretty-print)
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
 %feature("docstring")  dolfin::MeshPartitioning "
 This class partitions and distributes a mesh based on
-partitioned local mesh data. Note that the local mesh data will
+partitioned local mesh data.The local mesh data will
 also be repartitioned and redistributed during the computation
 of the mesh partitioning.
 
 After partitioning, each process has a local mesh and set of
 mesh data that couples the meshes together.
-
-The following mesh data is created:
-
-1. \"global entity indices 0\" (MeshFunction<std::size_t>)
-
-This maps each local vertex to its global index.
-
-2. \"overlap\" (std::map<std::size_t, std::vector<std::size_t> >)
-
-This maps each shared vertex to a list of the processes sharing
-the vertex.
 
 3. \"global entity indices %d\" (MeshFunction<std::size_t>)
 
@@ -3076,21 +3067,15 @@ entities of dimension 0 (vertices) and dimension D (cells).
 
 * build_distributed_mesh\ (mesh)
 
-  Build a partitioned mesh based on local meshes
+  Build a partitioned mesh based on a local mesh
 
 * build_distributed_mesh\ (mesh, data)
 
   Build a partitioned mesh based on local mesh data
 ";
 
-%feature("docstring")  dolfin::MeshPartitioning::number_entities "
-Create global entity indices for entities of dimension d
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::num_connected_cells "
-Compute number of cells connected to each facet (globally). Facets
-on internal boundaries will be connected to two cells (with the
-cells residing on neighboring processes)
+%feature("docstring")  dolfin::MeshPartitioning::build_distributed_value_collection "
+Build a MeshValueCollection based on LocalMeshValueCollection
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshValueCollection.h)
