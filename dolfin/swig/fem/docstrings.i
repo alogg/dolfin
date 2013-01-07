@@ -189,7 +189,7 @@ Return true iff mesh entities of topological dimension d are
 needed
 
 *Arguments*
-    d (int)
+    d (std::size_t)
         Topological dimension.
 
 *Returns*
@@ -202,7 +202,7 @@ Return the dimension of the global finite element function
 space
 
 *Returns*
-    int
+    std::size_t
         The dimension of the global finite element function space.
 ";
 
@@ -215,7 +215,7 @@ space on a cell
         Index of cell
 
 *Returns*
-    int
+    std::size_t
         Dimension of the local finite element function space.
 ";
 
@@ -224,7 +224,7 @@ Return the maximum dimension of the local finite element
 function space
 
 *Returns*
-    int
+    std::size_t
         Maximum dimension of the local finite element function
         space.
 ";
@@ -234,7 +234,7 @@ Return the geometric dimension of the coordinates this dof map
 provides
 
 *Returns*
-    int
+    std::size_t
         The geometric dimension.
 ";
 
@@ -242,7 +242,7 @@ provides
 Return number of facet dofs
 
 *Returns*
-    int
+    std::size_t
         The number of facet dofs.
 ";
 
@@ -251,7 +251,7 @@ Return the ownership range (dofs in this range are owned by
 this process)
 
 *Returns*
-    (int, int)
+    std::pair<std::size_t, std::size_t>
         The ownership range.
 ";
 
@@ -260,7 +260,7 @@ Return map from nonlocal dofs that appear in local dof map to
 owning process
 
 *Returns*
-    boost::unordered_map<unsigned int, unsigned int>
+    boost::unordered_map<std::size_t, std::size_t>
         The map from non-local dofs.
 ";
 
@@ -277,7 +277,7 @@ process) that share it.
 Return set of all neighbouring processes.
 
 *Returns*
-    set of int
+    std::set<std::size_t>
         The set of processes
 ";
 
@@ -297,9 +297,9 @@ Local-to-global mapping of dofs on a cell
 Tabulate local-local facet dofs
 
 *Arguments*
-    dofs (int)
+    dofs (std::size_t)
         Degrees of freedom.
-    local_facet (int)
+    local_facet (std::size_t)
         The local facet.
 ";
 
@@ -353,7 +353,7 @@ Create a copy of the dof map
 Extract subdofmap component
 
 *Arguments*
-    component (numpy.array(int))
+    component (std::vector<std::size_t>)
         The component.
     mesh (:py:class:`Mesh`)
         The mesh.
@@ -398,7 +398,7 @@ with dof map range.
         The vector to set.
     value (float)
         The value to multiply to coordinate by.
-    component (int)
+    component (std::size_t)
         The coordinate index.
     mesh (:py:class:`Mesh`)
         The mesh.
@@ -591,7 +591,7 @@ element).
 Create basis function with given index on element on given cell
 
 *Arguments*
-    index (int)
+    index (std::size_t)
         The index of the basis function.
     element (:py:class:`FiniteElement`)
         The element to create basis function on.
@@ -617,7 +617,7 @@ Evaluate all order n derivatives at given point
         The values of derivatives at the point.
     x (float)
         The coordinates of the point.
-    n (int)
+    n (std::size_t)
         The order of derivation.
 ";
 
@@ -1358,9 +1358,9 @@ and then space number 1 (the trial space).
   Create form of given rank with given number of coefficients
   
   *Arguments*
-      rank (int)
+      rank (std::size_t)
           The rank.
-      num_coefficients (int)
+      num_coefficients (std::size_t)
           The number of coefficients.
 
 * Form\ (ufc_form, function_spaces, coefficients)
@@ -1381,7 +1381,7 @@ Return rank of form (bilinear form = 2, linear form = 1,
 functional = 0, etc)
 
 *Returns*
-    int
+    std::size_t
         The rank of the form.
 ";
 
@@ -1389,7 +1389,7 @@ functional = 0, etc)
 Return number of coefficients
 
 *Returns*
-    int
+    std::size_t
         The number of coefficients.
 ";
 
@@ -1434,7 +1434,7 @@ Return mesh shared pointer (if any)
 Return function space for given argument
 
 *Arguments*
-    i (int)
+    i (std::size_t)
         Index
 
 *Returns*
@@ -1458,7 +1458,7 @@ Return function spaces for arguments
   Set coefficient with given number (shared pointer version)
   
   *Arguments*
-      i (int)
+      i (std::size_t)
           The given number.
       coefficient (:py:class:`GenericFunction`)
           The coefficient.
@@ -1491,7 +1491,7 @@ pointer version)
   Return coefficient with given number
   
   *Arguments*
-      i (int)
+      i (std::size_t)
           Index
   
   *Returns*
@@ -1527,7 +1527,7 @@ Return the number of the coefficient with this name
         The name.
 
 *Returns*
-    int
+    std::size_t
         The number of the coefficient with the given name.
 ";
 
@@ -1535,7 +1535,7 @@ Return the number of the coefficient with this name
 Return the name of the coefficient with this number
 
 *Arguments*
-    i (int)
+    i (std::size_t)
         The number
 
 *Returns*
@@ -2018,7 +2018,7 @@ This class implements a solver for nonlinear variational problems.
 Solve variational problem
 
 *Returns*
-    (int, bool)
+    std::pair<std::size_t, bool>
         Pair of number of Newton iterations, and whether
         iteration converged)
 ";

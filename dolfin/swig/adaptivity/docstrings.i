@@ -105,7 +105,7 @@ Present summary of all adaptive data and parameters
 Return the number of degrees of freedom for primal problem
 
 *Returns*
-    _uint_
+    _std::size_t_
         The number of degrees of freedom
 ";
 
@@ -214,7 +214,7 @@ Adapt the problem to other mesh.
 Return the number of degrees of freedom for primal problem
 
 *Returns*
-    _uint_
+    _std::size_t_
         The number of degrees of freedom
 ";
 
@@ -333,7 +333,7 @@ Adapt the problem to other mesh.
 Return the number of degrees of freedom for primal problem
 
 *Returns*
-    _uint_
+    _std::size_t_
         The number of degrees of freedom
 ";
 
@@ -649,7 +649,7 @@ Return filename for data
         The time series name
     type_name (str)
         The type of data
-    index (int)
+    index (std::size_t)
         The index
     compressed (bool)
         True if compressed file format
@@ -731,7 +731,7 @@ Default parameter values
 
 * adapt\ (mesh_function, adapted_mesh)
 
-  Refine mesh function<uint> based on mesh
+  Refine mesh function<std::size_t> based on mesh
 
 * adapt\ (bc, adapted_mesh, S)
 

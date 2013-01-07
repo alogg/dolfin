@@ -75,6 +75,123 @@ Create mesh from a triangulation of points
 Create mesh from a triangulation of points
 ";
 
+// Documentation extracted from: (module=generation, header=BoxMesh.h)
+%feature("docstring")  dolfin::BoxMesh "
+Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
+x [z0, z1].  Given the number of cells (nx, ny, nz) in each
+direction, the total number of tetrahedra will be 6*nx*ny*nz and
+the total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
+";
+
+%feature("docstring")  dolfin::BoxMesh::BoxMesh "
+Create a uniform finite element :py:class:`Mesh` over the rectangular prism
+[x0, x1] x [y0, y1] x [z0, z1].
+
+*Arguments*
+    x0 (float)
+        :math:`x`-min.
+    y0 (float)
+        :math:`y`-min.
+    z0 (float)
+        :math:`z`-min.
+    x1 (float)
+        :math:`x`-max.
+    y1 (float)
+        :math:`y`-max.
+    z1 (float)
+        :math:`z`-max.
+    xn (float)
+        Number of cells in :math:`x`-direction.
+    yn (float)
+        Number of cells in :math:`y`-direction.
+    zn (float)
+        Number of cells in :math:`z`-direction.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=IntervalMesh.h)
+%feature("docstring")  dolfin::IntervalMesh "
+Interval mesh of the 1D line [a,b].  Given the number of cells
+(nx) in the axial direction, the total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+";
+
+%feature("docstring")  dolfin::IntervalMesh::IntervalMesh "
+Constructor
+
+*Arguments*
+    nx (std::size_t)
+        The number of cells.
+    a (float)
+        The minimum point (inclusive).
+    b (float)
+        The maximum point (inclusive).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=Interval.h)
+%feature("docstring")  dolfin::Interval "
+Interval mesh of the 1D line [a,b].  Given the number of cells
+(nx) in the axial direction, the total number of intervals will
+be nx and the total number of vertices will be (nx + 1).
+
+This class is deprecated. Use :py:class:`IntervalMesh`.
+";
+
+%feature("docstring")  dolfin::Interval::Interval "
+Constructor
+
+*Arguments*
+    nx (std::size_t)
+        The number of cells.
+    a (float)
+        The minimum point (inclusive).
+    b (float)
+        The maximum point (inclusive).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+// Documentation extracted from: (module=generation, header=RectangleMesh.h)
+%feature("docstring")  dolfin::RectangleMesh "
+Triangular mesh of the 2D rectangle (x0, y0) x (x1, y1).
+Given the number of cells (nx, ny) in each direction,
+the total number of triangles will be 2*nx*ny and the
+total number of vertices will be (nx + 1)*(ny + 1).
+
+*Arguments*
+    x0 (float)
+        :math:`x`-min.
+    y0 (float)
+        :math:`y`-min.
+    x1 (float)
+        :math:`x`-max.
+    y1 (float)
+        :math:`y`-max.
+    xn (float)
+        Number of cells in :math:`x`-direction.
+    yn (float)
+        Number of cells in :math:`y`-direction.
+    diagonal (str)
+        Direction of diagonals: \"left\", \"right\", \"left/right\", \"crossed\"
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
 // Documentation extracted from: (module=generation, header=UnitTetrahedronMesh.h)
 %feature("docstring")  dolfin::UnitTetrahedronMesh "
 A mesh consisting of a single tetrahedron with vertices at
@@ -91,24 +208,6 @@ This class is useful for testing.
 Create mesh of unit tetrahedron
 ";
 
-// Documentation extracted from: (module=generation, header=UnitTetrahedron.h)
-%feature("docstring")  dolfin::UnitTetrahedron "
-A mesh consisting of a single tetrahedron with vertices at
-
-  (0, 0, 0)
-  (1, 0, 0)
-  (0, 1, 0)
-  (0, 0, 1)
-
-This class is useful for testing.
-
-This class has been deprecated. Use :py:class:`UnitTetrahedronMesh`.
-";
-
-%feature("docstring")  dolfin::UnitTetrahedron::UnitTetrahedron "
-Create mesh of unit tetrahedron
-";
-
 // Documentation extracted from: (module=generation, header=UnitCubeMesh.h)
 %feature("docstring")  dolfin::UnitCubeMesh "
 Tetrahedral mesh of the 3D unit cube [0,1] x [0,1] x [0,1].
@@ -122,11 +221,11 @@ Create a uniform finite element :py:class:`Mesh` over the unit cube
 [0,1] x [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in :math:`x` direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in :math:`y` direction.
-    nz (int)
+    nz (std::size_t)
         Number of cells in :math:`z` direction.
 
 *Example*
@@ -150,11 +249,11 @@ Create a uniform finite element :py:class:`Mesh` over the unit cube
 [0,1] x [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in :math:`x` direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in :math:`y` direction.
-    nz (int)
+    nz (std::size_t)
         Number of cells in :math:`z` direction.
 
 *Example*
@@ -202,21 +301,6 @@ This class is useful for testing.
 Create mesh of unit triangle
 ";
 
-// Documentation extracted from: (module=generation, header=UnitTriangle.h)
-%feature("docstring")  dolfin::UnitTriangle "
-A mesh consisting of a single triangle with vertices at
-
-  (0, 0)
-  (1, 0)
-  (0, 1)
-
-This class is useful for testing.
-";
-
-%feature("docstring")  dolfin::UnitTriangle::UnitTriangle "
-Create mesh of unit triangle
-";
-
 // Documentation extracted from: (module=generation, header=UnitSquareMesh.h)
 %feature("docstring")  dolfin::UnitSquareMesh "
 Triangular mesh of the 2D unit square [0,1] x [0,1].
@@ -233,9 +317,9 @@ Create a uniform finite element :py:class:`Mesh` over the unit square
 [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in horizontal direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in vertical direction.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -265,9 +349,9 @@ Create a uniform finite element :py:class:`Mesh` over the unit square
 [0,1] x [0,1].
 
 *Arguments*
-    nx (int)
+    nx (std::size_t)
         Number of cells in horizontal direction.
-    ny (int)
+    ny (std::size_t)
         Number of cells in vertical direction.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -288,7 +372,7 @@ Tetrahedral mesh of the unit circle.
 Create a uniform finite element :py:class:`Mesh` over the unit circle.
 
 *Arguments*
-    n (int)
+    n (std::size_t)
         Resolution of the mesh.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -304,7 +388,7 @@ Create a uniform finite element :py:class:`Mesh` over the unit circle.
 This class is deprecated. Use :py:class:`UnitCircleMesh`.
 
 *Arguments*
-    n (int)
+    n (std::size_t)
         Resolution of the mesh.
     diagonal (str)
         Optional argument: A std::string indicating
@@ -312,123 +396,6 @@ This class is deprecated. Use :py:class:`UnitCircleMesh`.
     transformation (str)
         Optional argument: A std::string indicating
         the type of transformation used.
-";
-
-// Documentation extracted from: (module=generation, header=BoxMesh.h)
-%feature("docstring")  dolfin::BoxMesh "
-Tetrahedral mesh of the 3D rectangular prism [x0, x1] x [y0, y1]
-x [z0, z1].  Given the number of cells (nx, ny, nz) in each
-direction, the total number of tetrahedra will be 6*nx*ny*nz and
-the total number of vertices will be (nx + 1)*(ny + 1)*(nz + 1).
-";
-
-%feature("docstring")  dolfin::BoxMesh::BoxMesh "
-Create a uniform finite element :py:class:`Mesh` over the rectangular prism
-[x0, x1] x [y0, y1] x [z0, z1].
-
-*Arguments*
-    x0 (float)
-        :math:`x`-min.
-    y0 (float)
-        :math:`y`-min.
-    z0 (float)
-        :math:`z`-min.
-    x1 (float)
-        :math:`x`-max.
-    y1 (float)
-        :math:`y`-max.
-    z1 (float)
-        :math:`z`-max.
-    xn (float)
-        Number of cells in :math:`x`-direction.
-    yn (float)
-        Number of cells in :math:`y`-direction.
-    zn (float)
-        Number of cells in :math:`z`-direction.
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=RectangleMesh.h)
-%feature("docstring")  dolfin::RectangleMesh "
-Triangular mesh of the 2D rectangle (x0, y0) x (x1, y1).
-Given the number of cells (nx, ny) in each direction,
-the total number of triangles will be 2*nx*ny and the
-total number of vertices will be (nx + 1)*(ny + 1).
-
-*Arguments*
-    x0 (float)
-        :math:`x`-min.
-    y0 (float)
-        :math:`y`-min.
-    x1 (float)
-        :math:`x`-max.
-    y1 (float)
-        :math:`y`-max.
-    xn (float)
-        Number of cells in :math:`x`-direction.
-    yn (float)
-        Number of cells in :math:`y`-direction.
-    diagonal (str)
-        Direction of diagonals: \"left\", \"right\", \"left/right\", \"crossed\"
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=IntervalMesh.h)
-%feature("docstring")  dolfin::IntervalMesh "
-Interval mesh of the 1D line [a,b].  Given the number of cells
-(nx) in the axial direction, the total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-";
-
-%feature("docstring")  dolfin::IntervalMesh::IntervalMesh "
-Constructor
-
-*Arguments*
-    nx (int)
-        The number of cells.
-    a (float)
-        The minimum point (inclusive).
-    b (float)
-        The maximum point (inclusive).
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-// Documentation extracted from: (module=generation, header=Interval.h)
-%feature("docstring")  dolfin::Interval "
-Interval mesh of the 1D line [a,b].  Given the number of cells
-(nx) in the axial direction, the total number of intervals will
-be nx and the total number of vertices will be (nx + 1).
-
-This class is deprecated. Use :py:class:`IntervalMesh`.
-";
-
-%feature("docstring")  dolfin::Interval::Interval "
-Constructor
-
-*Arguments*
-    nx (int)
-        The number of cells.
-    a (float)
-        The minimum point (inclusive).
-    b (float)
-        The maximum point (inclusive).
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
 ";
 
 // Documentation extracted from: (module=generation, header=CSGGeometry.h)
@@ -623,7 +590,7 @@ Create circle at x = (x0, x1) with radius r.
         x1-coordinate of center.
     r (float)
         radius.
-    fragments (int)
+    fragments (std::size_t)
         number of fragments.
 ";
 
@@ -661,7 +628,7 @@ vertical semi-axis b.
         horizontal semi-axis.
     b (float)
         vertical semi-axis.
-    fragments (int)
+    fragments (std::size_t)
         number of fragments.
 ";
 
@@ -812,13 +779,13 @@ and radius respectively.
 *Arguments*
     top (Point)
         Center at top of cone.
-     top_radius(double)
+    top_radius (float)
         Radius bottom of cone.
     bottom (Point)
         Center at top of cone.
     bottom_radius (float)
         radius at top of cone.
-    slices (int)
+    slices (std::size_t)
         number of faces on the side when generating a
         polyhedral approximation.
 ";
@@ -833,9 +800,39 @@ geometries using Constructive Solid Geometry (CSG). A cylinder
 is here just a special case of a cone.
 ";
 
+%feature("docstring")  dolfin::Cylinder::Cylinder "
+Create cylinder defined by upper and lower center
+and radius respectively.
+
+*Arguments*
+    top (Point)
+        Center at top of cylinder.
+    bottom (Point)
+        Center at top of cylinder.
+    r (float)
+        radius of cylinder.
+    slices (std::size_t)
+        number of faces on the side when generating a
+        polyhedral approximation.
+";
+
 %feature("docstring")  dolfin::Tetrahedron "
 This class describes a Tetrahedron which can be used to build
 geometries using Constructive Solid Geometry (CSG).
+";
+
+%feature("docstring")  dolfin::Tetrahedron::Tetrahedron "
+Create tetrahedron defined by four corner points.
+
+*Arguments*
+    x0 (Point)
+        Point.
+    x1 (Point)
+        Point.
+    x2 (Point)
+        Point.
+    x3 (Point)
+        Point.
 ";
 
 %feature("docstring")  dolfin::Tetrahedron::str "

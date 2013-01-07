@@ -273,7 +273,7 @@ product y = Ax. In the parallel case, both size and layout are
 important.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The dimension (axis): dim = 0 --> z = y, dim = 1 --> z = x
 ";
 
@@ -803,7 +803,7 @@ y = Ax. In the parallel case, both size and layout are
 important.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The dimension (axis): dim = 0 --> z = y, dim = 1 --> z = x
 ";
 
@@ -945,7 +945,7 @@ Return copy of matrix
   important.
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           The dimension (axis): dim = 0 --> z = y, dim = 1 --> z = x
 ";
 
@@ -1153,7 +1153,7 @@ y = Ax. In the parallel case, both size and layout are
 important.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The dimension (axis): dim = 0 --> z = y, dim = 1 --> z = x
 ";
 
@@ -1494,7 +1494,7 @@ y = Ax. In the parallel case, both size and layout are
 important.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The dimension (axis): dim = 0 --> z = y, dim = 1 --> z = x
 ";
 
@@ -2196,7 +2196,7 @@ y = Ax. In the parallel case, both size and layout are
 important.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The dimension (axis): dim = 0 --> z = y, dim = 1 --> z = x
 ";
 
@@ -4159,7 +4159,7 @@ Set function
 
   Get sub-vector (const)
 
-* get_block\ (int)
+* get_block\ ()
 
   Get sub-vector (non-const)
 ";
