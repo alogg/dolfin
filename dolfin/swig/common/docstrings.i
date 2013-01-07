@@ -319,7 +319,7 @@ Return label (description)
 Get unique identifier.
 
 *Returns*
-    _uint_
+    _std::size_t_
         The unique integer identifier associated with the object.
 ";
 
@@ -349,7 +349,7 @@ objects in the hierarchy linked to the current object via
 child-parent relationships, including the object itself.
 
 *Returns*
-    int
+    std::size_t
         The depth of the hierarchy.
 ";
 
@@ -531,7 +531,15 @@ Dereference operator
 ";
 
 %feature("docstring")  dolfin::MPINonblocking::send_recv "
-Non-blocking send and receive
+**Overloaded versions**
+
+* send_recv\ (send_value, dest, recv_value, source)
+
+  Non-blocking send and receive
+
+* send_recv\ (send_value, dest_tag, dest, recv_value, source_tag, source)
+
+  Non-blocking send and receive with tag
 ";
 
 %feature("docstring")  dolfin::MPINonblocking::wait_all "
@@ -570,7 +578,8 @@ Set a barrier (synchronization point)
 
 * distribute\ (in_values, destinations, out_values, sources)
 
-  Distribute local arrays on all processors according to given partition
+  Distribute local arrays on all processors according to given
+  partition
 
 * distribute\ (in_values, destinations, out_values)
 
@@ -583,6 +592,11 @@ Set a barrier (synchronization point)
   neighbours from GenericDofMap::neighbours()). It is important
   that each process' group includes exactly the processes that
   has it in their groups, otherwise it will deadlock.
+";
+
+%feature("docstring")  dolfin::MPI::distribute_vector "
+Distribute local arrays on all processors according to given
+partition
 ";
 
 %feature("docstring")  dolfin::MPI::broadcast "

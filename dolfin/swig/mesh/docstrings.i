@@ -72,15 +72,7 @@ Return number of vertices for entity of given topological dimension
 ";
 
 %feature("docstring")  dolfin::CellType::orientation "
-**Overloaded versions**
-
-* orientation\ (cell)
-
-  Return orientation of the cell (assuming flat space)
-
-* orientation\ (cell, up)
-
-  Return orientation of the cell relative to given up direction
+Return orientation of the cell
 ";
 
 %feature("docstring")  dolfin::CellType::create_entities "
@@ -108,11 +100,7 @@ Compute diameter of mesh entity
 
 * normal\ (cell, facet)
 
-  Compute normal of given facet with respect to the cell
-";
-
-%feature("docstring")  dolfin::CellType::cell_normal "
-Compute normal to given cell (viewed as embedded in 3D)
+  Compute of given facet with respect to the cell
 ";
 
 %feature("docstring")  dolfin::CellType::facet_area "
@@ -224,12 +212,13 @@ Check if global indices are available for entiries of dimension dim
 
 * shared_entities\ (dim)
 
-  Return map from shared entiies to process that share the entity
+  Return map from shared entities (local index) to processes that
+  share the entity
 
 * shared_entities\ (dim)
 
-  Return map from shared entiies to process that share the entity
-  (const version)
+  Return map from shared entiies (local index) to process that
+  share the entity (const version)
 ";
 
 %feature("docstring")  dolfin::MeshTopology::operator "
@@ -321,7 +310,7 @@ Initialize coordinate list to given dimension and size
 Hash of coordinate values
 
 *Returns*
-    int
+    std::size_t
         A tree-hashed value of the coordinates over all MPI processes
 
 ";
@@ -405,7 +394,7 @@ Clear all data
 The class MeshData is a container for auxiliary mesh data,
 represented either as :py:class:`MeshFunction` over topological mesh
 entities, arrays or maps. Each dataset is identified by a unique
-user-specified string. Only uint-valued data are currently
+user-specified string. Only std::size_t-valued data are currently
 supported.
 
 Auxiliary mesh data may be attached to a mesh by users as a
@@ -415,11 +404,11 @@ meshes. The following named mesh data are recognized by DOLFIN:
 
 Facet orientation (used for assembly over interior facets)
 
-  * \"facet_orientation\"     - :py:class:`MeshFunction` <uint> of dimension D - 1
+  * \"facet_orientation\"     - :py:class:`MeshFunction` <std::size_t> of dimension D - 1
 
 Sub meshes (used by the class SubMesh)
 
-  * \"parent_vertex_indices\" - :py:class:`MeshFunction` <uint> of dimension 0
+  * \"parent_vertex_indices\" - :py:class:`MeshFunction` <std::size_t> of dimension 0
 
 Note to developers: use underscore in names in place of spaces.
 ";
@@ -462,7 +451,7 @@ Clear all data
   *Arguments*
       name (str)
           The name of the mesh function.
-      dim (int)
+      dim (std::size_t)
           The dimension of the mesh function.
   
   *Returns*
@@ -482,7 +471,7 @@ Clear all data
           The name of the array.
   
   *Returns*
-      numpy.array(int)
+      std::vector<std::size_t>
           The array.
 
 * create_array\ (name, size)
@@ -496,7 +485,7 @@ Clear all data
           The size (length) of the array.
   
   *Returns*
-      numpy.array(int)
+      std::vector<std::size_t>
           The array.
 ";
 
@@ -522,7 +511,7 @@ available)
         The name of the array.
 
 *Returns*
-    numpy.array(int)
+    std::vector<std::size_t>
         The array.
 ";
 
@@ -767,35 +756,28 @@ Get cell connectivity.
 Get number of local entities of given topological dimension.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         Topological dimension.
 
 *Returns*
-    int
+    std::size_t
         Number of local entities of topological dimension d.
 
 *Example*
-    .. code-block:: python
+    .. note::
     
-        >>> mesh = dolfin.UnitSquare(2,2)
-        >>> mesh.init(0,1)
-        >>> mesh.size(0)
-        9
-        >>> mesh.size(1)
-        16
-        >>> mesh.size(2)
-        8
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::size_global "
 Get global number of entities of given topological dimension.
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         Topological dimension.
 
 *Returns*
-    int
+    std::size_t
         Global number of entities of topological dimension d.
 
 *Example*
@@ -908,11 +890,11 @@ Get global number of entities of given topological dimension.
   Compute entities of given topological dimension.
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           Topological dimension.
   
   *Returns*
-      int
+      std::size_t
           Number of created entities.
 
 * init\ (d0, d1)
@@ -920,10 +902,10 @@ Get global number of entities of given topological dimension.
   Compute connectivity between given pair of dimensions.
   
   *Arguments*
-      d0 (int)
+      d0 (std::size_t)
           Topological dimension.
   
-      d1 (int)
+      d1 (std::size_t)
           Topological dimension.
 
 * init\ ()
@@ -968,7 +950,7 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       angle (float)
           The number of degrees (0-360) of rotation
-      axis (int)
+      axis (std::size_t)
           The coordinate axis around which to rotate the mesh
 
 * rotate\ (angle, axis, p)
@@ -978,7 +960,7 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       angle (float)
           The number of degrees (0-360) of rotation
-      axis (int)
+      axis (std::size_t)
           The coordinate axis around which to rotate the mesh
       point (:py:class:`Point`)
           The point around which to rotate the mesh
@@ -1017,7 +999,7 @@ Check if mesh is ordered according to the UFC numbering convention.
 Smooth internal vertices of mesh by local averaging.
 
 *Arguments*
-    num_iterations (int)
+    num_iterations (std::size_t)
         Number of iterations to perform smoothing,
         default value is 1.
 ";
@@ -1026,7 +1008,7 @@ Smooth internal vertices of mesh by local averaging.
 Smooth boundary vertices of mesh by local averaging.
 
 *Arguments*
-    num_iterations (int)
+    num_iterations (std::size_t)
         Number of iterations to perform smoothing,
         default value is 1.
 
@@ -1080,7 +1062,7 @@ Snap boundary vertices of mesh to match given sub domain.
           specifying what relation makes two mesh entinties neighbors.
   
   *Returns*
-      MeshFunction<unsigned int>
+      MeshFunction<std::size_t>
           The colors as a mesh function over entities of the mesh.
 ";
 
@@ -1273,36 +1255,6 @@ Informal string representation.
         '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
-%feature("docstring")  dolfin::Mesh::cell_orientations "
-**Overloaded versions**
-
-* cell_orientations\ ()
-
-  Return cell_orientations
-  
-  *Returns*
-      numpy.array(int)
-          Map from cell index to orientation of cell
-
-* cell_orientations\ ()
-
-  Return cell_orientations (const version)
-  
-  *Returns*
-      numpy.array(int)
-          Map from cell index to orientation of cell
-";
-
-%feature("docstring")  dolfin::Mesh::init_cell_orientations "
-Compute and initialize cell_orientations relative to a given
-global outward direction/normal/orientation. Only defined if
-mesh is orientable.
-
-*Arguments*
-    global_normal (Expression)
-        A global normal direction to the mesh
-";
-
 // Documentation extracted from: (module=mesh, header=MeshEntity.h)
 %feature("docstring")  dolfin::MeshEntity "
 A MeshEntity represents a mesh entity associated with
@@ -1323,9 +1275,9 @@ a specific topological dimension of some :py:class:`Mesh`.
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh.
-      dim (int)
+      dim (std::size_t)
           The topological dimension.
-      index (int)
+      index (std::size_t)
           The index.
 ";
 
@@ -1335,9 +1287,9 @@ Initialize mesh entity with given data
 *Arguments*
     mesh (:py:class:`Mesh`)
         The mesh.
-    dim (int)
+    dim (std::size_t)
         The topological dimension.
-    index (int)
+    index (std::size_t)
         The index.
 ";
 
@@ -1377,7 +1329,7 @@ Return mesh associated with mesh entity
 Return topological dimension
 
 *Returns*
-    int
+    std::size_t
         The dimension.
 ";
 
@@ -1389,7 +1341,7 @@ Return topological dimension
   Return index of mesh entity
   
   *Returns*
-      int
+      std::size_t
           The index.
 
 * index\ (entity)
@@ -1402,7 +1354,7 @@ Return topological dimension
           The mesh entity.
   
   *Returns*
-      int
+      std::size_t
           The local index of given entity.
 ";
 
@@ -1410,20 +1362,21 @@ Return topological dimension
 Return global index of mesh entity
 
 *Returns*
-    int
-        The global index. Set to -1 if global index has not been
-        computed
+    std::size_t
+        The global index. Set to
+        std::numerical_limits<std::size_t>::max() if global index
+        has not been computed
 ";
 
 %feature("docstring")  dolfin::MeshEntity::num_entities "
 Return local number of incident mesh entities of given topological dimension
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The topological dimension.
 
 *Returns*
-    int
+    std::size_t
         The number of local incident MeshEntity objects of given dimension.
 ";
 
@@ -1431,11 +1384,11 @@ Return local number of incident mesh entities of given topological dimension
 Return global number of incident mesh entities of given topological dimension
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The topological dimension.
 
 *Returns*
-    int
+    std::size_t
         The number of global incident MeshEntity objects of given dimension.
 ";
 
@@ -1444,11 +1397,11 @@ Return array of indices for incident mesh entitites of given
 topological dimension
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The topological dimension.
 
 *Returns*
-    int
+    std::size_t
         The index for incident mesh entities of given dimension.
 ";
 
@@ -1456,7 +1409,7 @@ topological dimension
 Return unique mesh ID
 
 *Returns*
-    int
+    std::size_t
         The unique mesh ID.
 ";
 
@@ -1791,7 +1744,7 @@ norm, distances, scalar and vector products etc.
   Create point from array
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           Dimension of the array.
       x (float)
           The array to create a Point from.
@@ -1818,7 +1771,7 @@ norm, distances, scalar and vector products etc.
   Return address of coordinate in direction i
   
   *Arguments*
-      i (int)
+      i (std::size_t)
           Direction.
   
   *Returns*
@@ -1830,7 +1783,7 @@ norm, distances, scalar and vector products etc.
   Return coordinate in direction i
   
   *Arguments*
-      i (int)
+      i (std::size_t)
           Direction.
   
   *Returns*
@@ -2072,7 +2025,7 @@ An Edge is a :py:class:`MeshEntity` of topological dimension 1.
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh.
-      index (int)
+      index (std::size_t)
           Index of the edge.
 
 * Edge\ (entity)
@@ -2205,7 +2158,7 @@ A Cell is a :py:class:`MeshEntity` of topological codimension 0.
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh.
-      index (int)
+      index (std::size_t)
           The index.
 ";
 
@@ -2214,27 +2167,11 @@ Return type of cell
 ";
 
 %feature("docstring")  dolfin::Cell::orientation "
-**Overloaded versions**
+Compute orientation of cell
 
-* orientation\ ()
-
-  Compute orientation of cell
-  
-  *Returns*
-      int
-          Orientation of the cell (0 is 'up'/'right', 1 is 'down'/'left')
-
-* orientation\ (up)
-
-  Compute orientation of cell relative to given 'up' direction
-  
-  *Arguments*
-      up (:py:class:`Point`)
-          The direction defined as 'up'
-  
-  *Returns*
-      int
-          Orientation of the cell (0 is 'same', 1 is 'opposite')
+*Returns*
+    std::size_t
+        Orientation of the cell (0 is right, 1 is left).
 ";
 
 %feature("docstring")  dolfin::Cell::volume "
@@ -2271,9 +2208,9 @@ Compute diameter of cell
   Compute component i of normal of given facet with respect to the cell
   
   *Arguments*
-      facet (int)
+      facet (std::size_t)
           Index of facet.
-      i (int)
+      i (std::size_t)
           Component.
   
   *Returns*
@@ -2285,7 +2222,7 @@ Compute diameter of cell
   Compute normal of given facet with respect to the cell
   
   *Arguments*
-      facet (int)
+      facet (std::size_t)
           Index of facet.
   
   *Returns*
@@ -2293,19 +2230,11 @@ Compute diameter of cell
           Normal of the facet.
 ";
 
-%feature("docstring")  dolfin::Cell::cell_normal "
-Compute normal to cell itself (viewed as embedded in 3D)
-
-*Returns*
-    :py:class:`Point`
-        Normal of the cell
-";
-
 %feature("docstring")  dolfin::Cell::facet_area "
 Compute the area/length of given facet with respect to the cell
 
 *Arguments*
-    facet (int)
+    facet (std::size_t)
         Index of the facet.
 
 *Returns*
@@ -2449,7 +2378,7 @@ Clear all data
 * set\ (connections)
 
   Set all connections for all entities (T is a container, e.g.
-  a std::vector<uint>, std::set<uint>, etc)
+  a std::vector<std::size_t>, std::set<std::size_t>, etc)
 ";
 
 %feature("docstring")  dolfin::MeshConnectivity::set_global_size "
@@ -2484,9 +2413,9 @@ Constructor
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh to open.
-      tdim (int)
+      tdim (std::size_t)
           The topological dimension.
-      gdim (int)
+      gdim (std::size_t)
           The geometrical dimension.
   
   *Example*
@@ -2503,9 +2432,9 @@ Constructor
           The mesh to open.
       type (CellType::Type)
           Cell type.
-      tdim (int)
+      tdim (std::size_t)
           The topological dimension.
-      gdim (int)
+      gdim (std::size_t)
           The geometrical dimension.
 
 * open\ (mesh, type, tdim, gdim)
@@ -2517,9 +2446,9 @@ Constructor
           The mesh to open.
       type (str)
           Cell type.
-      tdim (int)
+      tdim (std::size_t)
           The topological dimension.
-      gdim (int)
+      gdim (std::size_t)
           The geometrical dimension.
 ";
 
@@ -2527,7 +2456,7 @@ Constructor
 Specify number of vertices
 
 *Arguments*
-    num_vertices (int)
+    num_vertices (std::size_t)
         The number of vertices.
 
 *Example*
@@ -2540,7 +2469,7 @@ Specify number of vertices
 Specify number of cells
 
 *Arguments*
-    num_cells (int)
+    num_cells (std::size_t)
         The number of cells.
 
 *Example*
@@ -2557,7 +2486,7 @@ Specify number of cells
   Add vertex v at given point p
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The vertex (index).
       p (:py:class:`Point`)
           The point.
@@ -2567,7 +2496,7 @@ Specify number of cells
   Add vertex v at given coordinate x
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The vertex (index).
       x (numpy.array(float))
           The x-coordinates.
@@ -2577,7 +2506,7 @@ Specify number of cells
   Add vertex v at given point x (for a 1D mesh)
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The vertex (index).
       x (float)
           The x-coordinate.
@@ -2587,7 +2516,7 @@ Specify number of cells
   Add vertex v at given point (x, y) (for a 2D mesh)
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The vertex (index).
       x (float)
           The x-coordinate.
@@ -2599,7 +2528,7 @@ Specify number of cells
   Add vertex v at given point (x, y, z) (for a 3D mesh)
   
   *Arguments*
-      index (int)
+      index (std::size_t)
           The vertex (index).
       x (float)
           The x-coordinate.
@@ -2617,9 +2546,9 @@ Specify number of cells
   Add vertex v at given point p
   
   *Arguments*
-      local_index (int)
+      local_index (std::size_t)
           The vertex (local index).
-      global_index (int)
+      global_index (std::size_t)
           The vertex (global_index).
       p (:py:class:`Point`)
           The point.
@@ -2629,9 +2558,9 @@ Specify number of cells
   Add vertex v at given coordinate x
   
   *Arguments*
-      local_index (int)
+      local_index (std::size_t)
           The vertex (local index).
-      global_index (int)
+      global_index (std::size_t)
           The vertex (global_index).
       x (numpy.array(float))
           The x-coordinates.
@@ -2645,11 +2574,11 @@ Specify number of cells
   Add cell with given vertices (1D)
   
   *Arguments*
-      c (int)
+      c (std::size_t)
           The cell (index).
-      v0 (numpy.array(int))
+      v0 (std::vector<std::size_t>)
           The first vertex (local index).
-      v1 (numpy.array(int))
+      v1 (std::vector<std::size_t>)
           The second vertex (local index).
 
 * add_cell\ (c, v0, v1, v2)
@@ -2657,13 +2586,13 @@ Specify number of cells
   Add cell with given vertices (2D)
   
   *Arguments*
-      c (int)
+      c (std::size_t)
           The cell (index).
-      v0 (numpy.array(int))
+      v0 (std::vector<std::size_t>)
           The first vertex (local index).
-      v1 (numpy.array(int))
+      v1 (std::vector<std::size_t>)
           The second vertex (local index).
-      v2 (numpy.array(int))
+      v2 (std::vector<std::size_t>)
           The third vertex (local index).
 
 * add_cell\ (c, v0, v1, v2, v3)
@@ -2671,15 +2600,15 @@ Specify number of cells
   Add cell with given vertices (3D)
   
   *Arguments*
-      c (int)
+      c (std::size_t)
           The cell (index).
-      v0 (numpy.array(int))
+      v0 (std::vector<std::size_t>)
           The first vertex (local index).
-      v1 (numpy.array(int))
+      v1 (std::vector<std::size_t>)
           The second vertex (local index).
-      v2 (numpy.array(int))
+      v2 (std::vector<std::size_t>)
           The third vertex (local index).
-      v3 (numpy.array(int))
+      v3 (std::vector<std::size_t>)
           The fourth vertex (local index).
 
 * add_cell\ (c, v)
@@ -2687,9 +2616,9 @@ Specify number of cells
   Add cell with given vertices
   
   *Arguments*
-      c (int)
+      c (std::size_t)
           The cell (index).
-      v (numpy.array(int))
+      v (std::vector<std::size_t>)
           The vertex indices (local indices)
 
 * add_cell\ (local_index, global_index, v)
@@ -2697,11 +2626,11 @@ Specify number of cells
   Add cell with given vertices
   
   *Arguments*
-      local_index (int)
+      local_index (std::size_t)
           The cell (index).
-      global_index (int)
+      global_index (std::size_t)
           The global (user) cell index.
-      v (numpy.array(int))
+      v (std::vector<std::size_t>)
           The vertex indices (local indices)
 ";
 
@@ -2836,7 +2765,7 @@ sub domains or boolean markers for mesh refinement.
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
-      dim (int)
+      dim (std::size_t)
           The mesh entity dimension for the mesh function.
 
 * MeshFunction\ (mesh, dim, value)
@@ -2847,7 +2776,7 @@ sub domains or boolean markers for mesh refinement.
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh to create mesh function on.
-      dim (int)
+      dim (std::size_t)
           The mesh entity dimension.
       value (T)
           The value.
@@ -2918,7 +2847,7 @@ Return mesh associated with mesh function
 Return topological dimension
 
 *Returns*
-    int
+    std::size_t
         The dimension.
 ";
 
@@ -3018,7 +2947,7 @@ Return size (number of entities)
   Initialize mesh function for given topological dimension
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           The dimension.
 
 * init\ (dim, size)
@@ -3027,7 +2956,7 @@ Return size (number of entities)
   given size
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           The dimension.
       size (std::size_t)
           The size.
@@ -3039,7 +2968,7 @@ Return size (number of entities)
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh.
-      dim (int)
+      dim (std::size_t)
           The dimension.
 
 * init\ (mesh, dim, size)
@@ -3050,7 +2979,7 @@ Return size (number of entities)
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh.
-      dim (int)
+      dim (std::size_t)
           The dimension.
       size (std::size_t)
           The size.
@@ -3105,36 +3034,25 @@ Return informal string representation (pretty-print)
 // Documentation extracted from: (module=mesh, header=MeshPartitioning.h)
 %feature("docstring")  dolfin::MeshPartitioning "
 This class partitions and distributes a mesh based on
-partitioned local mesh data. Note that the local mesh data will
+partitioned local mesh data.The local mesh data will
 also be repartitioned and redistributed during the computation
 of the mesh partitioning.
 
 After partitioning, each process has a local mesh and set of
 mesh data that couples the meshes together.
 
-The following mesh data is created:
-
-1. \"global entity indices 0\" (MeshFunction<uint>)
-
-This maps each local vertex to its global index.
-
-2. \"overlap\" (std::map<uint, std::vector<uint> >)
-
-This maps each shared vertex to a list of the processes sharing
-the vertex.
-
-3. \"global entity indices %d\" (MeshFunction<uint>)
+3. \"global entity indices %d\" (MeshFunction<std::size_t>)
 
 After partitioning, the function number_entities() may be called
 to create global indices for all entities of a given topological
-dimension. These are stored as mesh data (MeshFunction<uint>)
+dimension. These are stored as mesh data (MeshFunction<std::size_t>)
 named
 
    \"global entity indices 1\"
    \"global entity indices 2\"
    etc
 
-4. \"num global entities\" (std::vector<uint>)
+4. \"num global entities\" (std::vector<std::size_t>)
 
 The function number_entities also records the number of global
 entities for the dimension of the numbered entities in the array
@@ -3149,21 +3067,15 @@ entities of dimension 0 (vertices) and dimension D (cells).
 
 * build_distributed_mesh\ (mesh)
 
-  Build a partitioned mesh based on local meshes
+  Build a partitioned mesh based on a local mesh
 
 * build_distributed_mesh\ (mesh, data)
 
   Build a partitioned mesh based on local mesh data
 ";
 
-%feature("docstring")  dolfin::MeshPartitioning::number_entities "
-Create global entity indices for entities of dimension d
-";
-
-%feature("docstring")  dolfin::MeshPartitioning::num_connected_cells "
-Compute number of cells connected to each facet (globally). Facets
-on internal boundaries will be connected to two cells (with the
-cells residing on neighboring processes)
+%feature("docstring")  dolfin::MeshPartitioning::build_distributed_value_collection "
+Build a MeshValueCollection based on LocalMeshValueCollection
 ";
 
 // Documentation extracted from: (module=mesh, header=MeshValueCollection.h)
@@ -3191,7 +3103,7 @@ means that data may be stored robustly to file.
   Create empty mesh value collection of given dimension
   
   *Arguments*
-      dim (int)
+      dim (std::size_t)
           The mesh entity dimension for the mesh value collection.
 
 * MeshValueCollection\ (mesh_function)
@@ -3212,7 +3124,7 @@ means that data may be stored robustly to file.
           map collection values to the appropriate process.
       filename (str)
           The XML file name.
-      dim (int)
+      dim (std::size_t)
           The mesh entity dimension for the mesh value collection.
 ";
 
@@ -3240,7 +3152,7 @@ means that data may be stored robustly to file.
 Set the topological dimension
 
 *Arguments*
-    dim (int)
+    dim (std::size_t)
         The mesh entity dimension for the mesh value collection.
 ";
 
@@ -3248,7 +3160,7 @@ Set the topological dimension
 Return topological dimension
 
 *Returns*
-    int
+    std::size_t
         The dimension.
 ";
 
@@ -3279,7 +3191,7 @@ Return size (number of entities in subset)
   *Arguments*
       cell_index (std::size_t)
           The index of the cell.
-      local_entity (int)
+      local_entity (std::size_t)
           The local index of the entity relative to the cell.
       marker_value (T)
           The value of the marker.
@@ -3314,7 +3226,7 @@ a local entity index
 *Arguments*
     cell_index (std::size_t)
         The index of the cell.
-    local_entity (int)
+    local_entity (std::size_t)
         The local index of the entity relative to the cell.
 
 *Returns*
@@ -3416,7 +3328,7 @@ This class implements renumbering algorithms for meshes.
           The mesh
       angle (float)
           The number of degrees (0-360) of rotation
-      axis (int)
+      axis (std::size_t)
           The coordinate axis around which to rotate the mesh
 
 * rotate\ (mesh, angle, axis, p)
@@ -3428,7 +3340,7 @@ This class implements renumbering algorithms for meshes.
           The mesh
       angle (float)
           The number of degrees (0-360) of rotation
-      axis (int)
+      axis (std::size_t)
           The coordinate axis around which to rotate the mesh
       point (:py:class:`Point`)
           The point around which to rotate the mesh
@@ -3526,7 +3438,7 @@ Set subdomain markers (std::size_t) on facets for given subdomain number
   *Arguments*
       mesh (:py:class:`Mesh`)
           The mesh to be marked.
-      dim (int)
+      dim (std::size_t)
           The topological dimension of entities to be marked.
       sub_domain (std::size_t)
           The subdomain number.
@@ -3618,7 +3530,7 @@ Set subdomain markers (std::size_t) on facets for given subdomain number
 Return geometric dimension
 
 *Returns*
-    int
+    std::size_t
         The geometric dimension.
 ";
 
@@ -3682,7 +3594,7 @@ or possibly lower dimensional entities of the mesh.
           The mesh
       sub_domain (:py:class:`SubDomain`)
           Sub domain defining the restriction
-      dim (int)
+      dim (std::size_t)
           Dimension of restriction
 
 * Restriction\ (domain_markers, domain_number)
@@ -3692,7 +3604,7 @@ or possibly lower dimensional entities of the mesh.
   *Arguments*
       domain_markers (:py:class:`MeshFunction`)
           Domain markers for the cells of the mesh.
-      domain_number (int)
+      domain_number (std::size_t)
           Identifier for domain.
 
 * Restriction\ (domain_markers, domain_number)
@@ -3702,7 +3614,7 @@ or possibly lower dimensional entities of the mesh.
   *Arguments*
       domain_markers (:py:class:`MeshFunction`)
           Domain markers for the cells of the mesh.
-      domain_number (int)
+      domain_number (std::size_t)
           Identifier for domain.
 ";
 
