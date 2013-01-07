@@ -594,6 +594,11 @@ Set a barrier (synchronization point)
   has it in their groups, otherwise it will deadlock.
 ";
 
+%feature("docstring")  dolfin::MPI::distribute_vector "
+Distribute local arrays on all processors according to given
+partition
+";
+
 %feature("docstring")  dolfin::MPI::broadcast "
 Broadcast value from broadcaster process to all processes
 ";
