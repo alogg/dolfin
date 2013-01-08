@@ -319,9 +319,6 @@ public:
 
 class cahnhilliard3d_dofmap_0: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
@@ -336,16 +333,6 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(std::size_t d) const;
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m);
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c);
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize();
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const;
 
@@ -353,7 +340,8 @@ public:
   virtual std::size_t geometric_dimension() const;
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const;
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const;
 
   /// Return the dimension of the local finite element function space for a cell
   virtual std::size_t local_dimension(const ufc::cell& c) const;
@@ -369,7 +357,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const;
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -400,9 +388,6 @@ public:
 
 class cahnhilliard3d_dofmap_1: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
@@ -417,16 +402,6 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(std::size_t d) const;
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m);
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c);
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize();
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const;
 
@@ -434,7 +409,8 @@ public:
   virtual std::size_t geometric_dimension() const;
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const;
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const;
 
   /// Return the dimension of the local finite element function space for a cell
   virtual std::size_t local_dimension(const ufc::cell& c) const;
@@ -450,7 +426,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const;
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -481,9 +457,6 @@ public:
 
 class cahnhilliard3d_dofmap_2: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
@@ -498,16 +471,6 @@ public:
   /// Return true iff mesh entities of topological dimension d are needed
   virtual bool needs_mesh_entities(std::size_t d) const;
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m);
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c);
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize();
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const;
 
@@ -515,7 +478,8 @@ public:
   virtual std::size_t geometric_dimension() const;
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const;
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const;
 
   /// Return the dimension of the local finite element function space for a cell
   virtual std::size_t local_dimension(const ufc::cell& c) const;
@@ -531,7 +495,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const;
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs

@@ -3853,7 +3853,7 @@ ufc::finite_element* cahnhilliard3d_finite_element_2::create() const
 /// Constructor
 cahnhilliard3d_dofmap_0::cahnhilliard3d_dofmap_0() : ufc::dofmap()
 {
-    _global_dimension = 0;
+    // Do nothing
 }
 
 /// Destructor
@@ -3898,26 +3898,6 @@ bool cahnhilliard3d_dofmap_0::needs_mesh_entities(std::size_t d) const
     return false;
 }
 
-/// Initialize dofmap for mesh (return true iff init_cell() is needed)
-bool cahnhilliard3d_dofmap_0::init_mesh(const ufc::mesh& m)
-{
-    _global_dimension = 1;
-    return false;
-}
-
-/// Initialize dofmap for given cell
-void cahnhilliard3d_dofmap_0::init_cell(const ufc::mesh& m,
-                              const ufc::cell& c)
-{
-    // Do nothing
-}
-
-/// Finish initialization of dofmap for cells
-void cahnhilliard3d_dofmap_0::init_cell_finalize()
-{
-    // Do nothing
-}
-
 /// Return the topological dimension of the associated cell shape
 std::size_t cahnhilliard3d_dofmap_0::topological_dimension() const
 {
@@ -3931,9 +3911,10 @@ std::size_t cahnhilliard3d_dofmap_0::geometric_dimension() const
 }
 
 /// Return the dimension of the global finite element function space
-std::size_t cahnhilliard3d_dofmap_0::global_dimension() const
+std::size_t cahnhilliard3d_dofmap_0::global_dimension(const std::vector<std::size_t>&
+                                            num_global_entities) const
 {
-    return _global_dimension;
+    return 1;
 }
 
 /// Return the dimension of the local finite element function space for a cell
@@ -3986,7 +3967,7 @@ std::size_t cahnhilliard3d_dofmap_0::num_entity_dofs(std::size_t d) const
 
 /// Tabulate the local-to-global mapping of dofs on a cell
 void cahnhilliard3d_dofmap_0::tabulate_dofs(std::size_t* dofs,
-                                  const ufc::mesh& m,
+                                  const std::vector<std::size_t>& num_global_entities,
                                   const ufc::cell& c) const
 {
     dofs[0] = 0;
@@ -4094,7 +4075,7 @@ ufc::dofmap* cahnhilliard3d_dofmap_0::create() const
 /// Constructor
 cahnhilliard3d_dofmap_1::cahnhilliard3d_dofmap_1() : ufc::dofmap()
 {
-    _global_dimension = 0;
+    // Do nothing
 }
 
 /// Destructor
@@ -4139,26 +4120,6 @@ bool cahnhilliard3d_dofmap_1::needs_mesh_entities(std::size_t d) const
     return false;
 }
 
-/// Initialize dofmap for mesh (return true iff init_cell() is needed)
-bool cahnhilliard3d_dofmap_1::init_mesh(const ufc::mesh& m)
-{
-    _global_dimension = m.num_entities[0];
-    return false;
-}
-
-/// Initialize dofmap for given cell
-void cahnhilliard3d_dofmap_1::init_cell(const ufc::mesh& m,
-                              const ufc::cell& c)
-{
-    // Do nothing
-}
-
-/// Finish initialization of dofmap for cells
-void cahnhilliard3d_dofmap_1::init_cell_finalize()
-{
-    // Do nothing
-}
-
 /// Return the topological dimension of the associated cell shape
 std::size_t cahnhilliard3d_dofmap_1::topological_dimension() const
 {
@@ -4172,9 +4133,10 @@ std::size_t cahnhilliard3d_dofmap_1::geometric_dimension() const
 }
 
 /// Return the dimension of the global finite element function space
-std::size_t cahnhilliard3d_dofmap_1::global_dimension() const
+std::size_t cahnhilliard3d_dofmap_1::global_dimension(const std::vector<std::size_t>&
+                                            num_global_entities) const
 {
-    return _global_dimension;
+    return num_global_entities[0];
 }
 
 /// Return the dimension of the local finite element function space for a cell
@@ -4227,7 +4189,7 @@ std::size_t cahnhilliard3d_dofmap_1::num_entity_dofs(std::size_t d) const
 
 /// Tabulate the local-to-global mapping of dofs on a cell
 void cahnhilliard3d_dofmap_1::tabulate_dofs(std::size_t* dofs,
-                                  const ufc::mesh& m,
+                                  const std::vector<std::size_t>& num_global_entities,
                                   const ufc::cell& c) const
 {
     dofs[0] = c.entity_indices[0][0];
@@ -4378,7 +4340,7 @@ ufc::dofmap* cahnhilliard3d_dofmap_1::create() const
 /// Constructor
 cahnhilliard3d_dofmap_2::cahnhilliard3d_dofmap_2() : ufc::dofmap()
 {
-    _global_dimension = 0;
+    // Do nothing
 }
 
 /// Destructor
@@ -4423,26 +4385,6 @@ bool cahnhilliard3d_dofmap_2::needs_mesh_entities(std::size_t d) const
     return false;
 }
 
-/// Initialize dofmap for mesh (return true iff init_cell() is needed)
-bool cahnhilliard3d_dofmap_2::init_mesh(const ufc::mesh& m)
-{
-    _global_dimension = 2*m.num_entities[0];
-    return false;
-}
-
-/// Initialize dofmap for given cell
-void cahnhilliard3d_dofmap_2::init_cell(const ufc::mesh& m,
-                              const ufc::cell& c)
-{
-    // Do nothing
-}
-
-/// Finish initialization of dofmap for cells
-void cahnhilliard3d_dofmap_2::init_cell_finalize()
-{
-    // Do nothing
-}
-
 /// Return the topological dimension of the associated cell shape
 std::size_t cahnhilliard3d_dofmap_2::topological_dimension() const
 {
@@ -4456,9 +4398,10 @@ std::size_t cahnhilliard3d_dofmap_2::geometric_dimension() const
 }
 
 /// Return the dimension of the global finite element function space
-std::size_t cahnhilliard3d_dofmap_2::global_dimension() const
+std::size_t cahnhilliard3d_dofmap_2::global_dimension(const std::vector<std::size_t>&
+                                            num_global_entities) const
 {
-    return _global_dimension;
+    return 2*num_global_entities[0];
 }
 
 /// Return the dimension of the local finite element function space for a cell
@@ -4511,7 +4454,7 @@ std::size_t cahnhilliard3d_dofmap_2::num_entity_dofs(std::size_t d) const
 
 /// Tabulate the local-to-global mapping of dofs on a cell
 void cahnhilliard3d_dofmap_2::tabulate_dofs(std::size_t* dofs,
-                                  const ufc::mesh& m,
+                                  const std::vector<std::size_t>& num_global_entities,
                                   const ufc::cell& c) const
 {
     unsigned int offset = 0;
@@ -4519,12 +4462,12 @@ void cahnhilliard3d_dofmap_2::tabulate_dofs(std::size_t* dofs,
     dofs[1] = offset + c.entity_indices[0][1];
     dofs[2] = offset + c.entity_indices[0][2];
     dofs[3] = offset + c.entity_indices[0][3];
-    offset += m.num_entities[0];
+    offset += num_global_entities[0];
     dofs[4] = offset + c.entity_indices[0][0];
     dofs[5] = offset + c.entity_indices[0][1];
     dofs[6] = offset + c.entity_indices[0][2];
     dofs[7] = offset + c.entity_indices[0][3];
-    offset += m.num_entities[0];
+    offset += num_global_entities[0];
 }
 
 /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -4786,12 +4729,12 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     {0.5, 0.5, 0.0, 0.0},
     {0.5, 0.0, 0.5, 0.0},
     {0.5, 0.0, 0.0, 0.5},
-    {0.100526765225204, 0.698419704324386, 0.100526765225205, 0.100526765225205},
-    {0.698419704324386, 0.100526765225204, 0.100526765225205, 0.100526765225205},
-    {0.100526765225204, 0.100526765225204, 0.100526765225205, 0.698419704324386},
-    {0.100526765225204, 0.100526765225204, 0.698419704324386, 0.100526765225205},
+    {0.100526765225205, 0.698419704324386, 0.100526765225205, 0.100526765225205},
+    {0.698419704324387, 0.100526765225204, 0.100526765225205, 0.100526765225205},
+    {0.100526765225205, 0.100526765225204, 0.100526765225205, 0.698419704324386},
+    {0.100526765225205, 0.100526765225204, 0.698419704324386, 0.100526765225205},
     {0.314372873493192, 0.0568813795204234, 0.314372873493192, 0.314372873493192},
-    {0.0568813795204234, 0.314372873493192, 0.314372873493192, 0.314372873493192},
+    {0.0568813795204235, 0.314372873493192, 0.314372873493192, 0.314372873493192},
     {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.0568813795204234},
     {0.314372873493192, 0.314372873493192, 0.0568813795204235, 0.314372873493192}};
     
@@ -5053,12 +4996,12 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     {0.5, 0.5, 0.0, 0.0},
     {0.5, 0.0, 0.5, 0.0},
     {0.5, 0.0, 0.0, 0.5},
-    {0.100526765225204, 0.698419704324386, 0.100526765225205, 0.100526765225205},
-    {0.698419704324386, 0.100526765225204, 0.100526765225205, 0.100526765225205},
-    {0.100526765225204, 0.100526765225204, 0.100526765225205, 0.698419704324386},
-    {0.100526765225204, 0.100526765225204, 0.698419704324386, 0.100526765225205},
+    {0.100526765225205, 0.698419704324386, 0.100526765225205, 0.100526765225205},
+    {0.698419704324387, 0.100526765225204, 0.100526765225205, 0.100526765225205},
+    {0.100526765225205, 0.100526765225204, 0.100526765225205, 0.698419704324386},
+    {0.100526765225205, 0.100526765225204, 0.698419704324386, 0.100526765225205},
     {0.314372873493192, 0.0568813795204234, 0.314372873493192, 0.314372873493192},
-    {0.0568813795204234, 0.314372873493192, 0.314372873493192, 0.314372873493192},
+    {0.0568813795204235, 0.314372873493192, 0.314372873493192, 0.314372873493192},
     {0.314372873493192, 0.314372873493192, 0.314372873493192, 0.0568813795204234},
     {0.314372873493192, 0.314372873493192, 0.0568813795204235, 0.314372873493192}};
     

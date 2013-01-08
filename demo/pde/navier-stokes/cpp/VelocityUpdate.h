@@ -1471,7 +1471,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1507,7 +1507,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1806,7 +1806,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -1821,8 +1821,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1972,7 +1972,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -1987,8 +1987,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2153,8 +2153,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2319,8 +2319,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2485,8 +2485,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2651,8 +2651,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3092,7 +3092,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3128,7 +3128,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3308,7 +3308,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3344,7 +3344,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -3646,7 +3646,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -3661,8 +3661,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3812,7 +3812,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -3827,8 +3827,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3993,8 +3993,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4159,8 +4159,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4325,8 +4325,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4491,8 +4491,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4642,7 +4642,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -4657,8 +4657,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4808,7 +4808,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -4823,8 +4823,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4989,8 +4989,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5155,8 +5155,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5321,8 +5321,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5487,8 +5487,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
-      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
+      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5894,15 +5894,12 @@ public:
 
 class velocityupdate_dofmap_0: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   velocityupdate_dofmap_0() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -5942,26 +5939,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = m.num_entities[0];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -5975,9 +5952,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return num_global_entities[0];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -6025,7 +6003,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     dofs[0] = c.entity_indices[0][0];
@@ -6153,15 +6131,12 @@ public:
 
 class velocityupdate_dofmap_1: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   velocityupdate_dofmap_1() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -6201,26 +6176,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = 1;
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -6234,9 +6189,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return 1;
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -6284,7 +6240,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     dofs[0] = 0;
@@ -6385,15 +6341,12 @@ public:
 
 class velocityupdate_dofmap_2: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   velocityupdate_dofmap_2() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -6433,26 +6386,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = m.num_entities[0] + m.num_entities[1];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -6466,9 +6399,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return num_global_entities[0] + num_global_entities[1];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -6516,18 +6450,18 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     unsigned int offset = 0;
     dofs[0] = offset + c.entity_indices[0][0];
     dofs[1] = offset + c.entity_indices[0][1];
     dofs[2] = offset + c.entity_indices[0][2];
-    offset += m.num_entities[0];
+    offset += num_global_entities[0];
     dofs[3] = offset + c.entity_indices[1][0];
     dofs[4] = offset + c.entity_indices[1][1];
     dofs[5] = offset + c.entity_indices[1][2];
-    offset += m.num_entities[1];
+    offset += num_global_entities[1];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6682,15 +6616,12 @@ public:
 
 class velocityupdate_dofmap_3: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   velocityupdate_dofmap_3() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -6730,26 +6661,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = 2*m.num_entities[0] + 2*m.num_entities[1];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -6763,9 +6674,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return 2*num_global_entities[0] + 2*num_global_entities[1];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -6813,26 +6725,26 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     unsigned int offset = 0;
     dofs[0] = offset + c.entity_indices[0][0];
     dofs[1] = offset + c.entity_indices[0][1];
     dofs[2] = offset + c.entity_indices[0][2];
-    offset += m.num_entities[0];
+    offset += num_global_entities[0];
     dofs[3] = offset + c.entity_indices[1][0];
     dofs[4] = offset + c.entity_indices[1][1];
     dofs[5] = offset + c.entity_indices[1][2];
-    offset += m.num_entities[1];
+    offset += num_global_entities[1];
     dofs[6] = offset + c.entity_indices[0][0];
     dofs[7] = offset + c.entity_indices[0][1];
     dofs[8] = offset + c.entity_indices[0][2];
-    offset += m.num_entities[0];
+    offset += num_global_entities[0];
     dofs[9] = offset + c.entity_indices[1][0];
     dofs[10] = offset + c.entity_indices[1][1];
     dofs[11] = offset + c.entity_indices[1][2];
-    offset += m.num_entities[1];
+    offset += num_global_entities[1];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -7077,7 +6989,7 @@ public:
     A[0] = 0.0166666666666666*G0_;
     A[1] = -0.00277777777777778*G0_;
     A[2] = -0.00277777777777778*G0_;
-    A[3] = -0.011111111111111*G0_;
+    A[3] = -0.0111111111111111*G0_;
     A[4] = 0.0;
     A[5] = 0.0;
     A[6] = 0.0;
@@ -7099,7 +7011,7 @@ public:
     A[22] = 0.0;
     A[23] = 0.0;
     A[24] = -0.00277777777777778*G0_;
-    A[25] = -0.00277777777777781*G0_;
+    A[25] = -0.0027777777777778*G0_;
     A[26] = 0.0166666666666667*G0_;
     A[27] = 0.0;
     A[28] = 0.0;
@@ -7110,7 +7022,7 @@ public:
     A[33] = 0.0;
     A[34] = 0.0;
     A[35] = 0.0;
-    A[36] = -0.011111111111111*G0_;
+    A[36] = -0.0111111111111111*G0_;
     A[37] = 0.0;
     A[38] = 0.0;
     A[39] = 0.0888888888888888*G0_;
@@ -7139,7 +7051,7 @@ public:
     A[62] = -0.0111111111111111*G0_;
     A[63] = 0.0444444444444443*G0_;
     A[64] = 0.0444444444444443*G0_;
-    A[65] = 0.0888888888888888*G0_;
+    A[65] = 0.0888888888888887*G0_;
     A[66] = 0.0;
     A[67] = 0.0;
     A[68] = 0.0;
@@ -7155,7 +7067,7 @@ public:
     A[78] = 0.0166666666666666*G0_;
     A[79] = -0.00277777777777778*G0_;
     A[80] = -0.00277777777777778*G0_;
-    A[81] = -0.011111111111111*G0_;
+    A[81] = -0.0111111111111111*G0_;
     A[82] = 0.0;
     A[83] = 0.0;
     A[84] = 0.0;
@@ -7177,7 +7089,7 @@ public:
     A[100] = 0.0;
     A[101] = 0.0;
     A[102] = -0.00277777777777778*G0_;
-    A[103] = -0.00277777777777781*G0_;
+    A[103] = -0.0027777777777778*G0_;
     A[104] = 0.0166666666666667*G0_;
     A[105] = 0.0;
     A[106] = 0.0;
@@ -7188,7 +7100,7 @@ public:
     A[111] = 0.0;
     A[112] = 0.0;
     A[113] = 0.0;
-    A[114] = -0.011111111111111*G0_;
+    A[114] = -0.0111111111111111*G0_;
     A[115] = 0.0;
     A[116] = 0.0;
     A[117] = 0.0888888888888888*G0_;
@@ -7217,7 +7129,7 @@ public:
     A[140] = -0.0111111111111111*G0_;
     A[141] = 0.0444444444444443*G0_;
     A[142] = 0.0444444444444443*G0_;
-    A[143] = 0.0888888888888888*G0_;
+    A[143] = 0.0888888888888887*G0_;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -7308,18 +7220,18 @@ public:
     const double G1_0_1_2_1 = det*w[0][0]*w[2][2]*K_11*(1.0);
     
     // Compute element tensor
-    A[0] = 0.0166666666666666*G0_0 - 0.00277777777777778*G0_1 - 0.00277777777777778*G0_2 - 0.011111111111111*G0_3;
+    A[0] = 0.0166666666666666*G0_0 - 0.00277777777777778*G0_1 - 0.00277777777777778*G0_2 - 0.0111111111111111*G0_3;
     A[1] = -0.00277777777777778*G0_0 + 0.0166666666666667*G0_1 - 0.00277777777777781*G0_2 - 0.0111111111111111*G0_4;
-    A[2] = -0.00277777777777778*G0_0 - 0.00277777777777781*G0_1 + 0.0166666666666667*G0_2 - 0.0111111111111111*G0_5;
-    A[3] = -0.011111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444443*G0_4 + 0.0444444444444443*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
+    A[2] = -0.00277777777777778*G0_0 - 0.0027777777777778*G0_1 + 0.0166666666666667*G0_2 - 0.0111111111111111*G0_5;
+    A[3] = -0.0111111111111111*G0_0 + 0.0888888888888888*G0_3 + 0.0444444444444443*G0_4 + 0.0444444444444443*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
     A[4] = -0.0111111111111111*G0_1 + 0.0444444444444443*G0_3 + 0.0888888888888887*G0_4 + 0.0444444444444443*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
-    A[5] = -0.0111111111111111*G0_2 + 0.0444444444444443*G0_3 + 0.0444444444444443*G0_4 + 0.0888888888888888*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
-    A[6] = 0.0166666666666666*G0_6 - 0.00277777777777778*G0_7 - 0.00277777777777778*G0_8 - 0.011111111111111*G0_9;
+    A[5] = -0.0111111111111111*G0_2 + 0.0444444444444443*G0_3 + 0.0444444444444443*G0_4 + 0.0888888888888887*G0_5 + 0.166666666666666*G1_0_0_0_0 + 0.166666666666666*G1_0_0_0_1 - 0.166666666666666*G1_0_0_1_0 - 0.166666666666666*G1_0_0_2_1;
+    A[6] = 0.0166666666666666*G0_6 - 0.00277777777777778*G0_7 - 0.00277777777777778*G0_8 - 0.0111111111111111*G0_9;
     A[7] = -0.00277777777777778*G0_6 + 0.0166666666666667*G0_7 - 0.00277777777777781*G0_8 - 0.0111111111111111*G0_10;
-    A[8] = -0.00277777777777778*G0_6 - 0.00277777777777781*G0_7 + 0.0166666666666667*G0_8 - 0.0111111111111111*G0_11;
-    A[9] = -0.011111111111111*G0_6 + 0.0888888888888888*G0_9 + 0.0444444444444443*G0_10 + 0.0444444444444443*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
+    A[8] = -0.00277777777777778*G0_6 - 0.0027777777777778*G0_7 + 0.0166666666666667*G0_8 - 0.0111111111111111*G0_11;
+    A[9] = -0.0111111111111111*G0_6 + 0.0888888888888888*G0_9 + 0.0444444444444443*G0_10 + 0.0444444444444443*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
     A[10] = -0.0111111111111111*G0_7 + 0.0444444444444443*G0_9 + 0.0888888888888887*G0_10 + 0.0444444444444443*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
-    A[11] = -0.0111111111111111*G0_8 + 0.0444444444444443*G0_9 + 0.0444444444444443*G0_10 + 0.0888888888888888*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
+    A[11] = -0.0111111111111111*G0_8 + 0.0444444444444443*G0_9 + 0.0444444444444443*G0_10 + 0.0888888888888887*G0_11 + 0.166666666666666*G1_0_1_0_0 + 0.166666666666666*G1_0_1_0_1 - 0.166666666666666*G1_0_1_1_0 - 0.166666666666666*G1_0_1_2_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell

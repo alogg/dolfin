@@ -4946,15 +4946,12 @@ public:
 
 class mixedpoisson_dofmap_0: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   mixedpoisson_dofmap_0() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -4994,26 +4991,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = m.num_entities[0];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -5027,9 +5004,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return num_global_entities[0];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -5077,7 +5055,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     dofs[0] = c.entity_indices[0][0];
@@ -5205,15 +5183,12 @@ public:
 
 class mixedpoisson_dofmap_1: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   mixedpoisson_dofmap_1() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -5253,26 +5228,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = 2*m.num_entities[1];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -5286,9 +5241,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return 2*num_global_entities[1];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -5336,7 +5292,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     dofs[0] = 2*c.entity_indices[1][0];
@@ -5476,15 +5432,12 @@ public:
 
 class mixedpoisson_dofmap_2: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   mixedpoisson_dofmap_2() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -5524,26 +5477,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -5557,9 +5490,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return num_global_entities[2];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -5607,7 +5541,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     dofs[0] = c.entity_indices[2][0];
@@ -5708,15 +5642,12 @@ public:
 
 class mixedpoisson_dofmap_3: public ufc::dofmap
 {
-private:
-
-  unsigned int _global_dimension;
 public:
 
   /// Constructor
   mixedpoisson_dofmap_3() : ufc::dofmap()
   {
-    _global_dimension = 0;
+    // Do nothing
   }
 
   /// Destructor
@@ -5756,26 +5687,6 @@ public:
     return false;
   }
 
-  /// Initialize dofmap for mesh (return true iff init_cell() is needed)
-  virtual bool init_mesh(const ufc::mesh& m)
-  {
-    _global_dimension = 2*m.num_entities[1] + m.num_entities[2];
-    return false;
-  }
-
-  /// Initialize dofmap for given cell
-  virtual void init_cell(const ufc::mesh& m,
-                         const ufc::cell& c)
-  {
-    // Do nothing
-  }
-
-  /// Finish initialization of dofmap for cells
-  virtual void init_cell_finalize()
-  {
-    // Do nothing
-  }
-
   /// Return the topological dimension of the associated cell shape
   virtual std::size_t topological_dimension() const
   {
@@ -5789,9 +5700,10 @@ public:
   }
 
   /// Return the dimension of the global finite element function space
-  virtual std::size_t global_dimension() const
+  virtual std::size_t global_dimension(const std::vector<std::size_t>&
+                                       num_global_entities) const
   {
-    return _global_dimension;
+    return 2*num_global_entities[1] + num_global_entities[2];
   }
 
   /// Return the dimension of the local finite element function space for a cell
@@ -5839,7 +5751,7 @@ public:
 
   /// Tabulate the local-to-global mapping of dofs on a cell
   virtual void tabulate_dofs(std::size_t* dofs,
-                             const ufc::mesh& m,
+                             const std::vector<std::size_t>& num_global_entities,
                              const ufc::cell& c) const
   {
     unsigned int offset = 0;
@@ -5849,9 +5761,9 @@ public:
     dofs[3] = offset + 2*c.entity_indices[1][1] + 1;
     dofs[4] = offset + 2*c.entity_indices[1][2];
     dofs[5] = offset + 2*c.entity_indices[1][2] + 1;
-    offset += 2*m.num_entities[1];
+    offset += 2*num_global_entities[1];
     dofs[6] = offset + c.entity_indices[2][0];
-    offset += m.num_entities[2];
+    offset += num_global_entities[2];
   }
 
   /// Tabulate the local-to-local mapping from facet dofs to cell dofs
@@ -6079,7 +5991,7 @@ public:
     // Compute element tensor
     A[0] = 0.333333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0833333333333333*G4_1_1 + 0.333333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0833333333333333*G5_1_1;
     A[1] = -0.166666666666667*G4_0_0 + 0.166666666666667*G4_0_1 + 0.0416666666666666*G4_1_0 - 0.166666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.166666666666667*G5_0_1 + 0.0416666666666666*G5_1_0 - 0.166666666666667*G5_1_1;
-    A[2] = 0.0833333333333334*G4_0_0 + 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_1 + 0.0833333333333334*G5_0_0 + 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_1;
+    A[2] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_1;
     A[3] = 0.0833333333333332*G4_0_0 - 0.166666666666667*G4_0_1 - 0.125*G4_1_0 + 0.166666666666667*G4_1_1 + 0.0833333333333332*G5_0_0 - 0.166666666666667*G5_0_1 - 0.125*G5_1_0 + 0.166666666666667*G5_1_1;
     A[4] = -0.166666666666667*G4_0_0 + 0.0416666666666666*G4_1_0 + 0.0416666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666666*G5_1_0 + 0.0416666666666667*G5_1_1;
     A[5] = 0.333333333333333*G4_0_0 - 0.25*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0416666666666666*G4_1_1 + 0.333333333333333*G5_0_0 - 0.25*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0416666666666666*G5_1_1;
@@ -6091,7 +6003,7 @@ public:
     A[11] = 0.0833333333333333*G4_0_0 - 0.0833333333333333*G4_1_0 - 0.0833333333333334*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333333*G5_1_0 - 0.0833333333333334*G5_1_1;
     A[12] = -0.166666666666667*G4_0_0 + 0.125*G4_0_1 + 0.166666666666667*G4_1_0 - 0.0833333333333332*G4_1_1 - 0.166666666666667*G5_0_0 + 0.125*G5_0_1 + 0.166666666666667*G5_1_0 - 0.0833333333333332*G5_1_1;
     A[13] = -0.5*G2_0_0 + G2_1_1 - 0.5*G3_0_0 + G3_1_1;
-    A[14] = 0.0833333333333334*G4_0_0 + 0.0833333333333333*G4_1_0 - 0.0833333333333333*G4_1_1 + 0.0833333333333334*G5_0_0 + 0.0833333333333333*G5_1_0 - 0.0833333333333333*G5_1_1;
+    A[14] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_1_0 - 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_1_0 - 0.0833333333333333*G5_1_1;
     A[15] = -0.0416666666666667*G4_0_0 - 0.0416666666666666*G4_1_0 + 0.166666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666666*G5_1_0 + 0.166666666666667*G5_1_1;
     A[16] = 0.25*G4_0_0 + 0.0833333333333333*G4_1_1 + 0.25*G5_0_0 + 0.0833333333333333*G5_1_1;
     A[17] = -0.125*G4_0_0 + 0.125*G4_1_0 - 0.166666666666667*G4_1_1 - 0.125*G5_0_0 + 0.125*G5_1_0 - 0.166666666666667*G5_1_1;
