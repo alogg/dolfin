@@ -14,9 +14,8 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
-//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -2973,9 +2972,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      11
-    // Number of operations (multiply-add pairs) for geometry tensor:    60
-    // Number of operations (multiply-add pairs) for tensor contraction: 105
-    // Total number of operations (multiply-add pairs):                  176
+    // Number of operations (multiply-add pairs) for geometry tensor:    30
+    // Number of operations (multiply-add pairs) for tensor contraction: 52
+    // Total number of operations (multiply-add pairs):                  93
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -2999,70 +2998,176 @@ public:
     const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_ = det;
+    const double G0_0_0_0 = det*(w[0][0]*((K_00*K_00 + K_01*K_01)));
+    const double G0_0_0_1 = det*(w[0][0]*((K_00*K_10 + K_01*K_11)));
+    const double G0_0_1_0 = det*(w[0][0]*((K_10*K_00 + K_11*K_01)));
+    const double G0_0_1_1 = det*(w[0][0]*((K_10*K_10 + K_11*K_11)));
+    const double G0_1_0_0 = det*(w[0][1]*((K_00*K_00 + K_01*K_01)));
+    const double G0_1_0_1 = det*(w[0][1]*((K_00*K_10 + K_01*K_11)));
+    const double G0_1_1_0 = det*(w[0][1]*((K_10*K_00 + K_11*K_01)));
+    const double G0_1_1_1 = det*(w[0][1]*((K_10*K_10 + K_11*K_11)));
+    const double G0_2_0_0 = det*(w[0][2]*((K_00*K_00 + K_01*K_01)));
+    const double G0_2_0_1 = det*(w[0][2]*((K_00*K_10 + K_01*K_11)));
+    const double G0_2_1_0 = det*(w[0][2]*((K_10*K_00 + K_11*K_01)));
+    const double G0_2_1_1 = det*(w[0][2]*((K_10*K_10 + K_11*K_11)));
     const double G1_ = det;
-    const double G2_0_0_0 = det*(w[0][0]*((K_00*K_00 + K_01*K_01)));
-    const double G2_0_0_1 = det*(w[0][0]*((K_00*K_10 + K_01*K_11)));
-    const double G2_0_1_0 = det*(w[0][0]*((K_10*K_00 + K_11*K_01)));
-    const double G2_0_1_1 = det*(w[0][0]*((K_10*K_10 + K_11*K_11)));
-    const double G2_1_0_0 = det*(w[0][1]*((K_00*K_00 + K_01*K_01)));
-    const double G2_1_0_1 = det*(w[0][1]*((K_00*K_10 + K_01*K_11)));
-    const double G2_1_1_0 = det*(w[0][1]*((K_10*K_00 + K_11*K_01)));
-    const double G2_1_1_1 = det*(w[0][1]*((K_10*K_10 + K_11*K_11)));
-    const double G2_2_0_0 = det*(w[0][2]*((K_00*K_00 + K_01*K_01)));
-    const double G2_2_0_1 = det*(w[0][2]*((K_00*K_10 + K_01*K_11)));
-    const double G2_2_1_0 = det*(w[0][2]*((K_10*K_00 + K_11*K_01)));
-    const double G2_2_1_1 = det*(w[0][2]*((K_10*K_10 + K_11*K_11)));
-    const double G3_0_0_0 = det*(w[1][0]*((K_00*K_00 + K_01*K_01)));
-    const double G3_0_0_1 = det*(w[1][0]*((K_00*K_10 + K_01*K_11)));
-    const double G3_0_1_0 = det*(w[1][0]*((K_10*K_00 + K_11*K_01)));
-    const double G3_0_1_1 = det*(w[1][0]*((K_10*K_10 + K_11*K_11)));
-    const double G3_1_0_0 = det*(w[1][1]*((K_00*K_00 + K_01*K_01)));
-    const double G3_1_0_1 = det*(w[1][1]*((K_00*K_10 + K_01*K_11)));
-    const double G3_1_1_0 = det*(w[1][1]*((K_10*K_00 + K_11*K_01)));
-    const double G3_1_1_1 = det*(w[1][1]*((K_10*K_10 + K_11*K_11)));
-    const double G3_2_0_0 = det*(w[1][2]*((K_00*K_00 + K_01*K_01)));
-    const double G3_2_0_1 = det*(w[1][2]*((K_00*K_10 + K_01*K_11)));
-    const double G3_2_1_0 = det*(w[1][2]*((K_10*K_00 + K_11*K_01)));
-    const double G3_2_1_1 = det*(w[1][2]*((K_10*K_10 + K_11*K_11)));
     
     // Compute element tensor
-    A[0] = 8.33333333333334e-08*G1_ + 0.166666666666667*G2_0_0_0 + 0.166666666666667*G2_0_0_1 + 0.166666666666667*G2_0_1_0 + 0.166666666666667*G2_0_1_1 + 0.166666666666667*G2_1_0_0 + 0.166666666666667*G2_1_0_1 + 0.166666666666667*G2_1_1_0 + 0.166666666666667*G2_1_1_1 + 0.166666666666667*G2_2_0_0 + 0.166666666666667*G2_2_0_1 + 0.166666666666667*G2_2_1_0 + 0.166666666666667*G2_2_1_1;
-    A[1] = 4.16666666666667e-08*G1_ - 0.166666666666667*G2_0_0_0 - 0.166666666666667*G2_0_1_0 - 0.166666666666667*G2_1_0_0 - 0.166666666666667*G2_1_1_0 - 0.166666666666667*G2_2_0_0 - 0.166666666666667*G2_2_1_0;
-    A[2] = 4.16666666666667e-08*G1_ - 0.166666666666667*G2_0_0_1 - 0.166666666666667*G2_0_1_1 - 0.166666666666667*G2_1_0_1 - 0.166666666666667*G2_1_1_1 - 0.166666666666667*G2_2_0_1 - 0.166666666666667*G2_2_1_1;
+    A[0] = 0.166666666666667*G0_0_0_0 + 0.166666666666667*G0_0_0_1 + 0.166666666666667*G0_0_1_0 + 0.166666666666667*G0_0_1_1 + 0.166666666666667*G0_1_0_0 + 0.166666666666667*G0_1_0_1 + 0.166666666666667*G0_1_1_0 + 0.166666666666667*G0_1_1_1 + 0.166666666666667*G0_2_0_0 + 0.166666666666667*G0_2_0_1 + 0.166666666666667*G0_2_1_0 + 0.166666666666667*G0_2_1_1 + 8.33333333333334e-08*G1_;
+    A[1] = -0.166666666666667*G0_0_0_0 - 0.166666666666667*G0_0_1_0 - 0.166666666666667*G0_1_0_0 - 0.166666666666667*G0_1_1_0 - 0.166666666666667*G0_2_0_0 - 0.166666666666667*G0_2_1_0 + 4.16666666666667e-08*G1_;
+    A[2] = -0.166666666666667*G0_0_0_1 - 0.166666666666667*G0_0_1_1 - 0.166666666666667*G0_1_0_1 - 0.166666666666667*G0_1_1_1 - 0.166666666666667*G0_2_0_1 - 0.166666666666667*G0_2_1_1 + 4.16666666666667e-08*G1_;
     A[3] = 0.0;
     A[4] = 0.0;
     A[5] = 0.0;
-    A[6] = 4.16666666666667e-08*G1_ - 0.166666666666667*G2_0_0_0 - 0.166666666666667*G2_0_0_1 - 0.166666666666667*G2_1_0_0 - 0.166666666666667*G2_1_0_1 - 0.166666666666667*G2_2_0_0 - 0.166666666666667*G2_2_0_1;
-    A[7] = 8.33333333333333e-08*G1_ + 0.166666666666667*G2_0_0_0 + 0.166666666666667*G2_1_0_0 + 0.166666666666667*G2_2_0_0;
-    A[8] = 4.16666666666666e-08*G1_ + 0.166666666666667*G2_0_0_1 + 0.166666666666667*G2_1_0_1 + 0.166666666666667*G2_2_0_1;
+    A[6] = -0.166666666666667*G0_0_0_0 - 0.166666666666667*G0_0_0_1 - 0.166666666666667*G0_1_0_0 - 0.166666666666667*G0_1_0_1 - 0.166666666666667*G0_2_0_0 - 0.166666666666667*G0_2_0_1 + 4.16666666666667e-08*G1_;
+    A[7] = 0.166666666666667*G0_0_0_0 + 0.166666666666667*G0_1_0_0 + 0.166666666666667*G0_2_0_0 + 8.33333333333333e-08*G1_;
+    A[8] = 0.166666666666667*G0_0_0_1 + 0.166666666666667*G0_1_0_1 + 0.166666666666667*G0_2_0_1 + 4.16666666666666e-08*G1_;
     A[9] = 0.0;
     A[10] = 0.0;
     A[11] = 0.0;
-    A[12] = 4.16666666666667e-08*G1_ - 0.166666666666667*G2_0_1_0 - 0.166666666666667*G2_0_1_1 - 0.166666666666667*G2_1_1_0 - 0.166666666666667*G2_1_1_1 - 0.166666666666667*G2_2_1_0 - 0.166666666666667*G2_2_1_1;
-    A[13] = 4.16666666666666e-08*G1_ + 0.166666666666667*G2_0_1_0 + 0.166666666666667*G2_1_1_0 + 0.166666666666667*G2_2_1_0;
-    A[14] = 8.33333333333333e-08*G1_ + 0.166666666666667*G2_0_1_1 + 0.166666666666667*G2_1_1_1 + 0.166666666666667*G2_2_1_1;
+    A[12] = -0.166666666666667*G0_0_1_0 - 0.166666666666667*G0_0_1_1 - 0.166666666666667*G0_1_1_0 - 0.166666666666667*G0_1_1_1 - 0.166666666666667*G0_2_1_0 - 0.166666666666667*G0_2_1_1 + 4.16666666666667e-08*G1_;
+    A[13] = 0.166666666666667*G0_0_1_0 + 0.166666666666667*G0_1_1_0 + 0.166666666666667*G0_2_1_0 + 4.16666666666666e-08*G1_;
+    A[14] = 0.166666666666667*G0_0_1_1 + 0.166666666666667*G0_1_1_1 + 0.166666666666667*G0_2_1_1 + 8.33333333333333e-08*G1_;
     A[15] = 0.0;
     A[16] = 0.0;
     A[17] = 0.0;
     A[18] = 0.0;
     A[19] = 0.0;
     A[20] = 0.0;
-    A[21] = 8.33333333333334e-08*G0_ + 0.166666666666667*G3_0_0_0 + 0.166666666666667*G3_0_0_1 + 0.166666666666667*G3_0_1_0 + 0.166666666666667*G3_0_1_1 + 0.166666666666667*G3_1_0_0 + 0.166666666666667*G3_1_0_1 + 0.166666666666667*G3_1_1_0 + 0.166666666666667*G3_1_1_1 + 0.166666666666667*G3_2_0_0 + 0.166666666666667*G3_2_0_1 + 0.166666666666667*G3_2_1_0 + 0.166666666666667*G3_2_1_1;
-    A[22] = 4.16666666666667e-08*G0_ - 0.166666666666667*G3_0_0_0 - 0.166666666666667*G3_0_1_0 - 0.166666666666667*G3_1_0_0 - 0.166666666666667*G3_1_1_0 - 0.166666666666667*G3_2_0_0 - 0.166666666666667*G3_2_1_0;
-    A[23] = 4.16666666666667e-08*G0_ - 0.166666666666667*G3_0_0_1 - 0.166666666666667*G3_0_1_1 - 0.166666666666667*G3_1_0_1 - 0.166666666666667*G3_1_1_1 - 0.166666666666667*G3_2_0_1 - 0.166666666666667*G3_2_1_1;
+    A[21] = 0.0;
+    A[22] = 0.0;
+    A[23] = 0.0;
     A[24] = 0.0;
     A[25] = 0.0;
     A[26] = 0.0;
-    A[27] = 4.16666666666667e-08*G0_ - 0.166666666666667*G3_0_0_0 - 0.166666666666667*G3_0_0_1 - 0.166666666666667*G3_1_0_0 - 0.166666666666667*G3_1_0_1 - 0.166666666666667*G3_2_0_0 - 0.166666666666667*G3_2_0_1;
-    A[28] = 8.33333333333333e-08*G0_ + 0.166666666666667*G3_0_0_0 + 0.166666666666667*G3_1_0_0 + 0.166666666666667*G3_2_0_0;
-    A[29] = 4.16666666666666e-08*G0_ + 0.166666666666667*G3_0_0_1 + 0.166666666666667*G3_1_0_1 + 0.166666666666667*G3_2_0_1;
+    A[27] = 0.0;
+    A[28] = 0.0;
+    A[29] = 0.0;
     A[30] = 0.0;
     A[31] = 0.0;
     A[32] = 0.0;
-    A[33] = 4.16666666666667e-08*G0_ - 0.166666666666667*G3_0_1_0 - 0.166666666666667*G3_0_1_1 - 0.166666666666667*G3_1_1_0 - 0.166666666666667*G3_1_1_1 - 0.166666666666667*G3_2_1_0 - 0.166666666666667*G3_2_1_1;
-    A[34] = 4.16666666666666e-08*G0_ + 0.166666666666667*G3_0_1_0 + 0.166666666666667*G3_1_1_0 + 0.166666666666667*G3_2_1_0;
-    A[35] = 8.33333333333333e-08*G0_ + 0.166666666666667*G3_0_1_1 + 0.166666666666667*G3_1_1_1 + 0.166666666666667*G3_2_1_1;
+    A[33] = 0.0;
+    A[34] = 0.0;
+    A[35] = 0.0;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               std::size_t num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
+};
+
+/// This class defines the interface for the tabulation of the cell
+/// tensor corresponding to the local contribution to a form from
+/// the integral over a cell.
+
+class multidomainpoisson_cell_integral_0_1: public ufc::cell_integral
+{
+public:
+
+  /// Constructor
+  multidomainpoisson_cell_integral_0_1() : ufc::cell_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~multidomainpoisson_cell_integral_0_1()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c) const
+  {
+    // Number of operations (multiply-add pairs) for Jacobian data:      11
+    // Number of operations (multiply-add pairs) for geometry tensor:    30
+    // Number of operations (multiply-add pairs) for tensor contraction: 52
+    // Total number of operations (multiply-add pairs):                  93
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    const double K_00 =  J_11 / detJ;
+    const double K_01 = -J_01 / detJ;
+    const double K_10 = -J_10 / detJ;
+    const double K_11 =  J_00 / detJ;
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Compute geometry tensor
+    const double G0_0_0_0 = det*(w[1][0]*((K_00*K_00 + K_01*K_01)));
+    const double G0_0_0_1 = det*(w[1][0]*((K_00*K_10 + K_01*K_11)));
+    const double G0_0_1_0 = det*(w[1][0]*((K_10*K_00 + K_11*K_01)));
+    const double G0_0_1_1 = det*(w[1][0]*((K_10*K_10 + K_11*K_11)));
+    const double G0_1_0_0 = det*(w[1][1]*((K_00*K_00 + K_01*K_01)));
+    const double G0_1_0_1 = det*(w[1][1]*((K_00*K_10 + K_01*K_11)));
+    const double G0_1_1_0 = det*(w[1][1]*((K_10*K_00 + K_11*K_01)));
+    const double G0_1_1_1 = det*(w[1][1]*((K_10*K_10 + K_11*K_11)));
+    const double G0_2_0_0 = det*(w[1][2]*((K_00*K_00 + K_01*K_01)));
+    const double G0_2_0_1 = det*(w[1][2]*((K_00*K_10 + K_01*K_11)));
+    const double G0_2_1_0 = det*(w[1][2]*((K_10*K_00 + K_11*K_01)));
+    const double G0_2_1_1 = det*(w[1][2]*((K_10*K_10 + K_11*K_11)));
+    const double G1_ = det;
+    
+    // Compute element tensor
+    A[0] = 0.0;
+    A[1] = 0.0;
+    A[2] = 0.0;
+    A[3] = 0.0;
+    A[4] = 0.0;
+    A[5] = 0.0;
+    A[6] = 0.0;
+    A[7] = 0.0;
+    A[8] = 0.0;
+    A[9] = 0.0;
+    A[10] = 0.0;
+    A[11] = 0.0;
+    A[12] = 0.0;
+    A[13] = 0.0;
+    A[14] = 0.0;
+    A[15] = 0.0;
+    A[16] = 0.0;
+    A[17] = 0.0;
+    A[18] = 0.0;
+    A[19] = 0.0;
+    A[20] = 0.0;
+    A[21] = 0.166666666666667*G0_0_0_0 + 0.166666666666667*G0_0_0_1 + 0.166666666666667*G0_0_1_0 + 0.166666666666667*G0_0_1_1 + 0.166666666666667*G0_1_0_0 + 0.166666666666667*G0_1_0_1 + 0.166666666666667*G0_1_1_0 + 0.166666666666667*G0_1_1_1 + 0.166666666666667*G0_2_0_0 + 0.166666666666667*G0_2_0_1 + 0.166666666666667*G0_2_1_0 + 0.166666666666667*G0_2_1_1 + 8.33333333333334e-08*G1_;
+    A[22] = -0.166666666666667*G0_0_0_0 - 0.166666666666667*G0_0_1_0 - 0.166666666666667*G0_1_0_0 - 0.166666666666667*G0_1_1_0 - 0.166666666666667*G0_2_0_0 - 0.166666666666667*G0_2_1_0 + 4.16666666666667e-08*G1_;
+    A[23] = -0.166666666666667*G0_0_0_1 - 0.166666666666667*G0_0_1_1 - 0.166666666666667*G0_1_0_1 - 0.166666666666667*G0_1_1_1 - 0.166666666666667*G0_2_0_1 - 0.166666666666667*G0_2_1_1 + 4.16666666666667e-08*G1_;
+    A[24] = 0.0;
+    A[25] = 0.0;
+    A[26] = 0.0;
+    A[27] = -0.166666666666667*G0_0_0_0 - 0.166666666666667*G0_0_0_1 - 0.166666666666667*G0_1_0_0 - 0.166666666666667*G0_1_0_1 - 0.166666666666667*G0_2_0_0 - 0.166666666666667*G0_2_0_1 + 4.16666666666667e-08*G1_;
+    A[28] = 0.166666666666667*G0_0_0_0 + 0.166666666666667*G0_1_0_0 + 0.166666666666667*G0_2_0_0 + 8.33333333333333e-08*G1_;
+    A[29] = 0.166666666666667*G0_0_0_1 + 0.166666666666667*G0_1_0_1 + 0.166666666666667*G0_2_0_1 + 4.16666666666666e-08*G1_;
+    A[30] = 0.0;
+    A[31] = 0.0;
+    A[32] = 0.0;
+    A[33] = -0.166666666666667*G0_0_1_0 - 0.166666666666667*G0_0_1_1 - 0.166666666666667*G0_1_1_0 - 0.166666666666667*G0_1_1_1 - 0.166666666666667*G0_2_1_0 - 0.166666666666667*G0_2_1_1 + 4.16666666666667e-08*G1_;
+    A[34] = 0.166666666666667*G0_0_1_0 + 0.166666666666667*G0_1_1_0 + 0.166666666666667*G0_2_1_0 + 4.16666666666666e-08*G1_;
+    A[35] = 0.166666666666667*G0_0_1_1 + 0.166666666666667*G0_1_1_1 + 0.166666666666667*G0_2_1_1 + 8.33333333333333e-08*G1_;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -3105,9 +3210,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    6
-    // Number of operations (multiply-add pairs) for tensor contraction: 15
-    // Total number of operations (multiply-add pairs):                  30
+    // Number of operations (multiply-add pairs) for geometry tensor:    3
+    // Number of operations (multiply-add pairs) for tensor contraction: 7
+    // Total number of operations (multiply-add pairs):                  19
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -3130,17 +3235,89 @@ public:
     const double G0_0 = det*w[0][0]*(1.0);
     const double G0_1 = det*w[0][1]*(1.0);
     const double G0_2 = det*w[0][2]*(1.0);
-    const double G1_0 = det*w[1][0]*(1.0);
-    const double G1_1 = det*w[1][1]*(1.0);
-    const double G1_2 = det*w[1][2]*(1.0);
     
     // Compute element tensor
     A[0] = 0.0833333333333334*G0_0 + 0.0416666666666667*G0_1 + 0.0416666666666667*G0_2;
     A[1] = 0.0416666666666667*G0_0 + 0.0833333333333333*G0_1 + 0.0416666666666666*G0_2;
     A[2] = 0.0416666666666667*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333333*G0_2;
-    A[3] = 0.0833333333333334*G1_0 + 0.0416666666666667*G1_1 + 0.0416666666666667*G1_2;
-    A[4] = 0.0416666666666667*G1_0 + 0.0833333333333333*G1_1 + 0.0416666666666666*G1_2;
-    A[5] = 0.0416666666666667*G1_0 + 0.0416666666666666*G1_1 + 0.0833333333333333*G1_2;
+    A[3] = 0.0;
+    A[4] = 0.0;
+    A[5] = 0.0;
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  /// using the specified reference cell quadrature points/weights
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c,
+                               std::size_t num_quadrature_points,
+                               const double * const * quadrature_points,
+                               const double* quadrature_weights) const
+  {
+    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+  }
+
+};
+
+/// This class defines the interface for the tabulation of the cell
+/// tensor corresponding to the local contribution to a form from
+/// the integral over a cell.
+
+class multidomainpoisson_cell_integral_1_1: public ufc::cell_integral
+{
+public:
+
+  /// Constructor
+  multidomainpoisson_cell_integral_1_1() : ufc::cell_integral()
+  {
+    // Do nothing
+  }
+
+  /// Destructor
+  virtual ~multidomainpoisson_cell_integral_1_1()
+  {
+    // Do nothing
+  }
+
+  /// Tabulate the tensor for the contribution from a local cell
+  virtual void tabulate_tensor(double* A,
+                               const double * const * w,
+                               const ufc::cell& c) const
+  {
+    // Number of operations (multiply-add pairs) for Jacobian data:      9
+    // Number of operations (multiply-add pairs) for geometry tensor:    3
+    // Number of operations (multiply-add pairs) for tensor contraction: 7
+    // Total number of operations (multiply-add pairs):                  19
+    
+    // Extract vertex coordinates
+    const double * const * x = c.coordinates;
+    
+    // Compute Jacobian of affine map from reference cell
+    const double J_00 = x[1][0] - x[0][0];
+    const double J_01 = x[2][0] - x[0][0];
+    const double J_10 = x[1][1] - x[0][1];
+    const double J_11 = x[2][1] - x[0][1];
+    
+    // Compute determinant of Jacobian
+    const double detJ = J_00*J_11 - J_01*J_10;
+    
+    // Compute inverse of Jacobian
+    
+    // Set scale factor
+    const double det = std::abs(detJ);
+    
+    // Compute geometry tensor
+    const double G0_0 = det*w[1][0]*(1.0);
+    const double G0_1 = det*w[1][1]*(1.0);
+    const double G0_2 = det*w[1][2]*(1.0);
+    
+    // Compute element tensor
+    A[0] = 0.0;
+    A[1] = 0.0;
+    A[2] = 0.0;
+    A[3] = 0.0833333333333334*G0_0 + 0.0416666666666667*G0_1 + 0.0416666666666667*G0_2;
+    A[4] = 0.0416666666666667*G0_0 + 0.0833333333333333*G0_1 + 0.0416666666666666*G0_2;
+    A[5] = 0.0416666666666667*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333333*G0_2;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -3191,7 +3368,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "247198d49dbc5e995aea40221c9bd0a265211dd4109de865ca8056a0107a6ceb40717f9d2cfc83f1b42365491d233b59143c28a480b49d977ed39453b47dcd10";
+    return "1403fe950afd1a97f3b2b9367ac8f56a3423bcdde206b3750aa7a3f07c8beef8d57eab2b6e7b739a02a4f3e159f229605c1265de0758debfceed072babaf559e";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3209,7 +3386,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the number of exterior facet domains
@@ -3294,6 +3471,11 @@ public:
         return new multidomainpoisson_cell_integral_0_0();
         break;
       }
+    case 1:
+      {
+        return new multidomainpoisson_cell_integral_0_1();
+        break;
+      }
     }
     
     return 0;
@@ -3347,7 +3529,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "5cf4cfd6a9013ebc80ea855d04f9a33c6de9beb7eb5758dd7c579ac0086ae2552cf509b178c7511f08817eea3af5af0523e28057d9577bfe784d1ccf233b40c5";
+    return "54789e05551002ff5f3bb44200ac99bf30a84af973715139e414c38040c03bbfb1467c6960166e9576c1edd15032adbe5d6a7253526602597b968b27f4d8d559";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3365,7 +3547,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 2;
   }
 
   /// Return the number of exterior facet domains
@@ -3440,6 +3622,11 @@ public:
         return new multidomainpoisson_cell_integral_1_0();
         break;
       }
+    case 1:
+      {
+        return new multidomainpoisson_cell_integral_1_1();
+        break;
+      }
     }
     
     return 0;
@@ -3478,6 +3665,59 @@ public:
 
 namespace MultiDomainPoisson
 {
+
+class CoefficientSpace_f0: public dolfin::FunctionSpace
+{
+public:
+
+  //--- Constructors for standard function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  CoefficientSpace_f0(const dolfin::Mesh& mesh):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()), mesh)))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  CoefficientSpace_f0(boost::shared_ptr<const dolfin::Mesh> mesh):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()), *mesh)))
+  {
+    // Do nothing
+  }
+
+  //--- Constructors for restricted function space, 2 different versions ---
+
+  // Create restricted function space (reference version)
+  CoefficientSpace_f0(const dolfin::Restriction& restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()),
+                                                                                     reference_to_no_delete_pointer(restriction))))
+  {
+    // Do nothing
+  }
+
+  // Create restricted function space (shared pointer version)
+  CoefficientSpace_f0(boost::shared_ptr<const dolfin::Restriction> restriction):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()),
+                                                                                     restriction)))
+  {
+    // Do nothing
+  }
+
+  // Copy constructor
+  ~CoefficientSpace_f0()
+  {
+  }
+
+};
 
 class CoefficientSpace_f1: public dolfin::FunctionSpace
 {
@@ -3532,14 +3772,14 @@ public:
 
 };
 
-class CoefficientSpace_f2: public dolfin::FunctionSpace
+class CoefficientSpace_k0: public dolfin::FunctionSpace
 {
 public:
 
   //--- Constructors for standard function space, 2 different versions ---
 
   // Create standard function space (reference version)
-  CoefficientSpace_f2(const dolfin::Mesh& mesh):
+  CoefficientSpace_k0(const dolfin::Mesh& mesh):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()), mesh)))
@@ -3548,7 +3788,7 @@ public:
   }
 
   // Create standard function space (shared pointer version)
-  CoefficientSpace_f2(boost::shared_ptr<const dolfin::Mesh> mesh):
+  CoefficientSpace_k0(boost::shared_ptr<const dolfin::Mesh> mesh):
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()), *mesh)))
@@ -3559,7 +3799,7 @@ public:
   //--- Constructors for restricted function space, 2 different versions ---
 
   // Create restricted function space (reference version)
-  CoefficientSpace_f2(const dolfin::Restriction& restriction):
+  CoefficientSpace_k0(const dolfin::Restriction& restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()),
@@ -3569,7 +3809,7 @@ public:
   }
 
   // Create restricted function space (shared pointer version)
-  CoefficientSpace_f2(boost::shared_ptr<const dolfin::Restriction> restriction):
+  CoefficientSpace_k0(boost::shared_ptr<const dolfin::Restriction> restriction):
     dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()),
@@ -3579,7 +3819,7 @@ public:
   }
 
   // Copy constructor
-  ~CoefficientSpace_f2()
+  ~CoefficientSpace_k0()
   {
   }
 
@@ -3633,59 +3873,6 @@ public:
 
   // Copy constructor
   ~CoefficientSpace_k1()
-  {
-  }
-
-};
-
-class CoefficientSpace_k2: public dolfin::FunctionSpace
-{
-public:
-
-  //--- Constructors for standard function space, 2 different versions ---
-
-  // Create standard function space (reference version)
-  CoefficientSpace_k2(const dolfin::Mesh& mesh):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()), mesh)))
-  {
-    // Do nothing
-  }
-
-  // Create standard function space (shared pointer version)
-  CoefficientSpace_k2(boost::shared_ptr<const dolfin::Mesh> mesh):
-    dolfin::FunctionSpace(mesh,
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()), *mesh)))
-  {
-    // Do nothing
-  }
-
-  //--- Constructors for restricted function space, 2 different versions ---
-
-  // Create restricted function space (reference version)
-  CoefficientSpace_k2(const dolfin::Restriction& restriction):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction.mesh()),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()),
-                                                                                     reference_to_no_delete_pointer(restriction))))
-  {
-    // Do nothing
-  }
-
-  // Create restricted function space (shared pointer version)
-  CoefficientSpace_k2(boost::shared_ptr<const dolfin::Restriction> restriction):
-    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(restriction->mesh()),
-                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new multidomainpoisson_finite_element_0()))),
-                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new multidomainpoisson_dofmap_0()),
-                                                                                     restriction)))
-  {
-    // Do nothing
-  }
-
-  // Copy constructor
-  ~CoefficientSpace_k2()
   {
   }
 
@@ -3797,9 +3984,9 @@ public:
 
 };
 
-typedef CoefficientSpace_k1 Form_a_FunctionSpace_2;
+typedef CoefficientSpace_k0 Form_a_FunctionSpace_2;
 
-typedef CoefficientSpace_k2 Form_a_FunctionSpace_3;
+typedef CoefficientSpace_k1 Form_a_FunctionSpace_3;
 
 class Form_a: public dolfin::Form
 {
@@ -3807,7 +3994,7 @@ public:
 
   // Constructor
   Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0):
-    dolfin::Form(2, 2), k1(*this, 0), k2(*this, 1)
+    dolfin::Form(2, 2), k0(*this, 0), k1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
@@ -3816,34 +4003,34 @@ public:
   }
 
   // Constructor
-  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& k1, const dolfin::GenericFunction& k2):
-    dolfin::Form(2, 2), k1(*this, 0), k2(*this, 1)
+  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& k0, const dolfin::GenericFunction& k1):
+    dolfin::Form(2, 2), k0(*this, 0), k1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
+    this->k0 = k0;
     this->k1 = k1;
-    this->k2 = k2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_0());
   }
 
   // Constructor
-  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> k1, boost::shared_ptr<const dolfin::GenericFunction> k2):
-    dolfin::Form(2, 2), k1(*this, 0), k2(*this, 1)
+  Form_a(const dolfin::FunctionSpace& V1, const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> k0, boost::shared_ptr<const dolfin::GenericFunction> k1):
+    dolfin::Form(2, 2), k0(*this, 0), k1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
     _function_spaces[1] = reference_to_no_delete_pointer(V1);
 
+    this->k0 = *k0;
     this->k1 = *k1;
-    this->k2 = *k2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_0());
   }
 
   // Constructor
   Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(2, 2), k1(*this, 0), k2(*this, 1)
+    dolfin::Form(2, 2), k0(*this, 0), k1(*this, 1)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
@@ -3852,27 +4039,27 @@ public:
   }
 
   // Constructor
-  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& k1, const dolfin::GenericFunction& k2):
-    dolfin::Form(2, 2), k1(*this, 0), k2(*this, 1)
+  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& k0, const dolfin::GenericFunction& k1):
+    dolfin::Form(2, 2), k0(*this, 0), k1(*this, 1)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
+    this->k0 = k0;
     this->k1 = k1;
-    this->k2 = k2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_0());
   }
 
   // Constructor
-  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> k1, boost::shared_ptr<const dolfin::GenericFunction> k2):
-    dolfin::Form(2, 2), k1(*this, 0), k2(*this, 1)
+  Form_a(boost::shared_ptr<const dolfin::FunctionSpace> V1, boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> k0, boost::shared_ptr<const dolfin::GenericFunction> k1):
+    dolfin::Form(2, 2), k0(*this, 0), k1(*this, 1)
   {
     _function_spaces[0] = V0;
     _function_spaces[1] = V1;
 
+    this->k0 = *k0;
     this->k1 = *k1;
-    this->k2 = *k2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_0());
   }
@@ -3884,9 +4071,9 @@ public:
   /// Return the number of the coefficient with this name
   virtual std::size_t coefficient_number(const std::string& name) const
   {
-    if (name == "k1")
+    if (name == "k0")
       return 0;
-    else if (name == "k2")
+    else if (name == "k1")
       return 1;
 
     dolfin::dolfin_error("generated code for class Form",
@@ -3901,9 +4088,9 @@ public:
     switch (i)
     {
     case 0:
-      return "k1";
+      return "k0";
     case 1:
-      return "k2";
+      return "k1";
     }
 
     dolfin::dolfin_error("generated code for class Form",
@@ -3915,12 +4102,12 @@ public:
   // Typedefs
   typedef Form_a_FunctionSpace_0 TestSpace;
   typedef Form_a_FunctionSpace_1 TrialSpace;
-  typedef Form_a_FunctionSpace_2 CoefficientSpace_k1;
-  typedef Form_a_FunctionSpace_3 CoefficientSpace_k2;
+  typedef Form_a_FunctionSpace_2 CoefficientSpace_k0;
+  typedef Form_a_FunctionSpace_3 CoefficientSpace_k1;
 
   // Coefficients
+  dolfin::CoefficientAssigner k0;
   dolfin::CoefficientAssigner k1;
-  dolfin::CoefficientAssigner k2;
 };
 
 class Form_L_FunctionSpace_0: public dolfin::FunctionSpace
@@ -3976,9 +4163,9 @@ public:
 
 };
 
-typedef CoefficientSpace_f1 Form_L_FunctionSpace_1;
+typedef CoefficientSpace_f0 Form_L_FunctionSpace_1;
 
-typedef CoefficientSpace_f2 Form_L_FunctionSpace_2;
+typedef CoefficientSpace_f1 Form_L_FunctionSpace_2;
 
 class Form_L: public dolfin::Form
 {
@@ -3986,7 +4173,7 @@ public:
 
   // Constructor
   Form_L(const dolfin::FunctionSpace& V0):
-    dolfin::Form(1, 2), f1(*this, 0), f2(*this, 1)
+    dolfin::Form(1, 2), f0(*this, 0), f1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
@@ -3994,32 +4181,32 @@ public:
   }
 
   // Constructor
-  Form_L(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f1, const dolfin::GenericFunction& f2):
-    dolfin::Form(1, 2), f1(*this, 0), f2(*this, 1)
+  Form_L(const dolfin::FunctionSpace& V0, const dolfin::GenericFunction& f0, const dolfin::GenericFunction& f1):
+    dolfin::Form(1, 2), f0(*this, 0), f1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
+    this->f0 = f0;
     this->f1 = f1;
-    this->f2 = f2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_1());
   }
 
   // Constructor
-  Form_L(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f1, boost::shared_ptr<const dolfin::GenericFunction> f2):
-    dolfin::Form(1, 2), f1(*this, 0), f2(*this, 1)
+  Form_L(const dolfin::FunctionSpace& V0, boost::shared_ptr<const dolfin::GenericFunction> f0, boost::shared_ptr<const dolfin::GenericFunction> f1):
+    dolfin::Form(1, 2), f0(*this, 0), f1(*this, 1)
   {
     _function_spaces[0] = reference_to_no_delete_pointer(V0);
 
+    this->f0 = *f0;
     this->f1 = *f1;
-    this->f2 = *f2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_1());
   }
 
   // Constructor
   Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0):
-    dolfin::Form(1, 2), f1(*this, 0), f2(*this, 1)
+    dolfin::Form(1, 2), f0(*this, 0), f1(*this, 1)
   {
     _function_spaces[0] = V0;
 
@@ -4027,25 +4214,25 @@ public:
   }
 
   // Constructor
-  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f1, const dolfin::GenericFunction& f2):
-    dolfin::Form(1, 2), f1(*this, 0), f2(*this, 1)
+  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0, const dolfin::GenericFunction& f0, const dolfin::GenericFunction& f1):
+    dolfin::Form(1, 2), f0(*this, 0), f1(*this, 1)
   {
     _function_spaces[0] = V0;
 
+    this->f0 = f0;
     this->f1 = f1;
-    this->f2 = f2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_1());
   }
 
   // Constructor
-  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f1, boost::shared_ptr<const dolfin::GenericFunction> f2):
-    dolfin::Form(1, 2), f1(*this, 0), f2(*this, 1)
+  Form_L(boost::shared_ptr<const dolfin::FunctionSpace> V0, boost::shared_ptr<const dolfin::GenericFunction> f0, boost::shared_ptr<const dolfin::GenericFunction> f1):
+    dolfin::Form(1, 2), f0(*this, 0), f1(*this, 1)
   {
     _function_spaces[0] = V0;
 
+    this->f0 = *f0;
     this->f1 = *f1;
-    this->f2 = *f2;
 
     _ufc_form = boost::shared_ptr<const ufc::form>(new multidomainpoisson_form_1());
   }
@@ -4057,9 +4244,9 @@ public:
   /// Return the number of the coefficient with this name
   virtual std::size_t coefficient_number(const std::string& name) const
   {
-    if (name == "f1")
+    if (name == "f0")
       return 0;
-    else if (name == "f2")
+    else if (name == "f1")
       return 1;
 
     dolfin::dolfin_error("generated code for class Form",
@@ -4074,9 +4261,9 @@ public:
     switch (i)
     {
     case 0:
-      return "f1";
+      return "f0";
     case 1:
-      return "f2";
+      return "f1";
     }
 
     dolfin::dolfin_error("generated code for class Form",
@@ -4087,12 +4274,12 @@ public:
 
   // Typedefs
   typedef Form_L_FunctionSpace_0 TestSpace;
-  typedef Form_L_FunctionSpace_1 CoefficientSpace_f1;
-  typedef Form_L_FunctionSpace_2 CoefficientSpace_f2;
+  typedef Form_L_FunctionSpace_1 CoefficientSpace_f0;
+  typedef Form_L_FunctionSpace_2 CoefficientSpace_f1;
 
   // Coefficients
+  dolfin::CoefficientAssigner f0;
   dolfin::CoefficientAssigner f1;
-  dolfin::CoefficientAssigner f2;
 };
 
 // Class typedefs
