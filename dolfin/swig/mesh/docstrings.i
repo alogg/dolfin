@@ -72,7 +72,15 @@ Return number of vertices for entity of given topological dimension
 ";
 
 %feature("docstring")  dolfin::CellType::orientation "
-Return orientation of the cell
+**Overloaded versions**
+
+* orientation\ (cell)
+
+  Return orientation of the cell (assuming flat space)
+
+* orientation\ (cell, up)
+
+  Return orientation of the cell relative to given up direction
 ";
 
 %feature("docstring")  dolfin::CellType::create_entities "
@@ -101,6 +109,10 @@ Compute diameter of mesh entity
 * normal\ (cell, facet)
 
   Compute of given facet with respect to the cell
+";
+
+%feature("docstring")  dolfin::CellType::cell_normal "
+Compute normal to given cell (viewed as embedded in 3D)
 ";
 
 %feature("docstring")  dolfin::CellType::facet_area "
@@ -1255,6 +1267,36 @@ Informal string representation.
         '<Mesh of topological dimension 2 (triangles) with 9 vertices and 8 cells, ordered>'
 ";
 
+%feature("docstring")  dolfin::Mesh::cell_orientations "
+**Overloaded versions**
+
+* cell_orientations\ ()
+
+  Return cell_orientations
+  
+  *Returns*
+      numpy.array(int)
+          Map from cell index to orientation of cell
+
+* cell_orientations\ ()
+
+  Return cell_orientations (const version)
+  
+  *Returns*
+      numpy.array(int)
+          Map from cell index to orientation of cell
+";
+
+%feature("docstring")  dolfin::Mesh::init_cell_orientations "
+Compute and initialize cell_orientations relative to a given
+global outward direction/normal/orientation. Only defined if
+mesh is orientable.
+
+*Arguments*
+    global_normal (Expression)
+        A global normal direction to the mesh
+";
+
 // Documentation extracted from: (module=mesh, header=MeshEntity.h)
 %feature("docstring")  dolfin::MeshEntity "
 A MeshEntity represents a mesh entity associated with
@@ -2167,11 +2209,27 @@ Return type of cell
 ";
 
 %feature("docstring")  dolfin::Cell::orientation "
-Compute orientation of cell
+**Overloaded versions**
 
-*Returns*
-    std::size_t
-        Orientation of the cell (0 is right, 1 is left).
+* orientation\ ()
+
+  Compute orientation of cell
+  
+  *Returns*
+      std::size_t
+          Orientation of the cell (0 is 'up'/'right', 1 is 'down'/'left')
+
+* orientation\ (up)
+
+  Compute orientation of cell relative to given 'up' direction
+  
+  *Arguments*
+      up (:py:class:`Point`)
+          The direction defined as 'up'
+  
+  *Returns*
+      std::size_t
+          Orientation of the cell (0 is 'same', 1 is 'opposite')
 ";
 
 %feature("docstring")  dolfin::Cell::volume "
@@ -2228,6 +2286,14 @@ Compute diameter of cell
   *Returns*
       :py:class:`Point`
           Normal of the facet.
+";
+
+%feature("docstring")  dolfin::Cell::cell_normal "
+Compute normal to cell itself (viewed as embedded in 3D)
+
+*Returns*
+    :py:class:`Point`
+        Normal of the cell
 ";
 
 %feature("docstring")  dolfin::Cell::facet_area "
