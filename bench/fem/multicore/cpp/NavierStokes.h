@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', Space(3)), 0, None)";
+    return "FiniteElement('Discontinuous Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, None)";
   }
 
   /// Return the cell shape
@@ -533,7 +533,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
   }
 
   /// Return the cell shape
@@ -1768,7 +1768,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "VectorElement('Lagrange', Cell('tetrahedron', Space(3)), 1, 3, None)";
+    return "VectorElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, 3, None)";
   }
 
   /// Return the cell shape
@@ -4775,7 +4775,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', Space(3)), 0, None)";
+    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5006,7 +5006,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5280,7 +5280,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for VectorElement('Lagrange', Cell('tetrahedron', Space(3)), 1, 3, None)";
+    return "FFC dofmap for VectorElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, 3, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6275,7 +6275,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "e6f7aaa87285d7f42ab86f9353b37f890e5009d94423241093314a2c7ec8e3568ac90f8eec6ae835fd8106c54bba9d84a86a9ba9aa74c8e87b19c677be4dd971";
+    return "295caae3248804ac9cd2c615b597ebbc5ff7950d86cdb0396ddb2f320ba5e2ecea69416bfb85aca88f202b92a6f6b77e7e3aa11b3a5879054c422e4b1ba9c510";
   }
 
   /// Return the rank of the global tensor (r)

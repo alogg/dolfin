@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 3, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 3, None)";
   }
 
   /// Return the cell shape
@@ -7788,7 +7788,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 3, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 3, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -8858,7 +8858,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "c52cbc69e581f77aa396ab675f3d6a65ddfd62856f5459d97604bc2e83ba954ff591239ffd2b277de94580e07d00b75d2f4f42b8259f73e7b797df0467bee9ca";
+    return "e156b15d59f3952fc0f37ea3cbdf2e5a5124a3971736cae51776ba14a258d1e663952ffb3bfe16eaa7c9eb61479dca03ad709362c5881a0c64bec276633adfec";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8994,7 +8994,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "e5c69b9ad052095ecf40a0dd6c9435f368bb75f4acea98c1c14077ca7a0b9c5019cefee72a92feff6115c2b1bc3af0cb065ad9198579fd30a704d6b90806b8e5";
+    return "b548b17604dc9b15aefe25e1a29f18abb851c63260259959d185797b22951978e8391c6f96959661bca1ccd3413c24ad8146160498804ddb35d49453bea25c72";
   }
 
   /// Return the rank of the global tensor (r)
