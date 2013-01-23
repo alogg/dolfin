@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 2, None)";
   }
 
   /// Return the cell shape
@@ -1668,7 +1668,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 2, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2103,7 +2103,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "7b9918bd125b103b2d8218f14ec177463962c4046b759b657255fb020829a7f167caa058840ee3ae64bb78182d01148caf9df8222dd911ca58a75c6f007d530a";
+    return "22f1d54883acc6e4763a6ff944e25b1aeca981707a3890dd9886388a4ee72d02cbcb82b61206033176c34e5661ce67f5287914acd1bc80f28e6ad436aa613f98";
   }
 
   /// Return the rank of the global tensor (r)
