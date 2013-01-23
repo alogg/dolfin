@@ -624,6 +624,15 @@ public:
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const;
 
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const;
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const;
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const;
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(std::size_t i) const;
 
@@ -639,6 +648,14 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const;
 
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const;
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const;
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const;
 };
 
 /// This class defines the interface for the assembly of the global
@@ -684,6 +701,15 @@ public:
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const;
 
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const;
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const;
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const;
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(std::size_t i) const;
 
@@ -699,6 +725,14 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const;
 
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const;
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const;
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const;
 };
 
 // DOLFIN wrappers

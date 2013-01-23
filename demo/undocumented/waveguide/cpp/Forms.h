@@ -5631,6 +5631,24 @@ public:
     return 0;
   }
 
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(std::size_t i) const
   {
@@ -5694,6 +5712,24 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
     return 0;
   }
@@ -5767,6 +5803,24 @@ public:
     return 0;
   }
 
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(std::size_t i) const
   {
@@ -5830,6 +5884,24 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
     return 0;
   }

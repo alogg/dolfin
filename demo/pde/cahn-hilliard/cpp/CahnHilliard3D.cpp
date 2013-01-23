@@ -5250,6 +5250,24 @@ std::size_t cahnhilliard3d_form_0::num_interior_facet_domains() const
     return 0;
 }
 
+/// Return whether the form has any cell integrals
+bool cahnhilliard3d_form_0::has_cell_integrals() const
+{
+    return true;
+}
+
+/// Return whether the form has any exterior facet integrals
+bool cahnhilliard3d_form_0::has_exterior_facet_integrals() const
+{
+    return false;
+}
+
+/// Return whether the form has any interior facet integrals
+bool cahnhilliard3d_form_0::has_interior_facet_integrals() const
+{
+    return false;
+}
+
 /// Create a new finite element for argument function i
 ufc::finite_element* cahnhilliard3d_form_0::create_finite_element(std::size_t i) const
 {
@@ -5357,6 +5375,25 @@ ufc::interior_facet_integral* cahnhilliard3d_form_0::create_interior_facet_integ
     return 0;
 }
 
+/// Create a new cell integral on everywhere else
+ufc::cell_integral* cahnhilliard3d_form_0::create_default_cell_integral() const
+{
+    return 0;
+}
+
+/// Create a new exterior facet integral on everywhere else
+ufc::exterior_facet_integral* cahnhilliard3d_form_0::create_default_exterior_facet_integral() const
+{
+    return 0;
+}
+
+/// Create a new interior facet integral on everywhere else
+ufc::interior_facet_integral* cahnhilliard3d_form_0::create_default_interior_facet_integral() const
+{
+    return 0;
+}
+
+
 /// Constructor
 cahnhilliard3d_form_1::cahnhilliard3d_form_1() : ufc::form()
 {
@@ -5403,6 +5440,24 @@ std::size_t cahnhilliard3d_form_1::num_exterior_facet_domains() const
 std::size_t cahnhilliard3d_form_1::num_interior_facet_domains() const
 {
     return 0;
+}
+
+/// Return whether the form has any cell integrals
+bool cahnhilliard3d_form_1::has_cell_integrals() const
+{
+    return true;
+}
+
+/// Return whether the form has any exterior facet integrals
+bool cahnhilliard3d_form_1::has_exterior_facet_integrals() const
+{
+    return false;
+}
+
+/// Return whether the form has any interior facet integrals
+bool cahnhilliard3d_form_1::has_interior_facet_integrals() const
+{
+    return false;
 }
 
 /// Create a new finite element for argument function i
@@ -5511,4 +5566,23 @@ ufc::interior_facet_integral* cahnhilliard3d_form_1::create_interior_facet_integ
 {
     return 0;
 }
+
+/// Create a new cell integral on everywhere else
+ufc::cell_integral* cahnhilliard3d_form_1::create_default_cell_integral() const
+{
+    return 0;
+}
+
+/// Create a new exterior facet integral on everywhere else
+ufc::exterior_facet_integral* cahnhilliard3d_form_1::create_default_exterior_facet_integral() const
+{
+    return 0;
+}
+
+/// Create a new interior facet integral on everywhere else
+ufc::interior_facet_integral* cahnhilliard3d_form_1::create_default_interior_facet_integral() const
+{
+    return 0;
+}
+
 
