@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Real', Cell('triangle', Space(2)), 0, None)";
+    return "FiniteElement('Real', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 0, None)";
   }
 
   /// Return the cell shape
@@ -488,7 +488,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 2, None)";
   }
 
   /// Return the cell shape
@@ -2100,7 +2100,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Real', Cell('triangle', Space(2)), 0, None)";
+    return "FFC dofmap for FiniteElement('Real', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 0, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -2310,7 +2310,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', Space(2)), 2, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 2, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5838,7 +5838,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "bcf8efb47522798b522f111bde2d8c848d5572be2e921434332e3f68468e66b74b2bc31fe6a3e914e18241858226a0f8f6f8477d771ef371d02fe3502998cfb0";
+    return "b216f258b5f94796dd545d82d0c2bc3ecd25a425ce990ad9c731e68a59dab9429ebcd8ccf0557e5e650166431a2b32c9372b6caa88dd807309bac75f2c5f2fea";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5869,6 +5869,24 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 1;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return true;
   }
 
   /// Create a new finite element for argument function i
@@ -5957,6 +5975,24 @@ public:
     return 0;
   }
 
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
 };
 
 /// This class defines the interface for the assembly of the global
@@ -5993,7 +6029,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "0f16aead6df57ba42589f62efadd4c456027a78e4867168f5e88c38f156d23c10dbc414754a74361b1296947a1207a6e9d8d16f2678b7b6c2a2f925eac035a69";
+    return "eb2fd46581b1d08ece62241833ee992ac886520fe3fdcb0d3563849164894530907e444e74df3c2a0c9b25809d9b117297301d9e0587ea849606b5abb37146c5";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6024,6 +6060,24 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -6089,6 +6143,24 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
     return 0;
   }

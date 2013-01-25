@@ -44,7 +44,7 @@ cahnhilliard3d_finite_element_0::~cahnhilliard3d_finite_element_0()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_finite_element_0::signature() const
 {
-    return "FiniteElement('Real', Cell('tetrahedron', Space(3)), 0, None)";
+    return "FiniteElement('Real', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, None)";
 }
 
 /// Return the cell shape
@@ -514,7 +514,7 @@ cahnhilliard3d_finite_element_1::~cahnhilliard3d_finite_element_1()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_finite_element_1::signature() const
 {
-    return "FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
 }
 
 /// Return the cell shape
@@ -1742,7 +1742,7 @@ cahnhilliard3d_finite_element_2::~cahnhilliard3d_finite_element_2()
 /// Return a string identifying the finite element
 const char* cahnhilliard3d_finite_element_2::signature() const
 {
-    return "MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) })";
+    return "MixedElement(*[FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None), FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)], **{'value_shape': (2,) })";
 }
 
 /// Return the cell shape
@@ -3865,7 +3865,7 @@ cahnhilliard3d_dofmap_0::~cahnhilliard3d_dofmap_0()
 /// Return a string identifying the dofmap
 const char* cahnhilliard3d_dofmap_0::signature() const
 {
-    return "FFC dofmap for FiniteElement('Real', Cell('tetrahedron', Space(3)), 0, None)";
+    return "FFC dofmap for FiniteElement('Real', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, None)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -4087,7 +4087,7 @@ cahnhilliard3d_dofmap_1::~cahnhilliard3d_dofmap_1()
 /// Return a string identifying the dofmap
 const char* cahnhilliard3d_dofmap_1::signature() const
 {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -4352,7 +4352,7 @@ cahnhilliard3d_dofmap_2::~cahnhilliard3d_dofmap_2()
 /// Return a string identifying the dofmap
 const char* cahnhilliard3d_dofmap_2::signature() const
 {
-    return "FFC dofmap for MixedElement(*[FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None), FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)], **{'value_shape': (2,) })";
+    return "FFC dofmap for MixedElement(*[FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None), FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)], **{'value_shape': (2,) })";
 }
 
 /// Return true iff mesh entities of topological dimension d are needed
@@ -5217,7 +5217,7 @@ cahnhilliard3d_form_0::~cahnhilliard3d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_0::signature() const
 {
-    return "84096a71debac9da7278447cdd702c380a1ae57bbd1499f06d41f604f52d1b574a401c472d0d788d31017fb3318ea95d523ccd23f16f90070140562533e77cb9";
+    return "446864f269004245bc2b42a8f47d0fcb5a53acf01302d3327ee6d0077947572d82e6a17d43a9d68889c71d088877e6001609a7faabb4e949ad6bfee1b99673b5";
 }
 
 /// Return the rank of the global tensor (r)
@@ -5248,6 +5248,24 @@ std::size_t cahnhilliard3d_form_0::num_exterior_facet_domains() const
 std::size_t cahnhilliard3d_form_0::num_interior_facet_domains() const
 {
     return 0;
+}
+
+/// Return whether the form has any cell integrals
+bool cahnhilliard3d_form_0::has_cell_integrals() const
+{
+    return true;
+}
+
+/// Return whether the form has any exterior facet integrals
+bool cahnhilliard3d_form_0::has_exterior_facet_integrals() const
+{
+    return false;
+}
+
+/// Return whether the form has any interior facet integrals
+bool cahnhilliard3d_form_0::has_interior_facet_integrals() const
+{
+    return false;
 }
 
 /// Create a new finite element for argument function i
@@ -5357,6 +5375,25 @@ ufc::interior_facet_integral* cahnhilliard3d_form_0::create_interior_facet_integ
     return 0;
 }
 
+/// Create a new cell integral on everywhere else
+ufc::cell_integral* cahnhilliard3d_form_0::create_default_cell_integral() const
+{
+    return 0;
+}
+
+/// Create a new exterior facet integral on everywhere else
+ufc::exterior_facet_integral* cahnhilliard3d_form_0::create_default_exterior_facet_integral() const
+{
+    return 0;
+}
+
+/// Create a new interior facet integral on everywhere else
+ufc::interior_facet_integral* cahnhilliard3d_form_0::create_default_interior_facet_integral() const
+{
+    return 0;
+}
+
+
 /// Constructor
 cahnhilliard3d_form_1::cahnhilliard3d_form_1() : ufc::form()
 {
@@ -5372,7 +5409,7 @@ cahnhilliard3d_form_1::~cahnhilliard3d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_1::signature() const
 {
-    return "a43bf68b14ff251eddbcd9ab0d8bcebba768ad4c346f67a38f9cbc41c822a2107c8617deef68de5a3791128576593166b2ee7508da9f6992d5f7409893a963fc";
+    return "6cf96cd6199e0b8c46cbafd0d5f6268acd4bc191a89d1b3c84e562b9a60ecdbdacb38c3ec35474b0dc1bc4528ecf368cb5ea5e920b23a3f8f7b578d4174a5565";
 }
 
 /// Return the rank of the global tensor (r)
@@ -5403,6 +5440,24 @@ std::size_t cahnhilliard3d_form_1::num_exterior_facet_domains() const
 std::size_t cahnhilliard3d_form_1::num_interior_facet_domains() const
 {
     return 0;
+}
+
+/// Return whether the form has any cell integrals
+bool cahnhilliard3d_form_1::has_cell_integrals() const
+{
+    return true;
+}
+
+/// Return whether the form has any exterior facet integrals
+bool cahnhilliard3d_form_1::has_exterior_facet_integrals() const
+{
+    return false;
+}
+
+/// Return whether the form has any interior facet integrals
+bool cahnhilliard3d_form_1::has_interior_facet_integrals() const
+{
+    return false;
 }
 
 /// Create a new finite element for argument function i
@@ -5511,4 +5566,23 @@ ufc::interior_facet_integral* cahnhilliard3d_form_1::create_interior_facet_integ
 {
     return 0;
 }
+
+/// Create a new cell integral on everywhere else
+ufc::cell_integral* cahnhilliard3d_form_1::create_default_cell_integral() const
+{
+    return 0;
+}
+
+/// Create a new exterior facet integral on everywhere else
+ufc::exterior_facet_integral* cahnhilliard3d_form_1::create_default_exterior_facet_integral() const
+{
+    return 0;
+}
+
+/// Create a new interior facet integral on everywhere else
+ufc::interior_facet_integral* cahnhilliard3d_form_1::create_default_interior_facet_integral() const
+{
+    return 0;
+}
+
 

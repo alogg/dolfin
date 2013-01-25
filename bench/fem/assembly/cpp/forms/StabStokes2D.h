@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, None)";
   }
 
   /// Return the cell shape
@@ -941,7 +941,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "VectorElement('Lagrange', Cell('triangle', Space(2)), 1, 2, None)";
+    return "VectorElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, 2, None)";
   }
 
   /// Return the cell shape
@@ -2415,7 +2415,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None)";
+    return "FiniteElement('Discontinuous Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 0, None)";
   }
 
   /// Return the cell shape
@@ -2847,7 +2847,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "MixedElement(*[VectorElement('Lagrange', Cell('triangle', Space(2)), 1, 2, None), FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None)], **{'value_shape': (3,) })";
+    return "MixedElement(*[VectorElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, 2, None), FiniteElement('Discontinuous Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 0, None)], **{'value_shape': (3,) })";
   }
 
   /// Return the cell shape
@@ -4493,7 +4493,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -4730,7 +4730,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for VectorElement('Lagrange', Cell('triangle', Space(2)), 1, 2, None)";
+    return "FFC dofmap for VectorElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, 2, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5002,7 +5002,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None)";
+    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 0, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5212,7 +5212,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for MixedElement(*[VectorElement('Lagrange', Cell('triangle', Space(2)), 1, 2, None), FiniteElement('Discontinuous Lagrange', Cell('triangle', Space(2)), 0, None)], **{'value_shape': (3,) })";
+    return "FFC dofmap for MixedElement(*[VectorElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, 2, None), FiniteElement('Discontinuous Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 0, None)], **{'value_shape': (3,) })";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5669,7 +5669,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "482eb13cca0d44027f393a1a74b4643c4b8cda9703d6637ff9962ec80e556b3edd59a1ae2b796e1516952c81ecb645783e6f12dab0dfb0ee81d08f2a8c2686bf";
+    return "2e04d7e985b7af603bcedf9f87b71796b0bcb5e46ed7bd190292987991dc19258ea0cfd79663b11192daa2399b48df29f98e209624819e4894879057e550848a";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5700,6 +5700,24 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -5775,6 +5793,24 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
     return 0;
   }

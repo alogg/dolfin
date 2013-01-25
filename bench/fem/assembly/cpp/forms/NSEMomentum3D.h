@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', Space(3)), 0, None)";
+    return "FiniteElement('Discontinuous Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, None)";
   }
 
   /// Return the cell shape
@@ -533,7 +533,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "VectorElement('Discontinuous Lagrange', Cell('tetrahedron', Space(3)), 0, 3, None)";
+    return "VectorElement('Discontinuous Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, 3, None)";
   }
 
   /// Return the cell shape
@@ -1470,7 +1470,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
   }
 
   /// Return the cell shape
@@ -2705,7 +2705,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "VectorElement('Lagrange', Cell('tetrahedron', Space(3)), 1, 3, None)";
+    return "VectorElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, 3, None)";
   }
 
   /// Return the cell shape
@@ -5712,7 +5712,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Cell('tetrahedron', Space(3)), 0, None)";
+    return "FFC dofmap for FiniteElement('Discontinuous Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -5943,7 +5943,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for VectorElement('Discontinuous Lagrange', Cell('tetrahedron', Space(3)), 0, 3, None)";
+    return "FFC dofmap for VectorElement('Discontinuous Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 0, 3, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6207,7 +6207,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -6481,7 +6481,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for VectorElement('Lagrange', Cell('tetrahedron', Space(3)), 1, 3, None)";
+    return "FFC dofmap for VectorElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, 3, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -7553,7 +7553,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "d59a527a679d4298c46809b61f699c784ecd2a59426a723195770405ab192f5c9b86d35ad2da3162d5999ffb810b71242523c0f456209c0b447433577fe83d50";
+    return "94db2bf39210f0b1dd26888e709e58faa72155893f937b743959060338d5ad895c364d9d0a2249b7f409eac03de9d9fe8f8bc69e8b04303f4cba4e3c3136464d";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7584,6 +7584,24 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -7699,6 +7717,24 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
     return 0;
   }
