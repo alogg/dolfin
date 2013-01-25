@@ -5623,18 +5623,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class hyperelasticity_cell_integral_0_0: public ufc::cell_integral
+class hyperelasticity_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  hyperelasticity_cell_integral_0_0() : ufc::cell_integral()
+  hyperelasticity_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~hyperelasticity_cell_integral_0_0()
+  virtual ~hyperelasticity_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -5842,18 +5842,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class hyperelasticity_exterior_facet_integral_0_0: public ufc::exterior_facet_integral
+class hyperelasticity_exterior_facet_integral_0_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  hyperelasticity_exterior_facet_integral_0_0() : ufc::exterior_facet_integral()
+  hyperelasticity_exterior_facet_integral_0_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~hyperelasticity_exterior_facet_integral_0_0()
+  virtual ~hyperelasticity_exterior_facet_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -5998,18 +5998,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class hyperelasticity_cell_integral_1_0: public ufc::cell_integral
+class hyperelasticity_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  hyperelasticity_cell_integral_1_0() : ufc::cell_integral()
+  hyperelasticity_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~hyperelasticity_cell_integral_1_0()
+  virtual ~hyperelasticity_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -6197,7 +6197,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "ae4f023b73a22b92e195a7e0031103e4b6ba6dff14c0b4e5fc4a608a9d58e2948aff151e1d932eaa34e06faf3f293426b3ca73f05c86120cbe9803a73d4ce51d";
+    return "9fd1b20d2c8370fc54a34a28e771bf9944eadc84e8908d89299b680088c5fc55339a1f1ad0053f8db9eef4dab842ace4016e4b89472ed8d359e05c4350904571";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6215,13 +6215,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -6331,30 +6331,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new hyperelasticity_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new hyperelasticity_exterior_facet_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -6367,13 +6349,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new hyperelasticity_cell_integral_0_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new hyperelasticity_exterior_facet_integral_0_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -6418,7 +6400,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "72fa91e982f682a981cbd9501de42a4b646de83fba1c0f200e295e50e2ca7968c07333a8347b31c0058c69b24e1fd43f57958eb8456da6c0738f7e569452aa79";
+    return "e70b16feb3b9cadd3d4dc02ed46419ca7efcc7c554d7de8eb051b81b13b35e7df83c2d8a663706a0d82037e9ed86e7d1058c3b3ce4d3e8f477ca24167c22e588";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6436,7 +6418,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -6542,15 +6524,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new hyperelasticity_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -6569,7 +6542,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new hyperelasticity_cell_integral_1_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else

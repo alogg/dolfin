@@ -2567,18 +2567,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class biharmonic_cell_integral_0_0: public ufc::cell_integral
+class biharmonic_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  biharmonic_cell_integral_0_0() : ufc::cell_integral()
+  biharmonic_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~biharmonic_cell_integral_0_0()
+  virtual ~biharmonic_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -2726,18 +2726,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class biharmonic_interior_facet_integral_0_0: public ufc::interior_facet_integral
+class biharmonic_interior_facet_integral_0_otherwise: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  biharmonic_interior_facet_integral_0_0() : ufc::interior_facet_integral()
+  biharmonic_interior_facet_integral_0_otherwise() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~biharmonic_interior_facet_integral_0_0()
+  virtual ~biharmonic_interior_facet_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -5730,18 +5730,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class biharmonic_cell_integral_1_0: public ufc::cell_integral
+class biharmonic_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  biharmonic_cell_integral_1_0() : ufc::cell_integral()
+  biharmonic_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~biharmonic_cell_integral_1_0()
+  virtual ~biharmonic_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -5838,7 +5838,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b216f258b5f94796dd545d82d0c2bc3ecd25a425ce990ad9c731e68a59dab9429ebcd8ccf0557e5e650166431a2b32c9372b6caa88dd807309bac75f2c5f2fea";
+    return "48fd10c8833c31365795b2d8b3bee302fc89c2c7945807f2f5ad8913bd7eb690a16c18f8fa55015ed3e7730de7cd46cb085f212dd3f7a1eb5c4971ac8bc3cd72";
   }
 
   /// Return the rank of the global tensor (r)
@@ -5856,7 +5856,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -5868,7 +5868,7 @@ public:
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return whether the form has any cell integrals
@@ -5942,15 +5942,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new biharmonic_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -5963,22 +5954,13 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new biharmonic_interior_facet_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new biharmonic_cell_integral_0_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -5990,7 +5972,7 @@ public:
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
-    return 0;
+    return new biharmonic_interior_facet_integral_0_otherwise();
   }
 
 };
@@ -6029,7 +6011,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "eb2fd46581b1d08ece62241833ee992ac886520fe3fdcb0d3563849164894530907e444e74df3c2a0c9b25809d9b117297301d9e0587ea849606b5abb37146c5";
+    return "4007892e98545cdeb2858e7db4da7836bdb7375f38b67364b2b3521067c9f7f0438c602cb8455ea77542e043495fd3412c07968a201d05a9eb0262862b6fbeb3";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6047,7 +6029,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -6123,15 +6105,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new biharmonic_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -6150,7 +6123,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new biharmonic_cell_integral_1_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else

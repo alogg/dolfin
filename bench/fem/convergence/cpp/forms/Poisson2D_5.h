@@ -7729,18 +7729,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson2d_5_cell_integral_0_0: public ufc::cell_integral
+class poisson2d_5_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson2d_5_cell_integral_0_0() : ufc::cell_integral()
+  poisson2d_5_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson2d_5_cell_integral_0_0()
+  virtual ~poisson2d_5_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -8244,18 +8244,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson2d_5_cell_integral_1_0: public ufc::cell_integral
+class poisson2d_5_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson2d_5_cell_integral_1_0() : ufc::cell_integral()
+  poisson2d_5_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson2d_5_cell_integral_1_0()
+  virtual ~poisson2d_5_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -8382,7 +8382,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b3496eee8dfd98920196f0348f15ddbc06a47481242e606b6b6c01dd69e89549104ad16fd40b4d36cb1718ca28b9e5e3957fd9be8ff757242aa7d8fad7bbd3d2";
+    return "736fc66640cf400db69bf203370c12f17c59a9bc1584c1afab801841b3a29bf2193ca5a3d655ce09362bd77342e0e4a26add9e5f972e43941b90206ab667eb27";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8400,7 +8400,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -8476,15 +8476,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson2d_5_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -8503,7 +8494,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new poisson2d_5_cell_integral_0_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -8554,7 +8545,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "c491d3afb27445bed0eaf16c83098d123d34ce807ccfad3cdf0d381181d6308229752ab87ee7628ffa789990386d6ffd0cf452c0c87357c04504be7c865c35a9";
+    return "551ac15b66f4925ec56febb17aa22220f0815b6606e8da49d73ec944a061d9e0983b1d1ae53ac37ca585abced6111617eb78c581ebbe831be935a5c20d779687";
   }
 
   /// Return the rank of the global tensor (r)
@@ -8572,7 +8563,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -8648,15 +8639,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson2d_5_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -8675,7 +8657,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new poisson2d_5_cell_integral_1_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else

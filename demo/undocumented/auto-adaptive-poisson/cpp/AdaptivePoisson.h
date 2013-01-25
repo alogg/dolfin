@@ -7369,18 +7369,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_0_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_0_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_0_0()
+  virtual ~adaptivepoisson_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -7391,9 +7391,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      11
-    // Number of operations (multiply-add pairs) for geometry tensor:    8
-    // Number of operations (multiply-add pairs) for tensor contraction: 11
-    // Total number of operations (multiply-add pairs):                  30
+    // Number of operations (multiply-add pairs) for geometry tensor:    16
+    // Number of operations (multiply-add pairs) for tensor contraction: 27
+    // Total number of operations (multiply-add pairs):                  54
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -7421,17 +7421,21 @@ public:
     const double G0_0_1 = det*(K_00*K_10 + K_01*K_11);
     const double G0_1_0 = det*(K_10*K_00 + K_11*K_01);
     const double G0_1_1 = det*(K_10*K_10 + K_11*K_11);
+    const double G1_0_0 = det*(K_00*K_00 + K_01*K_01);
+    const double G1_0_1 = det*(K_00*K_10 + K_01*K_11);
+    const double G1_1_0 = det*(K_10*K_00 + K_11*K_01);
+    const double G1_1_1 = det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor
-    A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1;
-    A[1] = -0.5*G0_0_0 - 0.5*G0_1_0;
-    A[2] = -0.5*G0_0_1 - 0.5*G0_1_1;
-    A[3] = -0.5*G0_0_0 - 0.5*G0_0_1;
-    A[4] = 0.5*G0_0_0;
-    A[5] = 0.5*G0_0_1;
-    A[6] = -0.5*G0_1_0 - 0.5*G0_1_1;
-    A[7] = 0.5*G0_1_0;
-    A[8] = 0.5*G0_1_1;
+    A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1 + 0.5*G1_0_0 + 0.5*G1_0_1 + 0.5*G1_1_0 + 0.5*G1_1_1;
+    A[1] = -0.5*G0_0_0 - 0.5*G0_1_0 - 0.5*G1_0_0 - 0.5*G1_1_0;
+    A[2] = -0.5*G0_0_1 - 0.5*G0_1_1 - 0.5*G1_0_1 - 0.5*G1_1_1;
+    A[3] = -0.5*G0_0_0 - 0.5*G0_0_1 - 0.5*G1_0_0 - 0.5*G1_0_1;
+    A[4] = 0.5*G0_0_0 + 0.5*G1_0_0;
+    A[5] = 0.5*G0_0_1 + 0.5*G1_0_1;
+    A[6] = -0.5*G0_1_0 - 0.5*G0_1_1 - 0.5*G1_1_0 - 0.5*G1_1_1;
+    A[7] = 0.5*G0_1_0 + 0.5*G1_1_0;
+    A[8] = 0.5*G0_1_1 + 0.5*G1_1_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -7452,18 +7456,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_1_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_1_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_1_0()
+  virtual ~adaptivepoisson_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -7475,8 +7479,8 @@ public:
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
     // Number of operations (multiply-add pairs) for geometry tensor:    0
-    // Number of operations (multiply-add pairs) for tensor contraction: 1
-    // Total number of operations (multiply-add pairs):                  10
+    // Number of operations (multiply-add pairs) for tensor contraction: 4
+    // Total number of operations (multiply-add pairs):                  13
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -7497,11 +7501,12 @@ public:
     
     // Compute geometry tensor
     const double G0_ = det;
+    const double G1_ = det;
     
     // Compute element tensor
-    A[0] = 0.166666666666667*G0_;
-    A[1] = 0.166666666666667*G0_;
-    A[2] = 0.166666666666667*G0_;
+    A[0] = 0.166666666666667*G0_ + 0.166666666666667*G1_;
+    A[1] = 0.166666666666667*G0_ + 0.166666666666667*G1_;
+    A[2] = 0.166666666666667*G0_ + 0.166666666666667*G1_;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -7522,18 +7527,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_2_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_2_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_2_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_2_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_2_0()
+  virtual ~adaptivepoisson_cell_integral_2_otherwise()
   {
     // Do nothing
   }
@@ -7630,11 +7635,12 @@ public:
     
     // Reset values in the element tensor.
     A[0] = 0.0;
-    // Number of operations to compute geometry constants: 12.
-    double G[3];
-    G[0] =  - det*(K_00*K_00 + K_01*K_01);
-    G[1] =  - det*(K_00*K_10 + K_01*K_11);
-    G[2] =  - det*(K_10*K_10 + K_11*K_11);
+    // Number of operations to compute geometry constants: 16.
+    double G[4];
+    G[0] = 2.0*det;
+    G[1] = -2.0*det*(K_00*K_00 + K_01*K_01);
+    G[2] = -2.0*det*(K_00*K_10 + K_01*K_11);
+    G[3] = -2.0*det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -7681,7 +7687,7 @@ public:
       // Number of operations to compute ip constants: 14
       double I[1];
       // Number of operations: 14
-      I[0] = W6[ip]*(F0*F1*det + F2*F4*G[0] + F3*F5*G[2] + G[1]*(F2*F5 + F3*F4));
+      I[0] = W6[ip]*(F0*F1*G[0] + F2*F4*G[1] + F3*F5*G[3] + G[2]*(F2*F5 + F3*F4));
       
       
       // Number of operations for primary indices: 1
@@ -7708,18 +7714,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivepoisson_exterior_facet_integral_2_0: public ufc::exterior_facet_integral
+class adaptivepoisson_exterior_facet_integral_2_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_exterior_facet_integral_2_0() : ufc::exterior_facet_integral()
+  adaptivepoisson_exterior_facet_integral_2_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_exterior_facet_integral_2_0()
+  virtual ~adaptivepoisson_exterior_facet_integral_2_otherwise()
   {
     // Do nothing
   }
@@ -7731,9 +7737,9 @@ public:
                                std::size_t facet) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    13
-    // Number of operations (multiply-add pairs) for tensor contraction: 10
-    // Total number of operations (multiply-add pairs):                  32
+    // Number of operations (multiply-add pairs) for geometry tensor:    27
+    // Number of operations (multiply-add pairs) for tensor contraction: 22
+    // Total number of operations (multiply-add pairs):                  58
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -7764,23 +7770,32 @@ public:
     const double G0_2_2 = det*w[1][2]*w[3][2]*(1.0);
     const double G0_2_3 = det*w[1][2]*w[3][3]*(1.0);
     const double G0_2_4 = det*w[1][2]*w[3][4]*(1.0);
+    const double G1_0_0 = det*w[1][0]*w[3][0]*(1.0);
+    const double G1_0_4 = det*w[1][0]*w[3][4]*(1.0);
+    const double G1_0_5 = det*w[1][0]*w[3][5]*(1.0);
+    const double G1_1_1 = det*w[1][1]*w[3][1]*(1.0);
+    const double G1_1_3 = det*w[1][1]*w[3][3]*(1.0);
+    const double G1_1_5 = det*w[1][1]*w[3][5]*(1.0);
+    const double G1_2_2 = det*w[1][2]*w[3][2]*(1.0);
+    const double G1_2_3 = det*w[1][2]*w[3][3]*(1.0);
+    const double G1_2_4 = det*w[1][2]*w[3][4]*(1.0);
     
     // Compute element tensor
     switch (facet)
     {
     case 0:
       {
-        A[0] = 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_3 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_3;
+        A[0] = 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_3 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_3 + 0.166666666666666*G1_1_1 + 0.333333333333333*G1_1_3 + 0.166666666666667*G1_2_2 + 0.333333333333333*G1_2_3;
         break;
       }
     case 1:
       {
-        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_4 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_4;
+        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_4 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_4 + 0.166666666666667*G1_0_0 + 0.333333333333333*G1_0_4 + 0.166666666666667*G1_2_2 + 0.333333333333333*G1_2_4;
         break;
       }
     case 2:
       {
-        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_5 + 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_5;
+        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_5 + 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_5 + 0.166666666666667*G1_0_0 + 0.333333333333333*G1_0_5 + 0.166666666666666*G1_1_1 + 0.333333333333333*G1_1_5;
         break;
       }
     }
@@ -7805,18 +7820,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_3_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_3_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_3_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_3_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_3_0()
+  virtual ~adaptivepoisson_cell_integral_3_otherwise()
   {
     // Do nothing
   }
@@ -7827,9 +7842,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    1
-    // Number of operations (multiply-add pairs) for tensor contraction: 4
-    // Total number of operations (multiply-add pairs):                  14
+    // Number of operations (multiply-add pairs) for geometry tensor:    2
+    // Number of operations (multiply-add pairs) for tensor contraction: 13
+    // Total number of operations (multiply-add pairs):                  24
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -7850,17 +7865,18 @@ public:
     
     // Compute geometry tensor
     const double G0_0 = det*w[0][0]*(1.0);
+    const double G1_0 = det*w[0][0]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.0321428571428572*G0_0;
-    A[1] = 0.0214285714285714*G0_0;
-    A[2] = 0.0214285714285714*G0_0;
-    A[3] = 0.0214285714285714*G0_0;
-    A[4] = 0.0321428571428572*G0_0;
-    A[5] = 0.0214285714285714*G0_0;
-    A[6] = 0.0214285714285714*G0_0;
-    A[7] = 0.0214285714285714*G0_0;
-    A[8] = 0.0321428571428571*G0_0;
+    A[0] = 0.0321428571428572*G0_0 + 0.0321428571428572*G1_0;
+    A[1] = 0.0214285714285714*G0_0 + 0.0214285714285714*G1_0;
+    A[2] = 0.0214285714285714*G0_0 + 0.0214285714285714*G1_0;
+    A[3] = 0.0214285714285714*G0_0 + 0.0214285714285714*G1_0;
+    A[4] = 0.0321428571428572*G0_0 + 0.0321428571428572*G1_0;
+    A[5] = 0.0214285714285714*G0_0 + 0.0214285714285714*G1_0;
+    A[6] = 0.0214285714285714*G0_0 + 0.0214285714285714*G1_0;
+    A[7] = 0.0214285714285714*G0_0 + 0.0214285714285714*G1_0;
+    A[8] = 0.0321428571428571*G0_0 + 0.0321428571428571*G1_0;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -7881,18 +7897,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_4_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_4_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_4_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_4_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_4_0()
+  virtual ~adaptivepoisson_cell_integral_4_otherwise()
   {
     // Do nothing
   }
@@ -7991,11 +8007,12 @@ public:
     {
       A[r] = 0.0;
     }// end loop over 'r'
-    // Number of operations to compute geometry constants: 12.
-    double G[3];
-    G[0] =  - det*(K_00*K_10 + K_01*K_11);
-    G[1] =  - det*(K_10*K_10 + K_11*K_11);
-    G[2] =  - det*(K_00*K_00 + K_01*K_01);
+    // Number of operations to compute geometry constants: 16.
+    double G[4];
+    G[0] = -2.0*det*(K_00*K_10 + K_01*K_11);
+    G[1] = -2.0*det*(K_10*K_10 + K_11*K_11);
+    G[2] = -2.0*det*(K_00*K_00 + K_01*K_01);
+    G[3] = 2.0*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
@@ -8043,7 +8060,7 @@ public:
       I[1] = F1*W7[ip]*(F2*G[2] + F3*G[0]);
       
       // Number of operations: 14
-      I[2] = W7[ip]*(F0*F1*det + F2*F4*G[2] + F3*F5*G[1] + G[0]*(F2*F5 + F3*F4));
+      I[2] = W7[ip]*(F0*F1*G[3] + F2*F4*G[2] + F3*F5*G[1] + G[0]*(F2*F5 + F3*F4));
       
       
       // Number of operations for primary indices: 6
@@ -8082,18 +8099,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivepoisson_exterior_facet_integral_4_0: public ufc::exterior_facet_integral
+class adaptivepoisson_exterior_facet_integral_4_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_exterior_facet_integral_4_0() : ufc::exterior_facet_integral()
+  adaptivepoisson_exterior_facet_integral_4_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_exterior_facet_integral_4_0()
+  virtual ~adaptivepoisson_exterior_facet_integral_4_otherwise()
   {
     // Do nothing
   }
@@ -8170,18 +8187,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivepoisson_exterior_facet_integral_5_0: public ufc::exterior_facet_integral
+class adaptivepoisson_exterior_facet_integral_5_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_exterior_facet_integral_5_0() : ufc::exterior_facet_integral()
+  adaptivepoisson_exterior_facet_integral_5_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_exterior_facet_integral_5_0()
+  virtual ~adaptivepoisson_exterior_facet_integral_5_otherwise()
   {
     // Do nothing
   }
@@ -8193,9 +8210,9 @@ public:
                                std::size_t facet) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    6
-    // Number of operations (multiply-add pairs) for tensor contraction: 30
-    // Total number of operations (multiply-add pairs):                  45
+    // Number of operations (multiply-add pairs) for geometry tensor:    12
+    // Number of operations (multiply-add pairs) for tensor contraction: 66
+    // Total number of operations (multiply-add pairs):                  87
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -8223,6 +8240,12 @@ public:
     const double G0_3 = det*w[0][3]*(1.0);
     const double G0_4 = det*w[0][4]*(1.0);
     const double G0_5 = det*w[0][5]*(1.0);
+    const double G1_0 = det*w[0][0]*(1.0);
+    const double G1_1 = det*w[0][1]*(1.0);
+    const double G1_2 = det*w[0][2]*(1.0);
+    const double G1_3 = det*w[0][3]*(1.0);
+    const double G1_4 = det*w[0][4]*(1.0);
+    const double G1_5 = det*w[0][5]*(1.0);
     
     // Compute element tensor
     switch (facet)
@@ -8233,33 +8256,33 @@ public:
       A[1] = 0.0;
       A[2] = 0.0;
       A[3] = 0.0;
-      A[4] = 0.15*G0_1 - 0.0166666666666666*G0_2 + 0.2*G0_3;
-      A[5] = 0.0166666666666666*G0_1 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_3;
+      A[4] = 0.15*G0_1 - 0.0166666666666666*G0_2 + 0.2*G0_3 + 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3;
+      A[5] = 0.0166666666666666*G0_1 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_3 + 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
       A[6] = 0.0;
-      A[7] = 0.0166666666666666*G0_1 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_3;
-      A[8] = -0.0166666666666667*G0_1 + 0.15*G0_2 + 0.2*G0_3;
+      A[7] = 0.0166666666666666*G0_1 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_3 + 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
+      A[8] = -0.0166666666666667*G0_1 + 0.15*G0_2 + 0.2*G0_3 - 0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3;
         break;
       }
     case 1:
       {
-        A[0] = 0.15*G0_0 - 0.0166666666666666*G0_2 + 0.2*G0_4;
+        A[0] = 0.15*G0_0 - 0.0166666666666666*G0_2 + 0.2*G0_4 + 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4;
       A[1] = 0.0;
-      A[2] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_4;
+      A[2] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_4 + 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
       A[3] = 0.0;
       A[4] = 0.0;
       A[5] = 0.0;
-      A[6] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_4;
+      A[6] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_2 + 0.133333333333333*G0_4 + 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
       A[7] = 0.0;
-      A[8] = -0.0166666666666666*G0_0 + 0.15*G0_2 + 0.2*G0_4;
+      A[8] = -0.0166666666666666*G0_0 + 0.15*G0_2 + 0.2*G0_4 - 0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4;
         break;
       }
     case 2:
       {
-        A[0] = 0.15*G0_0 - 0.0166666666666666*G0_1 + 0.2*G0_5;
-      A[1] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_1 + 0.133333333333333*G0_5;
+        A[0] = 0.15*G0_0 - 0.0166666666666666*G0_1 + 0.2*G0_5 + 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5;
+      A[1] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_1 + 0.133333333333333*G0_5 + 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
       A[2] = 0.0;
-      A[3] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_1 + 0.133333333333333*G0_5;
-      A[4] = -0.0166666666666667*G0_0 + 0.15*G0_1 + 0.2*G0_5;
+      A[3] = 0.0166666666666667*G0_0 + 0.0166666666666667*G0_1 + 0.133333333333333*G0_5 + 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
+      A[4] = -0.0166666666666667*G0_0 + 0.15*G0_1 + 0.2*G0_5 - 0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5;
       A[5] = 0.0;
       A[6] = 0.0;
       A[7] = 0.0;
@@ -8288,18 +8311,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class adaptivepoisson_interior_facet_integral_5_0: public ufc::interior_facet_integral
+class adaptivepoisson_interior_facet_integral_5_otherwise: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_interior_facet_integral_5_0() : ufc::interior_facet_integral()
+  adaptivepoisson_interior_facet_integral_5_otherwise() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_interior_facet_integral_5_0()
+  virtual ~adaptivepoisson_interior_facet_integral_5_otherwise()
   {
     // Do nothing
   }
@@ -8313,9 +8336,9 @@ public:
                                std::size_t facet1) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      12
-    // Number of operations (multiply-add pairs) for geometry tensor:    12
-    // Number of operations (multiply-add pairs) for tensor contraction: 180
-    // Total number of operations (multiply-add pairs):                  204
+    // Number of operations (multiply-add pairs) for geometry tensor:    24
+    // Number of operations (multiply-add pairs) for tensor contraction: 396
+    // Total number of operations (multiply-add pairs):                  432
     
     // Extract vertex coordinates
     const double * const * x0 = c0.coordinates;
@@ -8355,6 +8378,18 @@ public:
     const double G1_3 = det*w[0][3]*(1.0);
     const double G1_4 = det*w[0][4]*(1.0);
     const double G1_5 = det*w[0][5]*(1.0);
+    const double G2_6 = det*w[0][6]*(1.0);
+    const double G2_7 = det*w[0][7]*(1.0);
+    const double G2_8 = det*w[0][8]*(1.0);
+    const double G2_9 = det*w[0][9]*(1.0);
+    const double G2_10 = det*w[0][10]*(1.0);
+    const double G2_11 = det*w[0][11]*(1.0);
+    const double G3_0 = det*w[0][0]*(1.0);
+    const double G3_1 = det*w[0][1]*(1.0);
+    const double G3_2 = det*w[0][2]*(1.0);
+    const double G3_3 = det*w[0][3]*(1.0);
+    const double G3_4 = det*w[0][4]*(1.0);
+    const double G3_5 = det*w[0][5]*(1.0);
     
     // Compute element tensor
     switch (facet0)
@@ -8372,14 +8407,14 @@ public:
         A[4] = 0.0;
         A[5] = 0.0;
         A[6] = 0.0;
-        A[7] = 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3;
-        A[8] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
+        A[7] = 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3 + 0.15*G3_1 - 0.0166666666666666*G3_2 + 0.2*G3_3;
+        A[8] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3 + 0.0166666666666666*G3_1 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_3;
         A[9] = 0.0;
         A[10] = 0.0;
         A[11] = 0.0;
         A[12] = 0.0;
-        A[13] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
-        A[14] = -0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3;
+        A[13] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3 + 0.0166666666666666*G3_1 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_3;
+        A[14] = -0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3 - 0.0166666666666667*G3_1 + 0.15*G3_2 + 0.2*G3_3;
         A[15] = 0.0;
         A[16] = 0.0;
         A[17] = 0.0;
@@ -8393,14 +8428,14 @@ public:
         A[25] = 0.0;
         A[26] = 0.0;
         A[27] = 0.0;
-        A[28] = 0.15*G0_7 - 0.0166666666666666*G0_8 + 0.2*G0_9;
-        A[29] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9;
+        A[28] = 0.15*G0_7 - 0.0166666666666666*G0_8 + 0.2*G0_9 + 0.15*G2_7 - 0.0166666666666666*G2_8 + 0.2*G2_9;
+        A[29] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9 + 0.0166666666666666*G2_7 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_9;
         A[30] = 0.0;
         A[31] = 0.0;
         A[32] = 0.0;
         A[33] = 0.0;
-        A[34] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9;
-        A[35] = -0.0166666666666667*G0_7 + 0.15*G0_8 + 0.2*G0_9;
+        A[34] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9 + 0.0166666666666666*G2_7 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_9;
+        A[35] = -0.0166666666666667*G0_7 + 0.15*G0_8 + 0.2*G0_9 - 0.0166666666666667*G2_7 + 0.15*G2_8 + 0.2*G2_9;
           break;
         }
       case 1:
@@ -8412,23 +8447,23 @@ public:
         A[4] = 0.0;
         A[5] = 0.0;
         A[6] = 0.0;
-        A[7] = 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3;
-        A[8] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
+        A[7] = 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3 + 0.15*G3_1 - 0.0166666666666666*G3_2 + 0.2*G3_3;
+        A[8] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3 + 0.0166666666666666*G3_1 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_3;
         A[9] = 0.0;
         A[10] = 0.0;
         A[11] = 0.0;
         A[12] = 0.0;
-        A[13] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
-        A[14] = -0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3;
+        A[13] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3 + 0.0166666666666666*G3_1 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_3;
+        A[14] = -0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3 - 0.0166666666666667*G3_1 + 0.15*G3_2 + 0.2*G3_3;
         A[15] = 0.0;
         A[16] = 0.0;
         A[17] = 0.0;
         A[18] = 0.0;
         A[19] = 0.0;
         A[20] = 0.0;
-        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_8 + 0.2*G0_10;
+        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_8 + 0.2*G0_10 + 0.15*G2_6 - 0.0166666666666666*G2_8 + 0.2*G2_10;
         A[22] = 0.0;
-        A[23] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10;
+        A[23] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_10;
         A[24] = 0.0;
         A[25] = 0.0;
         A[26] = 0.0;
@@ -8438,9 +8473,9 @@ public:
         A[30] = 0.0;
         A[31] = 0.0;
         A[32] = 0.0;
-        A[33] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10;
+        A[33] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_10;
         A[34] = 0.0;
-        A[35] = -0.0166666666666666*G0_6 + 0.15*G0_8 + 0.2*G0_10;
+        A[35] = -0.0166666666666666*G0_6 + 0.15*G0_8 + 0.2*G0_10 - 0.0166666666666666*G2_6 + 0.15*G2_8 + 0.2*G2_10;
           break;
         }
       case 2:
@@ -8452,28 +8487,28 @@ public:
         A[4] = 0.0;
         A[5] = 0.0;
         A[6] = 0.0;
-        A[7] = 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3;
-        A[8] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
+        A[7] = 0.15*G1_1 - 0.0166666666666666*G1_2 + 0.2*G1_3 + 0.15*G3_1 - 0.0166666666666666*G3_2 + 0.2*G3_3;
+        A[8] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3 + 0.0166666666666666*G3_1 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_3;
         A[9] = 0.0;
         A[10] = 0.0;
         A[11] = 0.0;
         A[12] = 0.0;
-        A[13] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3;
-        A[14] = -0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3;
+        A[13] = 0.0166666666666666*G1_1 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_3 + 0.0166666666666666*G3_1 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_3;
+        A[14] = -0.0166666666666667*G1_1 + 0.15*G1_2 + 0.2*G1_3 - 0.0166666666666667*G3_1 + 0.15*G3_2 + 0.2*G3_3;
         A[15] = 0.0;
         A[16] = 0.0;
         A[17] = 0.0;
         A[18] = 0.0;
         A[19] = 0.0;
         A[20] = 0.0;
-        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_7 + 0.2*G0_11;
-        A[22] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11;
+        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_7 + 0.2*G0_11 + 0.15*G2_6 - 0.0166666666666666*G2_7 + 0.2*G2_11;
+        A[22] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_7 + 0.133333333333333*G2_11;
         A[23] = 0.0;
         A[24] = 0.0;
         A[25] = 0.0;
         A[26] = 0.0;
-        A[27] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11;
-        A[28] = -0.0166666666666667*G0_6 + 0.15*G0_7 + 0.2*G0_11;
+        A[27] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_7 + 0.133333333333333*G2_11;
+        A[28] = -0.0166666666666667*G0_6 + 0.15*G0_7 + 0.2*G0_11 - 0.0166666666666667*G2_6 + 0.15*G2_7 + 0.2*G2_11;
         A[29] = 0.0;
         A[30] = 0.0;
         A[31] = 0.0;
@@ -8493,9 +8528,9 @@ public:
       {
       case 0:
         {
-          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4;
+          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4 + 0.15*G3_0 - 0.0166666666666666*G3_2 + 0.2*G3_4;
         A[1] = 0.0;
-        A[2] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
+        A[2] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_4;
         A[3] = 0.0;
         A[4] = 0.0;
         A[5] = 0.0;
@@ -8505,9 +8540,9 @@ public:
         A[9] = 0.0;
         A[10] = 0.0;
         A[11] = 0.0;
-        A[12] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
+        A[12] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_4;
         A[13] = 0.0;
-        A[14] = -0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4;
+        A[14] = -0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4 - 0.0166666666666666*G3_0 + 0.15*G3_2 + 0.2*G3_4;
         A[15] = 0.0;
         A[16] = 0.0;
         A[17] = 0.0;
@@ -8521,21 +8556,21 @@ public:
         A[25] = 0.0;
         A[26] = 0.0;
         A[27] = 0.0;
-        A[28] = 0.15*G0_7 - 0.0166666666666666*G0_8 + 0.2*G0_9;
-        A[29] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9;
+        A[28] = 0.15*G0_7 - 0.0166666666666666*G0_8 + 0.2*G0_9 + 0.15*G2_7 - 0.0166666666666666*G2_8 + 0.2*G2_9;
+        A[29] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9 + 0.0166666666666666*G2_7 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_9;
         A[30] = 0.0;
         A[31] = 0.0;
         A[32] = 0.0;
         A[33] = 0.0;
-        A[34] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9;
-        A[35] = -0.0166666666666667*G0_7 + 0.15*G0_8 + 0.2*G0_9;
+        A[34] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9 + 0.0166666666666666*G2_7 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_9;
+        A[35] = -0.0166666666666667*G0_7 + 0.15*G0_8 + 0.2*G0_9 - 0.0166666666666667*G2_7 + 0.15*G2_8 + 0.2*G2_9;
           break;
         }
       case 1:
         {
-          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4;
+          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4 + 0.15*G3_0 - 0.0166666666666666*G3_2 + 0.2*G3_4;
         A[1] = 0.0;
-        A[2] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
+        A[2] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_4;
         A[3] = 0.0;
         A[4] = 0.0;
         A[5] = 0.0;
@@ -8545,18 +8580,18 @@ public:
         A[9] = 0.0;
         A[10] = 0.0;
         A[11] = 0.0;
-        A[12] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
+        A[12] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_4;
         A[13] = 0.0;
-        A[14] = -0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4;
+        A[14] = -0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4 - 0.0166666666666666*G3_0 + 0.15*G3_2 + 0.2*G3_4;
         A[15] = 0.0;
         A[16] = 0.0;
         A[17] = 0.0;
         A[18] = 0.0;
         A[19] = 0.0;
         A[20] = 0.0;
-        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_8 + 0.2*G0_10;
+        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_8 + 0.2*G0_10 + 0.15*G2_6 - 0.0166666666666666*G2_8 + 0.2*G2_10;
         A[22] = 0.0;
-        A[23] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10;
+        A[23] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_10;
         A[24] = 0.0;
         A[25] = 0.0;
         A[26] = 0.0;
@@ -8566,16 +8601,16 @@ public:
         A[30] = 0.0;
         A[31] = 0.0;
         A[32] = 0.0;
-        A[33] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10;
+        A[33] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_10;
         A[34] = 0.0;
-        A[35] = -0.0166666666666666*G0_6 + 0.15*G0_8 + 0.2*G0_10;
+        A[35] = -0.0166666666666666*G0_6 + 0.15*G0_8 + 0.2*G0_10 - 0.0166666666666666*G2_6 + 0.15*G2_8 + 0.2*G2_10;
           break;
         }
       case 2:
         {
-          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4;
+          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_2 + 0.2*G1_4 + 0.15*G3_0 - 0.0166666666666666*G3_2 + 0.2*G3_4;
         A[1] = 0.0;
-        A[2] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
+        A[2] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_4;
         A[3] = 0.0;
         A[4] = 0.0;
         A[5] = 0.0;
@@ -8585,23 +8620,23 @@ public:
         A[9] = 0.0;
         A[10] = 0.0;
         A[11] = 0.0;
-        A[12] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4;
+        A[12] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_2 + 0.133333333333333*G1_4 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_2 + 0.133333333333333*G3_4;
         A[13] = 0.0;
-        A[14] = -0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4;
+        A[14] = -0.0166666666666666*G1_0 + 0.15*G1_2 + 0.2*G1_4 - 0.0166666666666666*G3_0 + 0.15*G3_2 + 0.2*G3_4;
         A[15] = 0.0;
         A[16] = 0.0;
         A[17] = 0.0;
         A[18] = 0.0;
         A[19] = 0.0;
         A[20] = 0.0;
-        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_7 + 0.2*G0_11;
-        A[22] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11;
+        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_7 + 0.2*G0_11 + 0.15*G2_6 - 0.0166666666666666*G2_7 + 0.2*G2_11;
+        A[22] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_7 + 0.133333333333333*G2_11;
         A[23] = 0.0;
         A[24] = 0.0;
         A[25] = 0.0;
         A[26] = 0.0;
-        A[27] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11;
-        A[28] = -0.0166666666666667*G0_6 + 0.15*G0_7 + 0.2*G0_11;
+        A[27] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_7 + 0.133333333333333*G2_11;
+        A[28] = -0.0166666666666667*G0_6 + 0.15*G0_7 + 0.2*G0_11 - 0.0166666666666667*G2_6 + 0.15*G2_7 + 0.2*G2_11;
         A[29] = 0.0;
         A[30] = 0.0;
         A[31] = 0.0;
@@ -8621,14 +8656,14 @@ public:
       {
       case 0:
         {
-          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5;
-        A[1] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
+          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5 + 0.15*G3_0 - 0.0166666666666666*G3_1 + 0.2*G3_5;
+        A[1] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_1 + 0.133333333333333*G3_5;
         A[2] = 0.0;
         A[3] = 0.0;
         A[4] = 0.0;
         A[5] = 0.0;
-        A[6] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
-        A[7] = -0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5;
+        A[6] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_1 + 0.133333333333333*G3_5;
+        A[7] = -0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5 - 0.0166666666666667*G3_0 + 0.15*G3_1 + 0.2*G3_5;
         A[8] = 0.0;
         A[9] = 0.0;
         A[10] = 0.0;
@@ -8649,26 +8684,26 @@ public:
         A[25] = 0.0;
         A[26] = 0.0;
         A[27] = 0.0;
-        A[28] = 0.15*G0_7 - 0.0166666666666666*G0_8 + 0.2*G0_9;
-        A[29] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9;
+        A[28] = 0.15*G0_7 - 0.0166666666666666*G0_8 + 0.2*G0_9 + 0.15*G2_7 - 0.0166666666666666*G2_8 + 0.2*G2_9;
+        A[29] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9 + 0.0166666666666666*G2_7 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_9;
         A[30] = 0.0;
         A[31] = 0.0;
         A[32] = 0.0;
         A[33] = 0.0;
-        A[34] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9;
-        A[35] = -0.0166666666666667*G0_7 + 0.15*G0_8 + 0.2*G0_9;
+        A[34] = 0.0166666666666666*G0_7 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_9 + 0.0166666666666666*G2_7 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_9;
+        A[35] = -0.0166666666666667*G0_7 + 0.15*G0_8 + 0.2*G0_9 - 0.0166666666666667*G2_7 + 0.15*G2_8 + 0.2*G2_9;
           break;
         }
       case 1:
         {
-          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5;
-        A[1] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
+          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5 + 0.15*G3_0 - 0.0166666666666666*G3_1 + 0.2*G3_5;
+        A[1] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_1 + 0.133333333333333*G3_5;
         A[2] = 0.0;
         A[3] = 0.0;
         A[4] = 0.0;
         A[5] = 0.0;
-        A[6] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
-        A[7] = -0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5;
+        A[6] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_1 + 0.133333333333333*G3_5;
+        A[7] = -0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5 - 0.0166666666666667*G3_0 + 0.15*G3_1 + 0.2*G3_5;
         A[8] = 0.0;
         A[9] = 0.0;
         A[10] = 0.0;
@@ -8682,9 +8717,9 @@ public:
         A[18] = 0.0;
         A[19] = 0.0;
         A[20] = 0.0;
-        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_8 + 0.2*G0_10;
+        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_8 + 0.2*G0_10 + 0.15*G2_6 - 0.0166666666666666*G2_8 + 0.2*G2_10;
         A[22] = 0.0;
-        A[23] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10;
+        A[23] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_10;
         A[24] = 0.0;
         A[25] = 0.0;
         A[26] = 0.0;
@@ -8694,21 +8729,21 @@ public:
         A[30] = 0.0;
         A[31] = 0.0;
         A[32] = 0.0;
-        A[33] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10;
+        A[33] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_8 + 0.133333333333333*G0_10 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_8 + 0.133333333333333*G2_10;
         A[34] = 0.0;
-        A[35] = -0.0166666666666666*G0_6 + 0.15*G0_8 + 0.2*G0_10;
+        A[35] = -0.0166666666666666*G0_6 + 0.15*G0_8 + 0.2*G0_10 - 0.0166666666666666*G2_6 + 0.15*G2_8 + 0.2*G2_10;
           break;
         }
       case 2:
         {
-          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5;
-        A[1] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
+          A[0] = 0.15*G1_0 - 0.0166666666666666*G1_1 + 0.2*G1_5 + 0.15*G3_0 - 0.0166666666666666*G3_1 + 0.2*G3_5;
+        A[1] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_1 + 0.133333333333333*G3_5;
         A[2] = 0.0;
         A[3] = 0.0;
         A[4] = 0.0;
         A[5] = 0.0;
-        A[6] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5;
-        A[7] = -0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5;
+        A[6] = 0.0166666666666667*G1_0 + 0.0166666666666667*G1_1 + 0.133333333333333*G1_5 + 0.0166666666666667*G3_0 + 0.0166666666666667*G3_1 + 0.133333333333333*G3_5;
+        A[7] = -0.0166666666666667*G1_0 + 0.15*G1_1 + 0.2*G1_5 - 0.0166666666666667*G3_0 + 0.15*G3_1 + 0.2*G3_5;
         A[8] = 0.0;
         A[9] = 0.0;
         A[10] = 0.0;
@@ -8722,14 +8757,14 @@ public:
         A[18] = 0.0;
         A[19] = 0.0;
         A[20] = 0.0;
-        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_7 + 0.2*G0_11;
-        A[22] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11;
+        A[21] = 0.15*G0_6 - 0.0166666666666666*G0_7 + 0.2*G0_11 + 0.15*G2_6 - 0.0166666666666666*G2_7 + 0.2*G2_11;
+        A[22] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_7 + 0.133333333333333*G2_11;
         A[23] = 0.0;
         A[24] = 0.0;
         A[25] = 0.0;
         A[26] = 0.0;
-        A[27] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11;
-        A[28] = -0.0166666666666667*G0_6 + 0.15*G0_7 + 0.2*G0_11;
+        A[27] = 0.0166666666666667*G0_6 + 0.0166666666666667*G0_7 + 0.133333333333333*G0_11 + 0.0166666666666667*G2_6 + 0.0166666666666667*G2_7 + 0.133333333333333*G2_11;
+        A[28] = -0.0166666666666667*G0_6 + 0.15*G0_7 + 0.2*G0_11 - 0.0166666666666667*G2_6 + 0.15*G2_7 + 0.2*G2_11;
         A[29] = 0.0;
         A[30] = 0.0;
         A[31] = 0.0;
@@ -8765,18 +8800,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_6_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_6_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_6_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_6_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_6_0()
+  virtual ~adaptivepoisson_cell_integral_6_otherwise()
   {
     // Do nothing
   }
@@ -8876,17 +8911,19 @@ public:
     {
       A[r] = 0.0;
     }// end loop over 'r'
-    // Number of operations to compute geometry constants: 12.
-    double G[3];
-    G[0] =  - det*(K_00*K_10 + K_01*K_11);
-    G[1] =  - det*(K_10*K_10 + K_11*K_11);
-    G[2] =  - det*(K_00*K_00 + K_01*K_01);
+    // Number of operations to compute geometry constants: 17.
+    double G[5];
+    G[0] = -2.0*det*(K_00*K_10 + K_01*K_11);
+    G[1] = -2.0*det*(K_10*K_10 + K_11*K_11);
+    G[2] = -2.0*det*(K_00*K_00 + K_01*K_01);
+    G[3] = -2.0*det;
+    G[4] = 2.0*det;
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 546
+    // Number of operations to compute element tensor for following IP loop = 552
     for (unsigned int ip = 0; ip < 6; ip++)
     {
       
@@ -8926,7 +8963,7 @@ public:
         F1 += FE2[ip][r]*w[4][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 25
+      // Number of operations to compute ip constants: 26
       double I[3];
       // Number of operations: 5
       I[0] = F1*W6[ip]*(F3*G[0] + F4*G[1]);
@@ -8934,8 +8971,8 @@ public:
       // Number of operations: 5
       I[1] = F1*W6[ip]*(F3*G[2] + F4*G[0]);
       
-      // Number of operations: 15
-      I[2] = W6[ip]*(F1*det*(F2 - F0) + F3*F5*G[2] + F4*F6*G[1] + G[0]*(F3*F6 + F4*F5));
+      // Number of operations: 16
+      I[2] = W6[ip]*(F1*(F0*G[3] + F2*G[4]) + F3*F5*G[2] + F4*F6*G[1] + G[0]*(F3*F6 + F4*F5));
       
       
       // Number of operations for primary indices: 6
@@ -8974,18 +9011,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivepoisson_exterior_facet_integral_6_0: public ufc::exterior_facet_integral
+class adaptivepoisson_exterior_facet_integral_6_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_exterior_facet_integral_6_0() : ufc::exterior_facet_integral()
+  adaptivepoisson_exterior_facet_integral_6_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_exterior_facet_integral_6_0()
+  virtual ~adaptivepoisson_exterior_facet_integral_6_otherwise()
   {
     // Do nothing
   }
@@ -8997,9 +9034,9 @@ public:
                                std::size_t facet) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    22
-    // Number of operations (multiply-add pairs) for tensor contraction: 33
-    // Total number of operations (multiply-add pairs):                  64
+    // Number of operations (multiply-add pairs) for geometry tensor:    45
+    // Number of operations (multiply-add pairs) for tensor contraction: 69
+    // Total number of operations (multiply-add pairs):                  123
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9036,6 +9073,21 @@ public:
     const double G0_2_2 = det*w[1][2]*w[4][2]*(1.0);
     const double G0_2_3 = det*w[1][2]*w[4][3]*(1.0);
     const double G0_2_4 = det*w[1][2]*w[4][4]*(1.0);
+    const double G1_0_0 = det*w[1][0]*w[4][0]*(1.0);
+    const double G1_0_1 = det*w[1][0]*w[4][1]*(1.0);
+    const double G1_0_2 = det*w[1][0]*w[4][2]*(1.0);
+    const double G1_0_4 = det*w[1][0]*w[4][4]*(1.0);
+    const double G1_0_5 = det*w[1][0]*w[4][5]*(1.0);
+    const double G1_1_0 = det*w[1][1]*w[4][0]*(1.0);
+    const double G1_1_1 = det*w[1][1]*w[4][1]*(1.0);
+    const double G1_1_2 = det*w[1][1]*w[4][2]*(1.0);
+    const double G1_1_3 = det*w[1][1]*w[4][3]*(1.0);
+    const double G1_1_5 = det*w[1][1]*w[4][5]*(1.0);
+    const double G1_2_0 = det*w[1][2]*w[4][0]*(1.0);
+    const double G1_2_1 = det*w[1][2]*w[4][1]*(1.0);
+    const double G1_2_2 = det*w[1][2]*w[4][2]*(1.0);
+    const double G1_2_3 = det*w[1][2]*w[4][3]*(1.0);
+    const double G1_2_4 = det*w[1][2]*w[4][4]*(1.0);
     
     // Compute element tensor
     switch (facet)
@@ -9043,21 +9095,21 @@ public:
     case 0:
       {
         A[0] = 0.0;
-      A[1] = 0.15*G0_1_1 - 0.0166666666666666*G0_1_2 + 0.2*G0_1_3 + 0.0166666666666666*G0_2_1 + 0.0166666666666667*G0_2_2 + 0.133333333333333*G0_2_3;
-      A[2] = 0.0166666666666666*G0_1_1 + 0.0166666666666667*G0_1_2 + 0.133333333333333*G0_1_3 - 0.0166666666666667*G0_2_1 + 0.15*G0_2_2 + 0.2*G0_2_3;
+      A[1] = 0.15*G0_1_1 - 0.0166666666666666*G0_1_2 + 0.2*G0_1_3 + 0.0166666666666666*G0_2_1 + 0.0166666666666667*G0_2_2 + 0.133333333333333*G0_2_3 + 0.15*G1_1_1 - 0.0166666666666666*G1_1_2 + 0.2*G1_1_3 + 0.0166666666666666*G1_2_1 + 0.0166666666666667*G1_2_2 + 0.133333333333333*G1_2_3;
+      A[2] = 0.0166666666666666*G0_1_1 + 0.0166666666666667*G0_1_2 + 0.133333333333333*G0_1_3 - 0.0166666666666667*G0_2_1 + 0.15*G0_2_2 + 0.2*G0_2_3 + 0.0166666666666666*G1_1_1 + 0.0166666666666667*G1_1_2 + 0.133333333333333*G1_1_3 - 0.0166666666666667*G1_2_1 + 0.15*G1_2_2 + 0.2*G1_2_3;
         break;
       }
     case 1:
       {
-        A[0] = 0.15*G0_0_0 - 0.0166666666666666*G0_0_2 + 0.2*G0_0_4 + 0.0166666666666667*G0_2_0 + 0.0166666666666667*G0_2_2 + 0.133333333333333*G0_2_4;
+        A[0] = 0.15*G0_0_0 - 0.0166666666666666*G0_0_2 + 0.2*G0_0_4 + 0.0166666666666667*G0_2_0 + 0.0166666666666667*G0_2_2 + 0.133333333333333*G0_2_4 + 0.15*G1_0_0 - 0.0166666666666666*G1_0_2 + 0.2*G1_0_4 + 0.0166666666666667*G1_2_0 + 0.0166666666666667*G1_2_2 + 0.133333333333333*G1_2_4;
       A[1] = 0.0;
-      A[2] = 0.0166666666666667*G0_0_0 + 0.0166666666666667*G0_0_2 + 0.133333333333333*G0_0_4 - 0.0166666666666666*G0_2_0 + 0.15*G0_2_2 + 0.2*G0_2_4;
+      A[2] = 0.0166666666666667*G0_0_0 + 0.0166666666666667*G0_0_2 + 0.133333333333333*G0_0_4 - 0.0166666666666666*G0_2_0 + 0.15*G0_2_2 + 0.2*G0_2_4 + 0.0166666666666667*G1_0_0 + 0.0166666666666667*G1_0_2 + 0.133333333333333*G1_0_4 - 0.0166666666666666*G1_2_0 + 0.15*G1_2_2 + 0.2*G1_2_4;
         break;
       }
     case 2:
       {
-        A[0] = 0.15*G0_0_0 - 0.0166666666666666*G0_0_1 + 0.2*G0_0_5 + 0.0166666666666667*G0_1_0 + 0.0166666666666667*G0_1_1 + 0.133333333333333*G0_1_5;
-      A[1] = 0.0166666666666667*G0_0_0 + 0.0166666666666667*G0_0_1 + 0.133333333333333*G0_0_5 - 0.0166666666666667*G0_1_0 + 0.15*G0_1_1 + 0.2*G0_1_5;
+        A[0] = 0.15*G0_0_0 - 0.0166666666666666*G0_0_1 + 0.2*G0_0_5 + 0.0166666666666667*G0_1_0 + 0.0166666666666667*G0_1_1 + 0.133333333333333*G0_1_5 + 0.15*G1_0_0 - 0.0166666666666666*G1_0_1 + 0.2*G1_0_5 + 0.0166666666666667*G1_1_0 + 0.0166666666666667*G1_1_1 + 0.133333333333333*G1_1_5;
+      A[1] = 0.0166666666666667*G0_0_0 + 0.0166666666666667*G0_0_1 + 0.133333333333333*G0_0_5 - 0.0166666666666667*G0_1_0 + 0.15*G0_1_1 + 0.2*G0_1_5 + 0.0166666666666667*G1_0_0 + 0.0166666666666667*G1_0_1 + 0.133333333333333*G1_0_5 - 0.0166666666666667*G1_1_0 + 0.15*G1_1_1 + 0.2*G1_1_5;
       A[2] = 0.0;
         break;
       }
@@ -9083,18 +9135,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_7_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_7_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_7_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_7_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_7_0()
+  virtual ~adaptivepoisson_cell_integral_7_otherwise()
   {
     // Do nothing
   }
@@ -9105,9 +9157,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    40
-    // Number of operations (multiply-add pairs) for tensor contraction: 26
-    // Total number of operations (multiply-add pairs):                  75
+    // Number of operations (multiply-add pairs) for geometry tensor:    81
+    // Number of operations (multiply-add pairs) for tensor contraction: 53
+    // Total number of operations (multiply-add pairs):                  143
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9154,9 +9206,36 @@ public:
     const double G1_2_0 = det*w[1][2]*w[3][0]*(1.0);
     const double G1_2_1 = det*w[1][2]*w[3][1]*(1.0);
     const double G1_2_2 = det*w[1][2]*w[3][2]*(1.0);
+    const double G2_0_0 = det*w[1][0]*w[0][0]*(1.0);
+    const double G2_0_1 = det*w[1][0]*w[0][1]*(1.0);
+    const double G2_0_2 = det*w[1][0]*w[0][2]*(1.0);
+    const double G2_0_3 = det*w[1][0]*w[0][3]*(1.0);
+    const double G2_0_4 = det*w[1][0]*w[0][4]*(1.0);
+    const double G2_0_5 = det*w[1][0]*w[0][5]*(1.0);
+    const double G2_1_0 = det*w[1][1]*w[0][0]*(1.0);
+    const double G2_1_1 = det*w[1][1]*w[0][1]*(1.0);
+    const double G2_1_2 = det*w[1][1]*w[0][2]*(1.0);
+    const double G2_1_3 = det*w[1][1]*w[0][3]*(1.0);
+    const double G2_1_4 = det*w[1][1]*w[0][4]*(1.0);
+    const double G2_1_5 = det*w[1][1]*w[0][5]*(1.0);
+    const double G2_2_0 = det*w[1][2]*w[0][0]*(1.0);
+    const double G2_2_1 = det*w[1][2]*w[0][1]*(1.0);
+    const double G2_2_2 = det*w[1][2]*w[0][2]*(1.0);
+    const double G2_2_3 = det*w[1][2]*w[0][3]*(1.0);
+    const double G2_2_4 = det*w[1][2]*w[0][4]*(1.0);
+    const double G2_2_5 = det*w[1][2]*w[0][5]*(1.0);
+    const double G3_0_0 = det*w[1][0]*w[3][0]*(1.0);
+    const double G3_0_1 = det*w[1][0]*w[3][1]*(1.0);
+    const double G3_0_2 = det*w[1][0]*w[3][2]*(1.0);
+    const double G3_1_0 = det*w[1][1]*w[3][0]*(1.0);
+    const double G3_1_1 = det*w[1][1]*w[3][1]*(1.0);
+    const double G3_1_2 = det*w[1][1]*w[3][2]*(1.0);
+    const double G3_2_0 = det*w[1][2]*w[3][0]*(1.0);
+    const double G3_2_1 = det*w[1][2]*w[3][1]*(1.0);
+    const double G3_2_2 = det*w[1][2]*w[3][2]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.0166666666666666*G0_0_0 - 0.00833333333333333*G0_0_1 - 0.00833333333333332*G0_0_2 + 0.0333333333333333*G0_0_3 + 0.0666666666666667*G0_0_4 + 0.0666666666666667*G0_0_5 - 0.00833333333333332*G0_1_0 + 0.0166666666666666*G0_1_1 - 0.00833333333333332*G0_1_2 + 0.0666666666666667*G0_1_3 + 0.0333333333333333*G0_1_4 + 0.0666666666666667*G0_1_5 - 0.00833333333333332*G0_2_0 - 0.00833333333333333*G0_2_1 + 0.0166666666666666*G0_2_2 + 0.0666666666666667*G0_2_3 + 0.0666666666666667*G0_2_4 + 0.0333333333333333*G0_2_5 - 0.0833333333333333*G1_0_0 - 0.0416666666666667*G1_0_1 - 0.0416666666666667*G1_0_2 - 0.0416666666666667*G1_1_0 - 0.0833333333333333*G1_1_1 - 0.0416666666666667*G1_1_2 - 0.0416666666666667*G1_2_0 - 0.0416666666666667*G1_2_1 - 0.0833333333333333*G1_2_2;
+    A[0] = 0.0166666666666666*G0_0_0 - 0.00833333333333333*G0_0_1 - 0.00833333333333332*G0_0_2 + 0.0333333333333333*G0_0_3 + 0.0666666666666667*G0_0_4 + 0.0666666666666667*G0_0_5 - 0.00833333333333332*G0_1_0 + 0.0166666666666666*G0_1_1 - 0.00833333333333332*G0_1_2 + 0.0666666666666667*G0_1_3 + 0.0333333333333333*G0_1_4 + 0.0666666666666667*G0_1_5 - 0.00833333333333332*G0_2_0 - 0.00833333333333333*G0_2_1 + 0.0166666666666666*G0_2_2 + 0.0666666666666667*G0_2_3 + 0.0666666666666667*G0_2_4 + 0.0333333333333333*G0_2_5 - 0.0833333333333333*G1_0_0 - 0.0416666666666667*G1_0_1 - 0.0416666666666667*G1_0_2 - 0.0416666666666667*G1_1_0 - 0.0833333333333333*G1_1_1 - 0.0416666666666667*G1_1_2 - 0.0416666666666667*G1_2_0 - 0.0416666666666667*G1_2_1 - 0.0833333333333333*G1_2_2 + 0.0166666666666666*G2_0_0 - 0.00833333333333333*G2_0_1 - 0.00833333333333332*G2_0_2 + 0.0333333333333333*G2_0_3 + 0.0666666666666667*G2_0_4 + 0.0666666666666667*G2_0_5 - 0.00833333333333332*G2_1_0 + 0.0166666666666666*G2_1_1 - 0.00833333333333332*G2_1_2 + 0.0666666666666667*G2_1_3 + 0.0333333333333333*G2_1_4 + 0.0666666666666667*G2_1_5 - 0.00833333333333332*G2_2_0 - 0.00833333333333333*G2_2_1 + 0.0166666666666666*G2_2_2 + 0.0666666666666667*G2_2_3 + 0.0666666666666667*G2_2_4 + 0.0333333333333333*G2_2_5 - 0.0833333333333333*G3_0_0 - 0.0416666666666667*G3_0_1 - 0.0416666666666667*G3_0_2 - 0.0416666666666667*G3_1_0 - 0.0833333333333333*G3_1_1 - 0.0416666666666667*G3_1_2 - 0.0416666666666667*G3_2_0 - 0.0416666666666667*G3_2_1 - 0.0833333333333333*G3_2_2;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -9177,18 +9256,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivepoisson_exterior_facet_integral_7_0: public ufc::exterior_facet_integral
+class adaptivepoisson_exterior_facet_integral_7_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_exterior_facet_integral_7_0() : ufc::exterior_facet_integral()
+  adaptivepoisson_exterior_facet_integral_7_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_exterior_facet_integral_7_0()
+  virtual ~adaptivepoisson_exterior_facet_integral_7_otherwise()
   {
     // Do nothing
   }
@@ -9200,9 +9279,9 @@ public:
                                std::size_t facet) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    27
-    // Number of operations (multiply-add pairs) for tensor contraction: 22
-    // Total number of operations (multiply-add pairs):                  58
+    // Number of operations (multiply-add pairs) for geometry tensor:    54
+    // Number of operations (multiply-add pairs) for tensor contraction: 46
+    // Total number of operations (multiply-add pairs):                  109
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9242,23 +9321,41 @@ public:
     const double G1_2_0 = det*w[2][2]*w[3][0]*(1.0);
     const double G1_2_1 = det*w[2][2]*w[3][1]*(1.0);
     const double G1_2_2 = det*w[2][2]*w[3][2]*(1.0);
+    const double G2_0_0 = det*w[2][0]*w[0][0]*(1.0);
+    const double G2_0_4 = det*w[2][0]*w[0][4]*(1.0);
+    const double G2_0_5 = det*w[2][0]*w[0][5]*(1.0);
+    const double G2_1_1 = det*w[2][1]*w[0][1]*(1.0);
+    const double G2_1_3 = det*w[2][1]*w[0][3]*(1.0);
+    const double G2_1_5 = det*w[2][1]*w[0][5]*(1.0);
+    const double G2_2_2 = det*w[2][2]*w[0][2]*(1.0);
+    const double G2_2_3 = det*w[2][2]*w[0][3]*(1.0);
+    const double G2_2_4 = det*w[2][2]*w[0][4]*(1.0);
+    const double G3_0_0 = det*w[2][0]*w[3][0]*(1.0);
+    const double G3_0_1 = det*w[2][0]*w[3][1]*(1.0);
+    const double G3_0_2 = det*w[2][0]*w[3][2]*(1.0);
+    const double G3_1_0 = det*w[2][1]*w[3][0]*(1.0);
+    const double G3_1_1 = det*w[2][1]*w[3][1]*(1.0);
+    const double G3_1_2 = det*w[2][1]*w[3][2]*(1.0);
+    const double G3_2_0 = det*w[2][2]*w[3][0]*(1.0);
+    const double G3_2_1 = det*w[2][2]*w[3][1]*(1.0);
+    const double G3_2_2 = det*w[2][2]*w[3][2]*(1.0);
     
     // Compute element tensor
     switch (facet)
     {
     case 0:
       {
-        A[0] = 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_3 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_3 - 0.333333333333333*G1_1_1 - 0.166666666666667*G1_1_2 - 0.166666666666667*G1_2_1 - 0.333333333333333*G1_2_2;
+        A[0] = 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_3 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_3 - 0.333333333333333*G1_1_1 - 0.166666666666667*G1_1_2 - 0.166666666666667*G1_2_1 - 0.333333333333333*G1_2_2 + 0.166666666666666*G2_1_1 + 0.333333333333333*G2_1_3 + 0.166666666666667*G2_2_2 + 0.333333333333333*G2_2_3 - 0.333333333333333*G3_1_1 - 0.166666666666667*G3_1_2 - 0.166666666666667*G3_2_1 - 0.333333333333333*G3_2_2;
         break;
       }
     case 1:
       {
-        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_4 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_4 - 0.333333333333333*G1_0_0 - 0.166666666666667*G1_0_2 - 0.166666666666667*G1_2_0 - 0.333333333333333*G1_2_2;
+        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_4 + 0.166666666666667*G0_2_2 + 0.333333333333333*G0_2_4 - 0.333333333333333*G1_0_0 - 0.166666666666667*G1_0_2 - 0.166666666666667*G1_2_0 - 0.333333333333333*G1_2_2 + 0.166666666666667*G2_0_0 + 0.333333333333333*G2_0_4 + 0.166666666666667*G2_2_2 + 0.333333333333333*G2_2_4 - 0.333333333333333*G3_0_0 - 0.166666666666667*G3_0_2 - 0.166666666666667*G3_2_0 - 0.333333333333333*G3_2_2;
         break;
       }
     case 2:
       {
-        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_5 + 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_5 - 0.333333333333333*G1_0_0 - 0.166666666666667*G1_0_1 - 0.166666666666667*G1_1_0 - 0.333333333333333*G1_1_1;
+        A[0] = 0.166666666666667*G0_0_0 + 0.333333333333333*G0_0_5 + 0.166666666666666*G0_1_1 + 0.333333333333333*G0_1_5 - 0.333333333333333*G1_0_0 - 0.166666666666667*G1_0_1 - 0.166666666666667*G1_1_0 - 0.333333333333333*G1_1_1 + 0.166666666666667*G2_0_0 + 0.333333333333333*G2_0_5 + 0.166666666666666*G2_1_1 + 0.333333333333333*G2_1_5 - 0.333333333333333*G3_0_0 - 0.166666666666667*G3_0_1 - 0.166666666666667*G3_1_0 - 0.333333333333333*G3_1_1;
         break;
       }
     }
@@ -9283,18 +9380,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class adaptivepoisson_interior_facet_integral_7_0: public ufc::interior_facet_integral
+class adaptivepoisson_interior_facet_integral_7_otherwise: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_interior_facet_integral_7_0() : ufc::interior_facet_integral()
+  adaptivepoisson_interior_facet_integral_7_otherwise() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_interior_facet_integral_7_0()
+  virtual ~adaptivepoisson_interior_facet_integral_7_otherwise()
   {
     // Do nothing
   }
@@ -9308,9 +9405,9 @@ public:
                                std::size_t facet1) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      12
-    // Number of operations (multiply-add pairs) for geometry tensor:    108
-    // Number of operations (multiply-add pairs) for tensor contraction: 279
-    // Total number of operations (multiply-add pairs):                  399
+    // Number of operations (multiply-add pairs) for geometry tensor:    216
+    // Number of operations (multiply-add pairs) for tensor contraction: 567
+    // Total number of operations (multiply-add pairs):                  795
     
     // Extract vertex coordinates
     const double * const * x0 = c0.coordinates;
@@ -9410,6 +9507,78 @@ public:
     const double G7_2_0 = det*w[2][2]*w[3][0]*(1.0);
     const double G7_2_1 = det*w[2][2]*w[3][1]*(1.0);
     const double G7_2_2 = det*w[2][2]*w[3][2]*(1.0);
+    const double G8_3_6 = det*w[2][3]*w[0][6]*(1.0);
+    const double G8_3_10 = det*w[2][3]*w[0][10]*(1.0);
+    const double G8_3_11 = det*w[2][3]*w[0][11]*(1.0);
+    const double G8_4_7 = det*w[2][4]*w[0][7]*(1.0);
+    const double G8_4_9 = det*w[2][4]*w[0][9]*(1.0);
+    const double G8_4_11 = det*w[2][4]*w[0][11]*(1.0);
+    const double G8_5_8 = det*w[2][5]*w[0][8]*(1.0);
+    const double G8_5_9 = det*w[2][5]*w[0][9]*(1.0);
+    const double G8_5_10 = det*w[2][5]*w[0][10]*(1.0);
+    const double G9_3_3 = det*w[2][3]*w[3][3]*(1.0);
+    const double G9_3_4 = det*w[2][3]*w[3][4]*(1.0);
+    const double G9_3_5 = det*w[2][3]*w[3][5]*(1.0);
+    const double G9_4_3 = det*w[2][4]*w[3][3]*(1.0);
+    const double G9_4_4 = det*w[2][4]*w[3][4]*(1.0);
+    const double G9_4_5 = det*w[2][4]*w[3][5]*(1.0);
+    const double G9_5_3 = det*w[2][5]*w[3][3]*(1.0);
+    const double G9_5_4 = det*w[2][5]*w[3][4]*(1.0);
+    const double G9_5_5 = det*w[2][5]*w[3][5]*(1.0);
+    const double G10_0_0 = det*w[2][0]*w[0][0]*(1.0);
+    const double G10_0_4 = det*w[2][0]*w[0][4]*(1.0);
+    const double G10_0_5 = det*w[2][0]*w[0][5]*(1.0);
+    const double G10_1_1 = det*w[2][1]*w[0][1]*(1.0);
+    const double G10_1_3 = det*w[2][1]*w[0][3]*(1.0);
+    const double G10_1_5 = det*w[2][1]*w[0][5]*(1.0);
+    const double G10_2_2 = det*w[2][2]*w[0][2]*(1.0);
+    const double G10_2_3 = det*w[2][2]*w[0][3]*(1.0);
+    const double G10_2_4 = det*w[2][2]*w[0][4]*(1.0);
+    const double G11_0_0 = det*w[2][0]*w[3][0]*(1.0);
+    const double G11_0_1 = det*w[2][0]*w[3][1]*(1.0);
+    const double G11_0_2 = det*w[2][0]*w[3][2]*(1.0);
+    const double G11_1_0 = det*w[2][1]*w[3][0]*(1.0);
+    const double G11_1_1 = det*w[2][1]*w[3][1]*(1.0);
+    const double G11_1_2 = det*w[2][1]*w[3][2]*(1.0);
+    const double G11_2_0 = det*w[2][2]*w[3][0]*(1.0);
+    const double G11_2_1 = det*w[2][2]*w[3][1]*(1.0);
+    const double G11_2_2 = det*w[2][2]*w[3][2]*(1.0);
+    const double G12_3_6 = det*w[2][3]*w[0][6]*(1.0);
+    const double G12_3_10 = det*w[2][3]*w[0][10]*(1.0);
+    const double G12_3_11 = det*w[2][3]*w[0][11]*(1.0);
+    const double G12_4_7 = det*w[2][4]*w[0][7]*(1.0);
+    const double G12_4_9 = det*w[2][4]*w[0][9]*(1.0);
+    const double G12_4_11 = det*w[2][4]*w[0][11]*(1.0);
+    const double G12_5_8 = det*w[2][5]*w[0][8]*(1.0);
+    const double G12_5_9 = det*w[2][5]*w[0][9]*(1.0);
+    const double G12_5_10 = det*w[2][5]*w[0][10]*(1.0);
+    const double G13_3_3 = det*w[2][3]*w[3][3]*(1.0);
+    const double G13_3_4 = det*w[2][3]*w[3][4]*(1.0);
+    const double G13_3_5 = det*w[2][3]*w[3][5]*(1.0);
+    const double G13_4_3 = det*w[2][4]*w[3][3]*(1.0);
+    const double G13_4_4 = det*w[2][4]*w[3][4]*(1.0);
+    const double G13_4_5 = det*w[2][4]*w[3][5]*(1.0);
+    const double G13_5_3 = det*w[2][5]*w[3][3]*(1.0);
+    const double G13_5_4 = det*w[2][5]*w[3][4]*(1.0);
+    const double G13_5_5 = det*w[2][5]*w[3][5]*(1.0);
+    const double G14_0_0 = det*w[2][0]*w[0][0]*(1.0);
+    const double G14_0_4 = det*w[2][0]*w[0][4]*(1.0);
+    const double G14_0_5 = det*w[2][0]*w[0][5]*(1.0);
+    const double G14_1_1 = det*w[2][1]*w[0][1]*(1.0);
+    const double G14_1_3 = det*w[2][1]*w[0][3]*(1.0);
+    const double G14_1_5 = det*w[2][1]*w[0][5]*(1.0);
+    const double G14_2_2 = det*w[2][2]*w[0][2]*(1.0);
+    const double G14_2_3 = det*w[2][2]*w[0][3]*(1.0);
+    const double G14_2_4 = det*w[2][2]*w[0][4]*(1.0);
+    const double G15_0_0 = det*w[2][0]*w[3][0]*(1.0);
+    const double G15_0_1 = det*w[2][0]*w[3][1]*(1.0);
+    const double G15_0_2 = det*w[2][0]*w[3][2]*(1.0);
+    const double G15_1_0 = det*w[2][1]*w[3][0]*(1.0);
+    const double G15_1_1 = det*w[2][1]*w[3][1]*(1.0);
+    const double G15_1_2 = det*w[2][1]*w[3][2]*(1.0);
+    const double G15_2_0 = det*w[2][2]*w[3][0]*(1.0);
+    const double G15_2_1 = det*w[2][2]*w[3][1]*(1.0);
+    const double G15_2_2 = det*w[2][2]*w[3][2]*(1.0);
     
     // Compute element tensor
     switch (facet0)
@@ -9420,20 +9589,20 @@ public:
       {
       case 0:
         {
-          A[0] = 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_9 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_9 - 0.166666666666667*G5_4_4 - 0.0833333333333333*G5_4_5 - 0.0833333333333333*G5_5_4 - 0.166666666666667*G5_5_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_3 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_3 - 0.166666666666667*G7_1_1 - 0.0833333333333333*G7_1_2 - 0.0833333333333333*G7_2_1 - 0.166666666666667*G7_2_2;
-        A[1] = 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_9 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_9 - 0.166666666666667*G1_4_4 - 0.0833333333333333*G1_4_5 - 0.0833333333333333*G1_5_4 - 0.166666666666667*G1_5_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_3 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_3 - 0.166666666666667*G3_1_1 - 0.0833333333333333*G3_1_2 - 0.0833333333333333*G3_2_1 - 0.166666666666667*G3_2_2;
+          A[0] = 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_9 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_9 - 0.166666666666667*G5_4_4 - 0.0833333333333333*G5_4_5 - 0.0833333333333333*G5_5_4 - 0.166666666666667*G5_5_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_3 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_3 - 0.166666666666667*G7_1_1 - 0.0833333333333333*G7_1_2 - 0.0833333333333333*G7_2_1 - 0.166666666666667*G7_2_2 + 0.0833333333333332*G12_4_7 + 0.166666666666667*G12_4_9 + 0.0833333333333333*G12_5_8 + 0.166666666666666*G12_5_9 - 0.166666666666667*G13_4_4 - 0.0833333333333333*G13_4_5 - 0.0833333333333333*G13_5_4 - 0.166666666666667*G13_5_5 + 0.0833333333333332*G14_1_1 + 0.166666666666667*G14_1_3 + 0.0833333333333333*G14_2_2 + 0.166666666666666*G14_2_3 - 0.166666666666667*G15_1_1 - 0.0833333333333333*G15_1_2 - 0.0833333333333333*G15_2_1 - 0.166666666666667*G15_2_2;
+        A[1] = 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_9 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_9 - 0.166666666666667*G1_4_4 - 0.0833333333333333*G1_4_5 - 0.0833333333333333*G1_5_4 - 0.166666666666667*G1_5_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_3 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_3 - 0.166666666666667*G3_1_1 - 0.0833333333333333*G3_1_2 - 0.0833333333333333*G3_2_1 - 0.166666666666667*G3_2_2 + 0.0833333333333332*G8_4_7 + 0.166666666666667*G8_4_9 + 0.0833333333333333*G8_5_8 + 0.166666666666666*G8_5_9 - 0.166666666666667*G9_4_4 - 0.0833333333333333*G9_4_5 - 0.0833333333333333*G9_5_4 - 0.166666666666667*G9_5_5 + 0.0833333333333332*G10_1_1 + 0.166666666666667*G10_1_3 + 0.0833333333333333*G10_2_2 + 0.166666666666666*G10_2_3 - 0.166666666666667*G11_1_1 - 0.0833333333333333*G11_1_2 - 0.0833333333333333*G11_2_1 - 0.166666666666667*G11_2_2;
           break;
         }
       case 1:
         {
-          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_10 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_10 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_5 - 0.0833333333333333*G5_5_3 - 0.166666666666667*G5_5_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_3 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_3 - 0.166666666666667*G7_1_1 - 0.0833333333333333*G7_1_2 - 0.0833333333333333*G7_2_1 - 0.166666666666667*G7_2_2;
-        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_10 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_10 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_5 - 0.0833333333333333*G1_5_3 - 0.166666666666667*G1_5_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_3 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_3 - 0.166666666666667*G3_1_1 - 0.0833333333333333*G3_1_2 - 0.0833333333333333*G3_2_1 - 0.166666666666667*G3_2_2;
+          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_10 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_10 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_5 - 0.0833333333333333*G5_5_3 - 0.166666666666667*G5_5_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_3 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_3 - 0.166666666666667*G7_1_1 - 0.0833333333333333*G7_1_2 - 0.0833333333333333*G7_2_1 - 0.166666666666667*G7_2_2 + 0.0833333333333333*G12_3_6 + 0.166666666666667*G12_3_10 + 0.0833333333333333*G12_5_8 + 0.166666666666666*G12_5_10 - 0.166666666666667*G13_3_3 - 0.0833333333333333*G13_3_5 - 0.0833333333333333*G13_5_3 - 0.166666666666667*G13_5_5 + 0.0833333333333332*G14_1_1 + 0.166666666666667*G14_1_3 + 0.0833333333333333*G14_2_2 + 0.166666666666666*G14_2_3 - 0.166666666666667*G15_1_1 - 0.0833333333333333*G15_1_2 - 0.0833333333333333*G15_2_1 - 0.166666666666667*G15_2_2;
+        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_10 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_10 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_5 - 0.0833333333333333*G1_5_3 - 0.166666666666667*G1_5_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_3 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_3 - 0.166666666666667*G3_1_1 - 0.0833333333333333*G3_1_2 - 0.0833333333333333*G3_2_1 - 0.166666666666667*G3_2_2 + 0.0833333333333333*G8_3_6 + 0.166666666666667*G8_3_10 + 0.0833333333333333*G8_5_8 + 0.166666666666666*G8_5_10 - 0.166666666666667*G9_3_3 - 0.0833333333333333*G9_3_5 - 0.0833333333333333*G9_5_3 - 0.166666666666667*G9_5_5 + 0.0833333333333332*G10_1_1 + 0.166666666666667*G10_1_3 + 0.0833333333333333*G10_2_2 + 0.166666666666666*G10_2_3 - 0.166666666666667*G11_1_1 - 0.0833333333333333*G11_1_2 - 0.0833333333333333*G11_2_1 - 0.166666666666667*G11_2_2;
           break;
         }
       case 2:
         {
-          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_11 + 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_11 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_4 - 0.0833333333333333*G5_4_3 - 0.166666666666667*G5_4_4 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_3 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_3 - 0.166666666666667*G7_1_1 - 0.0833333333333333*G7_1_2 - 0.0833333333333333*G7_2_1 - 0.166666666666667*G7_2_2;
-        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_11 + 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_11 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_4 - 0.0833333333333333*G1_4_3 - 0.166666666666667*G1_4_4 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_3 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_3 - 0.166666666666667*G3_1_1 - 0.0833333333333333*G3_1_2 - 0.0833333333333333*G3_2_1 - 0.166666666666667*G3_2_2;
+          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_11 + 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_11 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_4 - 0.0833333333333333*G5_4_3 - 0.166666666666667*G5_4_4 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_3 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_3 - 0.166666666666667*G7_1_1 - 0.0833333333333333*G7_1_2 - 0.0833333333333333*G7_2_1 - 0.166666666666667*G7_2_2 + 0.0833333333333333*G12_3_6 + 0.166666666666667*G12_3_11 + 0.0833333333333332*G12_4_7 + 0.166666666666667*G12_4_11 - 0.166666666666667*G13_3_3 - 0.0833333333333333*G13_3_4 - 0.0833333333333333*G13_4_3 - 0.166666666666667*G13_4_4 + 0.0833333333333332*G14_1_1 + 0.166666666666667*G14_1_3 + 0.0833333333333333*G14_2_2 + 0.166666666666666*G14_2_3 - 0.166666666666667*G15_1_1 - 0.0833333333333333*G15_1_2 - 0.0833333333333333*G15_2_1 - 0.166666666666667*G15_2_2;
+        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_11 + 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_11 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_4 - 0.0833333333333333*G1_4_3 - 0.166666666666667*G1_4_4 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_3 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_3 - 0.166666666666667*G3_1_1 - 0.0833333333333333*G3_1_2 - 0.0833333333333333*G3_2_1 - 0.166666666666667*G3_2_2 + 0.0833333333333333*G8_3_6 + 0.166666666666667*G8_3_11 + 0.0833333333333332*G8_4_7 + 0.166666666666667*G8_4_11 - 0.166666666666667*G9_3_3 - 0.0833333333333333*G9_3_4 - 0.0833333333333333*G9_4_3 - 0.166666666666667*G9_4_4 + 0.0833333333333332*G10_1_1 + 0.166666666666667*G10_1_3 + 0.0833333333333333*G10_2_2 + 0.166666666666666*G10_2_3 - 0.166666666666667*G11_1_1 - 0.0833333333333333*G11_1_2 - 0.0833333333333333*G11_2_1 - 0.166666666666667*G11_2_2;
           break;
         }
       }
@@ -9446,20 +9615,20 @@ public:
       {
       case 0:
         {
-          A[0] = 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_9 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_9 - 0.166666666666667*G5_4_4 - 0.0833333333333333*G5_4_5 - 0.0833333333333333*G5_5_4 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_4 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_4 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_2 - 0.0833333333333333*G7_2_0 - 0.166666666666667*G7_2_2;
-        A[1] = 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_9 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_9 - 0.166666666666667*G1_4_4 - 0.0833333333333333*G1_4_5 - 0.0833333333333333*G1_5_4 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_4 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_4 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_2 - 0.0833333333333333*G3_2_0 - 0.166666666666667*G3_2_2;
+          A[0] = 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_9 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_9 - 0.166666666666667*G5_4_4 - 0.0833333333333333*G5_4_5 - 0.0833333333333333*G5_5_4 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_4 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_4 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_2 - 0.0833333333333333*G7_2_0 - 0.166666666666667*G7_2_2 + 0.0833333333333332*G12_4_7 + 0.166666666666667*G12_4_9 + 0.0833333333333333*G12_5_8 + 0.166666666666666*G12_5_9 - 0.166666666666667*G13_4_4 - 0.0833333333333333*G13_4_5 - 0.0833333333333333*G13_5_4 - 0.166666666666667*G13_5_5 + 0.0833333333333333*G14_0_0 + 0.166666666666667*G14_0_4 + 0.0833333333333333*G14_2_2 + 0.166666666666666*G14_2_4 - 0.166666666666667*G15_0_0 - 0.0833333333333333*G15_0_2 - 0.0833333333333333*G15_2_0 - 0.166666666666667*G15_2_2;
+        A[1] = 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_9 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_9 - 0.166666666666667*G1_4_4 - 0.0833333333333333*G1_4_5 - 0.0833333333333333*G1_5_4 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_4 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_4 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_2 - 0.0833333333333333*G3_2_0 - 0.166666666666667*G3_2_2 + 0.0833333333333332*G8_4_7 + 0.166666666666667*G8_4_9 + 0.0833333333333333*G8_5_8 + 0.166666666666666*G8_5_9 - 0.166666666666667*G9_4_4 - 0.0833333333333333*G9_4_5 - 0.0833333333333333*G9_5_4 - 0.166666666666667*G9_5_5 + 0.0833333333333333*G10_0_0 + 0.166666666666667*G10_0_4 + 0.0833333333333333*G10_2_2 + 0.166666666666666*G10_2_4 - 0.166666666666667*G11_0_0 - 0.0833333333333333*G11_0_2 - 0.0833333333333333*G11_2_0 - 0.166666666666667*G11_2_2;
           break;
         }
       case 1:
         {
-          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_10 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_10 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_5 - 0.0833333333333333*G5_5_3 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_4 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_4 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_2 - 0.0833333333333333*G7_2_0 - 0.166666666666667*G7_2_2;
-        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_10 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_10 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_5 - 0.0833333333333333*G1_5_3 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_4 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_4 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_2 - 0.0833333333333333*G3_2_0 - 0.166666666666667*G3_2_2;
+          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_10 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_10 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_5 - 0.0833333333333333*G5_5_3 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_4 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_4 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_2 - 0.0833333333333333*G7_2_0 - 0.166666666666667*G7_2_2 + 0.0833333333333333*G12_3_6 + 0.166666666666667*G12_3_10 + 0.0833333333333333*G12_5_8 + 0.166666666666666*G12_5_10 - 0.166666666666667*G13_3_3 - 0.0833333333333333*G13_3_5 - 0.0833333333333333*G13_5_3 - 0.166666666666667*G13_5_5 + 0.0833333333333333*G14_0_0 + 0.166666666666667*G14_0_4 + 0.0833333333333333*G14_2_2 + 0.166666666666666*G14_2_4 - 0.166666666666667*G15_0_0 - 0.0833333333333333*G15_0_2 - 0.0833333333333333*G15_2_0 - 0.166666666666667*G15_2_2;
+        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_10 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_10 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_5 - 0.0833333333333333*G1_5_3 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_4 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_4 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_2 - 0.0833333333333333*G3_2_0 - 0.166666666666667*G3_2_2 + 0.0833333333333333*G8_3_6 + 0.166666666666667*G8_3_10 + 0.0833333333333333*G8_5_8 + 0.166666666666666*G8_5_10 - 0.166666666666667*G9_3_3 - 0.0833333333333333*G9_3_5 - 0.0833333333333333*G9_5_3 - 0.166666666666667*G9_5_5 + 0.0833333333333333*G10_0_0 + 0.166666666666667*G10_0_4 + 0.0833333333333333*G10_2_2 + 0.166666666666666*G10_2_4 - 0.166666666666667*G11_0_0 - 0.0833333333333333*G11_0_2 - 0.0833333333333333*G11_2_0 - 0.166666666666667*G11_2_2;
           break;
         }
       case 2:
         {
-          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_11 + 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_11 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_4 - 0.0833333333333333*G5_4_3 - 0.166666666666667*G5_4_4 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_4 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_4 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_2 - 0.0833333333333333*G7_2_0 - 0.166666666666667*G7_2_2;
-        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_11 + 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_11 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_4 - 0.0833333333333333*G1_4_3 - 0.166666666666667*G1_4_4 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_4 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_4 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_2 - 0.0833333333333333*G3_2_0 - 0.166666666666667*G3_2_2;
+          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_11 + 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_11 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_4 - 0.0833333333333333*G5_4_3 - 0.166666666666667*G5_4_4 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_4 + 0.0833333333333333*G6_2_2 + 0.166666666666666*G6_2_4 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_2 - 0.0833333333333333*G7_2_0 - 0.166666666666667*G7_2_2 + 0.0833333333333333*G12_3_6 + 0.166666666666667*G12_3_11 + 0.0833333333333332*G12_4_7 + 0.166666666666667*G12_4_11 - 0.166666666666667*G13_3_3 - 0.0833333333333333*G13_3_4 - 0.0833333333333333*G13_4_3 - 0.166666666666667*G13_4_4 + 0.0833333333333333*G14_0_0 + 0.166666666666667*G14_0_4 + 0.0833333333333333*G14_2_2 + 0.166666666666666*G14_2_4 - 0.166666666666667*G15_0_0 - 0.0833333333333333*G15_0_2 - 0.0833333333333333*G15_2_0 - 0.166666666666667*G15_2_2;
+        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_11 + 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_11 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_4 - 0.0833333333333333*G1_4_3 - 0.166666666666667*G1_4_4 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_4 + 0.0833333333333333*G2_2_2 + 0.166666666666666*G2_2_4 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_2 - 0.0833333333333333*G3_2_0 - 0.166666666666667*G3_2_2 + 0.0833333333333333*G8_3_6 + 0.166666666666667*G8_3_11 + 0.0833333333333332*G8_4_7 + 0.166666666666667*G8_4_11 - 0.166666666666667*G9_3_3 - 0.0833333333333333*G9_3_4 - 0.0833333333333333*G9_4_3 - 0.166666666666667*G9_4_4 + 0.0833333333333333*G10_0_0 + 0.166666666666667*G10_0_4 + 0.0833333333333333*G10_2_2 + 0.166666666666666*G10_2_4 - 0.166666666666667*G11_0_0 - 0.0833333333333333*G11_0_2 - 0.0833333333333333*G11_2_0 - 0.166666666666667*G11_2_2;
           break;
         }
       }
@@ -9472,20 +9641,20 @@ public:
       {
       case 0:
         {
-          A[0] = 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_9 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_9 - 0.166666666666667*G5_4_4 - 0.0833333333333333*G5_4_5 - 0.0833333333333333*G5_5_4 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_5 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_1 - 0.0833333333333333*G7_1_0 - 0.166666666666667*G7_1_1;
-        A[1] = 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_9 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_9 - 0.166666666666667*G1_4_4 - 0.0833333333333333*G1_4_5 - 0.0833333333333333*G1_5_4 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_5 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_1 - 0.0833333333333333*G3_1_0 - 0.166666666666667*G3_1_1;
+          A[0] = 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_9 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_9 - 0.166666666666667*G5_4_4 - 0.0833333333333333*G5_4_5 - 0.0833333333333333*G5_5_4 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_5 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_1 - 0.0833333333333333*G7_1_0 - 0.166666666666667*G7_1_1 + 0.0833333333333332*G12_4_7 + 0.166666666666667*G12_4_9 + 0.0833333333333333*G12_5_8 + 0.166666666666666*G12_5_9 - 0.166666666666667*G13_4_4 - 0.0833333333333333*G13_4_5 - 0.0833333333333333*G13_5_4 - 0.166666666666667*G13_5_5 + 0.0833333333333333*G14_0_0 + 0.166666666666667*G14_0_5 + 0.0833333333333332*G14_1_1 + 0.166666666666667*G14_1_5 - 0.166666666666667*G15_0_0 - 0.0833333333333333*G15_0_1 - 0.0833333333333333*G15_1_0 - 0.166666666666667*G15_1_1;
+        A[1] = 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_9 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_9 - 0.166666666666667*G1_4_4 - 0.0833333333333333*G1_4_5 - 0.0833333333333333*G1_5_4 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_5 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_1 - 0.0833333333333333*G3_1_0 - 0.166666666666667*G3_1_1 + 0.0833333333333332*G8_4_7 + 0.166666666666667*G8_4_9 + 0.0833333333333333*G8_5_8 + 0.166666666666666*G8_5_9 - 0.166666666666667*G9_4_4 - 0.0833333333333333*G9_4_5 - 0.0833333333333333*G9_5_4 - 0.166666666666667*G9_5_5 + 0.0833333333333333*G10_0_0 + 0.166666666666667*G10_0_5 + 0.0833333333333332*G10_1_1 + 0.166666666666667*G10_1_5 - 0.166666666666667*G11_0_0 - 0.0833333333333333*G11_0_1 - 0.0833333333333333*G11_1_0 - 0.166666666666667*G11_1_1;
           break;
         }
       case 1:
         {
-          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_10 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_10 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_5 - 0.0833333333333333*G5_5_3 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_5 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_1 - 0.0833333333333333*G7_1_0 - 0.166666666666667*G7_1_1;
-        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_10 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_10 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_5 - 0.0833333333333333*G1_5_3 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_5 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_1 - 0.0833333333333333*G3_1_0 - 0.166666666666667*G3_1_1;
+          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_10 + 0.0833333333333333*G4_5_8 + 0.166666666666666*G4_5_10 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_5 - 0.0833333333333333*G5_5_3 - 0.166666666666667*G5_5_5 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_5 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_1 - 0.0833333333333333*G7_1_0 - 0.166666666666667*G7_1_1 + 0.0833333333333333*G12_3_6 + 0.166666666666667*G12_3_10 + 0.0833333333333333*G12_5_8 + 0.166666666666666*G12_5_10 - 0.166666666666667*G13_3_3 - 0.0833333333333333*G13_3_5 - 0.0833333333333333*G13_5_3 - 0.166666666666667*G13_5_5 + 0.0833333333333333*G14_0_0 + 0.166666666666667*G14_0_5 + 0.0833333333333332*G14_1_1 + 0.166666666666667*G14_1_5 - 0.166666666666667*G15_0_0 - 0.0833333333333333*G15_0_1 - 0.0833333333333333*G15_1_0 - 0.166666666666667*G15_1_1;
+        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_10 + 0.0833333333333333*G0_5_8 + 0.166666666666666*G0_5_10 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_5 - 0.0833333333333333*G1_5_3 - 0.166666666666667*G1_5_5 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_5 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_1 - 0.0833333333333333*G3_1_0 - 0.166666666666667*G3_1_1 + 0.0833333333333333*G8_3_6 + 0.166666666666667*G8_3_10 + 0.0833333333333333*G8_5_8 + 0.166666666666666*G8_5_10 - 0.166666666666667*G9_3_3 - 0.0833333333333333*G9_3_5 - 0.0833333333333333*G9_5_3 - 0.166666666666667*G9_5_5 + 0.0833333333333333*G10_0_0 + 0.166666666666667*G10_0_5 + 0.0833333333333332*G10_1_1 + 0.166666666666667*G10_1_5 - 0.166666666666667*G11_0_0 - 0.0833333333333333*G11_0_1 - 0.0833333333333333*G11_1_0 - 0.166666666666667*G11_1_1;
           break;
         }
       case 2:
         {
-          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_11 + 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_11 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_4 - 0.0833333333333333*G5_4_3 - 0.166666666666667*G5_4_4 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_5 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_1 - 0.0833333333333333*G7_1_0 - 0.166666666666667*G7_1_1;
-        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_11 + 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_11 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_4 - 0.0833333333333333*G1_4_3 - 0.166666666666667*G1_4_4 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_5 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_1 - 0.0833333333333333*G3_1_0 - 0.166666666666667*G3_1_1;
+          A[0] = 0.0833333333333333*G4_3_6 + 0.166666666666667*G4_3_11 + 0.0833333333333332*G4_4_7 + 0.166666666666667*G4_4_11 - 0.166666666666667*G5_3_3 - 0.0833333333333333*G5_3_4 - 0.0833333333333333*G5_4_3 - 0.166666666666667*G5_4_4 + 0.0833333333333333*G6_0_0 + 0.166666666666667*G6_0_5 + 0.0833333333333332*G6_1_1 + 0.166666666666667*G6_1_5 - 0.166666666666667*G7_0_0 - 0.0833333333333333*G7_0_1 - 0.0833333333333333*G7_1_0 - 0.166666666666667*G7_1_1 + 0.0833333333333333*G12_3_6 + 0.166666666666667*G12_3_11 + 0.0833333333333332*G12_4_7 + 0.166666666666667*G12_4_11 - 0.166666666666667*G13_3_3 - 0.0833333333333333*G13_3_4 - 0.0833333333333333*G13_4_3 - 0.166666666666667*G13_4_4 + 0.0833333333333333*G14_0_0 + 0.166666666666667*G14_0_5 + 0.0833333333333332*G14_1_1 + 0.166666666666667*G14_1_5 - 0.166666666666667*G15_0_0 - 0.0833333333333333*G15_0_1 - 0.0833333333333333*G15_1_0 - 0.166666666666667*G15_1_1;
+        A[1] = 0.0833333333333333*G0_3_6 + 0.166666666666667*G0_3_11 + 0.0833333333333332*G0_4_7 + 0.166666666666667*G0_4_11 - 0.166666666666667*G1_3_3 - 0.0833333333333333*G1_3_4 - 0.0833333333333333*G1_4_3 - 0.166666666666667*G1_4_4 + 0.0833333333333333*G2_0_0 + 0.166666666666667*G2_0_5 + 0.0833333333333332*G2_1_1 + 0.166666666666667*G2_1_5 - 0.166666666666667*G3_0_0 - 0.0833333333333333*G3_0_1 - 0.0833333333333333*G3_1_0 - 0.166666666666667*G3_1_1 + 0.0833333333333333*G8_3_6 + 0.166666666666667*G8_3_11 + 0.0833333333333332*G8_4_7 + 0.166666666666667*G8_4_11 - 0.166666666666667*G9_3_3 - 0.0833333333333333*G9_3_4 - 0.0833333333333333*G9_4_3 - 0.166666666666667*G9_4_4 + 0.0833333333333333*G10_0_0 + 0.166666666666667*G10_0_5 + 0.0833333333333332*G10_1_1 + 0.166666666666667*G10_1_5 - 0.166666666666667*G11_0_0 - 0.0833333333333333*G11_0_1 - 0.0833333333333333*G11_1_0 - 0.166666666666667*G11_1_1;
           break;
         }
       }
@@ -9514,18 +9683,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_8_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_8_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_8_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_8_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_8_0()
+  virtual ~adaptivepoisson_cell_integral_8_otherwise()
   {
     // Do nothing
   }
@@ -9536,9 +9705,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      11
-    // Number of operations (multiply-add pairs) for geometry tensor:    8
-    // Number of operations (multiply-add pairs) for tensor contraction: 11
-    // Total number of operations (multiply-add pairs):                  30
+    // Number of operations (multiply-add pairs) for geometry tensor:    16
+    // Number of operations (multiply-add pairs) for tensor contraction: 27
+    // Total number of operations (multiply-add pairs):                  54
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9566,17 +9735,21 @@ public:
     const double G0_0_1 = det*(K_00*K_10 + K_01*K_11);
     const double G0_1_0 = det*(K_10*K_00 + K_11*K_01);
     const double G0_1_1 = det*(K_10*K_10 + K_11*K_11);
+    const double G1_0_0 = det*(K_00*K_00 + K_01*K_01);
+    const double G1_0_1 = det*(K_00*K_10 + K_01*K_11);
+    const double G1_1_0 = det*(K_10*K_00 + K_11*K_01);
+    const double G1_1_1 = det*(K_10*K_10 + K_11*K_11);
     
     // Compute element tensor
-    A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1;
-    A[1] = -0.5*G0_0_0 - 0.5*G0_1_0;
-    A[2] = -0.5*G0_0_1 - 0.5*G0_1_1;
-    A[3] = -0.5*G0_0_0 - 0.5*G0_0_1;
-    A[4] = 0.5*G0_0_0;
-    A[5] = 0.5*G0_0_1;
-    A[6] = -0.5*G0_1_0 - 0.5*G0_1_1;
-    A[7] = 0.5*G0_1_0;
-    A[8] = 0.5*G0_1_1;
+    A[0] = 0.5*G0_0_0 + 0.5*G0_0_1 + 0.5*G0_1_0 + 0.5*G0_1_1 + 0.5*G1_0_0 + 0.5*G1_0_1 + 0.5*G1_1_0 + 0.5*G1_1_1;
+    A[1] = -0.5*G0_0_0 - 0.5*G0_1_0 - 0.5*G1_0_0 - 0.5*G1_1_0;
+    A[2] = -0.5*G0_0_1 - 0.5*G0_1_1 - 0.5*G1_0_1 - 0.5*G1_1_1;
+    A[3] = -0.5*G0_0_0 - 0.5*G0_0_1 - 0.5*G1_0_0 - 0.5*G1_0_1;
+    A[4] = 0.5*G0_0_0 + 0.5*G1_0_0;
+    A[5] = 0.5*G0_0_1 + 0.5*G1_0_1;
+    A[6] = -0.5*G0_1_0 - 0.5*G0_1_1 - 0.5*G1_1_0 - 0.5*G1_1_1;
+    A[7] = 0.5*G0_1_0 + 0.5*G1_1_0;
+    A[8] = 0.5*G0_1_1 + 0.5*G1_1_1;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -9597,18 +9770,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_9_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_9_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_9_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_9_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_9_0()
+  virtual ~adaptivepoisson_cell_integral_9_otherwise()
   {
     // Do nothing
   }
@@ -9619,9 +9792,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    3
-    // Number of operations (multiply-add pairs) for tensor contraction: 7
-    // Total number of operations (multiply-add pairs):                  19
+    // Number of operations (multiply-add pairs) for geometry tensor:    6
+    // Number of operations (multiply-add pairs) for tensor contraction: 16
+    // Total number of operations (multiply-add pairs):                  31
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9644,11 +9817,14 @@ public:
     const double G0_0 = det*w[0][0]*(1.0);
     const double G0_1 = det*w[0][1]*(1.0);
     const double G0_2 = det*w[0][2]*(1.0);
+    const double G1_0 = det*w[0][0]*(1.0);
+    const double G1_1 = det*w[0][1]*(1.0);
+    const double G1_2 = det*w[0][2]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.0833333333333334*G0_0 + 0.0416666666666667*G0_1 + 0.0416666666666667*G0_2;
-    A[1] = 0.0416666666666667*G0_0 + 0.0833333333333333*G0_1 + 0.0416666666666666*G0_2;
-    A[2] = 0.0416666666666667*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333333*G0_2;
+    A[0] = 0.0833333333333334*G0_0 + 0.0416666666666667*G0_1 + 0.0416666666666667*G0_2 + 0.0833333333333334*G1_0 + 0.0416666666666667*G1_1 + 0.0416666666666667*G1_2;
+    A[1] = 0.0416666666666667*G0_0 + 0.0833333333333333*G0_1 + 0.0416666666666666*G0_2 + 0.0416666666666667*G1_0 + 0.0833333333333333*G1_1 + 0.0416666666666666*G1_2;
+    A[2] = 0.0416666666666667*G0_0 + 0.0416666666666666*G0_1 + 0.0833333333333333*G0_2 + 0.0416666666666667*G1_0 + 0.0416666666666666*G1_1 + 0.0833333333333333*G1_2;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -9669,18 +9845,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivepoisson_exterior_facet_integral_9_0: public ufc::exterior_facet_integral
+class adaptivepoisson_exterior_facet_integral_9_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_exterior_facet_integral_9_0() : ufc::exterior_facet_integral()
+  adaptivepoisson_exterior_facet_integral_9_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_exterior_facet_integral_9_0()
+  virtual ~adaptivepoisson_exterior_facet_integral_9_otherwise()
   {
     // Do nothing
   }
@@ -9692,9 +9868,9 @@ public:
                                std::size_t facet) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    3
-    // Number of operations (multiply-add pairs) for tensor contraction: 9
-    // Total number of operations (multiply-add pairs):                  21
+    // Number of operations (multiply-add pairs) for geometry tensor:    6
+    // Number of operations (multiply-add pairs) for tensor contraction: 21
+    // Total number of operations (multiply-add pairs):                  36
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9719,6 +9895,9 @@ public:
     const double G0_0 = det*w[1][0]*(1.0);
     const double G0_1 = det*w[1][1]*(1.0);
     const double G0_2 = det*w[1][2]*(1.0);
+    const double G1_0 = det*w[1][0]*(1.0);
+    const double G1_1 = det*w[1][1]*(1.0);
+    const double G1_2 = det*w[1][2]*(1.0);
     
     // Compute element tensor
     switch (facet)
@@ -9726,21 +9905,21 @@ public:
     case 0:
       {
         A[0] = 0.0;
-      A[1] = 0.333333333333333*G0_1 + 0.166666666666667*G0_2;
-      A[2] = 0.166666666666667*G0_1 + 0.333333333333333*G0_2;
+      A[1] = 0.333333333333333*G0_1 + 0.166666666666667*G0_2 + 0.333333333333333*G1_1 + 0.166666666666667*G1_2;
+      A[2] = 0.166666666666667*G0_1 + 0.333333333333333*G0_2 + 0.166666666666667*G1_1 + 0.333333333333333*G1_2;
         break;
       }
     case 1:
       {
-        A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_2;
+        A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_2 + 0.333333333333333*G1_0 + 0.166666666666667*G1_2;
       A[1] = 0.0;
-      A[2] = 0.166666666666667*G0_0 + 0.333333333333333*G0_2;
+      A[2] = 0.166666666666667*G0_0 + 0.333333333333333*G0_2 + 0.166666666666667*G1_0 + 0.333333333333333*G1_2;
         break;
       }
     case 2:
       {
-        A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1;
-      A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1;
+        A[0] = 0.333333333333333*G0_0 + 0.166666666666667*G0_1 + 0.333333333333333*G1_0 + 0.166666666666667*G1_1;
+      A[1] = 0.166666666666667*G0_0 + 0.333333333333333*G0_1 + 0.166666666666667*G1_0 + 0.333333333333333*G1_1;
       A[2] = 0.0;
         break;
       }
@@ -9766,18 +9945,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivepoisson_cell_integral_10_0: public ufc::cell_integral
+class adaptivepoisson_cell_integral_10_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivepoisson_cell_integral_10_0() : ufc::cell_integral()
+  adaptivepoisson_cell_integral_10_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivepoisson_cell_integral_10_0()
+  virtual ~adaptivepoisson_cell_integral_10_otherwise()
   {
     // Do nothing
   }
@@ -9788,9 +9967,9 @@ public:
                                const ufc::cell& c) const
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      9
-    // Number of operations (multiply-add pairs) for geometry tensor:    3
-    // Number of operations (multiply-add pairs) for tensor contraction: 2
-    // Total number of operations (multiply-add pairs):                  14
+    // Number of operations (multiply-add pairs) for geometry tensor:    6
+    // Number of operations (multiply-add pairs) for tensor contraction: 5
+    // Total number of operations (multiply-add pairs):                  20
     
     // Extract vertex coordinates
     const double * const * x = c.coordinates;
@@ -9813,9 +9992,12 @@ public:
     const double G0_0 = det*w[0][0]*(1.0);
     const double G0_1 = det*w[0][1]*(1.0);
     const double G0_2 = det*w[0][2]*(1.0);
+    const double G1_0 = det*w[0][0]*(1.0);
+    const double G1_1 = det*w[0][1]*(1.0);
+    const double G1_2 = det*w[0][2]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.166666666666667*G0_0 + 0.166666666666667*G0_1 + 0.166666666666667*G0_2;
+    A[0] = 0.166666666666667*G0_0 + 0.166666666666667*G0_1 + 0.166666666666667*G0_2 + 0.166666666666667*G1_0 + 0.166666666666667*G1_1 + 0.166666666666667*G1_2;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -9866,7 +10048,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "3f727db64464c2d0150a26c7a2fa96b3b1670cb3538a37b7e6c890226be9e90b2eb42ffff8f59f469903afdc7f760212bd85086f92358613c43593f09d3de135";
+    return "0cce61f8f8b9aca04caa3c0c6f6257eeffd9e491c4ef36206bbb8fe73c89d2b13932cc41932bd0de6bdb14e98c7ea4855eda6d3a29dfa9a080dff34e5b508cad";
   }
 
   /// Return the rank of the global tensor (r)
@@ -9884,7 +10066,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -9960,15 +10142,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -9987,7 +10160,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_0_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -10038,7 +10211,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "eb7b3c8f0c1b70dadc6b7b6011c9dbee85c4363351ac32845fca207b137a1a9ac98f1eca36ff224c2f5e8f6c6eebe0940168778341b204d148ec6ef25f36c973";
+    return "9bcf4023c1056624071c20b2525fa54e170fdcc6d97bcd52ab23467b0ec71c32611c0529dd5b27a4bfab0480fb7f2767d247664f20de3537927d49926b412076";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10056,7 +10229,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -10122,15 +10295,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -10149,7 +10313,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_1_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -10200,7 +10364,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "d45a75a86ae7331b10eebdc6da8c26da5c8c2d436c56e3563e2f5382a898a1c459da7f383f43d06f240082ae8311860aa4c0922051ddea0c4dd9a4f718907aec";
+    return "131d37d3124204ec439b9521b1f56f5109eccfe3c54d5be10b2c023d6794a8e0f35b3005cc453792cf5bc248bda92b862d724ba3c0f2949cb45e1632cf07c8dd";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10218,13 +10382,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -10314,30 +10478,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_2_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_exterior_facet_integral_2_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -10350,13 +10496,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_2_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_exterior_facet_integral_2_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -10401,7 +10547,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "823f253d3bd2b2f77bafc9b9e3c06acd2f78e5cf8be1297b5367172399c54435f5997f8ef7cd9db0c779038fd1ad803c97d81c49ccbb6a6ae2c13c032d3f2af2";
+    return "d0213538f3a96f74a8a487c0060b5c9c3914784e3e90b975289175429f507afc38dd2bdc71382a0826643f7e0efc4e03fe289d1824a70d051bb6ddb0e0a04bad";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10419,7 +10565,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -10505,15 +10651,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_3_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -10532,7 +10669,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_3_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -10583,7 +10720,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b90a77135231a41629e2d1d5526e32e48d93dfec5618ac7e0713386934f4b4767d799861980e43ca8b3452b9fba3da0b9756a54d07454f79a298543c823b5373";
+    return "2c1ae52736ede6369269e9a3095b7a61d4f656f8d6db8156a086b50b1080dbf7176b97b035bbe0c26f8c033e506b20da9932f5d12da1f697e17bd2b74e7defd1";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10601,13 +10738,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -10707,30 +10844,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_4_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_exterior_facet_integral_4_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -10743,13 +10862,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_4_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_exterior_facet_integral_4_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -10794,7 +10913,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "9b525cda4c132e28db74efed4539edd473d994a05aec6167ae44d821a8c949d6e7fb1ae3fb6d43aabcf13c8d914829fccfcacf7bd43a30a28ff692712c93f5a3";
+    return "60303c41d000b5edebbed3fd48d73a9cd964f19873688a964bbce9d1b93c71f8e16c28195676baaa9511d11917b69a370d01d3db0079537a849f96320504cc9d";
   }
 
   /// Return the rank of the global tensor (r)
@@ -10818,13 +10937,13 @@ public:
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return whether the form has any cell integrals
@@ -10904,30 +11023,12 @@ public:
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_exterior_facet_integral_5_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_interior_facet_integral_5_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -10940,13 +11041,13 @@ public:
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_exterior_facet_integral_5_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_interior_facet_integral_5_otherwise();
   }
 
 };
@@ -10985,7 +11086,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "c5f37de5c63148580b77a0df66aeff1ab86b35c491369a24aec7f0998657f04f400c07c4300f61800fb912abe996b438fcdc5793043da4312e4e2403559a570e";
+    return "4409f44ce3df60177bfc6d1ada8199cd20e653ddd254305fbb29787093e11c245b4962265df5432ec02a5d0e0a4782f08d4729f7ad856f16b7f4956cec625234";
   }
 
   /// Return the rank of the global tensor (r)
@@ -11003,13 +11104,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -11119,30 +11220,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_6_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_exterior_facet_integral_6_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -11155,13 +11238,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_6_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_exterior_facet_integral_6_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -11206,7 +11289,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "9024158a7a8b17b49c29fdf8b704bb53069a7e72484c9ff4b1b55056edcacf5c15e96706d87dc5e434be540f6e1e473b5de3993e8b59ae7c13d678ced9485007";
+    return "a7301b714832936873ea7933acb88924a6835de939cd7df1e0f8d3715bfff7e1bd08c8f01cf9820f627c8bff2d743fdf6d6c7fdc6db90ad3832d263e84978f4c";
   }
 
   /// Return the rank of the global tensor (r)
@@ -11224,19 +11307,19 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return whether the form has any cell integrals
@@ -11330,64 +11413,37 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_7_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_exterior_facet_integral_7_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_interior_facet_integral_7_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_7_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_exterior_facet_integral_7_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_interior_facet_integral_7_otherwise();
   }
 
 };
@@ -11426,7 +11482,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "3f727db64464c2d0150a26c7a2fa96b3b1670cb3538a37b7e6c890226be9e90b2eb42ffff8f59f469903afdc7f760212bd85086f92358613c43593f09d3de135";
+    return "0cce61f8f8b9aca04caa3c0c6f6257eeffd9e491c4ef36206bbb8fe73c89d2b13932cc41932bd0de6bdb14e98c7ea4855eda6d3a29dfa9a080dff34e5b508cad";
   }
 
   /// Return the rank of the global tensor (r)
@@ -11444,7 +11500,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -11520,15 +11576,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_8_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -11547,7 +11594,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_8_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -11598,7 +11645,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "bb3abb2f39bdbcbedc9a9a85d4d59ad182300b5dcb10110bbcb7c422b9946db78fc4ad32b149e9f97ce4be26e24f9858ba2f21921c82dc9d407d2d74c6beb59f";
+    return "b06adb0bed73f90b21a1726776c18f5e75dda0c070ed8ff9e2586e48c03cba92e71f043ea3d635cb0ef25c74c4c160bd1ab17f7ec3f984b80cca9cbef76ba93b";
   }
 
   /// Return the rank of the global tensor (r)
@@ -11616,13 +11663,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -11702,30 +11749,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_9_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_exterior_facet_integral_9_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -11738,13 +11767,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_9_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivepoisson_exterior_facet_integral_9_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -11789,7 +11818,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "96d9fd518a0f2e0fd43e57058bc8288beaed4b7d6d7f97ff2174afd511d2ed0e5db3acb66d43bc73f0f5c5b6b5102de6ab9651c36211c1f2d65ed574ae0d0fa6";
+    return "db88a377d827a3913acb78a778b3e93c9e3e367965f16d15e419fe5540ec952ecd644ebad817ae4e53cc86c6b757c7388591d0c4e6626870072c4a57969a0557";
   }
 
   /// Return the rank of the global tensor (r)
@@ -11807,7 +11836,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -11873,15 +11902,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivepoisson_cell_integral_10_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -11900,7 +11920,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivepoisson_cell_integral_10_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
