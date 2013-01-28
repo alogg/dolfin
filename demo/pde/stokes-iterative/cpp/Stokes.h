@@ -95,71 +95,66 @@ public:
     return 1;
   }
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
+                              const double* x,
+                              const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
-    // Reset values.
+    // Reset values
     *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -181,11 +176,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -195,17 +190,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -227,11 +222,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -241,17 +236,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -273,11 +268,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -287,17 +282,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -319,11 +314,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -333,17 +328,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -365,11 +360,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -379,17 +374,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -411,11 +406,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -425,17 +420,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -457,11 +452,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -471,17 +466,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -503,11 +498,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -517,17 +512,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -549,11 +544,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -563,17 +558,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -595,11 +590,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -610,77 +605,63 @@ public:
     
   }
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
+                                  const double* x,
+                                  const double* vertex_coordinates) const
   {
     // Helper variable to hold values of a single dof.
     double dof_values = 0.0;
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 10; r++)
     {
-      evaluate_basis(r, &dof_values, coordinates, c);
+      evaluate_basis(r, &dof_values, x, vertex_coordinates);
       values[r] = dof_values;
     }// end loop over 'r'
   }
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
+                                          const double* x,
+                                          const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
     // Compute number of derivatives.
@@ -718,7 +699,7 @@ public:
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    const double Jinv[3][3] = {{K[0], K[1], K[2]}, {K[3], K[4], K[5]}, {K[6], K[7], K[8]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -752,17 +733,17 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -784,7 +765,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -970,17 +951,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1002,7 +983,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -1188,17 +1169,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1220,7 +1201,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -1406,17 +1387,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1438,7 +1419,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -1624,17 +1605,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1656,7 +1637,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -1842,17 +1823,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1874,7 +1855,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -2060,17 +2041,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2092,7 +2073,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -2278,17 +2259,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2310,7 +2291,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -2496,17 +2477,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2528,7 +2509,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -2714,17 +2695,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2746,7 +2727,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -2933,11 +2914,11 @@ public:
     
   }
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
+                                              const double* x,
+                                              const double* vertex_coordinates) const
   {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -2956,7 +2937,7 @@ public:
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 10; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates);
       for (unsigned int s = 0; s < num_derivatives; s++)
       {
         values[r*num_derivatives + s] = dof_values[s];
@@ -2970,102 +2951,102 @@ public:
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 3:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 6:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 7:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 8:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 9:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -3078,62 +3059,62 @@ public:
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[6] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[7] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[8] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[9] = vals[0];
   }
@@ -3255,54 +3236,49 @@ public:
     return 0;
   }
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
+                              const double* x,
+                              const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
-    // Reset values.
+    // Reset values
     values[0] = 0.0;
     values[1] = 0.0;
     values[2] = 0.0;
@@ -3311,17 +3287,17 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3343,11 +3319,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3357,17 +3333,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3389,11 +3365,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3403,17 +3379,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3435,11 +3411,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3449,17 +3425,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3481,11 +3457,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3495,17 +3471,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3527,11 +3503,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3541,17 +3517,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3573,11 +3549,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3587,17 +3563,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3619,11 +3595,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3633,17 +3609,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3665,11 +3641,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3679,17 +3655,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3711,11 +3687,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3725,17 +3701,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3757,11 +3733,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -3771,17 +3747,17 @@ public:
     case 10:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3803,11 +3779,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -3817,17 +3793,17 @@ public:
     case 11:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3849,11 +3825,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -3863,17 +3839,17 @@ public:
     case 12:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3895,11 +3871,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -3909,17 +3885,17 @@ public:
     case 13:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3941,11 +3917,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -3955,17 +3931,17 @@ public:
     case 14:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3987,11 +3963,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -4001,17 +3977,17 @@ public:
     case 15:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4033,11 +4009,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -4047,17 +4023,17 @@ public:
     case 16:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4079,11 +4055,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -4093,17 +4069,17 @@ public:
     case 17:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4125,11 +4101,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -4139,17 +4115,17 @@ public:
     case 18:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4171,11 +4147,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -4185,17 +4161,17 @@ public:
     case 19:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4217,11 +4193,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -4231,17 +4207,17 @@ public:
     case 20:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4263,11 +4239,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4277,17 +4253,17 @@ public:
     case 21:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4309,11 +4285,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4323,17 +4299,17 @@ public:
     case 22:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4355,11 +4331,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4369,17 +4345,17 @@ public:
     case 23:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4401,11 +4377,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4415,17 +4391,17 @@ public:
     case 24:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4447,11 +4423,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4461,17 +4437,17 @@ public:
     case 25:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4493,11 +4469,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4507,17 +4483,17 @@ public:
     case 26:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4539,11 +4515,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4553,17 +4529,17 @@ public:
     case 27:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4585,11 +4561,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4599,17 +4575,17 @@ public:
     case 28:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4631,11 +4607,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4645,17 +4621,17 @@ public:
     case 29:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4677,11 +4653,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -4692,18 +4668,18 @@ public:
     
   }
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
+                                  const double* x,
+                                  const double* vertex_coordinates) const
   {
     // Helper variable to hold values of a single dof.
     double dof_values[3] = {0.0, 0.0, 0.0};
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 30; r++)
     {
-      evaluate_basis(r, dof_values, coordinates, c);
+      evaluate_basis(r, dof_values, x, vertex_coordinates);
       for (unsigned int s = 0; s < 3; s++)
       {
         values[r*3 + s] = dof_values[s];
@@ -4711,61 +4687,47 @@ public:
     }// end loop over 'r'
   }
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
+                                          const double* x,
+                                          const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
     // Compute number of derivatives.
@@ -4803,7 +4765,7 @@ public:
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    const double Jinv[3][3] = {{K[0], K[1], K[2]}, {K[3], K[4], K[5]}, {K[6], K[7], K[8]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -4837,17 +4799,17 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4869,7 +4831,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -5055,17 +5017,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5087,7 +5049,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -5273,17 +5235,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5305,7 +5267,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -5491,17 +5453,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5523,7 +5485,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -5709,17 +5671,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5741,7 +5703,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -5927,17 +5889,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5959,7 +5921,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -6145,17 +6107,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6177,7 +6139,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -6363,17 +6325,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6395,7 +6357,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -6581,17 +6543,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6613,7 +6575,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -6799,17 +6761,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6831,7 +6793,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -7017,17 +6979,17 @@ public:
     case 10:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -7049,7 +7011,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -7235,17 +7197,17 @@ public:
     case 11:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -7267,7 +7229,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -7453,17 +7415,17 @@ public:
     case 12:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -7485,7 +7447,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -7671,17 +7633,17 @@ public:
     case 13:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -7703,7 +7665,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -7889,17 +7851,17 @@ public:
     case 14:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -7921,7 +7883,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -8107,17 +8069,17 @@ public:
     case 15:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -8139,7 +8101,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -8325,17 +8287,17 @@ public:
     case 16:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -8357,7 +8319,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -8543,17 +8505,17 @@ public:
     case 17:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -8575,7 +8537,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -8761,17 +8723,17 @@ public:
     case 18:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -8793,7 +8755,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -8979,17 +8941,17 @@ public:
     case 19:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -9011,7 +8973,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -9197,17 +9159,17 @@ public:
     case 20:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -9229,7 +9191,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -9415,17 +9377,17 @@ public:
     case 21:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -9447,7 +9409,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -9633,17 +9595,17 @@ public:
     case 22:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -9665,7 +9627,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -9851,17 +9813,17 @@ public:
     case 23:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -9883,7 +9845,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -10069,17 +10031,17 @@ public:
     case 24:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -10101,7 +10063,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -10287,17 +10249,17 @@ public:
     case 25:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -10319,7 +10281,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -10505,17 +10467,17 @@ public:
     case 26:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -10537,7 +10499,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -10723,17 +10685,17 @@ public:
     case 27:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -10755,7 +10717,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -10941,17 +10903,17 @@ public:
     case 28:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -10973,7 +10935,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -11159,17 +11121,17 @@ public:
     case 29:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -11191,7 +11153,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -11378,11 +11340,11 @@ public:
     
   }
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
+                                              const double* x,
+                                              const double* vertex_coordinates) const
   {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -11401,7 +11363,7 @@ public:
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 30; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates);
       for (unsigned int s = 0; s < 3*num_derivatives; s++)
       {
         values[r*3*num_derivatives + s] = dof_values[s];
@@ -11415,282 +11377,282 @@ public:
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[3];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 3:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 6:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 7:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 8:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 9:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 10:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 11:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 12:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 13:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 14:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 15:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 16:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 17:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 18:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 19:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 20:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 21:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 22:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 23:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 24:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 25:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 26:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 27:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 28:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 29:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
@@ -11703,162 +11665,162 @@ public:
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[3];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[6] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[7] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[8] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[9] = vals[0];
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[10] = vals[1];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[11] = vals[1];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[12] = vals[1];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[13] = vals[1];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[14] = vals[1];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[15] = vals[1];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[16] = vals[1];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[17] = vals[1];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[18] = vals[1];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[19] = vals[1];
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[20] = vals[2];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[21] = vals[2];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[22] = vals[2];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[23] = vals[2];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[24] = vals[2];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[25] = vals[2];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[26] = vals[2];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[27] = vals[2];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[28] = vals[2];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[29] = vals[2];
   }
@@ -12000,67 +11962,62 @@ public:
     return 1;
   }
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
+                              const double* x,
+                              const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
-    // Reset values.
+    // Reset values
     *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12070,11 +12027,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -12084,13 +12041,13 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12100,11 +12057,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -12114,13 +12071,13 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12130,11 +12087,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -12144,13 +12101,13 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12160,11 +12117,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -12175,77 +12132,63 @@ public:
     
   }
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
+                                  const double* x,
+                                  const double* vertex_coordinates) const
   {
     // Helper variable to hold values of a single dof.
     double dof_values = 0.0;
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 4; r++)
     {
-      evaluate_basis(r, &dof_values, coordinates, c);
+      evaluate_basis(r, &dof_values, x, vertex_coordinates);
       values[r] = dof_values;
     }// end loop over 'r'
   }
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
+                                          const double* x,
+                                          const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
     // Compute number of derivatives.
@@ -12283,7 +12226,7 @@ public:
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    const double Jinv[3][3] = {{K[0], K[1], K[2]}, {K[3], K[4], K[5]}, {K[6], K[7], K[8]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -12317,13 +12260,13 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12333,7 +12276,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993};
       
@@ -12489,13 +12432,13 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12505,7 +12448,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993};
       
@@ -12661,13 +12604,13 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12677,7 +12620,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
@@ -12833,13 +12776,13 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -12849,7 +12792,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
@@ -13006,11 +12949,11 @@ public:
     
   }
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
+                                              const double* x,
+                                              const double* vertex_coordinates) const
   {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -13029,7 +12972,7 @@ public:
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 4; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates);
       for (unsigned int s = 0; s < num_derivatives; s++)
       {
         values[r*num_derivatives + s] = dof_values[s];
@@ -13043,48 +12986,48 @@ public:
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 3:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -13097,32 +13040,32 @@ public:
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
   }
@@ -13244,54 +13187,49 @@ public:
     return 0;
   }
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
+                              const double* x,
+                              const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
-    // Reset values.
+    // Reset values
     values[0] = 0.0;
     values[1] = 0.0;
     values[2] = 0.0;
@@ -13301,17 +13239,17 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13333,11 +13271,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13347,17 +13285,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13379,11 +13317,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13393,17 +13331,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13425,11 +13363,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13439,17 +13377,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13471,11 +13409,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13485,17 +13423,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13517,11 +13455,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13531,17 +13469,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13563,11 +13501,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13577,17 +13515,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13609,11 +13547,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13623,17 +13561,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13655,11 +13593,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13669,17 +13607,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13701,11 +13639,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13715,17 +13653,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13747,11 +13685,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -13761,17 +13699,17 @@ public:
     case 10:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13793,11 +13731,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -13807,17 +13745,17 @@ public:
     case 11:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13839,11 +13777,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -13853,17 +13791,17 @@ public:
     case 12:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13885,11 +13823,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -13899,17 +13837,17 @@ public:
     case 13:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13931,11 +13869,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -13945,17 +13883,17 @@ public:
     case 14:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -13977,11 +13915,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -13991,17 +13929,17 @@ public:
     case 15:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14023,11 +13961,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -14037,17 +13975,17 @@ public:
     case 16:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14069,11 +14007,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -14083,17 +14021,17 @@ public:
     case 17:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14115,11 +14053,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -14129,17 +14067,17 @@ public:
     case 18:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14161,11 +14099,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -14175,17 +14113,17 @@ public:
     case 19:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14207,11 +14145,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -14221,17 +14159,17 @@ public:
     case 20:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14253,11 +14191,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14267,17 +14205,17 @@ public:
     case 21:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14299,11 +14237,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14313,17 +14251,17 @@ public:
     case 22:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14345,11 +14283,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14359,17 +14297,17 @@ public:
     case 23:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14391,11 +14329,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14405,17 +14343,17 @@ public:
     case 24:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14437,11 +14375,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14451,17 +14389,17 @@ public:
     case 25:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14483,11 +14421,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14497,17 +14435,17 @@ public:
     case 26:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14529,11 +14467,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14543,17 +14481,17 @@ public:
     case 27:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14575,11 +14513,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14589,17 +14527,17 @@ public:
     case 28:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14621,11 +14559,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14635,17 +14573,17 @@ public:
     case 29:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14667,11 +14605,11 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 10; r++)
       {
         values[2] += coefficients0[r]*basisvalues[r];
@@ -14681,13 +14619,13 @@ public:
     case 30:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -14697,11 +14635,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         values[3] += coefficients0[r]*basisvalues[r];
@@ -14711,13 +14649,13 @@ public:
     case 31:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -14727,11 +14665,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         values[3] += coefficients0[r]*basisvalues[r];
@@ -14741,13 +14679,13 @@ public:
     case 32:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -14757,11 +14695,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         values[3] += coefficients0[r]*basisvalues[r];
@@ -14771,13 +14709,13 @@ public:
     case 33:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -14787,11 +14725,11 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 4; r++)
       {
         values[3] += coefficients0[r]*basisvalues[r];
@@ -14802,18 +14740,18 @@ public:
     
   }
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
+                                  const double* x,
+                                  const double* vertex_coordinates) const
   {
     // Helper variable to hold values of a single dof.
     double dof_values[4] = {0.0, 0.0, 0.0, 0.0};
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 34; r++)
     {
-      evaluate_basis(r, dof_values, coordinates, c);
+      evaluate_basis(r, dof_values, x, vertex_coordinates);
       for (unsigned int s = 0; s < 4; s++)
       {
         values[r*4 + s] = dof_values[s];
@@ -14821,61 +14759,47 @@ public:
     }// end loop over 'r'
   }
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
+                                          const double* x,
+                                          const double* vertex_coordinates) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
+                      vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
+                      vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
+                      vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
     
     
     // Compute number of derivatives.
@@ -14913,7 +14837,7 @@ public:
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    const double Jinv[3][3] = {{K[0], K[1], K[2]}, {K[3], K[4], K[5]}, {K[6], K[7], K[8]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -14947,17 +14871,17 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -14979,7 +14903,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -15165,17 +15089,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -15197,7 +15121,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -15383,17 +15307,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -15415,7 +15339,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -15601,17 +15525,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -15633,7 +15557,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -15819,17 +15743,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -15851,7 +15775,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -16037,17 +15961,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -16069,7 +15993,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -16255,17 +16179,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -16287,7 +16211,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -16473,17 +16397,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -16505,7 +16429,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -16691,17 +16615,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -16723,7 +16647,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -16909,17 +16833,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -16941,7 +16865,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -17127,17 +17051,17 @@ public:
     case 10:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -17159,7 +17083,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -17345,17 +17269,17 @@ public:
     case 11:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -17377,7 +17301,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -17563,17 +17487,17 @@ public:
     case 12:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -17595,7 +17519,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -17781,17 +17705,17 @@ public:
     case 13:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -17813,7 +17737,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -17999,17 +17923,17 @@ public:
     case 14:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -18031,7 +17955,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -18217,17 +18141,17 @@ public:
     case 15:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -18249,7 +18173,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -18435,17 +18359,17 @@ public:
     case 16:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -18467,7 +18391,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -18653,17 +18577,17 @@ public:
     case 17:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -18685,7 +18609,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -18871,17 +18795,17 @@ public:
     case 18:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -18903,7 +18827,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -19089,17 +19013,17 @@ public:
     case 19:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -19121,7 +19045,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -19307,17 +19231,17 @@ public:
     case 20:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -19339,7 +19263,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, -0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, 0.050395263067897, 0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -19525,17 +19449,17 @@ public:
     case 21:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -19557,7 +19481,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189625, 0.0608580619450185, -0.0351364184463153, -0.0248451997499977, 0.0650600048632355, -0.050395263067897, -0.0411475599898912, 0.0290957186981323, 0.0237565548366599, 0.0167984210226323};
       
@@ -19743,17 +19667,17 @@ public:
     case 22:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -19775,7 +19699,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0702728368926306, -0.0248451997499977, 0.0, 0.0, 0.0, 0.0872871560943969, -0.0475131096733199, 0.0167984210226323};
       
@@ -19961,17 +19885,17 @@ public:
     case 23:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -19993,7 +19917,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {-0.0577350269189626, 0.0, 0.0, 0.074535599249993, 0.0, 0.0, 0.0, 0.0, 0.0, 0.100790526135794};
       
@@ -20179,17 +20103,17 @@ public:
     case 24:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -20211,7 +20135,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, 0.140545673785261, 0.0993807989999906, 0.0, 0.0, 0.0, 0.0, 0.1187827741833, -0.0671936840905293};
       
@@ -20397,17 +20321,17 @@ public:
     case 25:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -20429,7 +20353,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -20615,17 +20539,17 @@ public:
     case 26:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -20647,7 +20571,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
@@ -20833,17 +20757,17 @@ public:
     case 27:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -20865,7 +20789,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
@@ -21051,17 +20975,17 @@ public:
     case 28:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -21083,7 +21007,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, -0.121716123890037, 0.0702728368926306, -0.0993807989999906, 0.0, -0.100790526135794, 0.0205737799949456, -0.0872871560943969, -0.01187827741833, 0.0167984210226323};
       
@@ -21269,17 +21193,17 @@ public:
     case 29:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[10] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -21301,7 +21225,7 @@ public:
       basisvalues[5] *= std::sqrt(15.75);
       basisvalues[4] *= std::sqrt(26.25);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[10] = \
       {0.23094010767585, 0.0, -0.140545673785261, -0.0993807989999906, -0.130120009726471, 0.0, 0.0, 0.0290957186981323, 0.02375655483666, 0.0167984210226323};
       
@@ -21487,13 +21411,13 @@ public:
     case 30:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -21503,7 +21427,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, -0.182574185835055, -0.105409255338946, -0.074535599249993};
       
@@ -21659,13 +21583,13 @@ public:
     case 31:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -21675,7 +21599,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993};
       
@@ -21831,13 +21755,13 @@ public:
     case 32:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -21847,7 +21771,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
@@ -22003,13 +21927,13 @@ public:
     case 33:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[4] = {0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = 0.5*(2.0 + 3.0*Y + Z)*basisvalues[0];
@@ -22019,7 +21943,7 @@ public:
       basisvalues[2] *= std::sqrt(2.5);
       basisvalues[1] *= std::sqrt(7.5);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[4] = \
       {0.288675134594813, 0.0, 0.0, 0.223606797749979};
       
@@ -22176,11 +22100,11 @@ public:
     
   }
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
+                                              const double* x,
+                                              const double* vertex_coordinates) const
   {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -22199,7 +22123,7 @@ public:
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 34; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates);
       for (unsigned int s = 0; s < 4*num_derivatives; s++)
       {
         values[r*4*num_derivatives + s] = dof_values[s];
@@ -22213,318 +22137,318 @@ public:
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[4];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 3:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 6:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 7:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 8:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 9:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 10:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 11:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 12:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 13:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 14:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 15:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 16:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 17:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 18:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 19:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 20:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 21:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 22:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 23:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 24:
       {
-        y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 25:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 26:
       {
-        y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 27:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 28:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 29:
       {
-        y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-      y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-      y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+        y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+      y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+      y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[2];
         break;
       }
     case 30:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[3];
         break;
       }
     case 31:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[3];
         break;
       }
     case 32:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[3];
         break;
       }
     case 33:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[3];
         break;
@@ -22537,182 +22461,182 @@ public:
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[4];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[6] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[7] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[8] = vals[0];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[9] = vals[0];
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[10] = vals[1];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[11] = vals[1];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[12] = vals[1];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[13] = vals[1];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[14] = vals[1];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[15] = vals[1];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[16] = vals[1];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[17] = vals[1];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[18] = vals[1];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[19] = vals[1];
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[20] = vals[2];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[21] = vals[2];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[22] = vals[2];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[23] = vals[2];
-    y[0] = 0.5*x[2][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[2][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[2][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[24] = vals[2];
-    y[0] = 0.5*x[1][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[25] = vals[2];
-    y[0] = 0.5*x[1][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[1][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[1][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[26] = vals[2];
-    y[0] = 0.5*x[0][0] + 0.5*x[3][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[3][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[3][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[27] = vals[2];
-    y[0] = 0.5*x[0][0] + 0.5*x[2][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[2][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[2][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[28] = vals[2];
-    y[0] = 0.5*x[0][0] + 0.5*x[1][0];
-    y[1] = 0.5*x[0][1] + 0.5*x[1][1];
-    y[2] = 0.5*x[0][2] + 0.5*x[1][2];
+    y[0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    y[1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    y[2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[29] = vals[2];
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[30] = vals[3];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[31] = vals[3];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[32] = vals[3];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[33] = vals[3];
   }
@@ -23088,41 +23012,39 @@ public:
   }
 
   /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
+  virtual void tabulate_coordinates(double** dof_coordinates,
+                                    const double* vertex_coordinates) const
   {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[0][2] = vertex_coordinates[2];
+    dof_coordinates[1][0] = vertex_coordinates[3];
+    dof_coordinates[1][1] = vertex_coordinates[4];
+    dof_coordinates[1][2] = vertex_coordinates[5];
+    dof_coordinates[2][0] = vertex_coordinates[6];
+    dof_coordinates[2][1] = vertex_coordinates[7];
+    dof_coordinates[2][2] = vertex_coordinates[8];
+    dof_coordinates[3][0] = vertex_coordinates[9];
+    dof_coordinates[3][1] = vertex_coordinates[10];
+    dof_coordinates[3][2] = vertex_coordinates[11];
+    dof_coordinates[4][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[4][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[4][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[5][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[5][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[5][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[6][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[6][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[6][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[7][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[7][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[7][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[8][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[8][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[8][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[9][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[9][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[9][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -23531,101 +23453,99 @@ public:
   }
 
   /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
+  virtual void tabulate_coordinates(double** dof_coordinates,
+                                    const double* vertex_coordinates) const
   {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[10][0] = x[0][0];
-    coordinates[10][1] = x[0][1];
-    coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[20][0] = x[0][0];
-    coordinates[20][1] = x[0][1];
-    coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[0][2] = vertex_coordinates[2];
+    dof_coordinates[1][0] = vertex_coordinates[3];
+    dof_coordinates[1][1] = vertex_coordinates[4];
+    dof_coordinates[1][2] = vertex_coordinates[5];
+    dof_coordinates[2][0] = vertex_coordinates[6];
+    dof_coordinates[2][1] = vertex_coordinates[7];
+    dof_coordinates[2][2] = vertex_coordinates[8];
+    dof_coordinates[3][0] = vertex_coordinates[9];
+    dof_coordinates[3][1] = vertex_coordinates[10];
+    dof_coordinates[3][2] = vertex_coordinates[11];
+    dof_coordinates[4][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[4][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[4][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[5][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[5][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[5][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[6][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[6][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[6][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[7][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[7][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[7][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[8][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[8][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[8][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[9][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[9][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[9][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
+    dof_coordinates[10][0] = vertex_coordinates[0];
+    dof_coordinates[10][1] = vertex_coordinates[1];
+    dof_coordinates[10][2] = vertex_coordinates[2];
+    dof_coordinates[11][0] = vertex_coordinates[3];
+    dof_coordinates[11][1] = vertex_coordinates[4];
+    dof_coordinates[11][2] = vertex_coordinates[5];
+    dof_coordinates[12][0] = vertex_coordinates[6];
+    dof_coordinates[12][1] = vertex_coordinates[7];
+    dof_coordinates[12][2] = vertex_coordinates[8];
+    dof_coordinates[13][0] = vertex_coordinates[9];
+    dof_coordinates[13][1] = vertex_coordinates[10];
+    dof_coordinates[13][2] = vertex_coordinates[11];
+    dof_coordinates[14][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[14][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[14][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[15][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[15][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[15][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[16][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[16][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[16][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[17][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[17][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[17][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[18][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[18][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[18][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[19][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[19][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[19][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
+    dof_coordinates[20][0] = vertex_coordinates[0];
+    dof_coordinates[20][1] = vertex_coordinates[1];
+    dof_coordinates[20][2] = vertex_coordinates[2];
+    dof_coordinates[21][0] = vertex_coordinates[3];
+    dof_coordinates[21][1] = vertex_coordinates[4];
+    dof_coordinates[21][2] = vertex_coordinates[5];
+    dof_coordinates[22][0] = vertex_coordinates[6];
+    dof_coordinates[22][1] = vertex_coordinates[7];
+    dof_coordinates[22][2] = vertex_coordinates[8];
+    dof_coordinates[23][0] = vertex_coordinates[9];
+    dof_coordinates[23][1] = vertex_coordinates[10];
+    dof_coordinates[23][2] = vertex_coordinates[11];
+    dof_coordinates[24][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[24][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[24][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[25][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[25][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[25][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[26][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[26][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[26][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[27][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[27][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[27][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[28][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[28][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[28][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[29][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[29][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[29][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -23902,23 +23822,21 @@ public:
   }
 
   /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
+  virtual void tabulate_coordinates(double** dof_coordinates,
+                                    const double* vertex_coordinates) const
   {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[0][2] = vertex_coordinates[2];
+    dof_coordinates[1][0] = vertex_coordinates[3];
+    dof_coordinates[1][1] = vertex_coordinates[4];
+    dof_coordinates[1][2] = vertex_coordinates[5];
+    dof_coordinates[2][0] = vertex_coordinates[6];
+    dof_coordinates[2][1] = vertex_coordinates[7];
+    dof_coordinates[2][2] = vertex_coordinates[8];
+    dof_coordinates[3][0] = vertex_coordinates[9];
+    dof_coordinates[3][1] = vertex_coordinates[10];
+    dof_coordinates[3][2] = vertex_coordinates[11];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -24348,113 +24266,111 @@ public:
   }
 
   /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
+  virtual void tabulate_coordinates(double** dof_coordinates,
+                                    const double* vertex_coordinates) const
   {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[4][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[4][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[5][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[5][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[5][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[6][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[6][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[6][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[7][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[7][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[7][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[8][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[8][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[8][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[9][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[9][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[9][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[10][0] = x[0][0];
-    coordinates[10][1] = x[0][1];
-    coordinates[10][2] = x[0][2];
-    coordinates[11][0] = x[1][0];
-    coordinates[11][1] = x[1][1];
-    coordinates[11][2] = x[1][2];
-    coordinates[12][0] = x[2][0];
-    coordinates[12][1] = x[2][1];
-    coordinates[12][2] = x[2][2];
-    coordinates[13][0] = x[3][0];
-    coordinates[13][1] = x[3][1];
-    coordinates[13][2] = x[3][2];
-    coordinates[14][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[14][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[14][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[15][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[15][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[15][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[16][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[16][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[16][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[17][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[17][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[17][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[18][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[18][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[18][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[19][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[19][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[19][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[20][0] = x[0][0];
-    coordinates[20][1] = x[0][1];
-    coordinates[20][2] = x[0][2];
-    coordinates[21][0] = x[1][0];
-    coordinates[21][1] = x[1][1];
-    coordinates[21][2] = x[1][2];
-    coordinates[22][0] = x[2][0];
-    coordinates[22][1] = x[2][1];
-    coordinates[22][2] = x[2][2];
-    coordinates[23][0] = x[3][0];
-    coordinates[23][1] = x[3][1];
-    coordinates[23][2] = x[3][2];
-    coordinates[24][0] = 0.5*x[2][0] + 0.5*x[3][0];
-    coordinates[24][1] = 0.5*x[2][1] + 0.5*x[3][1];
-    coordinates[24][2] = 0.5*x[2][2] + 0.5*x[3][2];
-    coordinates[25][0] = 0.5*x[1][0] + 0.5*x[3][0];
-    coordinates[25][1] = 0.5*x[1][1] + 0.5*x[3][1];
-    coordinates[25][2] = 0.5*x[1][2] + 0.5*x[3][2];
-    coordinates[26][0] = 0.5*x[1][0] + 0.5*x[2][0];
-    coordinates[26][1] = 0.5*x[1][1] + 0.5*x[2][1];
-    coordinates[26][2] = 0.5*x[1][2] + 0.5*x[2][2];
-    coordinates[27][0] = 0.5*x[0][0] + 0.5*x[3][0];
-    coordinates[27][1] = 0.5*x[0][1] + 0.5*x[3][1];
-    coordinates[27][2] = 0.5*x[0][2] + 0.5*x[3][2];
-    coordinates[28][0] = 0.5*x[0][0] + 0.5*x[2][0];
-    coordinates[28][1] = 0.5*x[0][1] + 0.5*x[2][1];
-    coordinates[28][2] = 0.5*x[0][2] + 0.5*x[2][2];
-    coordinates[29][0] = 0.5*x[0][0] + 0.5*x[1][0];
-    coordinates[29][1] = 0.5*x[0][1] + 0.5*x[1][1];
-    coordinates[29][2] = 0.5*x[0][2] + 0.5*x[1][2];
-    coordinates[30][0] = x[0][0];
-    coordinates[30][1] = x[0][1];
-    coordinates[30][2] = x[0][2];
-    coordinates[31][0] = x[1][0];
-    coordinates[31][1] = x[1][1];
-    coordinates[31][2] = x[1][2];
-    coordinates[32][0] = x[2][0];
-    coordinates[32][1] = x[2][1];
-    coordinates[32][2] = x[2][2];
-    coordinates[33][0] = x[3][0];
-    coordinates[33][1] = x[3][1];
-    coordinates[33][2] = x[3][2];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[0][2] = vertex_coordinates[2];
+    dof_coordinates[1][0] = vertex_coordinates[3];
+    dof_coordinates[1][1] = vertex_coordinates[4];
+    dof_coordinates[1][2] = vertex_coordinates[5];
+    dof_coordinates[2][0] = vertex_coordinates[6];
+    dof_coordinates[2][1] = vertex_coordinates[7];
+    dof_coordinates[2][2] = vertex_coordinates[8];
+    dof_coordinates[3][0] = vertex_coordinates[9];
+    dof_coordinates[3][1] = vertex_coordinates[10];
+    dof_coordinates[3][2] = vertex_coordinates[11];
+    dof_coordinates[4][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[4][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[4][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[5][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[5][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[5][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[6][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[6][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[6][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[7][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[7][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[7][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[8][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[8][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[8][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[9][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[9][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[9][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
+    dof_coordinates[10][0] = vertex_coordinates[0];
+    dof_coordinates[10][1] = vertex_coordinates[1];
+    dof_coordinates[10][2] = vertex_coordinates[2];
+    dof_coordinates[11][0] = vertex_coordinates[3];
+    dof_coordinates[11][1] = vertex_coordinates[4];
+    dof_coordinates[11][2] = vertex_coordinates[5];
+    dof_coordinates[12][0] = vertex_coordinates[6];
+    dof_coordinates[12][1] = vertex_coordinates[7];
+    dof_coordinates[12][2] = vertex_coordinates[8];
+    dof_coordinates[13][0] = vertex_coordinates[9];
+    dof_coordinates[13][1] = vertex_coordinates[10];
+    dof_coordinates[13][2] = vertex_coordinates[11];
+    dof_coordinates[14][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[14][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[14][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[15][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[15][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[15][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[16][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[16][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[16][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[17][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[17][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[17][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[18][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[18][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[18][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[19][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[19][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[19][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
+    dof_coordinates[20][0] = vertex_coordinates[0];
+    dof_coordinates[20][1] = vertex_coordinates[1];
+    dof_coordinates[20][2] = vertex_coordinates[2];
+    dof_coordinates[21][0] = vertex_coordinates[3];
+    dof_coordinates[21][1] = vertex_coordinates[4];
+    dof_coordinates[21][2] = vertex_coordinates[5];
+    dof_coordinates[22][0] = vertex_coordinates[6];
+    dof_coordinates[22][1] = vertex_coordinates[7];
+    dof_coordinates[22][2] = vertex_coordinates[8];
+    dof_coordinates[23][0] = vertex_coordinates[9];
+    dof_coordinates[23][1] = vertex_coordinates[10];
+    dof_coordinates[23][2] = vertex_coordinates[11];
+    dof_coordinates[24][0] = 0.5*vertex_coordinates[6] + 0.5*vertex_coordinates[9];
+    dof_coordinates[24][1] = 0.5*vertex_coordinates[7] + 0.5*vertex_coordinates[10];
+    dof_coordinates[24][2] = 0.5*vertex_coordinates[8] + 0.5*vertex_coordinates[11];
+    dof_coordinates[25][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[9];
+    dof_coordinates[25][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[10];
+    dof_coordinates[25][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[11];
+    dof_coordinates[26][0] = 0.5*vertex_coordinates[3] + 0.5*vertex_coordinates[6];
+    dof_coordinates[26][1] = 0.5*vertex_coordinates[4] + 0.5*vertex_coordinates[7];
+    dof_coordinates[26][2] = 0.5*vertex_coordinates[5] + 0.5*vertex_coordinates[8];
+    dof_coordinates[27][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[9];
+    dof_coordinates[27][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[10];
+    dof_coordinates[27][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[11];
+    dof_coordinates[28][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[6];
+    dof_coordinates[28][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[7];
+    dof_coordinates[28][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[8];
+    dof_coordinates[29][0] = 0.5*vertex_coordinates[0] + 0.5*vertex_coordinates[3];
+    dof_coordinates[29][1] = 0.5*vertex_coordinates[1] + 0.5*vertex_coordinates[4];
+    dof_coordinates[29][2] = 0.5*vertex_coordinates[2] + 0.5*vertex_coordinates[5];
+    dof_coordinates[30][0] = vertex_coordinates[0];
+    dof_coordinates[30][1] = vertex_coordinates[1];
+    dof_coordinates[30][2] = vertex_coordinates[2];
+    dof_coordinates[31][0] = vertex_coordinates[3];
+    dof_coordinates[31][1] = vertex_coordinates[4];
+    dof_coordinates[31][2] = vertex_coordinates[5];
+    dof_coordinates[32][0] = vertex_coordinates[6];
+    dof_coordinates[32][1] = vertex_coordinates[7];
+    dof_coordinates[32][2] = vertex_coordinates[8];
+    dof_coordinates[33][0] = vertex_coordinates[9];
+    dof_coordinates[33][1] = vertex_coordinates[10];
+    dof_coordinates[33][2] = vertex_coordinates[11];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -24514,155 +24430,125 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const
+                               const double* vertex_coordinates) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      32
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    139
     // Number of operations (multiply-add pairs) for tensor contraction: 3627
-    // Total number of operations (multiply-add pairs):                  3798
+    // Total number of operations (multiply-add pairs):                  3769
     
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-    
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
     // Set scale factor
-    const double det = std::abs(detJ);
+    det = std::abs(det);
     
     // Compute geometry tensor
-    const double G0_0 = det*K_02*(1.0);
-    const double G0_1 = det*K_12*(1.0);
-    const double G0_2 = det*K_22*(1.0);
-    const double G1_0 = det*K_00*(1.0);
-    const double G1_1 = det*K_10*(1.0);
-    const double G1_2 = det*K_20*(1.0);
-    const double G2_0 = det*K_01*(1.0);
-    const double G2_1 = det*K_11*(1.0);
-    const double G2_2 = det*K_21*(1.0);
-    const double G3_0 = det*K_02*(1.0);
-    const double G3_1 = det*K_12*(1.0);
-    const double G3_2 = det*K_22*(1.0);
-    const double G4_0 = det*K_00*(1.0);
-    const double G4_1 = det*K_10*(1.0);
-    const double G4_2 = det*K_20*(1.0);
-    const double G5_0 = det*K_01*(1.0);
-    const double G5_1 = det*K_11*(1.0);
-    const double G5_2 = det*K_21*(1.0);
-    const double G6_0_0 = det*K_02*K_02*(1.0);
-    const double G6_0_1 = det*K_02*K_12*(1.0);
-    const double G6_0_2 = det*K_02*K_22*(1.0);
-    const double G6_1_0 = det*K_12*K_02*(1.0);
-    const double G6_1_1 = det*K_12*K_12*(1.0);
-    const double G6_1_2 = det*K_12*K_22*(1.0);
-    const double G6_2_0 = det*K_22*K_02*(1.0);
-    const double G6_2_1 = det*K_22*K_12*(1.0);
-    const double G6_2_2 = det*K_22*K_22*(1.0);
-    const double G7_0_0 = det*K_02*K_02*(1.0);
-    const double G7_0_1 = det*K_02*K_12*(1.0);
-    const double G7_0_2 = det*K_02*K_22*(1.0);
-    const double G7_1_0 = det*K_12*K_02*(1.0);
-    const double G7_1_1 = det*K_12*K_12*(1.0);
-    const double G7_1_2 = det*K_12*K_22*(1.0);
-    const double G7_2_0 = det*K_22*K_02*(1.0);
-    const double G7_2_1 = det*K_22*K_12*(1.0);
-    const double G7_2_2 = det*K_22*K_22*(1.0);
-    const double G8_0_0 = det*K_02*K_02*(1.0);
-    const double G8_0_1 = det*K_02*K_12*(1.0);
-    const double G8_0_2 = det*K_02*K_22*(1.0);
-    const double G8_1_0 = det*K_12*K_02*(1.0);
-    const double G8_1_1 = det*K_12*K_12*(1.0);
-    const double G8_1_2 = det*K_12*K_22*(1.0);
-    const double G8_2_0 = det*K_22*K_02*(1.0);
-    const double G8_2_1 = det*K_22*K_12*(1.0);
-    const double G8_2_2 = det*K_22*K_22*(1.0);
-    const double G9_0_0 = det*K_00*K_00*(1.0);
-    const double G9_0_1 = det*K_00*K_10*(1.0);
-    const double G9_0_2 = det*K_00*K_20*(1.0);
-    const double G9_1_0 = det*K_10*K_00*(1.0);
-    const double G9_1_1 = det*K_10*K_10*(1.0);
-    const double G9_1_2 = det*K_10*K_20*(1.0);
-    const double G9_2_0 = det*K_20*K_00*(1.0);
-    const double G9_2_1 = det*K_20*K_10*(1.0);
-    const double G9_2_2 = det*K_20*K_20*(1.0);
-    const double G10_0_0 = det*K_00*K_00*(1.0);
-    const double G10_0_1 = det*K_00*K_10*(1.0);
-    const double G10_0_2 = det*K_00*K_20*(1.0);
-    const double G10_1_0 = det*K_10*K_00*(1.0);
-    const double G10_1_1 = det*K_10*K_10*(1.0);
-    const double G10_1_2 = det*K_10*K_20*(1.0);
-    const double G10_2_0 = det*K_20*K_00*(1.0);
-    const double G10_2_1 = det*K_20*K_10*(1.0);
-    const double G10_2_2 = det*K_20*K_20*(1.0);
-    const double G11_0_0 = det*K_00*K_00*(1.0);
-    const double G11_0_1 = det*K_00*K_10*(1.0);
-    const double G11_0_2 = det*K_00*K_20*(1.0);
-    const double G11_1_0 = det*K_10*K_00*(1.0);
-    const double G11_1_1 = det*K_10*K_10*(1.0);
-    const double G11_1_2 = det*K_10*K_20*(1.0);
-    const double G11_2_0 = det*K_20*K_00*(1.0);
-    const double G11_2_1 = det*K_20*K_10*(1.0);
-    const double G11_2_2 = det*K_20*K_20*(1.0);
-    const double G12_0_0 = det*K_01*K_01*(1.0);
-    const double G12_0_1 = det*K_01*K_11*(1.0);
-    const double G12_0_2 = det*K_01*K_21*(1.0);
-    const double G12_1_0 = det*K_11*K_01*(1.0);
-    const double G12_1_1 = det*K_11*K_11*(1.0);
-    const double G12_1_2 = det*K_11*K_21*(1.0);
-    const double G12_2_0 = det*K_21*K_01*(1.0);
-    const double G12_2_1 = det*K_21*K_11*(1.0);
-    const double G12_2_2 = det*K_21*K_21*(1.0);
-    const double G13_0_0 = det*K_01*K_01*(1.0);
-    const double G13_0_1 = det*K_01*K_11*(1.0);
-    const double G13_0_2 = det*K_01*K_21*(1.0);
-    const double G13_1_0 = det*K_11*K_01*(1.0);
-    const double G13_1_1 = det*K_11*K_11*(1.0);
-    const double G13_1_2 = det*K_11*K_21*(1.0);
-    const double G13_2_0 = det*K_21*K_01*(1.0);
-    const double G13_2_1 = det*K_21*K_11*(1.0);
-    const double G13_2_2 = det*K_21*K_21*(1.0);
-    const double G14_0_0 = det*K_01*K_01*(1.0);
-    const double G14_0_1 = det*K_01*K_11*(1.0);
-    const double G14_0_2 = det*K_01*K_21*(1.0);
-    const double G14_1_0 = det*K_11*K_01*(1.0);
-    const double G14_1_1 = det*K_11*K_11*(1.0);
-    const double G14_1_2 = det*K_11*K_21*(1.0);
-    const double G14_2_0 = det*K_21*K_01*(1.0);
-    const double G14_2_1 = det*K_21*K_11*(1.0);
-    const double G14_2_2 = det*K_21*K_21*(1.0);
+    const double G0_0 = det*K[2]*(1.0);
+    const double G0_1 = det*K[5]*(1.0);
+    const double G0_2 = det*K[8]*(1.0);
+    const double G1_0 = det*K[0]*(1.0);
+    const double G1_1 = det*K[3]*(1.0);
+    const double G1_2 = det*K[6]*(1.0);
+    const double G2_0 = det*K[1]*(1.0);
+    const double G2_1 = det*K[4]*(1.0);
+    const double G2_2 = det*K[7]*(1.0);
+    const double G3_0 = det*K[2]*(1.0);
+    const double G3_1 = det*K[5]*(1.0);
+    const double G3_2 = det*K[8]*(1.0);
+    const double G4_0 = det*K[0]*(1.0);
+    const double G4_1 = det*K[3]*(1.0);
+    const double G4_2 = det*K[6]*(1.0);
+    const double G5_0 = det*K[1]*(1.0);
+    const double G5_1 = det*K[4]*(1.0);
+    const double G5_2 = det*K[7]*(1.0);
+    const double G6_0_0 = det*K[2]*K[2]*(1.0);
+    const double G6_0_1 = det*K[2]*K[5]*(1.0);
+    const double G6_0_2 = det*K[2]*K[8]*(1.0);
+    const double G6_1_0 = det*K[5]*K[2]*(1.0);
+    const double G6_1_1 = det*K[5]*K[5]*(1.0);
+    const double G6_1_2 = det*K[5]*K[8]*(1.0);
+    const double G6_2_0 = det*K[8]*K[2]*(1.0);
+    const double G6_2_1 = det*K[8]*K[5]*(1.0);
+    const double G6_2_2 = det*K[8]*K[8]*(1.0);
+    const double G7_0_0 = det*K[2]*K[2]*(1.0);
+    const double G7_0_1 = det*K[2]*K[5]*(1.0);
+    const double G7_0_2 = det*K[2]*K[8]*(1.0);
+    const double G7_1_0 = det*K[5]*K[2]*(1.0);
+    const double G7_1_1 = det*K[5]*K[5]*(1.0);
+    const double G7_1_2 = det*K[5]*K[8]*(1.0);
+    const double G7_2_0 = det*K[8]*K[2]*(1.0);
+    const double G7_2_1 = det*K[8]*K[5]*(1.0);
+    const double G7_2_2 = det*K[8]*K[8]*(1.0);
+    const double G8_0_0 = det*K[2]*K[2]*(1.0);
+    const double G8_0_1 = det*K[2]*K[5]*(1.0);
+    const double G8_0_2 = det*K[2]*K[8]*(1.0);
+    const double G8_1_0 = det*K[5]*K[2]*(1.0);
+    const double G8_1_1 = det*K[5]*K[5]*(1.0);
+    const double G8_1_2 = det*K[5]*K[8]*(1.0);
+    const double G8_2_0 = det*K[8]*K[2]*(1.0);
+    const double G8_2_1 = det*K[8]*K[5]*(1.0);
+    const double G8_2_2 = det*K[8]*K[8]*(1.0);
+    const double G9_0_0 = det*K[0]*K[0]*(1.0);
+    const double G9_0_1 = det*K[0]*K[3]*(1.0);
+    const double G9_0_2 = det*K[0]*K[6]*(1.0);
+    const double G9_1_0 = det*K[3]*K[0]*(1.0);
+    const double G9_1_1 = det*K[3]*K[3]*(1.0);
+    const double G9_1_2 = det*K[3]*K[6]*(1.0);
+    const double G9_2_0 = det*K[6]*K[0]*(1.0);
+    const double G9_2_1 = det*K[6]*K[3]*(1.0);
+    const double G9_2_2 = det*K[6]*K[6]*(1.0);
+    const double G10_0_0 = det*K[0]*K[0]*(1.0);
+    const double G10_0_1 = det*K[0]*K[3]*(1.0);
+    const double G10_0_2 = det*K[0]*K[6]*(1.0);
+    const double G10_1_0 = det*K[3]*K[0]*(1.0);
+    const double G10_1_1 = det*K[3]*K[3]*(1.0);
+    const double G10_1_2 = det*K[3]*K[6]*(1.0);
+    const double G10_2_0 = det*K[6]*K[0]*(1.0);
+    const double G10_2_1 = det*K[6]*K[3]*(1.0);
+    const double G10_2_2 = det*K[6]*K[6]*(1.0);
+    const double G11_0_0 = det*K[0]*K[0]*(1.0);
+    const double G11_0_1 = det*K[0]*K[3]*(1.0);
+    const double G11_0_2 = det*K[0]*K[6]*(1.0);
+    const double G11_1_0 = det*K[3]*K[0]*(1.0);
+    const double G11_1_1 = det*K[3]*K[3]*(1.0);
+    const double G11_1_2 = det*K[3]*K[6]*(1.0);
+    const double G11_2_0 = det*K[6]*K[0]*(1.0);
+    const double G11_2_1 = det*K[6]*K[3]*(1.0);
+    const double G11_2_2 = det*K[6]*K[6]*(1.0);
+    const double G12_0_0 = det*K[1]*K[1]*(1.0);
+    const double G12_0_1 = det*K[1]*K[4]*(1.0);
+    const double G12_0_2 = det*K[1]*K[7]*(1.0);
+    const double G12_1_0 = det*K[4]*K[1]*(1.0);
+    const double G12_1_1 = det*K[4]*K[4]*(1.0);
+    const double G12_1_2 = det*K[4]*K[7]*(1.0);
+    const double G12_2_0 = det*K[7]*K[1]*(1.0);
+    const double G12_2_1 = det*K[7]*K[4]*(1.0);
+    const double G12_2_2 = det*K[7]*K[7]*(1.0);
+    const double G13_0_0 = det*K[1]*K[1]*(1.0);
+    const double G13_0_1 = det*K[1]*K[4]*(1.0);
+    const double G13_0_2 = det*K[1]*K[7]*(1.0);
+    const double G13_1_0 = det*K[4]*K[1]*(1.0);
+    const double G13_1_1 = det*K[4]*K[4]*(1.0);
+    const double G13_1_2 = det*K[4]*K[7]*(1.0);
+    const double G13_2_0 = det*K[7]*K[1]*(1.0);
+    const double G13_2_1 = det*K[7]*K[4]*(1.0);
+    const double G13_2_2 = det*K[7]*K[7]*(1.0);
+    const double G14_0_0 = det*K[1]*K[1]*(1.0);
+    const double G14_0_1 = det*K[1]*K[4]*(1.0);
+    const double G14_0_2 = det*K[1]*K[7]*(1.0);
+    const double G14_1_0 = det*K[4]*K[1]*(1.0);
+    const double G14_1_1 = det*K[4]*K[4]*(1.0);
+    const double G14_1_2 = det*K[4]*K[7]*(1.0);
+    const double G14_2_0 = det*K[7]*K[1]*(1.0);
+    const double G14_2_1 = det*K[7]*K[4]*(1.0);
+    const double G14_2_2 = det*K[7]*K[7]*(1.0);
     
     // Compute element tensor
     A[0] = 0.1*G7_0_0 + 0.1*G7_0_1 + 0.1*G7_0_2 + 0.1*G7_1_0 + 0.1*G7_1_1 + 0.1*G7_1_2 + 0.1*G7_2_0 + 0.1*G7_2_1 + 0.1*G7_2_2 + 0.1*G10_0_0 + 0.1*G10_0_1 + 0.1*G10_0_2 + 0.1*G10_1_0 + 0.1*G10_1_1 + 0.1*G10_1_2 + 0.1*G10_2_0 + 0.1*G10_2_1 + 0.1*G10_2_2 + 0.1*G13_0_0 + 0.1*G13_0_1 + 0.1*G13_0_2 + 0.1*G13_1_0 + 0.1*G13_1_1 + 0.1*G13_1_2 + 0.1*G13_2_0 + 0.1*G13_2_1 + 0.1*G13_2_2;
@@ -25823,18 +25709,6 @@ public:
     A[1155] = 0.0;
   }
 
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
-  }
-
 };
 
 /// This class defines the interface for the tabulation of the cell
@@ -25860,39 +25734,24 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const
+                               const double* vertex_coordinates) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      18
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    30
     // Number of operations (multiply-add pairs) for tensor contraction: 285
-    // Total number of operations (multiply-add pairs):                  333
+    // Total number of operations (multiply-add pairs):                  318
     
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_triangle_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-    
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double det;
+    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
     
     // Set scale factor
-    const double det = std::abs(detJ);
+    det = std::abs(det);
     
     // Compute geometry tensor
     const double G0_20 = det*w[0][20]*(1.0);
@@ -25961,18 +25820,6 @@ public:
     A[31] = 0.0;
     A[32] = 0.0;
     A[33] = 0.0;
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };
