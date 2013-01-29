@@ -525,15 +525,15 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class cahnhilliard2d_cell_integral_0_0: public ufc::cell_integral
+class cahnhilliard2d_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  cahnhilliard2d_cell_integral_0_0();
+  cahnhilliard2d_cell_integral_0_otherwise();
 
   /// Destructor
-  virtual ~cahnhilliard2d_cell_integral_0_0();
+  virtual ~cahnhilliard2d_cell_integral_0_otherwise();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -555,15 +555,15 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class cahnhilliard2d_cell_integral_1_0: public ufc::cell_integral
+class cahnhilliard2d_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  cahnhilliard2d_cell_integral_1_0();
+  cahnhilliard2d_cell_integral_1_otherwise();
 
   /// Destructor
-  virtual ~cahnhilliard2d_cell_integral_1_0();
+  virtual ~cahnhilliard2d_cell_integral_1_otherwise();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
