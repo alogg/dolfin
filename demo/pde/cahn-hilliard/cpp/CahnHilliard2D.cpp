@@ -424,7 +424,7 @@ void cahnhilliard2d_finite_element_0::map_from_reference_cell(double* x,
                                             const double* xhat,
                                             const ufc::cell& c) const
 {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
 }
 
 /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -432,7 +432,7 @@ void cahnhilliard2d_finite_element_0::map_to_reference_cell(double* xhat,
                                           const double* x,
                                           const ufc::cell& c) const
 {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
 }
 
 /// Return the number of sub elements (for a mixed element)
@@ -1302,7 +1302,7 @@ void cahnhilliard2d_finite_element_1::map_from_reference_cell(double* x,
                                             const double* xhat,
                                             const ufc::cell& c) const
 {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
 }
 
 /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -1310,7 +1310,7 @@ void cahnhilliard2d_finite_element_1::map_to_reference_cell(double* xhat,
                                           const double* x,
                                           const ufc::cell& c) const
 {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
 }
 
 /// Return the number of sub elements (for a mixed element)
@@ -2755,7 +2755,7 @@ void cahnhilliard2d_finite_element_2::map_from_reference_cell(double* x,
                                             const double* xhat,
                                             const ufc::cell& c) const
 {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
 }
 
 /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -2763,7 +2763,7 @@ void cahnhilliard2d_finite_element_2::map_to_reference_cell(double* xhat,
                                           const double* x,
                                           const ufc::cell& c) const
 {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
 }
 
 /// Return the number of sub elements (for a mixed element)
@@ -3934,6 +3934,12 @@ std::size_t cahnhilliard2d_form_0::num_interior_facet_domains() const
     return 0;
 }
 
+/// Return the number of point domains
+std::size_t cahnhilliard2d_form_0::num_point_domains() const
+{
+    return 0;
+}
+
 /// Return whether the form has any cell integrals
 bool cahnhilliard2d_form_0::has_cell_integrals() const
 {
@@ -3948,6 +3954,12 @@ bool cahnhilliard2d_form_0::has_exterior_facet_integrals() const
 
 /// Return whether the form has any interior facet integrals
 bool cahnhilliard2d_form_0::has_interior_facet_integrals() const
+{
+    return false;
+}
+
+/// Return whether the form has any point integrals
+bool cahnhilliard2d_form_0::has_point_integrals() const
 {
     return false;
 }
@@ -4059,6 +4071,13 @@ ufc::interior_facet_integral* cahnhilliard2d_form_0::create_interior_facet_integ
     return 0;
 }
 
+/// Create a new point integral on sub domain i
+ufc::point_integral* cahnhilliard2d_form_0::create_point_integral(std::size_t i) const
+{
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+}
+
 /// Create a new cell integral on everywhere else
 ufc::cell_integral* cahnhilliard2d_form_0::create_default_cell_integral() const
 {
@@ -4074,6 +4093,13 @@ ufc::exterior_facet_integral* cahnhilliard2d_form_0::create_default_exterior_fac
 /// Create a new interior facet integral on everywhere else
 ufc::interior_facet_integral* cahnhilliard2d_form_0::create_default_interior_facet_integral() const
 {
+    return 0;
+}
+
+/// Create a new point integral on everywhere else
+ufc::point_integral* cahnhilliard2d_form_0::create_default_point_integral() const
+{
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
 }
 
@@ -4126,6 +4152,12 @@ std::size_t cahnhilliard2d_form_1::num_interior_facet_domains() const
     return 0;
 }
 
+/// Return the number of point domains
+std::size_t cahnhilliard2d_form_1::num_point_domains() const
+{
+    return 0;
+}
+
 /// Return whether the form has any cell integrals
 bool cahnhilliard2d_form_1::has_cell_integrals() const
 {
@@ -4140,6 +4172,12 @@ bool cahnhilliard2d_form_1::has_exterior_facet_integrals() const
 
 /// Return whether the form has any interior facet integrals
 bool cahnhilliard2d_form_1::has_interior_facet_integrals() const
+{
+    return false;
+}
+
+/// Return whether the form has any point integrals
+bool cahnhilliard2d_form_1::has_point_integrals() const
 {
     return false;
 }
@@ -4251,6 +4289,13 @@ ufc::interior_facet_integral* cahnhilliard2d_form_1::create_interior_facet_integ
     return 0;
 }
 
+/// Create a new point integral on sub domain i
+ufc::point_integral* cahnhilliard2d_form_1::create_point_integral(std::size_t i) const
+{
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+}
+
 /// Create a new cell integral on everywhere else
 ufc::cell_integral* cahnhilliard2d_form_1::create_default_cell_integral() const
 {
@@ -4266,6 +4311,13 @@ ufc::exterior_facet_integral* cahnhilliard2d_form_1::create_default_exterior_fac
 /// Create a new interior facet integral on everywhere else
 ufc::interior_facet_integral* cahnhilliard2d_form_1::create_default_interior_facet_integral() const
 {
+    return 0;
+}
+
+/// Create a new point integral on everywhere else
+ufc::point_integral* cahnhilliard2d_form_1::create_default_point_integral() const
+{
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
 }
 
