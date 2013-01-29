@@ -413,7 +413,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[10] = \
-      {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
+      {0.230940107675851, 0.121716123890037, -0.0702728368926306, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 10; r++)
@@ -459,7 +459,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[10] = \
-      {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
+      {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999907, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 10; r++)
@@ -505,7 +505,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[10] = \
-      {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
+      {0.23094010767585, -0.121716123890037, -0.0702728368926307, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 10; r++)
@@ -1876,7 +1876,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[10] = \
-      {0.23094010767585, 0.121716123890037, -0.0702728368926307, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
+      {0.230940107675851, 0.121716123890037, -0.0702728368926306, 0.0993807989999907, 0.0, 0.0, 0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[10][10] = \
@@ -2094,7 +2094,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[10] = \
-      {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999906, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
+      {0.23094010767585, 0.121716123890037, 0.0702728368926307, -0.0993807989999907, 0.0, 0.100790526135794, -0.0205737799949456, -0.087287156094397, -0.01187827741833, 0.0167984210226323};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[10][10] = \
@@ -2312,7 +2312,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[10] = \
-      {0.23094010767585, -0.121716123890037, -0.0702728368926306, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
+      {0.23094010767585, -0.121716123890037, -0.0702728368926307, 0.0993807989999906, 0.0, 0.0, -0.102868899974728, 0.0, -0.0593913870916499, -0.0671936840905293};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[10][10] = \
@@ -3155,7 +3155,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -3163,7 +3163,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -3541,18 +3541,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class projection_cell_integral_0_0: public ufc::cell_integral
+class projection_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  projection_cell_integral_0_0() : ufc::cell_integral()
+  projection_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~projection_cell_integral_0_0()
+  virtual ~projection_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -3600,35 +3600,35 @@ public:
     // Compute element tensor
     A[0] = 0.00238095238095238*G0_;
     A[1] = 0.000396825396825396*G0_;
-    A[2] = 0.000396825396825396*G0_;
-    A[3] = 0.000396825396825396*G0_;
+    A[2] = 0.000396825396825397*G0_;
+    A[3] = 0.000396825396825397*G0_;
     A[4] = -0.00238095238095238*G0_;
     A[5] = -0.00238095238095238*G0_;
     A[6] = -0.00238095238095238*G0_;
     A[7] = -0.00158730158730159*G0_;
-    A[8] = -0.00158730158730158*G0_;
+    A[8] = -0.00158730158730159*G0_;
     A[9] = -0.00158730158730159*G0_;
     A[10] = 0.000396825396825396*G0_;
     A[11] = 0.00238095238095238*G0_;
-    A[12] = 0.000396825396825395*G0_;
+    A[12] = 0.000396825396825396*G0_;
     A[13] = 0.000396825396825396*G0_;
     A[14] = -0.00238095238095238*G0_;
-    A[15] = -0.00158730158730158*G0_;
+    A[15] = -0.00158730158730159*G0_;
     A[16] = -0.00158730158730158*G0_;
     A[17] = -0.00238095238095238*G0_;
     A[18] = -0.00238095238095238*G0_;
     A[19] = -0.00158730158730158*G0_;
-    A[20] = 0.000396825396825396*G0_;
-    A[21] = 0.000396825396825395*G0_;
+    A[20] = 0.000396825396825397*G0_;
+    A[21] = 0.000396825396825396*G0_;
     A[22] = 0.00238095238095238*G0_;
     A[23] = 0.000396825396825396*G0_;
     A[24] = -0.00158730158730159*G0_;
     A[25] = -0.00238095238095238*G0_;
-    A[26] = -0.00158730158730158*G0_;
+    A[26] = -0.00158730158730159*G0_;
     A[27] = -0.00238095238095238*G0_;
     A[28] = -0.00158730158730159*G0_;
     A[29] = -0.00238095238095238*G0_;
-    A[30] = 0.000396825396825396*G0_;
+    A[30] = 0.000396825396825397*G0_;
     A[31] = 0.000396825396825396*G0_;
     A[32] = 0.000396825396825396*G0_;
     A[33] = 0.00238095238095238*G0_;
@@ -3645,9 +3645,9 @@ public:
     A[44] = 0.0126984126984127*G0_;
     A[45] = 0.00634920634920635*G0_;
     A[46] = 0.00634920634920635*G0_;
-    A[47] = 0.00634920634920635*G0_;
-    A[48] = 0.00634920634920634*G0_;
-    A[49] = 0.00317460317460317*G0_;
+    A[47] = 0.00634920634920634*G0_;
+    A[48] = 0.00634920634920635*G0_;
+    A[49] = 0.00317460317460318*G0_;
     A[50] = -0.00238095238095238*G0_;
     A[51] = -0.00158730158730158*G0_;
     A[52] = -0.00238095238095238*G0_;
@@ -3656,11 +3656,11 @@ public:
     A[55] = 0.0126984126984127*G0_;
     A[56] = 0.00634920634920635*G0_;
     A[57] = 0.00634920634920635*G0_;
-    A[58] = 0.00317460317460317*G0_;
+    A[58] = 0.00317460317460318*G0_;
     A[59] = 0.00634920634920635*G0_;
     A[60] = -0.00238095238095238*G0_;
     A[61] = -0.00158730158730158*G0_;
-    A[62] = -0.00158730158730158*G0_;
+    A[62] = -0.00158730158730159*G0_;
     A[63] = -0.00238095238095238*G0_;
     A[64] = 0.00634920634920635*G0_;
     A[65] = 0.00634920634920635*G0_;
@@ -3672,31 +3672,31 @@ public:
     A[71] = -0.00238095238095238*G0_;
     A[72] = -0.00238095238095238*G0_;
     A[73] = -0.00158730158730159*G0_;
-    A[74] = 0.00634920634920635*G0_;
+    A[74] = 0.00634920634920634*G0_;
     A[75] = 0.00634920634920635*G0_;
     A[76] = 0.00317460317460317*G0_;
     A[77] = 0.0126984126984127*G0_;
     A[78] = 0.00634920634920635*G0_;
-    A[79] = 0.00634920634920635*G0_;
-    A[80] = -0.00158730158730158*G0_;
+    A[79] = 0.00634920634920634*G0_;
+    A[80] = -0.00158730158730159*G0_;
     A[81] = -0.00238095238095238*G0_;
     A[82] = -0.00158730158730159*G0_;
     A[83] = -0.00238095238095238*G0_;
-    A[84] = 0.00634920634920634*G0_;
-    A[85] = 0.00317460317460317*G0_;
+    A[84] = 0.00634920634920635*G0_;
+    A[85] = 0.00317460317460318*G0_;
     A[86] = 0.00634920634920634*G0_;
     A[87] = 0.00634920634920635*G0_;
     A[88] = 0.0126984126984127*G0_;
-    A[89] = 0.00634920634920634*G0_;
+    A[89] = 0.00634920634920635*G0_;
     A[90] = -0.00158730158730159*G0_;
     A[91] = -0.00158730158730158*G0_;
     A[92] = -0.00238095238095238*G0_;
     A[93] = -0.00238095238095238*G0_;
-    A[94] = 0.00317460317460317*G0_;
+    A[94] = 0.00317460317460318*G0_;
     A[95] = 0.00634920634920635*G0_;
     A[96] = 0.00634920634920635*G0_;
-    A[97] = 0.00634920634920635*G0_;
-    A[98] = 0.00634920634920634*G0_;
+    A[97] = 0.00634920634920634*G0_;
+    A[98] = 0.00634920634920635*G0_;
     A[99] = 0.0126984126984127*G0_;
   }
 
@@ -3718,18 +3718,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class projection_cell_integral_1_0: public ufc::cell_integral
+class projection_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  projection_cell_integral_1_0() : ufc::cell_integral()
+  projection_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~projection_cell_integral_1_0()
+  virtual ~projection_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -3784,16 +3784,16 @@ public:
     const double G0_9 = det*w[0][9]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.00238095238095238*G0_0 + 0.000396825396825396*G0_1 + 0.000396825396825396*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095238*G0_4 - 0.00238095238095238*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730159*G0_7 - 0.00158730158730158*G0_8 - 0.00158730158730159*G0_9;
-    A[1] = 0.000396825396825396*G0_0 + 0.00238095238095238*G0_1 + 0.000396825396825395*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095238*G0_4 - 0.00158730158730158*G0_5 - 0.00158730158730158*G0_6 - 0.00238095238095238*G0_7 - 0.00238095238095238*G0_8 - 0.00158730158730158*G0_9;
-    A[2] = 0.000396825396825396*G0_0 + 0.000396825396825395*G0_1 + 0.00238095238095238*G0_2 + 0.000396825396825396*G0_3 - 0.00158730158730159*G0_4 - 0.00238095238095238*G0_5 - 0.00158730158730158*G0_6 - 0.00238095238095238*G0_7 - 0.00158730158730159*G0_8 - 0.00238095238095238*G0_9;
-    A[3] = 0.000396825396825396*G0_0 + 0.000396825396825396*G0_1 + 0.000396825396825396*G0_2 + 0.00238095238095238*G0_3 - 0.00158730158730159*G0_4 - 0.00158730158730159*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730159*G0_7 - 0.00238095238095238*G0_8 - 0.00238095238095238*G0_9;
-    A[4] = -0.00238095238095238*G0_0 - 0.00238095238095238*G0_1 - 0.00158730158730159*G0_2 - 0.00158730158730159*G0_3 + 0.0126984126984127*G0_4 + 0.00634920634920635*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920635*G0_7 + 0.00634920634920634*G0_8 + 0.00317460317460317*G0_9;
-    A[5] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920635*G0_4 + 0.0126984126984127*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920635*G0_7 + 0.00317460317460317*G0_8 + 0.00634920634920635*G0_9;
-    A[6] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00158730158730158*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920635*G0_4 + 0.00634920634920635*G0_5 + 0.0126984126984127*G0_6 + 0.00317460317460317*G0_7 + 0.00634920634920634*G0_8 + 0.00634920634920635*G0_9;
-    A[7] = -0.00158730158730159*G0_0 - 0.00238095238095238*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920635*G0_4 + 0.00634920634920635*G0_5 + 0.00317460317460317*G0_6 + 0.0126984126984127*G0_7 + 0.00634920634920635*G0_8 + 0.00634920634920635*G0_9;
-    A[8] = -0.00158730158730158*G0_0 - 0.00238095238095238*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920634*G0_4 + 0.00317460317460317*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920635*G0_7 + 0.0126984126984127*G0_8 + 0.00634920634920634*G0_9;
-    A[9] = -0.00158730158730159*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00238095238095238*G0_3 + 0.00317460317460317*G0_4 + 0.00634920634920635*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920635*G0_7 + 0.00634920634920634*G0_8 + 0.0126984126984127*G0_9;
+    A[0] = 0.00238095238095238*G0_0 + 0.000396825396825396*G0_1 + 0.000396825396825397*G0_2 + 0.000396825396825397*G0_3 - 0.00238095238095238*G0_4 - 0.00238095238095238*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730159*G0_7 - 0.00158730158730159*G0_8 - 0.00158730158730159*G0_9;
+    A[1] = 0.000396825396825396*G0_0 + 0.00238095238095238*G0_1 + 0.000396825396825396*G0_2 + 0.000396825396825396*G0_3 - 0.00238095238095238*G0_4 - 0.00158730158730159*G0_5 - 0.00158730158730158*G0_6 - 0.00238095238095238*G0_7 - 0.00238095238095238*G0_8 - 0.00158730158730158*G0_9;
+    A[2] = 0.000396825396825397*G0_0 + 0.000396825396825396*G0_1 + 0.00238095238095238*G0_2 + 0.000396825396825396*G0_3 - 0.00158730158730159*G0_4 - 0.00238095238095238*G0_5 - 0.00158730158730159*G0_6 - 0.00238095238095238*G0_7 - 0.00158730158730159*G0_8 - 0.00238095238095238*G0_9;
+    A[3] = 0.000396825396825397*G0_0 + 0.000396825396825396*G0_1 + 0.000396825396825396*G0_2 + 0.00238095238095238*G0_3 - 0.00158730158730159*G0_4 - 0.00158730158730159*G0_5 - 0.00238095238095238*G0_6 - 0.00158730158730159*G0_7 - 0.00238095238095238*G0_8 - 0.00238095238095238*G0_9;
+    A[4] = -0.00238095238095238*G0_0 - 0.00238095238095238*G0_1 - 0.00158730158730159*G0_2 - 0.00158730158730159*G0_3 + 0.0126984126984127*G0_4 + 0.00634920634920635*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920634*G0_7 + 0.00634920634920635*G0_8 + 0.00317460317460318*G0_9;
+    A[5] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920635*G0_4 + 0.0126984126984127*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920635*G0_7 + 0.00317460317460318*G0_8 + 0.00634920634920635*G0_9;
+    A[6] = -0.00238095238095238*G0_0 - 0.00158730158730158*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920635*G0_4 + 0.00634920634920635*G0_5 + 0.0126984126984127*G0_6 + 0.00317460317460317*G0_7 + 0.00634920634920634*G0_8 + 0.00634920634920635*G0_9;
+    A[7] = -0.00158730158730159*G0_0 - 0.00238095238095238*G0_1 - 0.00238095238095238*G0_2 - 0.00158730158730159*G0_3 + 0.00634920634920634*G0_4 + 0.00634920634920635*G0_5 + 0.00317460317460317*G0_6 + 0.0126984126984127*G0_7 + 0.00634920634920635*G0_8 + 0.00634920634920634*G0_9;
+    A[8] = -0.00158730158730159*G0_0 - 0.00238095238095238*G0_1 - 0.00158730158730159*G0_2 - 0.00238095238095238*G0_3 + 0.00634920634920635*G0_4 + 0.00317460317460318*G0_5 + 0.00634920634920634*G0_6 + 0.00634920634920635*G0_7 + 0.0126984126984127*G0_8 + 0.00634920634920635*G0_9;
+    A[9] = -0.00158730158730159*G0_0 - 0.00158730158730158*G0_1 - 0.00238095238095238*G0_2 - 0.00238095238095238*G0_3 + 0.00317460317460318*G0_4 + 0.00634920634920635*G0_5 + 0.00634920634920635*G0_6 + 0.00634920634920634*G0_7 + 0.00634920634920635*G0_8 + 0.0126984126984127*G0_9;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -3844,7 +3844,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b19d1770144a6113de8b9d156173a4dfd447fc4b6a30561dc5171bf95979558c4514be10ad00b30d6ca4b833a91c932c2a849e2b1be2dbe9244f1f7f9c3cde66";
+    return "d448ecf48c82da73e8a418409b3448074d293ca0631b98cd6909634cf7c02df4aaefdda931153000c864f93b5be25985addbaaa6c038b4ec80a794b3b8f60c97";
   }
 
   /// Return the rank of the global tensor (r)
@@ -3862,7 +3862,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -3873,6 +3873,12 @@ public:
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
   {
     return 0;
   }
@@ -3891,6 +3897,12 @@ public:
 
   /// Return whether the form has any interior facet integrals
   virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
   {
     return false;
   }
@@ -3938,15 +3950,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new projection_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -3962,10 +3965,17 @@ public:
     return 0;
   }
 
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new projection_cell_integral_0_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -3977,6 +3987,13 @@ public:
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -4016,7 +4033,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "08315e46b76edeefa2b83eebd2d57864a435f33626a0837c6fc2514a28336f9a8ed38ec408707bde82b69d3f58a2ed40b0b557f801da0e9b248a407380ef2c05";
+    return "106b584e29abdb16bad83e362f76034c0d6ae10f1fa949bba95141ee8b496d23c4bd6f5e0c7a346ea6ae0feb51fba8efaa90734903db4d18e280fc698421b7a6";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4034,7 +4051,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -4045,6 +4062,12 @@ public:
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
+  {
+    return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
   {
     return 0;
   }
@@ -4063,6 +4086,12 @@ public:
 
   /// Return whether the form has any interior facet integrals
   virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
   {
     return false;
   }
@@ -4110,15 +4139,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new projection_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -4134,10 +4154,17 @@ public:
     return 0;
   }
 
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new projection_cell_integral_1_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -4149,6 +4176,13 @@ public:
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
