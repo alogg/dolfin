@@ -2194,7 +2194,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "0e6af78b9405dda207a742c30aa02f1b7bc6ae0990afdd762d6d514cca80d5d61f5373b0865f06e33b0530084d4cbe384a8753adfb361165ceefcad3869a4cbf";
+    return "0e708f93f19ad78d8248ccaa2bd3170d76f11336d07a9796f384ec3557ae2a04b7997692896d0bdf07a50b178f4b07d525704e221c6a1b18e4ac3afec1a63b42";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2357,7 +2357,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b6c2f5fea06669ffae76c3c1d3c75812525eaf70aeac02e470e5e97c33cf316502dc3ca729d54ffb74244da7d9bc82a0122386455383dc7658b101855d2d70a8";
+    return "5f5d98bfef9e737f78e6c1b53ddf5033b568d03d2ac3bd0450c4c56b655fbaf8a1d8535f3e027335779744792faf4a365faca87281e110f36de43928da35d38f";
   }
 
   /// Return the rank of the global tensor (r)
