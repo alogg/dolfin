@@ -37765,18 +37765,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_0_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_0_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_0_0()
+  virtual ~adaptivenavierstokes_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -38303,18 +38303,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_2_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_2_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_2_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_2_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_2_0()
+  virtual ~adaptivenavierstokes_cell_integral_2_otherwise()
   {
     // Do nothing
   }
@@ -38606,18 +38606,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivenavierstokes_exterior_facet_integral_2_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_2_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_exterior_facet_integral_2_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_2_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_exterior_facet_integral_2_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_2_otherwise()
   {
     // Do nothing
   }
@@ -38850,18 +38850,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_3_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_3_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_3_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_3_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_3_0()
+  virtual ~adaptivenavierstokes_cell_integral_3_otherwise()
   {
     // Do nothing
   }
@@ -39142,18 +39142,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_4_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_4_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_4_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_4_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_4_0()
+  virtual ~adaptivenavierstokes_cell_integral_4_otherwise()
   {
     // Do nothing
   }
@@ -39548,18 +39548,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivenavierstokes_exterior_facet_integral_4_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_4_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_exterior_facet_integral_4_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_4_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_exterior_facet_integral_4_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_4_otherwise()
   {
     // Do nothing
   }
@@ -39699,18 +39699,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivenavierstokes_exterior_facet_integral_5_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_5_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_exterior_facet_integral_5_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_5_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_exterior_facet_integral_5_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_5_otherwise()
   {
     // Do nothing
   }
@@ -40465,18 +40465,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class adaptivenavierstokes_interior_facet_integral_5_0: public ufc::interior_facet_integral
+class adaptivenavierstokes_interior_facet_integral_5_otherwise: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_interior_facet_integral_5_0() : ufc::interior_facet_integral()
+  adaptivenavierstokes_interior_facet_integral_5_otherwise() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_interior_facet_integral_5_0()
+  virtual ~adaptivenavierstokes_interior_facet_integral_5_otherwise()
   {
     // Do nothing
   }
@@ -48718,18 +48718,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_6_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_6_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_6_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_6_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_6_0()
+  virtual ~adaptivenavierstokes_cell_integral_6_otherwise()
   {
     // Do nothing
   }
@@ -49014,18 +49014,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivenavierstokes_exterior_facet_integral_6_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_6_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_exterior_facet_integral_6_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_6_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_exterior_facet_integral_6_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_6_otherwise()
   {
     // Do nothing
   }
@@ -49288,18 +49288,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_7_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_7_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_7_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_7_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_7_0()
+  virtual ~adaptivenavierstokes_cell_integral_7_otherwise()
   {
     // Do nothing
   }
@@ -49550,18 +49550,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivenavierstokes_exterior_facet_integral_7_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_7_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_exterior_facet_integral_7_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_7_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_exterior_facet_integral_7_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_7_otherwise()
   {
     // Do nothing
   }
@@ -49758,18 +49758,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class adaptivenavierstokes_interior_facet_integral_7_0: public ufc::interior_facet_integral
+class adaptivenavierstokes_interior_facet_integral_7_otherwise: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_interior_facet_integral_7_0() : ufc::interior_facet_integral()
+  adaptivenavierstokes_interior_facet_integral_7_otherwise() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_interior_facet_integral_7_0()
+  virtual ~adaptivenavierstokes_interior_facet_integral_7_otherwise()
   {
     // Do nothing
   }
@@ -50397,18 +50397,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_8_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_8_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_8_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_8_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_8_0()
+  virtual ~adaptivenavierstokes_cell_integral_8_otherwise()
   {
     // Do nothing
   }
@@ -50804,18 +50804,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class adaptivenavierstokes_cell_integral_9_0: public ufc::cell_integral
+class adaptivenavierstokes_cell_integral_9_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_cell_integral_9_0() : ufc::cell_integral()
+  adaptivenavierstokes_cell_integral_9_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_cell_integral_9_0()
+  virtual ~adaptivenavierstokes_cell_integral_9_otherwise()
   {
     // Do nothing
   }
@@ -51046,18 +51046,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class adaptivenavierstokes_exterior_facet_integral_9_0: public ufc::exterior_facet_integral
+class adaptivenavierstokes_exterior_facet_integral_9_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  adaptivenavierstokes_exterior_facet_integral_9_0() : ufc::exterior_facet_integral()
+  adaptivenavierstokes_exterior_facet_integral_9_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~adaptivenavierstokes_exterior_facet_integral_9_0()
+  virtual ~adaptivenavierstokes_exterior_facet_integral_9_otherwise()
   {
     // Do nothing
   }
@@ -51412,7 +51412,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "08918af50b8305728c489d914b7c6f2760366e29ca109eec55e4ab50bd7435374b295c27ac02bcdd1e1421358370cfcda3288b02ac3f73d150e596870dce167a";
+    return "aac70b75242fc9c8edcec4091b260c82b5cdfba0d0207ed43e26bf899bc606c006be8b6da82bb8324248cb4d1e6ef588bc229001500fbeef64743d0e823f8392";
   }
 
   /// Return the rank of the global tensor (r)
@@ -51430,7 +51430,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -51538,15 +51538,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -51572,7 +51563,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_0_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -51818,7 +51809,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "eda4d356bded53a50f59b976463ae7e388f4aec8d2ee55e8323ae6857b273c8d677f9e80c48bd10942e09ebe4821a56b53fae6f051ff1641aa6e5a14f63b6f62";
+    return "603adad0f0407ebd1cf14757e40e2f233f8abe6982219ce1657ead8942237f42ba4385fb9d9e36d4bf3620047007f1c62fc4d19541366f4447e31b504f03cf9d";
   }
 
   /// Return the rank of the global tensor (r)
@@ -51836,13 +51827,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -51944,30 +51935,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_2_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_exterior_facet_integral_2_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -51987,13 +51960,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_2_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_exterior_facet_integral_2_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -52045,7 +52018,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "437d9a1a04c6b60deffc1f0574dd12ce70b01c93aa6f331aaa6f1b57635617fe7bb4299951b7b45d9fd66c27951c1272b8bb657eafbb63101a9ef299c449c493";
+    return "815c766daf83ebb934b227bcf84c382a741803e519a819437683423f3cad887a3d8569258e133977bbc3c991685172548000c5d95cf74cab23c86b6615b5eb7b";
   }
 
   /// Return the rank of the global tensor (r)
@@ -52063,7 +52036,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -52161,15 +52134,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_3_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -52195,7 +52159,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_3_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -52253,7 +52217,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "921ea491d9660742572c3c3030fc51bd63024eb881b77a77a96666859348f16114f96a5ac99a69bf8dd72779121d0911d6e29c99dc0acaeff06160025eb0269d";
+    return "3f57d48c409ef532bca0bd3eab621f99dd60934dc008a9beb38ea0eef5d0f213fa0bba42220498f18d813a877e3508c8c77770634fe9d7a64551f6fcae3e3f79";
   }
 
   /// Return the rank of the global tensor (r)
@@ -52271,13 +52235,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -52389,30 +52353,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_4_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_exterior_facet_integral_4_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -52432,13 +52378,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_4_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_exterior_facet_integral_4_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -52490,7 +52436,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "2ca45bcde8fce2d51e8b976f19fc03d1858ec7e6e869de46e62c26d019c28db7268f579e38dd3635eb0c802c98a4daa459dee494ff7d179abd5a79479fecb79d";
+    return "442425c6bc23f0555157d8c3fd427e5feb82570ae6e88c4e36489251dc6eb4479ff812e7f4c2642957b59a2d43cfbbe67b78ead2c92ed6c2193e4456c04cd351";
   }
 
   /// Return the rank of the global tensor (r)
@@ -52514,13 +52460,13 @@ public:
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of point domains
@@ -52612,30 +52558,12 @@ public:
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_exterior_facet_integral_5_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_interior_facet_integral_5_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -52655,13 +52583,13 @@ public:
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_exterior_facet_integral_5_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_interior_facet_integral_5_otherwise();
   }
 
   /// Create a new point integral on everywhere else
@@ -52707,7 +52635,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "ca44126cb29223bb623478fbe7c1fb32f647afa1ba4789ad5a6be3914adb1a628c75ad3a770b4c0336a44687abb4312d6c46b43e0c816e23581f8397ff77e9a8";
+    return "2018b91969b4ad1259d9ad2ae71aa17399c5568742732544d6125b4dc776ea753dfed4c1fda72de7f2d76be538c6da7d4b9f86ec650f82c4732d74ac952367d7";
   }
 
   /// Return the rank of the global tensor (r)
@@ -52725,13 +52653,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -52853,30 +52781,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_6_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_exterior_facet_integral_6_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -52896,13 +52806,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_6_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_exterior_facet_integral_6_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
@@ -52954,7 +52864,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "daf146166b2822a995e15a86420053a0034d5934ea296c3e4fa0d9fbb044782903a120be1a3e4045f0ef9d6d03de2ca40c3c2293ea7a7356c542e9fa4b311232";
+    return "9e50a0a25adef29bc6b50a2677e9bd00d18cd0f10b512f17dd9ecca18a84d546ccc9dcdda9f0e847125b7f6e798b11c864e2517f8d8bab1cb87273207d3f98ad";
   }
 
   /// Return the rank of the global tensor (r)
@@ -52972,19 +52882,19 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of point domains
@@ -53090,45 +53000,18 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_7_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_exterior_facet_integral_7_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_interior_facet_integral_7_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -53142,19 +53025,19 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_7_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_exterior_facet_integral_7_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else
   virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_interior_facet_integral_7_otherwise();
   }
 
   /// Create a new point integral on everywhere else
@@ -53200,7 +53083,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "893a975f6e1e68b9ae9dc861aea71e396f75d1fcf87e2884d12e33ffac8ce03fbc0ddf569e200e49e8deffdd124e37997c751680e7ebe462ebb4989ab9cc812e";
+    return "1a6d572f7e69f221a9d43864218f36603cfd425099867206e890cbc8cd3595ef0d1ef10ac701ba6261c5f23437f859be6d8bf44a555125fc84932418f3f9d9a1";
   }
 
   /// Return the rank of the global tensor (r)
@@ -53218,7 +53101,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -53326,15 +53209,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_8_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -53360,7 +53234,7 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_8_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
@@ -53418,7 +53292,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "24a9d8a370c48371fc961d68817581f7135d9adf4f30565851f0c3cd08ccbdc193c459bf68b0067be77faf4d5cd62aa06546682ebc228cc01a913bfd93606d9b";
+    return "5e08be968a0b654fa59c7f48611f888123e8b5c8d784eeaa2702605031e8cc2874db8631e4aa069ff423e185b39ead869fa80df8ac311d419e42d584c8c9dd44";
   }
 
   /// Return the rank of the global tensor (r)
@@ -53436,13 +53310,13 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
@@ -53544,30 +53418,12 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_cell_integral_9_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new adaptivenavierstokes_exterior_facet_integral_9_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -53587,13 +53443,13 @@ public:
   /// Create a new cell integral on everywhere else
   virtual ufc::cell_integral* create_default_cell_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_cell_integral_9_otherwise();
   }
 
   /// Create a new exterior facet integral on everywhere else
   virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
   {
-    return 0;
+    return new adaptivenavierstokes_exterior_facet_integral_9_otherwise();
   }
 
   /// Create a new interior facet integral on everywhere else

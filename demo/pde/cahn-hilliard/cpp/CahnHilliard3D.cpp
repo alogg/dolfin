@@ -4652,19 +4652,19 @@ ufc::dofmap* cahnhilliard3d_dofmap_2::create() const
 }
 
 /// Constructor
-cahnhilliard3d_cell_integral_0_0::cahnhilliard3d_cell_integral_0_0() : ufc::cell_integral()
+cahnhilliard3d_cell_integral_0_otherwise::cahnhilliard3d_cell_integral_0_otherwise() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-cahnhilliard3d_cell_integral_0_0::~cahnhilliard3d_cell_integral_0_0()
+cahnhilliard3d_cell_integral_0_otherwise::~cahnhilliard3d_cell_integral_0_otherwise()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
+void cahnhilliard3d_cell_integral_0_otherwise::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -4908,7 +4908,7 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
 
 /// Tabulate the tensor for the contribution from a local cell
 /// using the specified reference cell quadrature points/weights
-void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
+void cahnhilliard3d_cell_integral_0_otherwise::tabulate_tensor(double* A,
                      const double * const * w,
                      const ufc::cell& c,
                      std::size_t num_quadrature_points,
@@ -4919,19 +4919,19 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
 }
 
 /// Constructor
-cahnhilliard3d_cell_integral_1_0::cahnhilliard3d_cell_integral_1_0() : ufc::cell_integral()
+cahnhilliard3d_cell_integral_1_otherwise::cahnhilliard3d_cell_integral_1_otherwise() : ufc::cell_integral()
 {
     // Do nothing
 }
 
 /// Destructor
-cahnhilliard3d_cell_integral_1_0::~cahnhilliard3d_cell_integral_1_0()
+cahnhilliard3d_cell_integral_1_otherwise::~cahnhilliard3d_cell_integral_1_otherwise()
 {
     // Do nothing
 }
 
 /// Tabulate the tensor for the contribution from a local cell
-void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
+void cahnhilliard3d_cell_integral_1_otherwise::tabulate_tensor(double* A,
                                     const double * const * w,
                                     const ufc::cell& c) const
 {
@@ -5192,7 +5192,7 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
 
 /// Tabulate the tensor for the contribution from a local cell
 /// using the specified reference cell quadrature points/weights
-void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
+void cahnhilliard3d_cell_integral_1_otherwise::tabulate_tensor(double* A,
                      const double * const * w,
                      const ufc::cell& c,
                      std::size_t num_quadrature_points,
@@ -5217,7 +5217,7 @@ cahnhilliard3d_form_0::~cahnhilliard3d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_0::signature() const
 {
-    return "446864f269004245bc2b42a8f47d0fcb5a53acf01302d3327ee6d0077947572d82e6a17d43a9d68889c71d088877e6001609a7faabb4e949ad6bfee1b99673b5";
+    return "c106100407469d48eea92dbb2979e7206acca2aa1562737407e25334d494242fcb185b5c0ad88fe0a99bd72fd3ef4038cba954825b819be528be4a9b50bbc18b";
 }
 
 /// Return the rank of the global tensor (r)
@@ -5235,7 +5235,7 @@ std::size_t cahnhilliard3d_form_0::num_coefficients() const
 /// Return the number of cell domains
 std::size_t cahnhilliard3d_form_0::num_cell_domains() const
 {
-    return 1;
+    return 0;
 }
 
 /// Return the number of exterior facet domains
@@ -5363,15 +5363,6 @@ ufc::dofmap* cahnhilliard3d_form_0::create_dofmap(std::size_t i) const
 /// Create a new cell integral on sub domain i
 ufc::cell_integral* cahnhilliard3d_form_0::create_cell_integral(std::size_t i) const
 {
-    switch (i)
-    {
-    case 0:
-      {
-        return new cahnhilliard3d_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
 }
 
@@ -5397,7 +5388,7 @@ ufc::point_integral* cahnhilliard3d_form_0::create_point_integral(std::size_t i)
 /// Create a new cell integral on everywhere else
 ufc::cell_integral* cahnhilliard3d_form_0::create_default_cell_integral() const
 {
-    return 0;
+    return new cahnhilliard3d_cell_integral_0_otherwise();
 }
 
 /// Create a new exterior facet integral on everywhere else
@@ -5435,7 +5426,7 @@ cahnhilliard3d_form_1::~cahnhilliard3d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard3d_form_1::signature() const
 {
-    return "6cf96cd6199e0b8c46cbafd0d5f6268acd4bc191a89d1b3c84e562b9a60ecdbdacb38c3ec35474b0dc1bc4528ecf368cb5ea5e920b23a3f8f7b578d4174a5565";
+    return "b98fecf31ca7ca094396bb42f9fb25041febe2e3b9814368775c0349e9d5cfc151ed08bfcf94ebeef81f81fac29d3144e48ff68b23e4cc456046b70be42a70e9";
 }
 
 /// Return the rank of the global tensor (r)
@@ -5453,7 +5444,7 @@ std::size_t cahnhilliard3d_form_1::num_coefficients() const
 /// Return the number of cell domains
 std::size_t cahnhilliard3d_form_1::num_cell_domains() const
 {
-    return 1;
+    return 0;
 }
 
 /// Return the number of exterior facet domains
@@ -5581,15 +5572,6 @@ ufc::dofmap* cahnhilliard3d_form_1::create_dofmap(std::size_t i) const
 /// Create a new cell integral on sub domain i
 ufc::cell_integral* cahnhilliard3d_form_1::create_cell_integral(std::size_t i) const
 {
-    switch (i)
-    {
-    case 0:
-      {
-        return new cahnhilliard3d_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
 }
 
@@ -5615,7 +5597,7 @@ ufc::point_integral* cahnhilliard3d_form_1::create_point_integral(std::size_t i)
 /// Create a new cell integral on everywhere else
 ufc::cell_integral* cahnhilliard3d_form_1::create_default_cell_integral() const
 {
-    return 0;
+    return new cahnhilliard3d_cell_integral_1_otherwise();
 }
 
 /// Create a new exterior facet integral on everywhere else
