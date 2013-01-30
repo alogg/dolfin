@@ -71,6 +71,10 @@ Local-to-global mapping of dofs on a cell
 Tabulate local-local facet dofs
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::vertex_to_dof_map "
+Return a map between vertices and dofs
+";
+
 %feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
 **Overloaded versions**
 
@@ -327,6 +331,19 @@ Tabulate local-local facet dofs
           The coordinates of all dofs on a cell.
       cell (:py:class:`Cell`)
           The cell.
+";
+
+%feature("docstring")  dolfin::DofMap::vertex_to_dof_map "
+Return a map between vertices and dofs
+(vert_ind = vertex_to_dof_map[dof_ind])
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh to create the map between
+
+*Returns*
+    std::vector<std::size_t>
+        The vertex to dof map
 ";
 
 %feature("docstring")  dolfin::DofMap::copy "
