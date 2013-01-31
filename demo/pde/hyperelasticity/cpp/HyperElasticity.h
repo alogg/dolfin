@@ -481,7 +481,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -489,7 +489,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1716,7 +1716,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -1724,7 +1724,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4703,7 +4703,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -4711,7 +4711,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5623,18 +5623,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class hyperelasticity_cell_integral_0_0: public ufc::cell_integral
+class hyperelasticity_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  hyperelasticity_cell_integral_0_0() : ufc::cell_integral()
+  hyperelasticity_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~hyperelasticity_cell_integral_0_0()
+  virtual ~hyperelasticity_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -5842,18 +5842,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class hyperelasticity_exterior_facet_integral_0_0: public ufc::exterior_facet_integral
+class hyperelasticity_exterior_facet_integral_0_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  hyperelasticity_exterior_facet_integral_0_0() : ufc::exterior_facet_integral()
+  hyperelasticity_exterior_facet_integral_0_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~hyperelasticity_exterior_facet_integral_0_0()
+  virtual ~hyperelasticity_exterior_facet_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -5998,18 +5998,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class hyperelasticity_cell_integral_1_0: public ufc::cell_integral
+class hyperelasticity_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  hyperelasticity_cell_integral_1_0() : ufc::cell_integral()
+  hyperelasticity_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~hyperelasticity_cell_integral_1_0()
+  virtual ~hyperelasticity_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -6197,7 +6197,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "ae4f023b73a22b92e195a7e0031103e4b6ba6dff14c0b4e5fc4a608a9d58e2948aff151e1d932eaa34e06faf3f293426b3ca73f05c86120cbe9803a73d4ce51d";
+    return "4bc79839b323ba61477b1f5eff85e8b02407672e7d6419e112b10bad0702931dadce2e182c1dc0264194a73b174ca5defdba5946092d71dc4ff5529efeea12ed";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6215,19 +6215,49 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -6313,36 +6343,50 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new hyperelasticity_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new hyperelasticity_exterior_facet_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new hyperelasticity_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return new hyperelasticity_exterior_facet_integral_0_otherwise();
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -6382,7 +6426,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "72fa91e982f682a981cbd9501de42a4b646de83fba1c0f200e295e50e2ca7968c07333a8347b31c0058c69b24e1fd43f57958eb8456da6c0738f7e569452aa79";
+    return "856974d3005fcbd918699d421a87a97472bfa39746e864c3f610a01d4e5f66092754c4185248e1a37462a8e20c97764de74416aeef011200798d4db90e5a7cce";
   }
 
   /// Return the rank of the global tensor (r)
@@ -6400,7 +6444,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -6413,6 +6457,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -6488,15 +6562,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new hyperelasticity_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -6509,6 +6574,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new hyperelasticity_cell_integral_1_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 

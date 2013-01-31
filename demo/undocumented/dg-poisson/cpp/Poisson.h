@@ -889,7 +889,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -897,7 +897,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1142,18 +1142,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson_cell_integral_0_0: public ufc::cell_integral
+class poisson_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson_cell_integral_0_0() : ufc::cell_integral()
+  poisson_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_cell_integral_0_0()
+  virtual ~poisson_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -1225,18 +1225,18 @@ public:
 /// exterior facet tensor corresponding to the local contribution to
 /// a form from the integral over an exterior facet.
 
-class poisson_exterior_facet_integral_0_0: public ufc::exterior_facet_integral
+class poisson_exterior_facet_integral_0_otherwise: public ufc::exterior_facet_integral
 {
 public:
 
   /// Constructor
-  poisson_exterior_facet_integral_0_0() : ufc::exterior_facet_integral()
+  poisson_exterior_facet_integral_0_otherwise() : ufc::exterior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_exterior_facet_integral_0_0()
+  virtual ~poisson_exterior_facet_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -1479,18 +1479,18 @@ public:
 /// interior facet tensor corresponding to the local contribution to
 /// a form from the integral over an interior facet.
 
-class poisson_interior_facet_integral_0_0: public ufc::interior_facet_integral
+class poisson_interior_facet_integral_0_otherwise: public ufc::interior_facet_integral
 {
 public:
 
   /// Constructor
-  poisson_interior_facet_integral_0_0() : ufc::interior_facet_integral()
+  poisson_interior_facet_integral_0_otherwise() : ufc::interior_facet_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_interior_facet_integral_0_0()
+  virtual ~poisson_interior_facet_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -2525,18 +2525,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson_cell_integral_1_0: public ufc::cell_integral
+class poisson_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson_cell_integral_1_0() : ufc::cell_integral()
+  poisson_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson_cell_integral_1_0()
+  virtual ~poisson_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -2627,7 +2627,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "c1bfeadcd27f49810546f20ba6a447063dbaa73f9ed45c32403dc29b3a91b1e5d33577d3f31b43af5c5b08c2da6009e8c019f0f28954482edd676c5cb89b6e43";
+    return "25bcc18a0c3d4c6b2e92ec68f08c44f1ccad67b60337d058e1b4a48d13b4e1ac23e6dfaaabd2ef429c6fefc04664606271d429326228d62cca2cbca671887739";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2645,19 +2645,49 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
   virtual std::size_t num_exterior_facet_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const
   {
-    return 1;
+    return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -2703,45 +2733,50 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new exterior facet integral on sub domain i
   virtual ufc::exterior_facet_integral* create_exterior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson_exterior_facet_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson_interior_facet_integral_0_0();
-        break;
-      }
-    }
-    
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new poisson_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return new poisson_exterior_facet_integral_0_otherwise();
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return new poisson_interior_facet_integral_0_otherwise();
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -2781,7 +2816,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "9a9c49020278ddeb6ae6bd39c30fd2c8379d009be803ef6a80109850b3b6dbbfce3e4116a18e534b5d2f0846d2fcdbb461f703eb6e7253ca63f79efc98561757";
+    return "b5bee724e2631409058f5e5ae88aee63839663d50a12604821cd63f05ff52bee625035b3a6c6954e0d4bbe5bbf6dbf3603c6ea9f14f6d8cba0407f712abe41cd";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2799,7 +2834,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -2812,6 +2847,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -2857,15 +2922,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -2878,6 +2934,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new poisson_cell_integral_1_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 

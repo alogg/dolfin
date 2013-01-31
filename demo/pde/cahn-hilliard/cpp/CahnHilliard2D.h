@@ -525,15 +525,15 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class cahnhilliard2d_cell_integral_0_0: public ufc::cell_integral
+class cahnhilliard2d_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  cahnhilliard2d_cell_integral_0_0();
+  cahnhilliard2d_cell_integral_0_otherwise();
 
   /// Destructor
-  virtual ~cahnhilliard2d_cell_integral_0_0();
+  virtual ~cahnhilliard2d_cell_integral_0_otherwise();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -555,15 +555,15 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class cahnhilliard2d_cell_integral_1_0: public ufc::cell_integral
+class cahnhilliard2d_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  cahnhilliard2d_cell_integral_1_0();
+  cahnhilliard2d_cell_integral_1_otherwise();
 
   /// Destructor
-  virtual ~cahnhilliard2d_cell_integral_1_0();
+  virtual ~cahnhilliard2d_cell_integral_1_otherwise();
 
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
@@ -624,6 +624,21 @@ public:
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const;
 
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const;
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const;
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const;
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const;
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const;
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(std::size_t i) const;
 
@@ -639,6 +654,20 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const;
 
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const;
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const;
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const;
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const;
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const;
 };
 
 /// This class defines the interface for the assembly of the global
@@ -684,6 +713,21 @@ public:
   /// Return the number of interior facet domains
   virtual std::size_t num_interior_facet_domains() const;
 
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const;
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const;
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const;
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const;
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const;
+
   /// Create a new finite element for argument function i
   virtual ufc::finite_element* create_finite_element(std::size_t i) const;
 
@@ -699,6 +743,20 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const;
 
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const;
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const;
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const;
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const;
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const;
 };
 
 // DOLFIN wrappers

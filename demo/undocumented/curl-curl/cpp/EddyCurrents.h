@@ -1239,7 +1239,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -1247,7 +1247,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4226,7 +4226,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -4234,7 +4234,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4480,7 +4480,7 @@ public:
       {0.0, 0.0, 0.0, 0.0};
       
       static const double coefficients2[4] = \
-      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993};
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499929};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -4618,7 +4618,7 @@ public:
       {0.577350269189626, -0.182574185835055, 0.105409255338946, -0.149071198499986};
       
       static const double coefficients2[4] = \
-      {0.288675134594813, 0.0, 0.210818510677892, -0.0745355992499929};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 4; r++)
@@ -4661,7 +4661,7 @@ public:
       {0.577350269189626, 0.0, -0.210818510677892, -0.149071198499986};
       
       static const double coefficients1[4] = \
-      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499929};
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499928};
       
       static const double coefficients2[4] = \
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499929};
@@ -5056,7 +5056,7 @@ public:
       {0.0, 0.0, 0.0, 0.0};
       
       static const double coefficients2[4] = \
-      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.074535599249993};
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499929};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
@@ -5656,7 +5656,7 @@ public:
       {0.577350269189626, -0.182574185835055, 0.105409255338946, -0.149071198499986};
       
       static const double coefficients2[4] = \
-      {0.288675134594813, 0.0, 0.210818510677892, -0.0745355992499929};
+      {0.288675134594813, 0.0, 0.210818510677892, -0.074535599249993};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[4][4] = \
@@ -5853,7 +5853,7 @@ public:
       {0.577350269189626, 0.0, -0.210818510677892, -0.149071198499986};
       
       static const double coefficients1[4] = \
-      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499929};
+      {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499928};
       
       static const double coefficients2[4] = \
       {0.288675134594813, 0.182574185835055, -0.105409255338946, -0.0745355992499929};
@@ -6281,7 +6281,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -6289,7 +6289,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -7243,18 +7243,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class eddycurrents_cell_integral_0_0: public ufc::cell_integral
+class eddycurrents_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  eddycurrents_cell_integral_0_0() : ufc::cell_integral()
+  eddycurrents_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~eddycurrents_cell_integral_0_0()
+  virtual ~eddycurrents_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -7468,18 +7468,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class eddycurrents_cell_integral_1_0: public ufc::cell_integral
+class eddycurrents_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  eddycurrents_cell_integral_1_0() : ufc::cell_integral()
+  eddycurrents_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~eddycurrents_cell_integral_1_0()
+  virtual ~eddycurrents_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -7575,12 +7575,12 @@ public:
     const double G0_2_11_2 = det*w[0][11]*K_22*(1.0);
     
     // Compute element tensor
-    A[0] = 0.00833333333333329*G0_1_0_0 + 0.00833333333333337*G0_1_1_0 + 0.00833333333333337*G0_1_2_0 + 0.0166666666666667*G0_1_3_0 + 0.00833333333333329*G0_1_4_1 + 0.00833333333333337*G0_1_5_1 + 0.00833333333333337*G0_1_6_1 + 0.0166666666666667*G0_1_7_1 + 0.00833333333333329*G0_1_8_2 + 0.00833333333333337*G0_1_9_2 + 0.00833333333333337*G0_1_10_2 + 0.0166666666666667*G0_1_11_2 - 0.0083333333333333*G0_2_0_0 - 0.00833333333333338*G0_2_1_0 - 0.0166666666666667*G0_2_2_0 - 0.00833333333333339*G0_2_3_0 - 0.0083333333333333*G0_2_4_1 - 0.00833333333333338*G0_2_5_1 - 0.0166666666666667*G0_2_6_1 - 0.00833333333333339*G0_2_7_1 - 0.0083333333333333*G0_2_8_2 - 0.00833333333333338*G0_2_9_2 - 0.0166666666666667*G0_2_10_2 - 0.00833333333333339*G0_2_11_2;
-    A[1] = 0.00833333333333328*G0_0_0_0 + 0.00833333333333336*G0_0_1_0 + 0.00833333333333336*G0_0_2_0 + 0.0166666666666667*G0_0_3_0 + 0.00833333333333328*G0_0_4_1 + 0.00833333333333336*G0_0_5_1 + 0.00833333333333336*G0_0_6_1 + 0.0166666666666667*G0_0_7_1 + 0.00833333333333328*G0_0_8_2 + 0.00833333333333336*G0_0_9_2 + 0.00833333333333336*G0_0_10_2 + 0.0166666666666667*G0_0_11_2 - 0.00833333333333329*G0_2_0_0 - 0.0166666666666667*G0_2_1_0 - 0.00833333333333337*G0_2_2_0 - 0.00833333333333337*G0_2_3_0 - 0.00833333333333329*G0_2_4_1 - 0.0166666666666667*G0_2_5_1 - 0.00833333333333337*G0_2_6_1 - 0.00833333333333337*G0_2_7_1 - 0.00833333333333329*G0_2_8_2 - 0.0166666666666667*G0_2_9_2 - 0.00833333333333337*G0_2_10_2 - 0.00833333333333337*G0_2_11_2;
+    A[0] = 0.00833333333333329*G0_1_0_0 + 0.00833333333333337*G0_1_1_0 + 0.00833333333333337*G0_1_2_0 + 0.0166666666666667*G0_1_3_0 + 0.00833333333333329*G0_1_4_1 + 0.00833333333333337*G0_1_5_1 + 0.00833333333333337*G0_1_6_1 + 0.0166666666666667*G0_1_7_1 + 0.00833333333333329*G0_1_8_2 + 0.00833333333333337*G0_1_9_2 + 0.00833333333333337*G0_1_10_2 + 0.0166666666666667*G0_1_11_2 - 0.0083333333333333*G0_2_0_0 - 0.00833333333333338*G0_2_1_0 - 0.0166666666666667*G0_2_2_0 - 0.00833333333333338*G0_2_3_0 - 0.0083333333333333*G0_2_4_1 - 0.00833333333333338*G0_2_5_1 - 0.0166666666666667*G0_2_6_1 - 0.00833333333333338*G0_2_7_1 - 0.0083333333333333*G0_2_8_2 - 0.00833333333333338*G0_2_9_2 - 0.0166666666666667*G0_2_10_2 - 0.00833333333333338*G0_2_11_2;
+    A[1] = 0.00833333333333328*G0_0_0_0 + 0.00833333333333337*G0_0_1_0 + 0.00833333333333336*G0_0_2_0 + 0.0166666666666667*G0_0_3_0 + 0.00833333333333328*G0_0_4_1 + 0.00833333333333337*G0_0_5_1 + 0.00833333333333336*G0_0_6_1 + 0.0166666666666667*G0_0_7_1 + 0.00833333333333328*G0_0_8_2 + 0.00833333333333337*G0_0_9_2 + 0.00833333333333336*G0_0_10_2 + 0.0166666666666667*G0_0_11_2 - 0.0083333333333333*G0_2_0_0 - 0.0166666666666667*G0_2_1_0 - 0.00833333333333338*G0_2_2_0 - 0.00833333333333338*G0_2_3_0 - 0.0083333333333333*G0_2_4_1 - 0.0166666666666667*G0_2_5_1 - 0.00833333333333338*G0_2_6_1 - 0.00833333333333338*G0_2_7_1 - 0.0083333333333333*G0_2_8_2 - 0.0166666666666667*G0_2_9_2 - 0.00833333333333338*G0_2_10_2 - 0.00833333333333338*G0_2_11_2;
     A[2] = 0.00833333333333329*G0_0_0_0 + 0.00833333333333337*G0_0_1_0 + 0.0166666666666667*G0_0_2_0 + 0.00833333333333337*G0_0_3_0 + 0.00833333333333329*G0_0_4_1 + 0.00833333333333337*G0_0_5_1 + 0.0166666666666667*G0_0_6_1 + 0.00833333333333337*G0_0_7_1 + 0.00833333333333329*G0_0_8_2 + 0.00833333333333337*G0_0_9_2 + 0.0166666666666667*G0_0_10_2 + 0.00833333333333337*G0_0_11_2 - 0.00833333333333329*G0_1_0_0 - 0.0166666666666667*G0_1_1_0 - 0.00833333333333337*G0_1_2_0 - 0.00833333333333337*G0_1_3_0 - 0.00833333333333329*G0_1_4_1 - 0.0166666666666667*G0_1_5_1 - 0.00833333333333337*G0_1_6_1 - 0.00833333333333337*G0_1_7_1 - 0.00833333333333329*G0_1_8_2 - 0.0166666666666667*G0_1_9_2 - 0.00833333333333337*G0_1_10_2 - 0.00833333333333337*G0_1_11_2;
-    A[3] = -0.00833333333333328*G0_0_0_0 - 0.00833333333333336*G0_0_1_0 - 0.00833333333333337*G0_0_2_0 - 0.0166666666666667*G0_0_3_0 - 0.00833333333333328*G0_0_4_1 - 0.00833333333333336*G0_0_5_1 - 0.00833333333333337*G0_0_6_1 - 0.0166666666666667*G0_0_7_1 - 0.00833333333333328*G0_0_8_2 - 0.00833333333333336*G0_0_9_2 - 0.00833333333333337*G0_0_10_2 - 0.0166666666666667*G0_0_11_2 - 0.00833333333333329*G0_1_0_0 - 0.00833333333333337*G0_1_1_0 - 0.00833333333333337*G0_1_2_0 - 0.0166666666666667*G0_1_3_0 - 0.00833333333333329*G0_1_4_1 - 0.00833333333333337*G0_1_5_1 - 0.00833333333333337*G0_1_6_1 - 0.0166666666666667*G0_1_7_1 - 0.00833333333333329*G0_1_8_2 - 0.00833333333333337*G0_1_9_2 - 0.00833333333333337*G0_1_10_2 - 0.0166666666666667*G0_1_11_2 - 0.0249999999999998*G0_2_0_0 - 0.0166666666666667*G0_2_1_0 - 0.0166666666666667*G0_2_2_0 - 0.025*G0_2_3_0 - 0.0249999999999998*G0_2_4_1 - 0.0166666666666667*G0_2_5_1 - 0.0166666666666667*G0_2_6_1 - 0.025*G0_2_7_1 - 0.0249999999999998*G0_2_8_2 - 0.0166666666666667*G0_2_9_2 - 0.0166666666666667*G0_2_10_2 - 0.025*G0_2_11_2;
-    A[4] = -0.00833333333333329*G0_0_0_0 - 0.00833333333333337*G0_0_1_0 - 0.0166666666666667*G0_0_2_0 - 0.00833333333333337*G0_0_3_0 - 0.00833333333333329*G0_0_4_1 - 0.00833333333333337*G0_0_5_1 - 0.0166666666666667*G0_0_6_1 - 0.00833333333333337*G0_0_7_1 - 0.00833333333333329*G0_0_8_2 - 0.00833333333333337*G0_0_9_2 - 0.0166666666666667*G0_0_10_2 - 0.00833333333333337*G0_0_11_2 - 0.0249999999999999*G0_1_0_0 - 0.0166666666666667*G0_1_1_0 - 0.025*G0_1_2_0 - 0.0166666666666667*G0_1_3_0 - 0.0249999999999999*G0_1_4_1 - 0.0166666666666667*G0_1_5_1 - 0.025*G0_1_6_1 - 0.0166666666666667*G0_1_7_1 - 0.0249999999999999*G0_1_8_2 - 0.0166666666666667*G0_1_9_2 - 0.025*G0_1_10_2 - 0.0166666666666667*G0_1_11_2 - 0.0083333333333333*G0_2_0_0 - 0.00833333333333337*G0_2_1_0 - 0.0166666666666667*G0_2_2_0 - 0.00833333333333337*G0_2_3_0 - 0.0083333333333333*G0_2_4_1 - 0.00833333333333337*G0_2_5_1 - 0.0166666666666667*G0_2_6_1 - 0.00833333333333337*G0_2_7_1 - 0.0083333333333333*G0_2_8_2 - 0.00833333333333337*G0_2_9_2 - 0.0166666666666667*G0_2_10_2 - 0.00833333333333337*G0_2_11_2;
-    A[5] = -0.0249999999999999*G0_0_0_0 - 0.025*G0_0_1_0 - 0.0166666666666667*G0_0_2_0 - 0.0166666666666667*G0_0_3_0 - 0.0249999999999999*G0_0_4_1 - 0.025*G0_0_5_1 - 0.0166666666666667*G0_0_6_1 - 0.0166666666666667*G0_0_7_1 - 0.0249999999999999*G0_0_8_2 - 0.025*G0_0_9_2 - 0.0166666666666667*G0_0_10_2 - 0.0166666666666667*G0_0_11_2 - 0.00833333333333329*G0_1_0_0 - 0.0166666666666667*G0_1_1_0 - 0.00833333333333338*G0_1_2_0 - 0.00833333333333337*G0_1_3_0 - 0.00833333333333329*G0_1_4_1 - 0.0166666666666667*G0_1_5_1 - 0.00833333333333338*G0_1_6_1 - 0.00833333333333337*G0_1_7_1 - 0.00833333333333329*G0_1_8_2 - 0.0166666666666667*G0_1_9_2 - 0.00833333333333338*G0_1_10_2 - 0.00833333333333337*G0_1_11_2 - 0.00833333333333329*G0_2_0_0 - 0.0166666666666667*G0_2_1_0 - 0.00833333333333338*G0_2_2_0 - 0.00833333333333337*G0_2_3_0 - 0.00833333333333329*G0_2_4_1 - 0.0166666666666667*G0_2_5_1 - 0.00833333333333338*G0_2_6_1 - 0.00833333333333337*G0_2_7_1 - 0.00833333333333329*G0_2_8_2 - 0.0166666666666667*G0_2_9_2 - 0.00833333333333338*G0_2_10_2 - 0.00833333333333337*G0_2_11_2;
+    A[3] = -0.00833333333333329*G0_0_0_0 - 0.00833333333333337*G0_0_1_0 - 0.00833333333333337*G0_0_2_0 - 0.0166666666666667*G0_0_3_0 - 0.00833333333333329*G0_0_4_1 - 0.00833333333333337*G0_0_5_1 - 0.00833333333333337*G0_0_6_1 - 0.0166666666666667*G0_0_7_1 - 0.00833333333333329*G0_0_8_2 - 0.00833333333333337*G0_0_9_2 - 0.00833333333333337*G0_0_10_2 - 0.0166666666666667*G0_0_11_2 - 0.00833333333333329*G0_1_0_0 - 0.00833333333333337*G0_1_1_0 - 0.00833333333333337*G0_1_2_0 - 0.0166666666666667*G0_1_3_0 - 0.00833333333333329*G0_1_4_1 - 0.00833333333333337*G0_1_5_1 - 0.00833333333333337*G0_1_6_1 - 0.0166666666666667*G0_1_7_1 - 0.00833333333333329*G0_1_8_2 - 0.00833333333333337*G0_1_9_2 - 0.00833333333333337*G0_1_10_2 - 0.0166666666666667*G0_1_11_2 - 0.0249999999999998*G0_2_0_0 - 0.0166666666666666*G0_2_1_0 - 0.0166666666666667*G0_2_2_0 - 0.025*G0_2_3_0 - 0.0249999999999998*G0_2_4_1 - 0.0166666666666666*G0_2_5_1 - 0.0166666666666667*G0_2_6_1 - 0.025*G0_2_7_1 - 0.0249999999999998*G0_2_8_2 - 0.0166666666666666*G0_2_9_2 - 0.0166666666666667*G0_2_10_2 - 0.025*G0_2_11_2;
+    A[4] = -0.00833333333333329*G0_0_0_0 - 0.00833333333333337*G0_0_1_0 - 0.0166666666666667*G0_0_2_0 - 0.00833333333333337*G0_0_3_0 - 0.00833333333333329*G0_0_4_1 - 0.00833333333333337*G0_0_5_1 - 0.0166666666666667*G0_0_6_1 - 0.00833333333333337*G0_0_7_1 - 0.00833333333333329*G0_0_8_2 - 0.00833333333333337*G0_0_9_2 - 0.0166666666666667*G0_0_10_2 - 0.00833333333333337*G0_0_11_2 - 0.0249999999999999*G0_1_0_0 - 0.0166666666666667*G0_1_1_0 - 0.025*G0_1_2_0 - 0.0166666666666667*G0_1_3_0 - 0.0249999999999999*G0_1_4_1 - 0.0166666666666667*G0_1_5_1 - 0.025*G0_1_6_1 - 0.0166666666666667*G0_1_7_1 - 0.0249999999999999*G0_1_8_2 - 0.0166666666666667*G0_1_9_2 - 0.025*G0_1_10_2 - 0.0166666666666667*G0_1_11_2 - 0.0083333333333333*G0_2_0_0 - 0.00833333333333338*G0_2_1_0 - 0.0166666666666667*G0_2_2_0 - 0.00833333333333338*G0_2_3_0 - 0.0083333333333333*G0_2_4_1 - 0.00833333333333338*G0_2_5_1 - 0.0166666666666667*G0_2_6_1 - 0.00833333333333338*G0_2_7_1 - 0.0083333333333333*G0_2_8_2 - 0.00833333333333338*G0_2_9_2 - 0.0166666666666667*G0_2_10_2 - 0.00833333333333338*G0_2_11_2;
+    A[5] = -0.0249999999999999*G0_0_0_0 - 0.025*G0_0_1_0 - 0.0166666666666667*G0_0_2_0 - 0.0166666666666667*G0_0_3_0 - 0.0249999999999999*G0_0_4_1 - 0.025*G0_0_5_1 - 0.0166666666666667*G0_0_6_1 - 0.0166666666666667*G0_0_7_1 - 0.0249999999999999*G0_0_8_2 - 0.025*G0_0_9_2 - 0.0166666666666667*G0_0_10_2 - 0.0166666666666667*G0_0_11_2 - 0.0083333333333333*G0_1_0_0 - 0.0166666666666667*G0_1_1_0 - 0.00833333333333338*G0_1_2_0 - 0.00833333333333338*G0_1_3_0 - 0.0083333333333333*G0_1_4_1 - 0.0166666666666667*G0_1_5_1 - 0.00833333333333338*G0_1_6_1 - 0.00833333333333338*G0_1_7_1 - 0.0083333333333333*G0_1_8_2 - 0.0166666666666667*G0_1_9_2 - 0.00833333333333338*G0_1_10_2 - 0.00833333333333338*G0_1_11_2 - 0.0083333333333333*G0_2_0_0 - 0.0166666666666667*G0_2_1_0 - 0.00833333333333339*G0_2_2_0 - 0.00833333333333339*G0_2_3_0 - 0.0083333333333333*G0_2_4_1 - 0.0166666666666667*G0_2_5_1 - 0.00833333333333339*G0_2_6_1 - 0.00833333333333339*G0_2_7_1 - 0.0083333333333333*G0_2_8_2 - 0.0166666666666667*G0_2_9_2 - 0.00833333333333339*G0_2_10_2 - 0.00833333333333339*G0_2_11_2;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -7631,7 +7631,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "a6faeade7c02be0a2a64fca624330afbdc0c564710debf30fda43fb37f6e47c0747d7bab1669393da3ff0f3a524d29cf0abe96f678b150819072f69caf0066a8";
+    return "3ae0286ffc0f850a0fc300bade3e56b258e501a5738ed04af1c754883705104aef57a33d24af4372d5b1d91e584ce6b8dd816b53f3db18570a9885439e918fad";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7649,7 +7649,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -7662,6 +7662,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -7707,15 +7737,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new eddycurrents_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -7728,6 +7749,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new eddycurrents_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -7767,7 +7820,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "69f5cfe517b662bae55c620ad9ffd1d538a9d3bf13cd414e6aac7b1d49856353acf45994c8558aa09de445e56276029dfc83fce6a357a43b04f92b21a3224432";
+    return "e818ee48668972a5f381f33d959471bc956136aff2517428f582ba0b4d68c31efa74c75e9ef37b31756d4044894f85c0d6e3746622b93563721ef99f16e30297";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7785,7 +7838,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -7798,6 +7851,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -7843,15 +7926,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new eddycurrents_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -7864,6 +7938,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new eddycurrents_cell_integral_1_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 

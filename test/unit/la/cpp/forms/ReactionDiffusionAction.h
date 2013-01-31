@@ -889,7 +889,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -897,7 +897,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1161,18 +1161,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class reactiondiffusionaction_cell_integral_0_0: public ufc::cell_integral
+class reactiondiffusionaction_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  reactiondiffusionaction_cell_integral_0_0() : ufc::cell_integral()
+  reactiondiffusionaction_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~reactiondiffusionaction_cell_integral_0_0()
+  virtual ~reactiondiffusionaction_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -1275,7 +1275,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "53a0575e375ad030aed7330d29f82cc9e9cdd22a06250bf3ded0161d5149900e8bf88a07a0d12e0ad46d872015f86bc5b97b48613f84a5d492fb55dca15920d7";
+    return "dcc0b56ef6c911e0ac32116cc19afd760b1ce76c8ebd075f35260409a149389d32bd7ea0be2fa78d8b824a30a1074c58f665327dbc618f55109ae04c1b0f5766";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1293,7 +1293,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -1306,6 +1306,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -1351,15 +1381,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new reactiondiffusionaction_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -1372,6 +1393,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new reactiondiffusionaction_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 

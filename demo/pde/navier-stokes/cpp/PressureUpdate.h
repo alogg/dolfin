@@ -154,7 +154,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -190,7 +190,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -489,7 +489,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -504,8 +504,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -655,7 +655,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -670,8 +670,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -836,8 +836,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1002,8 +1002,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1168,8 +1168,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1334,8 +1334,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1615,7 +1615,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -1623,7 +1623,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1775,7 +1775,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1811,7 +1811,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -1991,7 +1991,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -2027,7 +2027,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Compute value(s).
       for (unsigned int r = 0; r < 6; r++)
@@ -2329,7 +2329,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -2344,8 +2344,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2495,7 +2495,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -2510,8 +2510,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2676,8 +2676,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2842,8 +2842,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3008,8 +3008,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3174,8 +3174,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3325,7 +3325,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582063, 0.0544331053951817};
+      {0.0, -0.173205080756888, -0.1, 0.121716123890037, 0.0942809041582064, 0.0544331053951817};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -3340,8 +3340,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3491,7 +3491,7 @@ public:
       
       // Table(s) of coefficients.
       static const double coefficients0[6] = \
-      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582064, 0.0544331053951818};
+      {0.0, 0.173205080756888, -0.1, 0.121716123890037, -0.0942809041582063, 0.0544331053951818};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[6][6] = \
@@ -3506,8 +3506,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3672,8 +3672,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3838,8 +3838,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4004,8 +4004,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4170,8 +4170,8 @@ public:
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.44948974278318, 0.0, 0.0, 0.0, 0.0, 0.0},
       {4.24264068711928, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.58198889747161, 4.74341649025257, -0.912870929175278, 0.0, 0.0, 0.0},
-      {2.0, 6.12372435695795, 3.53553390593274, 0.0, 0.0, 0.0},
+      {2.58198889747161, 4.74341649025257, -0.912870929175277, 0.0, 0.0, 0.0},
+      {2, 6.12372435695794, 3.53553390593274, 0.0, 0.0, 0.0},
       {-2.3094010767585, 0.0, 8.16496580927726, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4527,7 +4527,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -4535,7 +4535,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -4973,7 +4973,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -4981,7 +4981,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -5858,7 +5858,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -5866,7 +5866,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -6939,18 +6939,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class pressureupdate_cell_integral_0_0: public ufc::cell_integral
+class pressureupdate_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  pressureupdate_cell_integral_0_0() : ufc::cell_integral()
+  pressureupdate_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~pressureupdate_cell_integral_0_0()
+  virtual ~pressureupdate_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -7022,18 +7022,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class pressureupdate_cell_integral_1_0: public ufc::cell_integral
+class pressureupdate_cell_integral_1_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  pressureupdate_cell_integral_1_0() : ufc::cell_integral()
+  pressureupdate_cell_integral_1_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~pressureupdate_cell_integral_1_0()
+  virtual ~pressureupdate_cell_integral_1_otherwise()
   {
     // Do nothing
   }
@@ -7083,8 +7083,8 @@ public:
     
     static const double FE1_C0_D01[3][5] = \
     {{-1.66666666666667, -0.333333333333333, 0.666666666666666, 2.0, -0.666666666666666},
-    {0.333333333333333, 1.66666666666667, 0.666666666666665, -2.0, -0.666666666666666},
-    {0.333333333333334, -0.333333333333333, 2.66666666666667, 0.0, -2.66666666666667}};
+    {0.333333333333333, 1.66666666666667, 0.666666666666666, -2, -0.666666666666666},
+    {0.333333333333333, -0.333333333333333, 2.66666666666666, 0.0, -2.66666666666667}};
     
     // Array of non-zero columns
     static const unsigned int nzc4[5] = {6, 8, 9, 10, 11};
@@ -7094,8 +7094,8 @@ public:
     
     static const double FE1_C0_D10[3][5] = \
     {{-1.66666666666667, -0.333333333333334, 0.666666666666666, -0.666666666666666, 2.0},
-    {0.333333333333334, -0.333333333333334, 2.66666666666666, -2.66666666666666, 0.0},
-    {0.333333333333334, 1.66666666666667, 0.666666666666666, -0.666666666666666, -2.0}};
+    {0.333333333333334, -0.333333333333334, 2.66666666666667, -2.66666666666667, 0.0},
+    {0.333333333333333, 1.66666666666667, 0.666666666666666, -0.666666666666666, -2.0}};
     
     // Array of non-zero columns
     static const unsigned int nzc5[5] = {6, 7, 9, 10, 11};
@@ -7201,7 +7201,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "3f727db64464c2d0150a26c7a2fa96b3b1670cb3538a37b7e6c890226be9e90b2eb42ffff8f59f469903afdc7f760212bd85086f92358613c43593f09d3de135";
+    return "0cce61f8f8b9aca04caa3c0c6f6257eeffd9e491c4ef36206bbb8fe73c89d2b13932cc41932bd0de6bdb14e98c7ea4855eda6d3a29dfa9a080dff34e5b508cad";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7219,7 +7219,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -7232,6 +7232,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -7277,15 +7307,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new pressureupdate_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -7298,6 +7319,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new pressureupdate_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -7337,7 +7390,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "b858eb0f2a3fb0a5fe69efea034d7f2c7028aaf4cbb906d1254b7f7b3ccee8cc635b465bab5e7c2da0a2e5a6b2651c9d7c3d31340505f11600f5451ba919ea96";
+    return "4dd62303d00dfd5c5e3c96d38fbd93f4b573750ae0b6862ff9bf3200e1b006b56d16f2665e69a147fa71622b9a35bf7e821654a830fc8b1ebba59d811c478e14";
   }
 
   /// Return the rank of the global tensor (r)
@@ -7355,7 +7408,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -7368,6 +7421,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -7423,15 +7506,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new pressureupdate_cell_integral_1_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -7444,6 +7518,38 @@ public:
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
   {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    throw std::runtime_error("create_point_integral not yet implemented.");
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new pressureupdate_cell_integral_1_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
+  {
+    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
