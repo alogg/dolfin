@@ -4065,7 +4065,6 @@ ufc::interior_facet_integral* cahnhilliard2d_form_0::create_interior_facet_integ
 /// Create a new point integral on sub domain i
 ufc::point_integral* cahnhilliard2d_form_0::create_point_integral(std::size_t i) const
 {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
 }
 
@@ -4090,7 +4089,6 @@ ufc::interior_facet_integral* cahnhilliard2d_form_0::create_default_interior_fac
 /// Create a new point integral on everywhere else
 ufc::point_integral* cahnhilliard2d_form_0::create_default_point_integral() const
 {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
 }
 
@@ -4274,7 +4272,6 @@ ufc::interior_facet_integral* cahnhilliard2d_form_1::create_interior_facet_integ
 /// Create a new point integral on sub domain i
 ufc::point_integral* cahnhilliard2d_form_1::create_point_integral(std::size_t i) const
 {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
 }
 
@@ -4299,7 +4296,6 @@ ufc::interior_facet_integral* cahnhilliard2d_form_1::create_default_interior_fac
 /// Create a new point integral on everywhere else
 ufc::point_integral* cahnhilliard2d_form_1::create_default_point_integral() const
 {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
 }
 

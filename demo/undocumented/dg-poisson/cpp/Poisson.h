@@ -2627,7 +2627,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "25bcc18a0c3d4c6b2e92ec68f08c44f1ccad67b60337d058e1b4a48d13b4e1ac23e6dfaaabd2ef429c6fefc04664606271d429326228d62cca2cbca671887739";
+    return "436d67f32832f3f3939809046a5ad465e666ec975d76196901d390937fd344df9b7e4b77261399312eadda6e45bac8a0689bfbe47a4059147dffd6969f7e8415";
   }
 
   /// Return the rank of the global tensor (r)
@@ -2751,7 +2751,6 @@ public:
   /// Create a new point integral on sub domain i
   virtual ufc::point_integral* create_point_integral(std::size_t i) const
   {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
   }
 
@@ -2776,7 +2775,6 @@ public:
   /// Create a new point integral on everywhere else
   virtual ufc::point_integral* create_default_point_integral() const
   {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -2940,7 +2938,6 @@ public:
   /// Create a new point integral on sub domain i
   virtual ufc::point_integral* create_point_integral(std::size_t i) const
   {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
   }
 
@@ -2965,7 +2962,6 @@ public:
   /// Create a new point integral on everywhere else
   virtual ufc::point_integral* create_default_point_integral() const
   {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
