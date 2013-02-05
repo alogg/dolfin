@@ -1724,10 +1724,10 @@ public:
     const double G0_3 = det*w[0][3]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.0166666666666665*G0_0 + 0.00833333333333329*G0_1 + 0.0083333333333333*G0_2 + 0.00833333333333329*G0_3;
-    A[1] = 0.00833333333333329*G0_0 + 0.0166666666666667*G0_1 + 0.00833333333333337*G0_2 + 0.00833333333333337*G0_3;
+    A[0] = 0.0166666666666666*G0_0 + 0.0083333333333333*G0_1 + 0.0083333333333333*G0_2 + 0.0083333333333333*G0_3;
+    A[1] = 0.0083333333333333*G0_0 + 0.0166666666666667*G0_1 + 0.00833333333333337*G0_2 + 0.00833333333333337*G0_3;
     A[2] = 0.0083333333333333*G0_0 + 0.00833333333333337*G0_1 + 0.0166666666666667*G0_2 + 0.00833333333333337*G0_3;
-    A[3] = 0.00833333333333329*G0_0 + 0.00833333333333337*G0_1 + 0.00833333333333337*G0_2 + 0.0166666666666667*G0_3;
+    A[3] = 0.0083333333333333*G0_0 + 0.00833333333333337*G0_1 + 0.00833333333333337*G0_2 + 0.0166666666666667*G0_3;
   }
 
   /// Tabulate the tensor for the contribution from a local cell
@@ -1902,7 +1902,6 @@ public:
   /// Create a new point integral on sub domain i
   virtual ufc::point_integral* create_point_integral(std::size_t i) const
   {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
   }
 
@@ -1927,7 +1926,6 @@ public:
   /// Create a new point integral on everywhere else
   virtual ufc::point_integral* create_default_point_integral() const
   {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -2091,7 +2089,6 @@ public:
   /// Create a new point integral on sub domain i
   virtual ufc::point_integral* create_point_integral(std::size_t i) const
   {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
   }
 
@@ -2116,7 +2113,6 @@ public:
   /// Create a new point integral on everywhere else
   virtual ufc::point_integral* create_default_point_integral() const
   {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 

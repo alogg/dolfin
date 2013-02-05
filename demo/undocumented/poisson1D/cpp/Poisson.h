@@ -1238,7 +1238,6 @@ public:
   /// Create a new point integral on sub domain i
   virtual ufc::point_integral* create_point_integral(std::size_t i) const
   {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
   }
 
@@ -1263,7 +1262,6 @@ public:
   /// Create a new point integral on everywhere else
   virtual ufc::point_integral* create_default_point_integral() const
   {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
@@ -1437,7 +1435,6 @@ public:
   /// Create a new point integral on sub domain i
   virtual ufc::point_integral* create_point_integral(std::size_t i) const
   {
-    throw std::runtime_error("create_point_integral not yet implemented.");
     return 0;
   }
 
@@ -1462,7 +1459,6 @@ public:
   /// Create a new point integral on everywhere else
   virtual ufc::point_integral* create_default_point_integral() const
   {
-    throw std::runtime_error("create_default_point_integral not yet implemented.");
     return 0;
   }
 
