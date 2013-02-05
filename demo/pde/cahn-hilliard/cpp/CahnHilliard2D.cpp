@@ -3616,41 +3616,41 @@ void cahnhilliard2d_cell_integral_0_otherwise::tabulate_tensor(double* A,
       // Total number of operations to compute function values = 24
       for (unsigned int r = 0; r < 2; r++)
       {
-        F0 += FE0_C0_D01[ip][r]*w[0][nzc5[r]];
-        F1 += FE0_C0_D01[ip][r]*w[0][nzc4[r]];
-        F2 += FE0_C0_D01[ip][r]*w[1][nzc5[r]];
-        F3 += FE0_C0_D01[ip][r]*w[1][nzc4[r]];
-        F6 += FE0_C0_D01[ip][r]*w[0][nzc2[r]];
-        F7 += FE0_C0_D01[ip][r]*w[0][nzc1[r]];
+        F2 += FE0_C0_D01[ip][r]*w[0][nzc2[r]];
+        F3 += FE0_C0_D01[ip][r]*w[0][nzc1[r]];
+        F5 += FE0_C0_D01[ip][r]*w[0][nzc5[r]];
+        F6 += FE0_C0_D01[ip][r]*w[0][nzc4[r]];
+        F7 += FE0_C0_D01[ip][r]*w[1][nzc5[r]];
+        F8 += FE0_C0_D01[ip][r]*w[1][nzc4[r]];
       }// end loop over 'r'
       
       // Total number of operations to compute function values = 18
       for (unsigned int r = 0; r < 3; r++)
       {
-        F4 += FE0_C0[ip][r]*w[0][nzc0[r]];
-        F5 += FE0_C0[ip][r]*w[1][nzc0[r]];
-        F8 += FE0_C0[ip][r]*w[0][nzc3[r]];
+        F0 += FE0_C0[ip][r]*w[0][nzc0[r]];
+        F1 += FE0_C0[ip][r]*w[1][nzc0[r]];
+        F4 += FE0_C0[ip][r]*w[0][nzc3[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 35
       double I[6];
       // Number of operations: 8
-      I[0] = W6[ip]*(F0*G[0] + F1*G[1] + F2*G[2] + F3*G[3]);
+      I[0] = W6[ip]*(F5*G[0] + F6*G[1] + F7*G[2] + F8*G[3]);
       
       // Number of operations: 8
-      I[1] = W6[ip]*(F0*G[4] + F1*G[0] + F2*G[5] + F3*G[2]);
+      I[1] = W6[ip]*(F5*G[4] + F6*G[0] + F7*G[5] + F8*G[2]);
       
       // Number of operations: 4
-      I[2] = W6[ip]*(F6*G[6] + F7*G[7]);
+      I[2] = W6[ip]*(F2*G[6] + F3*G[7]);
       
       // Number of operations: 4
-      I[3] = W6[ip]*(F6*G[8] + F7*G[6]);
+      I[3] = W6[ip]*(F2*G[8] + F3*G[6]);
       
       // Number of operations: 3
-      I[4] = W6[ip]*det*(F4 - F5);
+      I[4] = W6[ip]*det*(F0 - F1);
       
       // Number of operations: 8
-      I[5] = W6[ip]*(F4*(G[11] + F4*(G[10] + F4*G[9])) + F8*det);
+      I[5] = W6[ip]*(F0*(G[11] + F0*(G[10] + F0*G[9])) + F4*det);
       
       
       // Number of operations for primary indices: 12
@@ -3901,7 +3901,7 @@ cahnhilliard2d_form_0::~cahnhilliard2d_form_0()
 /// Return a string identifying the form
 const char* cahnhilliard2d_form_0::signature() const
 {
-    return "8132018d9a51e454a422f20eba8b7ec0198b3d773ddd419c74514651bce00bd344a08d3ea10c85a41c32d4ec010a97df76ce71676d90d74f8ccbd12f6d0ffd34";
+    return "f072a8a641c748824bf6ff4d9e2d983f4a205aa514ff34fd48bb842f533a11dd78a5ef3d8d6514da03eb2c1481252a6ed5ba878a307c2c4bf613e5e69a0b0701";
 }
 
 /// Return the rank of the global tensor (r)
@@ -4108,7 +4108,7 @@ cahnhilliard2d_form_1::~cahnhilliard2d_form_1()
 /// Return a string identifying the form
 const char* cahnhilliard2d_form_1::signature() const
 {
-    return "06babdfe6fe5527d595092279271aaa6287876fb22a43cba8cf2dccaa9d1aa541bebf8504bc57eb3f505d13765f0cd645a0467253a07b9c6e1e1f1372f9cc19c";
+    return "0a5ab7aed72e75cbf76ffccdd40b4d15a400962a2b6412c6fb7dec958ad944579535db46a62f749a5450937ed8e5526d3a8378a1cefbc07ebdb5ecc1c97ca313";
 }
 
 /// Return the rank of the global tensor (r)
