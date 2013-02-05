@@ -14,10 +14,9 @@
 //   error_control:                  False
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      10
+//   log_level:                      20
 //   log_prefix:                     ''
-//   no_ferari:                      True
-//   optimize:                       True
+//   optimize:                       False
 //   output_dir:                     '.'
 //   precision:                      15
 //   quadrature_degree:              'auto'
@@ -1346,7 +1345,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "0cce61f8f8b9aca04caa3c0c6f6257eeffd9e491c4ef36206bbb8fe73c89d2b13932cc41932bd0de6bdb14e98c7ea4855eda6d3a29dfa9a080dff34e5b508cad";
+    return "e3387acfe33cb5b0f23b7379220390554fd02b8e8b64e7928096a6cfb99f0e0aeb3d4743c116dcb6f8da47bea64075516e878f6ef297bf763a5a93f19e7a01b5";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1533,7 +1532,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "aaa73c5a0de4d9becee4ea651dc67d586589cf572fe8b5f5f2838f9678f184c49f381fc346136362b1820edd5c454150859c71daec50de4d9e93236e25e9656a";
+    return "1d73e8caca48c87cc2e9b26199b492c64c9eb0f0648c5783587fcff76a20979a1c7f0e25d018d098bea1f0aef21cf639a21be242afb664d7905c3bd209d06d6d";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1730,6 +1729,26 @@ public:
     // Do nothing
   }
 
+  //--- Constructors for periodic function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  CoefficientSpace_f(const dolfin::Mesh& mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh, periodic_domain)))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh, periodic_domain)))
+  {
+    // Do nothing
+  }
+
   //--- Constructors for restricted function space, 2 different versions ---
 
   // Create restricted function space (reference version)
@@ -1783,6 +1802,26 @@ public:
     // Do nothing
   }
 
+  //--- Constructors for periodic function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Mesh& mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh, periodic_domain)))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh, periodic_domain)))
+  {
+    // Do nothing
+  }
+
   //--- Constructors for restricted function space, 2 different versions ---
 
   // Create restricted function space (reference version)
@@ -1832,6 +1871,26 @@ public:
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh)))
+  {
+    // Do nothing
+  }
+
+  //--- Constructors for periodic function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Mesh& mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh, periodic_domain)))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh, periodic_domain)))
   {
     // Do nothing
   }
@@ -1940,6 +1999,26 @@ public:
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh)))
+  {
+    // Do nothing
+  }
+
+  //--- Constructors for periodic function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_L_FunctionSpace_0(const dolfin::Mesh& mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), mesh, periodic_domain)))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh, const dolfin::SubDomain& periodic_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new poisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new poisson_dofmap_0()), *mesh, periodic_domain)))
   {
     // Do nothing
   }
