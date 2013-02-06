@@ -6275,7 +6275,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "de5ed6baa62834176a159aeeb7b18ef06e22c8ef15e84de057b4940b0a5247dbedbc820e39df6ecb7823e63fb91cc4c47cabb3b4b68a2d6887bc109a3a534ff6";
+    return "c9551872f39d47f35027f6cd5bf370ba7d0af89202664e6353982734baffe76a80c86eb905984d15e51010d3ecfe4947c6736112f6587d943c13674b48c0f2d9";
   }
 
   /// Return the rank of the global tensor (r)
