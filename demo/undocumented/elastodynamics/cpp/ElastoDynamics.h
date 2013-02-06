@@ -3865,8 +3865,8 @@ public:
     G[7] = det*w[11][0]*(K_01*K_11*( - w[8][0]-2.0*w[9][0]) - K_00*K_10*w[9][0]);
     G[8] = det*w[11][0]*(K_11*K_11*( - w[8][0]-2.0*w[9][0]) - K_10*K_10*w[9][0]);
     G[9] = det*w[11][0]*(K_01*K_01*( - w[8][0]-2.0*w[9][0]) - K_00*K_00*w[9][0]);
-    G[10] = det*((w[13][0]*w[7][0] - w[11][0]*w[13][0]*w[7][0])/(w[12][0]*w[14][0]) + (w[6][0] - w[10][0]*w[6][0])/(w[12][0]*w[14][0]*w[14][0]));
-    G[11] = det*(w[14][0]*w[7][0]*(w[11][0]-1.0) + (0.5*w[13][0]*w[14][0]*w[7][0] + 0.5*w[6][0]-0.5*w[10][0]*w[6][0]-0.5*w[11][0]*w[13][0]*w[14][0]*w[7][0])/w[12][0] - w[6][0]);
+    G[10] = det*(w[14][0]*w[7][0]*(w[11][0]-1.0) + (0.5*w[13][0]*w[14][0]*w[7][0] + 0.5*w[6][0]-0.5*w[10][0]*w[6][0]-0.5*w[11][0]*w[13][0]*w[14][0]*w[7][0])/w[12][0] - w[6][0]);
+    G[11] = det*((w[13][0]*w[7][0] - w[11][0]*w[13][0]*w[7][0])/(w[12][0]*w[14][0]) + (w[6][0] - w[10][0]*w[6][0])/(w[12][0]*w[14][0]*w[14][0]));
     G[12] = det*(w[7][0]*((w[13][0] - w[11][0]*w[13][0])/w[12][0]-1.0) + (w[6][0] - w[10][0]*w[6][0])/(w[12][0]*w[14][0]));
     
     // Compute element tensor using UFL quadrature representation
@@ -3894,44 +3894,44 @@ public:
       // Total number of operations to compute function values = 16
       for (unsigned int r = 0; r < 2; r++)
       {
-        F2 += FE1_C0_D01[ip][r]*w[0][nzc2[r]];
-        F3 += FE1_C0_D01[ip][r]*w[0][nzc1[r]];
-        F4 += FE1_C0_D01[ip][r]*w[0][nzc5[r]];
-        F5 += FE1_C0_D01[ip][r]*w[0][nzc4[r]];
+        F0 += FE1_C0_D01[ip][r]*w[0][nzc2[r]];
+        F1 += FE1_C0_D01[ip][r]*w[0][nzc1[r]];
+        F2 += FE1_C0_D01[ip][r]*w[0][nzc5[r]];
+        F3 += FE1_C0_D01[ip][r]*w[0][nzc4[r]];
       }// end loop over 'r'
       
       // Total number of operations to compute function values = 48
       for (unsigned int r = 0; r < 3; r++)
       {
-        F0 += FE1_C0[ip][r]*w[4][nzc0[r]];
-        F1 += FE1_C0[ip][r]*w[4][nzc3[r]];
-        F6 += FE1_C0[ip][r]*w[2][nzc0[r]];
-        F7 += FE1_C0[ip][r]*w[2][nzc3[r]];
+        F4 += FE1_C0[ip][r]*w[2][nzc0[r]];
+        F5 += FE1_C0[ip][r]*w[2][nzc3[r]];
+        F6 += FE1_C0[ip][r]*w[0][nzc0[r]];
+        F7 += FE1_C0[ip][r]*w[0][nzc3[r]];
         F8 += FE1_C0[ip][r]*w[1][nzc0[r]];
         F9 += FE1_C0[ip][r]*w[1][nzc3[r]];
-        F10 += FE1_C0[ip][r]*w[0][nzc0[r]];
-        F11 += FE1_C0[ip][r]*w[0][nzc3[r]];
+        F10 += FE1_C0[ip][r]*w[4][nzc0[r]];
+        F11 += FE1_C0[ip][r]*w[4][nzc3[r]];
       }// end loop over 'r'
       
       // Number of operations to compute ip constants: 48
       double I[6];
       // Number of operations: 8
-      I[0] = W3[ip]*(F2*G[0] + F3*G[1] + F4*G[2] + F5*G[3]);
+      I[0] = W3[ip]*(F0*G[0] + F1*G[1] + F2*G[2] + F3*G[3]);
       
       // Number of operations: 8
-      I[1] = W3[ip]*(F2*G[4] + F3*G[0] + F4*G[5] + F5*G[6]);
+      I[1] = W3[ip]*(F0*G[4] + F1*G[0] + F2*G[5] + F3*G[6]);
       
       // Number of operations: 8
-      I[2] = W3[ip]*(F2*G[6] + F3*G[3] + F4*G[7] + F5*G[8]);
+      I[2] = W3[ip]*(F0*G[6] + F1*G[3] + F2*G[7] + F3*G[8]);
       
       // Number of operations: 8
-      I[3] = W3[ip]*(F2*G[5] + F3*G[2] + F4*G[9] + F5*G[7]);
+      I[3] = W3[ip]*(F0*G[5] + F1*G[2] + F2*G[9] + F3*G[7]);
       
       // Number of operations: 8
-      I[4] = W3[ip]*(F0*det + F10*G[10] + F6*G[11] + F8*G[12]);
+      I[4] = W3[ip]*(F10*det + F4*G[10] + F6*G[11] + F8*G[12]);
       
       // Number of operations: 8
-      I[5] = W3[ip]*(F1*det + F11*G[10] + F7*G[11] + F9*G[12]);
+      I[5] = W3[ip]*(F11*det + F5*G[10] + F7*G[11] + F9*G[12]);
       
       
       // Number of operations for primary indices: 12
@@ -4127,7 +4127,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "1b71f207bbc9d3c9e81ca7d25d2ec4bc2ac0935f54dedb9b5667fe8204a079c6ce453bd266d564fa048a207020a9ffb8cc64f77df3d9a42f8f029d2ef2a15a93";
+    return "c91eeab24a2bf3afac3bbf053594fc72bbee1b01d10bb0adc4f0b961c00a1dbf9505dd505662fd3c1f45cebc708f999cf74ae3e8efa132d02c61b76c31746172";
   }
 
   /// Return the rank of the global tensor (r)
@@ -4404,7 +4404,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "f7f650d9e1788369b7455b55ac17dc011be6773f2846e69cc011312ede8a84be17b3e21340702edd9b93461b2d717078be015920a4188b2898accdfcadaa236f";
+    return "6207cc34b7edb158820bb36a3e8ab6afd6d002c2aa50ab1c8b47339233e5fa8ec866bbe28de4f61e26554e806ebffb298893a24358868670bc1ec4ff8585c50b";
   }
 
   /// Return the rank of the global tensor (r)
