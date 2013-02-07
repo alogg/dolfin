@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
   }
 
   /// Return the cell shape
@@ -107,18 +107,14 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
-    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
-                      vertex_coordinates[3]  - vertex_coordinates[0];
-    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
-                      vertex_coordinates[4]  - vertex_coordinates[1];
-    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
-                      vertex_coordinates[5]  - vertex_coordinates[2];
-    
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] + vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] + vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] + vertex_coordinates[5]  - vertex_coordinates[2];
     
     // Compute subdeterminants
     const double d_00 = J[4]*J[8] - J[5]*J[7];
@@ -132,9 +128,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -294,18 +290,14 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
-    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] +
-                      vertex_coordinates[3]  - vertex_coordinates[0];
-    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] +
-                      vertex_coordinates[4]  - vertex_coordinates[1];
-    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] +
-                      vertex_coordinates[5]  - vertex_coordinates[2];
-    
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] + vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] + vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] + vertex_coordinates[5]  - vertex_coordinates[2];
     
     // Compute subdeterminants
     const double d_00 = J[4]*J[8] - J[5]*J[7];
@@ -319,9 +311,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -1206,7 +1198,7 @@ public:
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
-                                         const ufc::cell& c) const
+                                         const double* vertex_coordinates) const
   {
     // Evaluate function and change variables
     vertex_values[0] = dof_values[0];
@@ -1220,7 +1212,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -1228,7 +1220,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -1273,7 +1265,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('tetrahedron', Space(3)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('tetrahedron', 3), 'tetrahedron_multiverse', 3, 3), 1, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1527,18 +1519,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson3d_cell_integral_0_0: public ufc::cell_integral
+class poisson3d_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson3d_cell_integral_0_0() : ufc::cell_integral()
+  poisson3d_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson3d_cell_integral_0_0()
+  virtual ~poisson3d_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -1546,7 +1538,11 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
+<<<<<<< TREE
                                const double* vertex_coordinates) const
+=======
+                               const ufc::cell& c) const
+>>>>>>> MERGE-SOURCE
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    27
@@ -1559,11 +1555,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1] + K[2]*K[2]);
@@ -1631,7 +1627,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "92cce1cd9d6357c69e2fc1154e3c10f17d8d1c879eccc59a51525dd3fbe6a2ddf7ebc92a027eec41012df8ffc9e5fd4e07890cbe9bcdbe9296d916a364725ae9";
+    return "1a5accc9e59f99f3fa6ccd852811732956c0945bdaeafb98ca7f1a3ac66cab6e7a05266d82b08da505e7ea409b281a6d8f5ca0f8c9702a7fcd4d7c634d9a23b5";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1649,7 +1645,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -1662,6 +1658,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -1707,15 +1733,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson3d_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -1727,6 +1744,36 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new poisson3d_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
   {
     return 0;
   }

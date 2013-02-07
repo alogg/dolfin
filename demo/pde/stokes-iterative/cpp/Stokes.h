@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -132,9 +132,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -634,8 +634,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -659,9 +659,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -3248,8 +3248,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -3273,9 +3273,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -4700,8 +4700,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -4725,9 +4725,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -11974,8 +11974,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -11999,9 +11999,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -12161,8 +12161,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -12186,9 +12186,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -13199,8 +13199,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -13224,9 +13224,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -14772,8 +14772,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -14797,9 +14797,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -24443,11 +24443,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*K[2]*(1.0);
@@ -25747,11 +25747,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_20 = det*w[0][20]*(1.0);

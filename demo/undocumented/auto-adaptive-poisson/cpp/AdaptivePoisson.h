@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -159,8 +159,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -533,8 +533,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -542,8 +542,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -798,8 +798,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -807,8 +807,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -2132,8 +2132,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -2141,8 +2141,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -2210,8 +2210,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -2219,8 +2219,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -2646,8 +2646,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -2655,8 +2655,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -2779,8 +2779,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -2788,8 +2788,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -3519,8 +3519,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -3528,8 +3528,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -3784,8 +3784,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -3793,8 +3793,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -5118,8 +5118,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -5127,8 +5127,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -5251,8 +5251,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -5260,8 +5260,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -7323,11 +7323,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1]);
@@ -7385,11 +7385,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_ = det;
@@ -7433,11 +7433,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     
@@ -7593,10 +7593,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      6
+    // Number of operations (multiply-add pairs) for Jacobian data:      10
     // Number of operations (multiply-add pairs) for geometry tensor:    13
     // Number of operations (multiply-add pairs) for tensor contraction: 10
-    // Total number of operations (multiply-add pairs):                  29
+    // Total number of operations (multiply-add pairs):                  33
     
     // Compute Jacobian
     double J[4];
@@ -7604,8 +7604,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -7613,8 +7613,8 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -7688,11 +7688,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*w[0][0]*(1.0);
@@ -7742,11 +7742,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     
@@ -7917,10 +7917,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      5
+    // Number of operations (multiply-add pairs) for Jacobian data:      4
     // Number of operations (multiply-add pairs) for geometry tensor:    0
     // Number of operations (multiply-add pairs) for tensor contraction: 0
-    // Total number of operations (multiply-add pairs):                  5
+    // Total number of operations (multiply-add pairs):                  4
     
     // Compute Jacobian
     double J[4];
@@ -7928,17 +7928,12 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
-    static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
-    const unsigned int v0 = edge_vertices[facet][0];
-    const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
     
     // Compute geometry tensor
     
@@ -7999,10 +7994,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      6
+    // Number of operations (multiply-add pairs) for Jacobian data:      10
     // Number of operations (multiply-add pairs) for geometry tensor:    6
     // Number of operations (multiply-add pairs) for tensor contraction: 30
-    // Total number of operations (multiply-add pairs):                  42
+    // Total number of operations (multiply-add pairs):                  46
     
     // Compute Jacobian
     double J[4];
@@ -8010,8 +8005,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -8019,8 +8014,8 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -8107,10 +8102,10 @@ public:
                                std::size_t facet0,
                                std::size_t facet1) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      13
+    // Number of operations (multiply-add pairs) for Jacobian data:      21
     // Number of operations (multiply-add pairs) for geometry tensor:    12
     // Number of operations (multiply-add pairs) for tensor contraction: 180
-    // Total number of operations (multiply-add pairs):                  205
+    // Total number of operations (multiply-add pairs):                  213
     
     // Compute Jacobian
     double J[4];
@@ -8118,8 +8113,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -8127,16 +8122,16 @@ public:
     const unsigned int v1 = edge_vertices[facet0][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x0[v1][0] - x0[v0][0];
-    const double dx1 = x0[v1][1] - x0[v0][1];
+    const double dx0 = vertex_coordinates0[2*v1 + 0] - vertex_coordinates0[2*v0 + 0];
+    const double dx1 = vertex_coordinates0[2*v1 + 1] - vertex_coordinates0[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);// Compute Jacobian
     double J[4];
     compute_jacobian_triangle_2d(J, vertex_coordinates-);
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -8144,8 +8139,8 @@ public:
     const unsigned int v1 = edge_vertices[facet1][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x1[v1][0] - x1[v0][0];
-    const double dx1 = x1[v1][1] - x1[v0][1];
+    const double dx0 = vertex_coordinates1[2*v1 + 0] - vertex_coordinates1[2*v0 + 0];
+    const double dx1 = vertex_coordinates1[2*v1 + 1] - vertex_coordinates1[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -8586,11 +8581,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     
@@ -8769,10 +8764,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      6
+    // Number of operations (multiply-add pairs) for Jacobian data:      10
     // Number of operations (multiply-add pairs) for geometry tensor:    22
     // Number of operations (multiply-add pairs) for tensor contraction: 33
-    // Total number of operations (multiply-add pairs):                  61
+    // Total number of operations (multiply-add pairs):                  65
     
     // Compute Jacobian
     double J[4];
@@ -8780,8 +8775,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -8789,8 +8784,8 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -8876,11 +8871,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0_0 = det*w[1][0]*w[0][0]*(1.0);
@@ -8943,10 +8938,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      6
+    // Number of operations (multiply-add pairs) for Jacobian data:      10
     // Number of operations (multiply-add pairs) for geometry tensor:    27
     // Number of operations (multiply-add pairs) for tensor contraction: 22
-    // Total number of operations (multiply-add pairs):                  55
+    // Total number of operations (multiply-add pairs):                  59
     
     // Compute Jacobian
     double J[4];
@@ -8954,8 +8949,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -8963,8 +8958,8 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -9039,10 +9034,10 @@ public:
                                std::size_t facet0,
                                std::size_t facet1) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      13
+    // Number of operations (multiply-add pairs) for Jacobian data:      21
     // Number of operations (multiply-add pairs) for geometry tensor:    108
     // Number of operations (multiply-add pairs) for tensor contraction: 279
-    // Total number of operations (multiply-add pairs):                  400
+    // Total number of operations (multiply-add pairs):                  408
     
     // Compute Jacobian
     double J[4];
@@ -9050,8 +9045,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -9059,16 +9054,16 @@ public:
     const unsigned int v1 = edge_vertices[facet0][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x0[v1][0] - x0[v0][0];
-    const double dx1 = x0[v1][1] - x0[v0][1];
+    const double dx0 = vertex_coordinates0[2*v1 + 0] - vertex_coordinates0[2*v0 + 0];
+    const double dx1 = vertex_coordinates0[2*v1 + 1] - vertex_coordinates0[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);// Compute Jacobian
     double J[4];
     compute_jacobian_triangle_2d(J, vertex_coordinates-);
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -9076,8 +9071,8 @@ public:
     const unsigned int v1 = edge_vertices[facet1][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x1[v1][0] - x1[v0][0];
-    const double dx1 = x1[v1][1] - x1[v0][1];
+    const double dx0 = vertex_coordinates1[2*v1 + 0] - vertex_coordinates1[2*v0 + 0];
+    const double dx1 = vertex_coordinates1[2*v1 + 1] - vertex_coordinates1[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -9277,11 +9272,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1]);
@@ -9339,11 +9334,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*w[0][0]*(1.0);
@@ -9384,10 +9379,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      6
+    // Number of operations (multiply-add pairs) for Jacobian data:      10
     // Number of operations (multiply-add pairs) for geometry tensor:    3
     // Number of operations (multiply-add pairs) for tensor contraction: 9
-    // Total number of operations (multiply-add pairs):                  18
+    // Total number of operations (multiply-add pairs):                  22
     
     // Compute Jacobian
     double J[4];
@@ -9395,8 +9390,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Get vertices on edge
     static unsigned int edge_vertices[3][2] = {{1, 2}, {0, 2}, {0, 1}};
@@ -9404,8 +9399,8 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
     // Compute geometry tensor
@@ -9479,11 +9474,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*w[0][0]*(1.0);

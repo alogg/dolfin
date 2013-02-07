@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -116,8 +116,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -240,8 +240,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -249,8 +249,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -980,8 +980,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -1032,8 +1032,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -1406,8 +1406,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -1415,8 +1415,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -1671,8 +1671,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -1680,8 +1680,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -3014,8 +3014,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -3023,8 +3023,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     values[0] = 0.0;
@@ -3499,8 +3499,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -3508,8 +3508,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -6921,11 +6921,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_ = det;
@@ -7115,11 +7115,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*w[1][0]*(1.0);

@@ -107,13 +107,13 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[2];
-    double det;
-    compute_jacobian_inverse_interval_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     
     // Get coordinates and map to the reference (FIAT) element
     double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) +
-                            std::pow(x[1] - vertex_coordinates[1], 2)) / det) - 1.0;
+                            std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
     
     // Reset values
     *values = 0.0;
@@ -206,13 +206,13 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[2];
-    double det;
-    compute_jacobian_inverse_interval_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     
     // Get coordinates and map to the reference (FIAT) element
     double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) +
-                            std::pow(x[1] - vertex_coordinates[1], 2)) / det) - 1.0;
+                            std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
     
     // Compute number of derivatives.
     unsigned int num_derivatives_t = 1;
@@ -949,11 +949,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[2];
-    double det;
-    compute_jacobian_inverse_interval_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1]);
@@ -1003,11 +1003,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[2];
-    double det;
-    compute_jacobian_inverse_interval_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*w[0][0]*(1.0);
@@ -1057,8 +1057,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[2];
-    double det;
-    compute_jacobian_inverse_interval_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     // Facet determinant 1D in 2D (vertex)
     const double det = 1.0;

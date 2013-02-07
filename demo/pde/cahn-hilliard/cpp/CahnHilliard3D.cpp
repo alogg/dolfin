@@ -95,8 +95,8 @@ void cahnhilliard3d_finite_element_0::evaluate_basis(std::size_t i,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -154,8 +154,8 @@ void cahnhilliard3d_finite_element_0::evaluate_basis_derivatives(std::size_t i,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -548,8 +548,8 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(std::size_t i,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -573,9 +573,9 @@ void cahnhilliard3d_finite_element_1::evaluate_basis(std::size_t i,
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -735,8 +735,8 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -760,9 +760,9 @@ void cahnhilliard3d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -1766,8 +1766,8 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(std::size_t i,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -1791,9 +1791,9 @@ void cahnhilliard3d_finite_element_2::evaluate_basis(std::size_t i,
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -2077,8 +2077,8 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -2102,9 +2102,9 @@ void cahnhilliard3d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -4613,11 +4613,11 @@ void cahnhilliard3d_cell_integral_0_0::tabulate_tensor(double* A,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     
@@ -4838,11 +4838,11 @@ void cahnhilliard3d_cell_integral_1_0::tabulate_tensor(double* A,
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     

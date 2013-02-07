@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -116,8 +116,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -240,8 +240,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -249,8 +249,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -1175,8 +1175,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
@@ -1186,11 +1186,11 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
-    const bool direction = dx1*(x[facet][0] - x[v0][0]) - dx0*(x[facet][1] - x[v0][1]) < 0;// Compute facet normals from the facet scale factor constants
+    const bool direction = dx1*(vertex_coordinates[facet][0] - vertex_coordinates[v0][0]) - dx0*(vertex_coordinates[facet][1] - vertex_coordinates[v0][1]) < 0;// Compute facet normals from the facet scale factor constants
     const double n0 = direction ? dx1 / det : -dx1 / det;
     
     // Cell volume.
@@ -1349,8 +1349,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
@@ -1360,11 +1360,11 @@ public:
     const unsigned int v1 = edge_vertices[facet][1];
     
     // Compute scale factor (length of edge scaled by length of reference interval)
-    const double dx0 = x[v1][0] - x[v0][0];
-    const double dx1 = x[v1][1] - x[v0][1];
+    const double dx0 = vertex_coordinates[2*v1 + 0] - vertex_coordinates[2*v0 + 0];
+    const double dx1 = vertex_coordinates[2*v1 + 1] - vertex_coordinates[2*v0 + 1];
     const double det = std::sqrt(dx0*dx0 + dx1*dx1);
     
-    const bool direction = dx1*(x[facet][0] - x[v0][0]) - dx0*(x[facet][1] - x[v0][1]) < 0;// Compute facet normals from the facet scale factor constants
+    const bool direction = dx1*(vertex_coordinates[facet][0] - vertex_coordinates[v0][0]) - dx0*(vertex_coordinates[facet][1] - vertex_coordinates[v0][1]) < 0;// Compute facet normals from the facet scale factor constants
     const double n1 = direction ? -dx0 / det : dx0 / det;
     
     // Cell volume.

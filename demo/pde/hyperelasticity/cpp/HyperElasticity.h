@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -166,8 +166,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -567,8 +567,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -592,9 +592,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -754,8 +754,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -779,9 +779,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -1792,8 +1792,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -1817,9 +1817,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Reset values
@@ -2224,8 +2224,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     
     // Compute constants
@@ -2249,9 +2249,9 @@ public:
     const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / det;
-    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / det;
-    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / det;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -5589,11 +5589,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     
@@ -5761,10 +5761,10 @@ public:
                                const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      23
+    // Number of operations (multiply-add pairs) for Jacobian data:      51
     // Number of operations (multiply-add pairs) for geometry tensor:    12
     // Number of operations (multiply-add pairs) for tensor contraction: 90
-    // Total number of operations (multiply-add pairs):                  125
+    // Total number of operations (multiply-add pairs):                  153
     
     // Compute Jacobian
     double J[9];
@@ -5772,8 +5772,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Get vertices on face
     static unsigned int face_vertices[4][3] = {{1, 2, 3}, {0, 2, 3}, {0, 1, 3}, {0, 1, 2}};
@@ -5782,11 +5782,26 @@ public:
     const unsigned int v2 = face_vertices[facet][2];
     
     // Compute scale factor (area of face scaled by area of reference triangle)
-    const double a0 = (x[v0][1]*x[v1][2] + x[v0][2]*x[v2][1] + x[v1][1]*x[v2][2]) - (x[v2][1]*x[v1][2] + x[v2][2]*x[v0][1] + x[v1][1]*x[v0][2]);
+    const double a0 = (vertex_coordinates[3*v0 + 1]*vertex_coordinates[3*v1 + 2]  +
+                       vertex_coordinates[3*v0 + 2]*vertex_coordinates[3*v2 + 1]  +
+                       vertex_coordinates[3*v1 + 1]*vertex_coordinates[3*v2 + 2]) -
+                      (vertex_coordinates[3*v2 + 1]*vertex_coordinates[3*v1 + 2]  +
+                       vertex_coordinates[3*v2 + 2]*vertex_coordinates[3*v0 + 1]  +
+                       vertex_coordinates[3*v1 + 1]*vertex_coordinates[3*v0 + 2]);
     
-    const double a1 = (x[v0][2]*x[v1][0] + x[v0][0]*x[v2][2] + x[v1][2]*x[v2][0]) - (x[v2][2]*x[v1][0] + x[v2][0]*x[v0][2] + x[v1][2]*x[v0][0]);
+    const double a1 = (vertex_coordinates[3*v0 + 2]*vertex_coordinates[3*v1 + 0]  +
+                       vertex_coordinates[3*v0 + 0]*vertex_coordinates[3*v2 + 2]  +
+                       vertex_coordinates[3*v1 + 2]*vertex_coordinates[3*v2 + 0]) -
+                      (vertex_coordinates[3*v2 + 2]*vertex_coordinates[3*v1 + 0]  +
+                       vertex_coordinates[3*v2 + 0]*vertex_coordinates[3*v0 + 2]  +
+                       vertex_coordinates[3*v1 + 2]*vertex_coordinates[3*v0 + 0]);
     
-    const double a2 = (x[v0][0]*x[v1][1] + x[v0][1]*x[v2][0] + x[v1][0]*x[v2][1]) - (x[v2][0]*x[v1][1] + x[v2][1]*x[v0][0] + x[v1][0]*x[v0][1]);
+    const double a2 = (vertex_coordinates[3*v0 + 0]*vertex_coordinates[3*v1 + 1]  +
+                       vertex_coordinates[3*v0 + 1]*vertex_coordinates[3*v2 + 0]  +
+                       vertex_coordinates[3*v1 + 0]*vertex_coordinates[3*v2 + 1]) -
+                      (vertex_coordinates[3*v2 + 0]*vertex_coordinates[3*v1 + 1]  +
+                       vertex_coordinates[3*v2 + 1]*vertex_coordinates[3*v0 + 0]  +
+                       vertex_coordinates[3*v1 + 0]*vertex_coordinates[3*v0 + 1]);
     
     const double det = std::sqrt(a0*a0 + a1*a1 + a2*a2);
     
@@ -5908,11 +5923,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[9];
-    double det;
-    compute_jacobian_inverse_tetrahedron_3d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Cell volume.
     

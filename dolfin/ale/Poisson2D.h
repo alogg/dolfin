@@ -56,7 +56,7 @@ public:
   /// Return a string identifying the finite element
   virtual const char* signature() const
   {
-    return "FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None)";
+    return "FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, None)";
   }
 
   /// Return the cell shape
@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -116,8 +116,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -240,8 +240,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -249,8 +249,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -864,7 +864,7 @@ public:
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
-                                         const ufc::cell& c) const
+                                         const double* vertex_coordinates) const
   {
     // Evaluate function and change variables
     vertex_values[0] = dof_values[0];
@@ -877,7 +877,7 @@ public:
                                        const double* xhat,
                                        const ufc::cell& c) const
   {
-    throw std::runtime_error("map_from_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_from_reference_cell not yet implemented.");
   }
 
   /// Map from coordinate x in cell to coordinate xhat in reference cell
@@ -885,7 +885,7 @@ public:
                                      const double* x,
                                      const ufc::cell& c) const
   {
-    throw std::runtime_error("map_to_reference_cell not yet implemented (introduced in UFC 2.0).");
+    throw std::runtime_error("map_to_reference_cell not yet implemented.");
   }
 
   /// Return the number of sub elements (for a mixed element)
@@ -930,7 +930,7 @@ public:
   /// Return a string identifying the dofmap
   virtual const char* signature() const
   {
-    return "FFC dofmap for FiniteElement('Lagrange', Cell('triangle', Space(2)), 1, None)";
+    return "FFC dofmap for FiniteElement('Lagrange', Domain(Cell('triangle', 2), 'triangle_multiverse', 2, 2), 1, None)";
   }
 
   /// Return true iff mesh entities of topological dimension d are needed
@@ -1147,18 +1147,18 @@ public:
 /// tensor corresponding to the local contribution to a form from
 /// the integral over a cell.
 
-class poisson2d_cell_integral_0_0: public ufc::cell_integral
+class poisson2d_cell_integral_0_otherwise: public ufc::cell_integral
 {
 public:
 
   /// Constructor
-  poisson2d_cell_integral_0_0() : ufc::cell_integral()
+  poisson2d_cell_integral_0_otherwise() : ufc::cell_integral()
   {
     // Do nothing
   }
 
   /// Destructor
-  virtual ~poisson2d_cell_integral_0_0()
+  virtual ~poisson2d_cell_integral_0_otherwise()
   {
     // Do nothing
   }
@@ -1166,7 +1166,11 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
+<<<<<<< TREE
                                const double* vertex_coordinates) const
+=======
+                               const ufc::cell& c) const
+>>>>>>> MERGE-SOURCE
   {
     // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    8
@@ -1179,11 +1183,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1]);
@@ -1239,7 +1243,7 @@ public:
   /// Return a string identifying the form
   virtual const char* signature() const
   {
-    return "e49db5933701fbea6d081d9eb8211f222d5e42bf66531164205315d004568defe6f37600db8dca4345ed48521ef3f72fca9ee8a56fae8d816614e27f43f57368";
+    return "e3387acfe33cb5b0f23b7379220390554fd02b8e8b64e7928096a6cfb99f0e0aeb3d4743c116dcb6f8da47bea64075516e878f6ef297bf763a5a93f19e7a01b5";
   }
 
   /// Return the rank of the global tensor (r)
@@ -1257,7 +1261,7 @@ public:
   /// Return the number of cell domains
   virtual std::size_t num_cell_domains() const
   {
-    return 1;
+    return 0;
   }
 
   /// Return the number of exterior facet domains
@@ -1270,6 +1274,36 @@ public:
   virtual std::size_t num_interior_facet_domains() const
   {
     return 0;
+  }
+
+  /// Return the number of point domains
+  virtual std::size_t num_point_domains() const
+  {
+    return 0;
+  }
+
+  /// Return whether the form has any cell integrals
+  virtual bool has_cell_integrals() const
+  {
+    return true;
+  }
+
+  /// Return whether the form has any exterior facet integrals
+  virtual bool has_exterior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any interior facet integrals
+  virtual bool has_interior_facet_integrals() const
+  {
+    return false;
+  }
+
+  /// Return whether the form has any point integrals
+  virtual bool has_point_integrals() const
+  {
+    return false;
   }
 
   /// Create a new finite element for argument function i
@@ -1315,15 +1349,6 @@ public:
   /// Create a new cell integral on sub domain i
   virtual ufc::cell_integral* create_cell_integral(std::size_t i) const
   {
-    switch (i)
-    {
-    case 0:
-      {
-        return new poisson2d_cell_integral_0_0();
-        break;
-      }
-    }
-    
     return 0;
   }
 
@@ -1335,6 +1360,36 @@ public:
 
   /// Create a new interior facet integral on sub domain i
   virtual ufc::interior_facet_integral* create_interior_facet_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on sub domain i
+  virtual ufc::point_integral* create_point_integral(std::size_t i) const
+  {
+    return 0;
+  }
+
+  /// Create a new cell integral on everywhere else
+  virtual ufc::cell_integral* create_default_cell_integral() const
+  {
+    return new poisson2d_cell_integral_0_otherwise();
+  }
+
+  /// Create a new exterior facet integral on everywhere else
+  virtual ufc::exterior_facet_integral* create_default_exterior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new interior facet integral on everywhere else
+  virtual ufc::interior_facet_integral* create_default_interior_facet_integral() const
+  {
+    return 0;
+  }
+
+  /// Create a new point integral on everywhere else
+  virtual ufc::point_integral* create_default_point_integral() const
   {
     return 0;
   }

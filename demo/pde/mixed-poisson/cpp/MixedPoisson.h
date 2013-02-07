@@ -107,8 +107,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -116,8 +116,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     *values = 0.0;
@@ -240,8 +240,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -249,8 +249,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -989,8 +989,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
@@ -999,8 +999,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     values[0] = 0.0;
@@ -1041,8 +1041,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 1:
@@ -1079,8 +1079,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 2:
@@ -1117,8 +1117,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 3:
@@ -1155,8 +1155,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 4:
@@ -1193,8 +1193,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 5:
@@ -1231,8 +1231,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     }
@@ -1271,8 +1271,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
@@ -1281,8 +1281,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -1484,8 +1484,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -1651,8 +1651,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -1818,8 +1818,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -1985,8 +1985,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -2152,8 +2152,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -2319,8 +2319,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -2410,8 +2410,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     switch (i)
@@ -2421,7 +2421,7 @@ public:
         y[0] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
       y[1] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -2430,7 +2430,7 @@ public:
         y[0] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[4];
       y[1] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -2439,7 +2439,7 @@ public:
         y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[4];
       y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
       return result;
         break;
       }
@@ -2448,7 +2448,7 @@ public:
         y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[4];
       y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
       return result;
         break;
       }
@@ -2457,7 +2457,7 @@ public:
         y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2];
       y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3];
       f.evaluate(vals, y, c);
-      result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -2466,7 +2466,7 @@ public:
         y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[2];
       y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[3];
       f.evaluate(vals, y, c);
-      result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -2495,39 +2495,39 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     y[0] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
     y[1] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[0] = result;
     y[0] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[4];
     y[1] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[1] = result;
     y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[4];
     y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
     values[2] = result;
     y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[4];
     y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
     values[3] = result;
     y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2];
     y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3];
     f.evaluate(vals, y, c);
-    result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[4] = result;
     y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[2];
     y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[3];
     f.evaluate(vals, y, c);
-    result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[5] = result;
   }
 
@@ -2543,18 +2543,18 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
     // Evaluate function and change variables
-    vertex_values[0] = dof_values[2]*(1.0/det)*J[0]*2.0 + dof_values[3]*((1.0/det)*(J[0]*(-1.0))) + dof_values[4]*((1.0/det)*(J[1]*(-2.0))) + dof_values[5]*(1.0/det)*J[1];
-    vertex_values[2] = dof_values[0]*(1.0/det)*J[0]*2.0 + dof_values[1]*((1.0/det)*(J[0]*(-1.0))) + dof_values[4]*((1.0/det)*(J[0]*(-1.0) + J[1])) + dof_values[5]*((1.0/det)*(J[0]*2.0 + J[1]*(-2.0)));
-    vertex_values[4] = dof_values[0]*((1.0/det)*(J[1]*(-1.0))) + dof_values[1]*(1.0/det)*J[1]*2.0 + dof_values[2]*((1.0/det)*(J[0]*(-1.0) + J[1])) + dof_values[3]*((1.0/det)*(J[0]*2.0 + J[1]*(-2.0)));
-    vertex_values[1] = dof_values[2]*(1.0/det)*J[2]*2.0 + dof_values[3]*((1.0/det)*(J[2]*(-1.0))) + dof_values[4]*((1.0/det)*(J[3]*(-2.0))) + dof_values[5]*(1.0/det)*J[3];
-    vertex_values[3] = dof_values[0]*(1.0/det)*J[2]*2.0 + dof_values[1]*((1.0/det)*(J[2]*(-1.0))) + dof_values[4]*((1.0/det)*(J[2]*(-1.0) + J[3])) + dof_values[5]*((1.0/det)*(J[2]*2.0 + J[3]*(-2.0)));
-    vertex_values[5] = dof_values[0]*((1.0/det)*(J[3]*(-1.0))) + dof_values[1]*(1.0/det)*J[3]*2.0 + dof_values[2]*((1.0/det)*(J[2]*(-1.0) + J[3])) + dof_values[3]*((1.0/det)*(J[2]*2.0 + J[3]*(-2.0)));
+    vertex_values[0] = dof_values[2]*(1.0/detJ)*J[0]*2.0 + dof_values[3]*((1.0/detJ)*(J[0]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[1]*(-2.0))) + dof_values[5]*(1.0/detJ)*J[1];
+    vertex_values[2] = dof_values[0]*(1.0/detJ)*J[0]*2.0 + dof_values[1]*((1.0/detJ)*(J[0]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[0]*(-1.0) + J[1])) + dof_values[5]*((1.0/detJ)*(J[0]*2.0 + J[1]*(-2.0)));
+    vertex_values[4] = dof_values[0]*((1.0/detJ)*(J[1]*(-1.0))) + dof_values[1]*(1.0/detJ)*J[1]*2.0 + dof_values[2]*((1.0/detJ)*(J[0]*(-1.0) + J[1])) + dof_values[3]*((1.0/detJ)*(J[0]*2.0 + J[1]*(-2.0)));
+    vertex_values[1] = dof_values[2]*(1.0/detJ)*J[2]*2.0 + dof_values[3]*((1.0/detJ)*(J[2]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[3]*(-2.0))) + dof_values[5]*(1.0/detJ)*J[3];
+    vertex_values[3] = dof_values[0]*(1.0/detJ)*J[2]*2.0 + dof_values[1]*((1.0/detJ)*(J[2]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[2]*(-1.0) + J[3])) + dof_values[5]*((1.0/detJ)*(J[2]*2.0 + J[3]*(-2.0)));
+    vertex_values[5] = dof_values[0]*((1.0/detJ)*(J[3]*(-1.0))) + dof_values[1]*(1.0/detJ)*J[3]*2.0 + dof_values[2]*((1.0/detJ)*(J[2]*(-1.0) + J[3])) + dof_values[3]*((1.0/detJ)*(J[2]*2.0 + J[3]*(-2.0)));
   }
 
   /// Map coordinate xhat from reference cell to coordinate x in cell
@@ -2665,8 +2665,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -2717,8 +2717,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     // Compute constants
@@ -3100,8 +3100,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
@@ -3110,8 +3110,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Reset values
     values[0] = 0.0;
@@ -3153,8 +3153,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 1:
@@ -3191,8 +3191,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 2:
@@ -3229,8 +3229,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 3:
@@ -3267,8 +3267,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 4:
@@ -3305,8 +3305,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 5:
@@ -3343,8 +3343,8 @@ public:
       // Using contravariant Piola transform to map values back to the physical element
       const double tmp_ref0 = values[0];
       const double tmp_ref1 = values[1];
-      values[0] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-      values[1] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+      values[0] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+      values[1] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
         break;
       }
     case 6:
@@ -3405,8 +3405,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
@@ -3415,8 +3415,8 @@ public:
     const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / det;
-    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / det;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -3618,8 +3618,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -3785,8 +3785,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -3952,8 +3952,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -4119,8 +4119,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -4286,8 +4286,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -4453,8 +4453,8 @@ public:
         // Using contravariant Piola transform to map values back to the physical element.
         const double tmp_ref0 = derivatives[r];
         const double tmp_ref1 = derivatives[num_derivatives + r];
-        derivatives_p[r] = (1.0/det)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
-        derivatives_p[num_derivatives + r] = (1.0/det)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
+        derivatives_p[r] = (1.0/detJ)*(J[0]*tmp_ref0 + J[1]*tmp_ref1);
+        derivatives_p[num_derivatives + r] = (1.0/detJ)*(J[2]*tmp_ref0 + J[3]*tmp_ref1);
       }// end loop over 'r'
       
       // Transform derivatives back to physical element
@@ -4676,8 +4676,8 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     switch (i)
@@ -4687,7 +4687,7 @@ public:
         y[0] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
       y[1] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -4696,7 +4696,7 @@ public:
         y[0] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[4];
       y[1] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -4705,7 +4705,7 @@ public:
         y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[4];
       y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
       return result;
         break;
       }
@@ -4714,7 +4714,7 @@ public:
         y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[4];
       y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[5];
       f.evaluate(vals, y, c);
-      result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+      result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
       return result;
         break;
       }
@@ -4723,7 +4723,7 @@ public:
         y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2];
       y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3];
       f.evaluate(vals, y, c);
-      result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -4732,7 +4732,7 @@ public:
         y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[2];
       y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[3];
       f.evaluate(vals, y, c);
-      result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+      result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
       return result;
         break;
       }
@@ -4769,39 +4769,39 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     y[0] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
     y[1] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[0] = result;
     y[0] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[4];
     y[1] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1])) + (det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1])) + (detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[1] = result;
     y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[4];
     y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
     values[2] = result;
     y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[4];
     y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[5];
     f.evaluate(vals, y, c);
-    result = (det*(K[0]*vals[0] + K[1]*vals[1]));
+    result = (detJ*(K[0]*vals[0] + K[1]*vals[1]));
     values[3] = result;
     y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2];
     y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3];
     f.evaluate(vals, y, c);
-    result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[4] = result;
     y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[2];
     y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[3];
     f.evaluate(vals, y, c);
-    result = (-1.0)*(det*(K[2]*vals[0] + K[3]*vals[1]));
+    result = (-1.0)*(detJ*(K[2]*vals[0] + K[3]*vals[1]));
     values[5] = result;
     y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
     y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
@@ -4821,18 +4821,18 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     
     
     // Evaluate function and change variables
-    vertex_values[0] = dof_values[2]*(1.0/det)*J[0]*2.0 + dof_values[3]*((1.0/det)*(J[0]*(-1.0))) + dof_values[4]*((1.0/det)*(J[1]*(-2.0))) + dof_values[5]*(1.0/det)*J[1];
-    vertex_values[3] = dof_values[0]*(1.0/det)*J[0]*2.0 + dof_values[1]*((1.0/det)*(J[0]*(-1.0))) + dof_values[4]*((1.0/det)*(J[0]*(-1.0) + J[1])) + dof_values[5]*((1.0/det)*(J[0]*2.0 + J[1]*(-2.0)));
-    vertex_values[6] = dof_values[0]*((1.0/det)*(J[1]*(-1.0))) + dof_values[1]*(1.0/det)*J[1]*2.0 + dof_values[2]*((1.0/det)*(J[0]*(-1.0) + J[1])) + dof_values[3]*((1.0/det)*(J[0]*2.0 + J[1]*(-2.0)));
-    vertex_values[1] = dof_values[2]*(1.0/det)*J[2]*2.0 + dof_values[3]*((1.0/det)*(J[2]*(-1.0))) + dof_values[4]*((1.0/det)*(J[3]*(-2.0))) + dof_values[5]*(1.0/det)*J[3];
-    vertex_values[4] = dof_values[0]*(1.0/det)*J[2]*2.0 + dof_values[1]*((1.0/det)*(J[2]*(-1.0))) + dof_values[4]*((1.0/det)*(J[2]*(-1.0) + J[3])) + dof_values[5]*((1.0/det)*(J[2]*2.0 + J[3]*(-2.0)));
-    vertex_values[7] = dof_values[0]*((1.0/det)*(J[3]*(-1.0))) + dof_values[1]*(1.0/det)*J[3]*2.0 + dof_values[2]*((1.0/det)*(J[2]*(-1.0) + J[3])) + dof_values[3]*((1.0/det)*(J[2]*2.0 + J[3]*(-2.0)));
+    vertex_values[0] = dof_values[2]*(1.0/detJ)*J[0]*2.0 + dof_values[3]*((1.0/detJ)*(J[0]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[1]*(-2.0))) + dof_values[5]*(1.0/detJ)*J[1];
+    vertex_values[3] = dof_values[0]*(1.0/detJ)*J[0]*2.0 + dof_values[1]*((1.0/detJ)*(J[0]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[0]*(-1.0) + J[1])) + dof_values[5]*((1.0/detJ)*(J[0]*2.0 + J[1]*(-2.0)));
+    vertex_values[6] = dof_values[0]*((1.0/detJ)*(J[1]*(-1.0))) + dof_values[1]*(1.0/detJ)*J[1]*2.0 + dof_values[2]*((1.0/detJ)*(J[0]*(-1.0) + J[1])) + dof_values[3]*((1.0/detJ)*(J[0]*2.0 + J[1]*(-2.0)));
+    vertex_values[1] = dof_values[2]*(1.0/detJ)*J[2]*2.0 + dof_values[3]*((1.0/detJ)*(J[2]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[3]*(-2.0))) + dof_values[5]*(1.0/detJ)*J[3];
+    vertex_values[4] = dof_values[0]*(1.0/detJ)*J[2]*2.0 + dof_values[1]*((1.0/detJ)*(J[2]*(-1.0))) + dof_values[4]*((1.0/detJ)*(J[2]*(-1.0) + J[3])) + dof_values[5]*((1.0/detJ)*(J[2]*2.0 + J[3]*(-2.0)));
+    vertex_values[7] = dof_values[0]*((1.0/detJ)*(J[3]*(-1.0))) + dof_values[1]*(1.0/detJ)*J[3]*2.0 + dof_values[2]*((1.0/detJ)*(J[2]*(-1.0) + J[3])) + dof_values[3]*((1.0/detJ)*(J[2]*2.0 + J[3]*(-2.0)));
     // Evaluate function and change variables
     vertex_values[2] = dof_values[6];
     vertex_values[5] = dof_values[6];
@@ -5887,37 +5887,37 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_0_0 = 1.0 / (det)*det*J[0]*K[0]*(1.0);
-    const double G0_0_1 = 1.0 / (det)*det*J[0]*K[2]*(1.0);
-    const double G0_1_0 = 1.0 / (det)*det*J[1]*K[0]*(1.0);
-    const double G0_1_1 = 1.0 / (det)*det*J[1]*K[2]*(1.0);
-    const double G1_0_0 = 1.0 / (det)*det*J[2]*K[1]*(1.0);
-    const double G1_0_1 = 1.0 / (det)*det*J[2]*K[3]*(1.0);
-    const double G1_1_0 = 1.0 / (det)*det*J[3]*K[1]*(1.0);
-    const double G1_1_1 = 1.0 / (det)*det*J[3]*K[3]*(1.0);
-    const double G2_0_0 = 1.0 / (det)*det*J[0]*K[0]*(1.0);
-    const double G2_0_1 = 1.0 / (det)*det*J[0]*K[2]*(1.0);
-    const double G2_1_0 = 1.0 / (det)*det*J[1]*K[0]*(1.0);
-    const double G2_1_1 = 1.0 / (det)*det*J[1]*K[2]*(1.0);
-    const double G3_0_0 = 1.0 / (det)*det*J[2]*K[1]*(1.0);
-    const double G3_0_1 = 1.0 / (det)*det*J[2]*K[3]*(1.0);
-    const double G3_1_0 = 1.0 / (det)*det*J[3]*K[1]*(1.0);
-    const double G3_1_1 = 1.0 / (det)*det*J[3]*K[3]*(1.0);
-    const double G4_0_0 = 1.0 / (det*det)*det*J[0]*J[0]*(1.0);
-    const double G4_0_1 = 1.0 / (det*det)*det*J[0]*J[1]*(1.0);
-    const double G4_1_0 = 1.0 / (det*det)*det*J[1]*J[0]*(1.0);
-    const double G4_1_1 = 1.0 / (det*det)*det*J[1]*J[1]*(1.0);
-    const double G5_0_0 = 1.0 / (det*det)*det*J[2]*J[2]*(1.0);
-    const double G5_0_1 = 1.0 / (det*det)*det*J[2]*J[3]*(1.0);
-    const double G5_1_0 = 1.0 / (det*det)*det*J[3]*J[2]*(1.0);
-    const double G5_1_1 = 1.0 / (det*det)*det*J[3]*J[3]*(1.0);
+    const double G0_0_0 = 1.0 / (detJ)*det*J[0]*K[0]*(1.0);
+    const double G0_0_1 = 1.0 / (detJ)*det*J[0]*K[2]*(1.0);
+    const double G0_1_0 = 1.0 / (detJ)*det*J[1]*K[0]*(1.0);
+    const double G0_1_1 = 1.0 / (detJ)*det*J[1]*K[2]*(1.0);
+    const double G1_0_0 = 1.0 / (detJ)*det*J[2]*K[1]*(1.0);
+    const double G1_0_1 = 1.0 / (detJ)*det*J[2]*K[3]*(1.0);
+    const double G1_1_0 = 1.0 / (detJ)*det*J[3]*K[1]*(1.0);
+    const double G1_1_1 = 1.0 / (detJ)*det*J[3]*K[3]*(1.0);
+    const double G2_0_0 = 1.0 / (detJ)*det*J[0]*K[0]*(1.0);
+    const double G2_0_1 = 1.0 / (detJ)*det*J[0]*K[2]*(1.0);
+    const double G2_1_0 = 1.0 / (detJ)*det*J[1]*K[0]*(1.0);
+    const double G2_1_1 = 1.0 / (detJ)*det*J[1]*K[2]*(1.0);
+    const double G3_0_0 = 1.0 / (detJ)*det*J[2]*K[1]*(1.0);
+    const double G3_0_1 = 1.0 / (detJ)*det*J[2]*K[3]*(1.0);
+    const double G3_1_0 = 1.0 / (detJ)*det*J[3]*K[1]*(1.0);
+    const double G3_1_1 = 1.0 / (detJ)*det*J[3]*K[3]*(1.0);
+    const double G4_0_0 = 1.0 / (detJ*detJ)*det*J[0]*J[0]*(1.0);
+    const double G4_0_1 = 1.0 / (detJ*detJ)*det*J[0]*J[1]*(1.0);
+    const double G4_1_0 = 1.0 / (detJ*detJ)*det*J[1]*J[0]*(1.0);
+    const double G4_1_1 = 1.0 / (detJ*detJ)*det*J[1]*J[1]*(1.0);
+    const double G5_0_0 = 1.0 / (detJ*detJ)*det*J[2]*J[2]*(1.0);
+    const double G5_0_1 = 1.0 / (detJ*detJ)*det*J[2]*J[3]*(1.0);
+    const double G5_1_0 = 1.0 / (detJ*detJ)*det*J[3]*J[2]*(1.0);
+    const double G5_1_1 = 1.0 / (detJ*detJ)*det*J[3]*J[3]*(1.0);
     
     // Compute element tensor
     A[0] = 0.333333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0833333333333333*G4_1_1 + 0.333333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0833333333333333*G5_1_1;
@@ -6009,11 +6009,11 @@ public:
     
     // Compute Jacobian inverse and determinant
     double K[4];
-    double det;
-    compute_jacobian_inverse_triangle_2d(K, det, J);
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
-    det = std::abs(det);
+    const double det = std::abs(detJ);
     
     // Compute geometry tensor
     const double G0_0 = det*w[0][0]*(1.0);
