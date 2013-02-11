@@ -183,10 +183,6 @@ Assignment (must be overloaded by subclass)
 This class defines a common interface for matrices.
 ";
 
-%feature("docstring")  dolfin::GenericMatrix::init "
-Initialize zero tensor using tensor layout
-";
-
 %feature("docstring")  dolfin::GenericMatrix::rank "
 Return tensor rank (number of dimensions)
 ";
@@ -3709,6 +3705,10 @@ Divide vector by given number
 * data\ ()
 
   Return pointer to underlying data
+";
+
+%feature("docstring")  dolfin::Vector::update_ghost_values "
+Update ghost values
 ";
 
 %feature("docstring")  dolfin::Vector::factory "

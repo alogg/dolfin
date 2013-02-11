@@ -29,10 +29,6 @@ This class provides a generic interface for dof maps
 True if dof map is a view into another map (is a sub-dofmap)
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::needs_mesh_entities "
-Return true iff mesh entities of topological dimension d are needed
-";
-
 %feature("docstring")  dolfin::GenericDofMap::global_dimension "
 Return the dimension of the global finite element function space
 ";
@@ -71,6 +67,10 @@ Local-to-global mapping of dofs on a cell
 Tabulate local-local facet dofs
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::vertex_to_dof_map "
+Return a map between vertices and dofs
+";
+
 %feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
 **Overloaded versions**
 
@@ -87,8 +87,8 @@ Tabulate local-local facet dofs
 Create a copy of the dof map
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::build "
-Build a new dof map on new mesh
+%feature("docstring")  dolfin::GenericDofMap::create "
+Create a new dof map on new mesh
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::extract_sub_dofmap "
@@ -140,7 +140,7 @@ views and copies, are supported.
 
 * DofMap\ (ufc_dofmap, mesh)
 
-  Create dof map on mesh (data is not shared)
+  Create dof map on mesh (mesh is not stored)
   
   *Arguments*
       ufc_dofmap (ufc::dofmap)
@@ -148,23 +148,27 @@ views and copies, are supported.
       mesh (:py:class:`Mesh`)
           The mesh.
 
+* DofMap\ (ufc_dofmap, mesh, constrained_domain)
+
+  Create a periodic dof map on mesh (mesh is not stored)
+  
+  *Arguments*
+      ufc_dofmap (ufc::dofmap)
+          The ufc::dofmap.
+      mesh (:py:class:`Mesh`)
+          The mesh.
+      conatrained_boundary (:py:class:`SubDomain`)
+          The subdomain marking the constrained (tied) boudaries.
+
 * DofMap\ (ufc_dofmap, restriction)
 
-  Create restricted dof map on mesh (data is not shared)
+  Create restricted dof map on mesh
   
   *Arguments*
       ufc_dofmap (ufc::dofmap)
           The ufc::dofmap.
       restriction (:py:class:`Restriction`)
           The restriction.
-
-* DofMap\ (dofmap)
-
-  Copy constructor
-  
-  *Arguments*
-      dofmap (:py:class:`DofMap`)
-          The object to be copied.
 ";
 
 %feature("docstring")  dolfin::DofMap::is_view "
@@ -177,24 +181,11 @@ True iff dof map is a view into another map
 ";
 
 %feature("docstring")  dolfin::DofMap::is_restricted "
-True iff dof map is restricted
+True if dof map is restricted
 
 *Returns*
     bool
-        True iff dof map is restricted
-";
-
-%feature("docstring")  dolfin::DofMap::needs_mesh_entities "
-Return true iff mesh entities of topological dimension d are
-needed
-
-*Arguments*
-    d (std::size_t)
-        Topological dimension.
-
-*Returns*
-    bool
-        True if the mesh entities are needed.
+        True if dof map is restricted
 ";
 
 %feature("docstring")  dolfin::DofMap::global_dimension "
@@ -265,8 +256,8 @@ owning process
 ";
 
 %feature("docstring")  dolfin::DofMap::shared_dofs "
-Return map from all shared dofs to the processes (not including the current
-process) that share it.
+Return map from all shared dofs to the sharing processes (not
+including the current process) that share it.
 
 *Returns*
     boost::unordered_map<std::size_t, std::vector<std::size_t> >
@@ -291,16 +282,6 @@ Local-to-global mapping of dofs on a cell
 *Returns*
     std::vector<std::size_t>
         Local-to-global mapping of dofs.
-";
-
-%feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
-Tabulate local-local facet dofs
-
-*Arguments*
-    dofs (std::size_t)
-        Degrees of freedom.
-    local_facet (std::size_t)
-        The local facet.
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
@@ -329,6 +310,19 @@ Tabulate local-local facet dofs
           The cell.
 ";
 
+%feature("docstring")  dolfin::DofMap::vertex_to_dof_map "
+Return a map between vertices and dofs
+(vert_ind = vertex_to_dof_map[dof_ind])
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh to create the map between
+
+*Returns*
+    std::vector<std::size_t>
+        The vertex to dof map
+";
+
 %feature("docstring")  dolfin::DofMap::copy "
 Create a copy of the dof map
 
@@ -337,12 +331,12 @@ Create a copy of the dof map
         The Dofmap copy.
 ";
 
-%feature("docstring")  dolfin::DofMap::build "
-Create a copy of the dof map
+%feature("docstring")  dolfin::DofMap::create "
+Create a copy of the dof map on a new mesh
 
 *Arguments*
     new_mesh (:py:class:`Mesh`)
-        The new mesh to build the dof map on.
+        The new mesh to create the dof map on.
 
 *Returns*
     DofMap
@@ -1032,139 +1026,6 @@ Return method used for computing Dirichet dofs
 Default parameter values
 ";
 
-// Documentation extracted from: (module=fem, header=PeriodicBC.h)
-%feature("docstring")  dolfin::PeriodicBC "
-This class specifies the interface for setting periodic boundary
-conditions for partial differential equations,
-
-.. math::
-
-    u(x) &= u(F^{-1}(x)) \hbox { on } G,
-
-    u(x) &= u(F(x))      \hbox{ on } H,
-
-where F : H --> G is a map from a subdomain H to a subdomain G.
-
-A periodic boundary condition must be defined by the domain G
-and the map F pulling coordinates back from H to G. The domain
-and the map are both defined by a subclass of :py:class:`SubDomain` which
-must overload both the inside() function, which specifies the
-points of G, and the map() function, which specifies the map
-from the points of H to the points of G.
-
-The implementation is based on matching degrees of freedom on G
-with degrees of freedom on H and only works when the mapping F
-is bijective between the sets of coordinates associated with the
-two domains. In other words, the nodes (degrees of freedom) must
-be aligned on G and H.
-
-The matching of degrees of freedom is done at the construction
-of the periodic boundary condition and is reused on subsequent
-applications to a linear system. The matching may be recomputed
-by calling the ``rebuild()`` function.
-";
-
-%feature("docstring")  dolfin::PeriodicBC::PeriodicBC "
-**Overloaded versions**
-
-* PeriodicBC\ (V, sub_domain)
-
-  Create periodic boundary condition for subdomain
-  
-  *Arguments*
-      V (:py:class:`FunctionSpace`)
-          The function space.
-      sub_domain (:py:class:`SubDomain`)
-          The sub domain.
-
-* PeriodicBC\ (V, sub_domain)
-
-  Create periodic boundary condition for subdomain
-  
-  *Arguments*
-      V (:py:class:`FunctionSpace`)
-          The function space.
-      sub_domain (:py:class:`SubDomain`)
-          The subdomain.
-";
-
-%feature("docstring")  dolfin::PeriodicBC::apply "
-**Overloaded versions**
-
-* apply\ (A)
-
-  Apply boundary condition to a matrix
-  
-  *Arguments*
-      A (:py:class:`GenericMatrix`)
-          The matrix to apply bc to.
-
-* apply\ (b)
-
-  Apply boundary condition to a vector
-  
-  *Arguments*
-      b (:py:class:`GenericVector`)
-          The vector to apply bc to.
-
-* apply\ (A, b)
-
-  Apply boundary condition to a linear system
-  
-  *Arguments*
-      A (:py:class:`GenericMatrix`)
-          The matrix.
-      b (:py:class:`GenericVector`)
-          The vector.
-
-* apply\ (b, x)
-
-  Apply boundary condition to a vector for a nonlinear problem
-  
-  *Arguments*
-      b (:py:class:`GenericVector`)
-          The vector to apply bc to.
-      x (:py:class:`GenericVector`)
-          Another vector (nonlinear problem).
-
-* apply\ (A, b, x)
-
-  Apply boundary condition to a linear system for a nonlinear
-  problem
-  
-  *Arguments*
-      A (:py:class:`GenericMatrix`)
-          The matrix to apply bc to.
-      b (:py:class:`GenericVector`)
-          The vector to apply bc to.
-      x (:py:class:`GenericVector`)
-          Another vector (nonlinear problem).
-";
-
-%feature("docstring")  dolfin::PeriodicBC::sub_domain "
-Return shared pointer to subdomain
-
-*Returns*
-    :py:class:`SubDomain`
-        Shared pointer to subdomain.
-";
-
-%feature("docstring")  dolfin::PeriodicBC::rebuild "
-Rebuild mapping between dofs
-";
-
-%feature("docstring")  dolfin::PeriodicBC::compute_dof_pairs "
-**Overloaded versions**
-
-* compute_dof_pairs\ ()
-
-  Compute dof pairs (master dof, slave dof)
-
-* compute_dof_pairs\ (dof_pairs)
-
-  Compute dof pairs (master dof, slave dof)
-";
-
 // Documentation extracted from: (module=fem, header=PointSource.h)
 %feature("docstring")  dolfin::PointSource "
 This class provides an easy mechanism for adding a point source
@@ -1198,10 +1059,6 @@ Apply (add) point source to right-hand side vector
 
   Assemble tensor
 
-* assemble\ (A, a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
-
-  Assemble tensor on sub domain
-
 * assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
 
   Assemble tensor on sub domains
@@ -1209,10 +1066,6 @@ Apply (add) point source to right-hand side vector
 * assemble\ (a, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
   Assemble scalar
-
-* assemble\ (a, sub_domain, reset_sparsity=true, add_values=false, finalize_tensor=true)
-
-  Assemble scalar on sub domain
 
 * assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
 
@@ -1666,18 +1519,6 @@ Note that (1) overrides (2), which overrides (3).
       a (:py:class:`Form`)
           The form to assemble the tensor from.
 
-* assemble\ (A, a, sub_domain)
-
-  Assemble tensor from given form on subdomain
-  
-  *Arguments*
-      A (:py:class:`GenericTensor`)
-          The tensor to assemble.
-      a (:py:class:`Form`)
-          The form to assemble the tensor from.
-      sub_domain (:py:class:`SubDomain`)
-          The subdomain to assemble on.
-
 * assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
 
   Assemble tensor from given form on subdomains
@@ -1750,25 +1591,12 @@ Constructor
 ";
 
 %feature("docstring")  dolfin::SymmetricAssembler::assemble "
-**Overloaded versions**
+Assemble a and apply Dirichlet boundary conditions. Returns two
+matrices, where the second contains the symmetric modifications
+suitable for modifying RHS vectors.
 
-* assemble\ (A, B, a, row_bcs, col_bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL)
-
-  Assemble a and apply Dirichlet boundary conditions. Returns two
-  matrices, where the second contains the symmetric modifications
-  suitable for modifying RHS vectors.
-  
-  Note: row_bcs and col_bcs will normally be the same, but are different
-  for e.g. off-diagonal block matrices in a mixed PDE.
-
-* assemble\ (A, B, a, row_bcs, col_bcs, sub_domain)
-
-  Assemble a and apply Dirichlet boundary conditions. Returns two
-  matrices, where the second contains the symmetric modifications
-  suitable for modifying RHS vectors.
-  
-  Note: row_bcs and col_bcs will normally be the same, but are different
-  for e.g. off-diagonal block matrices in a mixed PDE.
+Note: row_bcs and col_bcs will normally be the same, but are different
+for e.g. off-diagonal block matrices in a mixed PDE.
 ";
 
 %feature("docstring")  dolfin::SymmetricAssembler::add_to_global_tensor "
