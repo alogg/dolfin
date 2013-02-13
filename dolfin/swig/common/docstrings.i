@@ -573,30 +573,16 @@ policy)
 Set a barrier (synchronization point)
 ";
 
-%feature("docstring")  dolfin::MPI::distribute "
-**Overloaded versions**
-
-* distribute\ (in_values, destinations, out_values, sources)
-
-  Distribute local arrays on all processors according to given
-  partition
-
-* distribute\ (in_values, destinations, out_values)
-
-  Distribute local arrays on all processors according to given
-  partition
-
-* distribute\ (group, in_values_per_dest, out_values_per_src)
-
-  Distribute local arrays on a group of processes (typically
-  neighbours from GenericDofMap::neighbours()). It is important
-  that each process' group includes exactly the processes that
-  has it in their groups, otherwise it will deadlock.
+%feature("docstring")  dolfin::MPI::all_to_all "
+Send in_values[p0] to process p0 and receive values from process
+p1 in out_values[p1]
 ";
 
-%feature("docstring")  dolfin::MPI::distribute_vector "
-Distribute local arrays on all processors according to given
-partition
+%feature("docstring")  dolfin::MPI::distribute "
+Distribute local arrays on a group of processes (typically
+neighbours from GenericDofMap::neighbours()). It is important
+that each process' group includes exactly the processes that
+has it in their groups, otherwise it will deadlock.
 ";
 
 %feature("docstring")  dolfin::MPI::broadcast "

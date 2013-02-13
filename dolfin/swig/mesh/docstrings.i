@@ -393,6 +393,10 @@ call to this function.
 Create a mesh function corresponding to the MeshCollection 'collection'
 ";
 
+%feature("docstring")  dolfin::MeshDomains::operator= "
+Assignment operator
+";
+
 %feature("docstring")  dolfin::MeshDomains::init "
 Initialize mesh domains for given topological dimension
 ";
@@ -1003,8 +1007,8 @@ Check if mesh is ordered according to the UFC numbering convention.
   Move coordinates of mesh according to displacement function.
   
   *Arguments*
-      displacement (:py:class:`Function`)
-          A :py:class:`Function` object.
+      displacement (:py:class:`GenericFunction`)
+          A :py:class:`GenericFunction` object.
 ";
 
 %feature("docstring")  dolfin::Mesh::smooth "
@@ -3104,28 +3108,8 @@ partitioned local mesh data.The local mesh data will
 also be repartitioned and redistributed during the computation
 of the mesh partitioning.
 
-After partitioning, each process has a local mesh and set of
-mesh data that couples the meshes together.
-
-3. \"global entity indices %d\" (MeshFunction<std::size_t>)
-
-After partitioning, the function number_entities() may be called
-to create global indices for all entities of a given topological
-dimension. These are stored as mesh data (MeshFunction<std::size_t>)
-named
-
-   \"global entity indices 1\"
-   \"global entity indices 2\"
-   etc
-
-4. \"num global entities\" (std::vector<std::size_t>)
-
-The function number_entities also records the number of global
-entities for the dimension of the numbered entities in the array
-named \"num global entities\". This array has size D + 1, where D
-is the topological dimension of the mesh. This array is
-initially created by the mesh and then contains only the number
-entities of dimension 0 (vertices) and dimension D (cells).
+After partitioning, each process has a local mesh and some data
+that couples the meshes together.
 ";
 
 %feature("docstring")  dolfin::MeshPartitioning::build_distributed_mesh "
@@ -3133,11 +3117,12 @@ entities of dimension 0 (vertices) and dimension D (cells).
 
 * build_distributed_mesh\ (mesh)
 
-  Build a partitioned mesh based on a local mesh
+  Build a partitioned mesh based on a local mesh on process 0
 
 * build_distributed_mesh\ (mesh, data)
 
-  Build a partitioned mesh based on local mesh data
+  Build a partitioned mesh based on local mesh data that is
+  distributed across processes
 ";
 
 %feature("docstring")  dolfin::MeshPartitioning::build_distributed_value_collection "
@@ -3461,7 +3446,7 @@ periodic boundary conditions)
 *Arguments*
     x (numpy.array(float))
         The coordinates in domain H.
-    unnamed (numpy.array(float))
+    y (numpy.array(float))
         The coordinates in domain G.
 ";
 
@@ -3625,6 +3610,10 @@ mesh data named \"parent_vertex_indices\".
 * SubMesh\ (mesh, sub_domains, sub_domain)
 
   Create subset of given mesh marked by mesh function
+
+* SubMesh\ (mesh, sub_domain)
+
+  Create subset of given mesh from stored MeshValueCollection
 ";
 
 %feature("docstring")  dolfin::SubMesh::init "
@@ -3728,41 +3717,49 @@ original mesh.
 ";
 
 %feature("docstring")  dolfin::BoundaryMesh::BoundaryMesh "
+Create boundary mesh from given mesh.
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        Another :py:class:`Mesh` object.
+    type (_std::string_)
+        The type of BoundaryMesh, which can be \"exterior\",
+        \"interior\" or \"local\". \"exterior\" is the globally
+        external boundary, \"interior\" is the inter-process mesh
+        and \"local\" is the boudary of the local (this process)
+        mesh.
+    order (bool)
+        Optional argument which can be used to control whether
+        or not the boundary mesh should be ordered according
+        to the UFC ordering convention. If set to false, the
+        boundary mesh will be ordered with right-oriented
+        facets (outward-pointing unit normals). The default
+        value is true.
+";
+
+%feature("docstring")  dolfin::BoundaryMesh::entity_map "
 **Overloaded versions**
 
-* BoundaryMesh\ ()
+* entity_map\ (d)
 
-  Create an empty boundary mesh
+  Get index map for entities of dimension d in the boundary mesh
+  to the entity in the original full mesh
 
-* BoundaryMesh\ (mesh, order=true)
+* entity_map\ (d)
 
-  Create boundary mesh from given mesh.
-  
-  *Arguments*
-      mesh (:py:class:`Mesh`)
-          Another :py:class:`Mesh` object.
-      order (bool)
-          Optional argument which can be used to control whether
-          or not the boundary mesh should be ordered according
-          to the UFC ordering convention. If set to false, the
-          boundary mesh will be ordered with right-oriented
-          facets (outward-pointing unit normals). The default
-          value is true.
+  Get index map for entities of dimension d in the boundary mesh
+  to the entity in the original full mesh (const version)
 ";
 
-%feature("docstring")  dolfin::BoundaryMesh::init_exterior_boundary "
-Initialize exterior boundary of given mesh
+// Documentation extracted from: (module=mesh, header=PeriodicBoundaryComputation.h)
+%feature("docstring")  dolfin::PeriodicBoundaryComputation "
+This class computes map from slave facet to master facet
 ";
 
-%feature("docstring")  dolfin::BoundaryMesh::init_interior_boundary "
-Initialize interior boundary of given mesh
-";
-
-%feature("docstring")  dolfin::BoundaryMesh::cell_map "
-Get cell mapping from the boundary mesh to the original full mesh
-";
-
-%feature("docstring")  dolfin::BoundaryMesh::vertex_map "
-Get vertex mapping from the boundary mesh to the original full mesh
+%feature("docstring")  dolfin::PeriodicBoundaryComputation::compute_periodic_pairs "
+For entities of dimension dim, compute map from a slave entity on
+this process (local index) to its master entity (owning process,
+local index on owner). If a master entity is shared by processes,
+only one of the owning processes is returned.
 ";
 
