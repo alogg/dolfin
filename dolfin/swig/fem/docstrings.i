@@ -1055,19 +1055,19 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble "
 **Overloaded versions**
 
-* assemble\ (A, a, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a)
 
   Assemble tensor
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
 
   Assemble tensor on sub domains
 
-* assemble\ (a, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (a)
 
   Assemble scalar
 
-* assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains, reset_sparsity=true, add_values=false, finalize_tensor=true)
+* assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains)
 
   Assemble scalar on sub domains
 ";
@@ -1075,21 +1075,27 @@ Apply (add) point source to right-hand side vector
 %feature("docstring")  dolfin::assemble_system "
 **Overloaded versions**
 
-* assemble_system\ (A, b, a, L, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble_system\ (A, b, a, L)
 
   Assemble system (A, b)
 
-* assemble_system\ (A, b, a, L, bc, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble_system\ (A, b, a, L, bc)
 
   Assemble system (A, b) and apply Dirichlet boundary condition
 
-* assemble_system\ (A, b, a, L, bcs, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble_system\ (A, b, a, L, bcs)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
+* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0)
 
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
+";
+
+// Documentation extracted from: (module=fem, header=LocalSolver.h)
+%feature("docstring")  dolfin::LocalSolver::solve "
+Solve local (cell-wise) problem and copy result into global
+vector x.
 ";
 
 // Documentation extracted from: (module=fem, header=solve.h)
