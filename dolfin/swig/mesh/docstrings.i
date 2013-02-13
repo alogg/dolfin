@@ -393,6 +393,10 @@ call to this function.
 Create a mesh function corresponding to the MeshCollection 'collection'
 ";
 
+%feature("docstring")  dolfin::MeshDomains::operator= "
+Assignment operator
+";
+
 %feature("docstring")  dolfin::MeshDomains::init "
 Initialize mesh domains for given topological dimension
 ";
@@ -3606,6 +3610,10 @@ mesh data named \"parent_vertex_indices\".
 * SubMesh\ (mesh, sub_domains, sub_domain)
 
   Create subset of given mesh marked by mesh function
+
+* SubMesh\ (mesh, sub_domain)
+
+  Create subset of given mesh from stored MeshValueCollection
 ";
 
 %feature("docstring")  dolfin::SubMesh::init "
