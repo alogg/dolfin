@@ -5991,7 +5991,7 @@ public:
     // Compute element tensor
     A[0] = 0.333333333333333*G4_0_0 - 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0833333333333333*G4_1_1 + 0.333333333333333*G5_0_0 - 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0833333333333333*G5_1_1;
     A[1] = -0.166666666666667*G4_0_0 + 0.166666666666667*G4_0_1 + 0.0416666666666666*G4_1_0 - 0.166666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.166666666666667*G5_0_1 + 0.0416666666666666*G5_1_0 - 0.166666666666667*G5_1_1;
-    A[2] = 0.0833333333333334*G4_0_0 + 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_1 + 0.0833333333333334*G5_0_0 + 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_1;
+    A[2] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_0_1 - 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_0_1 - 0.0833333333333333*G5_1_1;
     A[3] = 0.0833333333333332*G4_0_0 - 0.166666666666667*G4_0_1 - 0.125*G4_1_0 + 0.166666666666667*G4_1_1 + 0.0833333333333332*G5_0_0 - 0.166666666666667*G5_0_1 - 0.125*G5_1_0 + 0.166666666666667*G5_1_1;
     A[4] = -0.166666666666667*G4_0_0 + 0.0416666666666666*G4_1_0 + 0.0416666666666667*G4_1_1 - 0.166666666666667*G5_0_0 + 0.0416666666666666*G5_1_0 + 0.0416666666666667*G5_1_1;
     A[5] = 0.333333333333333*G4_0_0 - 0.25*G4_0_1 - 0.0833333333333333*G4_1_0 + 0.0416666666666666*G4_1_1 + 0.333333333333333*G5_0_0 - 0.25*G5_0_1 - 0.0833333333333333*G5_1_0 + 0.0416666666666666*G5_1_1;
@@ -6003,7 +6003,7 @@ public:
     A[11] = 0.0833333333333333*G4_0_0 - 0.0833333333333333*G4_1_0 - 0.0833333333333334*G4_1_1 + 0.0833333333333333*G5_0_0 - 0.0833333333333333*G5_1_0 - 0.0833333333333334*G5_1_1;
     A[12] = -0.166666666666667*G4_0_0 + 0.125*G4_0_1 + 0.166666666666667*G4_1_0 - 0.0833333333333332*G4_1_1 - 0.166666666666667*G5_0_0 + 0.125*G5_0_1 + 0.166666666666667*G5_1_0 - 0.0833333333333332*G5_1_1;
     A[13] = -0.5*G2_0_0 + G2_1_1 - 0.5*G3_0_0 + G3_1_1;
-    A[14] = 0.0833333333333334*G4_0_0 + 0.0833333333333333*G4_1_0 - 0.0833333333333333*G4_1_1 + 0.0833333333333334*G5_0_0 + 0.0833333333333333*G5_1_0 - 0.0833333333333333*G5_1_1;
+    A[14] = 0.0833333333333333*G4_0_0 + 0.0833333333333333*G4_1_0 - 0.0833333333333333*G4_1_1 + 0.0833333333333333*G5_0_0 + 0.0833333333333333*G5_1_0 - 0.0833333333333333*G5_1_1;
     A[15] = -0.0416666666666667*G4_0_0 - 0.0416666666666666*G4_1_0 + 0.166666666666667*G4_1_1 - 0.0416666666666667*G5_0_0 - 0.0416666666666666*G5_1_0 + 0.166666666666667*G5_1_1;
     A[16] = 0.25*G4_0_0 + 0.0833333333333333*G4_1_1 + 0.25*G5_0_0 + 0.0833333333333333*G5_1_1;
     A[17] = -0.125*G4_0_0 + 0.125*G4_1_0 - 0.166666666666667*G4_1_1 - 0.125*G5_0_0 + 0.125*G5_1_0 - 0.166666666666667*G5_1_1;
@@ -6548,6 +6548,27 @@ public:
     // Do nothing
   }
 
+  //--- Constructors for constrained function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  CoefficientSpace_f(const dolfin::Mesh& mesh, const dolfin::SubDomain& constrained_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()), mesh,
+                              dolfin::reference_to_no_delete_pointer(constrained_domain))))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  CoefficientSpace_f(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::SubDomain> constrained_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_0()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_0()), *mesh, constrained_domain)))
+  {
+    // Do nothing
+  }
+
   //--- Constructors for restricted function space, 2 different versions ---
 
   // Create restricted function space (reference version)
@@ -6601,6 +6622,27 @@ public:
     // Do nothing
   }
 
+  //--- Constructors for constrained function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_0(const dolfin::Mesh& mesh, const dolfin::SubDomain& constrained_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh,
+                              dolfin::reference_to_no_delete_pointer(constrained_domain))))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::SubDomain> constrained_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh, constrained_domain)))
+  {
+    // Do nothing
+  }
+
   //--- Constructors for restricted function space, 2 different versions ---
 
   // Create restricted function space (reference version)
@@ -6650,6 +6692,27 @@ public:
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+  {
+    // Do nothing
+  }
+
+  //--- Constructors for constrained function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_a_FunctionSpace_1(const dolfin::Mesh& mesh, const dolfin::SubDomain& constrained_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh,
+                              dolfin::reference_to_no_delete_pointer(constrained_domain))))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  Form_a_FunctionSpace_1(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::SubDomain> constrained_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh, constrained_domain)))
   {
     // Do nothing
   }
@@ -6758,6 +6821,27 @@ public:
     dolfin::FunctionSpace(mesh,
                           boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
                           boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh)))
+  {
+    // Do nothing
+  }
+
+  //--- Constructors for constrained function space, 2 different versions ---
+
+  // Create standard function space (reference version)
+  Form_L_FunctionSpace_0(const dolfin::Mesh& mesh, const dolfin::SubDomain& constrained_domain):
+    dolfin::FunctionSpace(dolfin::reference_to_no_delete_pointer(mesh),
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), mesh,
+                              dolfin::reference_to_no_delete_pointer(constrained_domain))))
+  {
+    // Do nothing
+  }
+
+  // Create standard function space (shared pointer version)
+  Form_L_FunctionSpace_0(boost::shared_ptr<const dolfin::Mesh> mesh, boost::shared_ptr<const dolfin::SubDomain> constrained_domain):
+    dolfin::FunctionSpace(mesh,
+                          boost::shared_ptr<const dolfin::FiniteElement>(new dolfin::FiniteElement(boost::shared_ptr<ufc::finite_element>(new mixedpoisson_finite_element_3()))),
+                          boost::shared_ptr<const dolfin::DofMap>(new dolfin::DofMap(boost::shared_ptr<ufc::dofmap>(new mixedpoisson_dofmap_3()), *mesh, constrained_domain)))
   {
     // Do nothing
   }
