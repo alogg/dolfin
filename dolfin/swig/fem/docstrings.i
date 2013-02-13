@@ -1092,24 +1092,6 @@ Apply (add) point source to right-hand side vector
   Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
 ";
 
-%feature("docstring")  dolfin::symmetric_assemble "
-**Overloaded versions**
-
-* symmetric_assemble\ (As, An, a, bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
-
-  Symmetric assembly of As, storing the modifications in An. To create
-  matching RHS, assemble and apply bcs normally, then subtract An*b.
-  In this variant of symmetric_assemble, rows and columns use the same BCs.
-
-* symmetric_assemble\ (As, An, a, row_bcs, col_bcs, cell_domains=NULL, exterior_facet_domains=NULL, interior_facet_domains=NULL, reset_sparsity=true, add_values=false, finalize_tensor=true, keep_diagonal=false)
-
-  Symmetric assembly of As, storing the modifications in An. To create
-  matching RHS, assemble and apply bcs normally, then subtract An*b.
-  In this variant of symmetric_assemble, rows and columns use (potentially)
-  different BCs. The BCs will be different for example in coupling
-  (i.e., off-diagonal) blocks of a block matrix.
-";
-
 // Documentation extracted from: (module=fem, header=solve.h)
 %feature("docstring")  dolfin::solve "
 **Overloaded versions**
@@ -1565,43 +1547,6 @@ This class provides functions to compute the sparsity pattern.
 
 %feature("docstring")  dolfin::SparsityPatternBuilder::build "
 Build sparsity pattern for assembly of given form
-";
-
-// Documentation extracted from: (module=fem, header=SymmetricAssembler.h)
-%feature("docstring")  dolfin::SymmetricAssembler "
-This class provides implements an assembler for systems
-of the form Ax = b. Its assembly algorithms are similar to SystemAssember's,
-but it saves the matrix modifications into a separate tensor so that it
-can later apply the symmetric modifications to a RHS vector.
-The non-symmetric part is only nonzero in BC columns, and is zero in all BC
-rows, so that [(A_s+A_n) x = b] implies [A_s x = b - A_n b], IF b has
-boundary conditions applied. (If the final A is composed from a sum of
-A_s matrices, BCs must be reapplied to make the diagonal value for BC
-dofs 1.0. The matrix will remain symmetric since only the diagonal is
-changed.)
-
-*Example*
-    .. note::
-    
-        No example code available for this function.
-";
-
-%feature("docstring")  dolfin::SymmetricAssembler::SymmetricAssembler "
-Constructor
-";
-
-%feature("docstring")  dolfin::SymmetricAssembler::assemble "
-Assemble a and apply Dirichlet boundary conditions. Returns two
-matrices, where the second contains the symmetric modifications
-suitable for modifying RHS vectors.
-
-Note: row_bcs and col_bcs will normally be the same, but are different
-for e.g. off-diagonal block matrices in a mixed PDE.
-";
-
-%feature("docstring")  dolfin::SymmetricAssembler::add_to_global_tensor "
-Add cell tensor to global tensor. Hook to allow the SymmetricAssembler
-to split the cell tensor into symmetric/antisymmetric parts.
 ";
 
 // Documentation extracted from: (module=fem, header=SystemAssembler.h)
