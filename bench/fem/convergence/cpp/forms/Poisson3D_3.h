@@ -95,71 +95,63 @@ public:
     return 1;
   }
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
+                              const double* x,
+                              const double* vertex_coordinates,
+                              int cell_orientation) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_tetrahedron_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] + vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] + vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] + vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
-    // Reset values.
+    // Reset values
     *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -201,11 +193,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0288675134594814, 0.0130410132739326, 0.00752923252421043, 0.00532397137499948, 0.018298126367785, 0.014173667737846, 0.0115727512471569, 0.00818317088384972, 0.00668153104781059, 0.00472455591261533, -0.028347335475692, -0.0239578711874978, -0.0207481250689683, -0.0185576872239523, -0.0160714285714286, -0.0131222664791956, -0.0107142857142857, -0.00927884361197611, -0.00757614408414157, -0.00535714285714285};
+      {0.0288675134594812, 0.0130410132739325, 0.00752923252421043, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.0115727512471569, 0.00818317088384973, 0.0066815310478106, 0.00472455591261533, -0.028347335475692, -0.0239578711874978, -0.0207481250689683, -0.0185576872239523, -0.0160714285714286, -0.0131222664791956, -0.0107142857142857, -0.00927884361197611, -0.00757614408414157, -0.00535714285714285};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -215,17 +207,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -267,11 +259,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0288675134594813, -0.0130410132739325, 0.0075292325242104, 0.0053239713749995, 0.018298126367785, -0.014173667737846, -0.0115727512471569, 0.0081831708838497, 0.00668153104781062, 0.00472455591261534, 0.028347335475692, -0.0239578711874977, -0.0207481250689683, 0.0185576872239522, 0.0160714285714286, 0.0131222664791956, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
+      {0.0288675134594814, -0.0130410132739325, 0.00752923252421042, 0.0053239713749995, 0.018298126367785, -0.014173667737846, -0.0115727512471569, 0.0081831708838497, 0.00668153104781062, 0.00472455591261534, 0.028347335475692, -0.0239578711874977, -0.0207481250689683, 0.0185576872239523, 0.0160714285714286, 0.0131222664791956, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -281,17 +273,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -333,11 +325,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0288675134594812, 0.0, -0.0150584650484209, 0.00532397137499952, 0.0, 0.0, 0.0, 0.0245495126515492, -0.0133630620956212, 0.00472455591261537, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0428571428571429, -0.0278365308359284, 0.0151522881682832, -0.00535714285714288};
+      {0.0288675134594812, 0.0, -0.0150584650484209, 0.00532397137499952, 0.0, 0.0, 0.0, 0.0245495126515492, -0.0133630620956212, 0.00472455591261537, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0428571428571429, -0.0278365308359284, 0.0151522881682832, -0.00535714285714287};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -347,17 +339,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -399,11 +391,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0288675134594813, 0.0, 0.0, -0.0159719141249985, 0.0, 0.0, 0.0, 0.0, 0.0, 0.028347335475692, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -413,17 +405,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -465,11 +457,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.0, 0.112938487863156, -0.063887656499994, 0.0, 0.0, 0.0, 0.0736485379546474, 0.0267261241912424, -0.0236227795630767, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0649519052838329, -0.0606091526731326, 0.0267857142857143};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -479,17 +471,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -531,11 +523,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.0, -0.0225876975726313, 0.127775312999988, 0.0, 0.0, 0.0, 0.0, 0.0668153104781061, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0757614408414158, -0.0535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -545,17 +537,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -597,11 +589,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.097807599554494, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0231455024943138, 0.0245495126515491, -0.0133630620956212, -0.0236227795630767, 0.0, 0.0, 0.0484122918275927, 0.0, -0.0375, -0.0524890659167824, 0.0, 0.0216506350946109, 0.0303045763365663, 0.0267857142857143};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -611,17 +603,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -663,11 +655,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, -0.0195615199108988, 0.0112938487863157, 0.127775312999988, 0.0, 0.0, 0.0578637562357844, 0.0, -0.033407655239053, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
+      {0.0, -0.0195615199108988, 0.0112938487863157, 0.127775312999988, 0.0, 0.0, 0.0578637562357845, 0.0, -0.0334076552390531, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -677,17 +669,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -729,11 +721,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, 0.097807599554494, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.00691604168965609, -0.0618589574131742, -0.0160714285714286, 0.00874817765279706, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714286};
+      {0.0, 0.097807599554494, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.0141736677378461, -0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.0069160416896561, -0.0618589574131742, -0.0160714285714286, 0.00874817765279706, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -743,17 +735,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -795,11 +787,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0.0, 0.0566946709513841, -0.0115727512471569, 0.0245495126515492, -0.0467707173346743, 0.0236227795630767, 0.0, 0.0, 0.0, 0.0618589574131742, -0.0214285714285714, 0.00437408882639853, -0.0642857142857143, 0.00927884361197613, 0.00757614408414158, -0.00535714285714285};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -809,17 +801,17 @@ public:
     case 10:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -861,11 +853,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, -0.0231455024943137, 0.0245495126515491, -0.0133630620956212, -0.0236227795630767, 0.0, 0.0, 0.0484122918275927, 0.0, 0.0375, 0.0524890659167824, 0.0, 0.021650635094611, 0.0303045763365663, 0.0267857142857143};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -875,17 +867,17 @@ public:
     case 11:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -927,11 +919,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0.0, 0.0, -0.0578637562357845, 0.0, -0.033407655239053, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, -0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
+      {0.0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0.0, 0.0, -0.0578637562357845, 0.0, -0.0334076552390531, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, -0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -941,17 +933,17 @@ public:
     case 12:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -993,11 +985,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, 0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.0069160416896561, 0.0618589574131742, 0.0160714285714286, -0.00874817765279707, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714287};
+      {0.0, -0.097807599554494, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, 0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.0069160416896561, 0.0618589574131742, 0.0160714285714286, -0.00874817765279707, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714287};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1007,17 +999,17 @@ public:
     case 13:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1059,11 +1051,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0.0, -0.0566946709513841, 0.0115727512471569, 0.0245495126515492, -0.0467707173346743, 0.0236227795630767, 0.0, 0.0, 0.0, -0.0618589574131742, 0.0214285714285714, -0.00437408882639852, -0.0642857142857143, 0.00927884361197614, 0.00757614408414158, -0.00535714285714285};
+      {0.0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0.0, -0.056694670951384, 0.0115727512471569, 0.0245495126515492, -0.0467707173346743, 0.0236227795630767, 0.0, 0.0, 0.0, -0.0618589574131742, 0.0214285714285714, -0.00437408882639852, -0.0642857142857143, 0.00927884361197614, 0.00757614408414158, -0.00535714285714285};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1073,17 +1065,17 @@ public:
     case 14:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1125,11 +1117,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, -0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, 0.0425210032135381, 0.0347182537414707, 0.0409158544192486, 0.0334076552390531, 0.0236227795630767, 0.0850420064270761, 0.0239578711874977, 0.0207481250689683, -0.00618589574131741, -0.00535714285714285, -0.00437408882639853, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
+      {0.0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.0425210032135381, 0.0347182537414707, 0.0409158544192486, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874977, 0.0207481250689683, -0.00618589574131741, -0.00535714285714285, -0.00437408882639853, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1139,17 +1131,17 @@ public:
     case 15:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1191,11 +1183,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, -0.0347182537414707, 0.0409158544192486, 0.0334076552390531, 0.0236227795630767, -0.0850420064270761, 0.0239578711874978, 0.0207481250689683, 0.00618589574131741, 0.00535714285714285, 0.00437408882639852, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1205,17 +1197,17 @@ public:
     case 16:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1257,11 +1249,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.259807621135332, 0.117369119465393, 0.0677630927178939, 0.0479157423749955, 0.0, 0.0850420064270761, 0.0694365074829413, -0.0736485379546474, 0.0400891862868636, -0.0992156741649221, 0.0, 0.0, 0.0, 0.0, 0.075, -0.0262445329583912, 0.0, -0.0649519052838329, -0.0151522881682832, 0.0267857142857143};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1271,17 +1263,17 @@ public:
     case 17:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1323,11 +1315,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749954, 0.0, -0.0850420064270762, -0.0694365074829414, -0.0736485379546474, 0.0400891862868637, -0.0992156741649221, 0.0, 0.0, 0.0, 0.0, -0.075, 0.0262445329583912, 0.0, -0.0649519052838329, -0.0151522881682832, 0.0267857142857143};
+      {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749954, 0.0, -0.0850420064270761, -0.0694365074829414, -0.0736485379546474, 0.0400891862868636, -0.0992156741649221, 0.0, 0.0, 0.0, 0.0, -0.075, 0.0262445329583912, 0.0, -0.0649519052838329, -0.0151522881682832, 0.0267857142857143};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1337,17 +1329,17 @@ public:
     case 18:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1389,11 +1381,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.259807621135332, 0.0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0.0, 0.0, 0.0245495126515491, -0.0801783725737273, -0.0992156741649222, 0.0, 0.0, -0.0968245836551854, 0.0, 0.0, 0.0, 0.0, 0.021650635094611, 0.0303045763365663, 0.0267857142857143};
+      {0.259807621135332, 0.0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0.0, 0.0, 0.0245495126515491, -0.0801783725737273, -0.0992156741649221, 0.0, 0.0, -0.0968245836551854, 0.0, 0.0, 0.0, 0.0, 0.021650635094611, 0.0303045763365663, 0.0267857142857143};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1403,17 +1395,17 @@ public:
     case 19:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1455,11 +1447,11 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.259807621135332, 0.0, 0.0, -0.143747227124987, -0.10978875820671, 0.0, 0.0, -0.122747563257746, 0.0, 0.0425210032135381, 0.0, -0.095831484749991, 0.0138320833793122, 0.0, 0.0, 0.0, 0.0428571428571429, 0.0154647393532936, 0.0, -0.00535714285714284};
+      {0.259807621135332, 0.0, 0.0, -0.143747227124986, -0.10978875820671, 0.0, 0.0, -0.122747563257746, 0.0, 0.0425210032135381, 0.0, -0.095831484749991, 0.0138320833793122, 0.0, 0.0, 0.0, 0.0428571428571429, 0.0154647393532936, 0.0, -0.00535714285714284};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 20; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -1470,77 +1462,61 @@ public:
     
   }
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
+                                  const double* x,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation) const
   {
     // Helper variable to hold values of a single dof.
     double dof_values = 0.0;
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 20; r++)
     {
-      evaluate_basis(r, &dof_values, coordinates, c);
+      evaluate_basis(r, &dof_values, x, vertex_coordinates, cell_orientation);
       values[r] = dof_values;
     }// end loop over 'r'
   }
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
+                                          const double* x,
+                                          const double* vertex_coordinates,
+                                          int cell_orientation) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_tetrahedron_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
     
     // Compute constants
-    const double C0 = x[3][0] + x[2][0] + x[1][0] - x[0][0];
-    const double C1 = x[3][1] + x[2][1] + x[1][1] - x[0][1];
-    const double C2 = x[3][2] + x[2][2] + x[1][2] - x[0][2];
+    const double C0 = vertex_coordinates[9]  + vertex_coordinates[6] + vertex_coordinates[3]  - vertex_coordinates[0];
+    const double C1 = vertex_coordinates[10] + vertex_coordinates[7] + vertex_coordinates[4]  - vertex_coordinates[1];
+    const double C2 = vertex_coordinates[11] + vertex_coordinates[8] + vertex_coordinates[5]  - vertex_coordinates[2];
+    
+    // Compute subdeterminants
+    const double d_00 = J[4]*J[8] - J[5]*J[7];
+    const double d_01 = J[5]*J[6] - J[3]*J[8];
+    const double d_02 = J[3]*J[7] - J[4]*J[6];
+    const double d_10 = J[2]*J[7] - J[1]*J[8];
+    const double d_11 = J[0]*J[8] - J[2]*J[6];
+    const double d_12 = J[1]*J[6] - J[0]*J[7];
+    const double d_20 = J[1]*J[5] - J[2]*J[4];
+    const double d_21 = J[2]*J[3] - J[0]*J[5];
+    const double d_22 = J[0]*J[4] - J[1]*J[3];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (d_00*(2.0*coordinates[0] - C0) + d_10*(2.0*coordinates[1] - C1) + d_20*(2.0*coordinates[2] - C2)) / detJ;
-    double Y = (d_01*(2.0*coordinates[0] - C0) + d_11*(2.0*coordinates[1] - C1) + d_21*(2.0*coordinates[2] - C2)) / detJ;
-    double Z = (d_02*(2.0*coordinates[0] - C0) + d_12*(2.0*coordinates[1] - C1) + d_22*(2.0*coordinates[2] - C2)) / detJ;
+    double X = (d_00*(2.0*x[0] - C0) + d_10*(2.0*x[1] - C1) + d_20*(2.0*x[2] - C2)) / detJ;
+    double Y = (d_01*(2.0*x[0] - C0) + d_11*(2.0*x[1] - C1) + d_21*(2.0*x[2] - C2)) / detJ;
+    double Z = (d_02*(2.0*x[0] - C0) + d_12*(2.0*x[1] - C1) + d_22*(2.0*x[2] - C2)) / detJ;
     
     
     // Compute number of derivatives.
@@ -1578,7 +1554,7 @@ public:
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[3][3] = {{K_00, K_01, K_02}, {K_10, K_11, K_12}, {K_20, K_21, K_22}};
+    const double Jinv[3][3] = {{K[0], K[1], K[2]}, {K[3], K[4], K[5]}, {K[6], K[7], K[8]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -1612,17 +1588,17 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1664,9 +1640,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0288675134594814, 0.0130410132739326, 0.00752923252421043, 0.00532397137499948, 0.018298126367785, 0.014173667737846, 0.0115727512471569, 0.00818317088384972, 0.00668153104781059, 0.00472455591261533, -0.028347335475692, -0.0239578711874978, -0.0207481250689683, -0.0185576872239523, -0.0160714285714286, -0.0131222664791956, -0.0107142857142857, -0.00927884361197611, -0.00757614408414157, -0.00535714285714285};
+      {0.0288675134594812, 0.0130410132739325, 0.00752923252421043, 0.0053239713749995, 0.018298126367785, 0.014173667737846, 0.0115727512471569, 0.00818317088384973, 0.0066815310478106, 0.00472455591261533, -0.028347335475692, -0.0239578711874978, -0.0207481250689683, -0.0185576872239523, -0.0160714285714286, -0.0131222664791956, -0.0107142857142857, -0.00927884361197611, -0.00757614408414157, -0.00535714285714285};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -1675,17 +1651,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -1694,22 +1670,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -1718,21 +1694,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -1900,17 +1876,17 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -1952,9 +1928,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0288675134594813, -0.0130410132739325, 0.0075292325242104, 0.0053239713749995, 0.018298126367785, -0.014173667737846, -0.0115727512471569, 0.0081831708838497, 0.00668153104781062, 0.00472455591261534, 0.028347335475692, -0.0239578711874977, -0.0207481250689683, 0.0185576872239522, 0.0160714285714286, 0.0131222664791956, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
+      {0.0288675134594814, -0.0130410132739325, 0.00752923252421042, 0.0053239713749995, 0.018298126367785, -0.014173667737846, -0.0115727512471569, 0.0081831708838497, 0.00668153104781062, 0.00472455591261534, 0.028347335475692, -0.0239578711874977, -0.0207481250689683, 0.0185576872239523, 0.0160714285714286, 0.0131222664791956, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -1963,17 +1939,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -1982,22 +1958,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -2006,21 +1982,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2188,17 +2164,17 @@ public:
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2240,9 +2216,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0288675134594812, 0.0, -0.0150584650484209, 0.00532397137499952, 0.0, 0.0, 0.0, 0.0245495126515492, -0.0133630620956212, 0.00472455591261537, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0428571428571429, -0.0278365308359284, 0.0151522881682832, -0.00535714285714288};
+      {0.0288675134594812, 0.0, -0.0150584650484209, 0.00532397137499952, 0.0, 0.0, 0.0, 0.0245495126515492, -0.0133630620956212, 0.00472455591261537, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0428571428571429, -0.0278365308359284, 0.0151522881682832, -0.00535714285714287};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -2251,17 +2227,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -2270,22 +2246,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -2294,21 +2270,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2476,17 +2452,17 @@ public:
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2528,7 +2504,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0288675134594813, 0.0, 0.0, -0.0159719141249985, 0.0, 0.0, 0.0, 0.0, 0.0, 0.028347335475692, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0535714285714286};
       
@@ -2539,17 +2515,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -2558,22 +2534,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -2582,21 +2558,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -2764,17 +2740,17 @@ public:
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -2816,7 +2792,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.0, 0.112938487863156, -0.063887656499994, 0.0, 0.0, 0.0, 0.0736485379546474, 0.0267261241912424, -0.0236227795630767, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0649519052838329, -0.0606091526731326, 0.0267857142857143};
       
@@ -2827,17 +2803,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -2846,22 +2822,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -2870,21 +2846,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3052,17 +3028,17 @@ public:
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3104,7 +3080,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.0, -0.0225876975726313, 0.127775312999988, 0.0, 0.0, 0.0, 0.0, 0.0668153104781061, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0757614408414158, -0.0535714285714286};
       
@@ -3115,17 +3091,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -3134,22 +3110,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -3158,21 +3134,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3340,17 +3316,17 @@ public:
     case 6:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3392,7 +3368,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.097807599554494, -0.0564692439315782, -0.063887656499994, 0.054894379103355, -0.0425210032135381, 0.0231455024943138, 0.0245495126515491, -0.0133630620956212, -0.0236227795630767, 0.0, 0.0, 0.0484122918275927, 0.0, -0.0375, -0.0524890659167824, 0.0, 0.0216506350946109, 0.0303045763365663, 0.0267857142857143};
       
@@ -3403,17 +3379,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -3422,22 +3398,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -3446,21 +3422,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3628,17 +3604,17 @@ public:
     case 7:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3680,9 +3656,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, -0.0195615199108988, 0.0112938487863157, 0.127775312999988, 0.0, 0.0, 0.0578637562357844, 0.0, -0.033407655239053, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
+      {0.0, -0.0195615199108988, 0.0112938487863157, 0.127775312999988, 0.0, 0.0, 0.0578637562357845, 0.0, -0.0334076552390531, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, 0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -3691,17 +3667,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -3710,22 +3686,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -3734,21 +3710,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -3916,17 +3892,17 @@ public:
     case 8:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -3968,9 +3944,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, 0.097807599554494, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.014173667737846, -0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.00691604168965609, -0.0618589574131742, -0.0160714285714286, 0.00874817765279706, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714286};
+      {0.0, 0.097807599554494, -0.0790569415042095, -0.031943828249997, 0.054894379103355, 0.0141736677378461, -0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.0069160416896561, -0.0618589574131742, -0.0160714285714286, 0.00874817765279706, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714286};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -3979,17 +3955,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -3998,22 +3974,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -4022,21 +3998,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4204,17 +4180,17 @@ public:
     case 9:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4256,7 +4232,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, -0.0195615199108988, 0.124232336649472, -0.031943828249997, 0.0, 0.0566946709513841, -0.0115727512471569, 0.0245495126515492, -0.0467707173346743, 0.0236227795630767, 0.0, 0.0, 0.0, 0.0618589574131742, -0.0214285714285714, 0.00437408882639853, -0.0642857142857143, 0.00927884361197613, 0.00757614408414158, -0.00535714285714285};
       
@@ -4267,17 +4243,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -4286,22 +4262,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -4310,21 +4286,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4492,17 +4468,17 @@ public:
     case 10:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4544,7 +4520,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, -0.0978075995544939, -0.0564692439315782, -0.063887656499994, 0.054894379103355, 0.0425210032135381, -0.0231455024943137, 0.0245495126515491, -0.0133630620956212, -0.0236227795630767, 0.0, 0.0, 0.0484122918275927, 0.0, 0.0375, 0.0524890659167824, 0.0, 0.021650635094611, 0.0303045763365663, 0.0267857142857143};
       
@@ -4555,17 +4531,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -4574,22 +4550,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -4598,21 +4574,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -4780,17 +4756,17 @@ public:
     case 11:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -4832,9 +4808,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0.0, 0.0, -0.0578637562357845, 0.0, -0.033407655239053, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, -0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
+      {0.0, 0.0195615199108988, 0.0112938487863156, 0.127775312999988, 0.0, 0.0, -0.0578637562357845, 0.0, -0.0334076552390531, 0.0472455591261534, 0.0, 0.0, 0.0, 0.0, 0.0, -0.065611332395978, 0.0, 0.0, -0.0378807204207079, -0.0535714285714286};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -4843,17 +4819,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -4862,22 +4838,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -4886,21 +4862,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5068,17 +5044,17 @@ public:
     case 12:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5120,9 +5096,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, -0.0978075995544939, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, 0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.0069160416896561, 0.0618589574131742, 0.0160714285714286, -0.00874817765279707, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714287};
+      {0.0, -0.097807599554494, -0.0790569415042095, -0.031943828249997, 0.054894379103355, -0.014173667737846, 0.0462910049886276, -0.0245495126515492, 0.0133630620956212, 0.0236227795630767, 0.0, 0.0479157423749955, -0.0069160416896561, 0.0618589574131742, 0.0160714285714286, -0.00874817765279707, 0.0428571428571429, 0.0154647393532935, 0.0, -0.00535714285714287};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -5131,17 +5107,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -5150,22 +5126,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -5174,21 +5150,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5356,17 +5332,17 @@ public:
     case 13:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5408,9 +5384,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0.0, -0.0566946709513841, 0.0115727512471569, 0.0245495126515492, -0.0467707173346743, 0.0236227795630767, 0.0, 0.0, 0.0, -0.0618589574131742, 0.0214285714285714, -0.00437408882639852, -0.0642857142857143, 0.00927884361197614, 0.00757614408414158, -0.00535714285714285};
+      {0.0, 0.0195615199108988, 0.124232336649472, -0.031943828249997, 0.0, -0.056694670951384, 0.0115727512471569, 0.0245495126515492, -0.0467707173346743, 0.0236227795630767, 0.0, 0.0, 0.0, -0.0618589574131742, 0.0214285714285714, -0.00437408882639852, -0.0642857142857143, 0.00927884361197614, 0.00757614408414158, -0.00535714285714285};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -5419,17 +5395,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -5438,22 +5414,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -5462,21 +5438,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5644,17 +5620,17 @@ public:
     case 14:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5696,9 +5672,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.0, -0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, 0.0425210032135381, 0.0347182537414707, 0.0409158544192486, 0.0334076552390531, 0.0236227795630767, 0.0850420064270761, 0.0239578711874977, 0.0207481250689683, -0.00618589574131741, -0.00535714285714285, -0.00437408882639853, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
+      {0.0, -0.117369119465393, -0.0451753951452625, -0.031943828249997, -0.018298126367785, 0.0425210032135381, 0.0347182537414707, 0.0409158544192486, 0.033407655239053, 0.0236227795630767, 0.0850420064270761, 0.0239578711874977, 0.0207481250689683, -0.00618589574131741, -0.00535714285714285, -0.00437408882639853, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -5707,17 +5683,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -5726,22 +5702,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -5750,21 +5726,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -5932,17 +5908,17 @@ public:
     case 15:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -5984,7 +5960,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.0, 0.117369119465393, -0.0451753951452626, -0.031943828249997, -0.018298126367785, -0.0425210032135381, -0.0347182537414707, 0.0409158544192486, 0.0334076552390531, 0.0236227795630767, -0.0850420064270761, 0.0239578711874978, 0.0207481250689683, 0.00618589574131741, 0.00535714285714285, 0.00437408882639852, -0.0107142857142857, -0.00927884361197613, -0.00757614408414159, -0.00535714285714286};
       
@@ -5995,17 +5971,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -6014,22 +5990,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -6038,21 +6014,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -6220,17 +6196,17 @@ public:
     case 16:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6272,7 +6248,7 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
       {0.259807621135332, 0.117369119465393, 0.0677630927178939, 0.0479157423749955, 0.0, 0.0850420064270761, 0.0694365074829413, -0.0736485379546474, 0.0400891862868636, -0.0992156741649221, 0.0, 0.0, 0.0, 0.0, 0.075, -0.0262445329583912, 0.0, -0.0649519052838329, -0.0151522881682832, 0.0267857142857143};
       
@@ -6283,17 +6259,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -6302,22 +6278,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -6326,21 +6302,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -6508,17 +6484,17 @@ public:
     case 17:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6560,9 +6536,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749954, 0.0, -0.0850420064270762, -0.0694365074829414, -0.0736485379546474, 0.0400891862868637, -0.0992156741649221, 0.0, 0.0, 0.0, 0.0, -0.075, 0.0262445329583912, 0.0, -0.0649519052838329, -0.0151522881682832, 0.0267857142857143};
+      {0.259807621135332, -0.117369119465393, 0.0677630927178938, 0.0479157423749954, 0.0, -0.0850420064270761, -0.0694365074829414, -0.0736485379546474, 0.0400891862868636, -0.0992156741649221, 0.0, 0.0, 0.0, 0.0, -0.075, 0.0262445329583912, 0.0, -0.0649519052838329, -0.0151522881682832, 0.0267857142857143};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -6571,17 +6547,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -6590,22 +6566,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -6614,21 +6590,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -6796,17 +6772,17 @@ public:
     case 18:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -6848,9 +6824,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.259807621135332, 0.0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0.0, 0.0, 0.0245495126515491, -0.0801783725737273, -0.0992156741649222, 0.0, 0.0, -0.0968245836551854, 0.0, 0.0, 0.0, 0.0, 0.021650635094611, 0.0303045763365663, 0.0267857142857143};
+      {0.259807621135332, 0.0, -0.135526185435788, 0.0479157423749955, -0.10978875820671, 0.0, 0.0, 0.0245495126515491, -0.0801783725737273, -0.0992156741649221, 0.0, 0.0, -0.0968245836551854, 0.0, 0.0, 0.0, 0.0, 0.021650635094611, 0.0303045763365663, 0.0267857142857143};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -6859,17 +6835,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -6878,22 +6854,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -6902,21 +6878,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -7084,17 +7060,17 @@ public:
     case 19:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[20] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = 0.5*(2.0 + Y + Z + 2.0*X);
       double tmp1 = 0.25*(Y + Z)*(Y + Z);
       double tmp2 = 0.5*(1.0 + Z + 2.0*Y);
       double tmp3 = 0.5*(1.0 - Z);
       double tmp4 = tmp3*tmp3;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[4] = 1.5*tmp0*basisvalues[1] - 0.5*tmp1*basisvalues[0];
@@ -7136,9 +7112,9 @@ public:
       basisvalues[11] *= std::sqrt(45.0);
       basisvalues[10] *= std::sqrt(63.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[20] = \
-      {0.259807621135332, 0.0, 0.0, -0.143747227124987, -0.10978875820671, 0.0, 0.0, -0.122747563257746, 0.0, 0.0425210032135381, 0.0, -0.095831484749991, 0.0138320833793122, 0.0, 0.0, 0.0, 0.0428571428571429, 0.0154647393532936, 0.0, -0.00535714285714284};
+      {0.259807621135332, 0.0, 0.0, -0.143747227124986, -0.10978875820671, 0.0, 0.0, -0.122747563257746, 0.0, 0.0425210032135381, 0.0, -0.095831484749991, 0.0138320833793122, 0.0, 0.0, 0.0, 0.0428571428571429, 0.0154647393532936, 0.0, -0.00535714285714284};
       
       // Tables of derivatives of the polynomial base (transpose).
       static const double dmats0[20][20] = \
@@ -7147,17 +7123,17 @@ public:
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 11.2249721603218, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {4.58257569495584, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.74165738677394, 0.0, 0.0, 8.69482604771366, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {4.58257569495585, 0.0, 8.36660026534075, -1.18321595661992, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.74165738677394, 0.0, 0.0, 8.69482604771367, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.49909083394701, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.69282032302755, 0.565685424949236, 0.399999999999999, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210824, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 4.24264068711928, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.60000000000001, 0.0, 8.76356092008266, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049953, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -1.01658774701247e-14, 0.0},
+      {5.499090833947, 0.0, -3.34664010613631, -2.36643191323985, 15.4919333848297, 0.0, 0.0, 0.692820323027551, 0.565685424949239, 0.4, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.89897948556635, 0.0, 0.0, 0.0, 14.1985914794391, -0.828078671210826, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 4.24264068711929, 0.0, 0.0, 0.0, 0.0, 14.3427433120127, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.60000000000001, 0.0, 8.76356092008265, -1.54919333848297, 0.0, 0.0, 0.0, 9.52470471983252, -1.48131215963608, 0.261861468283192, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {3.11769145362398, 0.0, 3.16227766016838, 4.91934955049954, 0.0, 0.0, 0.0, 0.0, 10.690449676497, -2.41897262725906, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.54558441227157, 0.0, 0.0, 7.66811580507233, 0.0, 0.0, 0.0, 0.0, 0.0, 10.3691851174526, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
@@ -7166,22 +7142,22 @@ public:
       static const double dmats1[20][20] = \
       {{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.47722557505167, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.47722557505166, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.29128784747792, 7.24568837309472, 4.18330013267038, -0.59160797830996, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.87082869338697, 0.0, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-2.6457513110646, 0.0, 9.66091783079296, 0.683130051063969, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-2.64575131106459, 0.0, 9.66091783079296, 0.683130051063972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {3.24037034920393, 0.0, 0.0, 7.52994023880668, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1, 9.16515138991168, 7.09929573971954, -0.414039335605413, -2.04939015319192, -0.478091443733759, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355964, -0.408248290463863, 3.17542648054295, 0.0, 0.0, 7.17137165600637, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.80000000000001, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.962140470884731, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772444, 2.44948974278318, 2.82842712474619, -1.0, 9.16515138991168, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463863, 3.17542648054294, 0.0, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, -5.69209978830309, 4.38178046004133, -0.774596669241485, 0.0, 10.998181667894, 0.96214047088473, 4.76235235991626, -0.740656079818042, 0.130930734141595, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.55884572681199, 2.73861278752583, 1.58113883008419, 2.45967477524977, 0.0, 0.0, 9.25820099772552, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.27279220613578, 0.0, 0.0, 3.83405790253616, 0.0, 0.0, 0.0, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {5.19615242270664, 0.0, -3.16227766016838, -2.23606797749979, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824847, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {-1.8, 0.0, 3.65148371670111, -2.84018778721878, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {5.19615242270663, 0.0, -3.16227766016839, -2.2360679774998, 0.0, 0.0, 0.0, 13.7477270848675, 0.534522483824849, 0.377964473009227, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {-1.8, 0.0, 3.65148371670111, -2.84018778721877, 0.0, 0.0, 0.0, 0.0, 12.3442679969674, 1.39659449751035, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {2.20454076850486, 0.0, 0.0, 6.6407830863536, 0.0, 0.0, 0.0, 0.0, 0.0, 8.97997772825746, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
@@ -7190,21 +7166,21 @@ public:
       {3.16227766016838, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {1.82574185835056, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.16397779494323, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825972, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.29128784747792, 1.44913767461894, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385684, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531987, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.08012344973464, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.95803989154981, 5.61248608016091, -1.08012344973464, -0.763762615825974, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.29128784747792, 1.44913767461895, 4.18330013267038, -0.591607978309961, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.87082869338697, 7.09929573971954, 0.0, 4.34741302385683, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.3228756555323, 0.0, 3.86436713231718, -0.341565025531986, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.08012344973465, 0.0, 7.09929573971954, 2.50998007960223, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {-3.81881307912987, 0.0, 0.0, 8.87411967464943, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.7495454169735, 5.79655069847578, -1.67332005306815, -1.18321595661993, 7.74596669241483, -1.2, -0.979795897113271, 0.346410161513776, 0.282842712474618, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733758, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {2.01246117974981, 2.12132034355965, -0.408248290463864, 3.17542648054294, 9.07114735222145, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.8, 0.632455532033674, 4.38178046004133, -0.774596669241486, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.74065607981804, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.55884572681199, 0.547722557505164, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.27279220613579, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824848, 0.0755928946018457, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.900000000000002, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.734846922834954, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.7495454169735, 5.79655069847577, -1.67332005306816, -1.18321595661993, 7.74596669241484, -1.2, -0.979795897113273, 0.346410161513776, 0.282842712474619, 0.2, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.32379000772445, 2.44948974278318, 2.82842712474619, -1.0, 1.30930734141595, 7.09929573971954, -0.414039335605412, -2.04939015319192, -0.478091443733757, 0.169030850945702, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {2.01246117974981, 2.12132034355965, -0.408248290463865, 3.17542648054294, 9.07114735222146, 0.0, 7.17137165600636, 0.0, -1.38013111868471, -1.56144011671765, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.8, 0.632455532033675, 4.38178046004133, -0.774596669241485, 0.0, 3.14233761939829, -0.10690449676497, 4.76235235991626, -0.740656079818041, 0.130930734141596, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.55884572681199, 0.547722557505166, 1.58113883008419, 2.45967477524977, 0.0, 9.07114735222145, 1.8516401995451, 0.0, 5.34522483824849, -1.20948631362953, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.27279220613578, -6.26099033699941, 0.0, 3.83405790253617, 0.0, 0.0, 10.5830052442584, 0.0, 0.0, 5.18459255872629, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {1.03923048454133, 0.0, 3.16227766016838, -0.44721359549996, 0.0, 0.0, 0.0, 5.89188303637179, -0.534522483824849, 0.0755928946018459, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.9, 0.0, 1.46059348668044, 1.42009389360939, 0.0, 0.0, 0.0, 9.07114735222145, 4.93770719878694, -0.698297248755175, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.73484692283495, 0.0, -6.26099033699941, 2.21359436211787, 0.0, 0.0, 0.0, 0.0, 10.5830052442584, 2.99332590941915, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {5.7157676649773, 0.0, 0.0, -4.69574275274956, 0.0, 0.0, 0.0, 0.0, 0.0, 12.69960629311, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0}};
       
       // Compute reference derivatives.
@@ -7373,11 +7349,12 @@ public:
     
   }
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
+                                              const double* x,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation) const
   {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -7396,7 +7373,7 @@ public:
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 20; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates, cell_orientation);
       for (unsigned int s = 0; s < num_derivatives; s++)
       {
         values[r*num_derivatives + s] = dof_values[s];
@@ -7410,192 +7387,193 @@ public:
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
+                              int cell_orientation,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
-      y[2] = x[0][2];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
+      y[2] = vertex_coordinates[2];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
-      y[2] = x[1][2];
+        y[0] = vertex_coordinates[3];
+      y[1] = vertex_coordinates[4];
+      y[2] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
-      y[2] = x[2][2];
+        y[0] = vertex_coordinates[6];
+      y[1] = vertex_coordinates[7];
+      y[2] = vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 3:
       {
-        y[0] = x[3][0];
-      y[1] = x[3][1];
-      y[2] = x[3][2];
+        y[0] = vertex_coordinates[9];
+      y[1] = vertex_coordinates[10];
+      y[2] = vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 4:
       {
-        y[0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-      y[1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-      y[2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
+        y[0] = 0.666666666666667*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+      y[1] = 0.666666666666667*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+      y[2] = 0.666666666666667*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 5:
       {
-        y[0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-      y[1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-      y[2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
+        y[0] = 0.333333333333333*vertex_coordinates[6] + 0.666666666666667*vertex_coordinates[9];
+      y[1] = 0.333333333333333*vertex_coordinates[7] + 0.666666666666667*vertex_coordinates[10];
+      y[2] = 0.333333333333333*vertex_coordinates[8] + 0.666666666666667*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 6:
       {
-        y[0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-      y[1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-      y[2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
+        y[0] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[9];
+      y[1] = 0.666666666666667*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[10];
+      y[2] = 0.666666666666667*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 7:
       {
-        y[0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-      y[1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-      y[2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
+        y[0] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[9];
+      y[1] = 0.333333333333333*vertex_coordinates[4] + 0.666666666666667*vertex_coordinates[10];
+      y[2] = 0.333333333333333*vertex_coordinates[5] + 0.666666666666667*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 8:
       {
-        y[0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-      y[1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-      y[2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
+        y[0] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6];
+      y[1] = 0.666666666666667*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7];
+      y[2] = 0.666666666666667*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 9:
       {
-        y[0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-      y[1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-      y[2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
+        y[0] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[6];
+      y[1] = 0.333333333333333*vertex_coordinates[4] + 0.666666666666667*vertex_coordinates[7];
+      y[2] = 0.333333333333333*vertex_coordinates[5] + 0.666666666666667*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 10:
       {
-        y[0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-      y[1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-      y[2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
+        y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[9];
+      y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[10];
+      y[2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 11:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-      y[2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[9];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[10];
+      y[2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 12:
       {
-        y[0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-      y[1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-      y[2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
+        y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[6];
+      y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[7];
+      y[2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 13:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-      y[2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[6];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[7];
+      y[2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 14:
       {
-        y[0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-      y[1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-      y[2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
+        y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3];
+      y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4];
+      y[2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 15:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-      y[2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[3];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[4];
+      y[2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 16:
       {
-        y[0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-      y[1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-      y[2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
+        y[0] = 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+      y[1] = 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+      y[2] = 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 17:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-      y[2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+      y[2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 18:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-      y[2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[9];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[10];
+      y[2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[11];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 19:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-      y[2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7];
+      y[2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -7608,112 +7586,113 @@ public:
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
+                             int cell_orientation,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[3];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
-    y[2] = x[0][2];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
+    y[2] = vertex_coordinates[2];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
-    y[2] = x[1][2];
+    y[0] = vertex_coordinates[3];
+    y[1] = vertex_coordinates[4];
+    y[2] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
-    y[2] = x[2][2];
+    y[0] = vertex_coordinates[6];
+    y[1] = vertex_coordinates[7];
+    y[2] = vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = x[3][0];
-    y[1] = x[3][1];
-    y[2] = x[3][2];
+    y[0] = vertex_coordinates[9];
+    y[1] = vertex_coordinates[10];
+    y[2] = vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[3] = vals[0];
-    y[0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-    y[1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-    y[2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
+    y[0] = 0.666666666666667*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+    y[1] = 0.666666666666667*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+    y[2] = 0.666666666666667*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[4] = vals[0];
-    y[0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-    y[1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-    y[2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
+    y[0] = 0.333333333333333*vertex_coordinates[6] + 0.666666666666667*vertex_coordinates[9];
+    y[1] = 0.333333333333333*vertex_coordinates[7] + 0.666666666666667*vertex_coordinates[10];
+    y[2] = 0.333333333333333*vertex_coordinates[8] + 0.666666666666667*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[5] = vals[0];
-    y[0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-    y[1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-    y[2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
+    y[0] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[9];
+    y[1] = 0.666666666666667*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[10];
+    y[2] = 0.666666666666667*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[6] = vals[0];
-    y[0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-    y[1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-    y[2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
+    y[0] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[9];
+    y[1] = 0.333333333333333*vertex_coordinates[4] + 0.666666666666667*vertex_coordinates[10];
+    y[2] = 0.333333333333333*vertex_coordinates[5] + 0.666666666666667*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[7] = vals[0];
-    y[0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    y[1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    y[2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
+    y[0] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6];
+    y[1] = 0.666666666666667*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7];
+    y[2] = 0.666666666666667*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[8] = vals[0];
-    y[0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    y[1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    y[2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
+    y[0] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[6];
+    y[1] = 0.333333333333333*vertex_coordinates[4] + 0.666666666666667*vertex_coordinates[7];
+    y[2] = 0.333333333333333*vertex_coordinates[5] + 0.666666666666667*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[9] = vals[0];
-    y[0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-    y[1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-    y[2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
+    y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[9];
+    y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[10];
+    y[2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[10] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-    y[2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[9];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[10];
+    y[2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[11] = vals[0];
-    y[0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    y[1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    y[2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
+    y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[6];
+    y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[7];
+    y[2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[12] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    y[2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[6];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[7];
+    y[2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[13] = vals[0];
-    y[0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    y[1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    y[2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
+    y[0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3];
+    y[1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4];
+    y[2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[14] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    y[2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[3];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[4];
+    y[2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[15] = vals[0];
-    y[0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    y[1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    y[2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
+    y[0] = 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+    y[1] = 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+    y[2] = 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[16] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    y[2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+    y[2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[17] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-    y[2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[9];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[10];
+    y[2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[11];
     f.evaluate(vals, y, c);
     values[18] = vals[0];
-    y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    y[2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7];
+    y[2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8];
     f.evaluate(vals, y, c);
     values[19] = vals[0];
   }
@@ -7721,6 +7700,8 @@ public:
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
+                                         const double* vertex_coordinates,
+                                         int cell_orientation,
                                          const ufc::cell& c) const
   {
     // Evaluate function and change variables
@@ -8121,71 +8102,69 @@ public:
   }
 
   /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
+  virtual void tabulate_coordinates(double** dof_coordinates,
+                                    const double* vertex_coordinates) const
   {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[0][2] = x[0][2];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[1][2] = x[1][2];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[2][2] = x[2][2];
-    coordinates[3][0] = x[3][0];
-    coordinates[3][1] = x[3][1];
-    coordinates[3][2] = x[3][2];
-    coordinates[4][0] = 0.666666666666667*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[4][1] = 0.666666666666667*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[4][2] = 0.666666666666667*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[5][0] = 0.333333333333333*x[2][0] + 0.666666666666667*x[3][0];
-    coordinates[5][1] = 0.333333333333333*x[2][1] + 0.666666666666667*x[3][1];
-    coordinates[5][2] = 0.333333333333333*x[2][2] + 0.666666666666667*x[3][2];
-    coordinates[6][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[6][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[6][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[7][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[3][0];
-    coordinates[7][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[3][1];
-    coordinates[7][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[3][2];
-    coordinates[8][0] = 0.666666666666667*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[8][1] = 0.666666666666667*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[8][2] = 0.666666666666667*x[1][2] + 0.333333333333333*x[2][2];
-    coordinates[9][0] = 0.333333333333333*x[1][0] + 0.666666666666667*x[2][0];
-    coordinates[9][1] = 0.333333333333333*x[1][1] + 0.666666666666667*x[2][1];
-    coordinates[9][2] = 0.333333333333333*x[1][2] + 0.666666666666667*x[2][2];
-    coordinates[10][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[3][0];
-    coordinates[10][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[3][1];
-    coordinates[10][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[3][2];
-    coordinates[11][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[3][0];
-    coordinates[11][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[3][1];
-    coordinates[11][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[3][2];
-    coordinates[12][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[2][0];
-    coordinates[12][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[2][1];
-    coordinates[12][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[2][2];
-    coordinates[13][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[2][0];
-    coordinates[13][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[2][1];
-    coordinates[13][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[2][2];
-    coordinates[14][0] = 0.666666666666667*x[0][0] + 0.333333333333333*x[1][0];
-    coordinates[14][1] = 0.666666666666667*x[0][1] + 0.333333333333333*x[1][1];
-    coordinates[14][2] = 0.666666666666667*x[0][2] + 0.333333333333333*x[1][2];
-    coordinates[15][0] = 0.333333333333333*x[0][0] + 0.666666666666667*x[1][0];
-    coordinates[15][1] = 0.333333333333333*x[0][1] + 0.666666666666667*x[1][1];
-    coordinates[15][2] = 0.333333333333333*x[0][2] + 0.666666666666667*x[1][2];
-    coordinates[16][0] = 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[16][1] = 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[16][2] = 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[17][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[2][0] + 0.333333333333333*x[3][0];
-    coordinates[17][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[2][1] + 0.333333333333333*x[3][1];
-    coordinates[17][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[2][2] + 0.333333333333333*x[3][2];
-    coordinates[18][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[3][0];
-    coordinates[18][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[3][1];
-    coordinates[18][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[3][2];
-    coordinates[19][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[19][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
-    coordinates[19][2] = 0.333333333333333*x[0][2] + 0.333333333333333*x[1][2] + 0.333333333333333*x[2][2];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[0][2] = vertex_coordinates[2];
+    dof_coordinates[1][0] = vertex_coordinates[3];
+    dof_coordinates[1][1] = vertex_coordinates[4];
+    dof_coordinates[1][2] = vertex_coordinates[5];
+    dof_coordinates[2][0] = vertex_coordinates[6];
+    dof_coordinates[2][1] = vertex_coordinates[7];
+    dof_coordinates[2][2] = vertex_coordinates[8];
+    dof_coordinates[3][0] = vertex_coordinates[9];
+    dof_coordinates[3][1] = vertex_coordinates[10];
+    dof_coordinates[3][2] = vertex_coordinates[11];
+    dof_coordinates[4][0] = 0.666666666666667*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+    dof_coordinates[4][1] = 0.666666666666667*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+    dof_coordinates[4][2] = 0.666666666666667*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
+    dof_coordinates[5][0] = 0.333333333333333*vertex_coordinates[6] + 0.666666666666667*vertex_coordinates[9];
+    dof_coordinates[5][1] = 0.333333333333333*vertex_coordinates[7] + 0.666666666666667*vertex_coordinates[10];
+    dof_coordinates[5][2] = 0.333333333333333*vertex_coordinates[8] + 0.666666666666667*vertex_coordinates[11];
+    dof_coordinates[6][0] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[9];
+    dof_coordinates[6][1] = 0.666666666666667*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[10];
+    dof_coordinates[6][2] = 0.666666666666667*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[11];
+    dof_coordinates[7][0] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[9];
+    dof_coordinates[7][1] = 0.333333333333333*vertex_coordinates[4] + 0.666666666666667*vertex_coordinates[10];
+    dof_coordinates[7][2] = 0.333333333333333*vertex_coordinates[5] + 0.666666666666667*vertex_coordinates[11];
+    dof_coordinates[8][0] = 0.666666666666667*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6];
+    dof_coordinates[8][1] = 0.666666666666667*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7];
+    dof_coordinates[8][2] = 0.666666666666667*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8];
+    dof_coordinates[9][0] = 0.333333333333333*vertex_coordinates[3] + 0.666666666666667*vertex_coordinates[6];
+    dof_coordinates[9][1] = 0.333333333333333*vertex_coordinates[4] + 0.666666666666667*vertex_coordinates[7];
+    dof_coordinates[9][2] = 0.333333333333333*vertex_coordinates[5] + 0.666666666666667*vertex_coordinates[8];
+    dof_coordinates[10][0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[9];
+    dof_coordinates[10][1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[10];
+    dof_coordinates[10][2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[11];
+    dof_coordinates[11][0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[9];
+    dof_coordinates[11][1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[10];
+    dof_coordinates[11][2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[11];
+    dof_coordinates[12][0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[6];
+    dof_coordinates[12][1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[7];
+    dof_coordinates[12][2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[8];
+    dof_coordinates[13][0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[6];
+    dof_coordinates[13][1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[7];
+    dof_coordinates[13][2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[8];
+    dof_coordinates[14][0] = 0.666666666666667*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3];
+    dof_coordinates[14][1] = 0.666666666666667*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4];
+    dof_coordinates[14][2] = 0.666666666666667*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5];
+    dof_coordinates[15][0] = 0.333333333333333*vertex_coordinates[0] + 0.666666666666667*vertex_coordinates[3];
+    dof_coordinates[15][1] = 0.333333333333333*vertex_coordinates[1] + 0.666666666666667*vertex_coordinates[4];
+    dof_coordinates[15][2] = 0.333333333333333*vertex_coordinates[2] + 0.666666666666667*vertex_coordinates[5];
+    dof_coordinates[16][0] = 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+    dof_coordinates[16][1] = 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+    dof_coordinates[16][2] = 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
+    dof_coordinates[17][0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[6] + 0.333333333333333*vertex_coordinates[9];
+    dof_coordinates[17][1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[7] + 0.333333333333333*vertex_coordinates[10];
+    dof_coordinates[17][2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[8] + 0.333333333333333*vertex_coordinates[11];
+    dof_coordinates[18][0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[9];
+    dof_coordinates[18][1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[10];
+    dof_coordinates[18][2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[11];
+    dof_coordinates[19][0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[6];
+    dof_coordinates[19][1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[4] + 0.333333333333333*vertex_coordinates[7];
+    dof_coordinates[19][2] = 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[5] + 0.333333333333333*vertex_coordinates[8];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -8231,65 +8210,36 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const
+                               const double* vertex_coordinates,
+                               int cell_orientation) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      32
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    27
     // Number of operations (multiply-add pairs) for tensor contraction: 1768
-    // Total number of operations (multiply-add pairs):                  1827
+    // Total number of operations (multiply-add pairs):                  1798
     
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_tetrahedron_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-    
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_01 = J_12*J_20 - J_10*J_22;
-    const double d_02 = J_10*J_21 - J_11*J_20;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_11 = J_00*J_22 - J_02*J_20;
-    const double d_12 = J_01*J_20 - J_00*J_21;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    const double d_21 = J_02*J_10 - J_00*J_12;
-    const double d_22 = J_00*J_11 - J_01*J_10;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
-    const double K_00 = d_00 / detJ;
-    const double K_01 = d_10 / detJ;
-    const double K_02 = d_20 / detJ;
-    const double K_10 = d_01 / detJ;
-    const double K_11 = d_11 / detJ;
-    const double K_12 = d_21 / detJ;
-    const double K_20 = d_02 / detJ;
-    const double K_21 = d_12 / detJ;
-    const double K_22 = d_22 / detJ;
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
     const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_0_0 = det*(K_00*K_00 + K_01*K_01 + K_02*K_02);
-    const double G0_0_1 = det*(K_00*K_10 + K_01*K_11 + K_02*K_12);
-    const double G0_0_2 = det*(K_00*K_20 + K_01*K_21 + K_02*K_22);
-    const double G0_1_0 = det*(K_10*K_00 + K_11*K_01 + K_12*K_02);
-    const double G0_1_1 = det*(K_10*K_10 + K_11*K_11 + K_12*K_12);
-    const double G0_1_2 = det*(K_10*K_20 + K_11*K_21 + K_12*K_22);
-    const double G0_2_0 = det*(K_20*K_00 + K_21*K_01 + K_22*K_02);
-    const double G0_2_1 = det*(K_20*K_10 + K_21*K_11 + K_22*K_12);
-    const double G0_2_2 = det*(K_20*K_20 + K_21*K_21 + K_22*K_22);
+    const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1] + K[2]*K[2]);
+    const double G0_0_1 = det*(K[0]*K[3] + K[1]*K[4] + K[2]*K[5]);
+    const double G0_0_2 = det*(K[0]*K[6] + K[1]*K[7] + K[2]*K[8]);
+    const double G0_1_0 = det*(K[3]*K[0] + K[4]*K[1] + K[5]*K[2]);
+    const double G0_1_1 = det*(K[3]*K[3] + K[4]*K[4] + K[5]*K[5]);
+    const double G0_1_2 = det*(K[3]*K[6] + K[4]*K[7] + K[5]*K[8]);
+    const double G0_2_0 = det*(K[6]*K[0] + K[7]*K[1] + K[8]*K[2]);
+    const double G0_2_1 = det*(K[6]*K[3] + K[7]*K[4] + K[8]*K[5]);
+    const double G0_2_2 = det*(K[6]*K[6] + K[7]*K[7] + K[8]*K[8]);
     
     // Compute element tensor
     A[0] = 0.0595238095238095*G0_0_0 + 0.0595238095238095*G0_0_1 + 0.0595238095238095*G0_0_2 + 0.0595238095238095*G0_1_0 + 0.0595238095238095*G0_1_1 + 0.0595238095238095*G0_1_2 + 0.0595238095238095*G0_2_0 + 0.0595238095238095*G0_2_1 + 0.0595238095238095*G0_2_2;
@@ -8298,20 +8248,20 @@ public:
     A[3] = -0.0113095238095238*G0_0_2 - 0.0113095238095238*G0_1_2 - 0.0113095238095238*G0_2_2;
     A[4] = -0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_0_2 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2 - 0.0133928571428571*G0_2_1 - 0.0133928571428571*G0_2_2;
     A[5] = -0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_0_2 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2 - 0.0133928571428571*G0_2_1 - 0.0133928571428571*G0_2_2;
-    A[6] = -0.0133928571428572*G0_0_0 - 0.0133928571428571*G0_0_2 - 0.0133928571428572*G0_1_0 - 0.0133928571428571*G0_1_2 - 0.0133928571428572*G0_2_0 - 0.0133928571428571*G0_2_2;
+    A[6] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_0_2 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_2 - 0.0133928571428572*G0_2_0 - 0.0133928571428571*G0_2_2;
     A[7] = -0.0133928571428571*G0_0_0 - 0.0133928571428572*G0_0_2 - 0.0133928571428571*G0_1_0 - 0.0133928571428572*G0_1_2 - 0.0133928571428571*G0_2_0 - 0.0133928571428572*G0_2_2;
-    A[8] = -0.0133928571428572*G0_0_0 - 0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428572*G0_2_0 - 0.0133928571428571*G0_2_1;
-    A[9] = -0.0133928571428571*G0_0_0 - 0.0133928571428572*G0_0_1 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_2_0 - 0.0133928571428572*G0_2_1;
-    A[10] = -0.0348214285714286*G0_0_0 - 0.0348214285714285*G0_0_1 - 0.0964285714285714*G0_0_2 - 0.0348214285714285*G0_1_0 - 0.0348214285714285*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.0348214285714285*G0_2_0 - 0.0348214285714285*G0_2_1 - 0.0964285714285714*G0_2_2;
+    A[8] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428572*G0_2_0 - 0.0133928571428571*G0_2_1;
+    A[9] = -0.0133928571428571*G0_0_0 - 0.0133928571428572*G0_0_1 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_2_0 - 0.0133928571428571*G0_2_1;
+    A[10] = -0.0348214285714286*G0_0_0 - 0.0348214285714286*G0_0_1 - 0.0964285714285714*G0_0_2 - 0.0348214285714285*G0_1_0 - 0.0348214285714285*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.0348214285714286*G0_2_0 - 0.0348214285714286*G0_2_1 - 0.0964285714285714*G0_2_2;
     A[11] = 0.0133928571428571*G0_0_0 + 0.0133928571428571*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0133928571428571*G0_1_0 + 0.0133928571428571*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0133928571428571*G0_2_0 + 0.0133928571428571*G0_2_1 + 0.0482142857142857*G0_2_2;
-    A[12] = -0.0348214285714286*G0_0_0 - 0.0964285714285715*G0_0_1 - 0.0348214285714286*G0_0_2 - 0.0348214285714285*G0_1_0 - 0.0964285714285715*G0_1_1 - 0.0348214285714285*G0_1_2 - 0.0348214285714285*G0_2_0 - 0.0964285714285714*G0_2_1 - 0.0348214285714285*G0_2_2;
+    A[12] = -0.0348214285714286*G0_0_0 - 0.0964285714285714*G0_0_1 - 0.0348214285714286*G0_0_2 - 0.0348214285714285*G0_1_0 - 0.0964285714285715*G0_1_1 - 0.0348214285714285*G0_1_2 - 0.0348214285714286*G0_2_0 - 0.0964285714285714*G0_2_1 - 0.0348214285714286*G0_2_2;
     A[13] = 0.0133928571428571*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0133928571428571*G0_0_2 + 0.0133928571428571*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.0133928571428571*G0_1_2 + 0.0133928571428571*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0133928571428571*G0_2_2;
-    A[14] = -0.0964285714285714*G0_0_0 - 0.0348214285714285*G0_0_1 - 0.0348214285714285*G0_0_2 - 0.0964285714285714*G0_1_0 - 0.0348214285714285*G0_1_1 - 0.0348214285714285*G0_1_2 - 0.0964285714285714*G0_2_0 - 0.0348214285714285*G0_2_1 - 0.0348214285714285*G0_2_2;
+    A[14] = -0.0964285714285714*G0_0_0 - 0.0348214285714286*G0_0_1 - 0.0348214285714286*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.0348214285714286*G0_1_1 - 0.0348214285714286*G0_1_2 - 0.0964285714285714*G0_2_0 - 0.0348214285714286*G0_2_1 - 0.0348214285714286*G0_2_2;
     A[15] = 0.0482142857142857*G0_0_0 + 0.0133928571428571*G0_0_1 + 0.0133928571428571*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0133928571428571*G0_1_1 + 0.0133928571428571*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0133928571428571*G0_2_1 + 0.0133928571428571*G0_2_2;
-    A[16] = -0.0321428571428571*G0_0_0 - 0.0321428571428572*G0_0_1 - 0.0321428571428571*G0_0_2 - 0.0321428571428571*G0_1_0 - 0.0321428571428572*G0_1_1 - 0.0321428571428571*G0_1_2 - 0.0321428571428571*G0_2_0 - 0.0321428571428572*G0_2_1 - 0.0321428571428572*G0_2_2;
-    A[17] = 0.0321428571428571*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0321428571428571*G0_1_0 + 0.0482142857142855*G0_1_1 + 0.0482142857142856*G0_1_2 + 0.0321428571428571*G0_2_0 + 0.0482142857142856*G0_2_1 + 0.0482142857142857*G0_2_2;
-    A[18] = 0.0482142857142857*G0_0_0 + 0.0321428571428572*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0321428571428572*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0321428571428572*G0_2_1 + 0.0482142857142857*G0_2_2;
-    A[19] = 0.0482142857142857*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0321428571428571*G0_0_2 + 0.0482142857142856*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0321428571428571*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0321428571428571*G0_2_2;
+    A[16] = -0.032142857142857*G0_0_0 - 0.0321428571428571*G0_0_1 - 0.0321428571428571*G0_0_2 - 0.032142857142857*G0_1_0 - 0.0321428571428571*G0_1_1 - 0.032142857142857*G0_1_2 - 0.032142857142857*G0_2_0 - 0.0321428571428571*G0_2_1 - 0.032142857142857*G0_2_2;
+    A[17] = 0.0321428571428571*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.032142857142857*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.032142857142857*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0482142857142857*G0_2_2;
+    A[18] = 0.0482142857142857*G0_0_0 + 0.0321428571428571*G0_0_1 + 0.0482142857142858*G0_0_2 + 0.0482142857142856*G0_1_0 + 0.0321428571428571*G0_1_1 + 0.0482142857142858*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0321428571428571*G0_2_1 + 0.0482142857142858*G0_2_2;
+    A[19] = 0.0482142857142857*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.032142857142857*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.032142857142857*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.032142857142857*G0_2_2;
     A[20] = -0.0113095238095238*G0_0_0 - 0.0113095238095238*G0_0_1 - 0.0113095238095238*G0_0_2;
     A[21] = 0.0595238095238095*G0_0_0;
     A[22] = 0.0113095238095238*G0_0_1;
@@ -8322,388 +8272,376 @@ public:
     A[27] = 0.0133928571428571*G0_0_0 - 0.0348214285714286*G0_0_2;
     A[28] = -0.0348214285714285*G0_0_0 + 0.0616071428571429*G0_0_1;
     A[29] = 0.0133928571428571*G0_0_0 - 0.0348214285714286*G0_0_1;
-    A[30] = -0.0133928571428572*G0_0_0 - 0.0133928571428572*G0_0_1;
+    A[30] = -0.0133928571428571*G0_0_0 - 0.0133928571428572*G0_0_1;
     A[31] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_0_1;
     A[32] = -0.0133928571428572*G0_0_0 - 0.0133928571428572*G0_0_2;
     A[33] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_0_2;
-    A[34] = 0.0482142857142857*G0_0_0 + 0.0348214285714285*G0_0_1 + 0.0348214285714285*G0_0_2;
+    A[34] = 0.0482142857142857*G0_0_0 + 0.0348214285714285*G0_0_1 + 0.0348214285714286*G0_0_2;
     A[35] = -0.0964285714285714*G0_0_0 - 0.0616071428571429*G0_0_1 - 0.0616071428571429*G0_0_2;
-    A[36] = 0.0321428571428571*G0_0_0 - 0.0160714285714285*G0_0_1 - 0.0160714285714284*G0_0_2;
+    A[36] = 0.0321428571428571*G0_0_0 - 0.0160714285714285*G0_0_1 - 0.0160714285714285*G0_0_2;
     A[37] = -0.0321428571428571*G0_0_0;
-    A[38] = 0.0482142857142857*G0_0_0 + 0.0160714285714285*G0_0_1;
+    A[38] = 0.0482142857142857*G0_0_0 + 0.0160714285714286*G0_0_1;
     A[39] = 0.0482142857142856*G0_0_0 + 0.0160714285714285*G0_0_2;
     A[40] = -0.0113095238095238*G0_1_0 - 0.0113095238095238*G0_1_1 - 0.0113095238095238*G0_1_2;
     A[41] = 0.0113095238095238*G0_1_0;
     A[42] = 0.0595238095238095*G0_1_1;
     A[43] = 0.0113095238095238*G0_1_2;
     A[44] = -0.0348214285714285*G0_1_1 + 0.0616071428571428*G0_1_2;
-    A[45] = 0.0133928571428572*G0_1_1 - 0.0348214285714286*G0_1_2;
+    A[45] = 0.0133928571428571*G0_1_1 - 0.0348214285714286*G0_1_2;
     A[46] = 0.0133928571428571*G0_1_0 + 0.0133928571428571*G0_1_2;
-    A[47] = 0.0133928571428572*G0_1_0 + 0.0133928571428571*G0_1_2;
+    A[47] = 0.0133928571428571*G0_1_0 + 0.013392857142857*G0_1_2;
     A[48] = -0.0348214285714285*G0_1_0 + 0.0133928571428571*G0_1_1;
-    A[49] = 0.0616071428571428*G0_1_0 - 0.0348214285714285*G0_1_1;
-    A[50] = -0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1;
-    A[51] = -0.0133928571428572*G0_1_0 - 0.0133928571428572*G0_1_1;
-    A[52] = 0.0348214285714286*G0_1_0 + 0.0482142857142858*G0_1_1 + 0.0348214285714286*G0_1_2;
+    A[49] = 0.0616071428571428*G0_1_0 - 0.0348214285714286*G0_1_1;
+    A[50] = -0.0133928571428572*G0_1_0 - 0.0133928571428572*G0_1_1;
+    A[51] = -0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1;
+    A[52] = 0.0348214285714285*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.0348214285714285*G0_1_2;
     A[53] = -0.0616071428571428*G0_1_0 - 0.0964285714285714*G0_1_1 - 0.0616071428571428*G0_1_2;
-    A[54] = -0.0133928571428572*G0_1_1 - 0.0133928571428571*G0_1_2;
+    A[54] = -0.0133928571428572*G0_1_1 - 0.0133928571428572*G0_1_2;
     A[55] = -0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2;
-    A[56] = -0.0160714285714285*G0_1_0 + 0.0321428571428571*G0_1_1 - 0.0160714285714285*G0_1_2;
-    A[57] = 0.0160714285714285*G0_1_0 + 0.0482142857142857*G0_1_1;
-    A[58] = -0.0321428571428571*G0_1_1;
-    A[59] = 0.0482142857142856*G0_1_1 + 0.0160714285714285*G0_1_2;
+    A[56] = -0.0160714285714287*G0_1_0 + 0.0321428571428569*G0_1_1 - 0.0160714285714286*G0_1_2;
+    A[57] = 0.0160714285714287*G0_1_0 + 0.0482142857142857*G0_1_1;
+    A[58] = -0.032142857142857*G0_1_1;
+    A[59] = 0.0482142857142857*G0_1_1 + 0.0160714285714286*G0_1_2;
     A[60] = -0.0113095238095238*G0_2_0 - 0.0113095238095238*G0_2_1 - 0.0113095238095238*G0_2_2;
     A[61] = 0.0113095238095238*G0_2_0;
     A[62] = 0.0113095238095238*G0_2_1;
-    A[63] = 0.0595238095238096*G0_2_2;
+    A[63] = 0.0595238095238095*G0_2_2;
     A[64] = -0.0348214285714286*G0_2_1 + 0.0133928571428571*G0_2_2;
-    A[65] = 0.061607142857143*G0_2_1 - 0.0348214285714285*G0_2_2;
+    A[65] = 0.0616071428571429*G0_2_1 - 0.0348214285714286*G0_2_2;
     A[66] = -0.0348214285714286*G0_2_0 + 0.0133928571428571*G0_2_2;
-    A[67] = 0.061607142857143*G0_2_0 - 0.0348214285714285*G0_2_2;
+    A[67] = 0.0616071428571429*G0_2_0 - 0.0348214285714285*G0_2_2;
     A[68] = 0.0133928571428571*G0_2_0 + 0.0133928571428571*G0_2_1;
     A[69] = 0.0133928571428571*G0_2_0 + 0.0133928571428571*G0_2_1;
-    A[70] = 0.0348214285714286*G0_2_0 + 0.0348214285714286*G0_2_1 + 0.0482142857142858*G0_2_2;
-    A[71] = -0.061607142857143*G0_2_0 - 0.061607142857143*G0_2_1 - 0.0964285714285715*G0_2_2;
+    A[70] = 0.0348214285714286*G0_2_0 + 0.0348214285714286*G0_2_1 + 0.0482142857142857*G0_2_2;
+    A[71] = -0.0616071428571429*G0_2_0 - 0.0616071428571429*G0_2_1 - 0.0964285714285715*G0_2_2;
     A[72] = -0.0133928571428572*G0_2_0 - 0.0133928571428572*G0_2_2;
     A[73] = -0.0133928571428571*G0_2_0 - 0.0133928571428571*G0_2_2;
     A[74] = -0.0133928571428572*G0_2_1 - 0.0133928571428572*G0_2_2;
     A[75] = -0.0133928571428571*G0_2_1 - 0.0133928571428571*G0_2_2;
-    A[76] = -0.0160714285714285*G0_2_0 - 0.0160714285714285*G0_2_1 + 0.0321428571428571*G0_2_2;
-    A[77] = 0.0160714285714285*G0_2_0 + 0.0482142857142857*G0_2_2;
+    A[76] = -0.0160714285714286*G0_2_0 - 0.0160714285714285*G0_2_1 + 0.0321428571428571*G0_2_2;
+    A[77] = 0.0160714285714286*G0_2_0 + 0.0482142857142857*G0_2_2;
     A[78] = 0.0160714285714285*G0_2_1 + 0.0482142857142857*G0_2_2;
     A[79] = -0.032142857142857*G0_2_2;
     A[80] = -0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2 - 0.0133928571428571*G0_2_0 - 0.0133928571428571*G0_2_1 - 0.0133928571428571*G0_2_2;
     A[81] = 0.0133928571428571*G0_1_0 + 0.0133928571428571*G0_2_0;
     A[82] = -0.0348214285714285*G0_1_1 + 0.0616071428571428*G0_2_1;
     A[83] = -0.0348214285714286*G0_1_2 + 0.0133928571428571*G0_2_2;
-    A[84] = 0.241071428571428*G0_1_1 + 0.0964285714285715*G0_1_2 + 0.0964285714285715*G0_2_1 + 0.192857142857143*G0_2_2;
-    A[85] = -0.0723214285714287*G0_1_1 + 0.0723214285714283*G0_1_2 - 0.024107142857143*G0_2_1 - 0.0723214285714286*G0_2_2;
-    A[86] = -0.0482142857142855*G0_1_0 - 0.0241071428571427*G0_1_2 - 0.0241071428571428*G0_2_0 - 0.0241071428571428*G0_2_2;
-    A[87] = -0.0723214285714286*G0_1_0 - 0.0482142857142857*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.024107142857143*G0_2_2;
-    A[88] = -0.0482142857142856*G0_1_0 - 0.0241071428571428*G0_1_1 - 0.0723214285714285*G0_2_0 - 0.0241071428571429*G0_2_1;
-    A[89] = 0.0964285714285715*G0_1_0 + 0.120535714285714*G0_1_1 + 0.192857142857143*G0_2_0 + 0.0964285714285714*G0_2_1;
-    A[90] = 0.0482142857142856*G0_1_0 + 0.0482142857142855*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571427*G0_2_0 + 0.0241071428571427*G0_2_1;
-    A[91] = 0.0723214285714287*G0_1_0 + 0.0723214285714287*G0_1_1 + 0.024107142857143*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.024107142857143*G0_2_1;
-    A[92] = 0.0482142857142858*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0723214285714286*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0723214285714285*G0_2_2;
-    A[93] = -0.0964285714285714*G0_1_0 + 0.024107142857143*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.192857142857143*G0_2_0 - 0.0964285714285713*G0_2_1 - 0.192857142857143*G0_2_2;
-    A[94] = 0.0241071428571428*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571427*G0_2_1 + 0.0241071428571427*G0_2_2;
-    A[95] = 0.0241071428571428*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[96] = 0.241071428571428*G0_1_0 - 0.0482142857142857*G0_1_1 + 0.120535714285715*G0_1_2 + 0.0964285714285714*G0_2_0 - 0.024107142857143*G0_2_1 + 0.0964285714285716*G0_2_2;
+    A[84] = 0.241071428571428*G0_1_1 + 0.0964285714285714*G0_1_2 + 0.0964285714285714*G0_2_1 + 0.192857142857143*G0_2_2;
+    A[85] = -0.0723214285714285*G0_1_1 + 0.0723214285714285*G0_1_2 - 0.0241071428571429*G0_2_1 - 0.0723214285714286*G0_2_2;
+    A[86] = -0.0482142857142855*G0_1_0 - 0.0241071428571428*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.0241071428571428*G0_2_2;
+    A[87] = -0.0723214285714285*G0_1_0 - 0.0482142857142855*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_2;
+    A[88] = -0.0482142857142855*G0_1_0 - 0.0241071428571428*G0_1_1 - 0.0723214285714284*G0_2_0 - 0.0241071428571428*G0_2_1;
+    A[89] = 0.0964285714285714*G0_1_0 + 0.120535714285714*G0_1_1 + 0.192857142857143*G0_2_0 + 0.0964285714285714*G0_2_1;
+    A[90] = 0.0482142857142856*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_1;
+    A[91] = 0.0723214285714285*G0_1_0 + 0.0723214285714285*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.0241071428571429*G0_2_1;
+    A[92] = 0.0482142857142857*G0_1_0 + 0.0241071428571427*G0_1_1 + 0.0482142857142856*G0_1_2 + 0.0723214285714285*G0_2_0 + 0.0482142857142856*G0_2_1 + 0.0723214285714284*G0_2_2;
+    A[93] = -0.0964285714285713*G0_1_0 + 0.0241071428571431*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.192857142857143*G0_2_0 - 0.0964285714285712*G0_2_1 - 0.192857142857143*G0_2_2;
+    A[94] = 0.0241071428571428*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571427*G0_2_1 + 0.0241071428571427*G0_2_2;
+    A[95] = 0.0241071428571429*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[96] = 0.241071428571429*G0_1_0 - 0.0482142857142852*G0_1_1 + 0.120535714285715*G0_1_2 + 0.0964285714285714*G0_2_0 - 0.0241071428571428*G0_2_1 + 0.0964285714285717*G0_2_2;
     A[97] = -0.241071428571429*G0_1_0 - 0.289285714285714*G0_1_1 - 0.120535714285714*G0_1_2 - 0.0964285714285714*G0_2_0 - 0.120535714285714*G0_2_1;
-    A[98] = 0.0482142857142856*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571429*G0_2_1;
-    A[99] = -0.144642857142857*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1 - 0.0964285714285716*G0_2_2;
+    A[98] = 0.0482142857142852*G0_1_1 + 0.0241071428571426*G0_1_2 + 0.0241071428571427*G0_2_1;
+    A[99] = -0.144642857142857*G0_1_1 - 0.120535714285715*G0_1_2 - 0.120535714285714*G0_2_1 - 0.0964285714285716*G0_2_2;
     A[100] = -0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2 - 0.0133928571428571*G0_2_0 - 0.0133928571428571*G0_2_1 - 0.0133928571428571*G0_2_2;
     A[101] = 0.0133928571428571*G0_1_0 + 0.0133928571428571*G0_2_0;
-    A[102] = 0.0133928571428572*G0_1_1 - 0.0348214285714285*G0_2_1;
-    A[103] = 0.061607142857143*G0_1_2 - 0.0348214285714285*G0_2_2;
-    A[104] = -0.0723214285714287*G0_1_1 - 0.024107142857143*G0_1_2 + 0.0723214285714283*G0_2_1 - 0.0723214285714286*G0_2_2;
-    A[105] = 0.192857142857143*G0_1_1 + 0.0964285714285714*G0_1_2 + 0.0964285714285714*G0_2_1 + 0.241071428571428*G0_2_2;
+    A[102] = 0.0133928571428571*G0_1_1 - 0.0348214285714286*G0_2_1;
+    A[103] = 0.0616071428571429*G0_1_2 - 0.0348214285714285*G0_2_2;
+    A[104] = -0.0723214285714285*G0_1_1 - 0.0241071428571429*G0_1_2 + 0.0723214285714285*G0_2_1 - 0.0723214285714286*G0_2_2;
+    A[105] = 0.192857142857143*G0_1_1 + 0.0964285714285715*G0_1_2 + 0.0964285714285715*G0_2_1 + 0.241071428571429*G0_2_2;
     A[106] = -0.0723214285714284*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.0482142857142855*G0_2_0 - 0.0241071428571429*G0_2_2;
-    A[107] = 0.192857142857143*G0_1_0 + 0.0964285714285715*G0_1_2 + 0.0964285714285714*G0_2_0 + 0.120535714285714*G0_2_2;
-    A[108] = -0.0241071428571427*G0_1_0 - 0.0241071428571429*G0_1_1 - 0.0482142857142855*G0_2_0 - 0.0241071428571428*G0_2_1;
-    A[109] = -0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_1 - 0.0723214285714286*G0_2_0 - 0.0482142857142857*G0_2_1;
-    A[110] = 0.0723214285714288*G0_1_0 + 0.0723214285714287*G0_1_1 + 0.0482142857142858*G0_1_2 + 0.048214285714286*G0_2_0 + 0.0482142857142858*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[111] = -0.192857142857143*G0_1_0 - 0.192857142857143*G0_1_1 - 0.0964285714285716*G0_1_2 - 0.0964285714285715*G0_2_0 - 0.0964285714285714*G0_2_1 + 0.0241071428571428*G0_2_2;
-    A[112] = 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.0482142857142858*G0_2_0 + 0.0241071428571428*G0_2_1 + 0.0482142857142858*G0_2_2;
-    A[113] = 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.0723214285714286*G0_2_0 + 0.0241071428571429*G0_2_1 + 0.0723214285714286*G0_2_2;
+    A[107] = 0.192857142857143*G0_1_0 + 0.0964285714285715*G0_1_2 + 0.0964285714285715*G0_2_0 + 0.120535714285714*G0_2_2;
+    A[108] = -0.0241071428571428*G0_1_0 - 0.0241071428571429*G0_1_1 - 0.0482142857142856*G0_2_0 - 0.0241071428571429*G0_2_1;
+    A[109] = -0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_1 - 0.0723214285714286*G0_2_0 - 0.0482142857142856*G0_2_1;
+    A[110] = 0.0723214285714288*G0_1_0 + 0.0723214285714287*G0_1_1 + 0.0482142857142858*G0_1_2 + 0.0482142857142859*G0_2_0 + 0.0482142857142858*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[111] = -0.192857142857143*G0_1_0 - 0.192857142857143*G0_1_1 - 0.0964285714285715*G0_1_2 - 0.0964285714285716*G0_2_0 - 0.0964285714285716*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[112] = 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0241071428571427*G0_2_1 + 0.0482142857142857*G0_2_2;
+    A[113] = 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.0723214285714286*G0_2_0 + 0.024107142857143*G0_2_1 + 0.0723214285714286*G0_2_2;
     A[114] = 0.0241071428571428*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.024107142857143*G0_2_1 + 0.024107142857143*G0_2_2;
-    A[115] = 0.0241071428571429*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[116] = 0.0964285714285713*G0_1_0 + 0.0964285714285716*G0_1_1 - 0.0241071428571429*G0_1_2 + 0.241071428571428*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142857*G0_2_2;
-    A[117] = -0.0964285714285714*G0_1_0 - 0.120535714285714*G0_1_2 - 0.241071428571428*G0_2_0 - 0.120535714285714*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[118] = -0.0964285714285716*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1 - 0.144642857142857*G0_2_2;
-    A[119] = 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_1 + 0.0482142857142857*G0_2_2;
+    A[115] = 0.0241071428571428*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[116] = 0.0964285714285714*G0_1_0 + 0.0964285714285715*G0_1_1 - 0.0241071428571429*G0_1_2 + 0.241071428571429*G0_2_0 + 0.120535714285715*G0_2_1 - 0.0482142857142856*G0_2_2;
+    A[117] = -0.0964285714285714*G0_1_0 - 0.120535714285714*G0_1_2 - 0.241071428571429*G0_2_0 - 0.120535714285714*G0_2_1 - 0.289285714285714*G0_2_2;
+    A[118] = -0.0964285714285715*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285715*G0_2_1 - 0.144642857142857*G0_2_2;
+    A[119] = 0.0241071428571429*G0_1_2 + 0.0241071428571427*G0_2_1 + 0.0482142857142855*G0_2_2;
     A[120] = -0.0133928571428572*G0_0_0 - 0.0133928571428572*G0_0_1 - 0.0133928571428572*G0_0_2 - 0.0133928571428571*G0_2_0 - 0.0133928571428571*G0_2_1 - 0.0133928571428571*G0_2_2;
     A[121] = -0.0348214285714285*G0_0_0 + 0.0616071428571429*G0_2_0;
     A[122] = 0.0133928571428571*G0_0_1 + 0.0133928571428571*G0_2_1;
     A[123] = -0.0348214285714286*G0_0_2 + 0.0133928571428571*G0_2_2;
-    A[124] = -0.0482142857142855*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.0241071428571427*G0_2_1 - 0.0241071428571428*G0_2_2;
+    A[124] = -0.0482142857142855*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.0241071428571428*G0_2_1 - 0.0241071428571428*G0_2_2;
     A[125] = -0.0723214285714284*G0_0_1 - 0.0482142857142855*G0_0_2 - 0.0241071428571429*G0_2_1 - 0.0241071428571429*G0_2_2;
-    A[126] = 0.241071428571428*G0_0_0 + 0.0964285714285714*G0_0_2 + 0.0964285714285714*G0_2_0 + 0.192857142857143*G0_2_2;
-    A[127] = -0.0723214285714284*G0_0_0 + 0.0723214285714286*G0_0_2 - 0.0241071428571429*G0_2_0 - 0.0723214285714285*G0_2_2;
-    A[128] = 0.120535714285714*G0_0_0 + 0.0964285714285714*G0_0_1 + 0.0964285714285714*G0_2_0 + 0.192857142857143*G0_2_1;
-    A[129] = -0.0241071428571428*G0_0_0 - 0.0482142857142856*G0_0_1 - 0.0241071428571428*G0_2_0 - 0.0723214285714284*G0_2_1;
-    A[130] = 0.0482142857142856*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_1;
+    A[126] = 0.241071428571428*G0_0_0 + 0.0964285714285713*G0_0_2 + 0.0964285714285713*G0_2_0 + 0.192857142857143*G0_2_2;
+    A[127] = -0.0723214285714284*G0_0_0 + 0.0723214285714285*G0_0_2 - 0.0241071428571429*G0_2_0 - 0.0723214285714285*G0_2_2;
+    A[128] = 0.120535714285714*G0_0_0 + 0.0964285714285713*G0_0_1 + 0.0964285714285713*G0_2_0 + 0.192857142857143*G0_2_1;
+    A[129] = -0.0241071428571427*G0_0_0 - 0.0482142857142856*G0_0_1 - 0.0241071428571428*G0_2_0 - 0.0723214285714286*G0_2_1;
+    A[130] = 0.0482142857142856*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_1;
     A[131] = 0.0723214285714285*G0_0_0 + 0.0723214285714285*G0_0_1 + 0.024107142857143*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.0241071428571429*G0_2_1;
     A[132] = 0.0241071428571429*G0_0_0 + 0.024107142857143*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_2;
-    A[133] = 0.0241071428571428*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_2;
-    A[134] = 0.0241071428571429*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0482142857142857*G0_2_0 + 0.0723214285714286*G0_2_1 + 0.0723214285714286*G0_2_2;
-    A[135] = 0.0241071428571429*G0_0_0 - 0.0964285714285713*G0_0_1 - 0.0964285714285713*G0_0_2 - 0.0964285714285715*G0_2_0 - 0.192857142857143*G0_2_1 - 0.192857142857143*G0_2_2;
-    A[136] = -0.0482142857142853*G0_0_0 + 0.241071428571429*G0_0_1 + 0.120535714285714*G0_0_2 - 0.0241071428571426*G0_2_0 + 0.0964285714285717*G0_2_1 + 0.0964285714285717*G0_2_2;
-    A[137] = 0.0482142857142853*G0_0_0 + 0.0241071428571425*G0_0_2 + 0.0241071428571427*G0_2_0;
-    A[138] = -0.289285714285714*G0_0_0 - 0.241071428571429*G0_0_1 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.0964285714285716*G0_2_1;
-    A[139] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.0964285714285716*G0_2_2;
+    A[133] = 0.0241071428571427*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_2;
+    A[134] = 0.0241071428571428*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0482142857142858*G0_2_0 + 0.0723214285714286*G0_2_1 + 0.0723214285714286*G0_2_2;
+    A[135] = 0.0241071428571429*G0_0_0 - 0.0964285714285712*G0_0_1 - 0.0964285714285712*G0_0_2 - 0.0964285714285715*G0_2_0 - 0.192857142857143*G0_2_1 - 0.192857142857143*G0_2_2;
+    A[136] = -0.0482142857142854*G0_0_0 + 0.241071428571428*G0_0_1 + 0.120535714285714*G0_0_2 - 0.0241071428571428*G0_2_0 + 0.0964285714285714*G0_2_1 + 0.0964285714285714*G0_2_2;
+    A[137] = 0.0482142857142854*G0_0_0 + 0.0241071428571425*G0_0_2 + 0.0241071428571428*G0_2_0;
+    A[138] = -0.289285714285714*G0_0_0 - 0.241071428571428*G0_0_1 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.0964285714285714*G0_2_1;
+    A[139] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.0964285714285714*G0_2_2;
     A[140] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_0_2 - 0.0133928571428572*G0_2_0 - 0.0133928571428572*G0_2_1 - 0.0133928571428572*G0_2_2;
     A[141] = 0.0133928571428571*G0_0_0 - 0.0348214285714286*G0_2_0;
-    A[142] = 0.0133928571428572*G0_0_1 + 0.0133928571428571*G0_2_1;
-    A[143] = 0.061607142857143*G0_0_2 - 0.0348214285714285*G0_2_2;
-    A[144] = -0.0723214285714286*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0482142857142857*G0_2_1 - 0.024107142857143*G0_2_2;
-    A[145] = 0.192857142857143*G0_0_1 + 0.0964285714285714*G0_0_2 + 0.0964285714285715*G0_2_1 + 0.120535714285714*G0_2_2;
-    A[146] = -0.0723214285714284*G0_0_0 - 0.0241071428571428*G0_0_2 + 0.0723214285714286*G0_2_0 - 0.0723214285714285*G0_2_2;
-    A[147] = 0.192857142857143*G0_0_0 + 0.0964285714285714*G0_0_2 + 0.0964285714285714*G0_2_0 + 0.241071428571428*G0_2_2;
-    A[148] = -0.0241071428571428*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.0482142857142855*G0_2_0 - 0.0723214285714285*G0_2_1;
-    A[149] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_2_0 - 0.0482142857142857*G0_2_1;
-    A[150] = 0.0723214285714288*G0_0_0 + 0.0723214285714287*G0_0_1 + 0.0482142857142859*G0_0_2 + 0.0482142857142859*G0_2_0 + 0.0482142857142858*G0_2_1 + 0.024107142857143*G0_2_2;
-    A[151] = -0.192857142857143*G0_0_0 - 0.192857142857143*G0_0_1 - 0.0964285714285717*G0_0_2 - 0.0964285714285715*G0_2_0 - 0.0964285714285714*G0_2_1 + 0.0241071428571428*G0_2_2;
+    A[142] = 0.0133928571428571*G0_0_1 + 0.013392857142857*G0_2_1;
+    A[143] = 0.0616071428571429*G0_0_2 - 0.0348214285714285*G0_2_2;
+    A[144] = -0.0723214285714285*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0482142857142855*G0_2_1 - 0.0241071428571429*G0_2_2;
+    A[145] = 0.192857142857143*G0_0_1 + 0.0964285714285715*G0_0_2 + 0.0964285714285715*G0_2_1 + 0.120535714285714*G0_2_2;
+    A[146] = -0.0723214285714284*G0_0_0 - 0.0241071428571429*G0_0_2 + 0.0723214285714285*G0_2_0 - 0.0723214285714286*G0_2_2;
+    A[147] = 0.192857142857143*G0_0_0 + 0.0964285714285715*G0_0_2 + 0.0964285714285715*G0_2_0 + 0.241071428571428*G0_2_2;
+    A[148] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.0482142857142856*G0_2_0 - 0.0723214285714285*G0_2_1;
+    A[149] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_2_0 - 0.0482142857142856*G0_2_1;
+    A[150] = 0.0723214285714288*G0_0_0 + 0.0723214285714288*G0_0_1 + 0.0482142857142858*G0_0_2 + 0.0482142857142859*G0_2_0 + 0.0482142857142859*G0_2_1 + 0.024107142857143*G0_2_2;
+    A[151] = -0.192857142857143*G0_0_0 - 0.192857142857143*G0_0_1 - 0.0964285714285716*G0_0_2 - 0.0964285714285715*G0_2_0 - 0.0964285714285715*G0_2_1 + 0.0241071428571428*G0_2_2;
     A[152] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_2 + 0.024107142857143*G0_2_0 + 0.024107142857143*G0_2_2;
-    A[153] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.024107142857143*G0_2_2;
-    A[154] = 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0482142857142856*G0_2_1 + 0.0482142857142856*G0_2_2;
+    A[153] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.0241071428571429*G0_2_2;
+    A[154] = 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0482142857142857*G0_2_2;
     A[155] = 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.024107142857143*G0_2_0 + 0.0723214285714286*G0_2_1 + 0.0723214285714286*G0_2_2;
-    A[156] = 0.0964285714285713*G0_0_0 + 0.0964285714285715*G0_0_1 - 0.0241071428571429*G0_0_2 + 0.120535714285714*G0_2_0 + 0.241071428571429*G0_2_1 - 0.0482142857142857*G0_2_2;
-    A[157] = -0.0964285714285714*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.144642857142857*G0_2_2;
+    A[156] = 0.0964285714285715*G0_0_0 + 0.0964285714285715*G0_0_1 - 0.024107142857143*G0_0_2 + 0.120535714285714*G0_2_0 + 0.241071428571429*G0_2_1 - 0.0482142857142857*G0_2_2;
+    A[157] = -0.0964285714285715*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285715*G0_2_0 - 0.144642857142858*G0_2_2;
     A[158] = -0.0964285714285715*G0_0_1 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.241071428571429*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[159] = 0.0241071428571429*G0_0_2 + 0.0241071428571425*G0_2_0 + 0.0482142857142856*G0_2_2;
-    A[160] = -0.0133928571428572*G0_0_0 - 0.0133928571428571*G0_0_1 - 0.0133928571428572*G0_0_2 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2;
-    A[161] = -0.0348214285714284*G0_0_0 + 0.0616071428571429*G0_1_0;
+    A[159] = 0.0241071428571429*G0_0_2 + 0.0241071428571426*G0_2_0 + 0.0482142857142855*G0_2_2;
+    A[160] = -0.0133928571428572*G0_0_0 - 0.0133928571428572*G0_0_1 - 0.0133928571428572*G0_0_2 - 0.0133928571428571*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_1_2;
+    A[161] = -0.0348214285714285*G0_0_0 + 0.0616071428571429*G0_1_0;
     A[162] = -0.0348214285714285*G0_0_1 + 0.0133928571428571*G0_1_1;
     A[163] = 0.0133928571428571*G0_0_2 + 0.0133928571428571*G0_1_2;
-    A[164] = -0.0482142857142856*G0_0_1 - 0.0723214285714285*G0_0_2 - 0.0241071428571428*G0_1_1 - 0.0241071428571429*G0_1_2;
-    A[165] = -0.0241071428571427*G0_0_1 - 0.0482142857142855*G0_0_2 - 0.0241071428571429*G0_1_1 - 0.0241071428571428*G0_1_2;
-    A[166] = 0.120535714285714*G0_0_0 + 0.0964285714285714*G0_0_2 + 0.0964285714285714*G0_1_0 + 0.192857142857143*G0_1_2;
-    A[167] = -0.0241071428571428*G0_0_0 - 0.0482142857142855*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0723214285714285*G0_1_2;
-    A[168] = 0.241071428571428*G0_0_0 + 0.0964285714285714*G0_0_1 + 0.0964285714285714*G0_1_0 + 0.192857142857143*G0_1_1;
-    A[169] = -0.0723214285714285*G0_0_0 + 0.0723214285714284*G0_0_1 - 0.0241071428571429*G0_1_0 - 0.0723214285714286*G0_1_1;
-    A[170] = 0.0241071428571428*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0241071428571428*G0_1_1;
-    A[171] = 0.0241071428571428*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1;
-    A[172] = 0.0482142857142856*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0482142857142856*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0241071428571428*G0_1_2;
-    A[173] = 0.0723214285714285*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0723214285714285*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2;
-    A[174] = 0.0241071428571428*G0_0_0 + 0.0482142857142856*G0_0_1 + 0.0482142857142856*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0723214285714286*G0_1_1 + 0.0723214285714286*G0_1_2;
-    A[175] = 0.0241071428571428*G0_0_0 - 0.0964285714285714*G0_0_1 - 0.0964285714285714*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.192857142857143*G0_1_1 - 0.192857142857143*G0_1_2;
-    A[176] = -0.0482142857142855*G0_0_0 + 0.120535714285714*G0_0_1 + 0.241071428571428*G0_0_2 - 0.0241071428571428*G0_1_0 + 0.0964285714285716*G0_1_1 + 0.0964285714285715*G0_1_2;
-    A[177] = 0.0482142857142855*G0_0_0 + 0.0241071428571427*G0_0_1 + 0.0241071428571428*G0_1_0;
-    A[178] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.0964285714285715*G0_1_1;
-    A[179] = -0.289285714285714*G0_0_0 - 0.120535714285714*G0_0_1 - 0.241071428571428*G0_0_2 - 0.120535714285714*G0_1_0 - 0.0964285714285714*G0_1_2;
+    A[164] = -0.0482142857142855*G0_0_1 - 0.0723214285714284*G0_0_2 - 0.0241071428571428*G0_1_1 - 0.0241071428571428*G0_1_2;
+    A[165] = -0.0241071428571428*G0_0_1 - 0.0482142857142856*G0_0_2 - 0.0241071428571429*G0_1_1 - 0.0241071428571429*G0_1_2;
+    A[166] = 0.120535714285714*G0_0_0 + 0.0964285714285713*G0_0_2 + 0.0964285714285713*G0_1_0 + 0.192857142857143*G0_1_2;
+    A[167] = -0.0241071428571429*G0_0_0 - 0.0482142857142856*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0723214285714285*G0_1_2;
+    A[168] = 0.241071428571428*G0_0_0 + 0.0964285714285713*G0_0_1 + 0.0964285714285713*G0_1_0 + 0.192857142857143*G0_1_1;
+    A[169] = -0.0723214285714284*G0_0_0 + 0.0723214285714284*G0_0_1 - 0.0241071428571428*G0_1_0 - 0.0723214285714286*G0_1_1;
+    A[170] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571428*G0_1_1;
+    A[171] = 0.0241071428571429*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1;
+    A[172] = 0.0482142857142857*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0241071428571428*G0_1_2;
+    A[173] = 0.0723214285714284*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0723214285714284*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0241071428571428*G0_1_2;
+    A[174] = 0.0241071428571428*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0482142857142858*G0_1_0 + 0.0723214285714286*G0_1_1 + 0.0723214285714286*G0_1_2;
+    A[175] = 0.0241071428571428*G0_0_0 - 0.0964285714285712*G0_0_1 - 0.0964285714285713*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.192857142857143*G0_1_1 - 0.192857142857143*G0_1_2;
+    A[176] = -0.0482142857142855*G0_0_0 + 0.120535714285714*G0_0_1 + 0.241071428571428*G0_0_2 - 0.0241071428571429*G0_1_0 + 0.0964285714285714*G0_1_1 + 0.0964285714285714*G0_1_2;
+    A[177] = 0.0482142857142856*G0_0_0 + 0.0241071428571426*G0_0_1 + 0.0241071428571429*G0_1_0;
+    A[178] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.0964285714285713*G0_1_1;
+    A[179] = -0.289285714285714*G0_0_0 - 0.120535714285714*G0_0_1 - 0.241071428571428*G0_0_2 - 0.120535714285714*G0_1_0 - 0.0964285714285713*G0_1_2;
     A[180] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_0_2 - 0.0133928571428572*G0_1_0 - 0.0133928571428571*G0_1_1 - 0.0133928571428572*G0_1_2;
     A[181] = 0.0133928571428571*G0_0_0 - 0.0348214285714286*G0_1_0;
-    A[182] = 0.0616071428571428*G0_0_1 - 0.0348214285714285*G0_1_1;
+    A[182] = 0.0616071428571428*G0_0_1 - 0.0348214285714286*G0_1_1;
     A[183] = 0.0133928571428571*G0_0_2 + 0.0133928571428571*G0_1_2;
-    A[184] = 0.0964285714285715*G0_0_1 + 0.192857142857143*G0_0_2 + 0.120535714285714*G0_1_1 + 0.0964285714285714*G0_1_2;
-    A[185] = -0.0241071428571429*G0_0_1 - 0.0723214285714286*G0_0_2 - 0.0241071428571429*G0_1_1 - 0.0482142857142857*G0_1_2;
-    A[186] = -0.0241071428571428*G0_0_0 - 0.0241071428571428*G0_0_2 - 0.0482142857142856*G0_1_0 - 0.0723214285714285*G0_1_2;
-    A[187] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0482142857142857*G0_1_2;
-    A[188] = -0.0723214285714285*G0_0_0 - 0.0241071428571429*G0_0_1 + 0.0723214285714284*G0_1_0 - 0.0723214285714286*G0_1_1;
-    A[189] = 0.192857142857143*G0_0_0 + 0.0964285714285714*G0_0_1 + 0.0964285714285714*G0_1_0 + 0.241071428571428*G0_1_1;
+    A[184] = 0.0964285714285714*G0_0_1 + 0.192857142857143*G0_0_2 + 0.120535714285714*G0_1_1 + 0.0964285714285714*G0_1_2;
+    A[185] = -0.0241071428571429*G0_0_1 - 0.0723214285714286*G0_0_2 - 0.0241071428571429*G0_1_1 - 0.0482142857142856*G0_1_2;
+    A[186] = -0.0241071428571427*G0_0_0 - 0.0241071428571428*G0_0_2 - 0.0482142857142856*G0_1_0 - 0.0723214285714286*G0_1_2;
+    A[187] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0482142857142856*G0_1_2;
+    A[188] = -0.0723214285714284*G0_0_0 - 0.0241071428571428*G0_0_1 + 0.0723214285714284*G0_1_0 - 0.0723214285714286*G0_1_1;
+    A[189] = 0.192857142857143*G0_0_0 + 0.0964285714285715*G0_0_1 + 0.0964285714285715*G0_1_0 + 0.241071428571428*G0_1_1;
     A[190] = 0.0241071428571428*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1;
     A[191] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1;
-    A[192] = 0.0723214285714286*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0723214285714286*G0_0_2 + 0.0482142857142858*G0_1_0 + 0.0241071428571429*G0_1_1 + 0.0482142857142857*G0_1_2;
+    A[192] = 0.0723214285714285*G0_0_0 + 0.0482142857142856*G0_0_1 + 0.0723214285714285*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.0482142857142856*G0_1_2;
     A[193] = -0.192857142857143*G0_0_0 - 0.0964285714285713*G0_0_1 - 0.192857142857143*G0_0_2 - 0.0964285714285714*G0_1_0 + 0.024107142857143*G0_1_1 - 0.0964285714285714*G0_1_2;
-    A[194] = 0.0241071428571427*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142855*G0_1_2;
-    A[195] = 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0723214285714286*G0_1_1 + 0.0723214285714286*G0_1_2;
-    A[196] = 0.0964285714285714*G0_0_0 - 0.0241071428571429*G0_0_1 + 0.0964285714285715*G0_0_2 + 0.120535714285714*G0_1_0 - 0.0482142857142858*G0_1_1 + 0.241071428571428*G0_1_2;
+    A[194] = 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0241071428571427*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142856*G0_1_2;
+    A[195] = 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.024107142857143*G0_1_0 + 0.0723214285714287*G0_1_1 + 0.0723214285714287*G0_1_2;
+    A[196] = 0.0964285714285714*G0_0_0 - 0.0241071428571428*G0_0_1 + 0.0964285714285717*G0_0_2 + 0.120535714285714*G0_1_0 - 0.0482142857142856*G0_1_1 + 0.241071428571428*G0_1_2;
     A[197] = -0.0964285714285714*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.144642857142857*G0_1_1;
-    A[198] = 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0482142857142857*G0_1_1;
-    A[199] = -0.120535714285714*G0_0_1 - 0.0964285714285715*G0_0_2 - 0.120535714285714*G0_1_0 - 0.289285714285714*G0_1_1 - 0.241071428571428*G0_1_2;
-    A[200] = -0.0348214285714286*G0_0_0 - 0.0348214285714285*G0_0_1 - 0.0348214285714285*G0_0_2 - 0.0348214285714285*G0_1_0 - 0.0348214285714285*G0_1_1 - 0.0348214285714285*G0_1_2 - 0.0964285714285714*G0_2_0 - 0.0964285714285714*G0_2_1 - 0.0964285714285714*G0_2_2;
-    A[201] = -0.0133928571428572*G0_0_0 - 0.0133928571428572*G0_1_0;
-    A[202] = -0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_1_1;
-    A[203] = 0.0348214285714286*G0_0_2 + 0.0348214285714286*G0_1_2 + 0.0482142857142858*G0_2_2;
-    A[204] = 0.0482142857142856*G0_0_1 + 0.0241071428571427*G0_0_2 + 0.0482142857142855*G0_1_1 + 0.0241071428571427*G0_1_2 + 0.0241071428571428*G0_2_1;
-    A[205] = 0.0723214285714288*G0_0_1 + 0.0482142857142859*G0_0_2 + 0.0723214285714287*G0_1_1 + 0.0482142857142858*G0_1_2 + 0.0482142857142859*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[206] = 0.0482142857142856*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0241071428571428*G0_1_2 + 0.0241071428571429*G0_2_0;
-    A[207] = 0.0723214285714288*G0_0_0 + 0.0482142857142859*G0_0_2 + 0.0723214285714287*G0_1_0 + 0.0482142857142858*G0_1_2 + 0.0482142857142859*G0_2_0 + 0.024107142857143*G0_2_2;
-    A[208] = 0.0241071428571428*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571428*G0_1_1;
+    A[198] = 0.0241071428571427*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0482142857142856*G0_1_1;
+    A[199] = -0.120535714285714*G0_0_1 - 0.0964285714285716*G0_0_2 - 0.120535714285714*G0_1_0 - 0.289285714285714*G0_1_1 - 0.241071428571428*G0_1_2;
+    A[200] = -0.0348214285714286*G0_0_0 - 0.0348214285714285*G0_0_1 - 0.0348214285714286*G0_0_2 - 0.0348214285714286*G0_1_0 - 0.0348214285714285*G0_1_1 - 0.0348214285714285*G0_1_2 - 0.0964285714285714*G0_2_0 - 0.0964285714285714*G0_2_1 - 0.0964285714285714*G0_2_2;
+    A[201] = -0.0133928571428571*G0_0_0 - 0.0133928571428572*G0_1_0;
+    A[202] = -0.0133928571428572*G0_0_1 - 0.0133928571428572*G0_1_1;
+    A[203] = 0.0348214285714286*G0_0_2 + 0.0348214285714286*G0_1_2 + 0.0482142857142857*G0_2_2;
+    A[204] = 0.0482142857142856*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0482142857142856*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571428*G0_2_1;
+    A[205] = 0.0723214285714288*G0_0_1 + 0.0482142857142859*G0_0_2 + 0.0723214285714287*G0_1_1 + 0.0482142857142858*G0_1_2 + 0.0482142857142858*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[206] = 0.0482142857142856*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0241071428571428*G0_1_2 + 0.0241071428571428*G0_2_0;
+    A[207] = 0.0723214285714288*G0_0_0 + 0.0482142857142859*G0_0_2 + 0.0723214285714288*G0_1_0 + 0.0482142857142859*G0_1_2 + 0.0482142857142858*G0_2_0 + 0.024107142857143*G0_2_2;
+    A[208] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571428*G0_1_1;
     A[209] = 0.0241071428571428*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0241071428571429*G0_1_1;
     A[210] = 0.241071428571429*G0_0_0 + 0.241071428571428*G0_0_1 + 0.144642857142857*G0_0_2 + 0.241071428571428*G0_1_0 + 0.241071428571428*G0_1_1 + 0.144642857142857*G0_1_2 + 0.144642857142857*G0_2_0 + 0.144642857142857*G0_2_1 + 0.241071428571428*G0_2_2;
-    A[211] = -0.0723214285714288*G0_0_0 - 0.0723214285714288*G0_0_1 - 0.144642857142857*G0_0_2 - 0.0723214285714287*G0_1_0 - 0.0723214285714287*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0482142857142859*G0_2_0 - 0.0482142857142859*G0_2_1 - 0.192857142857143*G0_2_2;
+    A[211] = -0.0723214285714288*G0_0_0 - 0.0723214285714287*G0_0_1 - 0.144642857142857*G0_0_2 - 0.0723214285714287*G0_1_0 - 0.0723214285714287*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0482142857142858*G0_2_0 - 0.0482142857142858*G0_2_1 - 0.192857142857143*G0_2_2;
     A[212] = 0.120535714285714*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.120535714285714*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.120535714285714*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[213] = -0.0241071428571428*G0_0_0 + 0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.0241071428571428*G0_1_0 + 0.0241071428571429*G0_1_1 - 0.0241071428571428*G0_1_2 - 0.0241071428571429*G0_2_1;
-    A[214] = 0.0241071428571429*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.120535714285714*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[215] = 0.0241071428571429*G0_0_0 - 0.0241071428571427*G0_0_1 - 0.0241071428571427*G0_0_2 + 0.0241071428571429*G0_1_0 - 0.0241071428571428*G0_1_1 - 0.0241071428571427*G0_1_2 - 0.0241071428571428*G0_2_0;
-    A[216] = 0.0482142857142857*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0241071428571427*G0_0_2 + 0.0482142857142856*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.0241071428571427*G0_1_2 + 0.024107142857143*G0_2_0 + 0.0241071428571431*G0_2_1;
-    A[217] = -0.0482142857142858*G0_0_0 - 0.289285714285714*G0_0_1 - 0.16875*G0_0_2 - 0.0482142857142857*G0_1_0 - 0.289285714285714*G0_1_1 - 0.16875*G0_1_2 - 0.0241071428571431*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142858*G0_2_2;
-    A[218] = -0.289285714285714*G0_0_0 - 0.0482142857142858*G0_0_1 - 0.16875*G0_0_2 - 0.289285714285714*G0_1_0 - 0.0482142857142858*G0_1_1 - 0.16875*G0_1_2 - 0.16875*G0_2_0 - 0.0241071428571432*G0_2_1 - 0.0482142857142859*G0_2_2;
-    A[219] = -0.144642857142857*G0_0_0 - 0.144642857142857*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.144642857142857*G0_1_0 - 0.144642857142857*G0_1_1 - 0.0241071428571428*G0_1_2 - 0.0241071428571431*G0_2_0 - 0.024107142857143*G0_2_1;
+    A[213] = -0.0241071428571427*G0_0_0 + 0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.0241071428571428*G0_1_0 + 0.024107142857143*G0_1_1 - 0.0241071428571428*G0_1_2 - 0.0241071428571428*G0_2_1;
+    A[214] = 0.0241071428571429*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.120535714285714*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.024107142857143*G0_2_1 + 0.024107142857143*G0_2_2;
+    A[215] = 0.0241071428571428*G0_0_0 - 0.0241071428571428*G0_0_1 - 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_1_0 - 0.0241071428571427*G0_1_1 - 0.0241071428571427*G0_1_2 - 0.0241071428571429*G0_2_0;
+    A[216] = 0.0482142857142859*G0_0_0 + 0.0482142857142859*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0482142857142858*G0_1_0 + 0.0482142857142858*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571429*G0_2_1;
+    A[217] = -0.048214285714286*G0_0_0 - 0.289285714285714*G0_0_1 - 0.16875*G0_0_2 - 0.0482142857142859*G0_1_0 - 0.289285714285714*G0_1_1 - 0.16875*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142858*G0_2_2;
+    A[218] = -0.289285714285714*G0_0_0 - 0.0482142857142859*G0_0_1 - 0.16875*G0_0_2 - 0.289285714285714*G0_1_0 - 0.0482142857142859*G0_1_1 - 0.16875*G0_1_2 - 0.16875*G0_2_0 - 0.024107142857143*G0_2_1 - 0.048214285714286*G0_2_2;
+    A[219] = -0.144642857142857*G0_0_0 - 0.144642857142857*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.144642857142857*G0_1_0 - 0.144642857142857*G0_1_1 - 0.0241071428571429*G0_1_2 - 0.024107142857143*G0_2_0 - 0.024107142857143*G0_2_1;
     A[220] = 0.0133928571428571*G0_0_0 + 0.0133928571428571*G0_0_1 + 0.0133928571428571*G0_0_2 + 0.0133928571428571*G0_1_0 + 0.0133928571428571*G0_1_1 + 0.0133928571428571*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0482142857142857*G0_2_2;
     A[221] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_1_0;
-    A[222] = -0.0133928571428572*G0_0_1 - 0.0133928571428572*G0_1_1;
-    A[223] = -0.061607142857143*G0_0_2 - 0.061607142857143*G0_1_2 - 0.0964285714285715*G0_2_2;
-    A[224] = 0.0723214285714287*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0723214285714287*G0_1_1 + 0.024107142857143*G0_1_2 + 0.024107142857143*G0_2_1;
-    A[225] = -0.192857142857143*G0_0_1 - 0.0964285714285715*G0_0_2 - 0.192857142857143*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.0964285714285716*G0_2_1 + 0.0241071428571428*G0_2_2;
+    A[222] = -0.0133928571428571*G0_0_1 - 0.0133928571428571*G0_1_1;
+    A[223] = -0.0616071428571429*G0_0_2 - 0.0616071428571429*G0_1_2 - 0.0964285714285715*G0_2_2;
+    A[224] = 0.0723214285714285*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0723214285714285*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_1;
+    A[225] = -0.192857142857143*G0_0_1 - 0.0964285714285716*G0_0_2 - 0.192857142857143*G0_1_1 - 0.0964285714285716*G0_1_2 - 0.0964285714285715*G0_2_1 + 0.0241071428571429*G0_2_2;
     A[226] = 0.0723214285714285*G0_0_0 + 0.0241071428571429*G0_0_2 + 0.0723214285714285*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.024107142857143*G0_2_0;
-    A[227] = -0.192857142857143*G0_0_0 - 0.0964285714285715*G0_0_2 - 0.192857142857143*G0_1_0 - 0.0964285714285714*G0_1_2 - 0.0964285714285717*G0_2_0 + 0.0241071428571428*G0_2_2;
-    A[228] = 0.0241071428571428*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0241071428571429*G0_1_1;
+    A[227] = -0.192857142857143*G0_0_0 - 0.0964285714285715*G0_0_2 - 0.192857142857143*G0_1_0 - 0.0964285714285715*G0_1_2 - 0.0964285714285716*G0_2_0 + 0.0241071428571428*G0_2_2;
+    A[228] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0241071428571429*G0_1_1;
     A[229] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1;
-    A[230] = -0.0723214285714288*G0_0_0 - 0.0723214285714287*G0_0_1 - 0.0482142857142859*G0_0_2 - 0.0723214285714288*G0_1_0 - 0.0723214285714286*G0_1_1 - 0.0482142857142859*G0_1_2 - 0.144642857142857*G0_2_0 - 0.144642857142857*G0_2_1 - 0.192857142857143*G0_2_2;
-    A[231] = 0.192857142857143*G0_0_0 + 0.192857142857143*G0_0_1 + 0.0964285714285717*G0_0_2 + 0.192857142857143*G0_1_0 + 0.192857142857143*G0_1_1 + 0.0964285714285717*G0_1_2 + 0.0964285714285717*G0_2_0 + 0.0964285714285717*G0_2_1 + 0.241071428571429*G0_2_2;
+    A[230] = -0.0723214285714287*G0_0_0 - 0.0723214285714287*G0_0_1 - 0.0482142857142858*G0_0_2 - 0.0723214285714287*G0_1_0 - 0.0723214285714287*G0_1_1 - 0.0482142857142858*G0_1_2 - 0.144642857142857*G0_2_0 - 0.144642857142857*G0_2_1 - 0.192857142857143*G0_2_2;
+    A[231] = 0.192857142857143*G0_0_0 + 0.192857142857143*G0_0_1 + 0.0964285714285716*G0_0_2 + 0.192857142857143*G0_1_0 + 0.192857142857143*G0_1_1 + 0.0964285714285716*G0_1_2 + 0.0964285714285716*G0_2_0 + 0.0964285714285716*G0_2_1 + 0.241071428571429*G0_2_2;
     A[232] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_0 - 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
     A[233] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_1;
     A[234] = -0.0241071428571428*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.0241071428571428*G0_1_1 - 0.0241071428571428*G0_1_2 - 0.0241071428571429*G0_2_0 + 0.0241071428571428*G0_2_1 + 0.0241071428571428*G0_2_2;
     A[235] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_1 - 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_0;
-    A[236] = -0.0964285714285713*G0_0_0 - 0.0964285714285715*G0_0_1 + 0.024107142857143*G0_0_2 - 0.0964285714285713*G0_1_0 - 0.0964285714285715*G0_1_1 + 0.024107142857143*G0_1_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571427*G0_2_1;
-    A[237] = 0.0964285714285714*G0_0_0 + 0.120535714285714*G0_0_2 + 0.0964285714285713*G0_1_0 + 0.120535714285714*G0_1_2 - 0.0241071428571427*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142857*G0_2_2;
-    A[238] = 0.0964285714285716*G0_0_1 + 0.120535714285714*G0_0_2 + 0.0964285714285716*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 - 0.0241071428571427*G0_2_1 - 0.0482142857142856*G0_2_2;
+    A[236] = -0.0964285714285715*G0_0_0 - 0.0964285714285715*G0_0_1 + 0.024107142857143*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.0964285714285715*G0_1_1 + 0.024107142857143*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.0241071428571429*G0_2_1;
+    A[237] = 0.0964285714285715*G0_0_0 + 0.120535714285714*G0_0_2 + 0.0964285714285715*G0_1_0 + 0.120535714285714*G0_1_2 - 0.0241071428571429*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142857*G0_2_2;
+    A[238] = 0.0964285714285715*G0_0_1 + 0.120535714285714*G0_0_2 + 0.0964285714285715*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 - 0.0241071428571429*G0_2_1 - 0.0482142857142856*G0_2_2;
     A[239] = -0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_0 - 0.0241071428571428*G0_2_1;
-    A[240] = -0.0348214285714286*G0_0_0 - 0.0348214285714285*G0_0_1 - 0.0348214285714285*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.0964285714285715*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.0348214285714286*G0_2_0 - 0.0348214285714285*G0_2_1 - 0.0348214285714285*G0_2_2;
+    A[240] = -0.0348214285714286*G0_0_0 - 0.0348214285714285*G0_0_1 - 0.0348214285714286*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.0964285714285715*G0_1_1 - 0.0964285714285714*G0_1_2 - 0.0348214285714286*G0_2_0 - 0.0348214285714285*G0_2_1 - 0.0348214285714286*G0_2_2;
     A[241] = -0.0133928571428572*G0_0_0 - 0.0133928571428572*G0_2_0;
-    A[242] = 0.0348214285714286*G0_0_1 + 0.0482142857142858*G0_1_1 + 0.0348214285714286*G0_2_1;
+    A[242] = 0.0348214285714285*G0_0_1 + 0.0482142857142857*G0_1_1 + 0.0348214285714285*G0_2_1;
     A[243] = -0.0133928571428572*G0_0_2 - 0.0133928571428572*G0_2_2;
-    A[244] = 0.0482142857142858*G0_0_1 + 0.0723214285714286*G0_0_2 + 0.0241071428571428*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0482142857142857*G0_2_1 + 0.0723214285714285*G0_2_2;
-    A[245] = 0.0241071428571429*G0_0_1 + 0.0482142857142858*G0_0_2 + 0.0241071428571428*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0482142857142858*G0_2_2;
-    A[246] = 0.0241071428571429*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.0241071428571428*G0_2_2;
+    A[244] = 0.0482142857142857*G0_0_1 + 0.0723214285714285*G0_0_2 + 0.0241071428571427*G0_1_1 + 0.0482142857142856*G0_1_2 + 0.0482142857142856*G0_2_1 + 0.0723214285714284*G0_2_2;
+    A[245] = 0.0241071428571429*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0241071428571427*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0482142857142857*G0_2_2;
+    A[246] = 0.0241071428571429*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.024107142857143*G0_2_0 + 0.0241071428571428*G0_2_2;
     A[247] = 0.0241071428571429*G0_0_0 + 0.024107142857143*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.024107142857143*G0_2_2;
-    A[248] = 0.0482142857142856*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0482142857142856*G0_2_0 + 0.0241071428571428*G0_2_1;
-    A[249] = 0.0723214285714286*G0_0_0 + 0.0482142857142858*G0_0_1 + 0.0482142857142857*G0_1_0 + 0.0241071428571429*G0_1_1 + 0.0723214285714286*G0_2_0 + 0.0482142857142857*G0_2_1;
+    A[248] = 0.0482142857142857*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0482142857142857*G0_2_0 + 0.0241071428571428*G0_2_1;
+    A[249] = 0.0723214285714285*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142856*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.0723214285714285*G0_2_0 + 0.0482142857142856*G0_2_1;
     A[250] = 0.120535714285714*G0_0_0 + 0.120535714285714*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 + 0.0241071428571429*G0_2_2;
     A[251] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_0_2 - 0.0241071428571429*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[252] = 0.241071428571429*G0_0_0 + 0.144642857142857*G0_0_1 + 0.241071428571429*G0_0_2 + 0.144642857142857*G0_1_0 + 0.241071428571429*G0_1_1 + 0.144642857142857*G0_1_2 + 0.241071428571429*G0_2_0 + 0.144642857142857*G0_2_1 + 0.241071428571429*G0_2_2;
-    A[253] = -0.0723214285714286*G0_0_0 - 0.144642857142857*G0_0_1 - 0.0723214285714286*G0_0_2 - 0.0482142857142857*G0_1_0 - 0.192857142857143*G0_1_1 - 0.0482142857142858*G0_1_2 - 0.0723214285714285*G0_2_0 - 0.144642857142857*G0_2_1 - 0.0723214285714285*G0_2_2;
-    A[254] = 0.0241071428571429*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.120535714285714*G0_2_1 + 0.120535714285714*G0_2_2;
-    A[255] = 0.0241071428571429*G0_0_0 - 0.0241071428571428*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.0241071428571429*G0_1_0 + 0.0241071428571428*G0_2_0 - 0.0241071428571428*G0_2_1 - 0.0241071428571428*G0_2_2;
-    A[256] = 0.0482142857142858*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0482142857142855*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0241071428571428*G0_2_1 + 0.0482142857142855*G0_2_2;
-    A[257] = -0.0482142857142858*G0_0_0 - 0.16875*G0_0_1 - 0.289285714285714*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0482142857142856*G0_1_1 - 0.16875*G0_1_2 - 0.0482142857142857*G0_2_0 - 0.16875*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[258] = -0.144642857142857*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.144642857142858*G0_0_2 - 0.024107142857143*G0_1_0 - 0.0241071428571431*G0_1_2 - 0.144642857142857*G0_2_0 - 0.0241071428571429*G0_2_1 - 0.144642857142858*G0_2_2;
-    A[259] = -0.289285714285714*G0_0_0 - 0.16875*G0_0_1 - 0.0482142857142856*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142857*G0_1_1 - 0.0241071428571429*G0_1_2 - 0.289285714285714*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142855*G0_2_2;
+    A[252] = 0.241071428571428*G0_0_0 + 0.144642857142857*G0_0_1 + 0.241071428571428*G0_0_2 + 0.144642857142857*G0_1_0 + 0.241071428571429*G0_1_1 + 0.144642857142857*G0_1_2 + 0.241071428571428*G0_2_0 + 0.144642857142857*G0_2_1 + 0.241071428571428*G0_2_2;
+    A[253] = -0.0723214285714285*G0_0_0 - 0.144642857142857*G0_0_1 - 0.0723214285714286*G0_0_2 - 0.0482142857142856*G0_1_0 - 0.192857142857143*G0_1_1 - 0.0482142857142856*G0_1_2 - 0.0723214285714285*G0_2_0 - 0.144642857142857*G0_2_1 - 0.0723214285714285*G0_2_2;
+    A[254] = 0.0241071428571429*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0241071428571429*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.120535714285714*G0_2_1 + 0.120535714285714*G0_2_2;
+    A[255] = 0.0241071428571428*G0_0_0 - 0.0241071428571427*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.0241071428571429*G0_1_0 + 0.0241071428571428*G0_2_0 - 0.0241071428571427*G0_2_1 - 0.0241071428571427*G0_2_2;
+    A[256] = 0.0482142857142857*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0482142857142855*G0_0_2 + 0.0241071428571426*G0_1_0 + 0.0241071428571426*G0_1_2 + 0.0482142857142856*G0_2_0 + 0.0241071428571429*G0_2_1 + 0.0482142857142854*G0_2_2;
+    A[257] = -0.0482142857142858*G0_0_0 - 0.16875*G0_0_1 - 0.289285714285714*G0_0_2 - 0.0241071428571426*G0_1_0 - 0.0482142857142856*G0_1_1 - 0.16875*G0_1_2 - 0.0482142857142856*G0_2_0 - 0.16875*G0_2_1 - 0.289285714285714*G0_2_2;
+    A[258] = -0.144642857142857*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.144642857142857*G0_0_2 - 0.024107142857143*G0_1_0 - 0.024107142857143*G0_1_2 - 0.144642857142857*G0_2_0 - 0.0241071428571429*G0_2_1 - 0.144642857142857*G0_2_2;
+    A[259] = -0.289285714285714*G0_0_0 - 0.16875*G0_0_1 - 0.0482142857142855*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142856*G0_1_1 - 0.0241071428571426*G0_1_2 - 0.289285714285714*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142854*G0_2_2;
     A[260] = 0.0133928571428571*G0_0_0 + 0.0133928571428571*G0_0_1 + 0.0133928571428571*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0133928571428571*G0_2_0 + 0.0133928571428571*G0_2_1 + 0.0133928571428571*G0_2_2;
     A[261] = -0.0133928571428571*G0_0_0 - 0.0133928571428571*G0_2_0;
     A[262] = -0.0616071428571428*G0_0_1 - 0.0964285714285714*G0_1_1 - 0.0616071428571428*G0_2_1;
     A[263] = -0.0133928571428571*G0_0_2 - 0.0133928571428571*G0_2_2;
-    A[264] = -0.0964285714285714*G0_0_1 - 0.192857142857143*G0_0_2 + 0.024107142857143*G0_1_1 - 0.0964285714285713*G0_1_2 - 0.0964285714285714*G0_2_1 - 0.192857142857143*G0_2_2;
-    A[265] = 0.0241071428571429*G0_0_1 + 0.0723214285714286*G0_0_2 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0723214285714286*G0_2_2;
-    A[266] = 0.0241071428571428*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_2;
-    A[267] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.024107142857143*G0_2_2;
-    A[268] = 0.0723214285714285*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0723214285714285*G0_2_0 + 0.0241071428571429*G0_2_1;
-    A[269] = -0.192857142857143*G0_0_0 - 0.0964285714285714*G0_0_1 - 0.0964285714285714*G0_1_0 + 0.024107142857143*G0_1_1 - 0.192857142857143*G0_2_0 - 0.0964285714285714*G0_2_1;
-    A[270] = -0.0241071428571428*G0_0_0 - 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1 - 0.0241071428571429*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.0241071428571428*G0_2_1;
+    A[264] = -0.0964285714285713*G0_0_1 - 0.192857142857143*G0_0_2 + 0.0241071428571431*G0_1_1 - 0.0964285714285712*G0_1_2 - 0.0964285714285714*G0_2_1 - 0.192857142857143*G0_2_2;
+    A[265] = 0.0241071428571429*G0_0_1 + 0.0723214285714286*G0_0_2 + 0.024107142857143*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0723214285714286*G0_2_2;
+    A[266] = 0.0241071428571427*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571428*G0_2_2;
+    A[267] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.0241071428571429*G0_2_2;
+    A[268] = 0.0723214285714284*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0723214285714284*G0_2_0 + 0.0241071428571428*G0_2_1;
+    A[269] = -0.192857142857143*G0_0_0 - 0.0964285714285714*G0_0_1 - 0.0964285714285713*G0_1_0 + 0.024107142857143*G0_1_1 - 0.192857142857143*G0_2_0 - 0.0964285714285714*G0_2_1;
+    A[270] = -0.0241071428571427*G0_0_0 - 0.0241071428571428*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.024107142857143*G0_1_1 - 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_0 - 0.0241071428571428*G0_2_1;
     A[271] = -0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_1;
-    A[272] = -0.0723214285714286*G0_0_0 - 0.0482142857142857*G0_0_1 - 0.0723214285714285*G0_0_2 - 0.144642857142857*G0_1_0 - 0.192857142857143*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0723214285714286*G0_2_0 - 0.0482142857142858*G0_2_1 - 0.0723214285714285*G0_2_2;
-    A[273] = 0.192857142857143*G0_0_0 + 0.0964285714285713*G0_0_1 + 0.192857142857143*G0_0_2 + 0.0964285714285713*G0_1_0 + 0.241071428571428*G0_1_1 + 0.0964285714285714*G0_1_2 + 0.192857142857143*G0_2_0 + 0.0964285714285714*G0_2_1 + 0.192857142857143*G0_2_2;
-    A[274] = -0.0241071428571427*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_1 + 0.0241071428571429*G0_1_2 - 0.0241071428571427*G0_2_1 - 0.0241071428571427*G0_2_2;
-    A[275] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_2_1 - 0.0241071428571429*G0_2_2;
-    A[276] = -0.0964285714285713*G0_0_0 + 0.024107142857143*G0_0_1 - 0.0964285714285714*G0_0_2 + 0.024107142857143*G0_1_0 + 0.024107142857143*G0_1_2 - 0.0964285714285713*G0_2_0 + 0.024107142857143*G0_2_1 - 0.0964285714285714*G0_2_2;
-    A[277] = 0.0964285714285713*G0_0_0 + 0.120535714285714*G0_0_1 - 0.024107142857143*G0_1_0 - 0.0482142857142859*G0_1_1 + 0.120535714285714*G0_1_2 + 0.0964285714285713*G0_2_0 + 0.120535714285714*G0_2_1;
-    A[278] = -0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_1_0 - 0.0241071428571428*G0_1_2 - 0.0241071428571429*G0_2_1;
-    A[279] = 0.120535714285714*G0_0_1 + 0.0964285714285714*G0_0_2 + 0.120535714285714*G0_1_0 - 0.0482142857142858*G0_1_1 - 0.024107142857143*G0_1_2 + 0.120535714285714*G0_2_1 + 0.0964285714285714*G0_2_2;
-    A[280] = -0.0964285714285714*G0_0_0 - 0.0964285714285714*G0_0_1 - 0.0964285714285714*G0_0_2 - 0.0348214285714285*G0_1_0 - 0.0348214285714285*G0_1_1 - 0.0348214285714285*G0_1_2 - 0.0348214285714285*G0_2_0 - 0.0348214285714285*G0_2_1 - 0.0348214285714285*G0_2_2;
-    A[281] = 0.0482142857142857*G0_0_0 + 0.0348214285714285*G0_1_0 + 0.0348214285714285*G0_2_0;
-    A[282] = -0.0133928571428572*G0_1_1 - 0.0133928571428571*G0_2_1;
+    A[272] = -0.0723214285714285*G0_0_0 - 0.0482142857142856*G0_0_1 - 0.0723214285714285*G0_0_2 - 0.144642857142857*G0_1_0 - 0.192857142857143*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0723214285714286*G0_2_0 - 0.0482142857142856*G0_2_1 - 0.0723214285714285*G0_2_2;
+    A[273] = 0.192857142857143*G0_0_0 + 0.0964285714285712*G0_0_1 + 0.192857142857143*G0_0_2 + 0.0964285714285713*G0_1_0 + 0.241071428571428*G0_1_1 + 0.0964285714285713*G0_1_2 + 0.192857142857143*G0_2_0 + 0.0964285714285712*G0_2_1 + 0.192857142857143*G0_2_2;
+    A[274] = -0.0241071428571428*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.0241071428571429*G0_1_0 + 0.024107142857143*G0_1_1 + 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_1 - 0.0241071428571428*G0_2_2;
+    A[275] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571428*G0_1_0 - 0.0241071428571429*G0_2_1 - 0.0241071428571429*G0_2_2;
+    A[276] = -0.0964285714285713*G0_0_0 + 0.0241071428571428*G0_0_1 - 0.0964285714285715*G0_0_2 + 0.0241071428571433*G0_1_0 + 0.0241071428571433*G0_1_2 - 0.0964285714285713*G0_2_0 + 0.0241071428571429*G0_2_1 - 0.0964285714285715*G0_2_2;
+    A[277] = 0.0964285714285713*G0_0_0 + 0.120535714285714*G0_0_1 - 0.0241071428571433*G0_1_0 - 0.048214285714286*G0_1_1 + 0.120535714285714*G0_1_2 + 0.0964285714285713*G0_2_0 + 0.120535714285714*G0_2_1;
+    A[278] = -0.0241071428571428*G0_0_1 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_1;
+    A[279] = 0.120535714285714*G0_0_1 + 0.0964285714285715*G0_0_2 + 0.120535714285714*G0_1_0 - 0.0482142857142859*G0_1_1 - 0.0241071428571433*G0_1_2 + 0.120535714285714*G0_2_1 + 0.0964285714285715*G0_2_2;
+    A[280] = -0.0964285714285714*G0_0_0 - 0.0964285714285715*G0_0_1 - 0.0964285714285714*G0_0_2 - 0.0348214285714286*G0_1_0 - 0.0348214285714286*G0_1_1 - 0.0348214285714286*G0_1_2 - 0.0348214285714286*G0_2_0 - 0.0348214285714286*G0_2_1 - 0.0348214285714286*G0_2_2;
+    A[281] = 0.0482142857142857*G0_0_0 + 0.0348214285714285*G0_1_0 + 0.0348214285714286*G0_2_0;
+    A[282] = -0.0133928571428572*G0_1_1 - 0.0133928571428572*G0_2_1;
     A[283] = -0.0133928571428572*G0_1_2 - 0.0133928571428572*G0_2_2;
     A[284] = 0.0241071428571428*G0_1_1 + 0.0241071428571427*G0_1_2 + 0.0241071428571428*G0_2_1 + 0.0241071428571427*G0_2_2;
-    A[285] = 0.0241071428571428*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_1 + 0.024107142857143*G0_2_2;
-    A[286] = 0.0241071428571429*G0_0_0 + 0.0482142857142857*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0723214285714286*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0723214285714286*G0_2_2;
-    A[287] = 0.0241071428571428*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0482142857142856*G0_1_2 + 0.0241071428571428*G0_2_0 + 0.0482142857142856*G0_2_2;
-    A[288] = 0.0241071428571428*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142856*G0_1_0 + 0.0723214285714286*G0_1_1 + 0.0482142857142856*G0_2_0 + 0.0723214285714286*G0_2_1;
-    A[289] = 0.0241071428571428*G0_0_1 + 0.0241071428571427*G0_1_0 + 0.0482142857142855*G0_1_1 + 0.0241071428571428*G0_2_0 + 0.0482142857142855*G0_2_1;
-    A[290] = 0.0241071428571429*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.120535714285714*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[285] = 0.0241071428571428*G0_1_1 + 0.024107142857143*G0_1_2 + 0.0241071428571428*G0_2_1 + 0.024107142857143*G0_2_2;
+    A[286] = 0.0241071428571428*G0_0_0 + 0.0482142857142858*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0723214285714286*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0723214285714286*G0_2_2;
+    A[287] = 0.0241071428571428*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0482142857142857*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.0482142857142857*G0_2_2;
+    A[288] = 0.0241071428571428*G0_0_0 + 0.0482142857142858*G0_0_1 + 0.0482142857142856*G0_1_0 + 0.0723214285714286*G0_1_1 + 0.0482142857142857*G0_2_0 + 0.0723214285714286*G0_2_1;
+    A[289] = 0.0241071428571427*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0241071428571428*G0_2_0 + 0.0482142857142856*G0_2_1;
+    A[290] = 0.0241071428571429*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.120535714285714*G0_1_1 + 0.024107142857143*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 + 0.024107142857143*G0_2_2;
     A[291] = -0.0241071428571429*G0_0_2 - 0.0241071428571428*G0_1_0 - 0.0241071428571428*G0_1_1 + 0.0241071428571428*G0_1_2 - 0.0241071428571428*G0_2_0 - 0.0241071428571428*G0_2_1 + 0.0241071428571428*G0_2_2;
-    A[292] = 0.0241071428571429*G0_0_0 + 0.120535714285714*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0241071428571428*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0241071428571429*G0_2_1 + 0.120535714285714*G0_2_2;
-    A[293] = -0.0241071428571429*G0_0_1 - 0.0241071428571427*G0_1_0 + 0.0241071428571429*G0_1_1 - 0.0241071428571427*G0_1_2 - 0.0241071428571428*G0_2_0 + 0.0241071428571429*G0_2_1 - 0.0241071428571427*G0_2_2;
+    A[292] = 0.0241071428571429*G0_0_0 + 0.120535714285714*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0241071428571429*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0241071428571429*G0_2_1 + 0.120535714285714*G0_2_2;
+    A[293] = -0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_1_0 + 0.024107142857143*G0_1_1 - 0.0241071428571428*G0_1_2 - 0.0241071428571427*G0_2_0 + 0.024107142857143*G0_2_1 - 0.0241071428571428*G0_2_2;
     A[294] = 0.241071428571428*G0_0_0 + 0.144642857142857*G0_0_1 + 0.144642857142857*G0_0_2 + 0.144642857142857*G0_1_0 + 0.241071428571428*G0_1_1 + 0.241071428571428*G0_1_2 + 0.144642857142857*G0_2_0 + 0.241071428571428*G0_2_1 + 0.241071428571428*G0_2_2;
-    A[295] = -0.192857142857143*G0_0_0 - 0.0482142857142857*G0_0_1 - 0.0482142857142857*G0_0_2 - 0.144642857142857*G0_1_0 - 0.0723214285714285*G0_1_1 - 0.0723214285714285*G0_1_2 - 0.144642857142857*G0_2_0 - 0.0723214285714285*G0_2_1 - 0.0723214285714285*G0_2_2;
-    A[296] = 0.0241071428571427*G0_0_1 + 0.0241071428571427*G0_0_2 + 0.0241071428571426*G0_1_0 + 0.0482142857142854*G0_1_1 + 0.0482142857142853*G0_1_2 + 0.0241071428571426*G0_2_0 + 0.0482142857142855*G0_2_1 + 0.0482142857142853*G0_2_2;
-    A[297] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571426*G0_1_0 - 0.144642857142857*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.144642857142857*G0_2_1 - 0.144642857142857*G0_2_2;
-    A[298] = -0.0482142857142857*G0_0_0 - 0.0241071428571428*G0_0_1 - 0.16875*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142855*G0_1_1 - 0.289285714285714*G0_1_2 - 0.16875*G0_2_0 - 0.0482142857142856*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[299] = -0.0482142857142857*G0_0_0 - 0.16875*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.16875*G0_1_0 - 0.289285714285714*G0_1_1 - 0.0482142857142854*G0_1_2 - 0.16875*G0_2_0 - 0.289285714285714*G0_2_1 - 0.0482142857142854*G0_2_2;
+    A[295] = -0.192857142857143*G0_0_0 - 0.0482142857142857*G0_0_1 - 0.0482142857142858*G0_0_2 - 0.144642857142857*G0_1_0 - 0.0723214285714285*G0_1_1 - 0.0723214285714285*G0_1_2 - 0.144642857142857*G0_2_0 - 0.0723214285714285*G0_2_1 - 0.0723214285714285*G0_2_2;
+    A[296] = 0.0241071428571426*G0_0_1 + 0.0241071428571425*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142854*G0_1_2 + 0.0241071428571428*G0_2_0 + 0.0482142857142856*G0_2_1 + 0.0482142857142854*G0_2_2;
+    A[297] = -0.024107142857143*G0_0_1 - 0.024107142857143*G0_0_2 - 0.0241071428571428*G0_1_0 - 0.144642857142857*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0241071428571428*G0_2_0 - 0.144642857142857*G0_2_1 - 0.144642857142857*G0_2_2;
+    A[298] = -0.0482142857142857*G0_0_0 - 0.0241071428571426*G0_0_1 - 0.16875*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142857*G0_1_1 - 0.289285714285714*G0_1_2 - 0.16875*G0_2_0 - 0.0482142857142857*G0_2_1 - 0.289285714285714*G0_2_2;
+    A[299] = -0.0482142857142857*G0_0_0 - 0.16875*G0_0_1 - 0.0241071428571424*G0_0_2 - 0.16875*G0_1_0 - 0.289285714285714*G0_1_1 - 0.0482142857142855*G0_1_2 - 0.16875*G0_2_0 - 0.289285714285714*G0_2_1 - 0.0482142857142855*G0_2_2;
     A[300] = 0.0482142857142857*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0133928571428571*G0_1_0 + 0.0133928571428571*G0_1_1 + 0.0133928571428571*G0_1_2 + 0.0133928571428571*G0_2_0 + 0.0133928571428571*G0_2_1 + 0.0133928571428571*G0_2_2;
     A[301] = -0.0964285714285714*G0_0_0 - 0.0616071428571429*G0_1_0 - 0.0616071428571429*G0_2_0;
     A[302] = -0.0133928571428571*G0_1_1 - 0.0133928571428571*G0_2_1;
     A[303] = -0.0133928571428571*G0_1_2 - 0.0133928571428571*G0_2_2;
-    A[304] = 0.0241071428571428*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_1 + 0.0241071428571429*G0_2_2;
-    A[305] = 0.0241071428571429*G0_1_1 + 0.0241071428571428*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0241071428571428*G0_2_2;
-    A[306] = 0.0241071428571429*G0_0_0 - 0.0964285714285715*G0_0_2 - 0.0964285714285713*G0_1_0 - 0.192857142857143*G0_1_2 - 0.0964285714285713*G0_2_0 - 0.192857142857143*G0_2_2;
+    A[304] = 0.0241071428571429*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[305] = 0.0241071428571428*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0241071428571429*G0_2_2;
+    A[306] = 0.0241071428571429*G0_0_0 - 0.0964285714285715*G0_0_2 - 0.0964285714285712*G0_1_0 - 0.192857142857143*G0_1_2 - 0.0964285714285712*G0_2_0 - 0.192857142857143*G0_2_2;
     A[307] = 0.024107142857143*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0723214285714286*G0_1_2 + 0.0241071428571429*G0_2_0 + 0.0723214285714286*G0_2_2;
-    A[308] = 0.0241071428571428*G0_0_0 - 0.0964285714285715*G0_0_1 - 0.0964285714285714*G0_1_0 - 0.192857142857143*G0_1_1 - 0.0964285714285714*G0_2_0 - 0.192857142857143*G0_2_1;
-    A[309] = 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0723214285714286*G0_1_1 + 0.0241071428571429*G0_2_0 + 0.0723214285714286*G0_2_1;
-    A[310] = 0.0241071428571428*G0_0_0 + 0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.0241071428571427*G0_1_0 - 0.0241071428571428*G0_1_1 - 0.0241071428571427*G0_2_0 - 0.0241071428571427*G0_2_1;
+    A[308] = 0.0241071428571428*G0_0_0 - 0.0964285714285715*G0_0_1 - 0.0964285714285712*G0_1_0 - 0.192857142857143*G0_1_1 - 0.0964285714285713*G0_2_0 - 0.192857142857143*G0_2_1;
+    A[309] = 0.024107142857143*G0_0_1 + 0.0241071428571429*G0_1_0 + 0.0723214285714287*G0_1_1 + 0.0241071428571429*G0_2_0 + 0.0723214285714287*G0_2_1;
+    A[310] = 0.0241071428571428*G0_0_0 + 0.0241071428571428*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571428*G0_1_0 - 0.0241071428571427*G0_1_1 - 0.0241071428571428*G0_2_0 - 0.0241071428571427*G0_2_1;
     A[311] = -0.0241071428571428*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_1 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_1;
-    A[312] = 0.0241071428571429*G0_0_0 - 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_0_2 - 0.0241071428571428*G0_1_0 - 0.0241071428571428*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.0241071428571428*G0_2_2;
-    A[313] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_2;
-    A[314] = -0.192857142857143*G0_0_0 - 0.144642857142857*G0_0_1 - 0.144642857142857*G0_0_2 - 0.0482142857142857*G0_1_0 - 0.0723214285714285*G0_1_1 - 0.0723214285714285*G0_1_2 - 0.0482142857142857*G0_2_0 - 0.0723214285714285*G0_2_1 - 0.0723214285714285*G0_2_2;
-    A[315] = 0.241071428571428*G0_0_0 + 0.0964285714285715*G0_0_1 + 0.0964285714285715*G0_0_2 + 0.0964285714285715*G0_1_0 + 0.192857142857143*G0_1_1 + 0.192857142857143*G0_1_2 + 0.0964285714285715*G0_2_0 + 0.192857142857143*G0_2_1 + 0.192857142857143*G0_2_2;
-    A[316] = 0.024107142857143*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.0241071428571429*G0_1_0 - 0.0964285714285715*G0_1_1 - 0.0964285714285714*G0_1_2 + 0.0241071428571429*G0_2_0 - 0.0964285714285714*G0_2_1 - 0.0964285714285714*G0_2_2;
-    A[317] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_2_0;
-    A[318] = -0.0482142857142858*G0_0_0 - 0.024107142857143*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0964285714285714*G0_1_1 + 0.120535714285714*G0_2_0 + 0.0964285714285714*G0_2_1;
-    A[319] = -0.0482142857142856*G0_0_0 + 0.120535714285714*G0_0_1 - 0.024107142857143*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0964285714285713*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0964285714285713*G0_2_2;
-    A[320] = -0.0321428571428571*G0_0_0 - 0.0321428571428571*G0_0_1 - 0.0321428571428571*G0_0_2 - 0.0321428571428572*G0_1_0 - 0.0321428571428572*G0_1_1 - 0.0321428571428572*G0_1_2 - 0.0321428571428571*G0_2_0 - 0.0321428571428571*G0_2_1 - 0.0321428571428571*G0_2_2;
-    A[321] = 0.0321428571428571*G0_0_0 - 0.0160714285714285*G0_1_0 - 0.0160714285714284*G0_2_0;
-    A[322] = -0.0160714285714286*G0_0_1 + 0.0321428571428571*G0_1_1 - 0.0160714285714285*G0_2_1;
-    A[323] = -0.0160714285714285*G0_0_2 - 0.0160714285714285*G0_1_2 + 0.0321428571428571*G0_2_2;
-    A[324] = 0.241071428571428*G0_0_1 + 0.0964285714285714*G0_0_2 - 0.0482142857142857*G0_1_1 - 0.024107142857143*G0_1_2 + 0.120535714285715*G0_2_1 + 0.0964285714285716*G0_2_2;
-    A[325] = 0.0964285714285713*G0_0_1 + 0.241071428571428*G0_0_2 + 0.0964285714285716*G0_1_1 + 0.120535714285714*G0_1_2 - 0.0241071428571429*G0_2_1 - 0.0482142857142857*G0_2_2;
-    A[326] = -0.0482142857142853*G0_0_0 - 0.0241071428571426*G0_0_2 + 0.241071428571429*G0_1_0 + 0.0964285714285717*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0964285714285717*G0_2_2;
-    A[327] = 0.0964285714285713*G0_0_0 + 0.120535714285714*G0_0_2 + 0.0964285714285715*G0_1_0 + 0.241071428571429*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0482142857142857*G0_2_2;
-    A[328] = -0.0482142857142855*G0_0_0 - 0.0241071428571428*G0_0_1 + 0.120535714285714*G0_1_0 + 0.0964285714285716*G0_1_1 + 0.241071428571428*G0_2_0 + 0.0964285714285715*G0_2_1;
-    A[329] = 0.0964285714285714*G0_0_0 + 0.120535714285714*G0_0_1 - 0.0241071428571429*G0_1_0 - 0.0482142857142858*G0_1_1 + 0.0964285714285715*G0_2_0 + 0.241071428571428*G0_2_1;
-    A[330] = 0.0482142857142857*G0_0_0 + 0.0482142857142856*G0_0_1 + 0.024107142857143*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.0241071428571431*G0_1_2 + 0.0241071428571427*G0_2_0 + 0.0241071428571427*G0_2_1;
-    A[331] = -0.0964285714285713*G0_0_0 - 0.0964285714285713*G0_0_1 + 0.0241071428571428*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.0964285714285715*G0_1_1 + 0.0241071428571427*G0_1_2 + 0.024107142857143*G0_2_0 + 0.024107142857143*G0_2_1;
-    A[332] = 0.0482142857142857*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0482142857142856*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0241071428571428*G0_1_2 + 0.0482142857142855*G0_2_0 + 0.0241071428571429*G0_2_1 + 0.0482142857142855*G0_2_2;
-    A[333] = -0.0964285714285713*G0_0_0 + 0.024107142857143*G0_0_1 - 0.0964285714285713*G0_0_2 + 0.024107142857143*G0_1_0 + 0.024107142857143*G0_1_2 - 0.0964285714285714*G0_2_0 + 0.024107142857143*G0_2_1 - 0.0964285714285714*G0_2_2;
-    A[334] = 0.0241071428571426*G0_0_1 + 0.0241071428571426*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0482142857142854*G0_1_1 + 0.0482142857142855*G0_1_2 + 0.0241071428571427*G0_2_0 + 0.0482142857142853*G0_2_1 + 0.0482142857142853*G0_2_2;
-    A[335] = 0.0241071428571429*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.024107142857143*G0_1_0 - 0.0964285714285715*G0_1_1 - 0.0964285714285714*G0_1_2 + 0.0241071428571429*G0_2_0 - 0.0964285714285714*G0_2_1 - 0.0964285714285714*G0_2_2;
-    A[336] = 0.578571428571429*G0_0_0 + 0.289285714285715*G0_0_1 + 0.289285714285715*G0_0_2 + 0.289285714285715*G0_1_0 + 0.578571428571429*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285715*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
-    A[337] = -0.578571428571429*G0_0_0 - 0.289285714285714*G0_0_1 - 0.289285714285714*G0_0_2 - 0.289285714285715*G0_1_0 - 0.144642857142857*G0_1_2 - 0.289285714285715*G0_2_0 - 0.144642857142857*G0_2_1;
-    A[338] = -0.289285714285715*G0_0_1 - 0.144642857142857*G0_0_2 - 0.289285714285714*G0_1_0 - 0.578571428571429*G0_1_1 - 0.289285714285714*G0_1_2 - 0.144642857142857*G0_2_0 - 0.289285714285714*G0_2_1;
-    A[339] = -0.144642857142857*G0_0_1 - 0.289285714285715*G0_0_2 - 0.144642857142857*G0_1_0 - 0.289285714285715*G0_1_2 - 0.289285714285714*G0_2_0 - 0.289285714285714*G0_2_1 - 0.578571428571428*G0_2_2;
-    A[340] = 0.0321428571428571*G0_0_0 + 0.0321428571428571*G0_0_1 + 0.0321428571428571*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142855*G0_1_1 + 0.0482142857142856*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0482142857142856*G0_2_1 + 0.0482142857142857*G0_2_2;
+    A[312] = 0.0241071428571428*G0_0_0 - 0.0241071428571429*G0_0_1 + 0.0241071428571428*G0_0_2 - 0.0241071428571427*G0_1_0 - 0.0241071428571427*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.0241071428571427*G0_2_2;
+    A[313] = -0.0241071428571428*G0_0_1 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_2;
+    A[314] = -0.192857142857143*G0_0_0 - 0.144642857142857*G0_0_1 - 0.144642857142857*G0_0_2 - 0.0482142857142857*G0_1_0 - 0.0723214285714285*G0_1_1 - 0.0723214285714285*G0_1_2 - 0.0482142857142858*G0_2_0 - 0.0723214285714285*G0_2_1 - 0.0723214285714285*G0_2_2;
+    A[315] = 0.241071428571429*G0_0_0 + 0.0964285714285715*G0_0_1 + 0.0964285714285715*G0_0_2 + 0.0964285714285715*G0_1_0 + 0.192857142857143*G0_1_1 + 0.192857142857143*G0_1_2 + 0.0964285714285715*G0_2_0 + 0.192857142857143*G0_2_1 + 0.192857142857143*G0_2_2;
+    A[316] = 0.024107142857143*G0_0_1 + 0.024107142857143*G0_0_2 + 0.024107142857143*G0_1_0 - 0.0964285714285712*G0_1_1 - 0.0964285714285712*G0_1_2 + 0.0241071428571429*G0_2_0 - 0.0964285714285713*G0_2_1 - 0.0964285714285713*G0_2_2;
+    A[317] = -0.0241071428571429*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.024107142857143*G0_1_0 - 0.024107142857143*G0_2_0;
+    A[318] = -0.0482142857142857*G0_0_0 - 0.024107142857143*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0964285714285712*G0_1_1 + 0.120535714285714*G0_2_0 + 0.0964285714285712*G0_2_1;
+    A[319] = -0.0482142857142856*G0_0_0 + 0.120535714285714*G0_0_1 - 0.024107142857143*G0_0_2 + 0.120535714285714*G0_1_0 + 0.0964285714285711*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0964285714285712*G0_2_2;
+    A[320] = -0.032142857142857*G0_0_0 - 0.032142857142857*G0_0_1 - 0.032142857142857*G0_0_2 - 0.0321428571428571*G0_1_0 - 0.0321428571428571*G0_1_1 - 0.0321428571428571*G0_1_2 - 0.0321428571428571*G0_2_0 - 0.032142857142857*G0_2_1 - 0.032142857142857*G0_2_2;
+    A[321] = 0.0321428571428571*G0_0_0 - 0.0160714285714285*G0_1_0 - 0.0160714285714285*G0_2_0;
+    A[322] = -0.0160714285714287*G0_0_1 + 0.0321428571428569*G0_1_1 - 0.0160714285714286*G0_2_1;
+    A[323] = -0.0160714285714286*G0_0_2 - 0.0160714285714285*G0_1_2 + 0.0321428571428571*G0_2_2;
+    A[324] = 0.241071428571429*G0_0_1 + 0.0964285714285714*G0_0_2 - 0.0482142857142852*G0_1_1 - 0.0241071428571428*G0_1_2 + 0.120535714285715*G0_2_1 + 0.0964285714285717*G0_2_2;
+    A[325] = 0.0964285714285714*G0_0_1 + 0.241071428571429*G0_0_2 + 0.0964285714285715*G0_1_1 + 0.120535714285715*G0_1_2 - 0.0241071428571429*G0_2_1 - 0.0482142857142856*G0_2_2;
+    A[326] = -0.0482142857142854*G0_0_0 - 0.0241071428571428*G0_0_2 + 0.241071428571428*G0_1_0 + 0.0964285714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.0964285714285714*G0_2_2;
+    A[327] = 0.0964285714285715*G0_0_0 + 0.120535714285715*G0_0_2 + 0.0964285714285715*G0_1_0 + 0.241071428571429*G0_1_2 - 0.024107142857143*G0_2_0 - 0.0482142857142857*G0_2_2;
+    A[328] = -0.0482142857142855*G0_0_0 - 0.0241071428571429*G0_0_1 + 0.120535714285714*G0_1_0 + 0.0964285714285714*G0_1_1 + 0.241071428571428*G0_2_0 + 0.0964285714285714*G0_2_1;
+    A[329] = 0.0964285714285714*G0_0_0 + 0.120535714285714*G0_0_1 - 0.0241071428571428*G0_1_0 - 0.0482142857142856*G0_1_1 + 0.0964285714285717*G0_2_0 + 0.241071428571428*G0_2_1;
+    A[330] = 0.0482142857142859*G0_0_0 + 0.0482142857142858*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0482142857142859*G0_1_0 + 0.0482142857142858*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_0 + 0.0241071428571429*G0_2_1;
+    A[331] = -0.0964285714285715*G0_0_0 - 0.0964285714285715*G0_0_1 + 0.0241071428571429*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.0964285714285715*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.024107142857143*G0_2_0 + 0.0241071428571429*G0_2_1;
+    A[332] = 0.0482142857142857*G0_0_0 + 0.0241071428571426*G0_0_1 + 0.0482142857142856*G0_0_2 + 0.0241071428571429*G0_1_0 + 0.0241071428571429*G0_1_2 + 0.0482142857142855*G0_2_0 + 0.0241071428571426*G0_2_1 + 0.0482142857142854*G0_2_2;
+    A[333] = -0.0964285714285713*G0_0_0 + 0.0241071428571433*G0_0_1 - 0.0964285714285713*G0_0_2 + 0.0241071428571428*G0_1_0 + 0.0241071428571429*G0_1_2 - 0.0964285714285715*G0_2_0 + 0.0241071428571433*G0_2_1 - 0.0964285714285715*G0_2_2;
+    A[334] = 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_0_2 + 0.0241071428571426*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142856*G0_1_2 + 0.0241071428571425*G0_2_0 + 0.0482142857142854*G0_2_1 + 0.0482142857142855*G0_2_2;
+    A[335] = 0.024107142857143*G0_0_1 + 0.0241071428571429*G0_0_2 + 0.024107142857143*G0_1_0 - 0.0964285714285712*G0_1_1 - 0.0964285714285713*G0_1_2 + 0.024107142857143*G0_2_0 - 0.0964285714285712*G0_2_1 - 0.0964285714285713*G0_2_2;
+    A[336] = 0.578571428571429*G0_0_0 + 0.289285714285715*G0_0_1 + 0.289285714285715*G0_0_2 + 0.289285714285715*G0_1_0 + 0.578571428571429*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285715*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571429*G0_2_2;
+    A[337] = -0.578571428571429*G0_0_0 - 0.289285714285715*G0_0_1 - 0.289285714285714*G0_0_2 - 0.289285714285715*G0_1_0 - 0.144642857142858*G0_1_2 - 0.289285714285715*G0_2_0 - 0.144642857142858*G0_2_1;
+    A[338] = -0.289285714285715*G0_0_1 - 0.144642857142857*G0_0_2 - 0.289285714285714*G0_1_0 - 0.578571428571428*G0_1_1 - 0.289285714285714*G0_1_2 - 0.144642857142857*G0_2_0 - 0.289285714285714*G0_2_1;
+    A[339] = -0.144642857142857*G0_0_1 - 0.289285714285715*G0_0_2 - 0.144642857142857*G0_1_0 - 0.289285714285714*G0_1_2 - 0.289285714285713*G0_2_0 - 0.289285714285714*G0_2_1 - 0.578571428571428*G0_2_2;
+    A[340] = 0.0321428571428571*G0_0_0 + 0.032142857142857*G0_0_1 + 0.032142857142857*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0482142857142857*G0_2_2;
     A[341] = -0.0321428571428571*G0_0_0;
-    A[342] = 0.0160714285714285*G0_0_1 + 0.0482142857142857*G0_1_1;
-    A[343] = 0.0160714285714285*G0_0_2 + 0.0482142857142857*G0_2_2;
+    A[342] = 0.0160714285714287*G0_0_1 + 0.0482142857142857*G0_1_1;
+    A[343] = 0.0160714285714286*G0_0_2 + 0.0482142857142857*G0_2_2;
     A[344] = -0.241071428571429*G0_0_1 - 0.0964285714285714*G0_0_2 - 0.289285714285714*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1;
-    A[345] = -0.0964285714285714*G0_0_1 - 0.241071428571428*G0_0_2 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[346] = 0.0482142857142853*G0_0_0 + 0.0241071428571427*G0_0_2 + 0.0241071428571425*G0_2_0;
-    A[347] = -0.0964285714285714*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.144642857142857*G0_2_2;
-    A[348] = 0.0482142857142855*G0_0_0 + 0.0241071428571428*G0_0_1 + 0.0241071428571427*G0_1_0;
+    A[345] = -0.0964285714285714*G0_0_1 - 0.241071428571429*G0_0_2 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1 - 0.289285714285714*G0_2_2;
+    A[346] = 0.0482142857142854*G0_0_0 + 0.0241071428571428*G0_0_2 + 0.0241071428571425*G0_2_0;
+    A[347] = -0.0964285714285715*G0_0_0 - 0.120535714285715*G0_0_2 - 0.120535714285714*G0_2_0 - 0.144642857142858*G0_2_2;
+    A[348] = 0.0482142857142856*G0_0_0 + 0.0241071428571429*G0_0_1 + 0.0241071428571426*G0_1_0;
     A[349] = -0.0964285714285714*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.144642857142857*G0_1_1;
-    A[350] = -0.0482142857142858*G0_0_0 - 0.0482142857142857*G0_0_1 - 0.024107142857143*G0_0_2 - 0.289285714285714*G0_1_0 - 0.289285714285714*G0_1_1 - 0.16875*G0_1_2 - 0.16875*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142858*G0_2_2;
-    A[351] = 0.0964285714285714*G0_0_0 + 0.0964285714285713*G0_0_1 - 0.0241071428571427*G0_0_2 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142857*G0_2_2;
-    A[352] = -0.0482142857142858*G0_0_0 - 0.0241071428571429*G0_0_1 - 0.0482142857142857*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142856*G0_1_1 - 0.16875*G0_1_2 - 0.289285714285714*G0_2_0 - 0.16875*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[353] = 0.0964285714285713*G0_0_0 - 0.024107142857143*G0_0_1 + 0.0964285714285713*G0_0_2 + 0.120535714285714*G0_1_0 - 0.0482142857142859*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_1;
-    A[354] = -0.0241071428571426*G0_0_1 - 0.0241071428571427*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.144642857142857*G0_1_1 - 0.144642857142857*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.144642857142857*G0_2_1 - 0.144642857142857*G0_2_2;
-    A[355] = -0.0241071428571429*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_2_0;
-    A[356] = -0.578571428571429*G0_0_0 - 0.289285714285715*G0_0_1 - 0.289285714285715*G0_0_2 - 0.289285714285714*G0_1_0 - 0.144642857142857*G0_1_2 - 0.289285714285714*G0_2_0 - 0.144642857142857*G0_2_1;
-    A[357] = 0.578571428571429*G0_0_0 + 0.289285714285714*G0_0_1 + 0.289285714285714*G0_0_2 + 0.289285714285714*G0_1_0 + 0.578571428571428*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285714*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
-    A[358] = 0.289285714285715*G0_0_1 + 0.144642857142857*G0_0_2 + 0.289285714285714*G0_1_0 + 0.144642857142857*G0_1_2 + 0.144642857142858*G0_2_0 + 0.144642857142857*G0_2_1 + 0.289285714285715*G0_2_2;
+    A[350] = -0.048214285714286*G0_0_0 - 0.0482142857142859*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.289285714285714*G0_1_0 - 0.289285714285714*G0_1_1 - 0.16875*G0_1_2 - 0.16875*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142858*G0_2_2;
+    A[351] = 0.0964285714285715*G0_0_0 + 0.0964285714285715*G0_0_1 - 0.0241071428571429*G0_0_2 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142857*G0_2_2;
+    A[352] = -0.0482142857142858*G0_0_0 - 0.0241071428571426*G0_0_1 - 0.0482142857142856*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142856*G0_1_1 - 0.16875*G0_1_2 - 0.289285714285714*G0_2_0 - 0.16875*G0_2_1 - 0.289285714285714*G0_2_2;
+    A[353] = 0.0964285714285713*G0_0_0 - 0.0241071428571433*G0_0_1 + 0.0964285714285713*G0_0_2 + 0.120535714285714*G0_1_0 - 0.048214285714286*G0_1_1 + 0.120535714285714*G0_1_2 + 0.120535714285714*G0_2_1;
+    A[354] = -0.0241071428571428*G0_0_1 - 0.0241071428571428*G0_0_2 - 0.024107142857143*G0_1_0 - 0.144642857142857*G0_1_1 - 0.144642857142857*G0_1_2 - 0.024107142857143*G0_2_0 - 0.144642857142857*G0_2_1 - 0.144642857142857*G0_2_2;
+    A[355] = -0.024107142857143*G0_0_1 - 0.0241071428571429*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571427*G0_2_0;
+    A[356] = -0.578571428571429*G0_0_0 - 0.289285714285715*G0_0_1 - 0.289285714285715*G0_0_2 - 0.289285714285714*G0_1_0 - 0.144642857142858*G0_1_2 - 0.289285714285714*G0_2_0 - 0.144642857142858*G0_2_1;
+    A[357] = 0.578571428571429*G0_0_0 + 0.289285714285715*G0_0_1 + 0.289285714285714*G0_0_2 + 0.289285714285715*G0_1_0 + 0.578571428571428*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285714*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
+    A[358] = 0.289285714285715*G0_0_1 + 0.144642857142857*G0_0_2 + 0.289285714285714*G0_1_0 + 0.144642857142858*G0_1_2 + 0.144642857142858*G0_2_0 + 0.144642857142858*G0_2_1 + 0.289285714285715*G0_2_2;
     A[359] = 0.144642857142857*G0_0_1 + 0.289285714285715*G0_0_2 + 0.144642857142857*G0_1_0 + 0.289285714285714*G0_1_1 + 0.144642857142857*G0_1_2 + 0.289285714285714*G0_2_0 + 0.144642857142857*G0_2_1;
-    A[360] = 0.0482142857142857*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0321428571428572*G0_1_0 + 0.0321428571428572*G0_1_1 + 0.0321428571428572*G0_1_2 + 0.0482142857142857*G0_2_0 + 0.0482142857142857*G0_2_1 + 0.0482142857142857*G0_2_2;
-    A[361] = 0.0482142857142857*G0_0_0 + 0.0160714285714285*G0_1_0;
-    A[362] = -0.0321428571428571*G0_1_1;
+    A[360] = 0.0482142857142857*G0_0_0 + 0.0482142857142856*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0321428571428571*G0_1_0 + 0.0321428571428571*G0_1_1 + 0.0321428571428571*G0_1_2 + 0.0482142857142858*G0_2_0 + 0.0482142857142858*G0_2_1 + 0.0482142857142858*G0_2_2;
+    A[361] = 0.0482142857142857*G0_0_0 + 0.0160714285714286*G0_1_0;
+    A[362] = -0.032142857142857*G0_1_1;
     A[363] = 0.0160714285714285*G0_1_2 + 0.0482142857142857*G0_2_2;
-    A[364] = 0.0482142857142856*G0_1_1 + 0.0241071428571429*G0_1_2 + 0.0241071428571428*G0_2_1;
-    A[365] = -0.0964285714285716*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1 - 0.144642857142857*G0_2_2;
-    A[366] = -0.289285714285714*G0_0_0 - 0.120535714285714*G0_0_2 - 0.241071428571429*G0_1_0 - 0.0964285714285716*G0_1_2 - 0.120535714285714*G0_2_0;
+    A[364] = 0.0482142857142852*G0_1_1 + 0.0241071428571427*G0_1_2 + 0.0241071428571426*G0_2_1;
+    A[365] = -0.0964285714285715*G0_1_1 - 0.120535714285715*G0_1_2 - 0.120535714285714*G0_2_1 - 0.144642857142857*G0_2_2;
+    A[366] = -0.289285714285714*G0_0_0 - 0.120535714285714*G0_0_2 - 0.241071428571428*G0_1_0 - 0.0964285714285714*G0_1_2 - 0.120535714285714*G0_2_0;
     A[367] = -0.120535714285714*G0_0_2 - 0.0964285714285715*G0_1_0 - 0.241071428571429*G0_1_2 - 0.120535714285714*G0_2_0 - 0.289285714285714*G0_2_2;
-    A[368] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.0964285714285715*G0_1_1;
-    A[369] = 0.0241071428571428*G0_0_1 + 0.0241071428571428*G0_1_0 + 0.0482142857142857*G0_1_1;
-    A[370] = -0.289285714285714*G0_0_0 - 0.289285714285714*G0_0_1 - 0.16875*G0_0_2 - 0.0482142857142858*G0_1_0 - 0.0482142857142858*G0_1_1 - 0.0241071428571432*G0_1_2 - 0.16875*G0_2_0 - 0.16875*G0_2_1 - 0.0482142857142859*G0_2_2;
-    A[371] = 0.120535714285714*G0_0_2 + 0.0964285714285716*G0_1_0 + 0.0964285714285716*G0_1_1 - 0.0241071428571427*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142856*G0_2_2;
-    A[372] = -0.144642857142857*G0_0_0 - 0.024107142857143*G0_0_1 - 0.144642857142857*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.144642857142858*G0_2_0 - 0.0241071428571431*G0_2_1 - 0.144642857142858*G0_2_2;
-    A[373] = -0.0241071428571428*G0_0_1 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.0241071428571428*G0_2_1;
-    A[374] = -0.0482142857142858*G0_0_0 - 0.16875*G0_0_1 - 0.16875*G0_0_2 - 0.0241071428571428*G0_1_0 - 0.0482142857142855*G0_1_1 - 0.0482142857142856*G0_1_2 - 0.16875*G0_2_0 - 0.289285714285714*G0_2_1 - 0.289285714285714*G0_2_2;
-    A[375] = -0.0482142857142857*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 - 0.024107142857143*G0_1_0 + 0.0964285714285714*G0_1_1 + 0.0964285714285714*G0_1_2 + 0.120535714285714*G0_2_0;
-    A[376] = -0.289285714285714*G0_0_1 - 0.144642857142857*G0_0_2 - 0.289285714285715*G0_1_0 - 0.578571428571429*G0_1_1 - 0.289285714285714*G0_1_2 - 0.144642857142857*G0_2_0 - 0.289285714285714*G0_2_1;
-    A[377] = 0.289285714285714*G0_0_1 + 0.144642857142858*G0_0_2 + 0.289285714285715*G0_1_0 + 0.144642857142857*G0_1_2 + 0.144642857142857*G0_2_0 + 0.144642857142857*G0_2_1 + 0.289285714285715*G0_2_2;
-    A[378] = 0.578571428571428*G0_0_0 + 0.289285714285714*G0_0_1 + 0.289285714285715*G0_0_2 + 0.289285714285714*G0_1_0 + 0.578571428571429*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285715*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
-    A[379] = 0.289285714285714*G0_0_0 + 0.144642857142857*G0_0_1 + 0.144642857142857*G0_0_2 + 0.144642857142857*G0_1_0 + 0.289285714285715*G0_1_2 + 0.144642857142858*G0_2_0 + 0.289285714285714*G0_2_1;
-    A[380] = 0.0482142857142857*G0_0_0 + 0.0482142857142856*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142856*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.0321428571428571*G0_2_0 + 0.0321428571428571*G0_2_1 + 0.0321428571428571*G0_2_2;
+    A[368] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.0964285714285713*G0_1_1;
+    A[369] = 0.0241071428571428*G0_0_1 + 0.0241071428571427*G0_1_0 + 0.0482142857142856*G0_1_1;
+    A[370] = -0.289285714285714*G0_0_0 - 0.289285714285714*G0_0_1 - 0.16875*G0_0_2 - 0.0482142857142859*G0_1_0 - 0.0482142857142859*G0_1_1 - 0.024107142857143*G0_1_2 - 0.16875*G0_2_0 - 0.16875*G0_2_1 - 0.048214285714286*G0_2_2;
+    A[371] = 0.120535714285714*G0_0_2 + 0.0964285714285715*G0_1_0 + 0.0964285714285715*G0_1_1 - 0.0241071428571428*G0_1_2 + 0.120535714285714*G0_2_0 + 0.120535714285714*G0_2_1 - 0.0482142857142856*G0_2_2;
+    A[372] = -0.144642857142857*G0_0_0 - 0.024107142857143*G0_0_1 - 0.144642857142857*G0_0_2 - 0.0241071428571429*G0_1_0 - 0.0241071428571429*G0_1_2 - 0.144642857142857*G0_2_0 - 0.024107142857143*G0_2_1 - 0.144642857142857*G0_2_2;
+    A[373] = -0.0241071428571429*G0_0_1 - 0.0241071428571428*G0_1_0 - 0.0241071428571428*G0_1_2 - 0.0241071428571429*G0_2_1;
+    A[374] = -0.0482142857142858*G0_0_0 - 0.16875*G0_0_1 - 0.16875*G0_0_2 - 0.0241071428571426*G0_1_0 - 0.0482142857142857*G0_1_1 - 0.0482142857142857*G0_1_2 - 0.16875*G0_2_0 - 0.289285714285714*G0_2_1 - 0.289285714285714*G0_2_2;
+    A[375] = -0.0482142857142857*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 - 0.024107142857143*G0_1_0 + 0.0964285714285712*G0_1_1 + 0.0964285714285712*G0_1_2 + 0.120535714285714*G0_2_0;
+    A[376] = -0.289285714285714*G0_0_1 - 0.144642857142857*G0_0_2 - 0.289285714285715*G0_1_0 - 0.578571428571428*G0_1_1 - 0.289285714285714*G0_1_2 - 0.144642857142857*G0_2_0 - 0.289285714285714*G0_2_1;
+    A[377] = 0.289285714285714*G0_0_1 + 0.144642857142858*G0_0_2 + 0.289285714285715*G0_1_0 + 0.144642857142858*G0_1_2 + 0.144642857142857*G0_2_0 + 0.144642857142858*G0_2_1 + 0.289285714285715*G0_2_2;
+    A[378] = 0.578571428571428*G0_0_0 + 0.289285714285714*G0_0_1 + 0.289285714285714*G0_0_2 + 0.289285714285714*G0_1_0 + 0.578571428571428*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285714*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
+    A[379] = 0.289285714285714*G0_0_0 + 0.144642857142857*G0_0_1 + 0.144642857142857*G0_0_2 + 0.144642857142857*G0_1_0 + 0.289285714285714*G0_1_2 + 0.144642857142857*G0_2_0 + 0.289285714285714*G0_2_1;
+    A[380] = 0.0482142857142857*G0_0_0 + 0.0482142857142857*G0_0_1 + 0.0482142857142857*G0_0_2 + 0.0482142857142857*G0_1_0 + 0.0482142857142857*G0_1_1 + 0.0482142857142857*G0_1_2 + 0.032142857142857*G0_2_0 + 0.032142857142857*G0_2_1 + 0.032142857142857*G0_2_2;
     A[381] = 0.0482142857142856*G0_0_0 + 0.0160714285714285*G0_2_0;
-    A[382] = 0.0482142857142856*G0_1_1 + 0.0160714285714285*G0_2_1;
+    A[382] = 0.0482142857142857*G0_1_1 + 0.0160714285714286*G0_2_1;
     A[383] = -0.032142857142857*G0_2_2;
-    A[384] = -0.144642857142857*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285714*G0_2_1 - 0.0964285714285716*G0_2_2;
-    A[385] = 0.0241071428571428*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0482142857142857*G0_2_2;
-    A[386] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.0964285714285716*G0_2_2;
-    A[387] = 0.0241071428571425*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.0482142857142856*G0_2_2;
-    A[388] = -0.289285714285714*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.241071428571428*G0_2_0 - 0.0964285714285714*G0_2_1;
-    A[389] = -0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.289285714285714*G0_1_1 - 0.0964285714285715*G0_2_0 - 0.241071428571428*G0_2_1;
-    A[390] = -0.144642857142857*G0_0_0 - 0.144642857142857*G0_0_1 - 0.0241071428571431*G0_0_2 - 0.144642857142857*G0_1_0 - 0.144642857142857*G0_1_1 - 0.024107142857143*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.0241071428571428*G0_2_1;
+    A[384] = -0.144642857142857*G0_1_1 - 0.120535714285714*G0_1_2 - 0.120535714285715*G0_2_1 - 0.0964285714285716*G0_2_2;
+    A[385] = 0.0241071428571427*G0_1_2 + 0.0241071428571429*G0_2_1 + 0.0482142857142855*G0_2_2;
+    A[386] = -0.144642857142857*G0_0_0 - 0.120535714285714*G0_0_2 - 0.120535714285714*G0_2_0 - 0.0964285714285714*G0_2_2;
+    A[387] = 0.0241071428571426*G0_0_2 + 0.0241071428571429*G0_2_0 + 0.0482142857142855*G0_2_2;
+    A[388] = -0.289285714285714*G0_0_0 - 0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.241071428571428*G0_2_0 - 0.0964285714285713*G0_2_1;
+    A[389] = -0.120535714285714*G0_0_1 - 0.120535714285714*G0_1_0 - 0.289285714285714*G0_1_1 - 0.0964285714285716*G0_2_0 - 0.241071428571428*G0_2_1;
+    A[390] = -0.144642857142857*G0_0_0 - 0.144642857142857*G0_0_1 - 0.024107142857143*G0_0_2 - 0.144642857142857*G0_1_0 - 0.144642857142857*G0_1_1 - 0.024107142857143*G0_1_2 - 0.0241071428571428*G0_2_0 - 0.0241071428571429*G0_2_1;
     A[391] = -0.0241071428571428*G0_0_2 - 0.0241071428571428*G0_1_2 - 0.0241071428571429*G0_2_0 - 0.0241071428571429*G0_2_1;
-    A[392] = -0.289285714285714*G0_0_0 - 0.16875*G0_0_1 - 0.289285714285714*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142857*G0_1_1 - 0.16875*G0_1_2 - 0.0482142857142856*G0_2_0 - 0.0241071428571429*G0_2_1 - 0.0482142857142855*G0_2_2;
-    A[393] = 0.120535714285714*G0_0_1 + 0.120535714285714*G0_1_0 - 0.0482142857142858*G0_1_1 + 0.120535714285714*G0_1_2 + 0.0964285714285714*G0_2_0 - 0.024107142857143*G0_2_1 + 0.0964285714285714*G0_2_2;
-    A[394] = -0.0482142857142857*G0_0_0 - 0.16875*G0_0_1 - 0.16875*G0_0_2 - 0.16875*G0_1_0 - 0.289285714285714*G0_1_1 - 0.289285714285714*G0_1_2 - 0.0241071428571427*G0_2_0 - 0.0482142857142854*G0_2_1 - 0.0482142857142854*G0_2_2;
-    A[395] = -0.0482142857142856*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 - 0.024107142857143*G0_2_0 + 0.0964285714285713*G0_2_1 + 0.0964285714285713*G0_2_2;
-    A[396] = -0.144642857142857*G0_0_1 - 0.289285714285714*G0_0_2 - 0.144642857142857*G0_1_0 - 0.289285714285714*G0_1_2 - 0.289285714285715*G0_2_0 - 0.289285714285715*G0_2_1 - 0.578571428571428*G0_2_2;
+    A[392] = -0.289285714285714*G0_0_0 - 0.16875*G0_0_1 - 0.289285714285714*G0_0_2 - 0.16875*G0_1_0 - 0.0482142857142856*G0_1_1 - 0.16875*G0_1_2 - 0.0482142857142855*G0_2_0 - 0.0241071428571426*G0_2_1 - 0.0482142857142854*G0_2_2;
+    A[393] = 0.120535714285714*G0_0_1 + 0.120535714285714*G0_1_0 - 0.0482142857142859*G0_1_1 + 0.120535714285714*G0_1_2 + 0.0964285714285715*G0_2_0 - 0.0241071428571433*G0_2_1 + 0.0964285714285715*G0_2_2;
+    A[394] = -0.0482142857142857*G0_0_0 - 0.16875*G0_0_1 - 0.16875*G0_0_2 - 0.16875*G0_1_0 - 0.289285714285714*G0_1_1 - 0.289285714285714*G0_1_2 - 0.0241071428571425*G0_2_0 - 0.0482142857142855*G0_2_1 - 0.0482142857142855*G0_2_2;
+    A[395] = -0.0482142857142856*G0_0_0 + 0.120535714285714*G0_0_1 + 0.120535714285714*G0_0_2 + 0.120535714285714*G0_1_0 - 0.024107142857143*G0_2_0 + 0.0964285714285711*G0_2_1 + 0.0964285714285712*G0_2_2;
+    A[396] = -0.144642857142857*G0_0_1 - 0.289285714285713*G0_0_2 - 0.144642857142857*G0_1_0 - 0.289285714285714*G0_1_2 - 0.289285714285715*G0_2_0 - 0.289285714285714*G0_2_1 - 0.578571428571428*G0_2_2;
     A[397] = 0.144642857142857*G0_0_1 + 0.289285714285714*G0_0_2 + 0.144642857142857*G0_1_0 + 0.289285714285714*G0_1_1 + 0.144642857142857*G0_1_2 + 0.289285714285715*G0_2_0 + 0.144642857142857*G0_2_1;
-    A[398] = 0.289285714285714*G0_0_0 + 0.144642857142857*G0_0_1 + 0.144642857142858*G0_0_2 + 0.144642857142857*G0_1_0 + 0.289285714285714*G0_1_2 + 0.144642857142857*G0_2_0 + 0.289285714285715*G0_2_1;
-    A[399] = 0.578571428571428*G0_0_0 + 0.289285714285714*G0_0_1 + 0.289285714285714*G0_0_2 + 0.289285714285714*G0_1_0 + 0.578571428571428*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285714*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+    A[398] = 0.289285714285714*G0_0_0 + 0.144642857142857*G0_0_1 + 0.144642857142857*G0_0_2 + 0.144642857142857*G0_1_0 + 0.289285714285714*G0_1_2 + 0.144642857142857*G0_2_0 + 0.289285714285714*G0_2_1;
+    A[399] = 0.578571428571427*G0_0_0 + 0.289285714285714*G0_0_1 + 0.289285714285713*G0_0_2 + 0.289285714285714*G0_1_0 + 0.578571428571428*G0_1_1 + 0.289285714285714*G0_1_2 + 0.289285714285713*G0_2_0 + 0.289285714285714*G0_2_1 + 0.578571428571428*G0_2_2;
   }
 
 };
@@ -8731,36 +8669,22 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const
+                               const double* vertex_coordinates,
+                               int cell_orientation) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      18
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    20
     // Number of operations (multiply-add pairs) for tensor contraction: 270
-    // Total number of operations (multiply-add pairs):                  308
+    // Total number of operations (multiply-add pairs):                  293
     
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[9];
+    compute_jacobian_tetrahedron_3d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_02 = x[3][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    const double J_12 = x[3][1] - x[0][1];
-    const double J_20 = x[1][2] - x[0][2];
-    const double J_21 = x[2][2] - x[0][2];
-    const double J_22 = x[3][2] - x[0][2];
-    
-    // Compute sub determinants
-    const double d_00 = J_11*J_22 - J_12*J_21;
-    const double d_10 = J_02*J_21 - J_01*J_22;
-    const double d_20 = J_01*J_12 - J_02*J_11;
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*d_00 + J_10*d_10 + J_20*d_20;
-    
-    // Compute inverse of Jacobian
+    // Compute Jacobian inverse and determinant
+    double K[9];
+    double detJ;
+    compute_jacobian_inverse_tetrahedron_3d(K, detJ, J);
     
     // Set scale factor
     const double det = std::abs(detJ);
@@ -8788,38 +8712,26 @@ public:
     const double G0_19 = det*w[0][19]*(1.0);
     
     // Compute element tensor
-    A[0] = 0.0005952380952381*G0_0 + 7.44047619047625e-05*G0_1 + 7.44047619047623e-05*G0_2 + 7.44047619047626e-05*G0_3 + 0.000111607142857144*G0_4 + 0.000111607142857143*G0_5 + 0.000111607142857144*G0_6 + 0.000111607142857142*G0_7 + 0.000111607142857144*G0_8 + 0.000111607142857143*G0_9 - 0.000446428571428571*G0_10 + 0.000223214285714285*G0_11 - 0.000446428571428572*G0_12 + 0.000223214285714286*G0_13 - 0.000446428571428573*G0_14 + 0.000223214285714287*G0_15 + 0.00133928571428572*G0_16 + 0.000669642857142861*G0_17 + 0.000669642857142863*G0_18 + 0.000669642857142863*G0_19;
-    A[1] = 7.44047619047625e-05*G0_0 + 0.000595238095238098*G0_1 + 7.4404761904762e-05*G0_2 + 7.44047619047622e-05*G0_3 + 0.000111607142857143*G0_4 + 0.000111607142857143*G0_5 - 0.000446428571428571*G0_6 + 0.000223214285714286*G0_7 - 0.000446428571428571*G0_8 + 0.000223214285714285*G0_9 + 0.000111607142857142*G0_10 + 0.000111607142857142*G0_11 + 0.000111607142857143*G0_12 + 0.000111607142857142*G0_13 + 0.000223214285714285*G0_14 - 0.000446428571428571*G0_15 + 0.000669642857142858*G0_16 + 0.00133928571428572*G0_17 + 0.000669642857142859*G0_18 + 0.000669642857142859*G0_19;
-    A[2] = 7.44047619047623e-05*G0_0 + 7.4404761904762e-05*G0_1 + 0.000595238095238097*G0_2 + 7.44047619047618e-05*G0_3 - 0.000446428571428572*G0_4 + 0.000223214285714287*G0_5 + 0.000111607142857143*G0_6 + 0.000111607142857144*G0_7 + 0.000223214285714286*G0_8 - 0.000446428571428572*G0_9 + 0.000111607142857142*G0_10 + 0.000111607142857143*G0_11 + 0.000223214285714285*G0_12 - 0.000446428571428572*G0_13 + 0.000111607142857143*G0_14 + 0.000111607142857144*G0_15 + 0.000669642857142854*G0_16 + 0.000669642857142854*G0_17 + 0.00133928571428571*G0_18 + 0.000669642857142854*G0_19;
-    A[3] = 7.44047619047626e-05*G0_0 + 7.44047619047621e-05*G0_1 + 7.44047619047617e-05*G0_2 + 0.000595238095238098*G0_3 + 0.000223214285714286*G0_4 - 0.000446428571428571*G0_5 + 0.000223214285714286*G0_6 - 0.000446428571428572*G0_7 + 0.000111607142857143*G0_8 + 0.000111607142857143*G0_9 + 0.000223214285714285*G0_10 - 0.000446428571428572*G0_11 + 0.000111607142857143*G0_12 + 0.000111607142857143*G0_13 + 0.000111607142857143*G0_14 + 0.000111607142857143*G0_15 + 0.000669642857142858*G0_16 + 0.000669642857142858*G0_17 + 0.000669642857142858*G0_18 + 0.00133928571428572*G0_19;
+    A[0] = 0.000595238095238098*G0_0 + 7.44047619047622e-05*G0_1 + 7.44047619047615e-05*G0_2 + 7.44047619047617e-05*G0_3 + 0.000111607142857144*G0_4 + 0.000111607142857143*G0_5 + 0.000111607142857144*G0_6 + 0.000111607142857143*G0_7 + 0.000111607142857143*G0_8 + 0.000111607142857143*G0_9 - 0.000446428571428572*G0_10 + 0.000223214285714286*G0_11 - 0.000446428571428571*G0_12 + 0.000223214285714286*G0_13 - 0.000446428571428572*G0_14 + 0.000223214285714285*G0_15 + 0.00133928571428571*G0_16 + 0.000669642857142855*G0_17 + 0.000669642857142857*G0_18 + 0.000669642857142855*G0_19;
+    A[1] = 7.44047619047622e-05*G0_0 + 0.000595238095238098*G0_1 + 7.44047619047623e-05*G0_2 + 7.44047619047623e-05*G0_3 + 0.000111607142857143*G0_4 + 0.000111607142857143*G0_5 - 0.000446428571428571*G0_6 + 0.000223214285714286*G0_7 - 0.000446428571428572*G0_8 + 0.000223214285714285*G0_9 + 0.000111607142857142*G0_10 + 0.000111607142857143*G0_11 + 0.000111607142857143*G0_12 + 0.000111607142857143*G0_13 + 0.000223214285714286*G0_14 - 0.000446428571428571*G0_15 + 0.000669642857142861*G0_16 + 0.00133928571428572*G0_17 + 0.000669642857142861*G0_18 + 0.000669642857142861*G0_19;
+    A[2] = 7.44047619047615e-05*G0_0 + 7.44047619047623e-05*G0_1 + 0.000595238095238098*G0_2 + 7.44047619047617e-05*G0_3 - 0.000446428571428572*G0_4 + 0.000223214285714287*G0_5 + 0.000111607142857143*G0_6 + 0.000111607142857143*G0_7 + 0.000223214285714285*G0_8 - 0.000446428571428572*G0_9 + 0.000111607142857142*G0_10 + 0.000111607142857143*G0_11 + 0.000223214285714287*G0_12 - 0.000446428571428572*G0_13 + 0.000111607142857144*G0_14 + 0.000111607142857142*G0_15 + 0.000669642857142854*G0_16 + 0.000669642857142856*G0_17 + 0.00133928571428571*G0_18 + 0.000669642857142855*G0_19;
+    A[3] = 7.44047619047617e-05*G0_0 + 7.44047619047623e-05*G0_1 + 7.44047619047617e-05*G0_2 + 0.000595238095238098*G0_3 + 0.000223214285714286*G0_4 - 0.000446428571428572*G0_5 + 0.000223214285714286*G0_6 - 0.000446428571428572*G0_7 + 0.000111607142857142*G0_8 + 0.000111607142857143*G0_9 + 0.000223214285714285*G0_10 - 0.000446428571428572*G0_11 + 0.000111607142857144*G0_12 + 0.000111607142857143*G0_13 + 0.000111607142857143*G0_14 + 0.000111607142857142*G0_15 + 0.000669642857142857*G0_16 + 0.000669642857142857*G0_17 + 0.000669642857142857*G0_18 + 0.00133928571428571*G0_19;
     A[4] = 0.000111607142857144*G0_0 + 0.000111607142857143*G0_1 - 0.000446428571428572*G0_2 + 0.000223214285714286*G0_3 + 0.00401785714285714*G0_4 - 0.00200892857142857*G0_5 - 0.00100446428571429*G0_7 - 0.00100446428571429*G0_8 + 0.00200892857142857*G0_9 - 0.00100446428571429*G0_11 - 0.00100446428571429*G0_12 + 0.00200892857142857*G0_13 - 0.00200892857142857*G0_18;
-    A[5] = 0.000111607142857143*G0_0 + 0.000111607142857143*G0_1 + 0.000223214285714287*G0_2 - 0.000446428571428571*G0_3 - 0.00200892857142857*G0_4 + 0.00401785714285715*G0_5 - 0.00100446428571429*G0_6 + 0.00200892857142857*G0_7 - 0.00100446428571429*G0_9 - 0.00100446428571429*G0_10 + 0.00200892857142857*G0_11 - 0.00100446428571429*G0_13 - 0.00200892857142857*G0_19;
-    A[6] = 0.000111607142857144*G0_0 - 0.000446428571428571*G0_1 + 0.000111607142857143*G0_2 + 0.000223214285714286*G0_3 - 0.00100446428571429*G0_5 + 0.00401785714285714*G0_6 - 0.00200892857142857*G0_7 + 0.00200892857142857*G0_8 - 0.00100446428571429*G0_9 - 0.00100446428571429*G0_11 - 0.00100446428571429*G0_14 + 0.00200892857142857*G0_15 - 0.00200892857142856*G0_17;
-    A[7] = 0.000111607142857142*G0_0 + 0.000223214285714286*G0_1 + 0.000111607142857143*G0_2 - 0.000446428571428572*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_5 - 0.00200892857142857*G0_6 + 0.00401785714285715*G0_7 - 0.00100446428571429*G0_8 - 0.00100446428571429*G0_10 + 0.00200892857142857*G0_11 - 0.00100446428571429*G0_15 - 0.00200892857142857*G0_19;
-    A[8] = 0.000111607142857144*G0_0 - 0.000446428571428571*G0_1 + 0.000223214285714286*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_6 - 0.00100446428571429*G0_7 + 0.00401785714285714*G0_8 - 0.00200892857142857*G0_9 - 0.00100446428571429*G0_13 - 0.00100446428571429*G0_14 + 0.00200892857142858*G0_15 - 0.00200892857142857*G0_17;
+    A[5] = 0.000111607142857143*G0_0 + 0.000111607142857143*G0_1 + 0.000223214285714287*G0_2 - 0.000446428571428572*G0_3 - 0.00200892857142857*G0_4 + 0.00401785714285715*G0_5 - 0.00100446428571429*G0_6 + 0.00200892857142857*G0_7 - 0.00100446428571429*G0_9 - 0.00100446428571429*G0_10 + 0.00200892857142857*G0_11 - 0.00100446428571429*G0_13 - 0.00200892857142857*G0_19;
+    A[6] = 0.000111607142857144*G0_0 - 0.000446428571428571*G0_1 + 0.000111607142857143*G0_2 + 0.000223214285714286*G0_3 - 0.00100446428571429*G0_5 + 0.00401785714285714*G0_6 - 0.00200892857142857*G0_7 + 0.00200892857142857*G0_8 - 0.00100446428571429*G0_9 - 0.00100446428571429*G0_11 - 0.00100446428571429*G0_14 + 0.00200892857142857*G0_15 - 0.00200892857142857*G0_17;
+    A[7] = 0.000111607142857143*G0_0 + 0.000223214285714286*G0_1 + 0.000111607142857143*G0_2 - 0.000446428571428572*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_5 - 0.00200892857142857*G0_6 + 0.00401785714285715*G0_7 - 0.00100446428571429*G0_8 - 0.00100446428571429*G0_10 + 0.00200892857142857*G0_11 - 0.00100446428571429*G0_15 - 0.00200892857142857*G0_19;
+    A[8] = 0.000111607142857143*G0_0 - 0.000446428571428572*G0_1 + 0.000223214285714285*G0_2 + 0.000111607142857142*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_6 - 0.00100446428571429*G0_7 + 0.00401785714285714*G0_8 - 0.00200892857142857*G0_9 - 0.00100446428571429*G0_13 - 0.00100446428571429*G0_14 + 0.00200892857142857*G0_15 - 0.00200892857142857*G0_17;
     A[9] = 0.000111607142857143*G0_0 + 0.000223214285714285*G0_1 - 0.000446428571428572*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_4 - 0.00100446428571429*G0_5 - 0.00100446428571429*G0_6 - 0.00200892857142857*G0_8 + 0.00401785714285714*G0_9 - 0.00100446428571429*G0_12 + 0.00200892857142857*G0_13 - 0.00100446428571429*G0_15 - 0.00200892857142857*G0_18;
-    A[10] = -0.000446428571428571*G0_0 + 0.000111607142857142*G0_1 + 0.000111607142857142*G0_2 + 0.000223214285714285*G0_3 - 0.00100446428571429*G0_5 - 0.00100446428571429*G0_7 + 0.00401785714285714*G0_10 - 0.00200892857142857*G0_11 + 0.00200892857142857*G0_12 - 0.00100446428571429*G0_13 + 0.00200892857142857*G0_14 - 0.00100446428571429*G0_15 - 0.00200892857142857*G0_16;
-    A[11] = 0.000223214285714285*G0_0 + 0.000111607142857142*G0_1 + 0.000111607142857143*G0_2 - 0.000446428571428572*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_5 - 0.00100446428571429*G0_6 + 0.00200892857142857*G0_7 - 0.00200892857142857*G0_10 + 0.00401785714285715*G0_11 - 0.00100446428571429*G0_12 - 0.00100446428571429*G0_14 - 0.00200892857142858*G0_19;
-    A[12] = -0.000446428571428572*G0_0 + 0.000111607142857143*G0_1 + 0.000223214285714285*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571429*G0_4 - 0.00100446428571429*G0_9 + 0.00200892857142857*G0_10 - 0.00100446428571429*G0_11 + 0.00401785714285715*G0_12 - 0.00200892857142857*G0_13 + 0.00200892857142857*G0_14 - 0.00100446428571429*G0_15 - 0.00200892857142858*G0_16;
-    A[13] = 0.000223214285714286*G0_0 + 0.000111607142857142*G0_1 - 0.000446428571428572*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_4 - 0.00100446428571429*G0_5 - 0.00100446428571429*G0_8 + 0.00200892857142857*G0_9 - 0.00100446428571429*G0_10 - 0.00200892857142857*G0_12 + 0.00401785714285715*G0_13 - 0.00100446428571429*G0_14 - 0.00200892857142857*G0_18;
-    A[14] = -0.000446428571428573*G0_0 + 0.000223214285714285*G0_1 + 0.000111607142857143*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571429*G0_6 - 0.00100446428571429*G0_8 + 0.00200892857142857*G0_10 - 0.00100446428571429*G0_11 + 0.00200892857142857*G0_12 - 0.00100446428571429*G0_13 + 0.00401785714285715*G0_14 - 0.00200892857142857*G0_15 - 0.00200892857142858*G0_16;
-    A[15] = 0.000223214285714287*G0_0 - 0.000446428571428571*G0_1 + 0.000111607142857144*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_6 - 0.00100446428571429*G0_7 + 0.00200892857142858*G0_8 - 0.00100446428571429*G0_9 - 0.00100446428571429*G0_10 - 0.00100446428571429*G0_12 - 0.00200892857142857*G0_14 + 0.00401785714285715*G0_15 - 0.00200892857142857*G0_17;
-    A[16] = 0.00133928571428572*G0_0 + 0.000669642857142858*G0_1 + 0.000669642857142854*G0_2 + 0.000669642857142858*G0_3 - 0.00200892857142857*G0_10 - 0.00200892857142858*G0_12 - 0.00200892857142858*G0_14 + 0.0160714285714286*G0_16 + 0.00803571428571428*G0_17 + 0.0080357142857143*G0_18 + 0.00803571428571429*G0_19;
-    A[17] = 0.000669642857142861*G0_0 + 0.00133928571428572*G0_1 + 0.000669642857142854*G0_2 + 0.000669642857142858*G0_3 - 0.00200892857142856*G0_6 - 0.00200892857142857*G0_8 - 0.00200892857142857*G0_15 + 0.00803571428571428*G0_16 + 0.0160714285714286*G0_17 + 0.00803571428571429*G0_18 + 0.00803571428571428*G0_19;
-    A[18] = 0.000669642857142863*G0_0 + 0.000669642857142859*G0_1 + 0.00133928571428571*G0_2 + 0.000669642857142859*G0_3 - 0.00200892857142857*G0_4 - 0.00200892857142857*G0_9 - 0.00200892857142857*G0_13 + 0.0080357142857143*G0_16 + 0.00803571428571429*G0_17 + 0.0160714285714286*G0_18 + 0.0080357142857143*G0_19;
-    A[19] = 0.000669642857142863*G0_0 + 0.000669642857142859*G0_1 + 0.000669642857142854*G0_2 + 0.00133928571428572*G0_3 - 0.00200892857142857*G0_5 - 0.00200892857142857*G0_7 - 0.00200892857142858*G0_11 + 0.00803571428571429*G0_16 + 0.00803571428571428*G0_17 + 0.0080357142857143*G0_18 + 0.0160714285714286*G0_19;
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
+    A[10] = -0.000446428571428572*G0_0 + 0.000111607142857142*G0_1 + 0.000111607142857142*G0_2 + 0.000223214285714285*G0_3 - 0.00100446428571429*G0_5 - 0.00100446428571429*G0_7 + 0.00401785714285714*G0_10 - 0.00200892857142857*G0_11 + 0.00200892857142857*G0_12 - 0.00100446428571429*G0_13 + 0.00200892857142857*G0_14 - 0.00100446428571429*G0_15 - 0.00200892857142858*G0_16;
+    A[11] = 0.000223214285714286*G0_0 + 0.000111607142857143*G0_1 + 0.000111607142857143*G0_2 - 0.000446428571428572*G0_3 - 0.00100446428571429*G0_4 + 0.00200892857142857*G0_5 - 0.00100446428571429*G0_6 + 0.00200892857142857*G0_7 - 0.00200892857142857*G0_10 + 0.00401785714285715*G0_11 - 0.00100446428571429*G0_12 - 0.00100446428571429*G0_14 - 0.00200892857142857*G0_19;
+    A[12] = -0.000446428571428571*G0_0 + 0.000111607142857143*G0_1 + 0.000223214285714287*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571429*G0_4 - 0.00100446428571429*G0_9 + 0.00200892857142857*G0_10 - 0.00100446428571429*G0_11 + 0.00401785714285715*G0_12 - 0.00200892857142858*G0_13 + 0.00200892857142857*G0_14 - 0.00100446428571429*G0_15 - 0.00200892857142857*G0_16;
+    A[13] = 0.000223214285714286*G0_0 + 0.000111607142857143*G0_1 - 0.000446428571428572*G0_2 + 0.000111607142857143*G0_3 + 0.00200892857142857*G0_4 - 0.00100446428571429*G0_5 - 0.00100446428571429*G0_8 + 0.00200892857142857*G0_9 - 0.00100446428571429*G0_10 - 0.00200892857142858*G0_12 + 0.00401785714285715*G0_13 - 0.00100446428571429*G0_14 - 0.00200892857142857*G0_18;
+    A[14] = -0.000446428571428572*G0_0 + 0.000223214285714286*G0_1 + 0.000111607142857144*G0_2 + 0.000111607142857143*G0_3 - 0.00100446428571429*G0_6 - 0.00100446428571429*G0_8 + 0.00200892857142857*G0_10 - 0.00100446428571429*G0_11 + 0.00200892857142857*G0_12 - 0.00100446428571429*G0_13 + 0.00401785714285715*G0_14 - 0.00200892857142857*G0_15 - 0.00200892857142857*G0_16;
+    A[15] = 0.000223214285714285*G0_0 - 0.000446428571428571*G0_1 + 0.000111607142857142*G0_2 + 0.000111607142857142*G0_3 + 0.00200892857142857*G0_6 - 0.00100446428571429*G0_7 + 0.00200892857142857*G0_8 - 0.00100446428571429*G0_9 - 0.00100446428571429*G0_10 - 0.00100446428571429*G0_12 - 0.00200892857142857*G0_14 + 0.00401785714285715*G0_15 - 0.00200892857142858*G0_17;
+    A[16] = 0.00133928571428571*G0_0 + 0.000669642857142861*G0_1 + 0.000669642857142854*G0_2 + 0.000669642857142857*G0_3 - 0.00200892857142858*G0_10 - 0.00200892857142857*G0_12 - 0.00200892857142857*G0_14 + 0.0160714285714286*G0_16 + 0.00803571428571429*G0_17 + 0.0080357142857143*G0_18 + 0.00803571428571429*G0_19;
+    A[17] = 0.000669642857142855*G0_0 + 0.00133928571428572*G0_1 + 0.000669642857142856*G0_2 + 0.000669642857142857*G0_3 - 0.00200892857142857*G0_6 - 0.00200892857142857*G0_8 - 0.00200892857142858*G0_15 + 0.00803571428571429*G0_16 + 0.0160714285714286*G0_17 + 0.00803571428571429*G0_18 + 0.00803571428571429*G0_19;
+    A[18] = 0.000669642857142857*G0_0 + 0.000669642857142861*G0_1 + 0.00133928571428571*G0_2 + 0.000669642857142857*G0_3 - 0.00200892857142857*G0_4 - 0.00200892857142857*G0_9 - 0.00200892857142857*G0_13 + 0.0080357142857143*G0_16 + 0.00803571428571429*G0_17 + 0.0160714285714286*G0_18 + 0.0080357142857143*G0_19;
+    A[19] = 0.000669642857142855*G0_0 + 0.000669642857142861*G0_1 + 0.000669642857142855*G0_2 + 0.00133928571428571*G0_3 - 0.00200892857142857*G0_5 - 0.00200892857142857*G0_7 - 0.00200892857142857*G0_11 + 0.00803571428571429*G0_16 + 0.00803571428571429*G0_17 + 0.0080357142857143*G0_18 + 0.0160714285714286*G0_19;
   }
 
 };
