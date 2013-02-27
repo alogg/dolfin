@@ -5255,9 +5255,9 @@ public:
     const double volume = std::abs(detJ)/2.0;
     
     // Compute circumradius of triangle in 2D
-    const double v1v2  = std::sqrt( (x[2][0] - x[1][0])*(x[2][0] - x[1][0]) + (x[2][1] - x[1][1])*(x[2][1] - x[1][1]) );
-    const double v0v2  = std::sqrt( J_11*J_11 + J_01*J_01 );
-    const double v0v1  = std::sqrt( J_00*J_00 + J_10*J_10 );
+    const double v1v2  = std::sqrt((vertex_coordinates[4] - vertex_coordinates[2])*(vertex_coordinates[4] - vertex_coordinates[2]) + (vertex_coordinates[5] - vertex_coordinates[3])*(vertex_coordinates[5] - vertex_coordinates[3]) );
+    const double v0v2  = std::sqrt(J[3]*J[3] + J[1]*J[1]);
+    const double v0v1  = std::sqrt(J[0]*J[0] + J[1]*J[1]);
     
     const double circumradius = 0.25*(v1v2*v0v2*v0v1)/(volume);
     
@@ -5433,9 +5433,9 @@ public:
     const double volume = std::abs(detJ)/2.0;
     
     // Compute circumradius of triangle in 2D
-    const double v1v2  = std::sqrt( (x[2][0] - x[1][0])*(x[2][0] - x[1][0]) + (x[2][1] - x[1][1])*(x[2][1] - x[1][1]) );
-    const double v0v2  = std::sqrt( J_11*J_11 + J_01*J_01 );
-    const double v0v1  = std::sqrt( J_00*J_00 + J_10*J_10 );
+    const double v1v2  = std::sqrt((vertex_coordinates[4] - vertex_coordinates[2])*(vertex_coordinates[4] - vertex_coordinates[2]) + (vertex_coordinates[5] - vertex_coordinates[3])*(vertex_coordinates[5] - vertex_coordinates[3]) );
+    const double v0v2  = std::sqrt(J[3]*J[3] + J[1]*J[1]);
+    const double v0v1  = std::sqrt(J[0]*J[0] + J[1]*J[1]);
     
     const double circumradius = 0.25*(v1v2*v0v2*v0v1)/(volume);
     
