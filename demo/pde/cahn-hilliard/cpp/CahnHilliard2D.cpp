@@ -83,79 +83,76 @@ std::size_t cahnhilliard2d_finite_element_0::value_dimension(std::size_t i) cons
     return 1;
 }
 
-/// Evaluate basis function i at given point in cell
+/// Evaluate basis function i at given point x in cell
 void cahnhilliard2d_finite_element_0::evaluate_basis(std::size_t i,
                                    double* values,
-                                   const double* coordinates,
-                                   const ufc::cell& c) const
+                                   const double* x,
+                                   const double* vertex_coordinates,
+                                   int cell_orientation) const
 {
-    // Extract vertex coordinates
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
-    // Compute determinant of Jacobian
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
     
     // Get coordinates and map to the reference (FIAT) element
     
-    // Reset values.
+    // Reset values
     *values = 0.0;
     
-    // Array of basisvalues.
+    // Array of basisvalues
     double basisvalues[1] = {0.0};
     
-    // Declare helper variables.
+    // Declare helper variables
     
-    // Compute basisvalues.
+    // Compute basisvalues
     basisvalues[0] = 1.0;
     
-    // Table(s) of coefficients.
+    // Table(s) of coefficients
     static const double coefficients0[1] = \
     {1.0};
     
-    // Compute value(s).
+    // Compute value(s)
     for (unsigned int r = 0; r < 1; r++)
     {
       *values += coefficients0[r]*basisvalues[r];
     }// end loop over 'r'
 }
 
-/// Evaluate all basis functions at given point in cell
+/// Evaluate all basis functions at given point x in cell
 void cahnhilliard2d_finite_element_0::evaluate_basis_all(double* values,
-                                       const double* coordinates,
-                                       const ufc::cell& c) const
+                                       const double* x,
+                                       const double* vertex_coordinates,
+                                       int cell_orientation) const
 {
     // Element is constant, calling evaluate_basis.
-    evaluate_basis(0, values, coordinates, c);
+    evaluate_basis(0, values, x, vertex_coordinates, cell_orientation);
 }
 
-/// Evaluate order n derivatives of basis function i at given point in cell
+/// Evaluate order n derivatives of basis function i at given point x in cell
 void cahnhilliard2d_finite_element_0::evaluate_basis_derivatives(std::size_t i,
                                                std::size_t n,
                                                double* values,
-                                               const double* coordinates,
-                                               const ufc::cell& c) const
+                                               const double* x,
+                                               const double* vertex_coordinates,
+                                               int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
     
     // Compute constants
     
@@ -196,7 +193,7 @@ void cahnhilliard2d_finite_element_0::evaluate_basis_derivatives(std::size_t i,
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[2][2] = {{K_00, K_01}, {K_10, K_11}};
+    const double Jinv[2][2] = {{K[0], K[1]}, {K[2], K[3]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -226,15 +223,15 @@ void cahnhilliard2d_finite_element_0::evaluate_basis_derivatives(std::size_t i,
     }// end loop over 'r'
     
     
-    // Array of basisvalues.
+    // Array of basisvalues
     double basisvalues[1] = {0.0};
     
-    // Declare helper variables.
+    // Declare helper variables
     
-    // Compute basisvalues.
+    // Compute basisvalues
     basisvalues[0] = 1.0;
     
-    // Table(s) of coefficients.
+    // Table(s) of coefficients
     static const double coefficients0[1] = \
     {1.0};
     
@@ -355,33 +352,35 @@ void cahnhilliard2d_finite_element_0::evaluate_basis_derivatives(std::size_t i,
     delete [] transform;
 }
 
-/// Evaluate order n derivatives of all basis functions at given point in cell
+/// Evaluate order n derivatives of all basis functions at given point x in cell
 void cahnhilliard2d_finite_element_0::evaluate_basis_derivatives_all(std::size_t n,
                                                    double* values,
-                                                   const double* coordinates,
-                                                   const ufc::cell& c) const
+                                                   const double* x,
+                                                   const double* vertex_coordinates,
+                                                   int cell_orientation) const
 {
     // Element is constant, calling evaluate_basis_derivatives.
-    evaluate_basis_derivatives(0, n, values, coordinates, c);
+    evaluate_basis_derivatives(0, n, values, x, vertex_coordinates, cell_orientation);
 }
 
 /// Evaluate linear functional for dof i on the function f
 double cahnhilliard2d_finite_element_0::evaluate_dof(std::size_t i,
                                    const ufc::function& f,
+                                   const double* vertex_coordinates,
+                                   int cell_orientation,
                                    const ufc::cell& c) const
 {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-      y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+        y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
+      y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -394,16 +393,17 @@ double cahnhilliard2d_finite_element_0::evaluate_dof(std::size_t i,
 /// Evaluate linear functionals for all dofs on the function f
 void cahnhilliard2d_finite_element_0::evaluate_dofs(double* values,
                                   const ufc::function& f,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation,
                                   const ufc::cell& c) const
 {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
-    y[0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    y[1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+    y[0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
+    y[1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
 }
@@ -411,6 +411,8 @@ void cahnhilliard2d_finite_element_0::evaluate_dofs(double* values,
 /// Interpolate vertex values from dof values
 void cahnhilliard2d_finite_element_0::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation,
                                               const ufc::cell& c) const
 {
     // Evaluate function and change variables
@@ -508,48 +510,45 @@ std::size_t cahnhilliard2d_finite_element_1::value_dimension(std::size_t i) cons
     return 1;
 }
 
-/// Evaluate basis function i at given point in cell
+/// Evaluate basis function i at given point x in cell
 void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
                                    double* values,
-                                   const double* coordinates,
-                                   const ufc::cell& c) const
+                                   const double* x,
+                                   const double* vertex_coordinates,
+                                   int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[1][0] + x[2][0];
-    const double C1 = x[1][1] + x[2][1];
+    const double C0 = vertex_coordinates[2] + vertex_coordinates[4];
+    const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J_01*(C1 - 2.0*coordinates[1]) + J_11*(2.0*coordinates[0] - C0)) / detJ;
-    double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
-    // Reset values.
+    // Reset values
     *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -557,11 +556,11 @@ void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, -0.288675134594813, -0.166666666666667};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -571,13 +570,13 @@ void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -585,11 +584,11 @@ void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.288675134594813, -0.166666666666667};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -599,13 +598,13 @@ void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -613,11 +612,11 @@ void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.0, 0.333333333333333};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -628,54 +627,48 @@ void cahnhilliard2d_finite_element_1::evaluate_basis(std::size_t i,
     
 }
 
-/// Evaluate all basis functions at given point in cell
+/// Evaluate all basis functions at given point x in cell
 void cahnhilliard2d_finite_element_1::evaluate_basis_all(double* values,
-                                       const double* coordinates,
-                                       const ufc::cell& c) const
+                                       const double* x,
+                                       const double* vertex_coordinates,
+                                       int cell_orientation) const
 {
     // Helper variable to hold values of a single dof.
     double dof_values = 0.0;
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 3; r++)
     {
-      evaluate_basis(r, &dof_values, coordinates, c);
+      evaluate_basis(r, &dof_values, x, vertex_coordinates, cell_orientation);
       values[r] = dof_values;
     }// end loop over 'r'
 }
 
-/// Evaluate order n derivatives of basis function i at given point in cell
+/// Evaluate order n derivatives of basis function i at given point x in cell
 void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
                                                std::size_t n,
                                                double* values,
-                                               const double* coordinates,
-                                               const ufc::cell& c) const
+                                               const double* x,
+                                               const double* vertex_coordinates,
+                                               int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
     
     // Compute constants
-    const double C0 = x[1][0] + x[2][0];
-    const double C1 = x[1][1] + x[2][1];
+    const double C0 = vertex_coordinates[2] + vertex_coordinates[4];
+    const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J_01*(C1 - 2.0*coordinates[1]) + J_11*(2.0*coordinates[0] - C0)) / detJ;
-    double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -712,7 +705,7 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[2][2] = {{K_00, K_01}, {K_10, K_11}};
+    const double Jinv[2][2] = {{K[0], K[1]}, {K[2], K[3]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -746,13 +739,13 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -760,7 +753,7 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, -0.288675134594813, -0.166666666666667};
       
@@ -892,13 +885,13 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -906,7 +899,7 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.288675134594813, -0.166666666666667};
       
@@ -1038,13 +1031,13 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1052,7 +1045,7 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.0, 0.333333333333333};
       
@@ -1185,11 +1178,12 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives(std::size_t i,
     
 }
 
-/// Evaluate order n derivatives of all basis functions at given point in cell
+/// Evaluate order n derivatives of all basis functions at given point x in cell
 void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives_all(std::size_t n,
                                                    double* values,
-                                                   const double* coordinates,
-                                                   const ufc::cell& c) const
+                                                   const double* x,
+                                                   const double* vertex_coordinates,
+                                                   int cell_orientation) const
 {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -1208,7 +1202,7 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives_all(std::size_t
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 3; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates, cell_orientation);
       for (unsigned int s = 0; s < num_derivatives; s++)
       {
         values[r*num_derivatives + s] = dof_values[s];
@@ -1222,36 +1216,37 @@ void cahnhilliard2d_finite_element_1::evaluate_basis_derivatives_all(std::size_t
 /// Evaluate linear functional for dof i on the function f
 double cahnhilliard2d_finite_element_1::evaluate_dof(std::size_t i,
                                    const ufc::function& f,
+                                   const double* vertex_coordinates,
+                                   int cell_orientation,
                                    const ufc::cell& c) const
 {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
+        y[0] = vertex_coordinates[2];
+      y[1] = vertex_coordinates[3];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
+        y[0] = vertex_coordinates[4];
+      y[1] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -1264,24 +1259,25 @@ double cahnhilliard2d_finite_element_1::evaluate_dof(std::size_t i,
 /// Evaluate linear functionals for all dofs on the function f
 void cahnhilliard2d_finite_element_1::evaluate_dofs(double* values,
                                   const ufc::function& f,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation,
                                   const ufc::cell& c) const
 {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
+    y[0] = vertex_coordinates[2];
+    y[1] = vertex_coordinates[3];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
+    y[0] = vertex_coordinates[4];
+    y[1] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
 }
@@ -1289,6 +1285,8 @@ void cahnhilliard2d_finite_element_1::evaluate_dofs(double* values,
 /// Interpolate vertex values from dof values
 void cahnhilliard2d_finite_element_1::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation,
                                               const ufc::cell& c) const
 {
     // Evaluate function and change variables
@@ -1395,35 +1393,32 @@ std::size_t cahnhilliard2d_finite_element_2::value_dimension(std::size_t i) cons
     return 0;
 }
 
-/// Evaluate basis function i at given point in cell
+/// Evaluate basis function i at given point x in cell
 void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
                                    double* values,
-                                   const double* coordinates,
-                                   const ufc::cell& c) const
+                                   const double* x,
+                                   const double* vertex_coordinates,
+                                   int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
     
     // Compute constants
-    const double C0 = x[1][0] + x[2][0];
-    const double C1 = x[1][1] + x[2][1];
+    const double C0 = vertex_coordinates[2] + vertex_coordinates[4];
+    const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J_01*(C1 - 2.0*coordinates[1]) + J_11*(2.0*coordinates[0] - C0)) / detJ;
-    double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
-    // Reset values.
+    // Reset values
     values[0] = 0.0;
     values[1] = 0.0;
     switch (i)
@@ -1431,13 +1426,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1445,11 +1440,11 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, -0.288675134594813, -0.166666666666667};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -1459,13 +1454,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1473,11 +1468,11 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.288675134594813, -0.166666666666667};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -1487,13 +1482,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1501,11 +1496,11 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.0, 0.333333333333333};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         values[0] += coefficients0[r]*basisvalues[r];
@@ -1515,13 +1510,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1529,11 +1524,11 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, -0.288675134594813, -0.166666666666667};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -1543,13 +1538,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1557,11 +1552,11 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.288675134594813, -0.166666666666667};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -1571,13 +1566,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1585,11 +1580,11 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.0, 0.333333333333333};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 3; r++)
       {
         values[1] += coefficients0[r]*basisvalues[r];
@@ -1600,18 +1595,19 @@ void cahnhilliard2d_finite_element_2::evaluate_basis(std::size_t i,
     
 }
 
-/// Evaluate all basis functions at given point in cell
+/// Evaluate all basis functions at given point x in cell
 void cahnhilliard2d_finite_element_2::evaluate_basis_all(double* values,
-                                       const double* coordinates,
-                                       const ufc::cell& c) const
+                                       const double* x,
+                                       const double* vertex_coordinates,
+                                       int cell_orientation) const
 {
     // Helper variable to hold values of a single dof.
     double dof_values[2] = {0.0, 0.0};
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 6; r++)
     {
-      evaluate_basis(r, dof_values, coordinates, c);
+      evaluate_basis(r, dof_values, x, vertex_coordinates, cell_orientation);
       for (unsigned int s = 0; s < 2; s++)
       {
         values[r*2 + s] = dof_values[s];
@@ -1619,38 +1615,31 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_all(double* values,
     }// end loop over 'r'
 }
 
-/// Evaluate order n derivatives of basis function i at given point in cell
+/// Evaluate order n derivatives of basis function i at given point x in cell
 void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
                                                std::size_t n,
                                                double* values,
-                                               const double* coordinates,
-                                               const ufc::cell& c) const
+                                               const double* x,
+                                               const double* vertex_coordinates,
+                                               int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
     
     // Compute constants
-    const double C0 = x[1][0] + x[2][0];
-    const double C1 = x[1][1] + x[2][1];
+    const double C0 = vertex_coordinates[2] + vertex_coordinates[4];
+    const double C1 = vertex_coordinates[3] + vertex_coordinates[5];
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = (J_01*(C1 - 2.0*coordinates[1]) + J_11*(2.0*coordinates[0] - C0)) / detJ;
-    double Y = (J_00*(2.0*coordinates[1] - C1) + J_10*(C0 - 2.0*coordinates[0])) / detJ;
+    double X = (J[1]*(C1 - 2.0*x[1]) + J[3]*(2.0*x[0] - C0)) / detJ;
+    double Y = (J[0]*(2.0*x[1] - C1) + J[2]*(C0 - 2.0*x[0])) / detJ;
     
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -1687,7 +1676,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[2][2] = {{K_00, K_01}, {K_10, K_11}};
+    const double Jinv[2][2] = {{K[0], K[1]}, {K[2], K[3]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -1721,13 +1710,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1735,7 +1724,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, -0.288675134594813, -0.166666666666667};
       
@@ -1867,13 +1856,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -1881,7 +1870,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.288675134594813, -0.166666666666667};
       
@@ -2013,13 +2002,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     case 2:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -2027,7 +2016,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.0, 0.333333333333333};
       
@@ -2159,13 +2148,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     case 3:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -2173,7 +2162,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, -0.288675134594813, -0.166666666666667};
       
@@ -2305,13 +2294,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     case 4:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -2319,7 +2308,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.288675134594813, -0.166666666666667};
       
@@ -2451,13 +2440,13 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     case 5:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[3] = {0.0, 0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       double tmp0 = (1.0 + Y + 2.0*X)/2.0;
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = tmp0;
       basisvalues[2] = basisvalues[0]*(0.5 + 1.5*Y);
@@ -2465,7 +2454,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
       basisvalues[2] *= std::sqrt(1.0);
       basisvalues[1] *= std::sqrt(3.0);
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[3] = \
       {0.471404520791032, 0.0, 0.333333333333333};
       
@@ -2598,11 +2587,12 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives(std::size_t i,
     
 }
 
-/// Evaluate order n derivatives of all basis functions at given point in cell
+/// Evaluate order n derivatives of all basis functions at given point x in cell
 void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives_all(std::size_t n,
                                                    double* values,
-                                                   const double* coordinates,
-                                                   const ufc::cell& c) const
+                                                   const double* x,
+                                                   const double* vertex_coordinates,
+                                                   int cell_orientation) const
 {
     // Compute number of derivatives.
     unsigned int num_derivatives = 1;
@@ -2621,7 +2611,7 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives_all(std::size_t
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 6; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates, cell_orientation);
       for (unsigned int s = 0; s < 2*num_derivatives; s++)
       {
         values[r*2*num_derivatives + s] = dof_values[s];
@@ -2635,60 +2625,61 @@ void cahnhilliard2d_finite_element_2::evaluate_basis_derivatives_all(std::size_t
 /// Evaluate linear functional for dof i on the function f
 double cahnhilliard2d_finite_element_2::evaluate_dof(std::size_t i,
                                    const ufc::function& f,
+                                   const double* vertex_coordinates,
+                                   int cell_orientation,
                                    const ufc::cell& c) const
 {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[2];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
+        y[0] = vertex_coordinates[2];
+      y[1] = vertex_coordinates[3];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 2:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
+        y[0] = vertex_coordinates[4];
+      y[1] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 3:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 4:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
+        y[0] = vertex_coordinates[2];
+      y[1] = vertex_coordinates[3];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
       }
     case 5:
       {
-        y[0] = x[2][0];
-      y[1] = x[2][1];
+        y[0] = vertex_coordinates[4];
+      y[1] = vertex_coordinates[5];
       f.evaluate(vals, y, c);
       return vals[1];
         break;
@@ -2701,36 +2692,37 @@ double cahnhilliard2d_finite_element_2::evaluate_dof(std::size_t i,
 /// Evaluate linear functionals for all dofs on the function f
 void cahnhilliard2d_finite_element_2::evaluate_dofs(double* values,
                                   const ufc::function& f,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation,
                                   const ufc::cell& c) const
 {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[2];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
+    y[0] = vertex_coordinates[2];
+    y[1] = vertex_coordinates[3];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
+    y[0] = vertex_coordinates[4];
+    y[1] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[2] = vals[0];
-    y[0] = x[0][0];
-    y[1] = x[0][1];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
     f.evaluate(vals, y, c);
     values[3] = vals[1];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
+    y[0] = vertex_coordinates[2];
+    y[1] = vertex_coordinates[3];
     f.evaluate(vals, y, c);
     values[4] = vals[1];
-    y[0] = x[2][0];
-    y[1] = x[2][1];
+    y[0] = vertex_coordinates[4];
+    y[1] = vertex_coordinates[5];
     f.evaluate(vals, y, c);
     values[5] = vals[1];
 }
@@ -2738,6 +2730,8 @@ void cahnhilliard2d_finite_element_2::evaluate_dofs(double* values,
 /// Interpolate vertex values from dof values
 void cahnhilliard2d_finite_element_2::interpolate_vertex_values(double* vertex_values,
                                               const double* dof_values,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation,
                                               const ufc::cell& c) const
 {
     // Evaluate function and change variables
@@ -2972,13 +2966,11 @@ void cahnhilliard2d_dofmap_0::tabulate_entity_dofs(std::size_t* dofs,
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void cahnhilliard2d_dofmap_0::tabulate_coordinates(double** coordinates,
-                                         const ufc::cell& c) const
+void cahnhilliard2d_dofmap_0::tabulate_coordinates(double** dof_coordinates,
+                                         const double* vertex_coordinates) const
 {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = 0.333333333333333*x[0][0] + 0.333333333333333*x[1][0] + 0.333333333333333*x[2][0];
-    coordinates[0][1] = 0.333333333333333*x[0][1] + 0.333333333333333*x[1][1] + 0.333333333333333*x[2][1];
+    dof_coordinates[0][0] = 0.333333333333333*vertex_coordinates[0] + 0.333333333333333*vertex_coordinates[2] + 0.333333333333333*vertex_coordinates[4];
+    dof_coordinates[0][1] = 0.333333333333333*vertex_coordinates[1] + 0.333333333333333*vertex_coordinates[3] + 0.333333333333333*vertex_coordinates[5];
 }
 
 /// Return the number of sub dofmaps (for a mixed element)
@@ -3196,17 +3188,15 @@ void cahnhilliard2d_dofmap_1::tabulate_entity_dofs(std::size_t* dofs,
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void cahnhilliard2d_dofmap_1::tabulate_coordinates(double** coordinates,
-                                         const ufc::cell& c) const
+void cahnhilliard2d_dofmap_1::tabulate_coordinates(double** dof_coordinates,
+                                         const double* vertex_coordinates) const
 {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[1][0] = vertex_coordinates[2];
+    dof_coordinates[1][1] = vertex_coordinates[3];
+    dof_coordinates[2][0] = vertex_coordinates[4];
+    dof_coordinates[2][1] = vertex_coordinates[5];
 }
 
 /// Return the number of sub dofmaps (for a mixed element)
@@ -3439,23 +3429,21 @@ void cahnhilliard2d_dofmap_2::tabulate_entity_dofs(std::size_t* dofs,
 }
 
 /// Tabulate the coordinates of all dofs on a cell
-void cahnhilliard2d_dofmap_2::tabulate_coordinates(double** coordinates,
-                                         const ufc::cell& c) const
+void cahnhilliard2d_dofmap_2::tabulate_coordinates(double** dof_coordinates,
+                                         const double* vertex_coordinates) const
 {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
-    coordinates[2][0] = x[2][0];
-    coordinates[2][1] = x[2][1];
-    coordinates[3][0] = x[0][0];
-    coordinates[3][1] = x[0][1];
-    coordinates[4][0] = x[1][0];
-    coordinates[4][1] = x[1][1];
-    coordinates[5][0] = x[2][0];
-    coordinates[5][1] = x[2][1];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[1][0] = vertex_coordinates[2];
+    dof_coordinates[1][1] = vertex_coordinates[3];
+    dof_coordinates[2][0] = vertex_coordinates[4];
+    dof_coordinates[2][1] = vertex_coordinates[5];
+    dof_coordinates[3][0] = vertex_coordinates[0];
+    dof_coordinates[3][1] = vertex_coordinates[1];
+    dof_coordinates[4][0] = vertex_coordinates[2];
+    dof_coordinates[4][1] = vertex_coordinates[3];
+    dof_coordinates[5][0] = vertex_coordinates[4];
+    dof_coordinates[5][1] = vertex_coordinates[5];
 }
 
 /// Return the number of sub dofmaps (for a mixed element)
@@ -3505,35 +3493,27 @@ cahnhilliard2d_cell_integral_0_otherwise::~cahnhilliard2d_cell_integral_0_otherw
 /// Tabulate the tensor for the contribution from a local cell
 void cahnhilliard2d_cell_integral_0_otherwise::tabulate_tensor(double* A,
                                     const double * const * w,
-                                    const ufc::cell& c) const
+                                    const double* vertex_coordinates,
+                                    int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Cell volume.
+    // Cell volume
     
-    // Compute circumradius of triangle in 2D.
+    // Compute circumradius of triangle in 2D
     
     
-    // Facet Area.
+    // Facet area
     
     // Array of quadrature weights.
     static const double W6[6] = {0.054975871827661, 0.054975871827661, 0.054975871827661, 0.111690794839005, 0.111690794839005, 0.111690794839005};
@@ -3581,15 +3561,15 @@ void cahnhilliard2d_cell_integral_0_otherwise::tabulate_tensor(double* A,
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 63.
     double G[12];
-    G[0] = det*w[3][0]*w[4][0]*(K_00*K_10 + K_01*K_11);
-    G[1] = det*w[3][0]*w[4][0]*(K_10*K_10 + K_11*K_11);
-    G[2] = det*w[3][0]*(K_00*K_10*(1.0 - w[4][0]) + K_01*K_11*(1.0 - w[4][0]));
-    G[3] = det*w[3][0]*(K_10*K_10*(1.0 - w[4][0]) + K_11*K_11*(1.0 - w[4][0]));
-    G[4] = det*w[3][0]*w[4][0]*(K_00*K_00 + K_01*K_01);
-    G[5] = det*w[3][0]*(K_00*K_00*(1.0 - w[4][0]) + K_01*K_01*(1.0 - w[4][0]));
-    G[6] =  - det*w[2][0]*(K_00*K_10 + K_01*K_11);
-    G[7] =  - det*w[2][0]*(K_10*K_10 + K_11*K_11);
-    G[8] =  - det*w[2][0]*(K_00*K_00 + K_01*K_01);
+    G[0] = det*w[3][0]*w[4][0]*(K[0]*K[2] + K[1]*K[3]);
+    G[1] = det*w[3][0]*w[4][0]*(K[2]*K[2] + K[3]*K[3]);
+    G[2] = det*w[3][0]*(K[0]*K[2]*(1.0 - w[4][0]) + K[1]*K[3]*(1.0 - w[4][0]));
+    G[3] = det*w[3][0]*(K[2]*K[2]*(1.0 - w[4][0]) + K[3]*K[3]*(1.0 - w[4][0]));
+    G[4] = det*w[3][0]*w[4][0]*(K[0]*K[0] + K[1]*K[1]);
+    G[5] = det*w[3][0]*(K[0]*K[0]*(1.0 - w[4][0]) + K[1]*K[1]*(1.0 - w[4][0]));
+    G[6] =  - det*w[2][0]*(K[0]*K[2] + K[1]*K[3]);
+    G[7] =  - det*w[2][0]*(K[2]*K[2] + K[3]*K[3]);
+    G[8] =  - det*w[2][0]*(K[0]*K[0] + K[1]*K[1]);
     G[9] = -400.0*det;
     G[10] = 600.0*det;
     G[11] = -200.0*det;
@@ -3677,18 +3657,6 @@ void cahnhilliard2d_cell_integral_0_otherwise::tabulate_tensor(double* A,
     }// end loop over 'ip'
 }
 
-/// Tabulate the tensor for the contribution from a local cell
-/// using the specified reference cell quadrature points/weights
-void cahnhilliard2d_cell_integral_0_otherwise::tabulate_tensor(double* A,
-                     const double * const * w,
-                     const ufc::cell& c,
-                     std::size_t num_quadrature_points,
-                     const double * const * quadrature_points,
-                     const double* quadrature_weights) const
-{
-    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
-}
-
 /// Constructor
 cahnhilliard2d_cell_integral_1_otherwise::cahnhilliard2d_cell_integral_1_otherwise() : ufc::cell_integral()
 {
@@ -3704,35 +3672,27 @@ cahnhilliard2d_cell_integral_1_otherwise::~cahnhilliard2d_cell_integral_1_otherw
 /// Tabulate the tensor for the contribution from a local cell
 void cahnhilliard2d_cell_integral_1_otherwise::tabulate_tensor(double* A,
                                     const double * const * w,
-                                    const ufc::cell& c) const
+                                    const double* vertex_coordinates,
+                                    int cell_orientation) const
 {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[4];
+    compute_jacobian_triangle_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_01 = x[2][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    const double J_11 = x[2][1] - x[0][1];
-    
-    // Compute determinant of Jacobian
-    const double detJ = J_00*J_11 - J_01*J_10;
-    
-    // Compute inverse of Jacobian
-    const double K_00 =  J_11 / detJ;
-    const double K_01 = -J_01 / detJ;
-    const double K_10 = -J_10 / detJ;
-    const double K_11 =  J_00 / detJ;
+    // Compute Jacobian inverse and determinant
+    double K[4];
+    double detJ;
+    compute_jacobian_inverse_triangle_2d(K, detJ, J);
     
     // Set scale factor
     const double det = std::abs(detJ);
     
-    // Cell volume.
+    // Cell volume
     
-    // Compute circumradius of triangle in 2D.
+    // Compute circumradius of triangle in 2D
     
     
-    // Facet Area.
+    // Facet area
     
     // Array of quadrature weights.
     static const double W6[6] = {0.054975871827661, 0.054975871827661, 0.054975871827661, 0.111690794839005, 0.111690794839005, 0.111690794839005};
@@ -3780,12 +3740,12 @@ void cahnhilliard2d_cell_integral_1_otherwise::tabulate_tensor(double* A,
     }// end loop over 'r'
     // Number of operations to compute geometry constants: 36.
     double G[9];
-    G[0] = det*w[2][0]*w[3][0]*(K_10*K_10 + K_11*K_11);
-    G[1] = det*w[2][0]*w[3][0]*(K_00*K_10 + K_01*K_11);
-    G[2] = det*w[2][0]*w[3][0]*(K_00*K_00 + K_01*K_01);
-    G[3] =  - det*w[1][0]*(K_10*K_10 + K_11*K_11);
-    G[4] =  - det*w[1][0]*(K_00*K_10 + K_01*K_11);
-    G[5] =  - det*w[1][0]*(K_00*K_00 + K_01*K_01);
+    G[0] = det*w[2][0]*w[3][0]*(K[2]*K[2] + K[3]*K[3]);
+    G[1] = det*w[2][0]*w[3][0]*(K[0]*K[2] + K[1]*K[3]);
+    G[2] = det*w[2][0]*w[3][0]*(K[0]*K[0] + K[1]*K[1]);
+    G[3] =  - det*w[1][0]*(K[2]*K[2] + K[3]*K[3]);
+    G[4] =  - det*w[1][0]*(K[0]*K[2] + K[1]*K[3]);
+    G[5] =  - det*w[1][0]*(K[0]*K[0] + K[1]*K[1]);
     G[6] = -200.0*det;
     G[7] = -1200.0*det;
     G[8] = 1200.0*det;
@@ -3872,18 +3832,6 @@ void cahnhilliard2d_cell_integral_1_otherwise::tabulate_tensor(double* A,
         }// end loop over 'k'
       }// end loop over 'j'
     }// end loop over 'ip'
-}
-
-/// Tabulate the tensor for the contribution from a local cell
-/// using the specified reference cell quadrature points/weights
-void cahnhilliard2d_cell_integral_1_otherwise::tabulate_tensor(double* A,
-                     const double * const * w,
-                     const ufc::cell& c,
-                     std::size_t num_quadrature_points,
-                     const double * const * quadrature_points,
-                     const double* quadrature_weights) const
-{
-    throw std::runtime_error("Quadrature version of tabulate_tensor not yet implemented (introduced in UFC 2.0).");
 }
 
 /// Constructor
