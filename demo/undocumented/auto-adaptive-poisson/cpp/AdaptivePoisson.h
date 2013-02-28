@@ -14,8 +14,9 @@
 //   error_control:                  True
 //   form_postfix:                   True
 //   format:                         'dolfin'
-//   log_level:                      20
+//   log_level:                      10
 //   log_prefix:                     ''
+//   no_ferari:                      True
 //   optimize:                       True
 //   output_dir:                     '.'
 //   precision:                      15
@@ -7869,20 +7870,17 @@ public:
     {
       A[r] = 0.0;
     }// end loop over 'r'
-    // Number of operations to compute geometry constants: 36.
-    double G[6];
-    G[0] =  - F1*det*(K[0]*K[2] + K[1]*K[3]);
-    G[1] =  - F1*det*(K[2]*K[2] + K[3]*K[3]);
-    G[2] =  - F1*det*(K[0]*K[0] + K[1]*K[1]);
-    G[3] = F1*det;
-    G[4] =  - det*(K[0]*(F4*K[0] + F5*K[2]) + K[1]*(F4*K[1] + F5*K[3]));
-    G[5] =  - det*(K[2]*(F4*K[0] + F5*K[2]) + K[3]*(F4*K[1] + F5*K[3]));
+    // Number of operations to compute geometry constants: 12.
+    double G[3];
+    G[0] =  - det*(K[0]*K[2] + K[1]*K[3]);
+    G[1] =  - det*(K[2]*K[2] + K[3]*K[3]);
+    G[2] =  - det*(K[0]*K[0] + K[1]*K[1]);
     
     // Compute element tensor using UFL quadrature representation
     // Optimisations: ('eliminate zeros', True), ('ignore ones', True), ('ignore zero tables', True), ('optimisation', 'simplify_expressions'), ('remove zero terms', True)
     
     // Loop quadrature points for integral.
-    // Number of operations to compute element tensor for following IP loop = 336
+    // Number of operations to compute element tensor for following IP loop = 406
     for (unsigned int ip = 0; ip < 7; ip++)
     {
       
@@ -7915,16 +7913,16 @@ public:
         F0 += FE1[ip][r]*w[0][r];
       }// end loop over 'r'
       
-      // Number of operations to compute ip constants: 14
+      // Number of operations to compute ip constants: 24
       double I[3];
-      // Number of operations: 4
-      I[0] = W7[ip]*(F2*G[0] + F3*G[1]);
+      // Number of operations: 5
+      I[0] = F1*W7[ip]*(F2*G[0] + F3*G[1]);
       
-      // Number of operations: 4
-      I[1] = W7[ip]*(F2*G[2] + F3*G[0]);
+      // Number of operations: 5
+      I[1] = F1*W7[ip]*(F2*G[2] + F3*G[0]);
       
-      // Number of operations: 6
-      I[2] = W7[ip]*(F0*G[3] + F2*G[4] + F3*G[5]);
+      // Number of operations: 14
+      I[2] = W7[ip]*(F0*F1*det + F2*F4*G[2] + F3*F5*G[1] + G[0]*(F2*F5 + F3*F4));
       
       
       // Number of operations for primary indices: 6
