@@ -993,16 +993,13 @@ Check if mesh is ordered according to the UFC numbering convention.
 %feature("docstring")  dolfin::Mesh::move "
 **Overloaded versions**
 
-* move\ (boundary, mode=\"displacement\")
+* move\ (boundary)
 
   Move coordinates of mesh according to new boundary coordinates.
   
   *Arguments*
       boundary (:py:class:`BoundaryMesh`)
           A mesh containing just the boundary cells.
-      mode (str)
-          Optional. Specifies whether to solve Laplace problem
-          for \"displacement\" or directly for \"coordinates\" themselves.
 
 * move\ (mesh)
 
