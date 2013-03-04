@@ -68,43 +68,53 @@ public:
   /// Return the dimension of the value space for axis i
   virtual std::size_t value_dimension(std::size_t i) const;
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const;
+                              const double* x,
+                              const double* vertex_coordinates,
+                              int cell_orientation) const;
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const;
+                                  const double* x,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation) const;
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const;
+                                          const double* x,
+                                          const double* vertex_coordinates,
+                                          int cell_orientation) const;
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const;
+                                              const double* x,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation) const;
 
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
+                              int cell_orientation,
                               const ufc::cell& c) const;
 
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
+                             int cell_orientation,
                              const ufc::cell& c) const;
 
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
+                                         const double* vertex_coordinates,
+                                         int cell_orientation,
                                          const ufc::cell& c) const;
 
   /// Map coordinate xhat from reference cell to coordinate x in cell
@@ -161,43 +171,53 @@ public:
   /// Return the dimension of the value space for axis i
   virtual std::size_t value_dimension(std::size_t i) const;
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const;
+                              const double* x,
+                              const double* vertex_coordinates,
+                              int cell_orientation) const;
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const;
+                                  const double* x,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation) const;
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const;
+                                          const double* x,
+                                          const double* vertex_coordinates,
+                                          int cell_orientation) const;
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const;
+                                              const double* x,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation) const;
 
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
+                              int cell_orientation,
                               const ufc::cell& c) const;
 
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
+                             int cell_orientation,
                              const ufc::cell& c) const;
 
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
+                                         const double* vertex_coordinates,
+                                         int cell_orientation,
                                          const ufc::cell& c) const;
 
   /// Map coordinate xhat from reference cell to coordinate x in cell
@@ -254,43 +274,53 @@ public:
   /// Return the dimension of the value space for axis i
   virtual std::size_t value_dimension(std::size_t i) const;
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const;
+                              const double* x,
+                              const double* vertex_coordinates,
+                              int cell_orientation) const;
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const;
+                                  const double* x,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation) const;
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const;
+                                          const double* x,
+                                          const double* vertex_coordinates,
+                                          int cell_orientation) const;
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const;
+                                              const double* x,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation) const;
 
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
+                              int cell_orientation,
                               const ufc::cell& c) const;
 
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
+                             int cell_orientation,
                              const ufc::cell& c) const;
 
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
+                                         const double* vertex_coordinates,
+                                         int cell_orientation,
                                          const ufc::cell& c) const;
 
   /// Map coordinate xhat from reference cell to coordinate x in cell
@@ -370,7 +400,7 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const;
+                                    const double* vertex_coordinates) const;
 
   /// Return the number of sub dofmaps (for a mixed element)
   virtual std::size_t num_sub_dofmaps() const;
@@ -439,7 +469,7 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const;
+                                    const double* vertex_coordinates) const;
 
   /// Return the number of sub dofmaps (for a mixed element)
   virtual std::size_t num_sub_dofmaps() const;
@@ -508,7 +538,7 @@ public:
 
   /// Tabulate the coordinates of all dofs on a cell
   virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const;
+                                    const double* vertex_coordinates) const;
 
   /// Return the number of sub dofmaps (for a mixed element)
   virtual std::size_t num_sub_dofmaps() const;
@@ -538,16 +568,8 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const;
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const;
+                               const double* vertex_coordinates,
+                               int cell_orientation) const;
 
 };
 
@@ -568,16 +590,8 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const;
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const;
+                               const double* vertex_coordinates,
+                               int cell_orientation) const;
 
 };
 
