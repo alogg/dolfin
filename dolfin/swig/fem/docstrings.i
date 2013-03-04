@@ -34,12 +34,13 @@ Return the dimension of the global finite element function space
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::cell_dimension "
-Return the dimension of the local finite element function space on a
-cell
+Return the dimension of the local finite element function space
+on a cell
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::max_cell_dimension "
-Return the maximum dimension of the local finite element function space
+Return the maximum dimension of the local finite element
+function space
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::num_facet_dofs "
@@ -52,11 +53,13 @@ pointer is returned.
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::ownership_range "
-Return the ownership range (dofs in this range are owned by this process)
+Return the ownership range (dofs in this range are owned by
+this process)
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::off_process_owner "
-Return map from nonlocal-dofs (that appear in local dof map) to owning process
+Return map from nonlocal-dofs (that appear in local dof map)
+to owning process
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::cell_dofs "
@@ -67,20 +70,20 @@ Local-to-global mapping of dofs on a cell
 Tabulate local-local facet dofs
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::dof_to_vertex_map "
+Return a map between vertices and dofs
+";
+
 %feature("docstring")  dolfin::GenericDofMap::vertex_to_dof_map "
 Return a map between vertices and dofs
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::tabulate_coordinates "
-**Overloaded versions**
+Tabulate the coordinates of all dofs on a cell (UFC cell version)
+";
 
-* tabulate_coordinates\ (coordinates, ufc_cell)
-
-  Tabulate the coordinates of all dofs on a cell (UFC cell version)
-
-* tabulate_coordinates\ (coordinates, cell)
-
-  Tabulate the coordinates of all dofs on a cell (DOLFIN cell version)
+%feature("docstring")  dolfin::GenericDofMap::tabulate_all_coordinates "
+Tabulate the coordinates of all dofs owned by this process
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::copy "
@@ -110,17 +113,13 @@ spatial coordinate of the dof. Parallel layout of vector must
 be consistent with dof map range.
 ";
 
-%feature("docstring")  dolfin::GenericDofMap::dofs "
-Return the set of dof indices
-";
-
 %feature("docstring")  dolfin::GenericDofMap::shared_dofs "
 Return map from shared dofs to the processes (not including the current
 process) that share it.
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::neighbours "
-Return set of all processes that share dofs with the current process.
+Return set of processes that share dofs with the this process
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::str "
@@ -260,12 +259,12 @@ Return map from all shared dofs to the sharing processes (not
 including the current process) that share it.
 
 *Returns*
-    boost::unordered_map<std::size_t, std::vector<std::size_t> >
+    boost::unordered_map<std::size_t, std::vector<unsigned int> >
         The map from dofs to list of processes
 ";
 
 %feature("docstring")  dolfin::DofMap::neighbours "
-Return set of all neighbouring processes.
+Return set of processes that share dofs with this process
 
 *Returns*
     std::set<std::size_t>
@@ -280,39 +279,55 @@ Local-to-global mapping of dofs on a cell
         The cell index.
 
 *Returns*
-    std::vector<std::size_t>
+    std::vector<dolfin::la_index>
         Local-to-global mapping of dofs.
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
-**Overloaded versions**
+Tabulate the coordinates of all dofs on a cell (UFC cell
+version)
 
-* tabulate_coordinates\ (coordinates, ufc_cell)
+*Arguments*
+    coordinates (boost::multi_array<double, 2>)
+        The coordinates of all dofs on a cell.
+    ufc_cell (ufc::cell)
+        The cell.
+";
 
-  Tabulate the coordinates of all dofs on a cell (UFC cell
-  version)
-  
-  *Arguments*
-      coordinates (boost::multi_array<double, 2>)
-          The coordinates of all dofs on a cell.
-      ufc_cell (ufc::cell)
-          The cell.
+%feature("docstring")  dolfin::DofMap::tabulate_all_coordinates "
+Tabulate the coordinates of all dofs on this process
 
-* tabulate_coordinates\ (coordinates, cell)
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh.
 
-  Tabulate the coordinates of all dofs on a cell (DOLFIN cell
-  version)
-  
-  *Arguments*
-      coordinates (boost::multi_array<double, 2>)
-          The coordinates of all dofs on a cell.
-      cell (:py:class:`Cell`)
-          The cell.
+*Returns*
+    numpy.array(float)
+        The dof coordinates (x0, y0, x1, y1, . . .)
+";
+
+%feature("docstring")  dolfin::DofMap::dof_to_vertex_map "
+Return a map between vertices and dofs
+(dof_ind = dof_to_vertex_map[vert_ind*dofs_per_vertex + local_dof],
+where local_dof = 0, ..., dofs_per_vertex)
+Ghost dofs are included - then dof_ind gets negative value
+or value greater than process-local number of dofs.
+
+*Arguments*
+    mesh (:py:class:`Mesh`)
+        The mesh to create the map between
+
+*Returns*
+    std::vector<dolfin::la_index>
+        The dof to vertex map
 ";
 
 %feature("docstring")  dolfin::DofMap::vertex_to_dof_map "
 Return a map between vertices and dofs
-(vert_ind = vertex_to_dof_map[dof_ind])
+(vert_ind*dofs_per_vertex + local_dof = vertex_to_dof_map[dof_ind],
+where local_dof = 0, ..., dofs_per_vertex)
+Ghost dofs are not included. This map is
+an inversion of dof_to_vertex_map.
 
 *Arguments*
     mesh (:py:class:`Mesh`)
@@ -398,20 +413,12 @@ with dof map range.
         The mesh.
 ";
 
-%feature("docstring")  dolfin::DofMap::dofs "
-Return the set of dof indices
-
-*Returns*
-    boost::unordered_set<dolfin::std::size_t>
-        The set of dof indices.
-";
-
 %feature("docstring")  dolfin::DofMap::data "
 Return the underlying dof map data. Intended for internal library
 use only.
 
 *Returns*
-    std::vector<std::vector<dolfin::std::size_t> >
+    std::vector<std::vector<dolfin::la_index> >
         The local-to-global map for each cell.
 ";
 
@@ -1059,17 +1066,9 @@ Apply (add) point source to right-hand side vector
 
   Assemble tensor
 
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
-
-  Assemble tensor on sub domains
-
 * assemble\ (a)
 
   Assemble scalar
-
-* assemble\ (a, cell_domains, exterior_facet_domains, interior_facet_domains)
-
-  Assemble scalar on sub domains
 ";
 
 %feature("docstring")  dolfin::assemble_system "
@@ -1087,9 +1086,10 @@ Apply (add) point source to right-hand side vector
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble_system\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0)
+* assemble_system\ (A, b, a, L, bcs, x0)
 
-  Assemble system (A, b) on sub domains and apply Dirichlet boundary conditions
+  Assemble system (A, b) on sub domains and apply Dirichlet boundary
+  conditions
 ";
 
 // Documentation extracted from: (module=fem, header=LocalSolver.h)
@@ -1384,7 +1384,7 @@ Return the name of the coefficient with this number
         The name of the coefficient with the given number.
 ";
 
-%feature("docstring")  dolfin::Form::cell_domains_shared_ptr "
+%feature("docstring")  dolfin::Form::cell_domains "
 Return cell domains (zero pointer if no domains have been
 specified)
 
@@ -1393,7 +1393,7 @@ specified)
         The cell domains.
 ";
 
-%feature("docstring")  dolfin::Form::exterior_facet_domains_shared_ptr "
+%feature("docstring")  dolfin::Form::exterior_facet_domains "
 Return exterior facet domains (zero pointer if no domains have
 been specified)
 
@@ -1402,7 +1402,7 @@ been specified)
         The exterior facet domains.
 ";
 
-%feature("docstring")  dolfin::Form::interior_facet_domains_shared_ptr "
+%feature("docstring")  dolfin::Form::interior_facet_domains "
 Return interior facet domains (zero pointer if no domains have
 been specified)
 
@@ -1471,57 +1471,25 @@ This class provides automated assembly of linear systems, or
 more generally, assembly of a sparse tensor from a given
 variational form.
 
-Subdomains for cells and facets may be specified in a number of
-different ways:
-
-1. By explicitly passing :py:class:`MeshFunction` (as pointers) to the
-   assemble functions
-
-2. By assigning subdomain indicators specified by :py:class:`MeshFunction`
-   to the :py:class:`Form` being assembled:
+Subdomains for cells and facets may be specified by assigning
+subdomain indicators specified by :py:class:`MeshFunction` to the :py:class:`Form`
+being assembled:
 
    .. code-block:: c++
 
        form.dx = cell_domains
        form.ds = exterior_facet_domains
        form.dS = interior_facet_domains
-
-3. By markers stored as part of the :py:class:`Mesh` (in :py:class:`MeshDomains`)
-
-4. By specifying a :py:class:`SubDomain` which specifies the domain numbered
-   as 0 (with the rest treated as domain number 1)
-
-Note that (1) overrides (2), which overrides (3).
 ";
 
 %feature("docstring")  dolfin::Assembler::assemble "
-**Overloaded versions**
+Assemble tensor from given form
 
-* assemble\ (A, a)
-
-  Assemble tensor from given form
-  
-  *Arguments*
-      A (:py:class:`GenericTensor`)
-          The tensor to assemble.
-      a (:py:class:`Form`)
-          The form to assemble the tensor from.
-
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
-
-  Assemble tensor from given form on subdomains
-  
-  *Arguments*
-      A (:py:class:`GenericTensor`)
-          The tensor to assemble.
-      a (:py:class:`Form`)
-          The form to assemble the tensor from.
-      cell_domains (:py:class:`MeshFunction`)
-          Cell domains.
-      exterior_facet_domains (:py:class:`MeshFunction`)
-          The exterior facet domains.
-      interior_facet_domains (:py:class:`MeshFunction`)
-          The interior facet domains.
+*Arguments*
+    A (:py:class:`GenericTensor`)
+        The tensor to assemble.
+    a (:py:class:`Form`)
+        The form to assemble the tensor from.
 ";
 
 %feature("docstring")  dolfin::Assembler::assemble_cells "
@@ -1583,7 +1551,7 @@ Constructor
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 
-* assemble\ (A, b, a, L, bcs, cell_domains, exterior_facet_domains, interior_facet_domains, x0)
+* assemble\ (A, b, a, L, bcs, x0)
 
   Assemble system (A, b) and apply Dirichlet boundary conditions
 ";
@@ -1824,15 +1792,7 @@ Constructor
 ";
 
 %feature("docstring")  dolfin::OpenMpAssembler::assemble "
-**Overloaded versions**
-
-* assemble\ (A, a)
-
-  Assemble tensor from given form
-
-* assemble\ (A, a, cell_domains, exterior_facet_domains, interior_facet_domains)
-
-  Assemble tensor from given form on sub domains
+Assemble tensor from given form
 ";
 
 // Documentation extracted from: (module=fem, header=VariationalProblem.h)
