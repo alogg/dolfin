@@ -2083,8 +2083,8 @@ public:
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
-      X3[0] = FEA3_f0[ip][0]*vertex_coordinates[0] + FEA3_f0[ip][1]*vertex_coordinates[2] + FEA3_f0[ip][2]*vertex_coordinates[4];
-      X3[1] = FEA3_f0[ip][0]*vertex_coordinates[1] + FEA3_f0[ip][1]*vertex_coordinates[3] + FEA3_f0[ip][2]*vertex_coordinates[5];
+      X3[0] = FEA3_f0[ip][0]*vertex_coordinates[0] +                  FEA3_f0[ip][1]*vertex_coordinates[2] + FEA3_f0[ip][2]*vertex_coordinates[4];
+      X3[1] = FEA3_f0[ip][0]*vertex_coordinates[1] +                  FEA3_f0[ip][1]*vertex_coordinates[3] + FEA3_f0[ip][2]*vertex_coordinates[5];
       double C[7];
       // Compute conditional, operations: 1.
       C[0] = ((X3[0] >= 0.55)) ? -1.0 : 0.0;

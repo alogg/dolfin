@@ -1298,8 +1298,8 @@ public:
     {
       
       // Compute physical coordinate of quadrature point, operations: 10.
-      X6[0] = FEA6_f0[ip][0]*vertex_coordinates[0] + FEA6_f0[ip][1]*vertex_coordinates[2] + FEA6_f0[ip][2]*vertex_coordinates[4];
-      X6[1] = FEA6_f0[ip][0]*vertex_coordinates[1] + FEA6_f0[ip][1]*vertex_coordinates[3] + FEA6_f0[ip][2]*vertex_coordinates[5];
+      X6[0] = FEA6_f0[ip][0]*vertex_coordinates[0] +                  FEA6_f0[ip][1]*vertex_coordinates[2] + FEA6_f0[ip][2]*vertex_coordinates[4];
+      X6[1] = FEA6_f0[ip][0]*vertex_coordinates[1] +                  FEA6_f0[ip][1]*vertex_coordinates[3] + FEA6_f0[ip][2]*vertex_coordinates[5];
       
       // Number of operations to compute ip constants: 3
       double I[1];

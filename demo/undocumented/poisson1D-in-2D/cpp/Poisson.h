@@ -113,8 +113,7 @@ public:
     
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) +
-                            std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
+    double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) + std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
     
     // Reset values
     *values = 0.0;
@@ -214,8 +213,7 @@ public:
     
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) +
-                            std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
+    double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) + std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
     
     // Compute number of derivatives.
     unsigned int num_derivatives_t = 1;
