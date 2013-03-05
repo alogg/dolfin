@@ -95,42 +95,39 @@ public:
     return 1;
   }
 
-  /// Evaluate basis function i at given point in cell
+  /// Evaluate basis function i at given point x in cell
   virtual void evaluate_basis(std::size_t i,
                               double* values,
-                              const double* coordinates,
-                              const ufc::cell& c) const
+                              const double* x,
+                              const double* vertex_coordinates,
+                              int cell_orientation) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[2];
+    compute_jacobian_interval_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[2];
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
-    
-    // Compute pseudodeterminant of Jacobian
-    const double detJ2 = J_00*J_00 + J_10*J_10;
-    const double detJ = std::sqrt(detJ2);
-    
-    // Compute pseudoinverse of Jacobian
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = 2*(std::sqrt(std::pow(coordinates[0]-x[0][0], 2) + std::pow(coordinates[1]-x[0][1], 2))/ detJ) - 1.0;
+    double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) + std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
     
-    // Reset values.
+    // Reset values
     *values = 0.0;
     switch (i)
     {
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[2] = {0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
@@ -138,11 +135,11 @@ public:
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[2] = \
       {0.707106781186547, -0.408248290463863};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 2; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -152,12 +149,12 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[2] = {0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
@@ -165,11 +162,11 @@ public:
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[2] = \
       {0.707106781186547, 0.408248290463863};
       
-      // Compute value(s).
+      // Compute value(s)
       for (unsigned int r = 0; r < 2; r++)
       {
         *values += coefficients0[r]*basisvalues[r];
@@ -180,47 +177,43 @@ public:
     
   }
 
-  /// Evaluate all basis functions at given point in cell
+  /// Evaluate all basis functions at given point x in cell
   virtual void evaluate_basis_all(double* values,
-                                  const double* coordinates,
-                                  const ufc::cell& c) const
+                                  const double* x,
+                                  const double* vertex_coordinates,
+                                  int cell_orientation) const
   {
     // Helper variable to hold values of a single dof.
     double dof_values = 0.0;
     
-    // Loop dofs and call evaluate_basis.
+    // Loop dofs and call evaluate_basis
     for (unsigned int r = 0; r < 2; r++)
     {
-      evaluate_basis(r, &dof_values, coordinates, c);
+      evaluate_basis(r, &dof_values, x, vertex_coordinates, cell_orientation);
       values[r] = dof_values;
     }// end loop over 'r'
   }
 
-  /// Evaluate order n derivatives of basis function i at given point in cell
+  /// Evaluate order n derivatives of basis function i at given point x in cell
   virtual void evaluate_basis_derivatives(std::size_t i,
                                           std::size_t n,
                                           double* values,
-                                          const double* coordinates,
-                                          const ufc::cell& c) const
+                                          const double* x,
+                                          const double* vertex_coordinates,
+                                          int cell_orientation) const
   {
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[2];
+    compute_jacobian_interval_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
+    // Compute Jacobian inverse and determinant
+    double K[2];
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
-    
-    // Compute pseudodeterminant of Jacobian
-    const double detJ2 = J_00*J_00 + J_10*J_10;
-    const double detJ = std::sqrt(detJ2);
-    
-    // Compute pseudoinverse of Jacobian
-    const double K_00 = J_00 / detJ2;
-    const double K_01 = J_10 / detJ2;
     
     // Get coordinates and map to the reference (FIAT) element
-    double X = 2*(std::sqrt(std::pow(coordinates[0]-x[0][0], 2) + std::pow(coordinates[1]-x[0][1], 2))/ detJ) - 1.0;
+    double X = 2*(std::sqrt(std::pow(x[0] - vertex_coordinates[0], 2) + std::pow(x[1] - vertex_coordinates[1], 2)) / detJ) - 1.0;
     
     // Compute number of derivatives.
     unsigned int num_derivatives_t = 1;
@@ -291,7 +284,7 @@ public:
     }
     
     // Compute inverse of Jacobian
-    const double Jinv[1][2] = {{K_00, K_01}};
+    const double Jinv[1][2] = {{K[0], K[1]}};
     
     // Declare transformation matrix
     // Declare pointer to two dimensional array and initialise
@@ -325,12 +318,12 @@ public:
     case 0:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[2] = {0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
@@ -338,7 +331,7 @@ public:
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[2] = \
       {0.707106781186547, -0.408248290463863};
       
@@ -453,12 +446,12 @@ public:
     case 1:
       {
         
-      // Array of basisvalues.
+      // Array of basisvalues
       double basisvalues[2] = {0.0, 0.0};
       
-      // Declare helper variables.
+      // Declare helper variables
       
-      // Compute basisvalues.
+      // Compute basisvalues
       basisvalues[0] = 1.0;
       basisvalues[1] = X;
       for (unsigned int r = 0; r < 2; r++)
@@ -466,7 +459,7 @@ public:
         basisvalues[r] *= std::sqrt((0.5 + r));
       }// end loop over 'r'
       
-      // Table(s) of coefficients.
+      // Table(s) of coefficients
       static const double coefficients0[2] = \
       {0.707106781186547, 0.408248290463863};
       
@@ -582,11 +575,12 @@ public:
     
   }
 
-  /// Evaluate order n derivatives of all basis functions at given point in cell
+  /// Evaluate order n derivatives of all basis functions at given point x in cell
   virtual void evaluate_basis_derivatives_all(std::size_t n,
                                               double* values,
-                                              const double* coordinates,
-                                              const ufc::cell& c) const
+                                              const double* x,
+                                              const double* vertex_coordinates,
+                                              int cell_orientation) const
   {
     // Compute number of derivatives.
     unsigned int num_derivatives_g = 1;
@@ -605,7 +599,7 @@ public:
     // Loop dofs and call evaluate_basis_derivatives.
     for (unsigned int r = 0; r < 2; r++)
     {
-      evaluate_basis_derivatives(r, n, dof_values, coordinates, c);
+      evaluate_basis_derivatives(r, n, dof_values, x, vertex_coordinates, cell_orientation);
       for (unsigned int s = 0; s < num_derivatives_g; s++)
       {
         values[r*num_derivatives_g + s] = dof_values[s];
@@ -619,28 +613,29 @@ public:
   /// Evaluate linear functional for dof i on the function f
   virtual double evaluate_dof(std::size_t i,
                               const ufc::function& f,
+                              const double* vertex_coordinates,
+                              int cell_orientation,
                               const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
     switch (i)
     {
     case 0:
       {
-        y[0] = x[0][0];
-      y[1] = x[0][1];
+        y[0] = vertex_coordinates[0];
+      y[1] = vertex_coordinates[1];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
       }
     case 1:
       {
-        y[0] = x[1][0];
-      y[1] = x[1][1];
+        y[0] = vertex_coordinates[2];
+      y[1] = vertex_coordinates[3];
       f.evaluate(vals, y, c);
       return vals[0];
         break;
@@ -653,20 +648,21 @@ public:
   /// Evaluate linear functionals for all dofs on the function f
   virtual void evaluate_dofs(double* values,
                              const ufc::function& f,
+                             const double* vertex_coordinates,
+                             int cell_orientation,
                              const ufc::cell& c) const
   {
-    // Declare variables for result of evaluation.
+    // Declare variables for result of evaluation
     double vals[1];
     
-    // Declare variable for physical coordinates.
+    // Declare variable for physical coordinates
     double y[2];
-    const double * const * x = c.coordinates;
-    y[0] = x[0][0];
-    y[1] = x[0][1];
+    y[0] = vertex_coordinates[0];
+    y[1] = vertex_coordinates[1];
     f.evaluate(vals, y, c);
     values[0] = vals[0];
-    y[0] = x[1][0];
-    y[1] = x[1][1];
+    y[0] = vertex_coordinates[2];
+    y[1] = vertex_coordinates[3];
     f.evaluate(vals, y, c);
     values[1] = vals[0];
   }
@@ -674,6 +670,8 @@ public:
   /// Interpolate vertex values from dof values
   virtual void interpolate_vertex_values(double* vertex_values,
                                          const double* dof_values,
+                                         const double* vertex_coordinates,
+                                         int cell_orientation,
                                          const ufc::cell& c) const
   {
     // Evaluate function and change variables
@@ -892,15 +890,13 @@ public:
   }
 
   /// Tabulate the coordinates of all dofs on a cell
-  virtual void tabulate_coordinates(double** coordinates,
-                                    const ufc::cell& c) const
+  virtual void tabulate_coordinates(double** dof_coordinates,
+                                    const double* vertex_coordinates) const
   {
-    const double * const * x = c.coordinates;
-    
-    coordinates[0][0] = x[0][0];
-    coordinates[0][1] = x[0][1];
-    coordinates[1][0] = x[1][0];
-    coordinates[1][1] = x[1][1];
+    dof_coordinates[0][0] = vertex_coordinates[0];
+    dof_coordinates[0][1] = vertex_coordinates[1];
+    dof_coordinates[1][0] = vertex_coordinates[2];
+    dof_coordinates[1][1] = vertex_coordinates[3];
   }
 
   /// Return the number of sub dofmaps (for a mixed element)
@@ -946,52 +942,34 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const
+                               const double* vertex_coordinates,
+                               int cell_orientation) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      9
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    2
     // Number of operations (multiply-add pairs) for tensor contraction: 0
-    // Total number of operations (multiply-add pairs):                  11
+    // Total number of operations (multiply-add pairs):                  5
     
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[2];
+    compute_jacobian_interval_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    
-    
-    // Compute pseudodeterminant of Jacobian
-    const double detJ2 = J_00*J_00 + J_10*J_10;
-    const double detJ = std::sqrt(detJ2);
-    
-    // Compute pseudoinverse of Jacobian
-    const double K_00 = J_00 / detJ2;
-    const double K_01 = J_10 / detJ2;
+    // Compute Jacobian inverse and determinant
+    double K[2];
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     // Set scale factor
     const double det = std::abs(detJ);
     
     // Compute geometry tensor
-    const double G0_0_0 = det*(K_00*K_00 + K_01*K_01);
+    const double G0_0_0 = det*(K[0]*K[0] + K[1]*K[1]);
     
     // Compute element tensor
     A[0] = G0_0_0;
     A[1] = -G0_0_0;
     A[2] = -G0_0_0;
     A[3] = G0_0_0;
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };
@@ -1019,26 +997,22 @@ public:
   /// Tabulate the tensor for the contribution from a local cell
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c) const
+                               const double* vertex_coordinates,
+                               int cell_orientation) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      8
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    2
     // Number of operations (multiply-add pairs) for tensor contraction: 3
-    // Total number of operations (multiply-add pairs):                  13
+    // Total number of operations (multiply-add pairs):                  8
     
-    // Extract vertex coordinates
-    const double * const * x = c.coordinates;
+    // Compute Jacobian
+    double J[2];
+    compute_jacobian_interval_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    const double J_00 = x[1][0] - x[0][0];
-    const double J_10 = x[1][1] - x[0][1];
-    
-    
-    // Compute pseudodeterminant of Jacobian
-    const double detJ2 = J_00*J_00 + J_10*J_10;
-    const double detJ = std::sqrt(detJ2);
-    
-    // Compute pseudoinverse of Jacobian
+    // Compute Jacobian inverse and determinant
+    double K[2];
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     // Set scale factor
     const double det = std::abs(detJ);
@@ -1050,18 +1024,6 @@ public:
     // Compute element tensor
     A[0] = 0.333333333333333*G0_0 + 0.166666666666666*G0_1;
     A[1] = 0.166666666666666*G0_0 + 0.333333333333333*G0_1;
-  }
-
-  /// Tabulate the tensor for the contribution from a local cell
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };
@@ -1089,25 +1051,26 @@ public:
   /// Tabulate the tensor for the contribution from a local exterior facet
   virtual void tabulate_tensor(double* A,
                                const double * const * w,
-                               const ufc::cell& c,
+                               const double* vertex_coordinates,
                                std::size_t facet) const
   {
-    // Number of operations (multiply-add pairs) for Jacobian data:      5
+    // Number of operations (multiply-add pairs) for Jacobian data:      3
     // Number of operations (multiply-add pairs) for geometry tensor:    2
     // Number of operations (multiply-add pairs) for tensor contraction: 0
-    // Total number of operations (multiply-add pairs):                  7
+    // Total number of operations (multiply-add pairs):                  5
     
-    // Extract vertex coordinates
+    // Compute Jacobian
+    double J[2];
+    compute_jacobian_interval_2d(J, vertex_coordinates);
     
-    // Compute Jacobian of affine map from reference cell
-    
-    
-    // Compute pseudodeterminant of Jacobian
-    
-    // Compute pseudoinverse of Jacobian
+    // Compute Jacobian inverse and determinant
+    double K[2];
+    double detJ;
+    compute_jacobian_inverse_interval_2d(K, detJ, J);
     
     // Facet determinant 1D in 2D (vertex)
     const double det = 1.0;
+    
     
     // Compute geometry tensor
     const double G0_0 = det*w[1][0]*(1.0);
@@ -1130,18 +1093,6 @@ public:
       }
     }
     
-  }
-
-  /// Tabulate the tensor for the contribution from a local exterior facet
-  /// using the specified reference cell quadrature points/weights
-  virtual void tabulate_tensor(double* A,
-                               const double * const * w,
-                               const ufc::cell& c,
-                               std::size_t num_quadrature_points,
-                               const double * const * quadrature_points,
-                               const double* quadrature_weights) const
-  {
-    throw std::runtime_error("Quadrature version of tabulate_tensor not available when using the FFC tensor representation.");
   }
 
 };
