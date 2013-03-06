@@ -1000,6 +1000,10 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       boundary (:py:class:`BoundaryMesh`)
           A mesh containing just the boundary cells.
+  
+  *Returns*
+      MeshDisplacement
+          Displacement encapsulated in Expression subclass MeshDisplacement
 
 * move\ (mesh)
 
@@ -1009,6 +1013,10 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
+  
+  *Returns*
+      MeshDisplacement
+          Displacement encapsulated in Expression subclass MeshDisplacement
 
 * move\ (displacement)
 
