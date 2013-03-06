@@ -99,6 +99,14 @@ Compute (generalized) volume of mesh entity
 Compute diameter of mesh entity
 ";
 
+%feature("docstring")  dolfin::CellType::inradius "
+Compute inradius of cell
+";
+
+%feature("docstring")  dolfin::CellType::radius_ratio "
+Compute dim*inradius/circumradius for given cell
+";
+
 %feature("docstring")  dolfin::CellType::normal "
 **Overloaded versions**
 
@@ -992,6 +1000,10 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       boundary (:py:class:`BoundaryMesh`)
           A mesh containing just the boundary cells.
+  
+  *Returns*
+      MeshDisplacement
+          Displacement encapsulated in Expression subclass MeshDisplacement
 
 * move\ (mesh)
 
@@ -1001,6 +1013,10 @@ Check if mesh is ordered according to the UFC numbering convention.
   *Arguments*
       mesh (:py:class:`Mesh`)
           A :py:class:`Mesh` object.
+  
+  *Returns*
+      MeshDisplacement
+          Displacement encapsulated in Expression subclass MeshDisplacement
 
 * move\ (displacement)
 
@@ -1240,6 +1256,64 @@ Compute maximum cell diameter.
         >>> mesh = dolfin.UnitSquare(2,2)
         >>> mesh.hmax()
         0.70710678118654757
+";
+
+%feature("docstring")  dolfin::Mesh::rmin "
+Compute minimum cell inradius.
+
+*Returns*
+    float
+        The minimum of cells' inscribed sphere radii
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+%feature("docstring")  dolfin::Mesh::rmax "
+Compute maximum cell inradius.
+
+*Returns*
+    float
+        The maximum of cells' inscribed sphere radii
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+%feature("docstring")  dolfin::Mesh::radius_ratio_min "
+Compute minimum normalized radius ratio of cells.
+
+*Returns*
+    float
+        The minimum over cells of normalized cell
+        radius ratio (which is = cell_dimension *
+        * inradius / circumradius; cell_dimension
+        is normalization factor).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+%feature("docstring")  dolfin::Mesh::radius_ratio_max "
+Compute maximum normalized radius ratio of cells.
+
+*Returns*
+    float
+        The maximum over cells of normalized cell
+        radius ratio (which is = cell_dimension *
+        * inradius / circumradius; cell_dimension
+        is normalization factor).
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
 ";
 
 %feature("docstring")  dolfin::Mesh::hash "
@@ -2255,6 +2329,36 @@ Compute diameter of cell
 *Returns*
     float
         The diameter of the cell.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+%feature("docstring")  dolfin::Cell::inradius "
+Compute inradius of cell
+
+*Returns*
+    float
+        Radius of the sphere inscribed in the cell.
+
+*Example*
+    .. note::
+    
+        No example code available for this function.
+";
+
+%feature("docstring")  dolfin::Cell::radius_ratio "
+Compute ratio of inradius to circumradius times dim for cell.
+Useful as cell quality measure. Returns 1. for equilateral
+and 0. for degenerate cell.
+See Jonathan Richard Shewchuk: What Is a Good Linear Finite Element?,
+online: http://www.cs.berkeley.edu/~jrs/papers/elemj.pdf
+
+*Returns*
+    float
+        cell_dimension * inradius / circumradius
 
 *Example*
     .. note::
