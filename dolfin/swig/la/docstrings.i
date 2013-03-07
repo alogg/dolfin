@@ -760,6 +760,13 @@ Set the (approximate) null space of the preconditioner operator
 e.g. smoothed aggregation multigrid
 ";
 
+%feature("docstring")  dolfin::GenericPreconditioner::set_coordinates "
+Set the coordinates of the operator (matrix) rows and geometric
+dimension d. This is can be used by required for certain
+preconditioners, e.g. ML. The input for this function can be
+generated using GenericDofMap::tabulate_all_dofs.
+";
+
 // Documentation extracted from: (module=la, header=PETScObject.h)
 %feature("docstring")  dolfin::PETScObject "
 This class calls SubSystemsManager to initialise PETSc.
@@ -1265,6 +1272,13 @@ e.g. smoothed aggregation multigrid
 
 %feature("docstring")  dolfin::PETScPreconditioner::nullspace "
 Return the PETSc null space
+";
+
+%feature("docstring")  dolfin::PETScPreconditioner::set_coordinates "
+Set the coordinates of the operator (matrix) rows and geometric
+dimension d. This is can be used by required for certain
+preconditioners, e.g. ML. The input for this function can be
+generated using GenericDofMap::tabulate_all_dofs.
 ";
 
 %feature("docstring")  dolfin::PETScPreconditioner::str "
@@ -2245,8 +2259,9 @@ Assignment operator
 Return linear algebra backend factory
 ";
 
-%feature("docstring")  dolfin::STLMatrix::sort "
+%feature("docstring")  dolfin::STLMatrix::clear "
 --- STLMatrix interface ---
+Clear matrix. Destroys data and sparse layout
 ";
 
 %feature("docstring")  dolfin::STLMatrix::csr "
@@ -3185,6 +3200,7 @@ Possible values are
   \"lanczos\"             (Lanczos)
   \"krylov-schur\"        (Krylov-Schur)
   \"lapack\"              (LAPACK, all values, direct, small systems only)
+  \"arpack\"              (ARPACK)
 
 The default is \"krylov-schur\"
 
@@ -3213,6 +3229,7 @@ extra piece of information. Possible values are:
   \"non_hermitian\"           (Non-Hermitian)
   \"gen_hermitian\"           (Generalized Hermitian)
   \"gen_non_hermitian\"       (Generalized Non-Hermitian)
+  \"pos_gen_non_hermitian\"   (Generalized Non-Hermitian with positive semidefinite B)
 
 6. \"spectral_transform\"
 
