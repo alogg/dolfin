@@ -635,7 +635,7 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
       local_mesh_data (LocalMeshData)
           Data from which to build the mesh.
 
-* Mesh\ (geometry, mesh_resolution)
+* Mesh\ (geometry, resolution)
 
   Create mesh defined by Constructive Solid Geometry (CSG)
   
