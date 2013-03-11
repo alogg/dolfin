@@ -632,7 +632,7 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   Create a distributed mesh from local (per process) data.
   
   *Arguments*
-      local_mesh_data (LocalMeshData)
+      local_mesh_data (:py:class:`LocalMeshData`)
           Data from which to build the mesh.
 
 * Mesh\ (geometry, resolution)
@@ -640,7 +640,7 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   Create mesh defined by Constructive Solid Geometry (CSG)
   
   *Arguments*
-      geometry (CSGGeometry)
+      geometry (:py:class:`CSGGeometry`)
           The CSG geometry
       resolution (std::size_t)
           An integer specifying the mesh resolution
@@ -650,7 +650,7 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   Create mesh defined by Constructive Solid Geometry (CSG)
   
   *Arguments*
-      geometry (CSGGeometry)
+      geometry (:py:class:`CSGGeometry`)
           The CSG geometry
       resolution (std::size_t)
           An integer specifying the mesh resolution
