@@ -174,10 +174,6 @@ Return informal string representation (pretty-print)
 Return linear algebra backend factory
 ";
 
-%feature("docstring")  dolfin::GenericTensor::operator= "
-Assignment (must be overloaded by subclass)
-";
-
 // Documentation extracted from: (module=la, header=GenericMatrix.h)
 %feature("docstring")  dolfin::GenericMatrix "
 This class defines a common interface for matrices.
@@ -312,6 +308,10 @@ Add given matrix
 
 %feature("docstring")  dolfin::GenericMatrix::operator-= "
 Subtract given matrix
+";
+
+%feature("docstring")  dolfin::GenericMatrix::is_symmetric "
+Test if matrix is symmetric
 ";
 
 %feature("docstring")  dolfin::GenericMatrix::operator= "
@@ -728,6 +728,18 @@ singular systems
   Solve linear system Ax = b
 ";
 
+%feature("docstring")  dolfin::GenericLinearSolver::solve_transpose "
+**Overloaded versions**
+
+* solve_transpose\ (A, x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (x, b)
+
+  Solve linear system A^Tx = b
+";
+
 // Documentation extracted from: (module=la, header=GenericLUSolver.h)
 %feature("docstring")  dolfin::GenericLUSolver "
 This a base class for LU solvers
@@ -747,6 +759,18 @@ Set operator (matrix)
 * solve\ (A, x, b)
 
   Solve linear system Ax = b
+";
+
+%feature("docstring")  dolfin::GenericLUSolver::solve_transpose "
+**Overloaded versions**
+
+* solve_transpose\ (x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (A, x, b)
+
+  Solve linear system A^Tx = b
 ";
 
 // Documentation extracted from: (module=la, header=GenericPreconditioner.h)
@@ -1208,6 +1232,10 @@ Divide matrix by given number
   Assignment operator
 ";
 
+%feature("docstring")  dolfin::PETScMatrix::is_symmetric "
+Test if matrix is symmetric
+";
+
 %feature("docstring")  dolfin::PETScMatrix::factory "
 Return linear algebra backend factory
 ";
@@ -1334,6 +1362,22 @@ Get operator (matrix)
 * solve\ (A, x, b)
 
   Solve linear system Ax = b
+";
+
+%feature("docstring")  dolfin::EpetraLUSolver::solve_transpose "
+**Overloaded versions**
+
+* solve_transpose\ (x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (A, x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (A, x, b)
+
+  Solve linear system A^Tx = b
 ";
 
 %feature("docstring")  dolfin::EpetraLUSolver::methods "
@@ -1947,13 +1991,33 @@ Get operator (matrix)
 
   Solve linear system Ax = b
 
-* solve\ (A, x, b)
+* solve\ (x, b, transpose)
 
   Solve linear system Ax = b
 
 * solve\ (A, x, b)
 
   Solve linear system Ax = b
+
+* solve\ (A, x, b)
+
+  Solve linear system Ax = b
+";
+
+%feature("docstring")  dolfin::PETScLUSolver::solve_transpose "
+**Overloaded versions**
+
+* solve_transpose\ (x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (A, x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (A, x, b)
+
+  Solve linear system A^Tx = b
 ";
 
 %feature("docstring")  dolfin::PETScLUSolver::str "
@@ -3860,6 +3924,10 @@ Divide matrix by given number
   Assignment operator
 ";
 
+%feature("docstring")  dolfin::Matrix::is_symmetric "
+Test if matrix is symmetric
+";
+
 %feature("docstring")  dolfin::Matrix::data "
 Return pointers to underlying compressed storage data.
 See GenericMatrix for documentation.
@@ -4076,6 +4144,18 @@ Set operator (matrix)
   Solve linear system Ax = b
 
 * solve\ (A, x, b)
+
+  Solve linear system
+";
+
+%feature("docstring")  dolfin::LUSolver::solve_transpose "
+**Overloaded versions**
+
+* solve_transpose\ (x, b)
+
+  Solve linear system A^Tx = b
+
+* solve_transpose\ (A, x, b)
 
   Solve linear system
 ";

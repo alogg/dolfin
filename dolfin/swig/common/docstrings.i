@@ -263,7 +263,7 @@ also possible to start and stop a timer explicitly by
 Timings are stored globally and a summary may be printed
 by calling
 
-  summary();
+  list_timings();
 ";
 
 %feature("docstring")  dolfin::Timer::Timer "

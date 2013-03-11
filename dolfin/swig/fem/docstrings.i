@@ -43,6 +43,10 @@ Return the maximum dimension of the local finite element
 function space
 ";
 
+%feature("docstring")  dolfin::GenericDofMap::num_entity_dofs "
+Return the number of dofs for a given entity dimension
+";
+
 %feature("docstring")  dolfin::GenericDofMap::num_facet_dofs "
 Return number of facet dofs
 ";
@@ -68,6 +72,10 @@ Local-to-global mapping of dofs on a cell
 
 %feature("docstring")  dolfin::GenericDofMap::tabulate_facet_dofs "
 Tabulate local-local facet dofs
+";
+
+%feature("docstring")  dolfin::GenericDofMap::tabulate_entity_dofs "
+Tabulate the local-to-local mapping of dofs on entity (dim, local_entity)
 ";
 
 %feature("docstring")  dolfin::GenericDofMap::dof_to_vertex_map "
@@ -219,6 +227,18 @@ function space
         space.
 ";
 
+%feature("docstring")  dolfin::DofMap::num_entity_dofs "
+Return the number of dofs for a given entity dimension
+
+*Arguments*
+    dim (std::size_t)
+        Entity dimension
+
+*Returns*
+    std::size_t
+        Number of dofs associated with given entity dimension
+";
+
 %feature("docstring")  dolfin::DofMap::geometric_dimension "
 Return the geometric dimension of the coordinates this dof map
 provides
@@ -281,6 +301,28 @@ Local-to-global mapping of dofs on a cell
 *Returns*
     std::vector<dolfin::la_index>
         Local-to-global mapping of dofs.
+";
+
+%feature("docstring")  dolfin::DofMap::tabulate_facet_dofs "
+Tabulate local-local facet dofs
+
+*Arguments*
+    dofs (std::size_t)
+        Degrees of freedom.
+    local_facet (std::size_t)
+        The local facet.
+";
+
+%feature("docstring")  dolfin::DofMap::tabulate_entity_dofs "
+Tabulate local-local mapping of dofs on entity (dim, local_entity)
+
+*Arguments*
+    dofs (std::size_t)
+        Degrees of freedom.
+    dim (std::size_t)
+        The entity dimension
+    local_entity (std::size_t)
+        The local entity index
 ";
 
 %feature("docstring")  dolfin::DofMap::tabulate_coordinates "
@@ -505,11 +547,11 @@ Return the dimension of the value space for axis i
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis "
 **Overloaded versions**
 
-* evaluate_basis\ (i, values, x, cell)
+* evaluate_basis\ (i, values, x, vertex_coordinates, cell_orientation)
 
   Evaluate basis function i at given point in cell
 
-* evaluate_basis\ (i, values, x, cell)
+* evaluate_basis\ (i, values, x, c)
 
   Evaluate basis function i at given point in cell
 ";
@@ -517,29 +559,61 @@ Return the dimension of the value space for axis i
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis_all "
 **Overloaded versions**
 
-* evaluate_basis_all\ (values, coordinates, c)
+* evaluate_basis_all\ (values, x, vertex_coordinates, cell_orientation)
 
   Evaluate all basis functions at given point in cell
 
-* evaluate_basis_all\ (values, coordinates, cell)
+* evaluate_basis_all\ (values, x, vertex_coordinates, c)
 
   Evaluate all basis functions at given point in cell
 ";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis_derivatives "
-Evaluate order n derivatives of basis function i at given point in cell
+**Overloaded versions**
+
+* evaluate_basis_derivatives\ (i, n, values, x, vertex_coordinates, cell_orientation)
+
+  Evaluate order n derivatives of basis function i at given point in cell
+
+* evaluate_basis_derivatives\ (i, n, values, x, c)
+
+  Evaluate order n derivatives of basis function i at given point in cell
 ";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_basis_derivatives_all "
-Evaluate order n derivatives of all basis functions at given point in cell
+**Overloaded versions**
+
+* evaluate_basis_derivatives_all\ (n, values, x, vertex_coordinates, cell_orientation)
+
+  Evaluate order n derivatives of all basis functions at given point in cell
+
+* evaluate_basis_derivatives_all\ (n, values, x, c)
+
+  Evaluate order n derivatives of all basis functions at given point in cell
 ";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_dof "
-Evaluate linear functional for dof i on the function f
+**Overloaded versions**
+
+* evaluate_dof\ (i, function, vertex_coordinates, cell_orientation, c)
+
+  Evaluate linear functional for dof i on the function f
+
+* evaluate_dof\ (i, function, c)
+
+  Evaluate linear functional for dof i on the function f
 ";
 
 %feature("docstring")  dolfin::FiniteElement::evaluate_dofs "
-Evaluate linear functionals for all dofs on the function f
+**Overloaded versions**
+
+* evaluate_dofs\ (values, f, vertex_coordinates, cell_orientation, c)
+
+  Evaluate linear functionals for all dofs on the function f
+
+* evaluate_dofs\ (values, f, c)
+
+  Evaluate linear functionals for all dofs on the function f
 ";
 
 %feature("docstring")  dolfin::FiniteElement::interpolate_vertex_values "
