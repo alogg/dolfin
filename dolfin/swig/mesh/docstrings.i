@@ -632,24 +632,28 @@ explicitly created (in this case by a call to mesh.init(0, 1)).
   Create a distributed mesh from local (per process) data.
   
   *Arguments*
-      local_mesh_data (LocalMeshData)
+      local_mesh_data (:py:class:`LocalMeshData`)
           Data from which to build the mesh.
-
-* Mesh\ (geometry, mesh_resolution)
-
-  Create mesh defined by Constructive Solid Geometry (CSG)
-  
-  *Arguments*
-      geometry (CSGGeometry)
-          The CSG geometry
 
 * Mesh\ (geometry, resolution)
 
   Create mesh defined by Constructive Solid Geometry (CSG)
   
   *Arguments*
-      geometry (CSGGeometry)
+      geometry (:py:class:`CSGGeometry`)
           The CSG geometry
+      resolution (std::size_t)
+          An integer specifying the mesh resolution
+
+* Mesh\ (geometry, resolution)
+
+  Create mesh defined by Constructive Solid Geometry (CSG)
+  
+  *Arguments*
+      geometry (:py:class:`CSGGeometry`)
+          The CSG geometry
+      resolution (std::size_t)
+          An integer specifying the mesh resolution
 ";
 
 %feature("docstring")  dolfin::Mesh::operator= "
@@ -3502,6 +3506,25 @@ This class implements renumbering algorithms for meshes.
 ";
 
 // Documentation extracted from: (module=mesh, header=LocalMeshData.h)
+%feature("docstring")  dolfin::LocalMeshData "
+This class stores mesh data on a local processor corresponding
+to a portion of a (larger) global mesh.
+
+Note that the data stored in this class does typically not
+correspond to a topologically connected mesh; it merely stores a
+list of vertex coordinates, a list of cell-vertex mappings and a
+list of global vertex numbers for the locally stored vertices.
+
+It is typically used for parsing meshes in parallel from mesh
+XML files. After local mesh data has been parsed on each
+processor, a subsequent repartitioning takes place: first a
+geometric partitioning of the vertices followed by a
+redistribution of vertex and cell data, and then a topological
+partitioning again followed by redistribution of vertex and cell
+data, at that point corresponding to topologically connected
+meshes instead of local mesh data.
+";
+
 %feature("docstring")  dolfin::LocalMeshData::LocalMeshData "
 **Overloaded versions**
 
@@ -3865,5 +3888,17 @@ For entities of dimension dim, compute map from a slave entity on
 this process (local index) to its master entity (owning process,
 local index on owner). If a master entity is shared by processes,
 only one of the owning processes is returned.
+";
+
+%feature("docstring")  dolfin::PeriodicBoundaryComputation::masters_slaves "
+This function returns a MeshFunction which marks mesh entities
+of dimension dim according to:
+
+    2: slave entities
+    1: master entities
+    0: all other entities
+
+It is useful for visualising and debugging the Expression::map
+function that is used to apply periodic boundary conditions.
 ";
 
